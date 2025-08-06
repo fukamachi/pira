@@ -1,0 +1,9 @@
+{
+    "ACM PCA": {
+        "shapes": {
+            "com.amazonaws.acmpca#ACMPrivateCA": {
+                "version": "2017-08-22"
+            }
+        }
+    }
+}

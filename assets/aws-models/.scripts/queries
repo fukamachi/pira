@@ -1,0 +1,14 @@
+
+# Get the file path, shapeId, sdkId, and title for every service shape
+```
+find ../ -name "*-*.json" -exec jq '
+  .shapes | to_entries[] | 
+  select(.value.type == "service") | 
+  {
+    file: input_filename,
+    shapeId: .key,
+    sdkId: .value.traits."aws.api#service".sdkId,
+    title: .value.traits."smithy.api#title"
+  }
+' {} \; | jq -s '. | sort_by(.file)' > result.json 
+```

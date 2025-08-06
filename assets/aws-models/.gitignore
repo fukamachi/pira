@@ -1,0 +1,35 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Fleet
+.fleet/
+
+# VSCode
+bin/
+
+# Mac
+.DS_Store
+
+# Maven
+target/
+**/dependency-reduced-pom.xml
+
+# Gradle
+**/.gradle
+build/
+*/out/
+*/*/out/
+/wrapper
+
+# Smithy
+.smithy.lsp.log
+
+# changed file
+.changed
