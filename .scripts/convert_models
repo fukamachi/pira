@@ -1,0 +1,255 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import json
+from typing import Dict, Optional
+from dataclasses import dataclass
+import logging
+import argparse
+import sys
+
+
+SERVICE_TYPE = "service"
+SERVICE_TRAIT = "aws.api#service"
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s.%(msecs)03d - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%dT%H:%M:%S",
+)
+
+
+@dataclass
+class ModelInfo:
+    model: dict
+    sdk_id: str  # the sdk-id from the model
+    service: tuple[str, dict]  # the service shape id and service shape
+
+
+def transform_sdk_id(sdk_id: str) -> str:
+    """Transform the sdkId to lower-case and spaces replaced with hyphens.
+
+    For example, 'API Gateway' would become 'api-gateway'.
+
+    :param sdk_id: the sdkId
+    :return: the lowercased 'sdkId' with spaces replaced with hypens
+    """
+
+    return sdk_id.lower().replace(" ", "-")
+
+
+def load_overrides(override_path: Optional[Path]) -> Dict[str, dict]:
+    """
+    Load model overrides from a file.
+
+    The override file should be structured as:
+    {
+        "<sdkId>": {
+            "shapes": {
+                "com.amazonaws.xyz#Xyz": ...
+            },
+            ...
+        }
+    }
+
+    :param override_path: Path to JSON file containing overrides
+    :return: Dictionary of overrides keyed by sdkId
+    """
+
+    if not override_path or not override_path.is_file:
+        return {}
+
+    try:
+        return json.loads(override_path.read_text(encoding="utf-8"))
+    except Exception:
+        logger.error(f"Failed to load overrides from {override_path}", exc_info=True)
+        raise
+
+
+def apply_overrides(model_json: dict, overrides: dict) -> dict:
+    """
+    Apply overrides to the model JSON by deep merging.
+
+    :param model_json: Original model JSON
+    :param overrides: Override values to apply
+    :return: Updated model JSON with overrides applied
+    """
+
+    def deep_merge(base: dict, update: dict) -> dict:
+        for key, value in update.items():
+            if key in base and isinstance(base[key], dict) and isinstance(value, dict):
+                deep_merge(base[key], value)
+            else:
+                base[key] = value
+        return base
+
+    return deep_merge(model_json.copy(), overrides)
+
+
+def handle_model(model_path: Path, overrides: Dict[str, dict] = None) -> ModelInfo:
+    """
+    Parse and process a model.json file.
+
+    :param model_path: Path to the model.json file
+    :param overrides: Optional dictionary of overrides keyed by SDK ID
+    :return: Model with processed data
+    """
+
+    # Load and parse the model file
+    smithy_model_json = json.loads(model_path.read_text(encoding="utf-8"))
+
+    # Find the service shape
+    service_shape = None
+    service_shape_id = None
+    sdk_id = None
+
+    for shape_id, shape in smithy_model_json.get("shapes", {}).items():
+        if shape.get("type") == "service":
+            service_shape = shape
+            service_shape_id = shape_id
+            # Get the 'sdkId' for the service
+            sdk_id = shape.get("traits", {}).get("aws.api#service", {}).get("sdkId")
+            break
+
+    if None in (service_shape, service_shape_id, sdk_id):
+        raise ValueError("Could not find service shape with sdkId in model")
+
+    # Apply any overrides for this service
+    if overrides and sdk_id in overrides:
+        logger.info(f"  Applying overrides for SDK ID: {sdk_id}")
+        smithy_model_json = apply_overrides(smithy_model_json, overrides[sdk_id])
+
+        # Re-fetch service shape as it might have been modified
+        for shape_id, shape in smithy_model_json.get("shapes", {}).items():
+            if shape.get("type") == "service":
+                service_shape = shape
+                service_shape_id = shape_id
+                break
+
+    return ModelInfo(
+        model=smithy_model_json,
+        sdk_id=sdk_id,
+        service=(service_shape_id, service_shape),
+    )
+
+
+def process_models(
+    source_dir: Path, dest_dir: Path, override_path: Optional[Path] = None
+) -> None:
+    """
+    Walk through source directory and process all model.json files.
+
+    :param source_dir: Path to directory containing source models
+    :param dest_dir: Path to directory where transformed models should be written
+    :param override_path: Optional path to model overrides file
+    """
+
+    logger.info(f"Processing models from {source_dir}")
+    logger.info(f"Writing output to {dest_dir}")
+
+    # Load overrides if provided
+    overrides = load_overrides(override_path)
+    if overrides:
+        logger.info(f"Loaded overrides for services: {', '.join(overrides.keys())}")
+
+    # Ensure source directory exists
+    if not source_dir.is_dir():
+        raise FileNotFoundError(f"Source directory not found: {source_dir}")
+
+    # Track success and failure counts
+    processed = 0
+    failed = 0
+
+    # Get all model.json files, there should be 1 per service
+    for model_path in source_dir.rglob("model.json"):
+        try:
+            logger.info(f"Processing {model_path}")
+            process_model(model_path, dest_dir, overrides)
+            processed += 1
+
+        except Exception:
+            logger.error(f"Failed to process {model_path}", exc_info=True)
+            failed += 1
+
+    logger.info(
+        f"Processing complete. Successfully processed: {processed}, Failed: {failed}"
+    )
+    if failed > 0:
+        logger.warning("Some models failed to process. Check logs for details.")
+        sys.exit(1)
+
+
+def process_model(input_path: Path, dest_dir: Path, overrides: Dict[str, dict]) -> None:
+    """
+    Process a single model file and write the transformed version.
+
+    :param input_path: Path to the input model.json file
+    :param dest_dir: Path to destination directory
+    :param overrides: Dictionary of model overrides keyed by sdkId
+    """
+
+    logger.info(f"  Input path: {input_path}")
+
+    try:
+        # Process the model with overrides
+        modelInfo = handle_model(input_path, overrides)
+
+        # Get the service version from the service shape
+        service_shape_id, service_shape = modelInfo.service
+        service_version = service_shape["version"]
+
+        # Create the service-id and file name
+        transformed_sdk_id = transform_sdk_id(modelInfo.sdk_id)
+        file_name = f"{transformed_sdk_id}-{service_version}.json"
+
+        # Create the new directory structure and file path
+        output_path = (
+            dest_dir / transformed_sdk_id / "service" / service_version / file_name
+        )
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Write the model
+        output_path.write_text(json.dumps(modelInfo.model, indent=2), encoding="utf-8")
+
+        logger.info(f"  SDK ID: {modelInfo.sdk_id}")
+        logger.info(f"  Service Version: {service_version}")
+        logger.info(f"  Output: {output_path}")
+        logger.info("=" * 80)
+
+    except Exception as e:
+        logger.error(f"  Failed to process model: {str(e)}", exc_info=True)
+        logger.info("=" * 80)
+        raise
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Transform Smithy model.json files from source to destination directory."
+    )
+
+    parser.add_argument(
+        "--source-dir",
+        "-s",
+        type=Path,
+        required=True,
+        help="Source directory containing model.json files",
+    )
+
+    parser.add_argument(
+        "--dest-dir",
+        "-d",
+        type=Path,
+        required=True,
+        help="Destination directory for transformed models",
+    )
+
+    parser.add_argument(
+        "--overrides",
+        "-o",
+        type=Path,
+        help="JSON file containing model overrides (keyed by `Sdk ID`)",
+    )
+    args = parser.parse_args()
+
+    process_models(args.source_dir, args.dest_dir, args.overrides)
