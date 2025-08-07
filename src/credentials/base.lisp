@@ -1,4 +1,4 @@
-(defpackage #:aws/credentials/base
+(defpackage #:pira/credentials/base
   (:use #:cl)
   (:import-from #:local-time)
   (:export #:credentials
@@ -15,7 +15,7 @@
            #:provider-expiry-window
            #:retrieve
            #:expiredp))
-(in-package #:aws/credentials/base)
+(in-package #:pira/credentials/base)
 
 (defclass credentials () ())
 

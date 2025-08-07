@@ -1,4 +1,4 @@
-(defpackage #:aws/config
+(defpackage #:pira/config
   (:use #:cl)
   (:import-from #:parser.ini
                 #:*include-empty-sections?*
@@ -6,7 +6,7 @@
   (:export #:parse-file
            #:read-from-file
            #:*aws-profile*))
-(in-package #:aws/config)
+(in-package #:pira/config)
 
 (defvar *aws-profile* (or (uiop:getenvp "AWS_PROFILE") "default"))
 

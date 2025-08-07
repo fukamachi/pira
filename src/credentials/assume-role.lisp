@@ -1,21 +1,21 @@
-(defpackage #:aws/credentials/assume-role
+(defpackage #:pira/credentials/assume-role
   (:use #:cl)
-  (:import-from #:aws/credentials/base
+  (:import-from #:pira/credentials/base
                 #:provider
                 #:retrieve
                 #:make-credentials
                 #:credentials-keys
                 #:provider-expiration)
-  (:import-from #:aws/session
+  (:import-from #:pira/session
                 #:*session*
                 #:session-region
                 #:%make-session)
-  (:import-from #:aws/sts
+  (:import-from #:pira/sts
                 #:assume-role)
   (:import-from #:local-time)
   (:import-from #:assoc-utils
                 #:aget))
-(in-package #:aws/credentials/assume-role)
+(in-package #:pira/credentials/assume-role)
 
 (defclass assume-role-provider (provider)
   ((role-arn :initarg :role-arn)
@@ -49,7 +49,7 @@
              (let ((*session* (%make-session :credentials
                                              (slot-value provider 'shared-credentials)
                                              :region (session-region *session*))))
-               (aws/sts::assume-role :role-arn role-arn
+               (pira/sts::assume-role :role-arn role-arn
                                     :role-session-name role-session-name
                                     :duration-seconds duration-seconds
                                     :external-id external-id

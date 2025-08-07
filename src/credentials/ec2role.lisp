@@ -1,11 +1,11 @@
-(defpackage #:aws/credentials/ec2role
+(defpackage #:pira/credentials/ec2role
   (:use #:cl)
-  (:import-from #:aws/credentials/base
+  (:import-from #:pira/credentials/base
                 #:make-credentials
                 #:provider
                 #:retrieve
                 #:provider-expiration)
-  (:import-from #:aws/ec2metadata
+  (:import-from #:pira/ec2metadata
                 #:ec2metadata
                 #:ec2token)
   (:import-from #:trivial-timeout
@@ -14,7 +14,7 @@
   (:import-from #:yason)
   (:import-from #:local-time)
   (:export #:ec2role-provider))
-(in-package #:aws/credentials/ec2role)
+(in-package #:pira/credentials/ec2role)
 
 (defclass ec2role-provider (provider)
   ())

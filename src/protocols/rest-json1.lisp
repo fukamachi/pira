@@ -1,9 +1,9 @@
-(defpackage #:aws/protocols/rest-json1
+(defpackage #:pira/protocols/rest-json1
   (:use #:cl)
   (:import-from #:alexandria
                 #:ensure-car)
   (:local-nicknames
-   (#:aws #:aws/protocols/aws)
+   (#:pira #:pira/protocols/aws)
    (#:protocols #:smithy/sdk/protocols)
    (#:shape #:smithy/sdk/shapes)
    (#:type #:smithy/sdk/smithy-types)
@@ -11,9 +11,9 @@
    (#:assoc #:assoc-utils)
    (#:util #:smithy/utils))
   (:export #:rest-json1))
-(in-package #:aws/protocols/rest-json1)
+(in-package #:pira/protocols/rest-json1)
 
-(defclass rest-json1 (protocols:json aws:aws-protocol)
+(defclass rest-json1 (protocols:json pira:aws-protocol)
   ()
   (:metaclass protocols:protocol-metaclass)
   (:protocol-id :rest-json1))

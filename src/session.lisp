@@ -1,10 +1,10 @@
-(defpackage #:aws/session
+(defpackage #:pira/session
   (:use #:cl)
   (:export #:*session*
            #:session
            #:session-credentials
            #:session-region))
-(in-package #:aws/session)
+(in-package #:pira/session)
 
 (defvar *session* nil)
 

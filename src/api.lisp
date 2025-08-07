@@ -1,11 +1,11 @@
-(defpackage #:aws/api
+(defpackage #:pira/api
   (:use #:cl)
   (:local-nicknames
    (#:http #:smithy/sdk/http)
-   (#:session #:aws/session)
-   (#:credentials #:aws/credentials))
+   (#:session #:pira/session)
+   (#:credentials #:pira/credentials))
   (:export #:aws-request))
-(in-package #:aws/api)
+(in-package #:pira/api)
 
 (defparameter *global-service-endpoints* '("iam"
                                            "globalaccelerator"

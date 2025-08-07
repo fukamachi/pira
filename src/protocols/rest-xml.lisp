@@ -1,18 +1,18 @@
-(defpackage #:aws/protocols/rest-xml
+(defpackage #:pira/protocols/rest-xml
   (:use #:cl)
   (:import-from #:alexandria
                 #:ensure-car)
   (:local-nicknames
-   (#:aws #:aws/protocols/aws)
+   (#:pira #:pira/protocols/aws)
    (#:shape #:smithy/sdk/shapes)
    (#:type #:smithy/sdk/smithy-types)
    (#:protocols #:smithy/sdk/protocols)
    (#:operation #:smithy/sdk/operation)
    (#:util #:smithy/utils))
   (:export #:rest-xml))
-(in-package #:aws/protocols/rest-xml)
+(in-package #:pira/protocols/rest-xml)
 
-(defclass rest-xml (protocols:xml aws:aws-protocol)
+(defclass rest-xml (protocols:xml pira:aws-protocol)
   ()
   (:metaclass protocols:protocol-metaclass)
   (:protocol-id :rest-xml))

@@ -1,23 +1,23 @@
-(defpackage #:aws/credentials
+(defpackage #:pira/credentials
   (:use #:cl)
-  (:import-from #:aws/credentials/base
+  (:import-from #:pira/credentials/base
                 #:make-credentials
                 #:credentials
                 #:retrieve
                 #:credentials-keys
                 #:credentials-headers)
-  (:import-from #:aws/credentials/env
+  (:import-from #:pira/credentials/env
                 #:env-provider)
-  (:import-from #:aws/credentials/shared
+  (:import-from #:pira/credentials/shared
                 #:shared-provider)
-  (:import-from #:aws/credentials/ec2role
+  (:import-from #:pira/credentials/ec2role
                 #:ec2role-provider)
   (:export #:credentials
            #:make-credentials
            #:default-aws-credentials
            #:credentials-keys
            #:credentials-headers))
-(in-package #:aws/credentials)
+(in-package #:pira/credentials)
 
 (defvar *chained-providers*
   (list (make-instance 'env-provider)

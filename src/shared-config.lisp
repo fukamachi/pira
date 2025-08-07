@@ -1,8 +1,8 @@
-(defpackage #:aws/shared-config
+(defpackage #:pira/shared-config
   (:use #:cl)
-  (:import-from #:aws/credentials
+  (:import-from #:pira/credentials
                 #:make-credentials)
-  (:import-from #:aws/config
+  (:import-from #:pira/config
                 #:read-from-file)
   (:import-from #:assoc-utils
                 #:aget)
@@ -20,7 +20,7 @@
            #:assume-role-serial-number
            #:assume-role-role-session-name
            #:assume-role-credentials))
-(in-package #:aws/shared-config)
+(in-package #:pira/shared-config)
 
 (defstruct (assume-role-config (:conc-name assume-role-))
   (role-arn nil :type string)

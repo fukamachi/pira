@@ -1,4 +1,4 @@
-(defpackage #:aws/ec2metadata
+(defpackage #:pira/ec2metadata
   (:use #:cl)
   (:import-from #:dexador)
   (:import-from #:trivial-timeout
@@ -7,7 +7,7 @@
   (:export #:ec2metadata
            #:ec2token
            #:ec2-region))
-(in-package #:aws/ec2metadata)
+(in-package #:pira/ec2metadata)
 
 (defun ec2metadata (path &key token)
   (with-timeout (5)

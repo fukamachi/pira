@@ -1,17 +1,17 @@
-(defpackage #:aws/credentials/shared
+(defpackage #:pira/credentials/shared
   (:use #:cl)
-  (:import-from #:aws/credentials/base
+  (:import-from #:pira/credentials/base
                 #:make-credentials
                 #:provider
                 #:retrieve
                 #:expiredp)
-  (:import-from #:aws/config
+  (:import-from #:pira/config
                 #:read-from-file
                 #:*aws-profile*)
   (:import-from #:assoc-utils
                 #:aget)
   (:export #:shared-provider))
-(in-package #:aws/credentials/shared)
+(in-package #:pira/credentials/shared)
 
 (defclass shared-provider (provider)
   ((file :initarg :file

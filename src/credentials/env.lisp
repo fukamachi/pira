@@ -1,12 +1,12 @@
-(defpackage #:aws/credentials/env
+(defpackage #:pira/credentials/env
   (:use #:cl)
-  (:import-from #:aws/credentials/base
+  (:import-from #:pira/credentials/base
                 #:make-credentials
                 #:provider
                 #:retrieve
                 #:expiredp)
   (:export #:env-provider))
-(in-package #:aws/credentials/env)
+(in-package #:pira/credentials/env)
 
 (defclass env-provider (provider)
   ((retrievedp :initform nil)))

@@ -1,10 +1,10 @@
-(uiop:define-package #:aws
+(uiop:define-package #:pira
   (:use #:cl)
-  (:use-reexport #:aws/session
-                 #:aws/make-session
-                 #:aws/credentials
-                 #:aws/api)
-  (:import-from #:aws/config
+  (:use-reexport #:pira/session
+                 #:pira/make-session
+                 #:pira/credentials
+                 #:pira/api)
+  (:import-from #:pira/config
                 #:*aws-profile*)
   (:export #:*aws-profile*))
-(in-package #:aws)
+(in-package #:pira)

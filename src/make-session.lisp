@@ -1,11 +1,11 @@
-(defpackage #:aws/make-session
+(defpackage #:pira/make-session
   (:use #:cl)
-  (:import-from #:aws/session
+  (:import-from #:pira/session
                 #:%make-session)
-  (:import-from #:aws/credentials
+  (:import-from #:pira/credentials
                 #:credentials
                 #:make-credentials)
-  (:import-from #:aws/shared-config
+  (:import-from #:pira/shared-config
                 #:make-shared-config
                 #:shared-config-credentials
                 #:shared-config-assume-role
@@ -16,14 +16,14 @@
                 #:assume-role-external-id
                 #:assume-role-serial-number
                 #:assume-role-role-session-name)
-  (:import-from #:aws/credentials/assume-role
+  (:import-from #:pira/credentials/assume-role
                 #:assume-role-provider)
-  (:import-from #:aws/config
+  (:import-from #:pira/config
                 #:*aws-profile*)
   (:import-from #:assoc-utils
                 #:aget)
   (:export #:make-session))
-(in-package #:aws/make-session)
+(in-package #:pira/make-session)
 
 (defun make-session (&key credentials region (profile *aws-profile*))
   (let ((shared-config (make-shared-config :profile profile)))
