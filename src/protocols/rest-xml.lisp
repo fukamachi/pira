@@ -18,22 +18,23 @@
   (:protocol-id :rest-xml))
 
 (defmethod protocols:additional-headers ((json rest-xml) input)
-  (list
-   (cons :content-type
-         (let ((slots (shape:http-payload-slots input)))
-           (cond
-             ((consp slots)
-              "application/xml")
-             (t
-              (let ((slot slots))
-                (or (get (shape:member-target-type slot) :media-type)
-                    (case (ensure-car (shape:member-smithy-type slot))
-                      ((type:string type:enum) "text/plain")
-                      (type:blob "application/octet-stream")
-                      (type:document (error "document is not supported"))
-                      (shape:smithy-structure "application/xml")
-                      (shape:smithy-union "application/xml")
-                      (otherwise "application/xml"))))))))))
+  (let ((slots (shape:http-payload-slots input)))
+    (when slots
+      (list
+       (cons :content-type
+             (cond
+               ((consp slots)
+                "application/xml")
+               (t
+                (let ((slot slots))
+                  (or (get (shape:member-target-type slot) :media-type)
+                      (case (ensure-car (shape:member-smithy-type slot))
+                        ((type:string type:enum) "text/plain")
+                        (type:blob "application/octet-stream")
+                        (type:document (error "document is not supported"))
+                        (shape:smithy-structure "application/xml")
+                        (shape:smithy-union "application/xml")
+                        (otherwise "application/xml")))))))))))
 
 (defmethod protocols:find-error-shape ((xml rest-xml) operation status headers payload)
   (let* ((code-node

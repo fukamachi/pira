@@ -21,7 +21,7 @@
         (host-prefix (http:request-host-prefix request)))
     (if (member service-name *global-service-endpoints* :test #'string=)
         (format nil "~(~A~).amazonaws.com" service-name)
-        (format nil "~(~A~).~(~A~).amazonaws.com" host-prefix region))))
+        (format nil "~@[~(~A~).~]~(~A~).~(~A~).amazonaws.com" host-prefix service-name region))))
 
 (defun request-uri (request region)
   (quri:make-uri :scheme "https"
