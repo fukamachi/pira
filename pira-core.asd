@@ -1,4 +1,8 @@
 (defsystem "pira-core"
+  :author "Eitaro Fukamachi"
+  :license "MIT"
+  :version (:read-file-form "version.sexp")
+  :description "The core system of Pira, an unofficial AWS SDK for Common Lisp"
   :depends-on ("smithy/sdk"
                "dexador"
                "quri"
