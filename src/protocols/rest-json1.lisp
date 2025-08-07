@@ -28,7 +28,8 @@
     (otherwise
      (call-next-method))))
 
-(defmethod protocols:additional-headers ((json rest-json1) input)
+(defmethod protocols:additional-headers ((json rest-json1) service operation input)
+  (declare (ignore service operation))
   (list
    (cons :content-type
          (let ((slots (shape:http-payload-slots input)))

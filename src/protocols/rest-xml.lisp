@@ -17,7 +17,8 @@
   (:metaclass protocols:protocol-metaclass)
   (:protocol-id :rest-xml))
 
-(defmethod protocols:additional-headers ((json rest-xml) input)
+(defmethod protocols:additional-headers ((json rest-xml) service operation input)
+  (declare (ignore service operation))
   (let ((slots (shape:http-payload-slots input)))
     (when slots
       (list
