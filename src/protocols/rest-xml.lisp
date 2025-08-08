@@ -8,6 +8,7 @@
    (#:type #:smithy/sdk/smithy-types)
    (#:protocols #:smithy/sdk/protocols)
    (#:operation #:smithy/sdk/operation)
+   (#:xml #:smithy/sdk/protocols/xml)
    (#:util #:smithy/utils))
   (:export #:rest-xml))
 (in-package #:pira/protocols/rest-xml)
@@ -40,13 +41,19 @@
 (defmethod protocols:find-error-shape ((xml rest-xml) operation status headers payload)
   (let* ((code-node
            (find-if (lambda (node)
-                      (and (not (plump:text-node-p node))
-                           (equal (plump:tag-name node) "Code")))
-                    (plump:children payload)))
+                      (equal (xml:xml-tag-name node) "Code"))
+                    (xml:xml-tag-body payload)))
          (error-shape-name (and code-node
-                                (plump:text code-node))))
+                                (first (xml:xml-tag-body code-node)))))
     (or (and error-shape-name
              (find (util:shape-name->symbol error-shape-name
                                             (symbol-package (operation:operation-name operation)))
                    (operation:operation-errors operation)))
-        (error "Undefined error class for ~A" status))))
+        (error "~A: ~A (Code: ~A)"
+               (operation:operation-name operation)
+               (first
+                (xml:xml-tag-body
+                 (find-if (lambda (node)
+                            (equal (xml:xml-tag-name node) "Message"))
+                          (xml:xml-tag-body payload))))
+               (first (xml:xml-tag-body code-node))))))
