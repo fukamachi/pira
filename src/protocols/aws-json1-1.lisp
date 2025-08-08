@@ -36,3 +36,9 @@
     (setf (http:request-method req)
           "POST")
     req))
+
+(defmethod protocols:decode-payload ((protocol aws-json1-1) content-type payload)
+  (cond
+    ((equal content-type "application/x-amz-json-1.1")
+     (protocols:parse-payload-as-json payload))
+    (t payload)))

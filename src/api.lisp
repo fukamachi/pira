@@ -71,7 +71,8 @@
                                       ("X-Amz-Date" . ,x-amz-date)
                                       ("X-Amz-Content-Sha256" . ,(sha-256 (or payload "")))
                                       ,@headers)
-                           :content payload))
+                           :content payload
+                           :want-stream (http:request-streaming-p req)))
           (http:make-response
            :status status
            :headers headers

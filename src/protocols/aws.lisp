@@ -3,6 +3,8 @@
   (:local-nicknames
    (#:protocols #:smithy/sdk/protocols)
    (#:service #:smithy/sdk/service)
+   (#:operation #:smithy/sdk/operation)
+   (#:shape #:smithy/sdk/shapes)
    (#:http #:smithy/sdk/http)
    (#:pira #:pira/api))
   (:export #:aws-protocol))
@@ -17,4 +19,6 @@
   (let ((req (call-next-method)))
     (setf (http:request-service-name req)
           (service:aws-service-arn-namespace service))
+    (setf (http:request-streaming-p req)
+          (shape:interface-streaming-p (find-class (operation:operation-output operation))))
     req))
