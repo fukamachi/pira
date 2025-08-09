@@ -41,3 +41,9 @@
      (:file "aws-json1-1")
      (:file "rest-xml")))
    (:file "main")))
+
+(defsystem "pira-core/codegen"
+  :depends-on ("smithy")
+  :pathname "src"
+  :components
+  ((:file "codegen")))
