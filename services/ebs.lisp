@@ -1,40 +1,22 @@
 (uiop/package:define-package #:pira/ebs (:use)
-                             (:export #:access-denied-exception
-                              #:access-denied-exception-reason #:block
+                             (:export #:access-denied-exception-reason #:block
                               #:block-data #:block-index #:block-size
                               #:block-token #:blocks #:boolean #:changed-block
                               #:changed-blocks #:changed-blocks-count
                               #:checksum #:checksum-aggregation-method
                               #:checksum-algorithm #:complete-snapshot
-                              #:complete-snapshot-request
-                              #:complete-snapshot-response
-                              #:concurrent-limit-exceeded-exception
-                              #:conflict-exception #:data-length #:description
-                              #:ebs #:error-message #:get-snapshot-block
-                              #:get-snapshot-block-request
-                              #:get-snapshot-block-response #:idempotency-token
-                              #:internal-server-exception #:kms-key-arn
-                              #:list-changed-blocks
-                              #:list-changed-blocks-request
-                              #:list-changed-blocks-response
-                              #:list-snapshot-blocks
-                              #:list-snapshot-blocks-request
-                              #:list-snapshot-blocks-response #:max-results
-                              #:owner-id #:page-token #:progress
-                              #:put-snapshot-block #:put-snapshot-block-request
-                              #:put-snapshot-block-response
-                              #:request-throttled-exception
+                              #:data-length #:description #:ebs #:error-message
+                              #:get-snapshot-block #:idempotency-token
+                              #:kms-key-arn #:list-changed-blocks
+                              #:list-snapshot-blocks #:max-results #:owner-id
+                              #:page-token #:progress #:put-snapshot-block
                               #:request-throttled-exception-reason
-                              #:resource-not-found-exception
                               #:resource-not-found-exception-reason #:ssetype
-                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason
-                              #:snapshot-id #:start-snapshot
-                              #:start-snapshot-request
-                              #:start-snapshot-response #:status #:tag
+                              #:snapshot-id #:start-snapshot #:status #:tag
                               #:tag-key #:tag-value #:tags #:time-stamp
-                              #:timeout #:validation-exception
-                              #:validation-exception-reason #:volume-size))
+                              #:timeout #:validation-exception-reason
+                              #:volume-size))
 (common-lisp:in-package #:pira/ebs)
 
 (smithy/sdk/service:define-service ebs :shape-name "Ebs" :version "2019-11-02"

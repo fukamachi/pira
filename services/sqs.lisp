@@ -1,95 +1,52 @@
 (uiop/package:define-package #:pira/sqs (:use)
                              (:export #:awsaccount-id-list #:action-name-list
-                              #:add-permission #:add-permission-request
-                              #:amazon-sqs #:attribute-name-list
-                              #:batch-entry-ids-not-distinct
-                              #:batch-request-too-long
-                              #:batch-result-error-entry
+                              #:add-permission #:amazon-sqs
+                              #:attribute-name-list #:batch-result-error-entry
                               #:batch-result-error-entry-list #:binary
                               #:binary-list #:boolean #:boxed-integer
                               #:cancel-message-move-task
-                              #:cancel-message-move-task-request
-                              #:cancel-message-move-task-result
                               #:change-message-visibility
                               #:change-message-visibility-batch
-                              #:change-message-visibility-batch-request
                               #:change-message-visibility-batch-request-entry
                               #:change-message-visibility-batch-request-entry-list
-                              #:change-message-visibility-batch-result
                               #:change-message-visibility-batch-result-entry
                               #:change-message-visibility-batch-result-entry-list
-                              #:change-message-visibility-request
-                              #:create-queue #:create-queue-request
-                              #:create-queue-result #:delete-message
+                              #:create-queue #:delete-message
                               #:delete-message-batch
-                              #:delete-message-batch-request
                               #:delete-message-batch-request-entry
                               #:delete-message-batch-request-entry-list
-                              #:delete-message-batch-result
                               #:delete-message-batch-result-entry
                               #:delete-message-batch-result-entry-list
-                              #:delete-message-request #:delete-queue
-                              #:delete-queue-request #:empty-batch-request
-                              #:exception-message #:get-queue-attributes
-                              #:get-queue-attributes-request
-                              #:get-queue-attributes-result #:get-queue-url
-                              #:get-queue-url-request #:get-queue-url-result
-                              #:invalid-address #:invalid-attribute-name
-                              #:invalid-attribute-value
-                              #:invalid-batch-entry-id #:invalid-id-format
-                              #:invalid-message-contents #:invalid-security
-                              #:kms-access-denied #:kms-disabled
-                              #:kms-invalid-key-usage #:kms-invalid-state
-                              #:kms-not-found #:kms-opt-in-required
-                              #:kms-throttled #:list-dead-letter-source-queues
-                              #:list-dead-letter-source-queues-request
-                              #:list-dead-letter-source-queues-result
+                              #:delete-queue #:exception-message
+                              #:get-queue-attributes #:get-queue-url
+                              #:list-dead-letter-source-queues
                               #:list-message-move-tasks
-                              #:list-message-move-tasks-request
-                              #:list-message-move-tasks-result
                               #:list-message-move-tasks-result-entry
                               #:list-message-move-tasks-result-entry-list
-                              #:list-queue-tags #:list-queue-tags-request
-                              #:list-queue-tags-result #:list-queues
-                              #:list-queues-request #:list-queues-result #:long
-                              #:message #:message-attribute-name
+                              #:list-queue-tags #:list-queues #:long #:message
+                              #:message-attribute-name
                               #:message-attribute-name-list
                               #:message-attribute-value
                               #:message-body-attribute-map
                               #:message-body-system-attribute-map
-                              #:message-list #:message-not-inflight
-                              #:message-system-attribute-list
+                              #:message-list #:message-system-attribute-list
                               #:message-system-attribute-map
                               #:message-system-attribute-name
                               #:message-system-attribute-name-for-sends
                               #:message-system-attribute-value
-                              #:nullable-integer #:nullable-long #:over-limit
-                              #:purge-queue #:purge-queue-in-progress
-                              #:purge-queue-request #:queue-attribute-map
-                              #:queue-attribute-name #:queue-deleted-recently
-                              #:queue-does-not-exist #:queue-name-exists
-                              #:queue-url-list #:receipt-handle-is-invalid
-                              #:receive-message #:receive-message-request
-                              #:receive-message-result #:remove-permission
-                              #:remove-permission-request #:request-throttled
-                              #:resource-not-found-exception #:send-message
-                              #:send-message-batch #:send-message-batch-request
+                              #:nullable-integer #:nullable-long #:purge-queue
+                              #:queue-attribute-map #:queue-attribute-name
+                              #:queue-url-list #:receive-message
+                              #:remove-permission #:send-message
+                              #:send-message-batch
                               #:send-message-batch-request-entry
                               #:send-message-batch-request-entry-list
-                              #:send-message-batch-result
                               #:send-message-batch-result-entry
                               #:send-message-batch-result-entry-list
-                              #:send-message-request #:send-message-result
-                              #:set-queue-attributes
-                              #:set-queue-attributes-request
-                              #:start-message-move-task
-                              #:start-message-move-task-request
-                              #:start-message-move-task-result #:string
-                              #:string-list #:tag-key #:tag-key-list #:tag-map
-                              #:tag-queue #:tag-queue-request #:tag-value
-                              #:token #:too-many-entries-in-batch-request
-                              #:unsupported-operation #:untag-queue
-                              #:untag-queue-request))
+                              #:set-queue-attributes #:start-message-move-task
+                              #:string #:string-list #:tag-key #:tag-key-list
+                              #:tag-map #:tag-queue #:tag-value #:token
+                              #:untag-queue))
 (common-lisp:in-package #:pira/sqs)
 
 (smithy/sdk/service:define-service amazon-sqs :shape-name "AmazonSQS" :version

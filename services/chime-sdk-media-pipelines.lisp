@@ -12,9 +12,8 @@
                               #:audio-channels-option
                               #:audio-concatenation-configuration
                               #:audio-mux-type #:audio-sample-rate-option
-                              #:aws-region #:bad-request-exception #:boolean
-                              #:border-color #:border-thickness
-                              #:call-analytics-language-code
+                              #:aws-region #:boolean #:border-color
+                              #:border-thickness #:call-analytics-language-code
                               #:canvas-orientation #:category-name
                               #:category-name-list #:channel-definition
                               #:channel-definitions #:channel-id
@@ -28,64 +27,34 @@
                               #:concatenation-sink #:concatenation-sink-list
                               #:concatenation-sink-type #:concatenation-source
                               #:concatenation-source-list
-                              #:concatenation-source-type #:conflict-exception
+                              #:concatenation-source-type
                               #:content-artifacts-configuration
                               #:content-concatenation-configuration
                               #:content-mux-type #:content-redaction-output
                               #:content-share-layout-option #:content-type
                               #:corner-radius #:create-media-capture-pipeline
-                              #:create-media-capture-pipeline-request
-                              #:create-media-capture-pipeline-response
                               #:create-media-concatenation-pipeline
-                              #:create-media-concatenation-pipeline-request
-                              #:create-media-concatenation-pipeline-response
                               #:create-media-insights-pipeline
                               #:create-media-insights-pipeline-configuration
-                              #:create-media-insights-pipeline-configuration-request
-                              #:create-media-insights-pipeline-configuration-response
-                              #:create-media-insights-pipeline-request
-                              #:create-media-insights-pipeline-response
                               #:create-media-live-connector-pipeline
-                              #:create-media-live-connector-pipeline-request
-                              #:create-media-live-connector-pipeline-response
                               #:create-media-pipeline-kinesis-video-stream-pool
-                              #:create-media-pipeline-kinesis-video-stream-pool-request
-                              #:create-media-pipeline-kinesis-video-stream-pool-response
                               #:create-media-stream-pipeline
-                              #:create-media-stream-pipeline-request
-                              #:create-media-stream-pipeline-response
                               #:data-channel-concatenation-configuration
                               #:data-retention-change-in-hours
                               #:data-retention-in-hours
                               #:delete-media-capture-pipeline
-                              #:delete-media-capture-pipeline-request
                               #:delete-media-insights-pipeline-configuration
-                              #:delete-media-insights-pipeline-configuration-request
                               #:delete-media-pipeline
                               #:delete-media-pipeline-kinesis-video-stream-pool
-                              #:delete-media-pipeline-kinesis-video-stream-pool-request
-                              #:delete-media-pipeline-request #:error-code
-                              #:external-user-id-list #:external-user-id-type
-                              #:forbidden-exception #:fragment-number-string
+                              #:error-code #:external-user-id-list
+                              #:external-user-id-type #:fragment-number-string
                               #:fragment-selector #:fragment-selector-type
                               #:get-media-capture-pipeline
-                              #:get-media-capture-pipeline-request
-                              #:get-media-capture-pipeline-response
                               #:get-media-insights-pipeline-configuration
-                              #:get-media-insights-pipeline-configuration-request
-                              #:get-media-insights-pipeline-configuration-response
                               #:get-media-pipeline
                               #:get-media-pipeline-kinesis-video-stream-pool
-                              #:get-media-pipeline-kinesis-video-stream-pool-request
-                              #:get-media-pipeline-kinesis-video-stream-pool-response
-                              #:get-media-pipeline-request
-                              #:get-media-pipeline-response
                               #:get-speaker-search-task
-                              #:get-speaker-search-task-request
-                              #:get-speaker-search-task-response
                               #:get-voice-tone-analysis-task
-                              #:get-voice-tone-analysis-task-request
-                              #:get-voice-tone-analysis-task-response
                               #:grid-view-configuration #:guid-string
                               #:highlight-color
                               #:horizontal-layout-configuration
@@ -110,20 +79,9 @@
                               #:lambda-function-sink-configuration
                               #:language-options #:layout-option
                               #:list-media-capture-pipelines
-                              #:list-media-capture-pipelines-request
-                              #:list-media-capture-pipelines-response
                               #:list-media-insights-pipeline-configurations
-                              #:list-media-insights-pipeline-configurations-request
-                              #:list-media-insights-pipeline-configurations-response
                               #:list-media-pipeline-kinesis-video-stream-pools
-                              #:list-media-pipeline-kinesis-video-stream-pools-request
-                              #:list-media-pipeline-kinesis-video-stream-pools-response
-                              #:list-media-pipelines
-                              #:list-media-pipelines-request
-                              #:list-media-pipelines-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-media-pipelines #:list-tags-for-resource
                               #:live-connector-mux-type
                               #:live-connector-rtmpconfiguration
                               #:live-connector-sink-configuration
@@ -163,9 +121,9 @@
                               #:media-stream-type
                               #:meeting-events-concatenation-configuration
                               #:model-name #:non-empty-string
-                              #:not-found-exception #:number-of-channels
-                              #:partial-results-stability #:participant-role
-                              #:pii-entity-types #:post-call-analytics-settings
+                              #:number-of-channels #:partial-results-stability
+                              #:participant-role #:pii-entity-types
+                              #:post-call-analytics-settings
                               #:presenter-only-configuration
                               #:presenter-position
                               #:real-time-alert-configuration
@@ -176,49 +134,32 @@
                               #:recording-stream-configuration
                               #:recording-stream-list
                               #:reserved-stream-capacity #:resolution-option
-                              #:resource-limit-exceeded-exception #:result-max
-                              #:rule-name #:s3bucket-sink-configuration
+                              #:result-max #:rule-name
+                              #:s3bucket-sink-configuration
                               #:s3recording-sink-configuration
                               #:s3recording-sink-runtime-configuration
                               #:selected-video-streams #:sensitive-string
                               #:sentiment-configuration
                               #:sentiment-time-period-in-seconds
-                              #:sentiment-type #:service-failure-exception
-                              #:service-unavailable-exception
-                              #:sns-topic-sink-configuration
+                              #:sentiment-type #:sns-topic-sink-configuration
                               #:source-configuration #:speaker-search-task
                               #:sqs-queue-sink-configuration
                               #:sse-aws-key-management-params
                               #:start-speaker-search-task
-                              #:start-speaker-search-task-request
-                              #:start-speaker-search-task-response
                               #:start-voice-tone-analysis-task
-                              #:start-voice-tone-analysis-task-request
-                              #:start-voice-tone-analysis-task-response
                               #:stop-speaker-search-task
-                              #:stop-speaker-search-task-request
                               #:stop-voice-tone-analysis-task
-                              #:stop-voice-tone-analysis-task-request
                               #:stream-channel-definition
                               #:stream-configuration #:streams #:string #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttled-client-exception #:tile-aspect-ratio
+                              #:tag-resource #:tag-value #:tile-aspect-ratio
                               #:tile-count #:tile-order #:timestamp
                               #:timestamp-range
                               #:transcription-messages-concatenation-configuration
-                              #:unauthorized-client-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:untag-resource
                               #:update-media-insights-pipeline-configuration
-                              #:update-media-insights-pipeline-configuration-request
-                              #:update-media-insights-pipeline-configuration-response
                               #:update-media-insights-pipeline-status
-                              #:update-media-insights-pipeline-status-request
                               #:update-media-pipeline-kinesis-video-stream-pool
-                              #:update-media-pipeline-kinesis-video-stream-pool-request
-                              #:update-media-pipeline-kinesis-video-stream-pool-response
                               #:vertical-layout-configuration
                               #:vertical-tile-position
                               #:video-artifacts-configuration #:video-attribute

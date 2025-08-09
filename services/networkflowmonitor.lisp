@@ -1,42 +1,19 @@
 (uiop/package:define-package #:pira/networkflowmonitor (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:arn #:availability-zone #:aws-region
-                              #:component #:component-type #:conflict-exception
-                              #:create-monitor #:create-monitor-input
-                              #:create-monitor-output #:create-scope
-                              #:create-scope-input #:create-scope-output
-                              #:delete-monitor #:delete-monitor-input
-                              #:delete-monitor-output #:delete-scope
-                              #:delete-scope-input #:delete-scope-output
-                              #:destination-category #:get-monitor
-                              #:get-monitor-input #:get-monitor-output
+                             (:export #:account-id #:arn #:availability-zone
+                              #:aws-region #:component #:component-type
+                              #:create-monitor #:create-scope #:delete-monitor
+                              #:delete-scope #:destination-category
+                              #:get-monitor
                               #:get-query-results-monitor-top-contributors
-                              #:get-query-results-monitor-top-contributors-input
-                              #:get-query-results-monitor-top-contributors-output
                               #:get-query-results-workload-insights-top-contributors
                               #:get-query-results-workload-insights-top-contributors-data
-                              #:get-query-results-workload-insights-top-contributors-data-input
-                              #:get-query-results-workload-insights-top-contributors-data-output
-                              #:get-query-results-workload-insights-top-contributors-input
-                              #:get-query-results-workload-insights-top-contributors-output
                               #:get-query-status-monitor-top-contributors
-                              #:get-query-status-monitor-top-contributors-input
-                              #:get-query-status-monitor-top-contributors-output
                               #:get-query-status-workload-insights-top-contributors
                               #:get-query-status-workload-insights-top-contributors-data
-                              #:get-query-status-workload-insights-top-contributors-data-input
-                              #:get-query-status-workload-insights-top-contributors-data-output
-                              #:get-query-status-workload-insights-top-contributors-input
-                              #:get-query-status-workload-insights-top-contributors-output
-                              #:get-scope #:get-scope-input #:get-scope-output
-                              #:instance-arn #:instance-id
-                              #:internal-server-exception #:iso8601timestamp
-                              #:kubernetes-metadata #:limit #:list-monitors
-                              #:list-monitors-input #:list-monitors-output
-                              #:list-scopes #:list-scopes-input
-                              #:list-scopes-output #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:max-results
+                              #:get-scope #:instance-arn #:instance-id
+                              #:iso8601timestamp #:kubernetes-metadata #:limit
+                              #:list-monitors #:list-scopes
+                              #:list-tags-for-resource #:max-results
                               #:metric-unit #:monitor-arn #:monitor-list
                               #:monitor-local-resource
                               #:monitor-local-resource-type
@@ -48,41 +25,23 @@
                               #:monitor-top-contributors-row
                               #:monitor-top-contributors-row-list
                               #:network-flow-monitor #:query-status
-                              #:resource-name #:resource-not-found-exception
-                              #:scope-id #:scope-resource #:scope-status
-                              #:scope-summary #:scope-summary-list
-                              #:service-quota-exceeded-exception
+                              #:resource-name #:scope-id #:scope-resource
+                              #:scope-status #:scope-summary
+                              #:scope-summary-list
                               #:start-query-monitor-top-contributors
-                              #:start-query-monitor-top-contributors-input
-                              #:start-query-monitor-top-contributors-output
                               #:start-query-workload-insights-top-contributors
                               #:start-query-workload-insights-top-contributors-data
-                              #:start-query-workload-insights-top-contributors-data-input
-                              #:start-query-workload-insights-top-contributors-data-output
-                              #:start-query-workload-insights-top-contributors-input
-                              #:start-query-workload-insights-top-contributors-output
                               #:stop-query-monitor-top-contributors
-                              #:stop-query-monitor-top-contributors-input
-                              #:stop-query-monitor-top-contributors-output
                               #:stop-query-workload-insights-top-contributors
                               #:stop-query-workload-insights-top-contributors-data
-                              #:stop-query-workload-insights-top-contributors-data-input
-                              #:stop-query-workload-insights-top-contributors-data-output
-                              #:stop-query-workload-insights-top-contributors-input
-                              #:stop-query-workload-insights-top-contributors-output
                               #:subnet-arn #:subnet-id #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:tag-value #:target-id
+                              #:tag-map #:tag-resource #:tag-value #:target-id
                               #:target-identifier #:target-resource
                               #:target-resource-list #:target-type
-                              #:throttling-exception #:traversed-component
-                              #:traversed-constructs-list #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:update-monitor #:update-monitor-input
-                              #:update-monitor-output #:update-scope
-                              #:update-scope-input #:update-scope-output
-                              #:uuid-string #:validation-exception #:vpc-arn
-                              #:vpc-id #:workload-insights-metric
+                              #:traversed-component #:traversed-constructs-list
+                              #:untag-resource #:update-monitor #:update-scope
+                              #:uuid-string #:vpc-arn #:vpc-id
+                              #:workload-insights-metric
                               #:workload-insights-top-contributors-data-point
                               #:workload-insights-top-contributors-data-points
                               #:workload-insights-top-contributors-row

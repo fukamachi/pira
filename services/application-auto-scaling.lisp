@@ -2,42 +2,17 @@
                              (:export #:adjustment-type #:alarm #:alarms
                               #:amazon-resource-name
                               #:any-scale-frontend-service #:capacity-forecast
-                              #:concurrent-update-exception #:cooldown
-                              #:customized-metric-specification
-                              #:delete-scaling-policy
-                              #:delete-scaling-policy-request
-                              #:delete-scaling-policy-response
-                              #:delete-scheduled-action
-                              #:delete-scheduled-action-request
-                              #:delete-scheduled-action-response
+                              #:cooldown #:customized-metric-specification
+                              #:delete-scaling-policy #:delete-scheduled-action
                               #:deregister-scalable-target
-                              #:deregister-scalable-target-request
-                              #:deregister-scalable-target-response
                               #:describe-scalable-targets
-                              #:describe-scalable-targets-request
-                              #:describe-scalable-targets-response
                               #:describe-scaling-activities
-                              #:describe-scaling-activities-request
-                              #:describe-scaling-activities-response
                               #:describe-scaling-policies
-                              #:describe-scaling-policies-request
-                              #:describe-scaling-policies-response
-                              #:describe-scheduled-actions
-                              #:describe-scheduled-actions-request
-                              #:describe-scheduled-actions-response
-                              #:disable-scale-in #:error-message
-                              #:exception-message #:expression
-                              #:failed-resource-access-exception
-                              #:get-predictive-scaling-forecast
-                              #:get-predictive-scaling-forecast-request
-                              #:get-predictive-scaling-forecast-response #:id
+                              #:describe-scheduled-actions #:disable-scale-in
+                              #:error-message #:exception-message #:expression
+                              #:get-predictive-scaling-forecast #:id
                               #:include-not-scaled-activities
-                              #:internal-service-exception
-                              #:invalid-next-token-exception
-                              #:limit-exceeded-exception
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:load-forecast
+                              #:list-tags-for-resource #:load-forecast
                               #:load-forecasts #:max-results
                               #:metric-aggregation-type #:metric-dimension
                               #:metric-dimension-name #:metric-dimension-value
@@ -45,8 +20,7 @@
                               #:metric-namespace #:metric-scale
                               #:metric-statistic #:metric-type #:metric-unit
                               #:min-adjustment-magnitude #:not-scaled-reason
-                              #:not-scaled-reasons #:object-not-found-exception
-                              #:policy-name #:policy-type
+                              #:not-scaled-reasons #:policy-name #:policy-type
                               #:predefined-metric-specification
                               #:predictive-scaling-customized-metric-specification
                               #:predictive-scaling-forecast-timestamps
@@ -73,22 +47,14 @@
                               #:predictive-scaling-predefined-metric-pair-specification
                               #:predictive-scaling-predefined-scaling-metric-specification
                               #:predictive-scaling-scheduling-buffer-time
-                              #:put-scaling-policy #:put-scaling-policy-request
-                              #:put-scaling-policy-response
-                              #:put-scheduled-action
-                              #:put-scheduled-action-request
-                              #:put-scheduled-action-response
-                              #:register-scalable-target
-                              #:register-scalable-target-request
-                              #:register-scalable-target-response
-                              #:resource-capacity #:resource-id
-                              #:resource-id-max-len1600
+                              #:put-scaling-policy #:put-scheduled-action
+                              #:register-scalable-target #:resource-capacity
+                              #:resource-id #:resource-id-max-len1600
                               #:resource-ids-max-len1600 #:resource-label
-                              #:resource-not-found-exception #:return-data
-                              #:scalable-dimension #:scalable-target
-                              #:scalable-target-action #:scalable-targets
-                              #:scaling-activities #:scaling-activity
-                              #:scaling-activity-status-code
+                              #:return-data #:scalable-dimension
+                              #:scalable-target #:scalable-target-action
+                              #:scalable-targets #:scaling-activities
+                              #:scaling-activity #:scaling-activity-status-code
                               #:scaling-adjustment #:scaling-policies
                               #:scaling-policy #:scaling-suspended
                               #:scheduled-action #:scheduled-action-name
@@ -96,8 +62,7 @@
                               #:step-adjustment #:step-adjustments
                               #:step-scaling-policy-configuration
                               #:suspended-state #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:tag-map #:tag-resource #:tag-value
                               #:target-tracking-metric
                               #:target-tracking-metric-data-queries
                               #:target-tracking-metric-data-query
@@ -110,10 +75,7 @@
                               #:target-tracking-metric-stat
                               #:target-tracking-metric-unit
                               #:target-tracking-scaling-policy-configuration
-                              #:timestamp-type #:too-many-tags-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:validation-exception
-                              #:xml-string))
+                              #:timestamp-type #:untag-resource #:xml-string))
 (common-lisp:in-package #:pira/application-auto-scaling)
 
 (smithy/sdk/service:define-service any-scale-frontend-service :shape-name

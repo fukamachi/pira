@@ -1,19 +1,14 @@
 (uiop/package:define-package #:pira/medical-imaging (:use)
-                             (:export #:ahigateway-service
-                              #:access-denied-exception #:arn #:aws-account-id
-                              #:client-token #:conflict-exception
+                             (:export #:ahigateway-service #:arn
+                              #:aws-account-id #:client-token
                               #:copiable-attributes
                               #:copy-destination-image-set
                               #:copy-destination-image-set-properties
                               #:copy-image-set #:copy-image-set-information
-                              #:copy-image-set-request
-                              #:copy-image-set-response
                               #:copy-source-image-set-information
                               #:copy-source-image-set-properties
-                              #:create-datastore #:create-datastore-request
-                              #:create-datastore-response
-                              #:dicomaccession-number #:dicomattribute
-                              #:dicomimport-job-properties
+                              #:create-datastore #:dicomaccession-number
+                              #:dicomattribute #:dicomimport-job-properties
                               #:dicomimport-job-summaries
                               #:dicomimport-job-summary
                               #:dicomnumber-of-study-related-instances
@@ -30,60 +25,31 @@
                               #:datastore-name #:datastore-properties
                               #:datastore-resource #:datastore-status
                               #:datastore-summaries #:datastore-summary #:date
-                              #:delete-datastore #:delete-datastore-request
-                              #:delete-datastore-response #:delete-image-set
-                              #:delete-image-set-request
-                              #:delete-image-set-response #:get-dicomimport-job
-                              #:get-dicomimport-job-request
-                              #:get-dicomimport-job-response #:get-datastore
-                              #:get-datastore-request #:get-datastore-response
-                              #:get-image-frame #:get-image-frame-request
-                              #:get-image-frame-response #:get-image-set
-                              #:get-image-set-metadata
-                              #:get-image-set-metadata-request
-                              #:get-image-set-metadata-response
-                              #:get-image-set-request #:get-image-set-response
-                              #:image-frame-id #:image-frame-information
+                              #:delete-datastore #:delete-image-set
+                              #:get-dicomimport-job #:get-datastore
+                              #:get-image-frame #:get-image-set
+                              #:get-image-set-metadata #:image-frame-id
+                              #:image-frame-information
                               #:image-set-external-version-id #:image-set-id
                               #:image-set-metadata-blob #:image-set-properties
                               #:image-set-properties-list #:image-set-resource
                               #:image-set-state #:image-set-workflow-status
                               #:image-sets-metadata-summaries
-                              #:image-sets-metadata-summary
-                              #:internal-server-exception #:job-id #:job-name
+                              #:image-sets-metadata-summary #:job-id #:job-name
                               #:job-status #:kms-key-arn
-                              #:list-dicomimport-jobs
-                              #:list-dicomimport-jobs-request
-                              #:list-dicomimport-jobs-response
-                              #:list-datastores #:list-datastores-request
-                              #:list-datastores-response
+                              #:list-dicomimport-jobs #:list-datastores
                               #:list-image-set-versions
-                              #:list-image-set-versions-request
-                              #:list-image-set-versions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:message
+                              #:list-tags-for-resource #:message
                               #:metadata-copies #:metadata-updates #:next-token
-                              #:operator #:overrides #:payload-blob
-                              #:resource-not-found-exception #:role-arn #:s3uri
-                              #:search-by-attribute-value
+                              #:operator #:overrides #:payload-blob #:role-arn
+                              #:s3uri #:search-by-attribute-value
                               #:search-by-attribute-values #:search-criteria
                               #:search-filter #:search-filters
-                              #:search-image-sets #:search-image-sets-request
-                              #:search-image-sets-response
-                              #:service-quota-exceeded-exception #:sort
-                              #:sort-field #:sort-order #:start-dicomimport-job
-                              #:start-dicomimport-job-request
-                              #:start-dicomimport-job-response #:tag-key
+                              #:search-image-sets #:sort #:sort-field
+                              #:sort-order #:start-dicomimport-job #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-image-set-metadata
-                              #:update-image-set-metadata-request
-                              #:update-image-set-metadata-response
-                              #:validation-exception))
+                              #:tag-value #:untag-resource
+                              #:update-image-set-metadata))
 (common-lisp:in-package #:pira/medical-imaging)
 
 (smithy/sdk/service:define-service ahigateway-service :shape-name

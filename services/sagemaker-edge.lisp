@@ -9,15 +9,10 @@
                               #:edge-deployment #:edge-deployments
                               #:edge-metric #:edge-metrics #:entity-name
                               #:error-message #:failure-handling-policy
-                              #:get-deployments #:get-deployments-request
-                              #:get-deployments-result
-                              #:get-device-registration
-                              #:get-device-registration-request
-                              #:get-device-registration-result
-                              #:internal-service-exception #:metric #:model
-                              #:model-name #:model-state #:models #:s3uri
-                              #:send-heartbeat #:send-heartbeat-request
-                              #:string #:timestamp #:value #:version))
+                              #:get-deployments #:get-device-registration
+                              #:metric #:model #:model-name #:model-state
+                              #:models #:s3uri #:send-heartbeat #:string
+                              #:timestamp #:value #:version))
 (common-lisp:in-package #:pira/sagemaker-edge)
 
 (smithy/sdk/service:define-service amazon-sage-maker-edge :shape-name

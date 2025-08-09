@@ -25,11 +25,7 @@
                               #:aiprompt-template-type #:aiprompt-type
                               #:aiprompt-version-summaries-list
                               #:aiprompt-version-summary
-                              #:access-denied-exception
-                              #:activate-message-template
-                              #:activate-message-template-request
-                              #:activate-message-template-response
-                              #:agent-attributes
+                              #:activate-message-template #:agent-attributes
                               #:amazon-connect-guide-association-data
                               #:and-conditions
                               #:answer-recommendation-aiagent-configuration
@@ -56,8 +52,8 @@
                               #:chunking-configuration #:chunking-strategy
                               #:citation-span #:citation-span-offset
                               #:client-token #:configuration
-                              #:conflict-exception #:connect-configuration
-                              #:contact-attribute-key #:contact-attribute-keys
+                              #:connect-configuration #:contact-attribute-key
+                              #:contact-attribute-keys
                               #:contact-attribute-value #:contact-attributes
                               #:content #:content-association
                               #:content-association-contents
@@ -73,94 +69,48 @@
                               #:conversation-context #:conversation-state
                               #:conversation-status
                               #:conversation-status-reason #:create-aiagent
-                              #:create-aiagent-request
-                              #:create-aiagent-response
-                              #:create-aiagent-version
-                              #:create-aiagent-version-request
-                              #:create-aiagent-version-response
-                              #:create-aiguardrail #:create-aiguardrail-request
-                              #:create-aiguardrail-response
-                              #:create-aiguardrail-version
-                              #:create-aiguardrail-version-request
-                              #:create-aiguardrail-version-response
-                              #:create-aiprompt #:create-aiprompt-request
-                              #:create-aiprompt-response
-                              #:create-aiprompt-version
-                              #:create-aiprompt-version-request
-                              #:create-aiprompt-version-response
-                              #:create-assistant #:create-assistant-association
+                              #:create-aiagent-version #:create-aiguardrail
+                              #:create-aiguardrail-version #:create-aiprompt
+                              #:create-aiprompt-version #:create-assistant
+                              #:create-assistant-association
                               #:create-assistant-association-request
                               #:create-assistant-association-response
                               #:create-assistant-request
                               #:create-assistant-response #:create-content
                               #:create-content-association
-                              #:create-content-association-request
-                              #:create-content-association-response
                               #:create-content-request
                               #:create-content-response #:create-knowledge-base
                               #:create-knowledge-base-request
                               #:create-knowledge-base-response
                               #:create-message-template
                               #:create-message-template-attachment
-                              #:create-message-template-attachment-request
-                              #:create-message-template-attachment-response
-                              #:create-message-template-request
-                              #:create-message-template-response
                               #:create-message-template-version
-                              #:create-message-template-version-request
-                              #:create-message-template-version-response
-                              #:create-quick-response
-                              #:create-quick-response-request
-                              #:create-quick-response-response #:create-session
+                              #:create-quick-response #:create-session
                               #:create-session-request
                               #:create-session-response #:custom-attributes
                               #:customer-profile-attributes #:data-details
                               #:data-reference #:data-summary
                               #:data-summary-list #:deactivate-message-template
-                              #:deactivate-message-template-request
-                              #:deactivate-message-template-response
-                              #:delete-aiagent #:delete-aiagent-request
-                              #:delete-aiagent-response
-                              #:delete-aiagent-version
-                              #:delete-aiagent-version-request
-                              #:delete-aiagent-version-response
-                              #:delete-aiguardrail #:delete-aiguardrail-request
-                              #:delete-aiguardrail-response
-                              #:delete-aiguardrail-version
-                              #:delete-aiguardrail-version-request
-                              #:delete-aiguardrail-version-response
-                              #:delete-aiprompt #:delete-aiprompt-request
-                              #:delete-aiprompt-response
-                              #:delete-aiprompt-version
-                              #:delete-aiprompt-version-request
-                              #:delete-aiprompt-version-response
+                              #:delete-aiagent #:delete-aiagent-version
+                              #:delete-aiguardrail #:delete-aiguardrail-version
+                              #:delete-aiprompt #:delete-aiprompt-version
                               #:delete-assistant #:delete-assistant-association
                               #:delete-assistant-association-request
                               #:delete-assistant-association-response
                               #:delete-assistant-request
                               #:delete-assistant-response #:delete-content
                               #:delete-content-association
-                              #:delete-content-association-request
-                              #:delete-content-association-response
                               #:delete-content-request
                               #:delete-content-response #:delete-import-job
-                              #:delete-import-job-request
-                              #:delete-import-job-response
                               #:delete-knowledge-base
                               #:delete-knowledge-base-request
                               #:delete-knowledge-base-response
                               #:delete-message-template
                               #:delete-message-template-attachment
-                              #:delete-message-template-attachment-request
-                              #:delete-message-template-attachment-response
-                              #:delete-message-template-request
-                              #:delete-message-template-response
-                              #:delete-quick-response
-                              #:delete-quick-response-request
-                              #:delete-quick-response-response #:description
-                              #:document #:document-text #:email-header
-                              #:email-header-key #:email-header-value
-                              #:email-headers #:email-message-template-content
+                              #:delete-quick-response #:description #:document
+                              #:document-text #:email-header #:email-header-key
+                              #:email-header-value #:email-headers
+                              #:email-message-template-content
                               #:email-message-template-content-body
                               #:extended-message-template-data
                               #:external-source #:external-source-configuration
@@ -170,34 +120,21 @@
                               #:generative-chunk-data-details
                               #:generative-content-feedback-data
                               #:generative-data-details #:generative-reference
-                              #:generic-arn #:get-aiagent #:get-aiagent-request
-                              #:get-aiagent-response #:get-aiguardrail
-                              #:get-aiguardrail-request
-                              #:get-aiguardrail-response #:get-aiprompt
-                              #:get-aiprompt-request #:get-aiprompt-response
-                              #:get-assistant #:get-assistant-association
+                              #:generic-arn #:get-aiagent #:get-aiguardrail
+                              #:get-aiprompt #:get-assistant
+                              #:get-assistant-association
                               #:get-assistant-association-request
                               #:get-assistant-association-response
                               #:get-assistant-request #:get-assistant-response
                               #:get-content #:get-content-association
-                              #:get-content-association-request
-                              #:get-content-association-response
                               #:get-content-request #:get-content-response
                               #:get-content-summary
                               #:get-content-summary-request
                               #:get-content-summary-response #:get-import-job
-                              #:get-import-job-request
-                              #:get-import-job-response #:get-knowledge-base
-                              #:get-knowledge-base-request
+                              #:get-knowledge-base #:get-knowledge-base-request
                               #:get-knowledge-base-response
-                              #:get-message-template
-                              #:get-message-template-request
-                              #:get-message-template-response
-                              #:get-next-message #:get-next-message-request
-                              #:get-next-message-response #:get-quick-response
-                              #:get-quick-response-request
-                              #:get-quick-response-response
-                              #:get-recommendations
+                              #:get-message-template #:get-next-message
+                              #:get-quick-response #:get-recommendations
                               #:get-recommendations-request
                               #:get-recommendations-response #:get-session
                               #:get-session-request #:get-session-response
@@ -243,46 +180,22 @@
                               #:knowledge-base-search-type
                               #:knowledge-base-status #:knowledge-base-summary
                               #:knowledge-base-type #:language-code
-                              #:list-aiagent-versions
-                              #:list-aiagent-versions-request
-                              #:list-aiagent-versions-response #:list-aiagents
-                              #:list-aiagents-request #:list-aiagents-response
-                              #:list-aiguardrail-versions
-                              #:list-aiguardrail-versions-request
-                              #:list-aiguardrail-versions-response
-                              #:list-aiguardrails #:list-aiguardrails-request
-                              #:list-aiguardrails-response
-                              #:list-aiprompt-versions
-                              #:list-aiprompt-versions-request
-                              #:list-aiprompt-versions-response
-                              #:list-aiprompts #:list-aiprompts-request
-                              #:list-aiprompts-response
+                              #:list-aiagent-versions #:list-aiagents
+                              #:list-aiguardrail-versions #:list-aiguardrails
+                              #:list-aiprompt-versions #:list-aiprompts
                               #:list-assistant-associations
                               #:list-assistant-associations-request
                               #:list-assistant-associations-response
                               #:list-assistants #:list-assistants-request
                               #:list-assistants-response
-                              #:list-content-associations
-                              #:list-content-associations-request
-                              #:list-content-associations-response
-                              #:list-contents #:list-contents-request
-                              #:list-contents-response #:list-import-jobs
-                              #:list-import-jobs-request
-                              #:list-import-jobs-response
-                              #:list-knowledge-bases
+                              #:list-content-associations #:list-contents
+                              #:list-contents-request #:list-contents-response
+                              #:list-import-jobs #:list-knowledge-bases
                               #:list-knowledge-bases-request
                               #:list-knowledge-bases-response
                               #:list-message-template-versions
-                              #:list-message-template-versions-request
-                              #:list-message-template-versions-response
-                              #:list-message-templates
-                              #:list-message-templates-request
-                              #:list-message-templates-response #:list-messages
-                              #:list-messages-request #:list-messages-response
-                              #:list-quick-responses
-                              #:list-quick-responses-request
-                              #:list-quick-responses-response
-                              #:list-tags-for-resource
+                              #:list-message-templates #:list-messages
+                              #:list-quick-responses #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response #:llm-model-id
                               #:managed-source-configuration
@@ -333,10 +246,8 @@
                               #:or-conditions #:order #:origin
                               #:parsing-configuration #:parsing-prompt
                               #:parsing-prompt-text #:parsing-strategy
-                              #:participant #:precondition-failed-exception
-                              #:priority #:put-feedback #:put-feedback-request
-                              #:put-feedback-response #:query-assistant
-                              #:query-assistant-request
+                              #:participant #:priority #:put-feedback
+                              #:query-assistant #:query-assistant-request
                               #:query-assistant-response #:query-condition
                               #:query-condition-comparison-operator
                               #:query-condition-expression
@@ -378,17 +289,11 @@
                               #:recommendation-type #:reference-type
                               #:relevance #:relevance-level #:relevance-score
                               #:remove-assistant-aiagent
-                              #:remove-assistant-aiagent-request
-                              #:remove-assistant-aiagent-response
                               #:remove-knowledge-base-template-uri
                               #:remove-knowledge-base-template-uri-request
                               #:remove-knowledge-base-template-uri-response
                               #:render-message-template
-                              #:render-message-template-request
-                              #:render-message-template-response
-                              #:rendering-configuration
-                              #:request-timeout-exception
-                              #:resource-not-found-exception #:result-data
+                              #:rendering-configuration #:result-data
                               #:runtime-session-data
                               #:runtime-session-data-list
                               #:runtime-session-data-value
@@ -397,21 +302,15 @@
                               #:search-content #:search-content-request
                               #:search-content-response #:search-expression
                               #:search-message-templates
-                              #:search-message-templates-request
-                              #:search-message-templates-response
-                              #:search-quick-responses
-                              #:search-quick-responses-request
-                              #:search-quick-responses-response
-                              #:search-sessions #:search-sessions-request
+                              #:search-quick-responses #:search-sessions
+                              #:search-sessions-request
                               #:search-sessions-response #:seed-url #:seed-urls
                               #:self-service-aiagent-configuration
                               #:self-service-conversation-history
                               #:self-service-conversation-history-list
                               #:semantic-chunking-configuration #:send-message
-                              #:send-message-request #:send-message-response
                               #:sensitive-string
-                              #:server-side-encryption-configuration
-                              #:service-quota-exceeded-exception #:session
+                              #:server-side-encryption-configuration #:session
                               #:session-data #:session-data-namespace
                               #:session-integration-configuration
                               #:session-summaries #:session-summary
@@ -420,52 +319,32 @@
                               #:source-content-type #:start-content-upload
                               #:start-content-upload-request
                               #:start-content-upload-response
-                              #:start-import-job #:start-import-job-request
-                              #:start-import-job-response #:status
-                              #:sync-status #:system-attributes
-                              #:system-endpoint-attributes #:tag-condition
-                              #:tag-filter #:tag-key #:tag-key-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
-                              #:target-type #:text-aiprompt #:text-data
+                              #:start-import-job #:status #:sync-status
+                              #:system-attributes #:system-endpoint-attributes
+                              #:tag-condition #:tag-filter #:tag-key
+                              #:tag-key-list #:tag-resource
+                              #:tag-resource-request #:tag-resource-response
+                              #:tag-value #:tags #:target-type #:text-aiprompt
+                              #:text-data
                               #:text-full-aiprompt-edit-template-configuration
-                              #:text-message #:throttling-exception
-                              #:time-to-live #:too-many-tags-exception
-                              #:unauthorized-exception #:untag-resource
+                              #:text-message #:time-to-live #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-aiagent
-                              #:update-aiagent-request
-                              #:update-aiagent-response #:update-aiguardrail
-                              #:update-aiguardrail-request
-                              #:update-aiguardrail-response #:update-aiprompt
-                              #:update-aiprompt-request
-                              #:update-aiprompt-response
-                              #:update-assistant-aiagent
-                              #:update-assistant-aiagent-request
-                              #:update-assistant-aiagent-response
-                              #:update-content #:update-content-request
+                              #:update-aiguardrail #:update-aiprompt
+                              #:update-assistant-aiagent #:update-content
+                              #:update-content-request
                               #:update-content-response
                               #:update-knowledge-base-template-uri
                               #:update-knowledge-base-template-uri-request
                               #:update-knowledge-base-template-uri-response
                               #:update-message-template
                               #:update-message-template-metadata
-                              #:update-message-template-metadata-request
-                              #:update-message-template-metadata-response
-                              #:update-message-template-request
-                              #:update-message-template-response
-                              #:update-quick-response
-                              #:update-quick-response-request
-                              #:update-quick-response-response #:update-session
-                              #:update-session-data
-                              #:update-session-data-request
-                              #:update-session-data-response
-                              #:update-session-request
-                              #:update-session-response #:upload-id #:uri #:url
+                              #:update-quick-response #:update-session
+                              #:update-session-data #:upload-id #:uri #:url
                               #:url-configuration #:url-filter-list
                               #:url-filter-pattern #:uuid #:uuid-or-arn
                               #:uuid-or-arn-or-either-with-qualifier
-                              #:uuid-with-qualifier #:validation-exception
+                              #:uuid-with-qualifier
                               #:vector-ingestion-configuration #:version
                               #:visibility-status #:wait-time-seconds
                               #:web-crawler-configuration #:web-crawler-limits

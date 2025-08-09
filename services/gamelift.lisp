@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/gamelift (:use)
-                             (:export #:accept-match #:accept-match-input
-                              #:accept-match-output #:acceptance-type #:alias
+                             (:export #:accept-match #:acceptance-type #:alias
                               #:alias-arn #:alias-id #:alias-id-or-arn
                               #:alias-list #:amazon-resource-name
                               #:anywhere-configuration #:arn-string-model
@@ -11,14 +10,12 @@
                               #:build-list #:build-status
                               #:certificate-configuration #:certificate-type
                               #:claim-filter-option #:claim-game-server
-                              #:claim-game-server-input
-                              #:claim-game-server-output
                               #:comparison-operator-type #:compute
                               #:compute-arn #:compute-auth-token #:compute-list
                               #:compute-name #:compute-name-or-arn
                               #:compute-status #:compute-type
-                              #:conflict-exception #:connection-port-range
-                              #:container-attribute #:container-attributes
+                              #:connection-port-range #:container-attribute
+                              #:container-attributes
                               #:container-command-string-list
                               #:container-dependency
                               #:container-dependency-condition
@@ -56,184 +53,65 @@
                               #:container-port-range-list
                               #:container-total-memory-limit
                               #:container-total-vcpu-limit #:container-vcpu
-                              #:create-alias #:create-alias-input
-                              #:create-alias-output #:create-build
-                              #:create-build-input #:create-build-output
+                              #:create-alias #:create-build
                               #:create-container-fleet
-                              #:create-container-fleet-input
-                              #:create-container-fleet-output
                               #:create-container-group-definition
-                              #:create-container-group-definition-input
-                              #:create-container-group-definition-output
-                              #:create-fleet #:create-fleet-input
-                              #:create-fleet-locations
-                              #:create-fleet-locations-input
-                              #:create-fleet-locations-output
-                              #:create-fleet-output #:create-game-server-group
-                              #:create-game-server-group-input
-                              #:create-game-server-group-output
-                              #:create-game-session #:create-game-session-input
-                              #:create-game-session-output
-                              #:create-game-session-queue
-                              #:create-game-session-queue-input
-                              #:create-game-session-queue-output
-                              #:create-location #:create-location-input
-                              #:create-location-output
+                              #:create-fleet #:create-fleet-locations
+                              #:create-game-server-group #:create-game-session
+                              #:create-game-session-queue #:create-location
                               #:create-matchmaking-configuration
-                              #:create-matchmaking-configuration-input
-                              #:create-matchmaking-configuration-output
                               #:create-matchmaking-rule-set
-                              #:create-matchmaking-rule-set-input
-                              #:create-matchmaking-rule-set-output
-                              #:create-player-session
-                              #:create-player-session-input
-                              #:create-player-session-output
-                              #:create-player-sessions
-                              #:create-player-sessions-input
-                              #:create-player-sessions-output #:create-script
-                              #:create-script-input #:create-script-output
+                              #:create-player-session #:create-player-sessions
+                              #:create-script
                               #:create-vpc-peering-authorization
-                              #:create-vpc-peering-authorization-input
-                              #:create-vpc-peering-authorization-output
                               #:create-vpc-peering-connection
-                              #:create-vpc-peering-connection-input
-                              #:create-vpc-peering-connection-output
                               #:custom-event-data
                               #:custom-input-location-string-model
                               #:custom-location-name-or-arn-model
-                              #:delete-alias #:delete-alias-input
-                              #:delete-build #:delete-build-input
+                              #:delete-alias #:delete-build
                               #:delete-container-fleet
-                              #:delete-container-fleet-input
-                              #:delete-container-fleet-output
                               #:delete-container-group-definition
-                              #:delete-container-group-definition-input
-                              #:delete-container-group-definition-output
-                              #:delete-fleet #:delete-fleet-input
-                              #:delete-fleet-locations
-                              #:delete-fleet-locations-input
-                              #:delete-fleet-locations-output
+                              #:delete-fleet #:delete-fleet-locations
                               #:delete-game-server-group
-                              #:delete-game-server-group-input
-                              #:delete-game-server-group-output
-                              #:delete-game-session-queue
-                              #:delete-game-session-queue-input
-                              #:delete-game-session-queue-output
-                              #:delete-location #:delete-location-input
-                              #:delete-location-output
+                              #:delete-game-session-queue #:delete-location
                               #:delete-matchmaking-configuration
-                              #:delete-matchmaking-configuration-input
-                              #:delete-matchmaking-configuration-output
                               #:delete-matchmaking-rule-set
-                              #:delete-matchmaking-rule-set-input
-                              #:delete-matchmaking-rule-set-output
-                              #:delete-scaling-policy
-                              #:delete-scaling-policy-input #:delete-script
-                              #:delete-script-input
+                              #:delete-scaling-policy #:delete-script
                               #:delete-vpc-peering-authorization
-                              #:delete-vpc-peering-authorization-input
-                              #:delete-vpc-peering-authorization-output
                               #:delete-vpc-peering-connection
-                              #:delete-vpc-peering-connection-input
-                              #:delete-vpc-peering-connection-output
                               #:deployment-configuration #:deployment-details
                               #:deployment-id #:deployment-impairment-strategy
                               #:deployment-protection-strategy
                               #:deployment-status #:deregister-compute
-                              #:deregister-compute-input
-                              #:deregister-compute-output
-                              #:deregister-game-server
-                              #:deregister-game-server-input #:describe-alias
-                              #:describe-alias-input #:describe-alias-output
-                              #:describe-build #:describe-build-input
-                              #:describe-build-output #:describe-compute
-                              #:describe-compute-input
-                              #:describe-compute-output
+                              #:deregister-game-server #:describe-alias
+                              #:describe-build #:describe-compute
                               #:describe-container-fleet
-                              #:describe-container-fleet-input
-                              #:describe-container-fleet-output
                               #:describe-container-group-definition
-                              #:describe-container-group-definition-input
-                              #:describe-container-group-definition-output
                               #:describe-ec2instance-limits
-                              #:describe-ec2instance-limits-input
-                              #:describe-ec2instance-limits-output
                               #:describe-fleet-attributes
-                              #:describe-fleet-attributes-input
-                              #:describe-fleet-attributes-output
                               #:describe-fleet-capacity
-                              #:describe-fleet-capacity-input
-                              #:describe-fleet-capacity-output
                               #:describe-fleet-deployment
-                              #:describe-fleet-deployment-input
-                              #:describe-fleet-deployment-output
                               #:describe-fleet-events
-                              #:describe-fleet-events-input
-                              #:describe-fleet-events-output
                               #:describe-fleet-location-attributes
-                              #:describe-fleet-location-attributes-input
-                              #:describe-fleet-location-attributes-output
                               #:describe-fleet-location-capacity
-                              #:describe-fleet-location-capacity-input
-                              #:describe-fleet-location-capacity-output
                               #:describe-fleet-location-utilization
-                              #:describe-fleet-location-utilization-input
-                              #:describe-fleet-location-utilization-output
                               #:describe-fleet-port-settings
-                              #:describe-fleet-port-settings-input
-                              #:describe-fleet-port-settings-output
                               #:describe-fleet-utilization
-                              #:describe-fleet-utilization-input
-                              #:describe-fleet-utilization-output
                               #:describe-game-server
                               #:describe-game-server-group
-                              #:describe-game-server-group-input
-                              #:describe-game-server-group-output
-                              #:describe-game-server-input
                               #:describe-game-server-instances
-                              #:describe-game-server-instances-input
-                              #:describe-game-server-instances-output
-                              #:describe-game-server-output
                               #:describe-game-session-details
-                              #:describe-game-session-details-input
-                              #:describe-game-session-details-output
                               #:describe-game-session-placement
-                              #:describe-game-session-placement-input
-                              #:describe-game-session-placement-output
                               #:describe-game-session-queues
-                              #:describe-game-session-queues-input
-                              #:describe-game-session-queues-output
-                              #:describe-game-sessions
-                              #:describe-game-sessions-input
-                              #:describe-game-sessions-output
-                              #:describe-instances #:describe-instances-input
-                              #:describe-instances-output
+                              #:describe-game-sessions #:describe-instances
                               #:describe-matchmaking
                               #:describe-matchmaking-configurations
-                              #:describe-matchmaking-configurations-input
-                              #:describe-matchmaking-configurations-output
-                              #:describe-matchmaking-input
-                              #:describe-matchmaking-output
                               #:describe-matchmaking-rule-sets
-                              #:describe-matchmaking-rule-sets-input
-                              #:describe-matchmaking-rule-sets-output
                               #:describe-player-sessions
-                              #:describe-player-sessions-input
-                              #:describe-player-sessions-output
                               #:describe-runtime-configuration
-                              #:describe-runtime-configuration-input
-                              #:describe-runtime-configuration-output
-                              #:describe-scaling-policies
-                              #:describe-scaling-policies-input
-                              #:describe-scaling-policies-output
-                              #:describe-script #:describe-script-input
-                              #:describe-script-output
+                              #:describe-scaling-policies #:describe-script
                               #:describe-vpc-peering-authorizations
-                              #:describe-vpc-peering-authorizations-input
-                              #:describe-vpc-peering-authorizations-output
                               #:describe-vpc-peering-connections
-                              #:describe-vpc-peering-connections-input
-                              #:describe-vpc-peering-connections-output
                               #:desired-player-session
                               #:desired-player-session-list #:dns-name
                               #:dns-name-input #:double #:double-object
@@ -245,7 +123,6 @@
                               #:fleet-action-list #:fleet-arn
                               #:fleet-attributes #:fleet-attributes-list
                               #:fleet-binary-arn #:fleet-capacity
-                              #:fleet-capacity-exceeded-exception
                               #:fleet-capacity-list #:fleet-deployment
                               #:fleet-deployments #:fleet-id #:fleet-id-list
                               #:fleet-id-or-arn #:fleet-id-or-arn-list
@@ -284,8 +161,7 @@
                               #:game-session-connection-info
                               #:game-session-creation-limit-policy
                               #:game-session-data #:game-session-detail
-                              #:game-session-detail-list
-                              #:game-session-full-exception #:game-session-list
+                              #:game-session-detail-list #:game-session-list
                               #:game-session-placement
                               #:game-session-placement-state
                               #:game-session-queue #:game-session-queue-arn
@@ -297,28 +173,15 @@
                               #:game-session-queue-name-or-arn-list
                               #:game-session-status
                               #:game-session-status-reason #:get-compute-access
-                              #:get-compute-access-input
-                              #:get-compute-access-output
                               #:get-compute-auth-token
-                              #:get-compute-auth-token-input
-                              #:get-compute-auth-token-output
-                              #:get-game-session-log-url
-                              #:get-game-session-log-url-input
-                              #:get-game-session-log-url-output
-                              #:get-instance-access #:get-instance-access-input
-                              #:get-instance-access-output #:iam-role-arn
-                              #:id-string-model
-                              #:idempotent-parameter-mismatch-exception
+                              #:get-game-session-log-url #:get-instance-access
+                              #:iam-role-arn #:id-string-model
                               #:image-uri-string #:instance #:instance-access
                               #:instance-credentials #:instance-definition
                               #:instance-definitions #:instance-id
                               #:instance-list #:instance-path-string
                               #:instance-role-credentials-provider
-                              #:instance-status #:integer
-                              #:internal-service-exception
-                              #:invalid-fleet-status-exception
-                              #:invalid-game-session-status-exception
-                              #:invalid-request-exception #:ip-address
+                              #:instance-status #:integer #:ip-address
                               #:ip-permission #:ip-permissions-list
                               #:ip-protocol #:ip-range
                               #:large-game-session-data #:latency-map
@@ -326,38 +189,18 @@
                               #:launch-path-string-model #:launch-template-id
                               #:launch-template-name
                               #:launch-template-specification
-                              #:launch-template-version
-                              #:limit-exceeded-exception #:list-aliases
-                              #:list-aliases-input #:list-aliases-output
-                              #:list-builds #:list-builds-input
-                              #:list-builds-output #:list-compute
-                              #:list-compute-input #:list-compute-input-status
-                              #:list-compute-output #:list-container-fleets
-                              #:list-container-fleets-input
-                              #:list-container-fleets-output
+                              #:launch-template-version #:list-aliases
+                              #:list-builds #:list-compute
+                              #:list-compute-input-status
+                              #:list-container-fleets
                               #:list-container-group-definition-versions
-                              #:list-container-group-definition-versions-input
                               #:list-container-group-definition-versions-limit
-                              #:list-container-group-definition-versions-output
                               #:list-container-group-definitions
-                              #:list-container-group-definitions-input
                               #:list-container-group-definitions-limit
-                              #:list-container-group-definitions-output
-                              #:list-fleet-deployments
-                              #:list-fleet-deployments-input
-                              #:list-fleet-deployments-output #:list-fleets
-                              #:list-fleets-input #:list-fleets-output
-                              #:list-game-server-groups
-                              #:list-game-server-groups-input
-                              #:list-game-server-groups-output
-                              #:list-game-servers #:list-game-servers-input
-                              #:list-game-servers-output #:list-locations
-                              #:list-locations-input #:list-locations-limit
-                              #:list-locations-output #:list-scripts
-                              #:list-scripts-input #:list-scripts-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-fleet-deployments #:list-fleets
+                              #:list-game-server-groups #:list-game-servers
+                              #:list-locations #:list-locations-limit
+                              #:list-scripts #:list-tags-for-resource
                               #:location-arn-model #:location-attributes
                               #:location-attributes-list
                               #:location-configuration
@@ -395,10 +238,8 @@
                               #:non-negative-limited-length-double
                               #:non-zero-and128max-ascii-string
                               #:non-zero-and255max-string
-                              #:non-zero-and-max-string #:not-found-exception
-                              #:not-ready-exception #:operating-system
-                              #:out-of-capacity-exception #:ping-beacon
-                              #:placed-player-session
+                              #:non-zero-and-max-string #:operating-system
+                              #:ping-beacon #:placed-player-session
                               #:placed-player-session-list
                               #:placement-fallback-strategy #:player
                               #:player-attribute-map #:player-attribute-string
@@ -415,112 +256,48 @@
                               #:priority-configuration
                               #:priority-configuration-override #:priority-type
                               #:priority-type-list #:protection-policy
-                              #:put-scaling-policy #:put-scaling-policy-input
-                              #:put-scaling-policy-output #:queue-arns-list
+                              #:put-scaling-policy #:queue-arns-list
                               #:queue-custom-event-data
                               #:queue-sns-arn-string-model #:register-compute
-                              #:register-compute-input
-                              #:register-compute-output #:register-game-server
-                              #:register-game-server-input
-                              #:register-game-server-output
-                              #:request-upload-credentials
-                              #:request-upload-credentials-input
-                              #:request-upload-credentials-output
-                              #:resolve-alias #:resolve-alias-input
-                              #:resolve-alias-output
+                              #:register-game-server
+                              #:request-upload-credentials #:resolve-alias
                               #:resource-creation-limit-policy
-                              #:resume-game-server-group
-                              #:resume-game-server-group-input
-                              #:resume-game-server-group-output
-                              #:routing-strategy #:routing-strategy-type
-                              #:rule-set-body #:rule-set-limit
-                              #:runtime-configuration #:s3location
-                              #:scaling-adjustment-type #:scaling-policy
-                              #:scaling-policy-list #:scaling-status-type
-                              #:script #:script-arn #:script-id
-                              #:script-id-or-arn #:script-list
-                              #:search-game-sessions
-                              #:search-game-sessions-input
-                              #:search-game-sessions-output #:server-process
+                              #:resume-game-server-group #:routing-strategy
+                              #:routing-strategy-type #:rule-set-body
+                              #:rule-set-limit #:runtime-configuration
+                              #:s3location #:scaling-adjustment-type
+                              #:scaling-policy #:scaling-policy-list
+                              #:scaling-status-type #:script #:script-arn
+                              #:script-id #:script-id-or-arn #:script-list
+                              #:search-game-sessions #:server-process
                               #:server-process-list #:server-sdk-version
                               #:session-target #:sha256 #:sns-arn-string-model
                               #:sort-order #:start-fleet-actions
-                              #:start-fleet-actions-input
-                              #:start-fleet-actions-output
                               #:start-game-session-placement
-                              #:start-game-session-placement-input
-                              #:start-game-session-placement-output
-                              #:start-match-backfill
-                              #:start-match-backfill-input
-                              #:start-match-backfill-output #:start-matchmaking
-                              #:start-matchmaking-input
-                              #:start-matchmaking-output #:stop-fleet-actions
-                              #:stop-fleet-actions-input
-                              #:stop-fleet-actions-output
-                              #:stop-game-session-placement
-                              #:stop-game-session-placement-input
-                              #:stop-game-session-placement-output
-                              #:stop-matchmaking #:stop-matchmaking-input
-                              #:stop-matchmaking-output #:string-list
-                              #:string-model #:support-container-definition
+                              #:start-match-backfill #:start-matchmaking
+                              #:stop-fleet-actions
+                              #:stop-game-session-placement #:stop-matchmaking
+                              #:string-list #:string-model
+                              #:support-container-definition
                               #:support-container-definition-input
                               #:support-container-definition-input-list
                               #:support-container-definition-list
-                              #:suspend-game-server-group
-                              #:suspend-game-server-group-input
-                              #:suspend-game-server-group-output #:tag
-                              #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:tagging-failed-exception #:target-configuration
+                              #:suspend-game-server-group #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:target-configuration
                               #:target-tracking-configuration
-                              #:terminal-routing-strategy-exception
-                              #:terminate-game-session
-                              #:terminate-game-session-input
-                              #:terminate-game-session-output
-                              #:termination-mode #:timestamp #:udpendpoint
-                              #:unauthorized-exception
-                              #:unsupported-region-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-alias
-                              #:update-alias-input #:update-alias-output
-                              #:update-build #:update-build-input
-                              #:update-build-output #:update-container-fleet
-                              #:update-container-fleet-input
-                              #:update-container-fleet-output
+                              #:terminate-game-session #:termination-mode
+                              #:timestamp #:udpendpoint #:untag-resource
+                              #:update-alias #:update-build
+                              #:update-container-fleet
                               #:update-container-group-definition
-                              #:update-container-group-definition-input
-                              #:update-container-group-definition-output
-                              #:update-fleet-attributes
-                              #:update-fleet-attributes-input
-                              #:update-fleet-attributes-output
-                              #:update-fleet-capacity
-                              #:update-fleet-capacity-input
-                              #:update-fleet-capacity-output
-                              #:update-fleet-port-settings
-                              #:update-fleet-port-settings-input
-                              #:update-fleet-port-settings-output
-                              #:update-game-server #:update-game-server-group
-                              #:update-game-server-group-input
-                              #:update-game-server-group-output
-                              #:update-game-server-input
-                              #:update-game-server-output #:update-game-session
-                              #:update-game-session-input
-                              #:update-game-session-output
+                              #:update-fleet-attributes #:update-fleet-capacity
+                              #:update-fleet-port-settings #:update-game-server
+                              #:update-game-server-group #:update-game-session
                               #:update-game-session-queue
-                              #:update-game-session-queue-input
-                              #:update-game-session-queue-output
                               #:update-matchmaking-configuration
-                              #:update-matchmaking-configuration-input
-                              #:update-matchmaking-configuration-output
-                              #:update-runtime-configuration
-                              #:update-runtime-configuration-input
-                              #:update-runtime-configuration-output
-                              #:update-script #:update-script-input
-                              #:update-script-output
+                              #:update-runtime-configuration #:update-script
                               #:validate-matchmaking-rule-set
-                              #:validate-matchmaking-rule-set-input
-                              #:validate-matchmaking-rule-set-output
                               #:vpc-peering-authorization
                               #:vpc-peering-authorization-list
                               #:vpc-peering-connection

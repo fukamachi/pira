@@ -1,5 +1,5 @@
 (uiop/package:define-package #:pira/managedblockchain (:use)
-                             (:export #:access-denied-exception #:accessor
+                             (:export #:accessor
                               #:accessor-billing-token-string
                               #:accessor-list-max-results
                               #:accessor-network-type #:accessor-status
@@ -7,48 +7,22 @@
                               #:accessor-type #:approval-threshold-policy
                               #:arn-string #:availability-zone-string
                               #:client-request-token-string #:create-accessor
-                              #:create-accessor-input #:create-accessor-output
-                              #:create-member #:create-member-input
-                              #:create-member-output #:create-network
-                              #:create-network-input #:create-network-output
-                              #:create-node #:create-node-input
-                              #:create-node-output #:create-proposal
-                              #:create-proposal-input #:create-proposal-output
-                              #:delete-accessor #:delete-accessor-input
-                              #:delete-accessor-output #:delete-member
-                              #:delete-member-input #:delete-member-output
-                              #:delete-node #:delete-node-input
-                              #:delete-node-output #:description-string
-                              #:edition #:enabled #:exception-message
-                              #:framework #:framework-version-string
-                              #:get-accessor #:get-accessor-input
-                              #:get-accessor-output #:get-member
-                              #:get-member-input #:get-member-output
-                              #:get-network #:get-network-input
-                              #:get-network-output #:get-node #:get-node-input
-                              #:get-node-output #:get-proposal
-                              #:get-proposal-input #:get-proposal-output
-                              #:illegal-action-exception #:input-tag-map
-                              #:instance-type-string
-                              #:internal-service-error-exception
-                              #:invalid-request-exception #:invitation
+                              #:create-member #:create-network #:create-node
+                              #:create-proposal #:delete-accessor
+                              #:delete-member #:delete-node
+                              #:description-string #:edition #:enabled
+                              #:exception-message #:framework
+                              #:framework-version-string #:get-accessor
+                              #:get-member #:get-network #:get-node
+                              #:get-proposal #:input-tag-map
+                              #:instance-type-string #:invitation
                               #:invitation-list #:invitation-status
                               #:invite-action #:invite-action-list #:is-owned
-                              #:list-accessors #:list-accessors-input
-                              #:list-accessors-output #:list-invitations
-                              #:list-invitations-input
-                              #:list-invitations-output #:list-members
-                              #:list-members-input #:list-members-output
-                              #:list-networks #:list-networks-input
-                              #:list-networks-output #:list-nodes
-                              #:list-nodes-input #:list-nodes-output
-                              #:list-proposal-votes #:list-proposal-votes-input
-                              #:list-proposal-votes-output #:list-proposals
-                              #:list-proposals-input #:list-proposals-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:log-configuration #:log-configurations #:member
+                              #:list-accessors #:list-invitations
+                              #:list-members #:list-networks #:list-nodes
+                              #:list-proposal-votes #:list-proposals
+                              #:list-tags-for-resource #:log-configuration
+                              #:log-configurations #:member
                               #:member-configuration #:member-fabric-attributes
                               #:member-fabric-configuration
                               #:member-fabric-log-publishing-configuration
@@ -79,29 +53,15 @@
                               #:proposal-list-max-results #:proposal-status
                               #:proposal-summary #:proposal-summary-list
                               #:proposal-vote-list #:reject-invitation
-                              #:reject-invitation-input
-                              #:reject-invitation-output #:remove-action
-                              #:remove-action-list
-                              #:resource-already-exists-exception
-                              #:resource-id-string
-                              #:resource-limit-exceeded-exception
-                              #:resource-not-found-exception
-                              #:resource-not-ready-exception #:state-dbtype
-                              #:string #:tag-key #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
+                              #:remove-action #:remove-action-list
+                              #:resource-id-string #:state-dbtype #:string
+                              #:tag-key #:tag-key-list #:tag-resource
                               #:tag-value #:taiga-web-service
                               #:threshold-comparator #:threshold-percentage-int
-                              #:throttling-exception #:timestamp
-                              #:too-many-tags-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-member
-                              #:update-member-input #:update-member-output
-                              #:update-node #:update-node-input
-                              #:update-node-output #:username-string
-                              #:vote-count #:vote-on-proposal
-                              #:vote-on-proposal-input
-                              #:vote-on-proposal-output #:vote-summary
-                              #:vote-value #:voting-policy))
+                              #:timestamp #:untag-resource #:update-member
+                              #:update-node #:username-string #:vote-count
+                              #:vote-on-proposal #:vote-summary #:vote-value
+                              #:voting-policy))
 (common-lisp:in-package #:pira/managedblockchain)
 
 (smithy/sdk/service:define-service taiga-web-service :shape-name

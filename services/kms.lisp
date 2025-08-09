@@ -1,122 +1,47 @@
 (uiop/package:define-package #:pira/kms (:use)
                              (:export #:awsaccount-id-type #:algorithm-spec
                               #:alias-list #:alias-list-entry #:alias-name-type
-                              #:already-exists-exception #:arn-type
-                              #:attestation-document-type
+                              #:arn-type #:attestation-document-type
                               #:backing-key-id-response-type
                               #:backing-key-id-type #:boolean-type
-                              #:cancel-key-deletion
-                              #:cancel-key-deletion-request
-                              #:cancel-key-deletion-response #:ciphertext-type
+                              #:cancel-key-deletion #:ciphertext-type
                               #:cloud-hsm-cluster-id-type
-                              #:cloud-hsm-cluster-in-use-exception
-                              #:cloud-hsm-cluster-invalid-configuration-exception
-                              #:cloud-hsm-cluster-not-active-exception
-                              #:cloud-hsm-cluster-not-found-exception
-                              #:cloud-hsm-cluster-not-related-exception
-                              #:conflict-exception #:connect-custom-key-store
-                              #:connect-custom-key-store-request
-                              #:connect-custom-key-store-response
+                              #:connect-custom-key-store
                               #:connection-error-code-type
                               #:connection-state-type #:create-alias
-                              #:create-alias-request #:create-custom-key-store
-                              #:create-custom-key-store-request
-                              #:create-custom-key-store-response #:create-grant
-                              #:create-grant-request #:create-grant-response
-                              #:create-key #:create-key-request
-                              #:create-key-response
-                              #:custom-key-store-has-cmks-exception
-                              #:custom-key-store-id-type
-                              #:custom-key-store-invalid-state-exception
-                              #:custom-key-store-name-in-use-exception
+                              #:create-custom-key-store #:create-grant
+                              #:create-key #:custom-key-store-id-type
                               #:custom-key-store-name-type
-                              #:custom-key-store-not-found-exception
                               #:custom-key-store-type #:custom-key-stores-list
                               #:custom-key-stores-list-entry
                               #:customer-master-key-spec #:data-key-pair-spec
                               #:data-key-spec #:date-type #:decrypt
-                              #:decrypt-request #:decrypt-response
-                              #:delete-alias #:delete-alias-request
-                              #:delete-custom-key-store
-                              #:delete-custom-key-store-request
-                              #:delete-custom-key-store-response
+                              #:delete-alias #:delete-custom-key-store
                               #:delete-imported-key-material
-                              #:delete-imported-key-material-request
-                              #:delete-imported-key-material-response
-                              #:dependency-timeout-exception
                               #:derive-shared-secret
-                              #:derive-shared-secret-request
-                              #:derive-shared-secret-response
-                              #:describe-custom-key-stores
-                              #:describe-custom-key-stores-request
-                              #:describe-custom-key-stores-response
-                              #:describe-key #:describe-key-request
-                              #:describe-key-response #:description-type
-                              #:disable-key #:disable-key-request
+                              #:describe-custom-key-stores #:describe-key
+                              #:description-type #:disable-key
                               #:disable-key-rotation
-                              #:disable-key-rotation-request
-                              #:disabled-exception
-                              #:disconnect-custom-key-store
-                              #:disconnect-custom-key-store-request
-                              #:disconnect-custom-key-store-response
-                              #:dry-run-operation-exception #:enable-key
-                              #:enable-key-request #:enable-key-rotation
-                              #:enable-key-rotation-request #:encrypt
-                              #:encrypt-request #:encrypt-response
+                              #:disconnect-custom-key-store #:enable-key
+                              #:enable-key-rotation #:encrypt
                               #:encryption-algorithm-spec
                               #:encryption-algorithm-spec-list
                               #:encryption-context-key
                               #:encryption-context-type
                               #:encryption-context-value #:error-message-type
-                              #:expiration-model-type
-                              #:expired-import-token-exception
-                              #:generate-data-key #:generate-data-key-pair
-                              #:generate-data-key-pair-request
-                              #:generate-data-key-pair-response
+                              #:expiration-model-type #:generate-data-key
+                              #:generate-data-key-pair
                               #:generate-data-key-pair-without-plaintext
-                              #:generate-data-key-pair-without-plaintext-request
-                              #:generate-data-key-pair-without-plaintext-response
-                              #:generate-data-key-request
-                              #:generate-data-key-response
                               #:generate-data-key-without-plaintext
-                              #:generate-data-key-without-plaintext-request
-                              #:generate-data-key-without-plaintext-response
-                              #:generate-mac #:generate-mac-request
-                              #:generate-mac-response #:generate-random
-                              #:generate-random-request
-                              #:generate-random-response #:get-key-policy
-                              #:get-key-policy-request
-                              #:get-key-policy-response
+                              #:generate-mac #:generate-random #:get-key-policy
                               #:get-key-rotation-status
-                              #:get-key-rotation-status-request
-                              #:get-key-rotation-status-response
-                              #:get-parameters-for-import
-                              #:get-parameters-for-import-request
-                              #:get-parameters-for-import-response
-                              #:get-public-key #:get-public-key-request
-                              #:get-public-key-response #:grant-constraints
-                              #:grant-id-type #:grant-list #:grant-list-entry
-                              #:grant-name-type #:grant-operation
-                              #:grant-operation-list #:grant-token-list
-                              #:grant-token-type #:import-key-material
-                              #:import-key-material-request
-                              #:import-key-material-response #:import-state
+                              #:get-parameters-for-import #:get-public-key
+                              #:grant-constraints #:grant-id-type #:grant-list
+                              #:grant-list-entry #:grant-name-type
+                              #:grant-operation #:grant-operation-list
+                              #:grant-token-list #:grant-token-type
+                              #:import-key-material #:import-state
                               #:import-type #:include-key-material
-                              #:incorrect-key-exception
-                              #:incorrect-key-material-exception
-                              #:incorrect-trust-anchor-exception
-                              #:invalid-alias-name-exception
-                              #:invalid-arn-exception
-                              #:invalid-ciphertext-exception
-                              #:invalid-grant-id-exception
-                              #:invalid-grant-token-exception
-                              #:invalid-import-token-exception
-                              #:invalid-key-usage-exception
-                              #:invalid-marker-exception
-                              #:kmsinternal-exception
-                              #:kmsinvalid-mac-exception
-                              #:kmsinvalid-signature-exception
-                              #:kmsinvalid-state-exception
                               #:key-agreement-algorithm-spec
                               #:key-agreement-algorithm-spec-list
                               #:key-encryption-mechanism #:key-id-type
@@ -124,86 +49,43 @@
                               #:key-material-description-type
                               #:key-material-state #:key-metadata #:key-spec
                               #:key-state #:key-store-password-type
-                              #:key-unavailable-exception #:key-usage-type
-                              #:limit-exceeded-exception #:limit-type
-                              #:list-aliases #:list-aliases-request
-                              #:list-aliases-response #:list-grants
-                              #:list-grants-request #:list-grants-response
-                              #:list-key-policies #:list-key-policies-request
-                              #:list-key-policies-response #:list-key-rotations
-                              #:list-key-rotations-request
-                              #:list-key-rotations-response #:list-keys
-                              #:list-keys-request #:list-keys-response
-                              #:list-resource-tags #:list-resource-tags-request
-                              #:list-resource-tags-response
-                              #:list-retirable-grants
-                              #:list-retirable-grants-request
-                              #:mac-algorithm-spec #:mac-algorithm-spec-list
-                              #:malformed-policy-document-exception
-                              #:marker-type #:message-type
-                              #:multi-region-configuration #:multi-region-key
-                              #:multi-region-key-list #:multi-region-key-type
-                              #:not-found-exception #:nullable-boolean-type
+                              #:key-usage-type #:limit-type #:list-aliases
+                              #:list-grants #:list-grants-response
+                              #:list-key-policies #:list-key-rotations
+                              #:list-keys #:list-resource-tags
+                              #:list-retirable-grants #:mac-algorithm-spec
+                              #:mac-algorithm-spec-list #:marker-type
+                              #:message-type #:multi-region-configuration
+                              #:multi-region-key #:multi-region-key-list
+                              #:multi-region-key-type #:nullable-boolean-type
                               #:number-of-bytes-type #:origin-type
                               #:pending-window-in-days-type #:plaintext-type
                               #:policy-name-list #:policy-name-type
                               #:policy-type #:principal-id-type
-                              #:public-key-type #:put-key-policy
-                              #:put-key-policy-request #:re-encrypt
-                              #:re-encrypt-request #:re-encrypt-response
+                              #:public-key-type #:put-key-policy #:re-encrypt
                               #:recipient-info #:region-type #:replicate-key
-                              #:replicate-key-request #:replicate-key-response
-                              #:retire-grant #:retire-grant-request
-                              #:revoke-grant #:revoke-grant-request
+                              #:retire-grant #:revoke-grant
                               #:rotate-key-on-demand
-                              #:rotate-key-on-demand-request
-                              #:rotate-key-on-demand-response
                               #:rotation-period-in-days-type #:rotation-type
                               #:rotations-list #:rotations-list-entry
-                              #:schedule-key-deletion
-                              #:schedule-key-deletion-request
-                              #:schedule-key-deletion-response #:sign
-                              #:sign-request #:sign-response
+                              #:schedule-key-deletion #:sign
                               #:signing-algorithm-spec
                               #:signing-algorithm-spec-list #:tag
-                              #:tag-exception #:tag-key-list #:tag-key-type
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-value-type #:trent-service
-                              #:trust-anchor-certificate-type
-                              #:unsupported-operation-exception
-                              #:untag-resource #:untag-resource-request
-                              #:update-alias #:update-alias-request
-                              #:update-custom-key-store
-                              #:update-custom-key-store-request
-                              #:update-custom-key-store-response
-                              #:update-key-description
-                              #:update-key-description-request
-                              #:update-primary-region
-                              #:update-primary-region-request #:verify
-                              #:verify-mac #:verify-mac-request
-                              #:verify-mac-response #:verify-request
-                              #:verify-response #:wrapping-key-spec
-                              #:xks-key-already-in-use-exception
+                              #:tag-key-list #:tag-key-type #:tag-list
+                              #:tag-resource #:tag-value-type #:trent-service
+                              #:trust-anchor-certificate-type #:untag-resource
+                              #:update-alias #:update-custom-key-store
+                              #:update-key-description #:update-primary-region
+                              #:verify #:verify-mac #:wrapping-key-spec
                               #:xks-key-configuration-type #:xks-key-id-type
-                              #:xks-key-invalid-configuration-exception
-                              #:xks-key-not-found-exception
                               #:xks-proxy-authentication-access-key-id-type
                               #:xks-proxy-authentication-credential-type
                               #:xks-proxy-authentication-raw-secret-access-key-type
                               #:xks-proxy-configuration-type
                               #:xks-proxy-connectivity-type
-                              #:xks-proxy-incorrect-authentication-credential-exception
-                              #:xks-proxy-invalid-configuration-exception
-                              #:xks-proxy-invalid-response-exception
-                              #:xks-proxy-uri-endpoint-in-use-exception
                               #:xks-proxy-uri-endpoint-type
-                              #:xks-proxy-uri-in-use-exception
                               #:xks-proxy-uri-path-type
-                              #:xks-proxy-uri-unreachable-exception
-                              #:xks-proxy-vpc-endpoint-service-in-use-exception
-                              #:xks-proxy-vpc-endpoint-service-invalid-configuration-exception
-                              #:xks-proxy-vpc-endpoint-service-name-type
-                              #:xks-proxy-vpc-endpoint-service-not-found-exception))
+                              #:xks-proxy-vpc-endpoint-service-name-type))
 (common-lisp:in-package #:pira/kms)
 
 (smithy/sdk/service:define-service trent-service :shape-name "TrentService"

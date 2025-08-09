@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/bedrock-data-automation-runtime (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-bedrock-keystone-runtime-service
+                             (:export #:amazon-bedrock-keystone-runtime-service
                               #:asset-processing-configuration
                               #:automation-job-resource #:automation-job-status
                               #:blueprint #:blueprint-arn #:blueprint-list
@@ -13,28 +12,15 @@
                               #:encryption-context-key #:encryption-context-map
                               #:encryption-context-value
                               #:event-bridge-configuration
-                              #:get-data-automation-status
-                              #:get-data-automation-status-request
-                              #:get-data-automation-status-response
-                              #:idempotency-token #:input-configuration
-                              #:internal-server-exception #:invocation-arn
-                              #:invoke-data-automation-async
-                              #:invoke-data-automation-async-request
-                              #:invoke-data-automation-async-response
-                              #:kmskey-id #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:non-blank-string #:notification-configuration
-                              #:output-configuration
-                              #:resource-not-found-exception #:s3uri
-                              #:service-quota-exceeded-exception #:tag
-                              #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:taggable-resource-arn #:throttling-exception
+                              #:get-data-automation-status #:idempotency-token
+                              #:input-configuration #:invocation-arn
+                              #:invoke-data-automation-async #:kmskey-id
+                              #:list-tags-for-resource #:non-blank-string
+                              #:notification-configuration
+                              #:output-configuration #:s3uri #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:taggable-resource-arn
                               #:timestamp-segment #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:validation-exception
                               #:video-asset-processing-configuration
                               #:video-segment-configuration))
 (common-lisp:in-package #:pira/bedrock-data-automation-runtime)

@@ -1,9 +1,8 @@
 (uiop/package:define-package #:pira/location (:use)
-                             (:export #:access-denied-exception #:api-key
-                              #:api-key-action #:api-key-action-list
-                              #:api-key-filter #:api-key-resource
-                              #:api-key-restrictions #:arn #:arn-list
-                              #:associate-tracker-consumer
+                             (:export #:api-key #:api-key-action
+                              #:api-key-action-list #:api-key-filter
+                              #:api-key-resource #:api-key-restrictions #:arn
+                              #:arn-list #:associate-tracker-consumer
                               #:associate-tracker-consumer-request
                               #:associate-tracker-consumer-response
                               #:base64encoded-geobuf
@@ -51,9 +50,9 @@
                               #:calculate-route-response
                               #:calculate-route-summary
                               #:calculate-route-truck-mode-options
-                              #:cell-signals #:circle #:conflict-exception
-                              #:country-code3 #:country-code3or-empty
-                              #:country-code-list #:create-geofence-collection
+                              #:cell-signals #:circle #:country-code3
+                              #:country-code3or-empty #:country-code-list
+                              #:create-geofence-collection
                               #:create-geofence-collection-request
                               #:create-geofence-collection-response
                               #:create-key #:create-key-request
@@ -104,8 +103,6 @@
                               #:filter-place-category-list
                               #:forecast-geofence-events
                               #:forecast-geofence-events-device-state
-                              #:forecast-geofence-events-request
-                              #:forecast-geofence-events-response
                               #:forecasted-event #:forecasted-events-list
                               #:forecasted-geofence-event-type
                               #:generic-resource #:geo-arn #:geo-arn-list
@@ -128,10 +125,10 @@
                               #:get-map-tile-response #:get-place
                               #:get-place-request #:get-place-response #:id
                               #:id-list #:inferred-state #:intended-use
-                              #:internal-server-exception #:kms-key-id
-                              #:language-tag #:large-token #:leg #:leg-geometry
-                              #:leg-list #:line-string #:linear-ring
-                              #:linear-rings #:list-device-positions
+                              #:kms-key-id #:language-tag #:large-token #:leg
+                              #:leg-geometry #:leg-list #:line-string
+                              #:linear-ring #:linear-rings
+                              #:list-device-positions
                               #:list-device-positions-request
                               #:list-device-positions-response
                               #:list-device-positions-response-entry
@@ -188,7 +185,6 @@
                               #:put-geofence-request #:put-geofence-response
                               #:referer-pattern #:referer-pattern-list
                               #:resource-description #:resource-name
-                              #:resource-not-found-exception
                               #:route-calculator-resource #:route-matrix
                               #:route-matrix-entry #:route-matrix-entry-error
                               #:route-matrix-error-code #:route-matrix-row
@@ -211,14 +207,12 @@
                               #:search-place-index-for-text-response
                               #:search-place-index-for-text-summary
                               #:sensitive-double #:sensitive-string
-                              #:service-quota-exceeded-exception #:speed-unit
-                              #:status #:step #:step-list #:tag-key #:tag-keys
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:time-zone #:timestamp
-                              #:token #:tracker-resource
-                              #:tracking-filter-geometry #:travel-mode
-                              #:truck-dimensions #:truck-weight
+                              #:speed-unit #:status #:step #:step-list
+                              #:tag-key #:tag-keys #:tag-map #:tag-resource
+                              #:tag-resource-request #:tag-resource-response
+                              #:tag-value #:time-zone #:timestamp #:token
+                              #:tracker-resource #:tracking-filter-geometry
+                              #:travel-mode #:truck-dimensions #:truck-weight
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-geofence-collection
@@ -234,13 +228,10 @@
                               #:update-route-calculator-response
                               #:update-tracker #:update-tracker-request
                               #:update-tracker-response #:uuid
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason
                               #:vehicle-weight-unit #:verify-device-position
-                              #:verify-device-position-request
-                              #:verify-device-position-response
                               #:waypoint-position-list #:wi-fi-access-point
                               #:wi-fi-access-point-list))
 (common-lisp:in-package #:pira/location)

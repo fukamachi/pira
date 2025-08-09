@@ -2,8 +2,7 @@
                              (:export #:access #:access-analyzer
                               #:access-check-policy-document
                               #:access-check-policy-type
-                              #:access-check-resource-type
-                              #:access-denied-exception #:access-list
+                              #:access-check-resource-type #:access-list
                               #:access-point-arn #:access-point-policy
                               #:access-preview #:access-preview-finding
                               #:access-preview-finding-id
@@ -28,21 +27,15 @@
                               #:cancel-policy-generation-request
                               #:cancel-policy-generation-response
                               #:check-access-not-granted
-                              #:check-access-not-granted-request
-                              #:check-access-not-granted-response
                               #:check-access-not-granted-result
                               #:check-no-new-access
-                              #:check-no-new-access-request
-                              #:check-no-new-access-response
                               #:check-no-new-access-result
                               #:check-no-public-access
-                              #:check-no-public-access-request
-                              #:check-no-public-access-response
                               #:check-no-public-access-result #:cloud-trail-arn
                               #:cloud-trail-details #:cloud-trail-properties
                               #:condition-key-map #:configuration
                               #:configurations-map #:configurations-map-key
-                              #:conflict-exception #:create-access-preview
+                              #:create-access-preview
                               #:create-access-preview-request
                               #:create-access-preview-response
                               #:create-analyzer #:create-analyzer-request
@@ -77,7 +70,6 @@
                               #:findings-list #:findings-list-v2
                               #:findings-statistics #:findings-statistics-list
                               #:generate-finding-recommendation
-                              #:generate-finding-recommendation-request
                               #:generated-policy #:generated-policy-list
                               #:generated-policy-properties
                               #:generated-policy-result #:get-access-preview
@@ -90,14 +82,8 @@
                               #:get-archive-rule #:get-archive-rule-request
                               #:get-archive-rule-response #:get-finding
                               #:get-finding-recommendation
-                              #:get-finding-recommendation-request
-                              #:get-finding-recommendation-response
                               #:get-finding-request #:get-finding-response
-                              #:get-finding-v2 #:get-finding-v2request
-                              #:get-finding-v2response
-                              #:get-findings-statistics
-                              #:get-findings-statistics-request
-                              #:get-findings-statistics-response
+                              #:get-finding-v2 #:get-findings-statistics
                               #:get-generated-policy
                               #:get-generated-policy-request
                               #:get-generated-policy-response
@@ -112,14 +98,12 @@
                               #:internal-access-findings-statistics
                               #:internal-access-resource-type-details
                               #:internal-access-resource-type-statistics-map
-                              #:internal-access-type
-                              #:internal-server-exception
-                              #:internet-configuration
-                              #:invalid-parameter-exception #:issue-code
-                              #:issuing-account #:job-details #:job-error
-                              #:job-error-code #:job-id #:job-status
-                              #:kms-constraints-key #:kms-constraints-map
-                              #:kms-constraints-value #:kms-grant-configuration
+                              #:internal-access-type #:internet-configuration
+                              #:issue-code #:issuing-account #:job-details
+                              #:job-error #:job-error-code #:job-id
+                              #:job-status #:kms-constraints-key
+                              #:kms-constraints-map #:kms-constraints-value
+                              #:kms-grant-configuration
                               #:kms-grant-configurations-list
                               #:kms-grant-constraints #:kms-grant-operation
                               #:kms-grant-operations-list
@@ -139,9 +123,7 @@
                               #:list-archive-rules-request
                               #:list-archive-rules-response #:list-findings
                               #:list-findings-request #:list-findings-response
-                              #:list-findings-v2 #:list-findings-v2request
-                              #:list-findings-v2response
-                              #:list-policy-generations
+                              #:list-findings-v2 #:list-policy-generations
                               #:list-policy-generations-request
                               #:list-policy-generations-response
                               #:list-tags-for-resource
@@ -176,8 +158,8 @@
                               #:region-list #:resource #:resource-arn
                               #:resource-arns-list
                               #:resource-control-policy-restriction
-                              #:resource-not-found-exception #:resource-type
-                              #:resource-type-details #:resource-type-list
+                              #:resource-type #:resource-type-details
+                              #:resource-type-list
                               #:resource-type-statistics-map #:resources-list
                               #:retiring-principal #:role-arn
                               #:s3access-point-configuration
@@ -195,7 +177,6 @@
                               #:secrets-manager-secret-kms-id
                               #:secrets-manager-secret-policy
                               #:service-control-policy-restriction
-                              #:service-quota-exceeded-exception
                               #:shared-via-list #:sns-topic-configuration
                               #:sns-topic-policy #:sort-criteria #:span
                               #:sqs-queue-configuration #:sqs-queue-policy
@@ -207,11 +188,9 @@
                               #:status-reason #:substring #:tag-keys
                               #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tags-list #:tags-map
-                              #:throttling-exception #:timestamp #:token
-                              #:trail #:trail-list #:trail-properties
-                              #:trail-properties-list #:type
-                              #:unprocessable-entity-exception #:untag-resource
-                              #:untag-resource-request
+                              #:timestamp #:token #:trail #:trail-list
+                              #:trail-properties #:trail-properties-list #:type
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:unused-access-configuration
                               #:unused-access-findings-statistics
@@ -223,8 +202,7 @@
                               #:unused-iam-user-password-details
                               #:unused-permission-details
                               #:unused-permissions-recommended-step
-                              #:update-analyzer #:update-analyzer-request
-                              #:update-analyzer-response #:update-archive-rule
+                              #:update-analyzer #:update-archive-rule
                               #:update-archive-rule-request #:update-findings
                               #:update-findings-request #:validate-policy
                               #:validate-policy-finding
@@ -232,7 +210,7 @@
                               #:validate-policy-finding-type
                               #:validate-policy-request
                               #:validate-policy-resource-type
-                              #:validate-policy-response #:validation-exception
+                              #:validate-policy-response
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:value-list

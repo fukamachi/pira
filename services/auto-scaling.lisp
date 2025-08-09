@@ -5,13 +5,11 @@
                               #:accelerator-names
                               #:accelerator-total-memory-mi-brequest
                               #:accelerator-type #:accelerator-types
-                              #:active-instance-refresh-not-found-fault
                               #:activities #:activities-type #:activity
                               #:activity-ids #:activity-type #:adjustment-type
                               #:adjustment-types #:alarm #:alarm-list
                               #:alarm-specification #:alarms
                               #:allowed-instance-type #:allowed-instance-types
-                              #:already-exists-fault
                               #:any-printable-ascii-string-max-len4000
                               #:ascii-string-max-len255
                               #:associate-public-ip-address #:attach-instances
@@ -114,11 +112,7 @@
                               #:describe-lifecycle-hooks-answer
                               #:describe-lifecycle-hooks-type
                               #:describe-load-balancer-target-groups
-                              #:describe-load-balancer-target-groups-request
-                              #:describe-load-balancer-target-groups-response
                               #:describe-load-balancers
-                              #:describe-load-balancers-request
-                              #:describe-load-balancers-response
                               #:describe-metric-collection-types
                               #:describe-metric-collection-types-answer
                               #:describe-notification-configurations
@@ -133,10 +127,8 @@
                               #:describe-tags-type
                               #:describe-termination-policy-types
                               #:describe-termination-policy-types-answer
-                              #:describe-traffic-sources
-                              #:describe-traffic-sources-request
-                              #:describe-traffic-sources-response
-                              #:describe-warm-pool #:describe-warm-pool-answer
+                              #:describe-traffic-sources #:describe-warm-pool
+                              #:describe-warm-pool-answer
                               #:describe-warm-pool-type #:desired-configuration
                               #:detach-instances #:detach-instances-answer
                               #:detach-instances-query
@@ -180,7 +172,6 @@
                               #:instance-metadata-options #:instance-monitoring
                               #:instance-protected #:instance-refresh
                               #:instance-refresh-ids
-                              #:instance-refresh-in-progress-fault
                               #:instance-refresh-live-pool-progress
                               #:instance-refresh-progress-details
                               #:instance-refresh-status
@@ -190,9 +181,7 @@
                               #:instances-distribution #:instances-to-update
                               #:int-percent #:int-percent100to200
                               #:int-percent100to200resettable
-                              #:int-percent-resettable #:invalid-next-token
-                              #:irreversible-instance-refresh-fault
-                              #:launch-configuration
+                              #:int-percent-resettable #:launch-configuration
                               #:launch-configuration-name-type
                               #:launch-configuration-names
                               #:launch-configuration-names-type
@@ -207,8 +196,8 @@
                               #:lifecycle-hook-specification
                               #:lifecycle-hook-specifications #:lifecycle-hooks
                               #:lifecycle-state #:lifecycle-transition
-                              #:limit-exceeded-fault #:load-balancer-names
-                              #:load-balancer-state #:load-balancer-states
+                              #:load-balancer-names #:load-balancer-state
+                              #:load-balancer-states
                               #:load-balancer-target-group-state
                               #:load-balancer-target-group-states
                               #:load-forecast #:load-forecasts #:local-storage
@@ -284,15 +273,13 @@
                               #:record-lifecycle-action-heartbeat-answer
                               #:record-lifecycle-action-heartbeat-type
                               #:refresh-instance-warmup #:refresh-preferences
-                              #:refresh-strategy #:resource-contention-fault
-                              #:resource-in-use-fault #:resource-name
+                              #:refresh-strategy #:resource-name
                               #:resume-processes #:return-data
                               #:reuse-on-scale-in #:rollback-details
                               #:rollback-instance-refresh
                               #:rollback-instance-refresh-answer
                               #:rollback-instance-refresh-type
                               #:scale-in-protected-instances
-                              #:scaling-activity-in-progress-fault
                               #:scaling-activity-status-code #:scaling-policies
                               #:scaling-policy #:scaling-policy-enabled
                               #:scaling-process-query #:scheduled-action-names
@@ -301,8 +288,7 @@
                               #:scheduled-update-group-action-request
                               #:scheduled-update-group-action-requests
                               #:scheduled-update-group-actions
-                              #:security-groups #:service-linked-role-failure
-                              #:set-desired-capacity
+                              #:security-groups #:set-desired-capacity
                               #:set-desired-capacity-type #:set-instance-health
                               #:set-instance-health-query
                               #:set-instance-protection

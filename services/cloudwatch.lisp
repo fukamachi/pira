@@ -15,56 +15,27 @@
                               #:anomaly-detector-type #:anomaly-detector-types
                               #:anomaly-detectors #:aws-query-error-message
                               #:batch-failures #:comparison-operator
-                              #:composite-alarm #:composite-alarms
-                              #:concurrent-modification-exception
-                              #:conflict-exception #:counts #:dashboard-arn
-                              #:dashboard-body #:dashboard-entries
-                              #:dashboard-entry #:dashboard-error-message
-                              #:dashboard-invalid-input-error #:dashboard-name
+                              #:composite-alarm #:composite-alarms #:counts
+                              #:dashboard-arn #:dashboard-body
+                              #:dashboard-entries #:dashboard-entry
+                              #:dashboard-error-message #:dashboard-name
                               #:dashboard-name-prefix #:dashboard-names
-                              #:dashboard-not-found-error
                               #:dashboard-validation-message
                               #:dashboard-validation-messages #:data-path
                               #:datapoint #:datapoint-value
                               #:datapoint-value-map #:datapoint-values
                               #:datapoints #:datapoints-to-alarm
-                              #:delete-alarms #:delete-alarms-input
-                              #:delete-anomaly-detector
-                              #:delete-anomaly-detector-input
-                              #:delete-anomaly-detector-output
-                              #:delete-dashboards #:delete-dashboards-input
-                              #:delete-dashboards-output #:delete-insight-rules
-                              #:delete-insight-rules-input
-                              #:delete-insight-rules-output
-                              #:delete-metric-stream
-                              #:delete-metric-stream-input
-                              #:delete-metric-stream-output
-                              #:describe-alarm-history
-                              #:describe-alarm-history-input
-                              #:describe-alarm-history-output #:describe-alarms
-                              #:describe-alarms-for-metric
-                              #:describe-alarms-for-metric-input
-                              #:describe-alarms-for-metric-output
-                              #:describe-alarms-input #:describe-alarms-output
+                              #:delete-alarms #:delete-anomaly-detector
+                              #:delete-dashboards #:delete-insight-rules
+                              #:delete-metric-stream #:describe-alarm-history
+                              #:describe-alarms #:describe-alarms-for-metric
                               #:describe-anomaly-detectors
-                              #:describe-anomaly-detectors-input
-                              #:describe-anomaly-detectors-output
-                              #:describe-insight-rules
-                              #:describe-insight-rules-input
-                              #:describe-insight-rules-output #:dimension
+                              #:describe-insight-rules #:dimension
                               #:dimension-filter #:dimension-filters
                               #:dimension-name #:dimension-value #:dimensions
-                              #:disable-alarm-actions
-                              #:disable-alarm-actions-input
-                              #:disable-insight-rules
-                              #:disable-insight-rules-input
-                              #:disable-insight-rules-output
-                              #:enable-alarm-actions
-                              #:enable-alarm-actions-input
-                              #:enable-insight-rules
-                              #:enable-insight-rules-input
-                              #:enable-insight-rules-output #:entity
-                              #:entity-attributes-map
+                              #:disable-alarm-actions #:disable-insight-rules
+                              #:enable-alarm-actions #:enable-insight-rules
+                              #:entity #:entity-attributes-map
                               #:entity-attributes-map-key-string
                               #:entity-attributes-map-value-string
                               #:entity-key-attributes-map
@@ -78,21 +49,11 @@
                               #:extended-statistics #:failure-code
                               #:failure-description #:failure-resource
                               #:fault-description #:get-dashboard
-                              #:get-dashboard-input #:get-dashboard-output
-                              #:get-insight-rule-report
-                              #:get-insight-rule-report-input
-                              #:get-insight-rule-report-output
-                              #:get-metric-data #:get-metric-data-input
+                              #:get-insight-rule-report #:get-metric-data
                               #:get-metric-data-label-timezone
                               #:get-metric-data-max-datapoints
-                              #:get-metric-data-output #:get-metric-statistics
-                              #:get-metric-statistics-input
-                              #:get-metric-statistics-output
-                              #:get-metric-stream #:get-metric-stream-input
-                              #:get-metric-stream-output
+                              #:get-metric-statistics #:get-metric-stream
                               #:get-metric-widget-image
-                              #:get-metric-widget-image-input
-                              #:get-metric-widget-image-output
                               #:granite-service-version20100801 #:history-data
                               #:history-item-type #:history-summary
                               #:include-linked-accounts
@@ -120,24 +81,11 @@
                               #:insight-rule-unbound-double
                               #:insight-rule-unbound-integer
                               #:insight-rule-unbound-long #:insight-rules
-                              #:internal-service-fault #:invalid-format-fault
-                              #:invalid-next-token
-                              #:invalid-parameter-combination-exception
-                              #:invalid-parameter-value-exception
-                              #:label-options #:last-modified
-                              #:limit-exceeded-exception #:limit-exceeded-fault
-                              #:list-dashboards #:list-dashboards-input
-                              #:list-dashboards-output
+                              #:label-options #:last-modified #:list-dashboards
                               #:list-managed-insight-rules
-                              #:list-managed-insight-rules-input
-                              #:list-managed-insight-rules-output
-                              #:list-metric-streams #:list-metric-streams-input
-                              #:list-metric-streams-max-results
-                              #:list-metric-streams-output #:list-metrics
-                              #:list-metrics-input #:list-metrics-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:managed-rule
+                              #:list-metric-streams
+                              #:list-metric-streams-max-results #:list-metrics
+                              #:list-tags-for-resource #:managed-rule
                               #:managed-rule-description
                               #:managed-rule-descriptions #:managed-rule-state
                               #:managed-rules #:max-records
@@ -163,47 +111,27 @@
                               #:metric-stream-statistics-configurations
                               #:metric-stream-statistics-include-metrics
                               #:metric-stream-statistics-metric #:metric-widget
-                              #:metric-widget-image #:metrics
-                              #:missing-required-parameter-exception
-                              #:namespace #:next-token #:output-format
-                              #:owning-accounts #:partial-failure #:period
-                              #:periodic-spikes #:put-anomaly-detector
-                              #:put-anomaly-detector-input
-                              #:put-anomaly-detector-output
-                              #:put-composite-alarm #:put-composite-alarm-input
-                              #:put-dashboard #:put-dashboard-input
-                              #:put-dashboard-output #:put-insight-rule
-                              #:put-insight-rule-input
-                              #:put-insight-rule-output
-                              #:put-managed-insight-rules
-                              #:put-managed-insight-rules-input
-                              #:put-managed-insight-rules-output
-                              #:put-metric-alarm #:put-metric-alarm-input
-                              #:put-metric-data #:put-metric-data-input
-                              #:put-metric-stream #:put-metric-stream-input
-                              #:put-metric-stream-output #:range
+                              #:metric-widget-image #:metrics #:namespace
+                              #:next-token #:output-format #:owning-accounts
+                              #:partial-failure #:period #:periodic-spikes
+                              #:put-anomaly-detector #:put-composite-alarm
+                              #:put-dashboard #:put-insight-rule
+                              #:put-managed-insight-rules #:put-metric-alarm
+                              #:put-metric-data #:put-metric-stream #:range
                               #:recently-active #:resource-id #:resource-list
-                              #:resource-name #:resource-not-found
-                              #:resource-not-found-exception #:resource-type
-                              #:return-data #:scan-by #:set-alarm-state
-                              #:set-alarm-state-input
+                              #:resource-name #:resource-type #:return-data
+                              #:scan-by #:set-alarm-state
                               #:single-metric-anomaly-detector #:size
-                              #:standard-unit #:start-metric-streams
-                              #:start-metric-streams-input
-                              #:start-metric-streams-output #:stat
+                              #:standard-unit #:start-metric-streams #:stat
                               #:state-reason #:state-reason-data #:state-value
                               #:statistic #:statistic-set #:statistics
                               #:status-code #:stop-metric-streams
-                              #:stop-metric-streams-input
-                              #:stop-metric-streams-output #:storage-resolution
-                              #:strict-entity-validation #:suppressor-period
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:tag-value #:template-name
-                              #:threshold #:timestamp #:timestamps
-                              #:treat-missing-data #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:values))
+                              #:storage-resolution #:strict-entity-validation
+                              #:suppressor-period #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:template-name #:threshold
+                              #:timestamp #:timestamps #:treat-missing-data
+                              #:untag-resource #:values))
 (common-lisp:in-package #:pira/cloudwatch)
 
 (smithy/sdk/service:define-service granite-service-version20100801 :shape-name

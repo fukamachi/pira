@@ -1,24 +1,13 @@
 (uiop/package:define-package #:pira/supplychain (:use)
-                             (:export #:access-denied-exception
-                              #:asc-resource-arn #:aws-account-id
+                             (:export #:asc-resource-arn #:aws-account-id
                               #:bill-of-materials-import-job
                               #:bill-of-materials-import-job-resource
                               #:client-token #:configuration-job-status
-                              #:configuration-s3uri #:conflict-exception
+                              #:configuration-s3uri
                               #:create-bill-of-materials-import-job
-                              #:create-bill-of-materials-import-job-request
-                              #:create-bill-of-materials-import-job-response
                               #:create-data-integration-flow
-                              #:create-data-integration-flow-request
-                              #:create-data-integration-flow-response
                               #:create-data-lake-dataset
-                              #:create-data-lake-dataset-request
-                              #:create-data-lake-dataset-response
-                              #:create-data-lake-namespace
-                              #:create-data-lake-namespace-request
-                              #:create-data-lake-namespace-response
-                              #:create-instance #:create-instance-request
-                              #:create-instance-response
+                              #:create-data-lake-namespace #:create-instance
                               #:data-integration-dataset-arn
                               #:data-integration-event
                               #:data-integration-event-data
@@ -104,85 +93,32 @@
                               #:data-lake-namespace-resource
                               #:dataset-identifier
                               #:delete-data-integration-flow
-                              #:delete-data-integration-flow-request
-                              #:delete-data-integration-flow-response
                               #:delete-data-lake-dataset
-                              #:delete-data-lake-dataset-request
-                              #:delete-data-lake-dataset-response
-                              #:delete-data-lake-namespace
-                              #:delete-data-lake-namespace-request
-                              #:delete-data-lake-namespace-response
-                              #:delete-instance #:delete-instance-request
-                              #:delete-instance-response
+                              #:delete-data-lake-namespace #:delete-instance
                               #:galaxy-public-apigateway
                               #:get-bill-of-materials-import-job
-                              #:get-bill-of-materials-import-job-request
-                              #:get-bill-of-materials-import-job-response
                               #:get-data-integration-event
-                              #:get-data-integration-event-request
-                              #:get-data-integration-event-response
                               #:get-data-integration-flow
                               #:get-data-integration-flow-execution
-                              #:get-data-integration-flow-execution-request
-                              #:get-data-integration-flow-execution-response
-                              #:get-data-integration-flow-request
-                              #:get-data-integration-flow-response
-                              #:get-data-lake-dataset
-                              #:get-data-lake-dataset-request
-                              #:get-data-lake-dataset-response
-                              #:get-data-lake-namespace
-                              #:get-data-lake-namespace-request
-                              #:get-data-lake-namespace-response #:get-instance
-                              #:get-instance-request #:get-instance-response
-                              #:instance #:instance-description #:instance-list
-                              #:instance-max-results #:instance-name
-                              #:instance-name-list #:instance-next-token
-                              #:instance-resource #:instance-state
-                              #:instance-state-list
-                              #:instance-web-app-dns-domain
-                              #:internal-server-exception #:kms-key-arn
+                              #:get-data-lake-dataset #:get-data-lake-namespace
+                              #:get-instance #:instance #:instance-description
+                              #:instance-list #:instance-max-results
+                              #:instance-name #:instance-name-list
+                              #:instance-next-token #:instance-resource
+                              #:instance-state #:instance-state-list
+                              #:instance-web-app-dns-domain #:kms-key-arn
                               #:list-data-integration-events
-                              #:list-data-integration-events-request
-                              #:list-data-integration-events-response
                               #:list-data-integration-flow-executions
-                              #:list-data-integration-flow-executions-request
-                              #:list-data-integration-flow-executions-response
                               #:list-data-integration-flows
-                              #:list-data-integration-flows-request
-                              #:list-data-integration-flows-response
                               #:list-data-lake-datasets
-                              #:list-data-lake-datasets-request
-                              #:list-data-lake-datasets-response
-                              #:list-data-lake-namespaces
-                              #:list-data-lake-namespaces-request
-                              #:list-data-lake-namespaces-response
-                              #:list-instances #:list-instances-request
-                              #:list-instances-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:resource-not-found-exception #:s3bucket-name
-                              #:send-data-integration-event
-                              #:send-data-integration-event-request
-                              #:send-data-integration-event-response
-                              #:service-quota-exceeded-exception #:tag-key
+                              #:list-data-lake-namespaces #:list-instances
+                              #:list-tags-for-resource #:s3bucket-name
+                              #:send-data-integration-event #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception #:uuid
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:tag-value #:uuid #:untag-resource
                               #:update-data-integration-flow
-                              #:update-data-integration-flow-request
-                              #:update-data-integration-flow-response
                               #:update-data-lake-dataset
-                              #:update-data-lake-dataset-request
-                              #:update-data-lake-dataset-response
-                              #:update-data-lake-namespace
-                              #:update-data-lake-namespace-request
-                              #:update-data-lake-namespace-response
-                              #:update-instance #:update-instance-request
-                              #:update-instance-response
-                              #:validation-exception))
+                              #:update-data-lake-namespace #:update-instance))
 (common-lisp:in-package #:pira/supplychain)
 
 (smithy/sdk/service:define-service galaxy-public-apigateway :shape-name

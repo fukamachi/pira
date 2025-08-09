@@ -15,7 +15,6 @@
                               #:advanced-cost-optimization-metrics
                               #:advanced-data-protection-metrics #:alias
                               #:associate-access-grants-identity-center
-                              #:associate-access-grants-identity-center-request
                               #:async-creation-timestamp #:async-error-details
                               #:async-operation #:async-operation-name
                               #:async-request-parameters #:async-request-status
@@ -23,9 +22,7 @@
                               #:async-response-details
                               #:aws-lambda-transformation
                               #:aws-lambda-transformation-payload #:aws-org-arn
-                              #:bad-request-exception #:boolean
-                              #:bucket-already-exists
-                              #:bucket-already-owned-by-you #:bucket-canned-acl
+                              #:boolean #:bucket-canned-acl
                               #:bucket-identifier-string #:bucket-level
                               #:bucket-location-constraint #:bucket-name
                               #:bucket-versioning-status #:buckets
@@ -33,85 +30,40 @@
                               #:config-id #:confirm-remove-self-bucket-access
                               #:confirmation-required #:continuation-token
                               #:create-access-grant
-                              #:create-access-grant-request
-                              #:create-access-grant-result
                               #:create-access-grants-instance
-                              #:create-access-grants-instance-request
-                              #:create-access-grants-instance-result
                               #:create-access-grants-location
-                              #:create-access-grants-location-request
-                              #:create-access-grants-location-result
                               #:create-access-point
                               #:create-access-point-for-object-lambda
-                              #:create-access-point-for-object-lambda-request
-                              #:create-access-point-for-object-lambda-result
-                              #:create-access-point-request
-                              #:create-access-point-result #:create-bucket
-                              #:create-bucket-configuration
-                              #:create-bucket-request #:create-bucket-result
-                              #:create-job #:create-job-request
-                              #:create-job-result
-                              #:create-multi-region-access-point
+                              #:create-bucket #:create-bucket-configuration
+                              #:create-job #:create-multi-region-access-point
                               #:create-multi-region-access-point-input
-                              #:create-multi-region-access-point-request
-                              #:create-multi-region-access-point-result
-                              #:create-storage-lens-group
-                              #:create-storage-lens-group-request
-                              #:creation-date #:creation-timestamp
-                              #:credentials #:data-source-id #:data-source-type
-                              #:date #:days #:days-after-initiation
-                              #:delete-access-grant
-                              #:delete-access-grant-request
+                              #:create-storage-lens-group #:creation-date
+                              #:creation-timestamp #:credentials
+                              #:data-source-id #:data-source-type #:date #:days
+                              #:days-after-initiation #:delete-access-grant
                               #:delete-access-grants-instance
-                              #:delete-access-grants-instance-request
                               #:delete-access-grants-instance-resource-policy
-                              #:delete-access-grants-instance-resource-policy-request
                               #:delete-access-grants-location
-                              #:delete-access-grants-location-request
                               #:delete-access-point
                               #:delete-access-point-for-object-lambda
-                              #:delete-access-point-for-object-lambda-request
                               #:delete-access-point-policy
                               #:delete-access-point-policy-for-object-lambda
-                              #:delete-access-point-policy-for-object-lambda-request
-                              #:delete-access-point-policy-request
-                              #:delete-access-point-request
-                              #:delete-access-point-scope
-                              #:delete-access-point-scope-request
-                              #:delete-bucket
+                              #:delete-access-point-scope #:delete-bucket
                               #:delete-bucket-lifecycle-configuration
-                              #:delete-bucket-lifecycle-configuration-request
                               #:delete-bucket-policy
-                              #:delete-bucket-policy-request
                               #:delete-bucket-replication
-                              #:delete-bucket-replication-request
-                              #:delete-bucket-request #:delete-bucket-tagging
-                              #:delete-bucket-tagging-request
-                              #:delete-job-tagging #:delete-job-tagging-request
-                              #:delete-job-tagging-result
+                              #:delete-bucket-tagging #:delete-job-tagging
                               #:delete-marker-replication
                               #:delete-marker-replication-status
                               #:delete-multi-region-access-point
                               #:delete-multi-region-access-point-input
-                              #:delete-multi-region-access-point-request
-                              #:delete-multi-region-access-point-result
                               #:delete-public-access-block
-                              #:delete-public-access-block-request
                               #:delete-storage-lens-configuration
-                              #:delete-storage-lens-configuration-request
                               #:delete-storage-lens-configuration-tagging
-                              #:delete-storage-lens-configuration-tagging-request
-                              #:delete-storage-lens-configuration-tagging-result
-                              #:delete-storage-lens-group
-                              #:delete-storage-lens-group-request
-                              #:describe-job #:describe-job-request
-                              #:describe-job-result
+                              #:delete-storage-lens-group #:describe-job
                               #:describe-multi-region-access-point-operation
-                              #:describe-multi-region-access-point-operation-request
-                              #:describe-multi-region-access-point-operation-result
                               #:destination #:detailed-status-codes-metrics
                               #:dissociate-access-grants-identity-center
-                              #:dissociate-access-grants-identity-center-request
                               #:duration-seconds #:encryption-configuration
                               #:endpoints
                               #:established-multi-region-access-point-policy
@@ -123,95 +75,34 @@
                               #:function-arn-string
                               #:generated-manifest-encryption
                               #:generated-manifest-format #:get-access-grant
-                              #:get-access-grant-request
-                              #:get-access-grant-result
                               #:get-access-grants-instance
                               #:get-access-grants-instance-for-prefix
-                              #:get-access-grants-instance-for-prefix-request
-                              #:get-access-grants-instance-for-prefix-result
-                              #:get-access-grants-instance-request
                               #:get-access-grants-instance-resource-policy
-                              #:get-access-grants-instance-resource-policy-request
-                              #:get-access-grants-instance-resource-policy-result
-                              #:get-access-grants-instance-result
-                              #:get-access-grants-location
-                              #:get-access-grants-location-request
-                              #:get-access-grants-location-result
-                              #:get-access-point
+                              #:get-access-grants-location #:get-access-point
                               #:get-access-point-configuration-for-object-lambda
-                              #:get-access-point-configuration-for-object-lambda-request
-                              #:get-access-point-configuration-for-object-lambda-result
                               #:get-access-point-for-object-lambda
-                              #:get-access-point-for-object-lambda-request
-                              #:get-access-point-for-object-lambda-result
                               #:get-access-point-policy
                               #:get-access-point-policy-for-object-lambda
-                              #:get-access-point-policy-for-object-lambda-request
-                              #:get-access-point-policy-for-object-lambda-result
-                              #:get-access-point-policy-request
-                              #:get-access-point-policy-result
                               #:get-access-point-policy-status
                               #:get-access-point-policy-status-for-object-lambda
-                              #:get-access-point-policy-status-for-object-lambda-request
-                              #:get-access-point-policy-status-for-object-lambda-result
-                              #:get-access-point-policy-status-request
-                              #:get-access-point-policy-status-result
-                              #:get-access-point-request
-                              #:get-access-point-result
-                              #:get-access-point-scope
-                              #:get-access-point-scope-request
-                              #:get-access-point-scope-result #:get-bucket
+                              #:get-access-point-scope #:get-bucket
                               #:get-bucket-lifecycle-configuration
-                              #:get-bucket-lifecycle-configuration-request
-                              #:get-bucket-lifecycle-configuration-result
-                              #:get-bucket-policy #:get-bucket-policy-request
-                              #:get-bucket-policy-result
-                              #:get-bucket-replication
-                              #:get-bucket-replication-request
-                              #:get-bucket-replication-result
-                              #:get-bucket-request #:get-bucket-result
-                              #:get-bucket-tagging #:get-bucket-tagging-request
-                              #:get-bucket-tagging-result
-                              #:get-bucket-versioning
-                              #:get-bucket-versioning-request
-                              #:get-bucket-versioning-result #:get-data-access
-                              #:get-data-access-request
-                              #:get-data-access-result #:get-job-tagging
-                              #:get-job-tagging-request
-                              #:get-job-tagging-result
+                              #:get-bucket-policy #:get-bucket-replication
+                              #:get-bucket-tagging #:get-bucket-versioning
+                              #:get-data-access #:get-job-tagging
                               #:get-multi-region-access-point
                               #:get-multi-region-access-point-policy
-                              #:get-multi-region-access-point-policy-request
-                              #:get-multi-region-access-point-policy-result
                               #:get-multi-region-access-point-policy-status
-                              #:get-multi-region-access-point-policy-status-request
-                              #:get-multi-region-access-point-policy-status-result
-                              #:get-multi-region-access-point-request
-                              #:get-multi-region-access-point-result
                               #:get-multi-region-access-point-routes
-                              #:get-multi-region-access-point-routes-request
-                              #:get-multi-region-access-point-routes-result
                               #:get-public-access-block
-                              #:get-public-access-block-output
-                              #:get-public-access-block-request
                               #:get-storage-lens-configuration
-                              #:get-storage-lens-configuration-request
-                              #:get-storage-lens-configuration-result
                               #:get-storage-lens-configuration-tagging
-                              #:get-storage-lens-configuration-tagging-request
-                              #:get-storage-lens-configuration-tagging-result
-                              #:get-storage-lens-group
-                              #:get-storage-lens-group-request
-                              #:get-storage-lens-group-result
-                              #:grant-full-control #:grant-read
-                              #:grant-read-acp #:grant-write #:grant-write-acp
-                              #:grantee #:grantee-identifier #:grantee-type
-                              #:iamrole-arn #:id #:idempotency-exception
+                              #:get-storage-lens-group #:grant-full-control
+                              #:grant-read #:grant-read-acp #:grant-write
+                              #:grant-write-acp #:grantee #:grantee-identifier
+                              #:grantee-type #:iamrole-arn #:id
                               #:identity-center-application-arn
-                              #:identity-center-arn #:include
-                              #:internal-service-exception
-                              #:invalid-next-token-exception
-                              #:invalid-request-exception #:is-enabled
+                              #:identity-center-arn #:include #:is-enabled
                               #:is-public #:job-arn #:job-creation-time
                               #:job-descriptor #:job-failure #:job-failure-code
                               #:job-failure-list #:job-failure-reason #:job-id
@@ -225,8 +116,7 @@
                               #:job-number-of-tasks-succeeded #:job-operation
                               #:job-priority #:job-progress-summary
                               #:job-report #:job-report-format
-                              #:job-report-scope #:job-status
-                              #:job-status-exception #:job-status-list
+                              #:job-report-scope #:job-status #:job-status-list
                               #:job-status-update-reason #:job-termination-date
                               #:job-time-in-state-seconds #:job-timers
                               #:job-total-number-of-tasks #:key-name-constraint
@@ -237,44 +127,20 @@
                               #:list-access-grant-entry #:list-access-grants
                               #:list-access-grants-instance-entry
                               #:list-access-grants-instances
-                              #:list-access-grants-instances-request
-                              #:list-access-grants-instances-result
                               #:list-access-grants-locations
                               #:list-access-grants-locations-entry
-                              #:list-access-grants-locations-request
-                              #:list-access-grants-locations-result
-                              #:list-access-grants-request
-                              #:list-access-grants-result #:list-access-points
+                              #:list-access-points
                               #:list-access-points-for-directory-buckets
-                              #:list-access-points-for-directory-buckets-request
-                              #:list-access-points-for-directory-buckets-result
                               #:list-access-points-for-object-lambda
-                              #:list-access-points-for-object-lambda-request
-                              #:list-access-points-for-object-lambda-result
-                              #:list-access-points-request
-                              #:list-access-points-result
                               #:list-caller-access-grants
-                              #:list-caller-access-grants-entry
-                              #:list-caller-access-grants-request
-                              #:list-caller-access-grants-result #:list-jobs
-                              #:list-jobs-request #:list-jobs-result
+                              #:list-caller-access-grants-entry #:list-jobs
                               #:list-multi-region-access-points
-                              #:list-multi-region-access-points-request
-                              #:list-multi-region-access-points-result
                               #:list-regional-buckets
-                              #:list-regional-buckets-request
-                              #:list-regional-buckets-result
                               #:list-storage-lens-configuration-entry
                               #:list-storage-lens-configurations
-                              #:list-storage-lens-configurations-request
-                              #:list-storage-lens-configurations-result
                               #:list-storage-lens-group-entry
                               #:list-storage-lens-groups
-                              #:list-storage-lens-groups-request
-                              #:list-storage-lens-groups-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-result #:location #:mfa
+                              #:list-tags-for-resource #:location #:mfa
                               #:mfadelete #:mfadelete-status
                               #:manifest-prefix-string #:match-any-prefix
                               #:match-any-suffix #:match-any-tag
@@ -294,7 +160,6 @@
                               #:multi-region-access-point-status
                               #:multi-region-access-points-async-response
                               #:network-origin
-                              #:no-such-public-access-block-configuration
                               #:no-such-public-access-block-configuration-message
                               #:non-empty-max-length1024string
                               #:non-empty-max-length1024string-list
@@ -305,8 +170,7 @@
                               #:noncurrent-version-expiration
                               #:noncurrent-version-transition
                               #:noncurrent-version-transition-list
-                              #:not-found-exception #:object-age-value
-                              #:object-creation-time
+                              #:object-age-value #:object-creation-time
                               #:object-lambda-access-point
                               #:object-lambda-access-point-alias
                               #:object-lambda-access-point-alias-status
@@ -337,38 +201,20 @@
                               #:public-access-block-configuration
                               #:public-access-block-enabled
                               #:put-access-grants-instance-resource-policy
-                              #:put-access-grants-instance-resource-policy-request
-                              #:put-access-grants-instance-resource-policy-result
                               #:put-access-point-configuration-for-object-lambda
-                              #:put-access-point-configuration-for-object-lambda-request
                               #:put-access-point-policy
                               #:put-access-point-policy-for-object-lambda
-                              #:put-access-point-policy-for-object-lambda-request
-                              #:put-access-point-policy-request
                               #:put-access-point-scope
-                              #:put-access-point-scope-request
                               #:put-bucket-lifecycle-configuration
-                              #:put-bucket-lifecycle-configuration-request
-                              #:put-bucket-policy #:put-bucket-policy-request
-                              #:put-bucket-replication
-                              #:put-bucket-replication-request
-                              #:put-bucket-tagging #:put-bucket-tagging-request
-                              #:put-bucket-versioning
-                              #:put-bucket-versioning-request #:put-job-tagging
-                              #:put-job-tagging-request
-                              #:put-job-tagging-result
+                              #:put-bucket-policy #:put-bucket-replication
+                              #:put-bucket-tagging #:put-bucket-versioning
+                              #:put-job-tagging
                               #:put-multi-region-access-point-policy
                               #:put-multi-region-access-point-policy-input
-                              #:put-multi-region-access-point-policy-request
-                              #:put-multi-region-access-point-policy-result
                               #:put-public-access-block
-                              #:put-public-access-block-request
                               #:put-storage-lens-configuration
-                              #:put-storage-lens-configuration-request
-                              #:put-storage-lens-configuration-tagging
-                              #:put-storage-lens-configuration-tagging-request
-                              #:put-storage-lens-configuration-tagging-result
-                              #:region #:region-creation-list #:region-name
+                              #:put-storage-lens-configuration-tagging #:region
+                              #:region-creation-list #:region-name
                               #:region-report #:region-report-list
                               #:regional-bucket #:regional-bucket-list
                               #:regions #:replica-kms-key-id
@@ -443,31 +289,17 @@
                               #:storage-lens-tag #:storage-lens-tags
                               #:string-for-next-token
                               #:submit-multi-region-access-point-routes
-                              #:submit-multi-region-access-point-routes-request
-                              #:submit-multi-region-access-point-routes-result
                               #:suffix #:suspended-cause #:suspended-date #:tag
                               #:tag-key-list #:tag-key-string #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-result #:tag-value-string
-                              #:tagging #:time-stamp
-                              #:too-many-requests-exception
-                              #:too-many-tags-exception
-                              #:traffic-dial-percentage #:transition
-                              #:transition-list #:transition-storage-class
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-result
+                              #:tag-resource #:tag-value-string #:tagging
+                              #:time-stamp #:traffic-dial-percentage
+                              #:transition #:transition-list
+                              #:transition-storage-class #:untag-resource
                               #:update-access-grants-location
-                              #:update-access-grants-location-request
-                              #:update-access-grants-location-result
-                              #:update-job-priority
-                              #:update-job-priority-request
-                              #:update-job-priority-result #:update-job-status
-                              #:update-job-status-request
-                              #:update-job-status-result
-                              #:update-storage-lens-group
-                              #:update-storage-lens-group-request
-                              #:user-arguments #:versioning-configuration
-                              #:vpc-configuration #:vpc-id))
+                              #:update-job-priority #:update-job-status
+                              #:update-storage-lens-group #:user-arguments
+                              #:versioning-configuration #:vpc-configuration
+                              #:vpc-id))
 (common-lisp:in-package #:pira/s3-control)
 
 (smithy/sdk/service:define-service awss3control-service-v20180820 :shape-name

@@ -1,40 +1,25 @@
 (uiop/package:define-package #:pira/internetmonitor (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:arn #:availability-measurement
-                              #:bad-request-exception #:client-location
-                              #:conflict-exception #:create-monitor
-                              #:create-monitor-input #:create-monitor-output
-                              #:delete-monitor #:delete-monitor-input
-                              #:delete-monitor-output #:filter-list
+                             (:export #:account-id #:arn
+                              #:availability-measurement #:client-location
+                              #:create-monitor #:delete-monitor #:filter-list
                               #:filter-parameter #:filter-parameters
                               #:get-health-event #:get-health-event-input
                               #:get-health-event-output #:get-internet-event
-                              #:get-internet-event-input
-                              #:get-internet-event-output #:get-monitor
-                              #:get-monitor-input #:get-monitor-output
-                              #:get-query-results #:get-query-results-input
-                              #:get-query-results-output #:get-query-status
-                              #:get-query-status-input
-                              #:get-query-status-output #:health-event
+                              #:get-monitor #:get-query-results
+                              #:get-query-status #:health-event
                               #:health-event-impact-type #:health-event-list
                               #:health-event-name #:health-event-resource
                               #:health-event-status #:health-events-config
                               #:impacted-location #:impacted-locations-list
-                              #:internal-server-error-exception
-                              #:internal-server-exception #:internet-event-id
-                              #:internet-event-max-results
+                              #:internet-event-id #:internet-event-max-results
                               #:internet-event-resource #:internet-event-status
                               #:internet-event-summary #:internet-event-type
                               #:internet-events-list #:internet-health
                               #:internet-measurements-log-delivery
                               #:internet-monitor20210603 #:ipv4prefix-list
-                              #:limit-exceeded-exception #:list-health-events
-                              #:list-health-events-input
+                              #:list-health-events #:list-health-events-input
                               #:list-health-events-output
-                              #:list-internet-events
-                              #:list-internet-events-input
-                              #:list-internet-events-output #:list-monitors
-                              #:list-monitors-input #:list-monitors-output
+                              #:list-internet-events #:list-monitors
                               #:list-tags-for-resource
                               #:list-tags-for-resource-input
                               #:list-tags-for-resource-output
@@ -45,25 +30,18 @@
                               #:monitor #:monitor-arn #:monitor-config-state
                               #:monitor-list #:monitor-processing-status-code
                               #:monitor-resource #:network #:network-impairment
-                              #:network-list #:not-found-exception #:operator
-                              #:percentage #:performance-measurement
-                              #:query-data #:query-field #:query-fields
-                              #:query-max-results #:query-row #:query-status
-                              #:query-type #:resource-name
-                              #:resource-not-found-exception #:round-trip-time
-                              #:s3config #:set-of-arns #:start-query
-                              #:start-query-input #:start-query-output
-                              #:stop-query #:stop-query-input
-                              #:stop-query-output #:tag-key #:tag-keys
-                              #:tag-map #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:tag-value
-                              #:throttling-exception
-                              #:too-many-requests-exception
-                              #:traffic-percentage-to-monitor
+                              #:network-list #:operator #:percentage
+                              #:performance-measurement #:query-data
+                              #:query-field #:query-fields #:query-max-results
+                              #:query-row #:query-status #:query-type
+                              #:resource-name #:round-trip-time #:s3config
+                              #:set-of-arns #:start-query #:stop-query
+                              #:tag-key #:tag-keys #:tag-map #:tag-resource
+                              #:tag-resource-input #:tag-resource-output
+                              #:tag-value #:traffic-percentage-to-monitor
                               #:triangulation-event-type #:untag-resource
                               #:untag-resource-input #:untag-resource-output
-                              #:update-monitor #:update-monitor-input
-                              #:update-monitor-output #:validation-exception))
+                              #:update-monitor))
 (common-lisp:in-package #:pira/internetmonitor)
 
 (smithy/sdk/service:define-service internet-monitor20210603 :shape-name

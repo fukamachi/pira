@@ -1,51 +1,28 @@
 (uiop/package:define-package #:pira/lakeformation (:use)
                              (:export #:awslake-formation
-                              #:access-denied-exception #:access-key-id-string
-                              #:add-lftags-to-resource
-                              #:add-lftags-to-resource-request
-                              #:add-lftags-to-resource-response
+                              #:access-key-id-string #:add-lftags-to-resource
                               #:add-object-input #:additional-context-map
-                              #:all-rows-wildcard #:already-exists-exception
-                              #:application-arn #:application-status
-                              #:assume-decorated-role-with-saml
-                              #:assume-decorated-role-with-samlrequest
-                              #:assume-decorated-role-with-samlresponse
-                              #:audit-context #:audit-context-string
+                              #:all-rows-wildcard #:application-arn
+                              #:application-status
+                              #:assume-decorated-role-with-saml #:audit-context
+                              #:audit-context-string
                               #:authorized-session-tag-value-list
                               #:batch-grant-permissions
-                              #:batch-grant-permissions-request
-                              #:batch-grant-permissions-response
                               #:batch-permissions-failure-entry
                               #:batch-permissions-failure-list
                               #:batch-permissions-request-entry
                               #:batch-permissions-request-entry-list
-                              #:batch-revoke-permissions
-                              #:batch-revoke-permissions-request
-                              #:batch-revoke-permissions-response #:boolean
+                              #:batch-revoke-permissions #:boolean
                               #:boolean-nullable #:cancel-transaction
-                              #:cancel-transaction-request
-                              #:cancel-transaction-response #:catalog-id-string
-                              #:catalog-resource #:column-lftag
-                              #:column-lftags-list #:column-names
-                              #:column-wildcard #:commit-transaction
-                              #:commit-transaction-request
-                              #:commit-transaction-response
-                              #:comparison-operator
-                              #:concurrent-modification-exception #:condition
-                              #:context-key #:context-value
-                              #:create-data-cells-filter
-                              #:create-data-cells-filter-request
-                              #:create-data-cells-filter-response
-                              #:create-lftag #:create-lftag-expression
-                              #:create-lftag-expression-request
-                              #:create-lftag-expression-response
-                              #:create-lftag-request #:create-lftag-response
+                              #:catalog-id-string #:catalog-resource
+                              #:column-lftag #:column-lftags-list
+                              #:column-names #:column-wildcard
+                              #:commit-transaction #:comparison-operator
+                              #:condition #:context-key #:context-value
+                              #:create-data-cells-filter #:create-lftag
+                              #:create-lftag-expression
                               #:create-lake-formation-identity-center-configuration
-                              #:create-lake-formation-identity-center-configuration-request
-                              #:create-lake-formation-identity-center-configuration-response
                               #:create-lake-formation-opt-in
-                              #:create-lake-formation-opt-in-request
-                              #:create-lake-formation-opt-in-response
                               #:credential-timeout-duration-second-integer
                               #:data-cells-filter #:data-cells-filter-list
                               #:data-cells-filter-resource
@@ -54,170 +31,83 @@
                               #:data-lake-resource-type #:data-lake-settings
                               #:data-location-resource #:database-lftags-list
                               #:database-resource #:date-time
-                              #:delete-data-cells-filter
-                              #:delete-data-cells-filter-request
-                              #:delete-data-cells-filter-response
-                              #:delete-lftag #:delete-lftag-expression
-                              #:delete-lftag-expression-request
-                              #:delete-lftag-expression-response
-                              #:delete-lftag-request #:delete-lftag-response
+                              #:delete-data-cells-filter #:delete-lftag
+                              #:delete-lftag-expression
                               #:delete-lake-formation-identity-center-configuration
-                              #:delete-lake-formation-identity-center-configuration-request
-                              #:delete-lake-formation-identity-center-configuration-response
                               #:delete-lake-formation-opt-in
-                              #:delete-lake-formation-opt-in-request
-                              #:delete-lake-formation-opt-in-response
                               #:delete-object-input #:delete-objects-on-cancel
-                              #:delete-objects-on-cancel-request
-                              #:delete-objects-on-cancel-response
                               #:deregister-resource
-                              #:deregister-resource-request
-                              #:deregister-resource-response
                               #:describe-lake-formation-identity-center-configuration
-                              #:describe-lake-formation-identity-center-configuration-request
-                              #:describe-lake-formation-identity-center-configuration-response
-                              #:describe-resource #:describe-resource-request
-                              #:describe-resource-response
-                              #:describe-transaction
-                              #:describe-transaction-request
-                              #:describe-transaction-response
+                              #:describe-resource #:describe-transaction
                               #:description-string #:details-map #:etag-string
-                              #:enable-status #:entity-not-found-exception
-                              #:error-detail #:error-message-string
-                              #:execution-statistics #:expiration-timestamp
-                              #:expired-exception #:expression
+                              #:enable-status #:error-detail
+                              #:error-message-string #:execution-statistics
+                              #:expiration-timestamp #:expression
                               #:expression-string #:extend-transaction
-                              #:extend-transaction-request
-                              #:extend-transaction-response
                               #:external-filtering-configuration
                               #:field-name-string #:filter-condition
                               #:filter-condition-list #:get-data-cells-filter
-                              #:get-data-cells-filter-request
-                              #:get-data-cells-filter-response
                               #:get-data-lake-principal
-                              #:get-data-lake-principal-request
-                              #:get-data-lake-principal-response
                               #:get-data-lake-settings
-                              #:get-data-lake-settings-request
-                              #:get-data-lake-settings-response
-                              #:get-effective-permissions-for-path
-                              #:get-effective-permissions-for-path-request
-                              #:get-effective-permissions-for-path-response
-                              #:get-lftag #:get-lftag-expression
-                              #:get-lftag-expression-request
-                              #:get-lftag-expression-response
-                              #:get-lftag-request #:get-lftag-response
-                              #:get-query-state #:get-query-state-request
+                              #:get-effective-permissions-for-path #:get-lftag
+                              #:get-lftag-expression #:get-query-state
                               #:get-query-state-request-query-id-string
-                              #:get-query-state-response #:get-query-statistics
-                              #:get-query-statistics-request
+                              #:get-query-statistics
                               #:get-query-statistics-request-query-id-string
-                              #:get-query-statistics-response
-                              #:get-resource-lftags
-                              #:get-resource-lftags-request
-                              #:get-resource-lftags-response
-                              #:get-table-objects #:get-table-objects-request
-                              #:get-table-objects-response
+                              #:get-resource-lftags #:get-table-objects
                               #:get-temporary-glue-partition-credentials
-                              #:get-temporary-glue-partition-credentials-request
-                              #:get-temporary-glue-partition-credentials-response
                               #:get-temporary-glue-table-credentials
-                              #:get-temporary-glue-table-credentials-request
-                              #:get-temporary-glue-table-credentials-response
                               #:get-work-unit-results
-                              #:get-work-unit-results-request
                               #:get-work-unit-results-request-query-id-string
                               #:get-work-unit-results-request-work-unit-id-long
-                              #:get-work-unit-results-response #:get-work-units
-                              #:get-work-units-request
+                              #:get-work-units
                               #:get-work-units-request-query-id-string
-                              #:get-work-units-response
-                              #:glue-encryption-exception #:grant-permissions
-                              #:grant-permissions-request
-                              #:grant-permissions-response #:hash-string
-                              #:iamrole-arn #:iamsamlprovider-arn #:identifier
+                              #:grant-permissions #:hash-string #:iamrole-arn
+                              #:iamsamlprovider-arn #:identifier
                               #:identity-center-instance-arn #:identity-string
-                              #:internal-service-exception
-                              #:invalid-input-exception #:key-string #:lftag
-                              #:lftag-error #:lftag-errors #:lftag-expression
-                              #:lftag-expression-resource
+                              #:key-string #:lftag #:lftag-error #:lftag-errors
+                              #:lftag-expression #:lftag-expression-resource
                               #:lftag-expressions-list #:lftag-key
                               #:lftag-key-resource #:lftag-pair
                               #:lftag-policy-resource #:lftag-value
                               #:lftags-list #:lake-formation-opt-ins-info
                               #:lake-formation-opt-ins-info-list
                               #:last-modified-timestamp
-                              #:list-data-cells-filter
-                              #:list-data-cells-filter-request
-                              #:list-data-cells-filter-response
-                              #:list-lftag-expressions
-                              #:list-lftag-expressions-request
-                              #:list-lftag-expressions-response #:list-lftags
-                              #:list-lftags-request #:list-lftags-response
-                              #:list-lake-formation-opt-ins
-                              #:list-lake-formation-opt-ins-request
-                              #:list-lake-formation-opt-ins-response
-                              #:list-permissions #:list-permissions-request
-                              #:list-permissions-response #:list-resources
-                              #:list-resources-request
-                              #:list-resources-response
+                              #:list-data-cells-filter #:list-lftag-expressions
+                              #:list-lftags #:list-lake-formation-opt-ins
+                              #:list-permissions #:list-resources
                               #:list-table-storage-optimizers
-                              #:list-table-storage-optimizers-request
-                              #:list-table-storage-optimizers-response
-                              #:list-transactions #:list-transactions-request
-                              #:list-transactions-response #:message-string
+                              #:list-transactions #:message-string
                               #:name-string #:nullable-boolean
                               #:nullable-string #:number-of-bytes
                               #:number-of-items #:number-of-milliseconds
-                              #:object-size #:operation-timeout-exception
-                              #:optimizer-type #:page-size #:parameters-map
-                              #:parameters-map-value #:partition-objects
-                              #:partition-value-list #:partition-value-string
-                              #:partition-values-list
+                              #:object-size #:optimizer-type #:page-size
+                              #:parameters-map #:parameters-map-value
+                              #:partition-objects #:partition-value-list
+                              #:partition-value-string #:partition-values-list
                               #:partitioned-table-objects-list #:path-string
                               #:path-string-list #:permission #:permission-list
                               #:permission-type #:permission-type-list
-                              #:permission-type-mismatch-exception
                               #:planning-statistics #:predicate-string
                               #:principal-permissions
                               #:principal-permissions-list
                               #:principal-resource-permissions
                               #:principal-resource-permissions-list
-                              #:put-data-lake-settings
-                              #:put-data-lake-settings-request
-                              #:put-data-lake-settings-response
-                              #:query-id-string #:query-parameter-map
-                              #:query-planning-context
+                              #:put-data-lake-settings #:query-id-string
+                              #:query-parameter-map #:query-planning-context
                               #:query-planning-context-database-name-string
                               #:query-session-context #:query-state-string
                               #:ramresource-share-arn #:register-resource
-                              #:register-resource-request
-                              #:register-resource-response
-                              #:remove-lftags-from-resource
-                              #:remove-lftags-from-resource-request
-                              #:remove-lftags-from-resource-response #:resource
+                              #:remove-lftags-from-resource #:resource
                               #:resource-arn-string #:resource-info
-                              #:resource-info-list
-                              #:resource-not-ready-exception
-                              #:resource-number-limit-exceeded-exception
-                              #:resource-share-list #:resource-share-type
-                              #:resource-type #:result #:result-stream
-                              #:revoke-permissions #:revoke-permissions-request
-                              #:revoke-permissions-response #:row-filter
+                              #:resource-info-list #:resource-share-list
+                              #:resource-share-type #:resource-type #:result
+                              #:result-stream #:revoke-permissions #:row-filter
                               #:samlassertion-string #:scope-target
                               #:scope-targets #:search-databases-by-lftags
-                              #:search-databases-by-lftags-request
-                              #:search-databases-by-lftags-response
                               #:search-page-size #:search-tables-by-lftags
-                              #:search-tables-by-lftags-request
-                              #:search-tables-by-lftags-response
                               #:secret-access-key-string #:session-token-string
-                              #:start-query-planning
-                              #:start-query-planning-request
-                              #:start-query-planning-response
-                              #:start-transaction #:start-transaction-request
-                              #:start-transaction-response
-                              #:statistics-not-ready-yet-exception
+                              #:start-query-planning #:start-transaction
                               #:storage-optimizer #:storage-optimizer-config
                               #:storage-optimizer-config-key
                               #:storage-optimizer-config-map
@@ -230,38 +120,21 @@
                               #:table-object-list #:table-resource
                               #:table-wildcard #:table-with-columns-resource
                               #:tag-value-list #:tagged-database #:tagged-table
-                              #:throttled-exception #:timestamp #:token
-                              #:token-string #:transaction-canceled-exception
-                              #:transaction-commit-in-progress-exception
-                              #:transaction-committed-exception
+                              #:timestamp #:token #:token-string
                               #:transaction-description
                               #:transaction-description-list
                               #:transaction-id-string #:transaction-status
                               #:transaction-status-filter #:transaction-type
                               #:true-false-string #:trusted-resource-owners
-                              #:uri #:update-data-cells-filter
-                              #:update-data-cells-filter-request
-                              #:update-data-cells-filter-response
-                              #:update-lftag #:update-lftag-expression
-                              #:update-lftag-expression-request
-                              #:update-lftag-expression-response
-                              #:update-lftag-request #:update-lftag-response
+                              #:uri #:update-data-cells-filter #:update-lftag
+                              #:update-lftag-expression
                               #:update-lake-formation-identity-center-configuration
-                              #:update-lake-formation-identity-center-configuration-request
-                              #:update-lake-formation-identity-center-configuration-response
-                              #:update-resource #:update-resource-request
-                              #:update-resource-response #:update-table-objects
-                              #:update-table-objects-request
-                              #:update-table-objects-response
-                              #:update-table-storage-optimizer
-                              #:update-table-storage-optimizer-request
-                              #:update-table-storage-optimizer-response
-                              #:value-string #:value-string-list
-                              #:version-string #:virtual-object
-                              #:virtual-object-list #:work-unit-id-long
-                              #:work-unit-range #:work-unit-range-list
-                              #:work-unit-token-string
-                              #:work-units-not-ready-yet-exception
+                              #:update-resource #:update-table-objects
+                              #:update-table-storage-optimizer #:value-string
+                              #:value-string-list #:version-string
+                              #:virtual-object #:virtual-object-list
+                              #:work-unit-id-long #:work-unit-range
+                              #:work-unit-range-list #:work-unit-token-string
                               #:write-operation #:write-operation-list))
 (common-lisp:in-package #:pira/lakeformation)
 

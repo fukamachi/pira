@@ -1,9 +1,9 @@
 (uiop/package:define-package #:pira/bedrock-agentcore (:use)
-                             (:export #:access-denied-exception
-                              #:access-token-type #:actor-id #:actor-summary
-                              #:actor-summary-list #:agentic-resource
-                              #:amazon-bedrock-agent-core #:api-key-type
-                              #:automation-stream #:automation-stream-status
+                             (:export #:access-token-type #:actor-id
+                              #:actor-summary #:actor-summary-list
+                              #:agentic-resource #:amazon-bedrock-agent-core
+                              #:api-key-type #:automation-stream
+                              #:automation-stream-status
                               #:automation-stream-update #:body #:branch
                               #:branch-filter #:branch-name
                               #:browser-session-id #:browser-session-resource
@@ -19,64 +19,28 @@
                               #:code-interpreter-session-summaries
                               #:code-interpreter-session-summary
                               #:code-interpreter-session-timeout
-                              #:code-interpreter-stream-output
-                              #:conflict-exception #:content #:content-block
-                              #:content-block-list #:content-block-type
-                              #:conversational #:create-event
-                              #:create-event-input #:create-event-output
-                              #:credential-provider-name
+                              #:code-interpreter-stream-output #:content
+                              #:content-block #:content-block-list
+                              #:content-block-type #:conversational
+                              #:create-event #:credential-provider-name
                               #:custom-request-key-type
                               #:custom-request-parameters-type
                               #:custom-request-value-type #:date-timestamp
-                              #:delete-event #:delete-event-input
-                              #:delete-event-output #:delete-memory-record
-                              #:delete-memory-record-input
-                              #:delete-memory-record-output #:document #:event
-                              #:event-id #:event-list #:filter-input
+                              #:delete-event #:delete-memory-record #:document
+                              #:event #:event-id #:event-list #:filter-input
                               #:get-browser-session
-                              #:get-browser-session-request
-                              #:get-browser-session-response
-                              #:get-code-interpreter-session
-                              #:get-code-interpreter-session-request
-                              #:get-code-interpreter-session-response
-                              #:get-event #:get-event-input #:get-event-output
-                              #:get-memory-record #:get-memory-record-input
-                              #:get-memory-record-output #:get-resource-api-key
-                              #:get-resource-api-key-request
-                              #:get-resource-api-key-response
+                              #:get-code-interpreter-session #:get-event
+                              #:get-memory-record #:get-resource-api-key
                               #:get-resource-oauth2token
-                              #:get-resource-oauth2token-request
-                              #:get-resource-oauth2token-response
                               #:get-workload-access-token
                               #:get-workload-access-token-for-jwt
-                              #:get-workload-access-token-for-jwtrequest
-                              #:get-workload-access-token-for-jwtresponse
                               #:get-workload-access-token-for-user-id
-                              #:get-workload-access-token-for-user-id-request
-                              #:get-workload-access-token-for-user-id-response
-                              #:get-workload-access-token-request
-                              #:get-workload-access-token-response
                               #:http-response-code #:input-content-block
-                              #:input-content-block-list
-                              #:internal-server-exception
-                              #:invalid-input-exception #:invoke-agent-runtime
-                              #:invoke-agent-runtime-request
-                              #:invoke-agent-runtime-response
-                              #:invoke-code-interpreter
-                              #:invoke-code-interpreter-request
-                              #:invoke-code-interpreter-response #:list-actors
-                              #:list-actors-input #:list-actors-output
+                              #:input-content-block-list #:invoke-agent-runtime
+                              #:invoke-code-interpreter #:list-actors
                               #:list-browser-sessions
-                              #:list-browser-sessions-request
-                              #:list-browser-sessions-response
-                              #:list-code-interpreter-sessions
-                              #:list-code-interpreter-sessions-request
-                              #:list-code-interpreter-sessions-response
-                              #:list-events #:list-events-input
-                              #:list-events-output #:list-memory-records
-                              #:list-memory-records-input
-                              #:list-memory-records-output #:list-sessions
-                              #:list-sessions-input #:list-sessions-output
+                              #:list-code-interpreter-sessions #:list-events
+                              #:list-memory-records #:list-sessions
                               #:live-view-stream #:max-len-string #:max-results
                               #:memory-content #:memory-id #:memory-record
                               #:memory-record-id #:memory-record-summary
@@ -87,37 +51,20 @@
                               #:pagination-token #:payload-type
                               #:payload-type-list #:programming-language
                               #:resource-content #:resource-content-type
-                              #:resource-not-found-exception
                               #:resource-oauth2return-url-type
                               #:response-stream #:retrieve-memory-records
-                              #:retrieve-memory-records-input
-                              #:retrieve-memory-records-output #:role
-                              #:runtime-client-error #:scope-type
-                              #:scopes-list-type #:search-criteria
-                              #:sensitive-string #:service-exception
-                              #:service-quota-exceeded-exception #:session-id
+                              #:role #:scope-type #:scopes-list-type
+                              #:search-criteria #:sensitive-string #:session-id
                               #:session-summary #:session-summary-list
                               #:session-type #:start-browser-session
-                              #:start-browser-session-request
-                              #:start-browser-session-response
                               #:start-code-interpreter-session
-                              #:start-code-interpreter-session-request
-                              #:start-code-interpreter-session-response
                               #:stop-browser-session
-                              #:stop-browser-session-request
-                              #:stop-browser-session-response
-                              #:stop-code-interpreter-session
-                              #:stop-code-interpreter-session-request
-                              #:stop-code-interpreter-session-response
-                              #:stream-update #:string-list #:string-type
-                              #:task-status #:throttled-exception
-                              #:throttling-exception #:tool-arguments
-                              #:tool-name #:tool-result-structured-content
-                              #:unauthorized-exception #:update-browser-stream
-                              #:update-browser-stream-request
-                              #:update-browser-stream-response #:user-id-type
-                              #:user-token-type #:validation-exception
-                              #:validation-exception-field
+                              #:stop-code-interpreter-session #:stream-update
+                              #:string-list #:string-type #:task-status
+                              #:tool-arguments #:tool-name
+                              #:tool-result-structured-content
+                              #:update-browser-stream #:user-id-type
+                              #:user-token-type #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:view-port
                               #:view-port-height #:view-port-width

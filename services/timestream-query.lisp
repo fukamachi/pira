@@ -1,37 +1,20 @@
 (uiop/package:define-package #:pira/timestream-query (:use)
-                             (:export #:access-denied-exception
+                             (:export
                               #:account-settings-notification-configuration
                               #:amazon-resource-name #:cancel-query
-                              #:cancel-query-request #:cancel-query-response
                               #:client-request-token #:client-token
                               #:column-info #:column-info-list #:compute-mode
-                              #:conflict-exception #:create-scheduled-query
-                              #:create-scheduled-query-request
-                              #:create-scheduled-query-response #:datum
-                              #:datum-list #:delete-scheduled-query
-                              #:delete-scheduled-query-request
-                              #:describe-account-settings
-                              #:describe-account-settings-request
-                              #:describe-account-settings-response
-                              #:describe-endpoints #:describe-endpoints-request
-                              #:describe-endpoints-response
-                              #:describe-scheduled-query
-                              #:describe-scheduled-query-request
-                              #:describe-scheduled-query-response
-                              #:dimension-mapping #:dimension-mapping-list
-                              #:dimension-value-type #:double #:endpoint
-                              #:endpoints #:error-message
+                              #:create-scheduled-query #:datum #:datum-list
+                              #:delete-scheduled-query
+                              #:describe-account-settings #:describe-endpoints
+                              #:describe-scheduled-query #:dimension-mapping
+                              #:dimension-mapping-list #:dimension-value-type
+                              #:double #:endpoint #:endpoints #:error-message
                               #:error-report-configuration
                               #:error-report-location #:execute-scheduled-query
-                              #:execute-scheduled-query-request
-                              #:execution-stats #:internal-server-exception
-                              #:invalid-endpoint-exception #:last-update
+                              #:execution-stats #:last-update
                               #:last-update-status #:list-scheduled-queries
-                              #:list-scheduled-queries-request
-                              #:list-scheduled-queries-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:long
+                              #:list-tags-for-resource #:long
                               #:max-query-capacity #:max-query-results
                               #:max-scheduled-queries-results
                               #:max-tags-for-resource-result
@@ -46,20 +29,16 @@
                               #:pagination-token #:parameter-mapping
                               #:parameter-mapping-list #:partition-key
                               #:partition-key-list #:prepare-query
-                              #:prepare-query-request #:prepare-query-response
                               #:provisioned-capacity-request
                               #:provisioned-capacity-response #:query
                               #:query-compute-request #:query-compute-response
-                              #:query-execution-exception #:query-id
-                              #:query-insights #:query-insights-mode
+                              #:query-id #:query-insights #:query-insights-mode
                               #:query-insights-response #:query-pricing-model
-                              #:query-request #:query-response
                               #:query-spatial-coverage
                               #:query-spatial-coverage-max #:query-status
                               #:query-string #:query-tcu #:query-temporal-range
-                              #:query-temporal-range-max #:resource-name
-                              #:resource-not-found-exception #:row #:row-list
-                              #:s3bucket-name #:s3configuration
+                              #:query-temporal-range-max #:resource-name #:row
+                              #:row-list #:s3bucket-name #:s3configuration
                               #:s3encryption-option #:s3object-key
                               #:s3object-key-prefix #:s3report-location
                               #:scalar-measure-value-type #:scalar-type
@@ -75,26 +54,17 @@
                               #:scheduled-query-run-summary-list
                               #:scheduled-query-state #:schema-name
                               #:select-column #:select-column-list
-                              #:service-error-message
-                              #:service-quota-exceeded-exception
-                              #:sns-configuration #:string #:string-value2048
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:target-configuration #:target-destination
-                              #:throttling-exception #:time
+                              #:service-error-message #:sns-configuration
+                              #:string #:string-value2048 #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:target-configuration
+                              #:target-destination #:time
                               #:time-series-data-point
                               #:time-series-data-point-list #:timestamp
                               #:timestream-configuration
                               #:timestream-destination #:timestream-20181101
-                              #:type #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-account-settings
-                              #:update-account-settings-request
-                              #:update-account-settings-response
-                              #:update-scheduled-query
-                              #:update-scheduled-query-request
-                              #:validation-exception))
+                              #:type #:untag-resource #:update-account-settings
+                              #:update-scheduled-query))
 (common-lisp:in-package #:pira/timestream-query)
 
 (smithy/sdk/service:define-service timestream-20181101 :shape-name

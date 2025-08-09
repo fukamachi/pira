@@ -1,103 +1,44 @@
 (uiop/package:define-package #:pira/ssm-contacts (:use)
                              (:export #:accept-code #:accept-code-validation
-                              #:accept-page #:accept-page-request
-                              #:accept-page-result #:accept-type
-                              #:access-denied-exception
-                              #:activate-contact-channel
-                              #:activate-contact-channel-request
-                              #:activate-contact-channel-result
-                              #:activation-code #:activation-status
-                              #:amazon-resource-name #:channel-name
-                              #:channel-target-info #:channel-type
-                              #:conflict-exception #:contact #:contact-alias
+                              #:accept-page #:accept-type
+                              #:activate-contact-channel #:activation-code
+                              #:activation-status #:amazon-resource-name
+                              #:channel-name #:channel-target-info
+                              #:channel-type #:contact #:contact-alias
                               #:contact-channel #:contact-channel-address
                               #:contact-channel-list #:contact-name
                               #:contact-target-info #:contact-type
                               #:contacts-list #:content #:coverage-time
                               #:coverage-times #:create-contact
-                              #:create-contact-channel
-                              #:create-contact-channel-request
-                              #:create-contact-channel-result
-                              #:create-contact-request #:create-contact-result
-                              #:create-rotation #:create-rotation-override
-                              #:create-rotation-override-request
-                              #:create-rotation-override-result
-                              #:create-rotation-request
-                              #:create-rotation-result #:daily-settings
-                              #:data-encryption-exception #:date-time
-                              #:day-of-month #:day-of-week
-                              #:deactivate-contact-channel
-                              #:deactivate-contact-channel-request
-                              #:deactivate-contact-channel-result
-                              #:defer-activation #:delete-contact
-                              #:delete-contact-channel
-                              #:delete-contact-channel-request
-                              #:delete-contact-channel-result
-                              #:delete-contact-request #:delete-contact-result
+                              #:create-contact-channel #:create-rotation
+                              #:create-rotation-override #:daily-settings
+                              #:date-time #:day-of-month #:day-of-week
+                              #:deactivate-contact-channel #:defer-activation
+                              #:delete-contact #:delete-contact-channel
                               #:delete-rotation #:delete-rotation-override
-                              #:delete-rotation-override-request
-                              #:delete-rotation-override-result
-                              #:delete-rotation-request
-                              #:delete-rotation-result #:dependent-entity
-                              #:dependent-entity-list #:describe-engagement
-                              #:describe-engagement-request
-                              #:describe-engagement-result #:describe-page
-                              #:describe-page-request #:describe-page-result
+                              #:dependent-entity #:dependent-entity-list
+                              #:describe-engagement #:describe-page
                               #:engagement #:engagements-list #:get-contact
-                              #:get-contact-channel
-                              #:get-contact-channel-request
-                              #:get-contact-channel-result #:get-contact-policy
-                              #:get-contact-policy-request
-                              #:get-contact-policy-result #:get-contact-request
-                              #:get-contact-result #:get-rotation
-                              #:get-rotation-override
-                              #:get-rotation-override-request
-                              #:get-rotation-override-result
-                              #:get-rotation-request #:get-rotation-result
+                              #:get-contact-channel #:get-contact-policy
+                              #:get-rotation #:get-rotation-override
                               #:hand-off-time #:hour-of-day #:idempotency-token
-                              #:incident-id #:internal-server-exception
-                              #:is-essential #:list-contact-channels
-                              #:list-contact-channels-request
-                              #:list-contact-channels-result #:list-contacts
-                              #:list-contacts-request #:list-contacts-result
-                              #:list-engagements #:list-engagements-request
-                              #:list-engagements-result #:list-page-receipts
-                              #:list-page-receipts-request
-                              #:list-page-receipts-result
-                              #:list-page-resolutions
-                              #:list-page-resolutions-request
-                              #:list-page-resolutions-result
-                              #:list-pages-by-contact
-                              #:list-pages-by-contact-request
-                              #:list-pages-by-contact-result
+                              #:incident-id #:is-essential
+                              #:list-contact-channels #:list-contacts
+                              #:list-engagements #:list-page-receipts
+                              #:list-page-resolutions #:list-pages-by-contact
                               #:list-pages-by-engagement
-                              #:list-pages-by-engagement-request
-                              #:list-pages-by-engagement-result
                               #:list-preview-rotation-shifts
-                              #:list-preview-rotation-shifts-request
-                              #:list-preview-rotation-shifts-result
-                              #:list-rotation-overrides
-                              #:list-rotation-overrides-request
-                              #:list-rotation-overrides-result
-                              #:list-rotation-shifts
-                              #:list-rotation-shifts-request
-                              #:list-rotation-shifts-result #:list-rotations
-                              #:list-rotations-request #:list-rotations-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-result #:max-results
-                              #:member #:minute-of-hour #:monthly-setting
-                              #:monthly-settings #:number-of-on-calls
-                              #:override-list #:page #:pages-list
-                              #:pagination-token #:plan #:policy
+                              #:list-rotation-overrides #:list-rotation-shifts
+                              #:list-rotations #:list-tags-for-resource
+                              #:max-results #:member #:minute-of-hour
+                              #:monthly-setting #:monthly-settings
+                              #:number-of-on-calls #:override-list #:page
+                              #:pages-list #:pagination-token #:plan #:policy
                               #:preview-override #:public-content
-                              #:public-subject #:put-contact-policy
-                              #:put-contact-policy-request
-                              #:put-contact-policy-result #:receipt
+                              #:public-subject #:put-contact-policy #:receipt
                               #:receipt-info #:receipt-type #:receipts-list
                               #:recurrence-multiplier #:recurrence-settings
                               #:resolution-contact #:resolution-list
-                              #:resource-not-found-exception
                               #:retry-after-seconds #:retry-interval-in-minutes
                               #:rotation #:rotation-contacts-arn-list
                               #:rotation-name #:rotation-override
@@ -106,32 +47,18 @@
                               #:rotation-overrides
                               #:rotation-preview-member-list #:rotation-shift
                               #:rotation-shifts #:rotations #:ssmcontacts
-                              #:send-activation-code
-                              #:send-activation-code-request
-                              #:send-activation-code-result #:sender
-                              #:service-quota-exceeded-exception
+                              #:send-activation-code #:sender
                               #:shift-coverages-map #:shift-details
                               #:shift-type #:simple-address #:ssm-contacts-arn
                               #:ssm-contacts-arn-list #:stage
                               #:stage-duration-in-mins #:stage-index
                               #:stages-list #:start-engagement
-                              #:start-engagement-request
-                              #:start-engagement-result #:stop-engagement
-                              #:stop-engagement-request
-                              #:stop-engagement-result #:stop-reason #:string
+                              #:stop-engagement #:stop-reason #:string
                               #:subject #:tag #:tag-key #:tag-key-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-result #:tag-value #:tags-list
-                              #:target #:targets-list #:throttling-exception
-                              #:time-range #:time-zone-id #:untag-resource
-                              #:untag-resource-request #:untag-resource-result
-                              #:update-contact #:update-contact-channel
-                              #:update-contact-channel-request
-                              #:update-contact-channel-result
-                              #:update-contact-request #:update-contact-result
-                              #:update-rotation #:update-rotation-request
-                              #:update-rotation-result #:uuid
-                              #:validation-exception
+                              #:tag-resource #:tag-value #:tags-list #:target
+                              #:targets-list #:time-range #:time-zone-id
+                              #:untag-resource #:update-contact
+                              #:update-contact-channel #:update-rotation #:uuid
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:weekly-setting

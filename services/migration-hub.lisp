@@ -1,72 +1,31 @@
 (uiop/package:define-package #:pira/migration-hub (:use)
-                             (:export #:awsmigration-hub
-                              #:access-denied-exception #:application-id
+                             (:export #:awsmigration-hub #:application-id
                               #:application-ids #:application-state
                               #:application-state-list #:application-status
                               #:associate-created-artifact
-                              #:associate-created-artifact-request
-                              #:associate-created-artifact-result
                               #:associate-discovered-resource
-                              #:associate-discovered-resource-request
-                              #:associate-discovered-resource-result
-                              #:associate-source-resource
-                              #:associate-source-resource-request
-                              #:associate-source-resource-result
-                              #:configuration-id
+                              #:associate-source-resource #:configuration-id
                               #:create-progress-update-stream
-                              #:create-progress-update-stream-request
-                              #:create-progress-update-stream-result
                               #:created-artifact #:created-artifact-description
                               #:created-artifact-list #:created-artifact-name
                               #:delete-progress-update-stream
-                              #:delete-progress-update-stream-request
-                              #:delete-progress-update-stream-result
                               #:describe-application-state
-                              #:describe-application-state-request
-                              #:describe-application-state-result
                               #:describe-migration-task
-                              #:describe-migration-task-request
-                              #:describe-migration-task-result
                               #:disassociate-created-artifact
-                              #:disassociate-created-artifact-request
-                              #:disassociate-created-artifact-result
                               #:disassociate-discovered-resource
-                              #:disassociate-discovered-resource-request
-                              #:disassociate-discovered-resource-result
                               #:disassociate-source-resource
-                              #:disassociate-source-resource-request
-                              #:disassociate-source-resource-result
                               #:discovered-resource
                               #:discovered-resource-description
                               #:discovered-resource-list #:dry-run
-                              #:dry-run-operation #:error-message
-                              #:home-region-not-set-exception
-                              #:import-migration-task
-                              #:import-migration-task-request
-                              #:import-migration-task-result
-                              #:internal-server-error #:invalid-input-exception
+                              #:error-message #:import-migration-task
                               #:latest-resource-attribute-list
                               #:list-application-states
-                              #:list-application-states-request
-                              #:list-application-states-result
                               #:list-created-artifacts
-                              #:list-created-artifacts-request
-                              #:list-created-artifacts-result
                               #:list-discovered-resources
-                              #:list-discovered-resources-request
-                              #:list-discovered-resources-result
                               #:list-migration-task-updates
-                              #:list-migration-task-updates-request
-                              #:list-migration-task-updates-result
                               #:list-migration-tasks
-                              #:list-migration-tasks-request
-                              #:list-migration-tasks-result
                               #:list-progress-update-streams
-                              #:list-progress-update-streams-request
-                              #:list-progress-update-streams-result
-                              #:list-source-resources
-                              #:list-source-resources-request
-                              #:list-source-resources-result #:max-results
+                              #:list-source-resources #:max-results
                               #:max-results-created-artifacts
                               #:max-results-resources
                               #:max-results-source-resources #:migration-task
@@ -75,30 +34,19 @@
                               #:migration-task-update
                               #:migration-task-update-list
                               #:next-update-seconds #:notify-application-state
-                              #:notify-application-state-request
-                              #:notify-application-state-result
-                              #:notify-migration-task-state
-                              #:notify-migration-task-state-request
-                              #:notify-migration-task-state-result
-                              #:policy-error-exception #:progress-percent
+                              #:notify-migration-task-state #:progress-percent
                               #:progress-update-stream
                               #:progress-update-stream-summary
                               #:progress-update-stream-summary-list
-                              #:put-resource-attributes
-                              #:put-resource-attributes-request
-                              #:put-resource-attributes-result
-                              #:resource-attribute #:resource-attribute-list
+                              #:put-resource-attributes #:resource-attribute
+                              #:resource-attribute-list
                               #:resource-attribute-type
                               #:resource-attribute-value #:resource-name
-                              #:resource-not-found-exception
-                              #:retry-after-seconds
-                              #:service-unavailable-exception #:source-resource
+                              #:retry-after-seconds #:source-resource
                               #:source-resource-description
                               #:source-resource-list #:source-resource-name
-                              #:status #:status-detail #:task
-                              #:throttling-exception #:token
-                              #:unauthorized-operation #:update-date-time
-                              #:update-type))
+                              #:status #:status-detail #:task #:token
+                              #:update-date-time #:update-type))
 (common-lisp:in-package #:pira/migration-hub)
 
 (smithy/sdk/service:define-service awsmigration-hub :shape-name

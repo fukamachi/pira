@@ -1,41 +1,21 @@
 (uiop/package:define-package #:pira/pinpoint-sms-voice (:use)
-                             (:export #:already-exists-exception
-                              #:bad-request-exception #:boolean
+                             (:export #:boolean
                               #:call-instructions-message-type
                               #:cloud-watch-logs-destination
                               #:configuration-sets #:create-configuration-set
                               #:create-configuration-set-event-destination
-                              #:create-configuration-set-event-destination-request
-                              #:create-configuration-set-event-destination-response
-                              #:create-configuration-set-request
-                              #:create-configuration-set-response
                               #:delete-configuration-set
                               #:delete-configuration-set-event-destination
-                              #:delete-configuration-set-event-destination-request
-                              #:delete-configuration-set-event-destination-response
-                              #:delete-configuration-set-request
-                              #:delete-configuration-set-response
                               #:event-destination
                               #:event-destination-definition
                               #:event-destinations #:event-type #:event-types
                               #:get-configuration-set-event-destinations
-                              #:get-configuration-set-event-destinations-request
-                              #:get-configuration-set-event-destinations-response
-                              #:internal-service-error-exception
                               #:kinesis-firehose-destination
-                              #:limit-exceeded-exception
-                              #:list-configuration-sets
-                              #:list-configuration-sets-request
-                              #:list-configuration-sets-response
-                              #:next-token-string #:non-empty-string
-                              #:not-found-exception #:pinpoint-smsvoice
+                              #:list-configuration-sets #:next-token-string
+                              #:non-empty-string #:pinpoint-smsvoice
                               #:plain-text-message-type #:ssmlmessage-type
-                              #:send-voice-message #:send-voice-message-request
-                              #:send-voice-message-response #:sns-destination
-                              #:string #:too-many-requests-exception
+                              #:send-voice-message #:sns-destination #:string
                               #:update-configuration-set-event-destination
-                              #:update-configuration-set-event-destination-request
-                              #:update-configuration-set-event-destination-response
                               #:voice-message-content
                               #:word-characters-with-delimiters #:string))
 (common-lisp:in-package #:pira/pinpoint-sms-voice)

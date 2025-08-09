@@ -1,101 +1,49 @@
 (uiop/package:define-package #:pira/service-quotas (:use)
-                             (:export #:awsservice-access-not-enabled-exception
-                              #:access-denied-exception #:amazon-resource-name
+                             (:export #:amazon-resource-name
                               #:applied-level-enum
-                              #:associate-service-quota-template
-                              #:associate-service-quota-template-request
-                              #:associate-service-quota-template-response
-                              #:aws-region #:create-support-case
-                              #:create-support-case-request
-                              #:create-support-case-response
+                              #:associate-service-quota-template #:aws-region
+                              #:create-support-case
                               #:customer-service-engagement-id #:date-time
                               #:delete-service-quota-increase-request-from-template
-                              #:delete-service-quota-increase-request-from-template-request
-                              #:delete-service-quota-increase-request-from-template-response
-                              #:dependency-access-denied-exception
                               #:disassociate-service-quota-template
-                              #:disassociate-service-quota-template-request
-                              #:disassociate-service-quota-template-response
                               #:error-code #:error-message #:error-reason
                               #:exception-message
                               #:get-awsdefault-service-quota
-                              #:get-awsdefault-service-quota-request
-                              #:get-awsdefault-service-quota-response
                               #:get-association-for-service-quota-template
-                              #:get-association-for-service-quota-template-request
-                              #:get-association-for-service-quota-template-response
                               #:get-requested-service-quota-change
-                              #:get-requested-service-quota-change-request
-                              #:get-requested-service-quota-change-response
                               #:get-service-quota
                               #:get-service-quota-increase-request-from-template
-                              #:get-service-quota-increase-request-from-template-request
-                              #:get-service-quota-increase-request-from-template-response
-                              #:get-service-quota-request
-                              #:get-service-quota-response #:global-quota
-                              #:illegal-argument-exception #:input-tag-keys
-                              #:input-tags #:invalid-pagination-token-exception
-                              #:invalid-resource-state-exception
+                              #:global-quota #:input-tag-keys #:input-tags
                               #:list-awsdefault-service-quotas
-                              #:list-awsdefault-service-quotas-request
-                              #:list-awsdefault-service-quotas-response
                               #:list-requested-service-quota-change-history
                               #:list-requested-service-quota-change-history-by-quota
-                              #:list-requested-service-quota-change-history-by-quota-request
-                              #:list-requested-service-quota-change-history-by-quota-response
-                              #:list-requested-service-quota-change-history-request
-                              #:list-requested-service-quota-change-history-response
                               #:list-service-quota-increase-requests-in-template
-                              #:list-service-quota-increase-requests-in-template-request
-                              #:list-service-quota-increase-requests-in-template-response
-                              #:list-service-quotas
-                              #:list-service-quotas-request
-                              #:list-service-quotas-response #:list-services
-                              #:list-services-request #:list-services-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:list-service-quotas #:list-services
+                              #:list-tags-for-resource #:max-results
                               #:metric-dimension-name #:metric-dimension-value
                               #:metric-dimensions-map-definition #:metric-info
-                              #:next-token
-                              #:no-available-organization-exception
-                              #:no-such-resource-exception
-                              #:organization-not-in-all-features-mode-exception
-                              #:output-tags #:period-unit #:period-value
+                              #:next-token #:output-tags #:period-unit
+                              #:period-value
                               #:put-service-quota-increase-request-into-template
-                              #:put-service-quota-increase-request-into-template-request
-                              #:put-service-quota-increase-request-into-template-response
                               #:quota-adjustable #:quota-arn #:quota-code
                               #:quota-context-id #:quota-context-info
                               #:quota-context-scope #:quota-context-scope-type
-                              #:quota-description #:quota-exceeded-exception
-                              #:quota-metric-name #:quota-metric-namespace
-                              #:quota-name #:quota-period #:quota-unit
-                              #:quota-value #:request-id
-                              #:request-service-quota-increase
-                              #:request-service-quota-increase-request
-                              #:request-service-quota-increase-response
+                              #:quota-description #:quota-metric-name
+                              #:quota-metric-namespace #:quota-name
+                              #:quota-period #:quota-unit #:quota-value
+                              #:request-id #:request-service-quota-increase
                               #:request-status #:requested-service-quota-change
                               #:requested-service-quota-change-history-list-definition
-                              #:requester #:resource-already-exists-exception
-                              #:service-code #:service-exception #:service-info
+                              #:requester #:service-code #:service-info
                               #:service-info-list-definition #:service-name
                               #:service-quota
                               #:service-quota-increase-request-in-template
                               #:service-quota-increase-request-in-template-list
                               #:service-quota-list-definition
                               #:service-quota-template-association-status
-                              #:service-quota-template-not-in-use-exception
                               #:service-quotas-v20190624 #:statistic
                               #:support-case-allowed #:tag #:tag-key
-                              #:tag-policy-violation-exception #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value
-                              #:templates-not-available-in-region-exception
-                              #:too-many-requests-exception
-                              #:too-many-tags-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response))
+                              #:tag-resource #:tag-value #:untag-resource))
 (common-lisp:in-package #:pira/service-quotas)
 
 (smithy/sdk/service:define-service service-quotas-v20190624 :shape-name

@@ -1,10 +1,8 @@
 (uiop/package:define-package #:pira/connect (:use)
                              (:export #:arn #:awsaccount-id
-                              #:access-denied-exception #:access-token-duration
-                              #:action-summaries #:action-summary #:action-type
+                              #:access-token-duration #:action-summaries
+                              #:action-summary #:action-type
                               #:activate-evaluation-form
-                              #:activate-evaluation-form-request
-                              #:activate-evaluation-form-response
                               #:additional-email-recipients
                               #:after-contact-work-time-limit
                               #:agent-availability-timer #:agent-config
@@ -43,36 +41,16 @@
                               #:assign-contact-category-action-definition
                               #:assign-sla-action-definition
                               #:associate-analytics-data-set
-                              #:associate-analytics-data-set-request
-                              #:associate-analytics-data-set-response
-                              #:associate-approved-origin
-                              #:associate-approved-origin-request
-                              #:associate-bot #:associate-bot-request
-                              #:associate-default-vocabulary
-                              #:associate-default-vocabulary-request
-                              #:associate-default-vocabulary-response
-                              #:associate-flow #:associate-flow-request
-                              #:associate-flow-response
+                              #:associate-approved-origin #:associate-bot
+                              #:associate-default-vocabulary #:associate-flow
                               #:associate-instance-storage-config
-                              #:associate-instance-storage-config-request
-                              #:associate-instance-storage-config-response
-                              #:associate-lambda-function
-                              #:associate-lambda-function-request
-                              #:associate-lex-bot #:associate-lex-bot-request
+                              #:associate-lambda-function #:associate-lex-bot
                               #:associate-phone-number-contact-flow
-                              #:associate-phone-number-contact-flow-request
                               #:associate-queue-quick-connects
-                              #:associate-queue-quick-connects-request
                               #:associate-routing-profile-queues
-                              #:associate-routing-profile-queues-request
                               #:associate-security-key
-                              #:associate-security-key-request
-                              #:associate-security-key-response
                               #:associate-traffic-distribution-group-user
-                              #:associate-traffic-distribution-group-user-request
-                              #:associate-traffic-distribution-group-user-response
                               #:associate-user-proficiencies
-                              #:associate-user-proficiencies-request
                               #:associated-contact-summary
                               #:associated-contact-summary-list
                               #:associated-queue-id-list #:association-id
@@ -99,31 +77,20 @@
                               #:available-number-summary
                               #:available-numbers-list #:aws-region
                               #:batch-associate-analytics-data-set
-                              #:batch-associate-analytics-data-set-request
-                              #:batch-associate-analytics-data-set-response
                               #:batch-disassociate-analytics-data-set
-                              #:batch-disassociate-analytics-data-set-request
-                              #:batch-disassociate-analytics-data-set-response
                               #:batch-get-attached-file-metadata
-                              #:batch-get-attached-file-metadata-request
-                              #:batch-get-attached-file-metadata-response
-                              #:batch-get-flow-association
-                              #:batch-get-flow-association-request
-                              #:batch-get-flow-association-response
-                              #:batch-put-contact #:batch-put-contact-request
-                              #:batch-put-contact-response #:behavior-type
-                              #:body #:boolean #:bot-name #:boxed-boolean
-                              #:bucket-name #:campaign #:campaign-id
-                              #:case-sla-configuration #:channel #:channel-list
-                              #:channel-to-count-map #:channels
+                              #:batch-get-flow-association #:batch-put-contact
+                              #:behavior-type #:body #:boolean #:bot-name
+                              #:boxed-boolean #:bucket-name #:campaign
+                              #:campaign-id #:case-sla-configuration #:channel
+                              #:channel-list #:channel-to-count-map #:channels
                               #:chat-contact-metrics #:chat-content
                               #:chat-content-type #:chat-duration-in-minutes
                               #:chat-event #:chat-event-type #:chat-message
                               #:chat-metrics #:chat-participant-role-config
                               #:chat-streaming-configuration
                               #:chat-streaming-endpoint-arn
-                              #:claim-phone-number #:claim-phone-number-request
-                              #:claim-phone-number-response
+                              #:claim-phone-number
                               #:claimed-phone-number-summary #:client-token
                               #:common-attribute-and-condition
                               #:common-attribute-or-condition-list
@@ -131,13 +98,9 @@
                               #:common-human-readable-name
                               #:common-name-length127 #:comparison
                               #:comparison-operator
-                              #:complete-attached-file-upload
-                              #:complete-attached-file-upload-request
-                              #:complete-attached-file-upload-response
-                              #:concurrency #:condition
-                              #:conditional-operation-failed-exception
-                              #:conditions #:conflict-exception
-                              #:connection-data #:contact #:contact-analysis
+                              #:complete-attached-file-upload #:concurrency
+                              #:condition #:conditions #:connection-data
+                              #:contact #:contact-analysis
                               #:contact-configuration #:contact-data-request
                               #:contact-data-request-list
                               #:contact-detail-description
@@ -159,7 +122,6 @@
                               #:contact-flow-module-summary
                               #:contact-flow-modules-summary-list
                               #:contact-flow-name
-                              #:contact-flow-not-published-exception
                               #:contact-flow-search-condition-list
                               #:contact-flow-search-criteria
                               #:contact-flow-search-filter
@@ -171,7 +133,6 @@
                               #:contact-flow-version-summary
                               #:contact-flow-version-summary-list #:contact-id
                               #:contact-initiation-method
-                              #:contact-not-found-exception
                               #:contact-recording-type #:contact-references
                               #:contact-search-summary
                               #:contact-search-summary-agent-info
@@ -186,80 +147,31 @@
                               #:control-plane-tag-filter
                               #:control-plane-user-attribute-filter #:count
                               #:create-agent-status
-                              #:create-agent-status-request
-                              #:create-agent-status-response
                               #:create-case-action-definition #:create-contact
                               #:create-contact-flow
                               #:create-contact-flow-module
-                              #:create-contact-flow-module-request
-                              #:create-contact-flow-module-response
-                              #:create-contact-flow-request
-                              #:create-contact-flow-response
                               #:create-contact-flow-version
-                              #:create-contact-flow-version-request
-                              #:create-contact-flow-version-response
-                              #:create-contact-request
-                              #:create-contact-response #:create-email-address
-                              #:create-email-address-request
-                              #:create-email-address-response
-                              #:create-evaluation-form
-                              #:create-evaluation-form-request
-                              #:create-evaluation-form-response
+                              #:create-email-address #:create-evaluation-form
                               #:create-hours-of-operation
                               #:create-hours-of-operation-override
-                              #:create-hours-of-operation-override-request
-                              #:create-hours-of-operation-override-response
-                              #:create-hours-of-operation-request
-                              #:create-hours-of-operation-response
-                              #:create-instance #:create-instance-request
-                              #:create-instance-response
+                              #:create-instance
                               #:create-integration-association
-                              #:create-integration-association-request
-                              #:create-integration-association-response
-                              #:create-participant #:create-participant-request
-                              #:create-participant-response
+                              #:create-participant
                               #:create-persistent-contact-association
-                              #:create-persistent-contact-association-request
-                              #:create-persistent-contact-association-response
-                              #:create-predefined-attribute
-                              #:create-predefined-attribute-request
-                              #:create-prompt #:create-prompt-request
-                              #:create-prompt-response
+                              #:create-predefined-attribute #:create-prompt
                               #:create-push-notification-registration
-                              #:create-push-notification-registration-request
-                              #:create-push-notification-registration-response
-                              #:create-queue #:create-queue-request
-                              #:create-queue-response #:create-quick-connect
-                              #:create-quick-connect-request
-                              #:create-quick-connect-response
-                              #:create-routing-profile
-                              #:create-routing-profile-request
-                              #:create-routing-profile-response #:create-rule
-                              #:create-rule-request #:create-rule-response
+                              #:create-queue #:create-quick-connect
+                              #:create-routing-profile #:create-rule
                               #:create-security-profile
                               #:create-security-profile-name
-                              #:create-security-profile-request
-                              #:create-security-profile-response
                               #:create-task-template
-                              #:create-task-template-request
-                              #:create-task-template-response
                               #:create-traffic-distribution-group
-                              #:create-traffic-distribution-group-request
-                              #:create-traffic-distribution-group-response
-                              #:create-use-case #:create-use-case-request
-                              #:create-use-case-response #:create-user
-                              #:create-user-hierarchy-group
-                              #:create-user-hierarchy-group-request
-                              #:create-user-hierarchy-group-response
-                              #:create-user-request #:create-user-response
-                              #:create-view #:create-view-request
-                              #:create-view-response #:create-view-version
-                              #:create-view-version-request
-                              #:create-view-version-response
-                              #:create-vocabulary #:create-vocabulary-request
-                              #:create-vocabulary-response #:created-by-info
-                              #:credentials #:cross-channel-behavior
-                              #:current-metric #:current-metric-data
+                              #:create-use-case #:create-user
+                              #:create-user-hierarchy-group #:create-view
+                              #:create-view-version #:create-vocabulary
+                              #:created-by-info #:credentials
+                              #:cross-channel-behavior #:current-metric
+                              #:current-metric-data
                               #:current-metric-data-collections
                               #:current-metric-name #:current-metric-result
                               #:current-metric-results
@@ -273,177 +185,68 @@
                               #:data-set-ids #:date-comparison-type
                               #:date-condition #:date-reference
                               #:date-year-month-day-format
-                              #:deactivate-evaluation-form
-                              #:deactivate-evaluation-form-request
-                              #:deactivate-evaluation-form-response
-                              #:default-vocabulary #:default-vocabulary-list
-                              #:delay #:delete-attached-file
-                              #:delete-attached-file-request
-                              #:delete-attached-file-response
-                              #:delete-contact-evaluation
-                              #:delete-contact-evaluation-request
-                              #:delete-contact-flow
+                              #:deactivate-evaluation-form #:default-vocabulary
+                              #:default-vocabulary-list #:delay
+                              #:delete-attached-file
+                              #:delete-contact-evaluation #:delete-contact-flow
                               #:delete-contact-flow-module
-                              #:delete-contact-flow-module-request
-                              #:delete-contact-flow-module-response
-                              #:delete-contact-flow-request
-                              #:delete-contact-flow-response
                               #:delete-contact-flow-version
-                              #:delete-contact-flow-version-request
-                              #:delete-contact-flow-version-response
-                              #:delete-email-address
-                              #:delete-email-address-request
-                              #:delete-email-address-response
-                              #:delete-evaluation-form
-                              #:delete-evaluation-form-request
+                              #:delete-email-address #:delete-evaluation-form
                               #:delete-hours-of-operation
                               #:delete-hours-of-operation-override
-                              #:delete-hours-of-operation-override-request
-                              #:delete-hours-of-operation-request
-                              #:delete-instance #:delete-instance-request
+                              #:delete-instance
                               #:delete-integration-association
-                              #:delete-integration-association-request
-                              #:delete-predefined-attribute
-                              #:delete-predefined-attribute-request
-                              #:delete-prompt #:delete-prompt-request
+                              #:delete-predefined-attribute #:delete-prompt
                               #:delete-push-notification-registration
-                              #:delete-push-notification-registration-request
-                              #:delete-push-notification-registration-response
-                              #:delete-queue #:delete-queue-request
-                              #:delete-quick-connect
-                              #:delete-quick-connect-request
-                              #:delete-routing-profile
-                              #:delete-routing-profile-request #:delete-rule
-                              #:delete-rule-request #:delete-security-profile
-                              #:delete-security-profile-request
-                              #:delete-task-template
-                              #:delete-task-template-request
-                              #:delete-task-template-response
+                              #:delete-queue #:delete-quick-connect
+                              #:delete-routing-profile #:delete-rule
+                              #:delete-security-profile #:delete-task-template
                               #:delete-traffic-distribution-group
-                              #:delete-traffic-distribution-group-request
-                              #:delete-traffic-distribution-group-response
-                              #:delete-use-case #:delete-use-case-request
-                              #:delete-user #:delete-user-hierarchy-group
-                              #:delete-user-hierarchy-group-request
-                              #:delete-user-request #:delete-view
-                              #:delete-view-request #:delete-view-response
-                              #:delete-view-version
-                              #:delete-view-version-request
-                              #:delete-view-version-response
-                              #:delete-vocabulary #:delete-vocabulary-request
-                              #:delete-vocabulary-response
+                              #:delete-use-case #:delete-user
+                              #:delete-user-hierarchy-group #:delete-view
+                              #:delete-view-version #:delete-vocabulary
                               #:describe-agent-status
-                              #:describe-agent-status-request
-                              #:describe-agent-status-response
                               #:describe-authentication-profile
-                              #:describe-authentication-profile-request
-                              #:describe-authentication-profile-response
                               #:describe-contact #:describe-contact-evaluation
-                              #:describe-contact-evaluation-request
-                              #:describe-contact-evaluation-response
                               #:describe-contact-flow
                               #:describe-contact-flow-module
-                              #:describe-contact-flow-module-request
-                              #:describe-contact-flow-module-response
-                              #:describe-contact-flow-request
-                              #:describe-contact-flow-response
-                              #:describe-contact-request
-                              #:describe-contact-response
                               #:describe-email-address
-                              #:describe-email-address-request
-                              #:describe-email-address-response
                               #:describe-evaluation-form
-                              #:describe-evaluation-form-request
-                              #:describe-evaluation-form-response
                               #:describe-hours-of-operation
                               #:describe-hours-of-operation-override
-                              #:describe-hours-of-operation-override-request
-                              #:describe-hours-of-operation-override-response
-                              #:describe-hours-of-operation-request
-                              #:describe-hours-of-operation-response
                               #:describe-instance #:describe-instance-attribute
-                              #:describe-instance-attribute-request
-                              #:describe-instance-attribute-response
-                              #:describe-instance-request
-                              #:describe-instance-response
                               #:describe-instance-storage-config
-                              #:describe-instance-storage-config-request
-                              #:describe-instance-storage-config-response
                               #:describe-phone-number
-                              #:describe-phone-number-request
-                              #:describe-phone-number-response
-                              #:describe-predefined-attribute
-                              #:describe-predefined-attribute-request
-                              #:describe-predefined-attribute-response
-                              #:describe-prompt #:describe-prompt-request
-                              #:describe-prompt-response #:describe-queue
-                              #:describe-queue-request
-                              #:describe-queue-response
-                              #:describe-quick-connect
-                              #:describe-quick-connect-request
-                              #:describe-quick-connect-response
-                              #:describe-routing-profile
-                              #:describe-routing-profile-request
-                              #:describe-routing-profile-response
-                              #:describe-rule #:describe-rule-request
-                              #:describe-rule-response
+                              #:describe-predefined-attribute #:describe-prompt
+                              #:describe-queue #:describe-quick-connect
+                              #:describe-routing-profile #:describe-rule
                               #:describe-security-profile
-                              #:describe-security-profile-request
-                              #:describe-security-profile-response
                               #:describe-traffic-distribution-group
-                              #:describe-traffic-distribution-group-request
-                              #:describe-traffic-distribution-group-response
                               #:describe-user #:describe-user-hierarchy-group
-                              #:describe-user-hierarchy-group-request
-                              #:describe-user-hierarchy-group-response
                               #:describe-user-hierarchy-structure
-                              #:describe-user-hierarchy-structure-request
-                              #:describe-user-hierarchy-structure-response
-                              #:describe-user-request #:describe-user-response
-                              #:describe-view #:describe-view-request
-                              #:describe-view-response #:describe-vocabulary
-                              #:describe-vocabulary-request
-                              #:describe-vocabulary-response #:description
-                              #:description250 #:destination-id
-                              #:destination-not-allowed-exception #:device-info
-                              #:device-token #:device-type #:dimensions
-                              #:dimensions-v2key #:dimensions-v2map
-                              #:dimensions-v2value #:directory-alias
-                              #:directory-id #:directory-type
+                              #:describe-view #:describe-vocabulary
+                              #:description #:description250 #:destination-id
+                              #:device-info #:device-token #:device-type
+                              #:dimensions #:dimensions-v2key
+                              #:dimensions-v2map #:dimensions-v2value
+                              #:directory-alias #:directory-id #:directory-type
                               #:directory-user-id
                               #:disassociate-analytics-data-set
-                              #:disassociate-analytics-data-set-request
-                              #:disassociate-approved-origin
-                              #:disassociate-approved-origin-request
-                              #:disassociate-bot #:disassociate-bot-request
-                              #:disassociate-flow #:disassociate-flow-request
-                              #:disassociate-flow-response
+                              #:disassociate-approved-origin #:disassociate-bot
+                              #:disassociate-flow
                               #:disassociate-instance-storage-config
-                              #:disassociate-instance-storage-config-request
                               #:disassociate-lambda-function
-                              #:disassociate-lambda-function-request
                               #:disassociate-lex-bot
-                              #:disassociate-lex-bot-request
                               #:disassociate-phone-number-contact-flow
-                              #:disassociate-phone-number-contact-flow-request
                               #:disassociate-queue-quick-connects
-                              #:disassociate-queue-quick-connects-request
                               #:disassociate-routing-profile-queues
-                              #:disassociate-routing-profile-queues-request
                               #:disassociate-security-key
-                              #:disassociate-security-key-request
                               #:disassociate-traffic-distribution-group-user
-                              #:disassociate-traffic-distribution-group-user-request
-                              #:disassociate-traffic-distribution-group-user-response
                               #:disassociate-user-proficiencies
-                              #:disassociate-user-proficiencies-request
                               #:disconnect-details #:disconnect-reason
                               #:disconnect-reason-code #:dismiss-user-contact
-                              #:dismiss-user-contact-request
-                              #:dismiss-user-contact-response #:display-name
-                              #:distribution #:distribution-list #:double
-                              #:download-url-metadata
-                              #:duplicate-resource-exception #:duration
+                              #:display-name #:distribution #:distribution-list
+                              #:double #:download-url-metadata #:duration
                               #:duration-in-seconds #:duration-millis
                               #:effective-hours-of-operation-list
                               #:effective-hours-of-operations #:email
@@ -531,37 +334,13 @@
                               #:flow-association-summary-list
                               #:flow-content-sha256 #:form-id #:fragment-number
                               #:function-arn #:function-arns-list
-                              #:get-attached-file #:get-attached-file-request
-                              #:get-attached-file-response
-                              #:get-contact-attributes
-                              #:get-contact-attributes-request
-                              #:get-contact-attributes-response
-                              #:get-current-metric-data
-                              #:get-current-metric-data-request
-                              #:get-current-metric-data-response
-                              #:get-current-user-data
-                              #:get-current-user-data-request
-                              #:get-current-user-data-response
+                              #:get-attached-file #:get-contact-attributes
+                              #:get-current-metric-data #:get-current-user-data
                               #:get-effective-hours-of-operations
-                              #:get-effective-hours-of-operations-request
-                              #:get-effective-hours-of-operations-response
-                              #:get-federation-token
-                              #:get-federation-token-request
-                              #:get-federation-token-response
-                              #:get-flow-association
-                              #:get-flow-association-request
-                              #:get-flow-association-response #:get-metric-data
-                              #:get-metric-data-request
-                              #:get-metric-data-response #:get-metric-data-v2
-                              #:get-metric-data-v2request
-                              #:get-metric-data-v2response #:get-prompt-file
-                              #:get-prompt-file-request
-                              #:get-prompt-file-response #:get-task-template
-                              #:get-task-template-request
-                              #:get-task-template-response
+                              #:get-federation-token #:get-flow-association
+                              #:get-metric-data #:get-metric-data-v2
+                              #:get-prompt-file #:get-task-template
                               #:get-traffic-distribution
-                              #:get-traffic-distribution-request
-                              #:get-traffic-distribution-response
                               #:global-sign-in-endpoint #:grouping
                               #:grouping-v2 #:groupings #:groupings-v2
                               #:hierarchy-group #:hierarchy-group-condition
@@ -604,9 +383,7 @@
                               #:hours-of-operation-summary
                               #:hours-of-operation-summary-list
                               #:hours-of-operation-time-slice #:iso8601datetime
-                              #:idempotency-exception #:import-phone-number
-                              #:import-phone-number-request
-                              #:import-phone-number-response
+                              #:import-phone-number
                               #:inbound-additional-recipients
                               #:inbound-calls-enabled #:inbound-email-content
                               #:inbound-message-source-type
@@ -626,12 +403,8 @@
                               #:integration-association-id
                               #:integration-association-summary
                               #:integration-association-summary-list
-                              #:integration-type #:internal-service-exception
-                              #:interval-details #:interval-period
-                              #:invalid-contact-flow-exception
-                              #:invalid-contact-flow-module-exception
-                              #:invalid-parameter-exception
-                              #:invalid-request-exception
+                              #:integration-type #:interval-details
+                              #:interval-period
                               #:invalid-request-exception-reason
                               #:invisible-field-info
                               #:invisible-task-template-fields #:ip-cidr
@@ -641,147 +414,53 @@
                               #:kinesis-video-stream-config #:large-next-token
                               #:lex-bot #:lex-bot-config #:lex-bot-config-list
                               #:lex-bots-list #:lex-region #:lex-v2bot
-                              #:lex-version #:limit-exceeded-exception
-                              #:list-agent-status-request
-                              #:list-agent-status-response
-                              #:list-agent-statuses
+                              #:lex-version #:list-agent-statuses
                               #:list-analytics-data-associations
-                              #:list-analytics-data-associations-request
-                              #:list-analytics-data-associations-response
                               #:list-analytics-data-lake-data-sets
-                              #:list-analytics-data-lake-data-sets-request
-                              #:list-analytics-data-lake-data-sets-response
                               #:list-approved-origins
-                              #:list-approved-origins-request
-                              #:list-approved-origins-response
                               #:list-associated-contacts
-                              #:list-associated-contacts-request
                               #:list-associated-contacts-request-max-results
-                              #:list-associated-contacts-response
-                              #:list-authentication-profiles
-                              #:list-authentication-profiles-request
-                              #:list-authentication-profiles-response
-                              #:list-bots #:list-bots-request
-                              #:list-bots-response #:list-condition
-                              #:list-contact-evaluations
-                              #:list-contact-evaluations-request
-                              #:list-contact-evaluations-response
+                              #:list-authentication-profiles #:list-bots
+                              #:list-condition #:list-contact-evaluations
                               #:list-contact-flow-modules
-                              #:list-contact-flow-modules-request
-                              #:list-contact-flow-modules-response
-                              #:list-contact-flow-versions
-                              #:list-contact-flow-versions-request
-                              #:list-contact-flow-versions-response
-                              #:list-contact-flows #:list-contact-flows-request
-                              #:list-contact-flows-response
+                              #:list-contact-flow-versions #:list-contact-flows
                               #:list-contact-references
-                              #:list-contact-references-request
-                              #:list-contact-references-response
                               #:list-default-vocabularies
-                              #:list-default-vocabularies-request
-                              #:list-default-vocabularies-response
                               #:list-evaluation-form-versions
-                              #:list-evaluation-form-versions-request
-                              #:list-evaluation-form-versions-response
                               #:list-evaluation-forms
-                              #:list-evaluation-forms-request
-                              #:list-evaluation-forms-response
                               #:list-flow-association-resource-type
                               #:list-flow-associations
-                              #:list-flow-associations-request
-                              #:list-flow-associations-response
                               #:list-hours-of-operation-overrides
-                              #:list-hours-of-operation-overrides-request
-                              #:list-hours-of-operation-overrides-response
                               #:list-hours-of-operations
-                              #:list-hours-of-operations-request
-                              #:list-hours-of-operations-response
                               #:list-instance-attributes
-                              #:list-instance-attributes-request
-                              #:list-instance-attributes-response
-                              #:list-instance-storage-configs
-                              #:list-instance-storage-configs-request
-                              #:list-instance-storage-configs-response
-                              #:list-instances #:list-instances-request
-                              #:list-instances-response
+                              #:list-instance-storage-configs #:list-instances
                               #:list-integration-associations
-                              #:list-integration-associations-request
-                              #:list-integration-associations-response
-                              #:list-lambda-functions
-                              #:list-lambda-functions-request
-                              #:list-lambda-functions-response #:list-lex-bots
-                              #:list-lex-bots-request #:list-lex-bots-response
-                              #:list-phone-numbers #:list-phone-numbers-request
-                              #:list-phone-numbers-response
-                              #:list-phone-numbers-summary
+                              #:list-lambda-functions #:list-lex-bots
+                              #:list-phone-numbers #:list-phone-numbers-summary
                               #:list-phone-numbers-summary-list
                               #:list-phone-numbers-v2
-                              #:list-phone-numbers-v2request
-                              #:list-phone-numbers-v2response
-                              #:list-predefined-attributes
-                              #:list-predefined-attributes-request
-                              #:list-predefined-attributes-response
-                              #:list-prompts #:list-prompts-request
-                              #:list-prompts-response
-                              #:list-queue-quick-connects
-                              #:list-queue-quick-connects-request
-                              #:list-queue-quick-connects-response
-                              #:list-queues #:list-queues-request
-                              #:list-queues-response #:list-quick-connects
-                              #:list-quick-connects-request
-                              #:list-quick-connects-response
+                              #:list-predefined-attributes #:list-prompts
+                              #:list-queue-quick-connects #:list-queues
+                              #:list-quick-connects
                               #:list-realtime-contact-analysis-segments-v2
-                              #:list-realtime-contact-analysis-segments-v2request
-                              #:list-realtime-contact-analysis-segments-v2response
                               #:list-routing-profile-queues
-                              #:list-routing-profile-queues-request
-                              #:list-routing-profile-queues-response
-                              #:list-routing-profiles
-                              #:list-routing-profiles-request
-                              #:list-routing-profiles-response #:list-rules
-                              #:list-rules-request #:list-rules-response
-                              #:list-security-keys #:list-security-keys-request
-                              #:list-security-keys-response
+                              #:list-routing-profiles #:list-rules
+                              #:list-security-keys
                               #:list-security-profile-applications
-                              #:list-security-profile-applications-request
-                              #:list-security-profile-applications-response
                               #:list-security-profile-permissions
-                              #:list-security-profile-permissions-request
-                              #:list-security-profile-permissions-response
-                              #:list-security-profiles
-                              #:list-security-profiles-request
-                              #:list-security-profiles-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-security-profiles #:list-tags-for-resource
                               #:list-task-templates
-                              #:list-task-templates-request
-                              #:list-task-templates-response
                               #:list-traffic-distribution-group-users
-                              #:list-traffic-distribution-group-users-request
-                              #:list-traffic-distribution-group-users-response
                               #:list-traffic-distribution-groups
-                              #:list-traffic-distribution-groups-request
-                              #:list-traffic-distribution-groups-response
-                              #:list-use-cases #:list-use-cases-request
-                              #:list-use-cases-response
-                              #:list-user-hierarchy-groups
-                              #:list-user-hierarchy-groups-request
-                              #:list-user-hierarchy-groups-response
-                              #:list-user-proficiencies
-                              #:list-user-proficiencies-request
-                              #:list-user-proficiencies-response #:list-users
-                              #:list-users-request #:list-users-response
-                              #:list-view-versions #:list-view-versions-request
-                              #:list-view-versions-response #:list-views
-                              #:list-views-request #:list-views-response #:long
+                              #:list-use-cases #:list-user-hierarchy-groups
+                              #:list-user-proficiencies #:list-users
+                              #:list-view-versions #:list-views #:long
                               #:match-criteria #:max-result10 #:max-result100
                               #:max-result1000 #:max-result2 #:max-result200
                               #:max-result25 #:max-result500 #:max-result7
-                              #:max-results #:maximum-result-returned-exception
-                              #:media-concurrencies #:media-concurrency
-                              #:media-placement #:media-region
-                              #:media-stream-type #:meeting
+                              #:max-results #:media-concurrencies
+                              #:media-concurrency #:media-placement
+                              #:media-region #:media-stream-type #:meeting
                               #:meeting-feature-status
                               #:meeting-features-configuration #:meeting-id
                               #:message #:message-template-id
@@ -793,11 +472,10 @@
                               #:metric-name-v2 #:metric-result-v2
                               #:metric-results-v2 #:metric-v2 #:metrics-v2
                               #:minutes-limit60 #:monitor-capability
-                              #:monitor-contact #:monitor-contact-request
-                              #:monitor-contact-response #:name #:name128
-                              #:namespace #:new-chat-created
-                              #:new-session-details #:next-token
-                              #:next-token2500 #:notification-content-type
+                              #:monitor-contact #:name #:name128 #:namespace
+                              #:new-chat-created #:new-session-details
+                              #:next-token #:next-token2500
+                              #:notification-content-type
                               #:notification-delivery-type
                               #:notification-recipient-type #:nullable-boolean
                               #:nullable-proficiency-level
@@ -811,13 +489,11 @@
                               #:outbound-additional-recipients
                               #:outbound-caller-config
                               #:outbound-caller-id-name
-                              #:outbound-calls-enabled
-                              #:outbound-contact-not-permitted-exception
-                              #:outbound-email-config #:outbound-email-content
+                              #:outbound-calls-enabled #:outbound-email-config
+                              #:outbound-email-content
                               #:outbound-message-source-type
                               #:outbound-raw-message #:outbound-request-id
-                              #:outbound-subject
-                              #:output-type-not-found-exception #:override-days
+                              #:outbound-subject #:override-days
                               #:override-time-slice #:pem
                               #:participant-capabilities #:participant-details
                               #:participant-details-to-add #:participant-id
@@ -830,7 +506,6 @@
                               #:participant-timer-value #:participant-token
                               #:participant-token-credentials
                               #:participant-type #:password #:pause-contact
-                              #:pause-contact-request #:pause-contact-response
                               #:percentage #:permission #:permissions-list
                               #:persistent-chat #:phone-number
                               #:phone-number-country-code
@@ -866,14 +541,12 @@
                               #:prompt-search-condition-list
                               #:prompt-search-criteria #:prompt-search-filter
                               #:prompt-summary #:prompt-summary-list
-                              #:property-validation-exception
                               #:property-validation-exception-property
                               #:property-validation-exception-property-list
                               #:property-validation-exception-reason
-                              #:put-user-status #:put-user-status-request
-                              #:put-user-status-response #:quality-metrics
-                              #:queue #:queue-description #:queue-id
-                              #:queue-id-list #:queue-info #:queue-info-input
+                              #:put-user-status #:quality-metrics #:queue
+                              #:queue-description #:queue-id #:queue-id-list
+                              #:queue-info #:queue-info-input
                               #:queue-max-contacts #:queue-name
                               #:queue-priority #:queue-quick-connect-config
                               #:queue-reference #:queue-search-condition-list
@@ -943,29 +616,18 @@
                               #:reference-types #:reference-value
                               #:refresh-token-duration #:region-name
                               #:registration-id #:rehydration-type
-                              #:release-phone-number
-                              #:release-phone-number-request
-                              #:replicate-instance #:replicate-instance-request
-                              #:replicate-instance-response
+                              #:release-phone-number #:replicate-instance
                               #:replication-configuration
                               #:replication-status-reason
                               #:replication-status-summary
                               #:replication-status-summary-list
                               #:request-identifier #:required-field-info
                               #:required-task-template-fields
-                              #:resource-arn-or-id
-                              #:resource-conflict-exception #:resource-id
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:resource-not-ready-exception
+                              #:resource-arn-or-id #:resource-id
                               #:resource-tags-search-criteria #:resource-type
                               #:resource-type-list #:resource-version
                               #:resume-contact #:resume-contact-recording
-                              #:resume-contact-recording-request
-                              #:resume-contact-recording-response
-                              #:resume-contact-request
-                              #:resume-contact-response #:routing-criteria
-                              #:routing-criteria-input
+                              #:routing-criteria #:routing-criteria-input
                               #:routing-criteria-input-step
                               #:routing-criteria-input-step-expiry
                               #:routing-criteria-input-steps
@@ -992,56 +654,21 @@
                               #:rule-summary-list #:rule-trigger-event-source
                               #:s3config #:s3uri #:screen-share-capability
                               #:search-agent-statuses
-                              #:search-agent-statuses-request
-                              #:search-agent-statuses-response
                               #:search-available-phone-numbers
-                              #:search-available-phone-numbers-request
-                              #:search-available-phone-numbers-response
                               #:search-contact-flow-modules
-                              #:search-contact-flow-modules-request
-                              #:search-contact-flow-modules-response
-                              #:search-contact-flows
-                              #:search-contact-flows-request
-                              #:search-contact-flows-response #:search-contacts
+                              #:search-contact-flows #:search-contacts
                               #:search-contacts-match-type
-                              #:search-contacts-request
-                              #:search-contacts-response
                               #:search-contacts-time-range
                               #:search-contacts-time-range-type
                               #:search-criteria #:search-email-addresses
-                              #:search-email-addresses-request
-                              #:search-email-addresses-response
                               #:search-hours-of-operation-overrides
-                              #:search-hours-of-operation-overrides-request
-                              #:search-hours-of-operation-overrides-response
                               #:search-hours-of-operations
-                              #:search-hours-of-operations-request
-                              #:search-hours-of-operations-response
-                              #:search-predefined-attributes
-                              #:search-predefined-attributes-request
-                              #:search-predefined-attributes-response
-                              #:search-prompts #:search-prompts-request
-                              #:search-prompts-response #:search-queues
-                              #:search-queues-request #:search-queues-response
-                              #:search-quick-connects
-                              #:search-quick-connects-request
-                              #:search-quick-connects-response
-                              #:search-resource-tags
-                              #:search-resource-tags-request
-                              #:search-resource-tags-response
-                              #:search-routing-profiles
-                              #:search-routing-profiles-request
-                              #:search-routing-profiles-response
-                              #:search-security-profiles
-                              #:search-security-profiles-request
-                              #:search-security-profiles-response #:search-text
+                              #:search-predefined-attributes #:search-prompts
+                              #:search-queues #:search-quick-connects
+                              #:search-resource-tags #:search-routing-profiles
+                              #:search-security-profiles #:search-text
                               #:search-text-list #:search-user-hierarchy-groups
-                              #:search-user-hierarchy-groups-request
-                              #:search-user-hierarchy-groups-response
-                              #:search-users #:search-users-request
-                              #:search-users-response #:search-vocabularies
-                              #:search-vocabularies-request
-                              #:search-vocabularies-response
+                              #:search-users #:search-vocabularies
                               #:searchable-contact-attribute-key
                               #:searchable-contact-attribute-value
                               #:searchable-contact-attribute-value-list
@@ -1076,13 +703,8 @@
                               #:segment-attribute-value-string
                               #:segment-attributes
                               #:send-chat-integration-event
-                              #:send-chat-integration-event-request
-                              #:send-chat-integration-event-response
                               #:send-notification-action-definition
                               #:send-outbound-email
-                              #:send-outbound-email-request
-                              #:send-outbound-email-response
-                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason
                               #:sign-in-config #:sign-in-distribution
                               #:sign-in-distribution-list
@@ -1095,67 +717,30 @@
                               #:sla-type #:snapshot-version #:sort #:sort-order
                               #:sortable-field-name #:source-application-name
                               #:source-campaign #:source-id #:source-type
-                              #:start-attached-file-upload
-                              #:start-attached-file-upload-request
-                              #:start-attached-file-upload-response
-                              #:start-chat-contact #:start-chat-contact-request
-                              #:start-chat-contact-response
+                              #:start-attached-file-upload #:start-chat-contact
                               #:start-contact-evaluation
-                              #:start-contact-evaluation-request
-                              #:start-contact-evaluation-response
                               #:start-contact-recording
-                              #:start-contact-recording-request
-                              #:start-contact-recording-response
-                              #:start-contact-streaming
-                              #:start-contact-streaming-request
-                              #:start-contact-streaming-response
-                              #:start-email-contact
-                              #:start-email-contact-request
-                              #:start-email-contact-response
+                              #:start-contact-streaming #:start-email-contact
                               #:start-outbound-chat-contact
-                              #:start-outbound-chat-contact-request
-                              #:start-outbound-chat-contact-response
                               #:start-outbound-email-contact
-                              #:start-outbound-email-contact-request
-                              #:start-outbound-email-contact-response
                               #:start-outbound-voice-contact
-                              #:start-outbound-voice-contact-request
-                              #:start-outbound-voice-contact-response
-                              #:start-screen-sharing
-                              #:start-screen-sharing-request
-                              #:start-screen-sharing-response
-                              #:start-task-contact #:start-task-contact-request
-                              #:start-task-contact-response
-                              #:start-web-rtccontact
-                              #:start-web-rtccontact-request
-                              #:start-web-rtccontact-response
-                              #:state-transition #:state-transitions
-                              #:statistic #:status #:step #:steps
-                              #:stop-contact #:stop-contact-recording
-                              #:stop-contact-recording-request
-                              #:stop-contact-recording-response
-                              #:stop-contact-request #:stop-contact-response
-                              #:stop-contact-streaming
-                              #:stop-contact-streaming-request
-                              #:stop-contact-streaming-response #:storage-type
+                              #:start-screen-sharing #:start-task-contact
+                              #:start-web-rtccontact #:state-transition
+                              #:state-transitions #:statistic #:status #:step
+                              #:steps #:stop-contact #:stop-contact-recording
+                              #:stop-contact-streaming #:storage-type
                               #:streaming-id #:string #:string-comparison-type
                               #:string-condition #:string-reference #:subject
                               #:submit-auto-evaluation-action-definition
-                              #:submit-contact-evaluation
-                              #:submit-contact-evaluation-request
-                              #:submit-contact-evaluation-response #:subtype
+                              #:submit-contact-evaluation #:subtype
                               #:successful-request #:successful-request-list
                               #:supported-messaging-content-type
                               #:supported-messaging-content-types
                               #:suspend-contact-recording
-                              #:suspend-contact-recording-request
-                              #:suspend-contact-recording-response
                               #:tag-and-condition-list #:tag-condition
-                              #:tag-contact #:tag-contact-request
-                              #:tag-contact-response #:tag-key #:tag-key-list
+                              #:tag-contact #:tag-key #:tag-key-list
                               #:tag-key-string #:tag-map
                               #:tag-or-condition-list #:tag-resource
-                              #:tag-resource-request
                               #:tag-restricted-resource-list
                               #:tag-restricted-resource-name
                               #:tag-search-condition #:tag-set #:tag-value
@@ -1181,9 +766,8 @@
                               #:template-attributes #:template-id
                               #:templated-message-config #:threshold
                               #:threshold-collections #:threshold-v2
-                              #:threshold-value #:throttling-exception
-                              #:time-zone #:timer-eligible-participant-roles
-                              #:timestamp #:too-many-requests-exception
+                              #:threshold-value #:time-zone
+                              #:timer-eligible-participant-roles #:timestamp
                               #:total-count #:total-pause-count
                               #:total-pause-duration-in-seconds
                               #:traffic-distribution-group
@@ -1197,134 +781,58 @@
                               #:traffic-distribution-group-user-summary-list
                               #:traffic-type #:transcript #:transcript-criteria
                               #:transcript-criteria-list #:transfer-contact
-                              #:transfer-contact-request
-                              #:transfer-contact-response #:uri
-                              #:urlexpiry-in-seconds #:unit #:untag-contact
-                              #:untag-contact-request #:untag-contact-response
-                              #:untag-resource #:untag-resource-request
+                              #:uri #:urlexpiry-in-seconds #:unit
+                              #:untag-contact #:untag-resource
                               #:update-agent-status
                               #:update-agent-status-description
-                              #:update-agent-status-request
                               #:update-authentication-profile
-                              #:update-authentication-profile-request
                               #:update-case-action-definition #:update-contact
                               #:update-contact-attributes
-                              #:update-contact-attributes-request
-                              #:update-contact-attributes-response
                               #:update-contact-evaluation
-                              #:update-contact-evaluation-request
-                              #:update-contact-evaluation-response
                               #:update-contact-flow-content
-                              #:update-contact-flow-content-request
-                              #:update-contact-flow-content-response
                               #:update-contact-flow-metadata
-                              #:update-contact-flow-metadata-request
-                              #:update-contact-flow-metadata-response
                               #:update-contact-flow-module-content
-                              #:update-contact-flow-module-content-request
-                              #:update-contact-flow-module-content-response
                               #:update-contact-flow-module-metadata
-                              #:update-contact-flow-module-metadata-request
-                              #:update-contact-flow-module-metadata-response
                               #:update-contact-flow-name
-                              #:update-contact-flow-name-request
-                              #:update-contact-flow-name-response
-                              #:update-contact-request
-                              #:update-contact-response
                               #:update-contact-routing-data
-                              #:update-contact-routing-data-request
-                              #:update-contact-routing-data-response
                               #:update-contact-schedule
-                              #:update-contact-schedule-request
-                              #:update-contact-schedule-response
                               #:update-email-address-metadata
-                              #:update-email-address-metadata-request
-                              #:update-email-address-metadata-response
                               #:update-evaluation-form
-                              #:update-evaluation-form-request
-                              #:update-evaluation-form-response
                               #:update-hours-of-operation
                               #:update-hours-of-operation-description
                               #:update-hours-of-operation-override
-                              #:update-hours-of-operation-override-request
-                              #:update-hours-of-operation-request
                               #:update-instance-attribute
-                              #:update-instance-attribute-request
                               #:update-instance-storage-config
-                              #:update-instance-storage-config-request
                               #:update-participant-authentication
-                              #:update-participant-authentication-request
-                              #:update-participant-authentication-response
                               #:update-participant-role-config
                               #:update-participant-role-config-channel-info
-                              #:update-participant-role-config-request
-                              #:update-participant-role-config-response
                               #:update-phone-number
                               #:update-phone-number-metadata
-                              #:update-phone-number-metadata-request
-                              #:update-phone-number-request
-                              #:update-phone-number-response
-                              #:update-predefined-attribute
-                              #:update-predefined-attribute-request
-                              #:update-prompt #:update-prompt-request
-                              #:update-prompt-response
+                              #:update-predefined-attribute #:update-prompt
                               #:update-queue-hours-of-operation
-                              #:update-queue-hours-of-operation-request
-                              #:update-queue-max-contacts
-                              #:update-queue-max-contacts-request
-                              #:update-queue-name #:update-queue-name-request
+                              #:update-queue-max-contacts #:update-queue-name
                               #:update-queue-outbound-caller-config
-                              #:update-queue-outbound-caller-config-request
                               #:update-queue-outbound-email-config
-                              #:update-queue-outbound-email-config-request
                               #:update-queue-status
-                              #:update-queue-status-request
                               #:update-quick-connect-config
-                              #:update-quick-connect-config-request
                               #:update-quick-connect-description
                               #:update-quick-connect-name
-                              #:update-quick-connect-name-request
                               #:update-routing-profile-agent-availability-timer
-                              #:update-routing-profile-agent-availability-timer-request
                               #:update-routing-profile-concurrency
-                              #:update-routing-profile-concurrency-request
                               #:update-routing-profile-default-outbound-queue
-                              #:update-routing-profile-default-outbound-queue-request
                               #:update-routing-profile-name
-                              #:update-routing-profile-name-request
-                              #:update-routing-profile-queues
-                              #:update-routing-profile-queues-request
-                              #:update-rule #:update-rule-request
-                              #:update-security-profile
-                              #:update-security-profile-request
-                              #:update-task-template
-                              #:update-task-template-request
-                              #:update-task-template-response
+                              #:update-routing-profile-queues #:update-rule
+                              #:update-security-profile #:update-task-template
                               #:update-traffic-distribution
-                              #:update-traffic-distribution-request
-                              #:update-traffic-distribution-response
                               #:update-user-hierarchy
                               #:update-user-hierarchy-group-name
-                              #:update-user-hierarchy-group-name-request
-                              #:update-user-hierarchy-request
                               #:update-user-hierarchy-structure
-                              #:update-user-hierarchy-structure-request
                               #:update-user-identity-info
-                              #:update-user-identity-info-request
                               #:update-user-phone-config
-                              #:update-user-phone-config-request
                               #:update-user-proficiencies
-                              #:update-user-proficiencies-request
                               #:update-user-routing-profile
-                              #:update-user-routing-profile-request
                               #:update-user-security-profiles
-                              #:update-user-security-profiles-request
-                              #:update-view-content
-                              #:update-view-content-request
-                              #:update-view-content-response
-                              #:update-view-metadata
-                              #:update-view-metadata-request
-                              #:update-view-metadata-response
+                              #:update-view-content #:update-view-metadata
                               #:upload-url-metadata #:url
                               #:url-metadata-signed-headers
                               #:url-metadata-signed-headers-key
@@ -1339,8 +847,7 @@
                               #:user-hierarchy-group-search-filter #:user-id
                               #:user-id-list #:user-identity-info
                               #:user-identity-info-lite #:user-info
-                              #:user-not-found-exception #:user-phone-config
-                              #:user-proficiency
+                              #:user-phone-config #:user-proficiency
                               #:user-proficiency-disassociate
                               #:user-proficiency-disassociate-list
                               #:user-proficiency-list

@@ -2,10 +2,7 @@
                              (:export
                               #:awsbilling-and-cost-management-data-exports
                               #:arn #:column #:column-list #:compression-option
-                              #:create-export #:create-export-request
-                              #:create-export-response #:data-query
-                              #:delete-export #:delete-export-request
-                              #:delete-export-response
+                              #:create-export #:data-query #:delete-export
                               #:destination-configurations
                               #:execution-reference #:execution-reference-list
                               #:execution-status #:execution-status-code
@@ -14,36 +11,20 @@
                               #:export-status #:export-status-code
                               #:format-option #:frequency-option
                               #:generic-string #:generic-string-list
-                              #:get-execution #:get-execution-request
-                              #:get-execution-response #:get-export
-                              #:get-export-request #:get-export-response
-                              #:get-table #:get-table-request
-                              #:get-table-response #:internal-server-exception
-                              #:list-executions #:list-executions-request
-                              #:list-executions-response #:list-exports
-                              #:list-exports-request #:list-exports-response
-                              #:list-tables #:list-tables-request
-                              #:list-tables-response #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:get-execution #:get-export #:get-table
+                              #:list-executions #:list-exports #:list-tables
+                              #:list-tags-for-resource #:max-results
                               #:next-page-token #:overwrite-option
                               #:query-statement #:refresh-cadence
-                              #:resource-not-found-exception #:resource-tag
-                              #:resource-tag-key #:resource-tag-key-list
-                              #:resource-tag-list #:resource-tag-value
-                              #:s3destination #:s3output-configurations
-                              #:s3output-type
-                              #:service-quota-exceeded-exception #:table
+                              #:resource-tag #:resource-tag-key
+                              #:resource-tag-key-list #:resource-tag-list
+                              #:resource-tag-value #:s3destination
+                              #:s3output-configurations #:s3output-type #:table
                               #:table-configurations #:table-list #:table-name
                               #:table-properties #:table-property
                               #:table-property-description
                               #:table-property-description-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-export
-                              #:update-export-request #:update-export-response
-                              #:validation-exception
+                              #:untag-resource #:update-export
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

@@ -1,9 +1,7 @@
 (uiop/package:define-package #:pira/codeguru-reviewer (:use)
                              (:export #:awsguru-frontend-service
-                              #:access-denied-exception #:analysis-type
-                              #:analysis-types #:arn #:associate-repository
-                              #:associate-repository-request
-                              #:associate-repository-response #:association-arn
+                              #:analysis-type #:analysis-types #:arn
+                              #:associate-repository #:association-arn
                               #:association-id #:branch-diff-source-code-type
                               #:branch-name #:build-artifacts-object-key
                               #:client-request-token #:code-artifacts
@@ -11,52 +9,27 @@
                               #:code-review-name #:code-review-summaries
                               #:code-review-summary #:code-review-type
                               #:commit-diff-source-code-type #:commit-id
-                              #:config-file-state #:conflict-exception
-                              #:connection-arn #:create-code-review
-                              #:create-code-review-request
-                              #:create-code-review-response
-                              #:describe-code-review
-                              #:describe-code-review-request
-                              #:describe-code-review-response
+                              #:config-file-state #:connection-arn
+                              #:create-code-review #:describe-code-review
                               #:describe-recommendation-feedback
-                              #:describe-recommendation-feedback-request
-                              #:describe-recommendation-feedback-response
                               #:describe-repository-association
-                              #:describe-repository-association-request
-                              #:describe-repository-association-response
-                              #:disassociate-repository
-                              #:disassociate-repository-request
-                              #:disassociate-repository-response
-                              #:encryption-option #:error-message #:event-info
-                              #:event-name #:event-state #:file-path
-                              #:findings-count #:internal-server-exception
+                              #:disassociate-repository #:encryption-option
+                              #:error-message #:event-info #:event-name
+                              #:event-state #:file-path #:findings-count
                               #:job-state #:job-states #:kmskey-details
                               #:kmskey-id #:line-number #:lines-of-code-count
                               #:list-code-reviews
                               #:list-code-reviews-max-results
-                              #:list-code-reviews-request
-                              #:list-code-reviews-response
                               #:list-recommendation-feedback
-                              #:list-recommendation-feedback-request
-                              #:list-recommendation-feedback-response
                               #:list-recommendations
                               #:list-recommendations-max-results
-                              #:list-recommendations-request
-                              #:list-recommendations-response
                               #:list-repository-associations
-                              #:list-repository-associations-request
-                              #:list-repository-associations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:long-description #:max-results #:metrics
-                              #:metrics-summary #:name #:names #:next-token
-                              #:not-found-exception #:owner #:owners
+                              #:list-tags-for-resource #:long-description
+                              #:max-results #:metrics #:metrics-summary #:name
+                              #:names #:next-token #:owner #:owners
                               #:provider-type #:provider-types
                               #:pull-request-id #:put-recommendation-feedback
-                              #:put-recommendation-feedback-request
-                              #:put-recommendation-feedback-response #:reaction
-                              #:reactions #:recommendation-category
+                              #:reaction #:reactions #:recommendation-category
                               #:recommendation-feedback
                               #:recommendation-feedback-summaries
                               #:recommendation-feedback-summary
@@ -70,8 +43,7 @@
                               #:repository-association-summary
                               #:repository-head-source-code-type
                               #:repository-names #:request-id
-                              #:request-metadata #:requester
-                              #:resource-not-found-exception #:rule-id
+                              #:request-metadata #:requester #:rule-id
                               #:rule-metadata #:rule-name #:rule-tag
                               #:rule-tags #:s3bucket-name #:s3bucket-repository
                               #:s3repository #:s3repository-details #:severity
@@ -79,13 +51,10 @@
                               #:source-code-artifacts-object-key
                               #:source-code-type #:state-reason #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:text
-                              #:third-party-source-repository
-                              #:throttling-exception #:time-stamp #:type
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:user-id #:user-ids
-                              #:validation-exception #:vendor-name))
+                              #:third-party-source-repository #:time-stamp
+                              #:type #:untag-resource #:user-id #:user-ids
+                              #:vendor-name))
 (common-lisp:in-package #:pira/codeguru-reviewer)
 
 (smithy/sdk/service:define-service awsguru-frontend-service :shape-name

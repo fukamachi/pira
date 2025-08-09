@@ -1,32 +1,18 @@
 (uiop/package:define-package #:pira/pricing (:use)
                              (:export #:awsprice-list-service
-                              #:access-denied-exception #:attribute-name-list
-                              #:attribute-value #:attribute-value-list
-                              #:boxed-integer #:currency-code
-                              #:describe-services #:describe-services-request
-                              #:describe-services-response #:effective-date
-                              #:expired-next-token-exception #:field
-                              #:file-format #:file-formats #:filter
-                              #:filter-type #:filters #:format-version
-                              #:get-attribute-values
-                              #:get-attribute-values-request
-                              #:get-attribute-values-response
-                              #:get-price-list-file-url
-                              #:get-price-list-file-url-request
-                              #:get-price-list-file-url-response #:get-products
-                              #:get-products-request #:get-products-response
-                              #:internal-error-exception
-                              #:invalid-next-token-exception
-                              #:invalid-parameter-exception #:list-price-lists
-                              #:list-price-lists-request
-                              #:list-price-lists-response #:max-results
-                              #:not-found-exception #:price-list
+                              #:attribute-name-list #:attribute-value
+                              #:attribute-value-list #:boxed-integer
+                              #:currency-code #:describe-services
+                              #:effective-date #:field #:file-format
+                              #:file-formats #:filter #:filter-type #:filters
+                              #:format-version #:get-attribute-values
+                              #:get-price-list-file-url #:get-products
+                              #:list-price-lists #:max-results #:price-list
                               #:price-list-arn #:price-list-json-items
-                              #:price-lists #:region-code
-                              #:resource-not-found-exception #:service
+                              #:price-lists #:region-code #:service
                               #:service-code #:service-list #:string
-                              #:synthesized-json-price-list-json-item
-                              #:throttling-exception #:value #:error-message))
+                              #:synthesized-json-price-list-json-item #:value
+                              #:error-message))
 (common-lisp:in-package #:pira/pricing)
 
 (smithy/sdk/service:define-service awsprice-list-service :shape-name

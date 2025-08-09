@@ -1,15 +1,12 @@
 (uiop/package:define-package #:pira/rolesanywhere (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-resource-name #:attribute-mapping
-                              #:attribute-mappings #:certificate-field
-                              #:create-profile #:create-profile-request
-                              #:create-trust-anchor
+                             (:export #:amazon-resource-name
+                              #:attribute-mapping #:attribute-mappings
+                              #:certificate-field #:create-profile
+                              #:create-profile-request #:create-trust-anchor
                               #:create-trust-anchor-request
                               #:credential-summaries #:credential-summary #:crl
                               #:crl-detail #:crl-detail-response #:crl-details
-                              #:delete-attribute-mapping
-                              #:delete-attribute-mapping-request
-                              #:delete-attribute-mapping-response #:delete-crl
+                              #:delete-attribute-mapping #:delete-crl
                               #:delete-profile #:delete-trust-anchor
                               #:disable-crl #:disable-profile
                               #:disable-trust-anchor #:enable-crl
@@ -36,15 +33,8 @@
                               #:notification-settings #:profile #:profile-arn
                               #:profile-detail #:profile-detail-response
                               #:profile-details #:put-attribute-mapping
-                              #:put-attribute-mapping-request
-                              #:put-attribute-mapping-response
                               #:put-notification-settings
-                              #:put-notification-settings-request
-                              #:put-notification-settings-response
-                              #:reset-notification-settings
-                              #:reset-notification-settings-request
-                              #:reset-notification-settings-response
-                              #:resource-name #:resource-not-found-exception
+                              #:reset-notification-settings #:resource-name
                               #:role-arn #:role-arn-list #:roles-anywhere
                               #:scalar-crl-request #:scalar-profile-request
                               #:scalar-subject-request
@@ -55,16 +45,15 @@
                               #:tag-key #:tag-key-list #:tag-list
                               #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tag-value
-                              #:too-many-tags-exception #:trust-anchor
-                              #:trust-anchor-arn #:trust-anchor-detail
+                              #:trust-anchor #:trust-anchor-arn
+                              #:trust-anchor-detail
                               #:trust-anchor-detail-response
                               #:trust-anchor-details #:trust-anchor-type
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-crl
                               #:update-crl-request #:update-profile
                               #:update-profile-request #:update-trust-anchor
-                              #:update-trust-anchor-request #:uuid
-                              #:validation-exception))
+                              #:update-trust-anchor-request #:uuid))
 (common-lisp:in-package #:pira/rolesanywhere)
 
 (smithy/sdk/service:define-service roles-anywhere :shape-name "RolesAnywhere"

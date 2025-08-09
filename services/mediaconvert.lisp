@@ -19,10 +19,7 @@
                               #:alpha-behavior #:ancillary-convert608to708
                               #:ancillary-source-settings
                               #:ancillary-terminate-captions #:anti-alias
-                              #:associate-certificate
-                              #:associate-certificate-request
-                              #:associate-certificate-response
-                              #:audio-channel-tag
+                              #:associate-certificate #:audio-channel-tag
                               #:audio-channel-tagging-settings #:audio-codec
                               #:audio-codec-settings #:audio-default-selection
                               #:audio-description #:audio-duration-correction
@@ -49,7 +46,7 @@
                               #:avc-intra-settings #:avc-intra-slow-pal
                               #:avc-intra-telecine
                               #:avc-intra-uhd-quality-tuning-level
-                              #:avc-intra-uhd-settings #:bad-request-exception
+                              #:avc-intra-uhd-settings
                               #:bandwidth-reduction-filter
                               #:bandwidth-reduction-filter-sharpening
                               #:bandwidth-reduction-filter-strength
@@ -64,7 +61,6 @@
                               #:burnin-subtitle-outline-color
                               #:burnin-subtitle-shadow-color
                               #:burnin-subtitle-teletext-spacing #:cancel-job
-                              #:cancel-job-request #:cancel-job-response
                               #:caption-description
                               #:caption-description-preset
                               #:caption-destination-settings
@@ -106,16 +102,10 @@
                               #:color-conversion3dlutsetting #:color-corrector
                               #:color-metadata #:color-primaries #:color-space
                               #:color-space-conversion #:color-space-usage
-                              #:commitment #:conflict-exception #:container
-                              #:container-settings #:container-type
-                              #:copy-protection-action #:create-job
-                              #:create-job-request #:create-job-response
-                              #:create-job-template
-                              #:create-job-template-request
-                              #:create-job-template-response #:create-preset
-                              #:create-preset-request #:create-preset-response
-                              #:create-queue #:create-queue-request
-                              #:create-queue-response
+                              #:commitment #:container #:container-settings
+                              #:container-type #:copy-protection-action
+                              #:create-job #:create-job-template
+                              #:create-preset #:create-queue
                               #:dash-additional-manifest
                               #:dash-iso-encryption-settings
                               #:dash-iso-group-audio-channel-config-scheme-id-uri
@@ -136,18 +126,9 @@
                               #:decryption-mode #:deinterlace-algorithm
                               #:deinterlacer #:deinterlacer-control
                               #:deinterlacer-mode #:delete-job-template
-                              #:delete-job-template-request
-                              #:delete-job-template-response #:delete-policy
-                              #:delete-policy-request #:delete-policy-response
-                              #:delete-preset #:delete-preset-request
-                              #:delete-preset-response #:delete-queue
-                              #:delete-queue-request #:delete-queue-response
+                              #:delete-policy #:delete-preset #:delete-queue
                               #:describe-endpoints #:describe-endpoints-mode
-                              #:describe-endpoints-request
-                              #:describe-endpoints-response
                               #:destination-settings #:disassociate-certificate
-                              #:disassociate-certificate-request
-                              #:disassociate-certificate-response
                               #:dolby-vision #:dolby-vision-level6metadata
                               #:dolby-vision-level6mode #:dolby-vision-mapping
                               #:dolby-vision-profile #:drop-frame-timecode
@@ -198,18 +179,11 @@
                               #:file-source-convert608to708
                               #:file-source-settings
                               #:file-source-time-delta-units #:flac-settings
-                              #:font-script #:forbidden-exception
-                              #:force-include-rendition-size #:format
-                              #:frame-capture-settings #:frame-metric-type
-                              #:frame-rate #:get-job #:get-job-request
-                              #:get-job-response #:get-job-template
-                              #:get-job-template-request
-                              #:get-job-template-response #:get-policy
-                              #:get-policy-request #:get-policy-response
-                              #:get-preset #:get-preset-request
-                              #:get-preset-response #:get-queue
-                              #:get-queue-request #:get-queue-response
-                              #:gif-framerate-control
+                              #:font-script #:force-include-rendition-size
+                              #:format #:frame-capture-settings
+                              #:frame-metric-type #:frame-rate #:get-job
+                              #:get-job-template #:get-policy #:get-preset
+                              #:get-queue #:gif-framerate-control
                               #:gif-framerate-conversion-algorithm
                               #:gif-settings #:h264adaptive-quantization
                               #:h264codec-level #:h264codec-profile
@@ -292,26 +266,17 @@
                               #:input-sample-range #:input-scan-type
                               #:input-tams-settings #:input-template
                               #:input-timecode-source #:input-video-generator
-                              #:insertable-image
-                              #:internal-server-error-exception #:job
-                              #:job-engine-version #:job-messages #:job-phase
-                              #:job-settings #:job-status #:job-template
+                              #:insertable-image #:job #:job-engine-version
+                              #:job-messages #:job-phase #:job-settings
+                              #:job-status #:job-template
                               #:job-template-list-by #:job-template-settings
                               #:kantar-watermark-settings #:language-code
-                              #:list-job-templates #:list-job-templates-request
-                              #:list-job-templates-response #:list-jobs
-                              #:list-jobs-request #:list-jobs-response
-                              #:list-presets #:list-presets-request
-                              #:list-presets-response #:list-queues
-                              #:list-queues-request #:list-queues-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-versions
-                              #:list-versions-request #:list-versions-response
-                              #:m2ts-audio-buffer-model #:m2ts-audio-duration
-                              #:m2ts-buffer-model #:m2ts-data-pts-control
-                              #:m2ts-ebp-audio-interval #:m2ts-ebp-placement
-                              #:m2ts-es-rate-in-pes
+                              #:list-job-templates #:list-jobs #:list-presets
+                              #:list-queues #:list-tags-for-resource
+                              #:list-versions #:m2ts-audio-buffer-model
+                              #:m2ts-audio-duration #:m2ts-buffer-model
+                              #:m2ts-data-pts-control #:m2ts-ebp-audio-interval
+                              #:m2ts-ebp-placement #:m2ts-es-rate-in-pes
                               #:m2ts-force-ts-video-ebp-order
                               #:m2ts-klv-metadata #:m2ts-nielsen-id3
                               #:m2ts-pcr-control
@@ -377,8 +342,8 @@
                               #:noise-reducer-filter-settings
                               #:noise-reducer-spatial-filter-settings
                               #:noise-reducer-temporal-filter-settings
-                              #:not-found-exception #:opus-settings #:order
-                              #:output #:output-channel-mapping #:output-detail
+                              #:opus-settings #:order #:output
+                              #:output-channel-mapping #:output-detail
                               #:output-group #:output-group-detail
                               #:output-group-settings #:output-group-type
                               #:output-sdt #:output-settings #:pad-video
@@ -386,17 +351,15 @@
                               #:preset-list-by #:preset-settings
                               #:preset-speke20audio #:preset-speke20video
                               #:pricing-plan #:probe #:probe-input-file
-                              #:probe-request #:probe-response #:probe-result
-                              #:prores-chroma-sampling #:prores-codec-profile
-                              #:prores-framerate-control
+                              #:probe-result #:prores-chroma-sampling
+                              #:prores-codec-profile #:prores-framerate-control
                               #:prores-framerate-conversion-algorithm
                               #:prores-interlace-mode #:prores-par-control
                               #:prores-scan-type-conversion-mode
                               #:prores-settings #:prores-slow-pal
-                              #:prores-telecine #:put-policy
-                              #:put-policy-request #:put-policy-response
-                              #:queue #:queue-list-by #:queue-status
-                              #:queue-transition #:rectangle #:remix-settings
+                              #:prores-telecine #:put-policy #:queue
+                              #:queue-list-by #:queue-status #:queue-transition
+                              #:rectangle #:remix-settings
                               #:remove-ruby-reserve-attributes #:renewal-type
                               #:required-flag #:reservation-plan
                               #:reservation-plan-settings
@@ -409,21 +372,18 @@
                               #:sample-range-conversion #:scaling-behavior
                               #:scc-destination-framerate
                               #:scc-destination-settings #:search-jobs
-                              #:search-jobs-request #:search-jobs-response
                               #:service-override #:simulate-reserved-queue
                               #:speke-key-provider #:speke-key-provider-cmaf
                               #:srt-destination-settings
                               #:srt-style-passthrough #:static-key-provider
                               #:status-update-interval #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tams-gap-handling
                               #:teletext-destination-settings
                               #:teletext-page-type #:teletext-source-settings
                               #:timecode-burnin #:timecode-burnin-position
                               #:timecode-config #:timecode-source
                               #:timecode-track #:timed-metadata
-                              #:timed-metadata-insertion #:timing
-                              #:too-many-requests-exception #:track
+                              #:timed-metadata-insertion #:timing #:track
                               #:track-mapping #:track-source-settings
                               #:track-type #:transfer-characteristics
                               #:ts-pts-offset #:ttml-destination-settings
@@ -435,14 +395,8 @@
                               #:uncompressed-scan-type-conversion-mode
                               #:uncompressed-settings #:uncompressed-slow-pal
                               #:uncompressed-telecine #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-job-template
-                              #:update-job-template-request
-                              #:update-job-template-response #:update-preset
-                              #:update-preset-request #:update-preset-response
-                              #:update-queue #:update-queue-request
-                              #:update-queue-response #:vc3class
-                              #:vc3framerate-control
+                              #:update-job-template #:update-preset
+                              #:update-queue #:vc3class #:vc3framerate-control
                               #:vc3framerate-conversion-algorithm
                               #:vc3interlace-mode
                               #:vc3scan-type-conversion-mode #:vc3settings

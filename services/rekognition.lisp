@@ -1,8 +1,6 @@
 (uiop/package:define-package #:pira/rekognition (:use)
-                             (:export #:access-denied-exception #:age-range
-                              #:asset #:assets #:associate-faces
-                              #:associate-faces-request
-                              #:associate-faces-response #:associated-face
+                             (:export #:age-range #:asset #:assets
+                              #:associate-faces #:associated-face
                               #:associated-faces-list #:attribute #:attributes
                               #:audio-metadata #:audio-metadata-list
                               #:audit-image #:audit-images #:audit-images-limit
@@ -18,11 +16,10 @@
                               #:collection-id #:collection-id-list
                               #:compare-faces #:compare-faces-match
                               #:compare-faces-match-list
-                              #:compare-faces-request #:compare-faces-response
                               #:compare-faces-unmatch-list #:compared-face
                               #:compared-face-list #:compared-source-image-face
-                              #:conflict-exception #:connected-home-label
-                              #:connected-home-labels #:connected-home-settings
+                              #:connected-home-label #:connected-home-labels
+                              #:connected-home-settings
                               #:connected-home-settings-for-update
                               #:content-classifier #:content-classifiers
                               #:content-moderation-aggregate-by
@@ -30,26 +27,11 @@
                               #:content-moderation-detections
                               #:content-moderation-sort-by #:content-type
                               #:content-types #:copy-project-version
-                              #:copy-project-version-request
-                              #:copy-project-version-response
                               #:covers-body-part #:create-collection
-                              #:create-collection-request
-                              #:create-collection-response #:create-dataset
-                              #:create-dataset-request
-                              #:create-dataset-response
-                              #:create-face-liveness-session
-                              #:create-face-liveness-session-request
+                              #:create-dataset #:create-face-liveness-session
                               #:create-face-liveness-session-request-settings
-                              #:create-face-liveness-session-response
-                              #:create-project #:create-project-request
-                              #:create-project-response
-                              #:create-project-version
-                              #:create-project-version-request
-                              #:create-project-version-response
-                              #:create-stream-processor
-                              #:create-stream-processor-request
-                              #:create-stream-processor-response #:create-user
-                              #:create-user-request #:create-user-response
+                              #:create-project #:create-project-version
+                              #:create-stream-processor #:create-user
                               #:custom-label #:custom-labels
                               #:customization-feature
                               #:customization-feature-config
@@ -64,40 +46,13 @@
                               #:dataset-source #:dataset-stats #:dataset-status
                               #:dataset-status-message-code #:dataset-type
                               #:date-time #:degree #:delete-collection
-                              #:delete-collection-request
-                              #:delete-collection-response #:delete-dataset
-                              #:delete-dataset-request
-                              #:delete-dataset-response #:delete-faces
-                              #:delete-faces-request #:delete-faces-response
-                              #:delete-project #:delete-project-policy
-                              #:delete-project-policy-request
-                              #:delete-project-policy-response
-                              #:delete-project-request
-                              #:delete-project-response
-                              #:delete-project-version
-                              #:delete-project-version-request
-                              #:delete-project-version-response
-                              #:delete-stream-processor
-                              #:delete-stream-processor-request
-                              #:delete-stream-processor-response #:delete-user
-                              #:delete-user-request #:delete-user-response
-                              #:describe-collection
-                              #:describe-collection-request
-                              #:describe-collection-response #:describe-dataset
-                              #:describe-dataset-request
-                              #:describe-dataset-response
-                              #:describe-project-versions
-                              #:describe-project-versions-request
-                              #:describe-project-versions-response
-                              #:describe-projects #:describe-projects-request
-                              #:describe-projects-response
+                              #:delete-dataset #:delete-faces #:delete-project
+                              #:delete-project-policy #:delete-project-version
+                              #:delete-stream-processor #:delete-user
+                              #:describe-collection #:describe-dataset
+                              #:describe-project-versions #:describe-projects
                               #:describe-stream-processor
-                              #:describe-stream-processor-request
-                              #:describe-stream-processor-response
-                              #:detect-custom-labels
-                              #:detect-custom-labels-request
-                              #:detect-custom-labels-response #:detect-faces
-                              #:detect-faces-request #:detect-faces-response
+                              #:detect-custom-labels #:detect-faces
                               #:detect-labels #:detect-labels-feature-list
                               #:detect-labels-feature-name
                               #:detect-labels-image-background
@@ -106,23 +61,13 @@
                               #:detect-labels-image-properties-settings
                               #:detect-labels-image-quality
                               #:detect-labels-max-dominant-colors
-                              #:detect-labels-request #:detect-labels-response
                               #:detect-labels-settings
                               #:detect-moderation-labels
-                              #:detect-moderation-labels-request
-                              #:detect-moderation-labels-response
-                              #:detect-protective-equipment
-                              #:detect-protective-equipment-request
-                              #:detect-protective-equipment-response
-                              #:detect-text #:detect-text-filters
-                              #:detect-text-request #:detect-text-response
-                              #:detection-filter #:disassociate-faces
-                              #:disassociate-faces-request
-                              #:disassociate-faces-response
-                              #:disassociated-face #:disassociated-faces-list
-                              #:distribute-dataset #:distribute-dataset-entries
-                              #:distribute-dataset-entries-request
-                              #:distribute-dataset-entries-response
+                              #:detect-protective-equipment #:detect-text
+                              #:detect-text-filters #:detection-filter
+                              #:disassociate-faces #:disassociated-face
+                              #:disassociated-faces-list #:distribute-dataset
+                              #:distribute-dataset-entries
                               #:distribute-dataset-metadata-list
                               #:dominant-color #:dominant-colors #:emotion
                               #:emotion-name #:emotions #:equipment-detection
@@ -140,56 +85,25 @@
                               #:gender-type #:general-labels-filter-list
                               #:general-labels-filter-value
                               #:general-labels-settings #:geometry
-                              #:get-celebrity-info #:get-celebrity-info-request
-                              #:get-celebrity-info-response
-                              #:get-celebrity-recognition
-                              #:get-celebrity-recognition-request
-                              #:get-celebrity-recognition-response
+                              #:get-celebrity-info #:get-celebrity-recognition
                               #:get-content-moderation
-                              #:get-content-moderation-request
                               #:get-content-moderation-request-metadata
-                              #:get-content-moderation-response
-                              #:get-face-detection #:get-face-detection-request
-                              #:get-face-detection-response
+                              #:get-face-detection
                               #:get-face-liveness-session-results
-                              #:get-face-liveness-session-results-request
-                              #:get-face-liveness-session-results-response
-                              #:get-face-search #:get-face-search-request
-                              #:get-face-search-response #:get-label-detection
-                              #:get-label-detection-request
+                              #:get-face-search #:get-label-detection
                               #:get-label-detection-request-metadata
-                              #:get-label-detection-response
-                              #:get-media-analysis-job
-                              #:get-media-analysis-job-request
-                              #:get-media-analysis-job-response
-                              #:get-person-tracking
-                              #:get-person-tracking-request
-                              #:get-person-tracking-response
-                              #:get-segment-detection
-                              #:get-segment-detection-request
-                              #:get-segment-detection-response
-                              #:get-text-detection #:get-text-detection-request
-                              #:get-text-detection-response #:ground-truth-blob
-                              #:ground-truth-manifest #:has-errors
-                              #:human-loop-activation-output
+                              #:get-media-analysis-job #:get-person-tracking
+                              #:get-segment-detection #:get-text-detection
+                              #:ground-truth-blob #:ground-truth-manifest
+                              #:has-errors #:human-loop-activation-output
                               #:human-loop-activation-reason
                               #:human-loop-activation-reasons #:human-loop-arn
                               #:human-loop-config #:human-loop-data-attributes
-                              #:human-loop-name
-                              #:human-loop-quota-exceeded-exception
-                              #:idempotent-parameter-mismatch-exception #:image
-                              #:image-blob #:image-id #:image-quality
-                              #:image-too-large-exception #:index-faces
-                              #:index-faces-model-version #:index-faces-request
-                              #:index-faces-response #:inference-units
-                              #:instance #:instances #:internal-server-error
-                              #:invalid-image-format-exception
-                              #:invalid-manifest-exception
-                              #:invalid-pagination-token-exception
-                              #:invalid-parameter-exception
-                              #:invalid-policy-revision-id-exception
-                              #:invalid-s3object-exception #:is-labeled
-                              #:job-id #:job-tag #:kinesis-data-arn
+                              #:human-loop-name #:image #:image-blob #:image-id
+                              #:image-quality #:index-faces
+                              #:index-faces-model-version #:inference-units
+                              #:instance #:instances #:is-labeled #:job-id
+                              #:job-tag #:kinesis-data-arn
                               #:kinesis-data-stream #:kinesis-video-arn
                               #:kinesis-video-stream
                               #:kinesis-video-stream-fragment-number
@@ -203,37 +117,18 @@
                               #:label-detection-settings
                               #:label-detection-sort-by #:label-detections
                               #:labels #:landmark #:landmark-type #:landmarks
-                              #:limit-exceeded-exception #:list-collections
-                              #:list-collections-request
-                              #:list-collections-response
-                              #:list-dataset-entries
+                              #:list-collections #:list-dataset-entries
                               #:list-dataset-entries-page-size
-                              #:list-dataset-entries-request
-                              #:list-dataset-entries-response
                               #:list-dataset-labels
-                              #:list-dataset-labels-page-size
-                              #:list-dataset-labels-request
-                              #:list-dataset-labels-response #:list-faces
-                              #:list-faces-request #:list-faces-response
+                              #:list-dataset-labels-page-size #:list-faces
                               #:list-media-analysis-jobs
                               #:list-media-analysis-jobs-page-size
-                              #:list-media-analysis-jobs-request
-                              #:list-media-analysis-jobs-response
                               #:list-project-policies
                               #:list-project-policies-page-size
-                              #:list-project-policies-request
-                              #:list-project-policies-response
-                              #:list-stream-processors
-                              #:list-stream-processors-request
-                              #:list-stream-processors-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-users
-                              #:list-users-request #:list-users-response
-                              #:liveness-image-blob #:liveness-output-config
-                              #:liveness-s3key-prefix #:liveness-session-id
-                              #:liveness-session-status
-                              #:malformed-policy-document-exception
+                              #:list-stream-processors #:list-tags-for-resource
+                              #:list-users #:liveness-image-blob
+                              #:liveness-output-config #:liveness-s3key-prefix
+                              #:liveness-session-id #:liveness-session-status
                               #:matched-user #:max-duration-in-seconds-ulong
                               #:max-faces #:max-faces-to-index
                               #:max-pixel-threshold #:max-results
@@ -278,81 +173,36 @@
                               #:protective-equipment-summarization-attributes
                               #:protective-equipment-summary
                               #:protective-equipment-type
-                              #:protective-equipment-types
-                              #:provisioned-throughput-exceeded-exception
-                              #:put-project-policy #:put-project-policy-request
-                              #:put-project-policy-response #:quality-filter
-                              #:query-string #:reason #:reasons
-                              #:recognize-celebrities
-                              #:recognize-celebrities-request
-                              #:recognize-celebrities-response
+                              #:protective-equipment-types #:put-project-policy
+                              #:quality-filter #:query-string #:reason
+                              #:reasons #:recognize-celebrities
                               #:region-of-interest #:regions-of-interest
                               #:rekognition-service #:rekognition-unique-id
-                              #:resource-already-exists-exception
-                              #:resource-arn #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:resource-not-ready-exception #:role-arn
-                              #:s3bucket #:s3destination #:s3key-prefix
-                              #:s3object #:s3object-name #:s3object-version
-                              #:snstopic-arn #:search-faces
-                              #:search-faces-by-image
-                              #:search-faces-by-image-request
-                              #:search-faces-by-image-response
-                              #:search-faces-request #:search-faces-response
+                              #:resource-arn #:role-arn #:s3bucket
+                              #:s3destination #:s3key-prefix #:s3object
+                              #:s3object-name #:s3object-version #:snstopic-arn
+                              #:search-faces #:search-faces-by-image
                               #:search-users #:search-users-by-image
-                              #:search-users-by-image-request
-                              #:search-users-by-image-response
-                              #:search-users-request #:search-users-response
                               #:searched-face #:searched-face-details
                               #:searched-user #:segment-confidence
                               #:segment-detection #:segment-detections
                               #:segment-type #:segment-type-info
                               #:segment-types #:segment-types-info
-                              #:service-quota-exceeded-exception
-                              #:session-not-found-exception #:shot-segment
-                              #:smile #:start-celebrity-recognition
-                              #:start-celebrity-recognition-request
-                              #:start-celebrity-recognition-response
-                              #:start-content-moderation
-                              #:start-content-moderation-request
-                              #:start-content-moderation-response
-                              #:start-face-detection
-                              #:start-face-detection-request
-                              #:start-face-detection-response
-                              #:start-face-search #:start-face-search-request
-                              #:start-face-search-response
-                              #:start-label-detection
-                              #:start-label-detection-request
-                              #:start-label-detection-response
+                              #:shot-segment #:smile
+                              #:start-celebrity-recognition
+                              #:start-content-moderation #:start-face-detection
+                              #:start-face-search #:start-label-detection
                               #:start-media-analysis-job
-                              #:start-media-analysis-job-request
-                              #:start-media-analysis-job-response
-                              #:start-person-tracking
-                              #:start-person-tracking-request
-                              #:start-person-tracking-response
-                              #:start-project-version
-                              #:start-project-version-request
-                              #:start-project-version-response
+                              #:start-person-tracking #:start-project-version
                               #:start-segment-detection
                               #:start-segment-detection-filters
-                              #:start-segment-detection-request
-                              #:start-segment-detection-response
                               #:start-shot-detection-filter
                               #:start-stream-processor
-                              #:start-stream-processor-request
-                              #:start-stream-processor-response
                               #:start-stream-processor-session-id
                               #:start-technical-cue-detection-filter
                               #:start-text-detection
-                              #:start-text-detection-filters
-                              #:start-text-detection-request
-                              #:start-text-detection-response #:status-message
-                              #:stop-project-version
-                              #:stop-project-version-request
-                              #:stop-project-version-response
-                              #:stop-stream-processor
-                              #:stop-stream-processor-request
-                              #:stop-stream-processor-response
+                              #:start-text-detection-filters #:status-message
+                              #:stop-project-version #:stop-stream-processor
                               #:stream-processing-start-selector
                               #:stream-processing-stop-selector
                               #:stream-processor #:stream-processor-arn
@@ -369,15 +219,14 @@
                               #:sunglasses
                               #:synthesized-json-human-loop-activation-conditions-evaluation-results
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:technical-cue-segment
                               #:technical-cue-type #:testing-data
                               #:testing-data-result #:text-detection
                               #:text-detection-list #:text-detection-result
-                              #:text-detection-results #:text-types
-                              #:throttling-exception #:timecode #:timestamp
-                              #:training-data #:training-data-result #:uinteger
-                              #:ulong #:unindexed-face #:unindexed-faces
+                              #:text-detection-results #:text-types #:timecode
+                              #:timestamp #:training-data
+                              #:training-data-result #:uinteger #:ulong
+                              #:unindexed-face #:unindexed-faces
                               #:unsearched-face #:unsearched-face-reason
                               #:unsearched-face-reasons #:unsearched-faces-list
                               #:unsuccessful-face-association
@@ -392,21 +241,14 @@
                               #:unsuccessful-face-disassociation-list
                               #:unsuccessful-face-disassociation-reason
                               #:unsuccessful-face-disassociation-reasons
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-dataset-entries
-                              #:update-dataset-entries-request
-                              #:update-dataset-entries-response
-                              #:update-stream-processor
-                              #:update-stream-processor-request
-                              #:update-stream-processor-response #:url #:urls
-                              #:user #:user-face-id-list #:user-id #:user-list
+                              #:untag-resource #:update-dataset-entries
+                              #:update-stream-processor #:url #:urls #:user
+                              #:user-face-id-list #:user-id #:user-list
                               #:user-match #:user-match-list #:user-status
                               #:validation-data #:version #:version-description
                               #:version-name #:version-names #:versions #:video
                               #:video-color-range #:video-job-status
-                              #:video-metadata #:video-metadata-list
-                              #:video-too-large-exception))
+                              #:video-metadata #:video-metadata-list))
 (common-lisp:in-package #:pira/rekognition)
 
 (smithy/sdk/service:define-service rekognition-service :shape-name

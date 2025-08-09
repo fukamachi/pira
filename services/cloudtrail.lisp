@@ -1,224 +1,83 @@
 (uiop/package:define-package #:pira/cloudtrail (:use)
-                             (:export #:access-denied-exception
-                              #:account-has-ongoing-import-exception
-                              #:account-id #:account-not-found-exception
-                              #:account-not-registered-exception
-                              #:account-registered-exception #:add-tags
-                              #:add-tags-request #:add-tags-response
+                             (:export #:account-id #:add-tags
                               #:advanced-event-selector
                               #:advanced-event-selectors
                               #:advanced-field-selector
                               #:advanced-field-selectors #:billing-mode
-                              #:boolean #:byte-buffer #:cancel-query
-                              #:cancel-query-request #:cancel-query-response
-                              #:cannot-delegate-management-account-exception
-                              #:channel #:channel-arninvalid-exception
-                              #:channel-already-exists-exception #:channel-arn
-                              #:channel-exists-for-edsexception
-                              #:channel-max-limit-exceeded-exception
-                              #:channel-name #:channel-not-found-exception
-                              #:channels #:cloud-trail-arninvalid-exception
-                              #:cloud-trail-access-not-enabled-exception
-                              #:cloud-trail-invalid-client-token-id-exception
-                              #:cloud-trail-20131101
-                              #:cloud-watch-logs-delivery-unavailable-exception
-                              #:concurrent-modification-exception
-                              #:conflict-exception #:context-key-selector
+                              #:boolean #:byte-buffer #:cancel-query #:channel
+                              #:channel-arn #:channel-name #:channels
+                              #:cloud-trail-20131101 #:context-key-selector
                               #:context-key-selectors #:create-channel
-                              #:create-channel-request
-                              #:create-channel-response #:create-dashboard
-                              #:create-dashboard-request
-                              #:create-dashboard-response
-                              #:create-event-data-store
-                              #:create-event-data-store-request
-                              #:create-event-data-store-response #:create-trail
-                              #:create-trail-request #:create-trail-response
-                              #:dashboard-arn #:dashboard-detail
+                              #:create-dashboard #:create-event-data-store
+                              #:create-trail #:dashboard-arn #:dashboard-detail
                               #:dashboard-name #:dashboard-status
                               #:dashboard-type #:dashboards #:data-resource
                               #:data-resource-values #:data-resources #:date
-                              #:delegated-admin-account-limit-exceeded-exception
-                              #:delete-channel #:delete-channel-request
-                              #:delete-channel-response #:delete-dashboard
-                              #:delete-dashboard-request
-                              #:delete-dashboard-response
+                              #:delete-channel #:delete-dashboard
                               #:delete-event-data-store
-                              #:delete-event-data-store-request
-                              #:delete-event-data-store-response
-                              #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response #:delete-trail
-                              #:delete-trail-request #:delete-trail-response
+                              #:delete-resource-policy #:delete-trail
                               #:delivery-s3uri #:delivery-status
                               #:deregister-organization-delegated-admin
-                              #:deregister-organization-delegated-admin-request
-                              #:deregister-organization-delegated-admin-response
-                              #:describe-query #:describe-query-request
-                              #:describe-query-response #:describe-trails
-                              #:describe-trails-request
-                              #:describe-trails-response #:destination
+                              #:describe-query #:describe-trails #:destination
                               #:destination-type #:destinations
-                              #:disable-federation #:disable-federation-request
-                              #:disable-federation-response #:double
-                              #:enable-federation #:enable-federation-request
-                              #:enable-federation-response #:error-code
-                              #:error-message #:event #:event-category
-                              #:event-data-store
-                              #:event-data-store-arninvalid-exception
-                              #:event-data-store-already-exists-exception
+                              #:disable-federation #:double #:enable-federation
+                              #:error-code #:error-message #:event
+                              #:event-category #:event-data-store
                               #:event-data-store-arn
-                              #:event-data-store-federation-enabled-exception
-                              #:event-data-store-has-ongoing-import-exception
                               #:event-data-store-kms-key-id
-                              #:event-data-store-list
-                              #:event-data-store-max-limit-exceeded-exception
-                              #:event-data-store-name
-                              #:event-data-store-not-found-exception
-                              #:event-data-store-status
-                              #:event-data-store-termination-protected-exception
-                              #:event-data-stores #:event-name #:event-selector
-                              #:event-selectors #:event-source #:events-list
+                              #:event-data-store-list #:event-data-store-name
+                              #:event-data-store-status #:event-data-stores
+                              #:event-name #:event-selector #:event-selectors
+                              #:event-source #:events-list
                               #:exclude-management-event-sources
                               #:federation-role-arn #:federation-status
-                              #:generate-query #:generate-query-request
-                              #:generate-query-response
-                              #:generate-response-exception #:get-channel
-                              #:get-channel-request #:get-channel-response
-                              #:get-dashboard #:get-dashboard-request
-                              #:get-dashboard-response
-                              #:get-event-configuration
-                              #:get-event-configuration-request
-                              #:get-event-configuration-response
-                              #:get-event-data-store
-                              #:get-event-data-store-request
-                              #:get-event-data-store-response
-                              #:get-event-selectors
-                              #:get-event-selectors-request
-                              #:get-event-selectors-response #:get-import
-                              #:get-import-request #:get-import-response
-                              #:get-insight-selectors
-                              #:get-insight-selectors-request
-                              #:get-insight-selectors-response
-                              #:get-query-results #:get-query-results-request
-                              #:get-query-results-response
-                              #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response #:get-trail
-                              #:get-trail-request #:get-trail-response
-                              #:get-trail-status #:get-trail-status-request
-                              #:get-trail-status-response #:import-destinations
+                              #:generate-query #:get-channel #:get-dashboard
+                              #:get-event-configuration #:get-event-data-store
+                              #:get-event-selectors #:get-import
+                              #:get-insight-selectors #:get-query-results
+                              #:get-resource-policy #:get-trail
+                              #:get-trail-status #:import-destinations
                               #:import-failure-list #:import-failure-list-item
-                              #:import-failure-status
-                              #:import-not-found-exception #:import-source
+                              #:import-failure-status #:import-source
                               #:import-statistics #:import-status
                               #:imports-list #:imports-list-item
-                              #:inactive-event-data-store-exception
-                              #:inactive-query-exception #:ingestion-status
-                              #:insight-not-enabled-exception
-                              #:insight-selector #:insight-selectors
-                              #:insight-type #:insights-metric-data-type
+                              #:ingestion-status #:insight-selector
+                              #:insight-selectors #:insight-type
+                              #:insights-metric-data-type
                               #:insights-metric-max-results
                               #:insights-metric-next-token
                               #:insights-metric-period #:insights-metric-values
-                              #:insufficient-dependency-service-access-permission-exception
-                              #:insufficient-encryption-policy-exception
-                              #:insufficient-iamaccess-permission-exception
-                              #:insufficient-s3bucket-policy-exception
-                              #:insufficient-sns-topic-policy-exception
-                              #:integer
-                              #:invalid-cloud-watch-logs-log-group-arn-exception
-                              #:invalid-cloud-watch-logs-role-arn-exception
-                              #:invalid-date-range-exception
-                              #:invalid-event-category-exception
-                              #:invalid-event-data-store-category-exception
-                              #:invalid-event-data-store-status-exception
-                              #:invalid-event-selectors-exception
-                              #:invalid-home-region-exception
-                              #:invalid-import-source-exception
-                              #:invalid-insight-selectors-exception
-                              #:invalid-kms-key-id-exception
-                              #:invalid-lookup-attributes-exception
-                              #:invalid-max-results-exception
-                              #:invalid-next-token-exception
-                              #:invalid-parameter-combination-exception
-                              #:invalid-parameter-exception
-                              #:invalid-query-statement-exception
-                              #:invalid-query-status-exception
-                              #:invalid-s3bucket-name-exception
-                              #:invalid-s3prefix-exception
-                              #:invalid-sns-topic-name-exception
-                              #:invalid-source-exception
-                              #:invalid-tag-parameter-exception
-                              #:invalid-time-range-exception
-                              #:invalid-token-exception
-                              #:invalid-trail-name-exception #:kms-exception
-                              #:kms-key-disabled-exception
-                              #:kms-key-not-found-exception #:list-channels
+                              #:integer #:list-channels
                               #:list-channels-max-results-count
-                              #:list-channels-request #:list-channels-response
                               #:list-dashboards
                               #:list-dashboards-max-results-count
-                              #:list-dashboards-request
-                              #:list-dashboards-response
                               #:list-event-data-stores
                               #:list-event-data-stores-max-results-count
-                              #:list-event-data-stores-request
-                              #:list-event-data-stores-response
                               #:list-import-failures
                               #:list-import-failures-max-results-count
-                              #:list-import-failures-request
-                              #:list-import-failures-response #:list-imports
-                              #:list-imports-max-results-count
-                              #:list-imports-request #:list-imports-response
-                              #:list-insights-metric-data
-                              #:list-insights-metric-data-request
-                              #:list-insights-metric-data-response
-                              #:list-public-keys #:list-public-keys-request
-                              #:list-public-keys-response #:list-queries
-                              #:list-queries-max-results-count
-                              #:list-queries-request #:list-queries-response
-                              #:list-tags #:list-tags-request
-                              #:list-tags-response #:list-trails
-                              #:list-trails-request #:list-trails-response
-                              #:location #:long #:lookup-attribute
-                              #:lookup-attribute-key #:lookup-attribute-value
-                              #:lookup-attributes-list #:lookup-events
-                              #:lookup-events-request #:lookup-events-response
-                              #:max-concurrent-queries-exception
-                              #:max-event-size #:max-query-results
-                              #:max-results
-                              #:maximum-number-of-trails-exceeded-exception
-                              #:next-token
-                              #:no-management-account-slrexists-exception
-                              #:not-organization-management-account-exception
-                              #:not-organization-master-account-exception
-                              #:operation-not-permitted-exception #:operator
-                              #:operator-target-list
+                              #:list-imports #:list-imports-max-results-count
+                              #:list-insights-metric-data #:list-public-keys
+                              #:list-queries #:list-queries-max-results-count
+                              #:list-tags #:list-trails #:location #:long
+                              #:lookup-attribute #:lookup-attribute-key
+                              #:lookup-attribute-value #:lookup-attributes-list
+                              #:lookup-events #:max-event-size
+                              #:max-query-results #:max-results #:next-token
+                              #:operator #:operator-target-list
                               #:operator-target-list-member #:operator-value
-                              #:organization-not-in-all-features-mode-exception
-                              #:organizations-not-in-use-exception
                               #:pagination-token #:partition-key
                               #:partition-key-list #:partition-key-name
                               #:partition-key-type #:prompt #:public-key
                               #:public-key-list #:put-event-configuration
-                              #:put-event-configuration-request
-                              #:put-event-configuration-response
-                              #:put-event-selectors
-                              #:put-event-selectors-request
-                              #:put-event-selectors-response
-                              #:put-insight-selectors
-                              #:put-insight-selectors-request
-                              #:put-insight-selectors-response
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:queries #:query
-                              #:query-alias #:query-id-not-found-exception
-                              #:query-parameter #:query-parameter-key
-                              #:query-parameter-value #:query-parameter-values
-                              #:query-parameters #:query-result-column
-                              #:query-result-key #:query-result-row
-                              #:query-result-rows #:query-result-value
-                              #:query-statement #:query-statistics
+                              #:put-event-selectors #:put-insight-selectors
+                              #:put-resource-policy #:queries #:query
+                              #:query-alias #:query-parameter
+                              #:query-parameter-key #:query-parameter-value
+                              #:query-parameter-values #:query-parameters
+                              #:query-result-column #:query-result-key
+                              #:query-result-row #:query-result-rows
+                              #:query-result-value #:query-statement
+                              #:query-statistics
                               #:query-statistics-for-describe-query
                               #:query-status #:read-write-type #:refresh-id
                               #:refresh-schedule #:refresh-schedule-frequency
@@ -226,68 +85,31 @@
                               #:refresh-schedule-frequency-value
                               #:refresh-schedule-status
                               #:register-organization-delegated-admin
-                              #:register-organization-delegated-admin-request
-                              #:register-organization-delegated-admin-response
-                              #:remove-tags #:remove-tags-request
-                              #:remove-tags-response #:request-widget
-                              #:request-widget-list #:resource
-                              #:resource-arnnot-valid-exception #:resource-arn
+                              #:remove-tags #:request-widget
+                              #:request-widget-list #:resource #:resource-arn
                               #:resource-id-list #:resource-list
-                              #:resource-not-found-exception #:resource-policy
-                              #:resource-policy-not-found-exception
-                              #:resource-policy-not-valid-exception
-                              #:resource-tag #:resource-tag-list
-                              #:resource-type-not-supported-exception
-                              #:restore-event-data-store
-                              #:restore-event-data-store-request
-                              #:restore-event-data-store-response
-                              #:retention-period
-                              #:s3bucket-does-not-exist-exception
-                              #:s3import-source #:sample-query-description
-                              #:sample-query-name #:sample-query-relevance
-                              #:sample-query-sql #:search-sample-queries
+                              #:resource-policy #:resource-tag
+                              #:resource-tag-list #:restore-event-data-store
+                              #:retention-period #:s3import-source
+                              #:sample-query-description #:sample-query-name
+                              #:sample-query-relevance #:sample-query-sql
+                              #:search-sample-queries
                               #:search-sample-queries-max-results
-                              #:search-sample-queries-request
-                              #:search-sample-queries-response
                               #:search-sample-queries-search-phrase
                               #:search-sample-queries-search-result
                               #:search-sample-queries-search-results
-                              #:selector-field #:selector-name
-                              #:service-quota-exceeded-exception #:source
+                              #:selector-field #:selector-name #:source
                               #:source-config #:start-dashboard-refresh
-                              #:start-dashboard-refresh-request
-                              #:start-dashboard-refresh-response
-                              #:start-event-data-store-ingestion
-                              #:start-event-data-store-ingestion-request
-                              #:start-event-data-store-ingestion-response
-                              #:start-import #:start-import-request
-                              #:start-import-response #:start-logging
-                              #:start-logging-request #:start-logging-response
-                              #:start-query #:start-query-request
-                              #:start-query-response
-                              #:stop-event-data-store-ingestion
-                              #:stop-event-data-store-ingestion-request
-                              #:stop-event-data-store-ingestion-response
-                              #:stop-import #:stop-import-request
-                              #:stop-import-response #:stop-logging
-                              #:stop-logging-request #:stop-logging-response
-                              #:string #:tag #:tag-key #:tag-value
-                              #:tags-limit-exceeded-exception #:tags-list
-                              #:termination-protection-enabled
-                              #:throttling-exception #:time-of-day #:timestamps
-                              #:trail #:trail-already-exists-exception
-                              #:trail-info #:trail-list #:trail-name-list
-                              #:trail-not-found-exception
-                              #:trail-not-provided-exception #:trails #:type
-                              #:uuid #:unsupported-operation-exception
-                              #:update-channel #:update-channel-request
-                              #:update-channel-response #:update-dashboard
-                              #:update-dashboard-request
-                              #:update-dashboard-response
-                              #:update-event-data-store
-                              #:update-event-data-store-request
-                              #:update-event-data-store-response #:update-trail
-                              #:update-trail-request #:update-trail-response
+                              #:start-event-data-store-ingestion #:start-import
+                              #:start-logging #:start-query
+                              #:stop-event-data-store-ingestion #:stop-import
+                              #:stop-logging #:string #:tag #:tag-key
+                              #:tag-value #:tags-list
+                              #:termination-protection-enabled #:time-of-day
+                              #:timestamps #:trail #:trail-info #:trail-list
+                              #:trail-name-list #:trails #:type #:uuid
+                              #:update-channel #:update-dashboard
+                              #:update-event-data-store #:update-trail
                               #:view-properties-key #:view-properties-map
                               #:view-properties-value #:widget #:widget-list))
 (common-lisp:in-package #:pira/cloudtrail)

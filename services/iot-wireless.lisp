@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/iot-wireless (:use)
-                             (:export #:abp-v1-0-x #:abp-v1-1
-                              #:access-denied-exception #:account-linked
+                             (:export #:abp-v1-0-x #:abp-v1-1 #:account-linked
                               #:accuracy #:ack-mode-retry-duration-secs
                               #:add-gw-metadata #:aggregation-period
                               #:amazon-id #:amazon-resource-name #:ap-id
@@ -10,117 +9,51 @@
                               #:application-server-public-key #:applications
                               #:assist-position
                               #:associate-aws-account-with-partner-account
-                              #:associate-aws-account-with-partner-account-request
-                              #:associate-aws-account-with-partner-account-response
                               #:associate-multicast-group-with-fuota-task
-                              #:associate-multicast-group-with-fuota-task-request
-                              #:associate-multicast-group-with-fuota-task-response
                               #:associate-wireless-device-with-fuota-task
-                              #:associate-wireless-device-with-fuota-task-request
-                              #:associate-wireless-device-with-fuota-task-response
                               #:associate-wireless-device-with-multicast-group
-                              #:associate-wireless-device-with-multicast-group-request
-                              #:associate-wireless-device-with-multicast-group-response
                               #:associate-wireless-device-with-thing
-                              #:associate-wireless-device-with-thing-request
-                              #:associate-wireless-device-with-thing-response
                               #:associate-wireless-gateway-with-certificate
-                              #:associate-wireless-gateway-with-certificate-request
-                              #:associate-wireless-gateway-with-certificate-response
                               #:associate-wireless-gateway-with-thing
-                              #:associate-wireless-gateway-with-thing-request
-                              #:associate-wireless-gateway-with-thing-response
                               #:auto-create-tasks #:avg #:bcch #:bsic
                               #:base-lat #:base-lng #:base-station-id
                               #:battery-level #:beaconing #:beaconing-data-rate
                               #:beaconing-frequencies #:beaconing-frequency
                               #:cancel-multicast-group-session
-                              #:cancel-multicast-group-session-request
-                              #:cancel-multicast-group-session-response
                               #:capture-time-accuracy #:cdma-channel
                               #:cdma-list #:cdma-local-id #:cdma-nmr-list
                               #:cdma-nmr-obj #:cdma-obj #:cell-params
                               #:cell-towers #:certificate-list
                               #:certificate-pem #:certificate-value
                               #:channel-mask #:class-btimeout #:class-ctimeout
-                              #:client-request-token #:conflict-exception
-                              #:connection-status
+                              #:client-request-token #:connection-status
                               #:connection-status-event-configuration
                               #:connection-status-resource-type-event-configuration
                               #:coordinate #:crc #:create-destination
-                              #:create-destination-request
-                              #:create-destination-response
-                              #:create-device-profile
-                              #:create-device-profile-request
-                              #:create-device-profile-response
-                              #:create-fuota-task #:create-fuota-task-request
-                              #:create-fuota-task-response
+                              #:create-device-profile #:create-fuota-task
                               #:create-multicast-group
-                              #:create-multicast-group-request
-                              #:create-multicast-group-response
                               #:create-network-analyzer-configuration
-                              #:create-network-analyzer-configuration-request
-                              #:create-network-analyzer-configuration-response
-                              #:create-service-profile
-                              #:create-service-profile-request
-                              #:create-service-profile-response
-                              #:create-wireless-device
-                              #:create-wireless-device-request
-                              #:create-wireless-device-response
+                              #:create-service-profile #:create-wireless-device
                               #:create-wireless-gateway
-                              #:create-wireless-gateway-request
-                              #:create-wireless-gateway-response
                               #:create-wireless-gateway-task
                               #:create-wireless-gateway-task-definition
-                              #:create-wireless-gateway-task-definition-request
-                              #:create-wireless-gateway-task-definition-response
-                              #:create-wireless-gateway-task-request
-                              #:create-wireless-gateway-task-response
                               #:created-at #:creation-date #:creation-time
                               #:dak-certificate-id #:dak-certificate-metadata
                               #:dak-certificate-metadata-list
-                              #:delete-destination #:delete-destination-request
-                              #:delete-destination-response
-                              #:delete-device-profile
-                              #:delete-device-profile-request
-                              #:delete-device-profile-response
-                              #:delete-fuota-task #:delete-fuota-task-request
-                              #:delete-fuota-task-response
-                              #:delete-multicast-group
-                              #:delete-multicast-group-request
-                              #:delete-multicast-group-response
+                              #:delete-destination #:delete-device-profile
+                              #:delete-fuota-task #:delete-multicast-group
                               #:delete-network-analyzer-configuration
-                              #:delete-network-analyzer-configuration-request
-                              #:delete-network-analyzer-configuration-response
-                              #:delete-queued-messages
-                              #:delete-queued-messages-request
-                              #:delete-queued-messages-response
-                              #:delete-service-profile
-                              #:delete-service-profile-request
-                              #:delete-service-profile-response
+                              #:delete-queued-messages #:delete-service-profile
                               #:delete-wireless-device
                               #:delete-wireless-device-import-task
-                              #:delete-wireless-device-import-task-request
-                              #:delete-wireless-device-import-task-response
-                              #:delete-wireless-device-request
-                              #:delete-wireless-device-response
                               #:delete-wireless-gateway
-                              #:delete-wireless-gateway-request
-                              #:delete-wireless-gateway-response
                               #:delete-wireless-gateway-task
                               #:delete-wireless-gateway-task-definition
-                              #:delete-wireless-gateway-task-definition-request
-                              #:delete-wireless-gateway-task-definition-response
-                              #:delete-wireless-gateway-task-request
-                              #:delete-wireless-gateway-task-response
-                              #:deregister-wireless-device
-                              #:deregister-wireless-device-request
-                              #:deregister-wireless-device-response
-                              #:description #:destination-arn
-                              #:destination-list #:destination-name
-                              #:destinations #:dev-addr #:dev-eui
-                              #:dev-status-req-freq #:device-certificate-list
-                              #:device-creation-file
+                              #:deregister-wireless-device #:description
+                              #:destination-arn #:destination-list
+                              #:destination-name #:destinations #:dev-addr
+                              #:dev-eui #:dev-status-req-freq
+                              #:device-certificate-list #:device-creation-file
                               #:device-creation-file-list #:device-name
                               #:device-profile #:device-profile-arn
                               #:device-profile-id #:device-profile-list
@@ -130,26 +63,12 @@
                               #:device-state #:device-type-id #:dimension
                               #:dimension-name #:dimension-value #:dimensions
                               #:disassociate-aws-account-from-partner-account
-                              #:disassociate-aws-account-from-partner-account-request
-                              #:disassociate-aws-account-from-partner-account-response
                               #:disassociate-multicast-group-from-fuota-task
-                              #:disassociate-multicast-group-from-fuota-task-request
-                              #:disassociate-multicast-group-from-fuota-task-response
                               #:disassociate-wireless-device-from-fuota-task
-                              #:disassociate-wireless-device-from-fuota-task-request
-                              #:disassociate-wireless-device-from-fuota-task-response
                               #:disassociate-wireless-device-from-multicast-group
-                              #:disassociate-wireless-device-from-multicast-group-request
-                              #:disassociate-wireless-device-from-multicast-group-response
                               #:disassociate-wireless-device-from-thing
-                              #:disassociate-wireless-device-from-thing-request
-                              #:disassociate-wireless-device-from-thing-response
                               #:disassociate-wireless-gateway-from-certificate
-                              #:disassociate-wireless-gateway-from-certificate-request
-                              #:disassociate-wireless-gateway-from-certificate-response
                               #:disassociate-wireless-gateway-from-thing
-                              #:disassociate-wireless-gateway-from-thing-request
-                              #:disassociate-wireless-gateway-from-thing-response
                               #:dl-allowed #:dl-bucket-size #:dl-class #:dl-dr
                               #:dl-freq #:dl-rate #:dl-rate-policy #:double
                               #:downlink-frequency #:downlink-mode
@@ -179,83 +98,29 @@
                               #:gateway-eui #:gateway-list #:gateway-list-item
                               #:gateway-list-multicast #:gateway-max-eirp
                               #:gen-app-key #:geo-json-payload #:geran-cid
-                              #:get-destination #:get-destination-request
-                              #:get-destination-response #:get-device-profile
-                              #:get-device-profile-request
-                              #:get-device-profile-response
+                              #:get-destination #:get-device-profile
                               #:get-event-configuration-by-resource-types
-                              #:get-event-configuration-by-resource-types-request
-                              #:get-event-configuration-by-resource-types-response
-                              #:get-fuota-task #:get-fuota-task-request
-                              #:get-fuota-task-response
+                              #:get-fuota-task
                               #:get-log-levels-by-resource-types
-                              #:get-log-levels-by-resource-types-request
-                              #:get-log-levels-by-resource-types-response
-                              #:get-metric-configuration
-                              #:get-metric-configuration-request
-                              #:get-metric-configuration-response #:get-metrics
-                              #:get-metrics-request #:get-metrics-response
+                              #:get-metric-configuration #:get-metrics
                               #:get-multicast-group
-                              #:get-multicast-group-request
-                              #:get-multicast-group-response
                               #:get-multicast-group-session
-                              #:get-multicast-group-session-request
-                              #:get-multicast-group-session-response
                               #:get-network-analyzer-configuration
-                              #:get-network-analyzer-configuration-request
-                              #:get-network-analyzer-configuration-response
-                              #:get-partner-account
-                              #:get-partner-account-request
-                              #:get-partner-account-response #:get-position
+                              #:get-partner-account #:get-position
                               #:get-position-configuration
-                              #:get-position-configuration-request
-                              #:get-position-configuration-response
                               #:get-position-estimate
-                              #:get-position-estimate-request
-                              #:get-position-estimate-response
-                              #:get-position-request #:get-position-response
                               #:get-resource-event-configuration
-                              #:get-resource-event-configuration-request
-                              #:get-resource-event-configuration-response
-                              #:get-resource-log-level
-                              #:get-resource-log-level-request
-                              #:get-resource-log-level-response
-                              #:get-resource-position
-                              #:get-resource-position-request
-                              #:get-resource-position-response
-                              #:get-service-endpoint
-                              #:get-service-endpoint-request
-                              #:get-service-endpoint-response
-                              #:get-service-profile
-                              #:get-service-profile-request
-                              #:get-service-profile-response
+                              #:get-resource-log-level #:get-resource-position
+                              #:get-service-endpoint #:get-service-profile
                               #:get-wireless-device
                               #:get-wireless-device-import-task
-                              #:get-wireless-device-import-task-request
-                              #:get-wireless-device-import-task-response
-                              #:get-wireless-device-request
-                              #:get-wireless-device-response
                               #:get-wireless-device-statistics
-                              #:get-wireless-device-statistics-request
-                              #:get-wireless-device-statistics-response
                               #:get-wireless-gateway
                               #:get-wireless-gateway-certificate
-                              #:get-wireless-gateway-certificate-request
-                              #:get-wireless-gateway-certificate-response
                               #:get-wireless-gateway-firmware-information
-                              #:get-wireless-gateway-firmware-information-request
-                              #:get-wireless-gateway-firmware-information-response
-                              #:get-wireless-gateway-request
-                              #:get-wireless-gateway-response
                               #:get-wireless-gateway-statistics
-                              #:get-wireless-gateway-statistics-request
-                              #:get-wireless-gateway-statistics-response
                               #:get-wireless-gateway-task
                               #:get-wireless-gateway-task-definition
-                              #:get-wireless-gateway-task-definition-request
-                              #:get-wireless-gateway-task-definition-response
-                              #:get-wireless-gateway-task-request
-                              #:get-wireless-gateway-task-response
                               #:global-identity #:gnss #:gnss-nav #:gsm-list
                               #:gsm-local-id #:gsm-nmr-list #:gsm-nmr-obj
                               #:gsm-obj #:gsm-timing-advance
@@ -267,60 +132,25 @@
                               #:imported-wireless-device
                               #:imported-wireless-device-count
                               #:imported-wireless-device-list #:integer
-                              #:internal-server-exception #:iot-certificate-id
-                              #:ip #:join-eui #:join-eui-filters
-                              #:join-eui-range #:join-event-configuration
+                              #:iot-certificate-id #:ip #:join-eui
+                              #:join-eui-filters #:join-eui-range
+                              #:join-event-configuration
                               #:join-resource-type-event-configuration #:lac
                               #:last-update-time #:list-destinations
-                              #:list-destinations-request
-                              #:list-destinations-response
                               #:list-device-profiles
-                              #:list-device-profiles-request
-                              #:list-device-profiles-response
                               #:list-devices-for-wireless-device-import-task
-                              #:list-devices-for-wireless-device-import-task-request
-                              #:list-devices-for-wireless-device-import-task-response
-                              #:list-event-configurations
-                              #:list-event-configurations-request
-                              #:list-event-configurations-response
-                              #:list-fuota-tasks #:list-fuota-tasks-request
-                              #:list-fuota-tasks-response
+                              #:list-event-configurations #:list-fuota-tasks
                               #:list-multicast-groups
                               #:list-multicast-groups-by-fuota-task
-                              #:list-multicast-groups-by-fuota-task-request
-                              #:list-multicast-groups-by-fuota-task-response
-                              #:list-multicast-groups-request
-                              #:list-multicast-groups-response
                               #:list-network-analyzer-configurations
-                              #:list-network-analyzer-configurations-request
-                              #:list-network-analyzer-configurations-response
                               #:list-partner-accounts
-                              #:list-partner-accounts-request
-                              #:list-partner-accounts-response
                               #:list-position-configurations
-                              #:list-position-configurations-request
-                              #:list-position-configurations-response
-                              #:list-queued-messages
-                              #:list-queued-messages-request
-                              #:list-queued-messages-response
-                              #:list-service-profiles
-                              #:list-service-profiles-request
-                              #:list-service-profiles-response
+                              #:list-queued-messages #:list-service-profiles
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-wireless-device-import-tasks
-                              #:list-wireless-device-import-tasks-request
-                              #:list-wireless-device-import-tasks-response
                               #:list-wireless-devices
-                              #:list-wireless-devices-request
-                              #:list-wireless-devices-response
                               #:list-wireless-gateway-task-definitions
-                              #:list-wireless-gateway-task-definitions-request
-                              #:list-wireless-gateway-task-definitions-response
                               #:list-wireless-gateways
-                              #:list-wireless-gateways-request
-                              #:list-wireless-gateways-response
                               #:lo-ra-wanconnection-status-event-notification-configurations
                               #:lo-ra-wanconnection-status-resource-type-event-configuration
                               #:lo-ra-wandevice #:lo-ra-wandevice-metadata
@@ -402,35 +232,21 @@
                               #:provider-net-id #:proximity-event-configuration
                               #:proximity-resource-type-event-configuration
                               #:put-position-configuration
-                              #:put-position-configuration-request
-                              #:put-position-configuration-response
-                              #:put-resource-log-level
-                              #:put-resource-log-level-request
-                              #:put-resource-log-level-response
-                              #:qualification-status #:query-string #:rscp
-                              #:rsrp #:rsrq #:rss #:ra-allowed
-                              #:redundancy-percent #:reg-params-revision
-                              #:registration-zone #:report-dev-status-battery
+                              #:put-resource-log-level #:qualification-status
+                              #:query-string #:rscp #:rsrp #:rsrq #:rss
+                              #:ra-allowed #:redundancy-percent
+                              #:reg-params-revision #:registration-zone
+                              #:report-dev-status-battery
                               #:report-dev-status-margin
                               #:reset-all-resource-log-levels
-                              #:reset-all-resource-log-levels-request
-                              #:reset-all-resource-log-levels-response
-                              #:reset-resource-log-level
-                              #:reset-resource-log-level-request
-                              #:reset-resource-log-level-response #:resource-id
-                              #:resource-identifier
-                              #:resource-not-found-exception #:resource-type
-                              #:result #:rf-region #:role #:role-arn
-                              #:rx-data-rate2 #:rx-delay1 #:rx-dr-offset1
-                              #:rx-freq2 #:rx-level #:snwk-sint-key
-                              #:semtech-gnss-configuration
+                              #:reset-resource-log-level #:resource-id
+                              #:resource-identifier #:resource-type #:result
+                              #:rf-region #:role #:role-arn #:rx-data-rate2
+                              #:rx-delay1 #:rx-dr-offset1 #:rx-freq2 #:rx-level
+                              #:snwk-sint-key #:semtech-gnss-configuration
                               #:semtech-gnss-detail
                               #:send-data-to-multicast-group
-                              #:send-data-to-multicast-group-request
-                              #:send-data-to-multicast-group-response
-                              #:send-data-to-wireless-device
-                              #:send-data-to-wireless-device-request
-                              #:send-data-to-wireless-device-response #:seq
+                              #:send-data-to-wireless-device #:seq
                               #:service-profile #:service-profile-arn
                               #:service-profile-id #:service-profile-list
                               #:service-profile-name #:session-keys-abp-v1-0-x
@@ -454,22 +270,11 @@
                               #:sidewalk-update-account
                               #:sidewalk-update-import-info #:signing-alg
                               #:start-bulk-associate-wireless-device-with-multicast-group
-                              #:start-bulk-associate-wireless-device-with-multicast-group-request
-                              #:start-bulk-associate-wireless-device-with-multicast-group-response
                               #:start-bulk-disassociate-wireless-device-from-multicast-group
-                              #:start-bulk-disassociate-wireless-device-from-multicast-group-request
-                              #:start-bulk-disassociate-wireless-device-from-multicast-group-response
-                              #:start-fuota-task #:start-fuota-task-request
-                              #:start-fuota-task-response
+                              #:start-fuota-task
                               #:start-multicast-group-session
-                              #:start-multicast-group-session-request
-                              #:start-multicast-group-session-response
                               #:start-single-wireless-device-import-task
-                              #:start-single-wireless-device-import-task-request
-                              #:start-single-wireless-device-import-task-response
                               #:start-time #:start-wireless-device-import-task
-                              #:start-wireless-device-import-task-request
-                              #:start-wireless-device-import-task-response
                               #:station #:status-reason #:std #:sub-band
                               #:sub-bands #:sum #:summary-metric-configuration
                               #:summary-metric-configuration-status
@@ -480,70 +285,37 @@
                               #:supports-class-b #:supports-class-c
                               #:supports-join #:system-id #:tac #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:target-per #:tdscdma-list
                               #:tdscdma-local-id #:tdscdma-nmr-list
                               #:tdscdma-nmr-obj #:tdscdma-obj
                               #:tdscdma-timing-advance #:test-wireless-device
-                              #:test-wireless-device-request
-                              #:test-wireless-device-response #:thing-arn
-                              #:thing-name #:throttling-exception
-                              #:too-many-tags-exception #:trace-content
+                              #:thing-arn #:thing-name #:trace-content
                               #:transmission-interval
                               #:transmission-interval-multicast #:transmit-mode
                               #:tx-power-index-max #:tx-power-index-min
                               #:uarfcn #:uarfcndl #:ul-bucket-size #:ul-rate
                               #:ul-rate-policy #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-abp-v1-0-x
-                              #:update-abp-v1-1 #:update-data-source
-                              #:update-destination #:update-destination-request
-                              #:update-destination-response
+                              #:update-abp-v1-0-x #:update-abp-v1-1
+                              #:update-data-source #:update-destination
                               #:update-event-configuration-by-resource-types
-                              #:update-event-configuration-by-resource-types-request
-                              #:update-event-configuration-by-resource-types-response
                               #:update-fports #:update-fuota-task
-                              #:update-fuota-task-request
-                              #:update-fuota-task-response
                               #:update-log-levels-by-resource-types
-                              #:update-log-levels-by-resource-types-request
-                              #:update-log-levels-by-resource-types-response
                               #:update-metric-configuration
-                              #:update-metric-configuration-request
-                              #:update-metric-configuration-response
                               #:update-multicast-group
-                              #:update-multicast-group-request
-                              #:update-multicast-group-response
                               #:update-network-analyzer-configuration
-                              #:update-network-analyzer-configuration-request
-                              #:update-network-analyzer-configuration-response
-                              #:update-partner-account
-                              #:update-partner-account-request
-                              #:update-partner-account-response
-                              #:update-position #:update-position-request
-                              #:update-position-response
+                              #:update-partner-account #:update-position
                               #:update-resource-event-configuration
-                              #:update-resource-event-configuration-request
-                              #:update-resource-event-configuration-response
-                              #:update-resource-position
-                              #:update-resource-position-request
-                              #:update-resource-position-response
-                              #:update-signature #:update-wireless-device
+                              #:update-resource-position #:update-signature
+                              #:update-wireless-device
                               #:update-wireless-device-import-task
-                              #:update-wireless-device-import-task-request
-                              #:update-wireless-device-import-task-response
-                              #:update-wireless-device-request
-                              #:update-wireless-device-response
                               #:update-wireless-gateway
-                              #:update-wireless-gateway-request
-                              #:update-wireless-gateway-response
                               #:update-wireless-gateway-task-create
                               #:update-wireless-gateway-task-entry
-                              #:use2dsolver #:utran-cid #:validation-exception
-                              #:vertical-accuracy #:wcdma-list #:wcdma-local-id
-                              #:wcdma-nmr-list #:wcdma-nmr-obj #:wcdma-obj
-                              #:wi-fi-access-point #:wi-fi-access-points
-                              #:wireless-device-arn #:wireless-device-event
+                              #:use2dsolver #:utran-cid #:vertical-accuracy
+                              #:wcdma-list #:wcdma-local-id #:wcdma-nmr-list
+                              #:wcdma-nmr-obj #:wcdma-obj #:wi-fi-access-point
+                              #:wi-fi-access-points #:wireless-device-arn
+                              #:wireless-device-event
                               #:wireless-device-event-log-option
                               #:wireless-device-event-log-option-list
                               #:wireless-device-frame-info #:wireless-device-id

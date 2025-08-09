@@ -111,14 +111,8 @@
                               #:audio-recognition-strategy
                               #:audio-specification
                               #:batch-create-custom-vocabulary-item
-                              #:batch-create-custom-vocabulary-item-request
-                              #:batch-create-custom-vocabulary-item-response
                               #:batch-delete-custom-vocabulary-item
-                              #:batch-delete-custom-vocabulary-item-request
-                              #:batch-delete-custom-vocabulary-item-response
                               #:batch-update-custom-vocabulary-item
-                              #:batch-update-custom-vocabulary-item-request
-                              #:batch-update-custom-vocabulary-item-response
                               #:bedrock-guardrail-configuration
                               #:bedrock-guardrail-identifier
                               #:bedrock-guardrail-version
@@ -170,8 +164,7 @@
                               #:bot-version-sort-attribute
                               #:bot-version-sort-by #:bot-version-summary
                               #:bot-version-summary-list #:boxed-boolean
-                              #:build-bot-locale #:build-bot-locale-request
-                              #:build-bot-locale-response #:buildtime-settings
+                              #:build-bot-locale #:buildtime-settings
                               #:built-in-intent-sort-attribute
                               #:built-in-intent-sort-by
                               #:built-in-intent-summary
@@ -193,7 +186,7 @@
                               #:condition-operator #:condition-value
                               #:conditional-branch #:conditional-branches
                               #:conditional-specification
-                              #:confidence-threshold #:conflict-exception
+                              #:confidence-threshold
                               #:context-time-to-live-in-seconds
                               #:context-turns-to-live #:conversation-end-state
                               #:conversation-level-intent-classification-result-item
@@ -210,34 +203,15 @@
                               #:conversation-logs-data-source-filter-by
                               #:conversation-logs-input-mode-filter #:count
                               #:create-bot #:create-bot-alias
-                              #:create-bot-alias-request
-                              #:create-bot-alias-response #:create-bot-locale
-                              #:create-bot-locale-request
-                              #:create-bot-locale-response #:create-bot-replica
-                              #:create-bot-replica-request
-                              #:create-bot-replica-response
-                              #:create-bot-request #:create-bot-response
-                              #:create-bot-version #:create-bot-version-request
-                              #:create-bot-version-response
+                              #:create-bot-locale #:create-bot-replica
+                              #:create-bot-version
                               #:create-custom-vocabulary-items-list
-                              #:create-export #:create-export-request
-                              #:create-export-response #:create-intent
-                              #:create-intent-request #:create-intent-response
+                              #:create-export #:create-intent
                               #:create-resource-policy
-                              #:create-resource-policy-request
-                              #:create-resource-policy-response
-                              #:create-resource-policy-statement
-                              #:create-resource-policy-statement-request
-                              #:create-resource-policy-statement-response
-                              #:create-slot #:create-slot-request
-                              #:create-slot-response #:create-slot-type
-                              #:create-slot-type-request
-                              #:create-slot-type-response
+                              #:create-resource-policy-statement #:create-slot
+                              #:create-slot-type
                               #:create-test-set-discrepancy-report
-                              #:create-test-set-discrepancy-report-request
-                              #:create-test-set-discrepancy-report-response
-                              #:create-upload-url #:create-upload-url-request
-                              #:create-upload-url-response #:custom-payload
+                              #:create-upload-url #:custom-payload
                               #:custom-payload-value
                               #:custom-vocabulary-entry-id
                               #:custom-vocabulary-export-specification
@@ -248,80 +222,27 @@
                               #:dtmfspecification #:data-privacy
                               #:data-source-configuration #:date-range-filter
                               #:default-conditional-branch #:delete-bot
-                              #:delete-bot-alias #:delete-bot-alias-request
-                              #:delete-bot-alias-response #:delete-bot-locale
-                              #:delete-bot-locale-request
-                              #:delete-bot-locale-response #:delete-bot-replica
-                              #:delete-bot-replica-request
-                              #:delete-bot-replica-response
-                              #:delete-bot-request #:delete-bot-response
-                              #:delete-bot-version #:delete-bot-version-request
-                              #:delete-bot-version-response
+                              #:delete-bot-alias #:delete-bot-locale
+                              #:delete-bot-replica #:delete-bot-version
                               #:delete-custom-vocabulary
                               #:delete-custom-vocabulary-items-list
-                              #:delete-custom-vocabulary-request
-                              #:delete-custom-vocabulary-response
-                              #:delete-export #:delete-export-request
-                              #:delete-export-response #:delete-import
-                              #:delete-import-request #:delete-import-response
-                              #:delete-intent #:delete-intent-request
+                              #:delete-export #:delete-import #:delete-intent
                               #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response
-                              #:delete-resource-policy-statement
-                              #:delete-resource-policy-statement-request
-                              #:delete-resource-policy-statement-response
-                              #:delete-slot #:delete-slot-request
-                              #:delete-slot-type #:delete-slot-type-request
-                              #:delete-test-set #:delete-test-set-request
-                              #:delete-utterances #:delete-utterances-request
-                              #:delete-utterances-response #:describe-bot
-                              #:describe-bot-alias #:describe-bot-alias-request
-                              #:describe-bot-alias-response
-                              #:describe-bot-locale
-                              #:describe-bot-locale-request
-                              #:describe-bot-locale-response
+                              #:delete-resource-policy-statement #:delete-slot
+                              #:delete-slot-type #:delete-test-set
+                              #:delete-utterances #:describe-bot
+                              #:describe-bot-alias #:describe-bot-locale
                               #:describe-bot-recommendation
-                              #:describe-bot-recommendation-request
-                              #:describe-bot-recommendation-response
                               #:describe-bot-replica
-                              #:describe-bot-replica-request
-                              #:describe-bot-replica-response
-                              #:describe-bot-request
                               #:describe-bot-resource-generation
-                              #:describe-bot-resource-generation-request
-                              #:describe-bot-resource-generation-response
-                              #:describe-bot-response #:describe-bot-version
-                              #:describe-bot-version-request
-                              #:describe-bot-version-response
+                              #:describe-bot-version
                               #:describe-custom-vocabulary-metadata
-                              #:describe-custom-vocabulary-metadata-request
-                              #:describe-custom-vocabulary-metadata-response
-                              #:describe-export #:describe-export-request
-                              #:describe-export-response #:describe-import
-                              #:describe-import-request
-                              #:describe-import-response #:describe-intent
-                              #:describe-intent-request
-                              #:describe-intent-response
-                              #:describe-resource-policy
-                              #:describe-resource-policy-request
-                              #:describe-resource-policy-response
-                              #:describe-slot #:describe-slot-request
-                              #:describe-slot-response #:describe-slot-type
-                              #:describe-slot-type-request
-                              #:describe-slot-type-response
-                              #:describe-test-execution
-                              #:describe-test-execution-request
-                              #:describe-test-execution-response
-                              #:describe-test-set
+                              #:describe-export #:describe-import
+                              #:describe-intent #:describe-resource-policy
+                              #:describe-slot #:describe-slot-type
+                              #:describe-test-execution #:describe-test-set
                               #:describe-test-set-discrepancy-report
-                              #:describe-test-set-discrepancy-report-request
-                              #:describe-test-set-discrepancy-report-response
-                              #:describe-test-set-generation
-                              #:describe-test-set-generation-request
-                              #:describe-test-set-generation-response
-                              #:describe-test-set-request
-                              #:describe-test-set-response #:description
+                              #:describe-test-set-generation #:description
                               #:descriptive-bot-builder-specification
                               #:dialog-action #:dialog-action-type
                               #:dialog-code-hook-invocation-setting
@@ -347,16 +268,12 @@
                               #:fulfillment-update-response-frequency
                               #:fulfillment-update-response-specification
                               #:fulfillment-updates-specification
-                              #:generate-bot-element
-                              #:generate-bot-element-request
-                              #:generate-bot-element-response
-                              #:generation-input #:generation-sort-by
+                              #:generate-bot-element #:generation-input
+                              #:generation-sort-by
                               #:generation-sort-by-attribute
                               #:generation-status #:generation-summary
                               #:generation-summary-list #:generative-aisettings
                               #:get-test-execution-artifacts-url
-                              #:get-test-execution-artifacts-url-request
-                              #:get-test-execution-artifacts-url-response
                               #:grammar-slot-type-setting
                               #:grammar-slot-type-source #:hit-count #:id
                               #:image-response-card #:import-export-file-format
@@ -384,7 +301,6 @@
                               #:intent-sort-attribute #:intent-sort-by
                               #:intent-state #:intent-statistics
                               #:intent-summary #:intent-summary-list
-                              #:internal-server-exception
                               #:invoked-intent-sample #:invoked-intent-samples
                               #:item-id #:kendra-configuration
                               #:kendra-index-arn #:kms-key-arn #:lambda-arn
@@ -392,83 +308,24 @@
                               #:lex-model-building-service-v2
                               #:lex-transcript-filter
                               #:list-aggregated-utterances
-                              #:list-aggregated-utterances-request
-                              #:list-aggregated-utterances-response
-                              #:list-bot-alias-replicas
-                              #:list-bot-alias-replicas-request
-                              #:list-bot-alias-replicas-response
-                              #:list-bot-aliases #:list-bot-aliases-request
-                              #:list-bot-aliases-response #:list-bot-locales
-                              #:list-bot-locales-request
-                              #:list-bot-locales-response
-                              #:list-bot-recommendations
-                              #:list-bot-recommendations-request
-                              #:list-bot-recommendations-response
-                              #:list-bot-replicas #:list-bot-replicas-request
-                              #:list-bot-replicas-response
+                              #:list-bot-alias-replicas #:list-bot-aliases
+                              #:list-bot-locales #:list-bot-recommendations
+                              #:list-bot-replicas
                               #:list-bot-resource-generations
-                              #:list-bot-resource-generations-request
-                              #:list-bot-resource-generations-response
-                              #:list-bot-version-replicas
-                              #:list-bot-version-replicas-request
-                              #:list-bot-version-replicas-response
-                              #:list-bot-versions #:list-bot-versions-request
-                              #:list-bot-versions-response #:list-bots
-                              #:list-bots-request #:list-bots-response
-                              #:list-built-in-intents
-                              #:list-built-in-intents-request
-                              #:list-built-in-intents-response
+                              #:list-bot-version-replicas #:list-bot-versions
+                              #:list-bots #:list-built-in-intents
                               #:list-built-in-slot-types
-                              #:list-built-in-slot-types-request
-                              #:list-built-in-slot-types-response
-                              #:list-custom-vocabulary-items
-                              #:list-custom-vocabulary-items-request
-                              #:list-custom-vocabulary-items-response
-                              #:list-exports #:list-exports-request
-                              #:list-exports-response #:list-imports
-                              #:list-imports-request #:list-imports-response
-                              #:list-intent-metrics
-                              #:list-intent-metrics-request
-                              #:list-intent-metrics-response
-                              #:list-intent-paths #:list-intent-paths-request
-                              #:list-intent-paths-response
-                              #:list-intent-stage-metrics
-                              #:list-intent-stage-metrics-request
-                              #:list-intent-stage-metrics-response
-                              #:list-intents #:list-intents-request
-                              #:list-intents-response
-                              #:list-recommended-intents
-                              #:list-recommended-intents-request
-                              #:list-recommended-intents-response
+                              #:list-custom-vocabulary-items #:list-exports
+                              #:list-imports #:list-intent-metrics
+                              #:list-intent-paths #:list-intent-stage-metrics
+                              #:list-intents #:list-recommended-intents
                               #:list-session-analytics-data
-                              #:list-session-analytics-data-request
-                              #:list-session-analytics-data-response
-                              #:list-session-metrics
-                              #:list-session-metrics-request
-                              #:list-session-metrics-response #:list-slot-types
-                              #:list-slot-types-request
-                              #:list-slot-types-response #:list-slots
-                              #:list-slots-request #:list-slots-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-session-metrics #:list-slot-types
+                              #:list-slots #:list-tags-for-resource
                               #:list-test-execution-result-items
-                              #:list-test-execution-result-items-request
-                              #:list-test-execution-result-items-response
-                              #:list-test-executions
-                              #:list-test-executions-request
-                              #:list-test-executions-response
-                              #:list-test-set-records
-                              #:list-test-set-records-request
-                              #:list-test-set-records-response #:list-test-sets
-                              #:list-test-sets-request
-                              #:list-test-sets-response
-                              #:list-utterance-analytics-data
-                              #:list-utterance-analytics-data-request
-                              #:list-utterance-analytics-data-response
-                              #:list-utterance-metrics
-                              #:list-utterance-metrics-request
-                              #:list-utterance-metrics-response #:locale-id
+                              #:list-test-executions #:list-test-set-records
+                              #:list-test-sets #:list-utterance-analytics-data
+                              #:list-utterance-metrics #:locale-id
                               #:locale-name #:log-prefix #:max-results
                               #:max-utterance-digits #:merge-strategy #:message
                               #:message-group #:message-groups-list
@@ -491,10 +348,9 @@
                               #:policy
                               #:post-dialog-code-hook-invocation-specification
                               #:post-fulfillment-status-specification
-                              #:precondition-failed-exception #:presigned-s3url
-                              #:principal #:principal-arn #:principal-list
-                              #:priority-value #:prompt-attempt
-                              #:prompt-attempt-specification
+                              #:presigned-s3url #:principal #:principal-arn
+                              #:principal-list #:priority-value
+                              #:prompt-attempt #:prompt-attempt-specification
                               #:prompt-attempts-specification-map
                               #:prompt-max-retries #:prompt-specification
                               #:qin-connect-assistant-arn
@@ -508,7 +364,6 @@
                               #:recommended-intent-summary-list #:record-number
                               #:regex-pattern #:relative-aggregation-duration
                               #:replica-region #:resource-count
-                              #:resource-not-found-exception
                               #:response-specification #:retry-after-seconds
                               #:revision-id #:role-arn #:runtime-hint-details
                               #:runtime-hint-phrase #:runtime-hint-value
@@ -521,12 +376,8 @@
                               #:sample-utterance-generation-specification
                               #:sample-utterances-count
                               #:sample-utterances-list #:sample-value
-                              #:search-associated-transcripts
-                              #:search-associated-transcripts-request
-                              #:search-associated-transcripts-response
-                              #:search-order #:sentiment-analysis-settings
-                              #:service-principal
-                              #:service-quota-exceeded-exception
+                              #:search-associated-transcripts #:search-order
+                              #:sentiment-analysis-settings #:service-principal
                               #:session-data-sort-by #:session-id
                               #:session-specification #:session-specifications
                               #:session-ttl #:skip-resource-in-use-check
@@ -560,31 +411,19 @@
                               #:slot-value-selection-setting #:slot-values
                               #:sort-order #:specifications
                               #:start-bot-recommendation
-                              #:start-bot-recommendation-request
-                              #:start-bot-recommendation-response
-                              #:start-bot-resource-generation
-                              #:start-bot-resource-generation-request
-                              #:start-bot-resource-generation-response
-                              #:start-import #:start-import-request
-                              #:start-import-response #:start-test-execution
-                              #:start-test-execution-request
-                              #:start-test-execution-response
+                              #:start-bot-resource-generation #:start-import
+                              #:start-test-execution
                               #:start-test-set-generation
-                              #:start-test-set-generation-request
-                              #:start-test-set-generation-response
                               #:still-waiting-response-frequency
                               #:still-waiting-response-specification
                               #:still-waiting-response-timeout
-                              #:stop-bot-recommendation
-                              #:stop-bot-recommendation-request
-                              #:stop-bot-recommendation-response #:string
-                              #:string-map #:sub-slot-expression
-                              #:sub-slot-setting #:sub-slot-specification-map
+                              #:stop-bot-recommendation #:string #:string-map
+                              #:sub-slot-expression #:sub-slot-setting
+                              #:sub-slot-specification-map
                               #:sub-slot-type-composition #:sub-slot-type-list
                               #:sub-slot-value-elicitation-setting
                               #:synonym-list #:tag-key #:tag-key-list #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:tag-resource #:tag-value
                               #:test-execution-api-mode
                               #:test-execution-modality
                               #:test-execution-result-filter-by
@@ -621,33 +460,17 @@
                               #:test-set-turn-result #:test-set-utterance-text
                               #:text-input-specification #:text-log-destination
                               #:text-log-setting #:text-log-settings-list
-                              #:throttling-exception #:time-dimension
-                              #:time-in-milli-seconds #:time-value #:timestamp
-                              #:transcript #:transcript-filter
-                              #:transcript-format #:transcript-source-setting
-                              #:turn-number #:turn-specification
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-bot
-                              #:update-bot-alias #:update-bot-alias-request
-                              #:update-bot-alias-response #:update-bot-locale
-                              #:update-bot-locale-request
-                              #:update-bot-locale-response
-                              #:update-bot-recommendation
-                              #:update-bot-recommendation-request
-                              #:update-bot-recommendation-response
-                              #:update-bot-request #:update-bot-response
+                              #:time-dimension #:time-in-milli-seconds
+                              #:time-value #:timestamp #:transcript
+                              #:transcript-filter #:transcript-format
+                              #:transcript-source-setting #:turn-number
+                              #:turn-specification #:untag-resource
+                              #:update-bot #:update-bot-alias
+                              #:update-bot-locale #:update-bot-recommendation
                               #:update-custom-vocabulary-items-list
-                              #:update-export #:update-export-request
-                              #:update-export-response #:update-intent
-                              #:update-intent-request #:update-intent-response
-                              #:update-resource-policy
-                              #:update-resource-policy-request
-                              #:update-resource-policy-response #:update-slot
-                              #:update-slot-request #:update-slot-response
-                              #:update-slot-type #:update-slot-type-request
-                              #:update-slot-type-response #:update-test-set
-                              #:update-test-set-request
-                              #:update-test-set-response
+                              #:update-export #:update-intent
+                              #:update-resource-policy #:update-slot
+                              #:update-slot-type #:update-test-set
                               #:user-turn-input-specification
                               #:user-turn-intent-output
                               #:user-turn-output-specification
@@ -666,8 +489,8 @@
                               #:utterance-level-test-results
                               #:utterance-specification
                               #:utterance-specifications #:utterance-understood
-                              #:validation-exception #:value #:voice-engine
-                              #:voice-id #:voice-settings
+                              #:value #:voice-engine #:voice-id
+                              #:voice-settings
                               #:wait-and-continue-specification #:weight))
 (common-lisp:in-package #:pira/lex-models-v2)
 

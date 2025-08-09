@@ -1,27 +1,20 @@
 (uiop/package:define-package #:pira/sagemaker-featurestore-runtime (:use)
-                             (:export #:access-forbidden
-                              #:amazon-sage-maker-feature-store-runtime
+                             (:export #:amazon-sage-maker-feature-store-runtime
                               #:batch-get-record #:batch-get-record-error
                               #:batch-get-record-errors
                               #:batch-get-record-identifier
                               #:batch-get-record-identifiers
-                              #:batch-get-record-request
-                              #:batch-get-record-response
                               #:batch-get-record-result-detail
                               #:batch-get-record-result-details #:delete-record
-                              #:delete-record-request #:deletion-mode
-                              #:expiration-time-response #:expires-at
-                              #:feature-group-name-or-arn #:feature-name
-                              #:feature-names #:feature-value #:get-record
-                              #:get-record-request #:get-record-response
-                              #:internal-failure #:message #:put-record
-                              #:put-record-request #:record
-                              #:record-identifiers #:resource-not-found
-                              #:service-unavailable #:target-store
+                              #:deletion-mode #:expiration-time-response
+                              #:expires-at #:feature-group-name-or-arn
+                              #:feature-name #:feature-names #:feature-value
+                              #:get-record #:message #:put-record #:record
+                              #:record-identifiers #:target-store
                               #:target-stores #:ttl-duration
                               #:ttl-duration-unit #:ttl-duration-value
-                              #:unprocessed-identifiers #:validation-error
-                              #:value-as-string #:value-as-string-list))
+                              #:unprocessed-identifiers #:value-as-string
+                              #:value-as-string-list))
 (common-lisp:in-package #:pira/sagemaker-featurestore-runtime)
 
 (smithy/sdk/service:define-service amazon-sage-maker-feature-store-runtime

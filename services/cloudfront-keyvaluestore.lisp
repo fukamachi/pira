@@ -1,24 +1,12 @@
 (uiop/package:define-package #:pira/cloudfront-keyvaluestore (:use)
-                             (:export #:access-denied-exception
-                              #:cloud-front-key-value-store
-                              #:conflict-exception #:delete-key
-                              #:delete-key-request
-                              #:delete-key-request-list-item
-                              #:delete-key-requests-list #:delete-key-response
-                              #:describe-key-value-store
-                              #:describe-key-value-store-request
-                              #:describe-key-value-store-response #:etag
-                              #:get-key #:get-key-request #:get-key-response
-                              #:internal-server-exception #:key #:kvs-arn
-                              #:list-keys #:list-keys-request
-                              #:list-keys-response #:list-keys-response-list
+                             (:export #:cloud-front-key-value-store
+                              #:delete-key #:delete-key-request-list-item
+                              #:delete-key-requests-list
+                              #:describe-key-value-store #:etag #:get-key #:key
+                              #:kvs-arn #:list-keys #:list-keys-response-list
                               #:list-keys-response-list-item #:put-key
-                              #:put-key-request #:put-key-request-list-item
-                              #:put-key-requests-list #:put-key-response
-                              #:resource-not-found-exception
-                              #:service-quota-exceeded-exception #:update-keys
-                              #:update-keys-request #:update-keys-response
-                              #:validation-exception #:value))
+                              #:put-key-request-list-item
+                              #:put-key-requests-list #:update-keys #:value))
 (common-lisp:in-package #:pira/cloudfront-keyvaluestore)
 
 (smithy/sdk/service:define-service cloud-front-key-value-store :shape-name

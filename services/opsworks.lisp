@@ -2,124 +2,56 @@
                              (:export #:agent-version #:agent-versions #:app
                               #:app-attributes #:app-attributes-keys #:app-type
                               #:apps #:architecture #:assign-instance
-                              #:assign-instance-request #:assign-volume
-                              #:assign-volume-request #:associate-elastic-ip
-                              #:associate-elastic-ip-request
+                              #:assign-volume #:associate-elastic-ip
                               #:attach-elastic-load-balancer
-                              #:attach-elastic-load-balancer-request
                               #:auto-scaling-thresholds #:auto-scaling-type
                               #:block-device-mapping #:block-device-mappings
                               #:boolean #:chef-configuration #:clone-stack
-                              #:clone-stack-request #:clone-stack-result
                               #:cloud-watch-logs-configuration
                               #:cloud-watch-logs-encoding
                               #:cloud-watch-logs-initial-position
                               #:cloud-watch-logs-log-stream
                               #:cloud-watch-logs-log-streams
                               #:cloud-watch-logs-time-zone #:command #:commands
-                              #:create-app #:create-app-request
-                              #:create-app-result #:create-deployment
-                              #:create-deployment-request
-                              #:create-deployment-result #:create-instance
-                              #:create-instance-request
-                              #:create-instance-result #:create-layer
-                              #:create-layer-request #:create-layer-result
-                              #:create-stack #:create-stack-request
-                              #:create-stack-result #:create-user-profile
-                              #:create-user-profile-request
-                              #:create-user-profile-result
+                              #:create-app #:create-deployment
+                              #:create-instance #:create-layer #:create-stack
+                              #:create-user-profile
                               #:daily-auto-scaling-schedule #:data-source
                               #:data-sources #:date-time #:delete-app
-                              #:delete-app-request #:delete-instance
-                              #:delete-instance-request #:delete-layer
-                              #:delete-layer-request #:delete-stack
-                              #:delete-stack-request #:delete-user-profile
-                              #:delete-user-profile-request #:deployment
+                              #:delete-instance #:delete-layer #:delete-stack
+                              #:delete-user-profile #:deployment
                               #:deployment-command #:deployment-command-args
                               #:deployment-command-name #:deployments
-                              #:deregister-ecs-cluster
-                              #:deregister-ecs-cluster-request
-                              #:deregister-elastic-ip
-                              #:deregister-elastic-ip-request
+                              #:deregister-ecs-cluster #:deregister-elastic-ip
                               #:deregister-instance
-                              #:deregister-instance-request
-                              #:deregister-rds-db-instance
-                              #:deregister-rds-db-instance-request
-                              #:deregister-volume #:deregister-volume-request
-                              #:describe-agent-versions
-                              #:describe-agent-versions-request
-                              #:describe-agent-versions-result #:describe-apps
-                              #:describe-apps-request #:describe-apps-result
-                              #:describe-commands #:describe-commands-request
-                              #:describe-commands-result #:describe-deployments
-                              #:describe-deployments-request
-                              #:describe-deployments-result
-                              #:describe-ecs-clusters
-                              #:describe-ecs-clusters-request
-                              #:describe-ecs-clusters-result
-                              #:describe-elastic-ips
-                              #:describe-elastic-ips-request
-                              #:describe-elastic-ips-result
+                              #:deregister-rds-db-instance #:deregister-volume
+                              #:describe-agent-versions #:describe-apps
+                              #:describe-commands #:describe-deployments
+                              #:describe-ecs-clusters #:describe-elastic-ips
                               #:describe-elastic-load-balancers
-                              #:describe-elastic-load-balancers-request
-                              #:describe-elastic-load-balancers-result
-                              #:describe-instances #:describe-instances-request
-                              #:describe-instances-result #:describe-layers
-                              #:describe-layers-request
-                              #:describe-layers-result
+                              #:describe-instances #:describe-layers
                               #:describe-load-based-auto-scaling
-                              #:describe-load-based-auto-scaling-request
-                              #:describe-load-based-auto-scaling-result
                               #:describe-my-user-profile
-                              #:describe-my-user-profile-result
                               #:describe-operating-systems
-                              #:describe-operating-systems-response
-                              #:describe-permissions
-                              #:describe-permissions-request
-                              #:describe-permissions-result
-                              #:describe-raid-arrays
-                              #:describe-raid-arrays-request
-                              #:describe-raid-arrays-result
+                              #:describe-permissions #:describe-raid-arrays
                               #:describe-rds-db-instances
-                              #:describe-rds-db-instances-request
-                              #:describe-rds-db-instances-result
                               #:describe-service-errors
-                              #:describe-service-errors-request
-                              #:describe-service-errors-result
                               #:describe-stack-provisioning-parameters
-                              #:describe-stack-provisioning-parameters-request
-                              #:describe-stack-provisioning-parameters-result
-                              #:describe-stack-summary
-                              #:describe-stack-summary-request
-                              #:describe-stack-summary-result #:describe-stacks
-                              #:describe-stacks-request
-                              #:describe-stacks-result
+                              #:describe-stack-summary #:describe-stacks
                               #:describe-time-based-auto-scaling
-                              #:describe-time-based-auto-scaling-request
-                              #:describe-time-based-auto-scaling-result
-                              #:describe-user-profiles
-                              #:describe-user-profiles-request
-                              #:describe-user-profiles-result
-                              #:describe-volumes #:describe-volumes-request
-                              #:describe-volumes-result
+                              #:describe-user-profiles #:describe-volumes
                               #:detach-elastic-load-balancer
-                              #:detach-elastic-load-balancer-request
-                              #:disassociate-elastic-ip
-                              #:disassociate-elastic-ip-request #:double
+                              #:disassociate-elastic-ip #:double
                               #:ebs-block-device #:ecs-cluster #:ecs-clusters
                               #:elastic-ip #:elastic-ips
                               #:elastic-load-balancer #:elastic-load-balancers
                               #:environment-variable #:environment-variables
-                              #:get-hostname-suggestion
-                              #:get-hostname-suggestion-request
-                              #:get-hostname-suggestion-result #:grant-access
-                              #:grant-access-request #:grant-access-result
-                              #:hour #:instance #:instance-identity #:instances
+                              #:get-hostname-suggestion #:grant-access #:hour
+                              #:instance #:instance-identity #:instances
                               #:instances-count #:integer #:layer
                               #:layer-attributes #:layer-attributes-keys
                               #:layer-type #:layers
                               #:lifecycle-event-configuration #:list-tags
-                              #:list-tags-request #:list-tags-result
                               #:load-based-auto-scaling-configuration
                               #:load-based-auto-scaling-configurations
                               #:max-results #:minute #:next-token
@@ -129,58 +61,31 @@
                               #:operating-systems #:ops-works-20130218
                               #:parameters #:permission #:permissions
                               #:raid-array #:raid-arrays #:rds-db-instance
-                              #:rds-db-instances #:reboot-instance
-                              #:reboot-instance-request #:recipes
-                              #:register-ecs-cluster
-                              #:register-ecs-cluster-request
-                              #:register-ecs-cluster-result
-                              #:register-elastic-ip
-                              #:register-elastic-ip-request
-                              #:register-elastic-ip-result #:register-instance
-                              #:register-instance-request
-                              #:register-instance-result
-                              #:register-rds-db-instance
-                              #:register-rds-db-instance-request
-                              #:register-volume #:register-volume-request
-                              #:register-volume-result #:reported-os
-                              #:resource-arn #:resource-not-found-exception
+                              #:rds-db-instances #:reboot-instance #:recipes
+                              #:register-ecs-cluster #:register-elastic-ip
+                              #:register-instance #:register-rds-db-instance
+                              #:register-volume #:reported-os #:resource-arn
                               #:root-device-type #:self-user-profile
                               #:service-error #:service-errors
-                              #:set-load-based-auto-scaling
-                              #:set-load-based-auto-scaling-request
-                              #:set-permission #:set-permission-request
+                              #:set-load-based-auto-scaling #:set-permission
                               #:set-time-based-auto-scaling
-                              #:set-time-based-auto-scaling-request
                               #:shutdown-event-configuration #:source
                               #:source-type #:ssl-configuration #:stack
                               #:stack-attributes #:stack-attributes-keys
                               #:stack-configuration-manager #:stack-summary
-                              #:stacks #:start-instance
-                              #:start-instance-request #:start-stack
-                              #:start-stack-request #:stop-instance
-                              #:stop-instance-request #:stop-stack
-                              #:stop-stack-request #:string #:strings #:switch
-                              #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-value #:tags
-                              #:temporary-credential
+                              #:stacks #:start-instance #:start-stack
+                              #:stop-instance #:stop-stack #:string #:strings
+                              #:switch #:tag-key #:tag-keys #:tag-resource
+                              #:tag-value #:tags #:temporary-credential
                               #:time-based-auto-scaling-configuration
                               #:time-based-auto-scaling-configurations
-                              #:unassign-instance #:unassign-instance-request
-                              #:unassign-volume #:unassign-volume-request
-                              #:untag-resource #:untag-resource-request
-                              #:update-app #:update-app-request
-                              #:update-elastic-ip #:update-elastic-ip-request
-                              #:update-instance #:update-instance-request
-                              #:update-layer #:update-layer-request
-                              #:update-my-user-profile
-                              #:update-my-user-profile-request
-                              #:update-rds-db-instance
-                              #:update-rds-db-instance-request #:update-stack
-                              #:update-stack-request #:update-user-profile
-                              #:update-user-profile-request #:update-volume
-                              #:update-volume-request #:user-profile
-                              #:user-profiles #:valid-for-in-minutes
-                              #:validation-exception #:virtualization-type
+                              #:unassign-instance #:unassign-volume
+                              #:untag-resource #:update-app #:update-elastic-ip
+                              #:update-instance #:update-layer
+                              #:update-my-user-profile #:update-rds-db-instance
+                              #:update-stack #:update-user-profile
+                              #:update-volume #:user-profile #:user-profiles
+                              #:valid-for-in-minutes #:virtualization-type
                               #:volume #:volume-configuration
                               #:volume-configurations #:volume-type #:volumes
                               #:weekly-auto-scaling-schedule))

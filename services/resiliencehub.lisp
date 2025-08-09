@@ -2,9 +2,6 @@
                              (:export #:accept-grouping-recommendation-entries
                               #:accept-grouping-recommendation-entry
                               #:accept-resource-grouping-recommendations
-                              #:accept-resource-grouping-recommendations-request
-                              #:accept-resource-grouping-recommendations-response
-                              #:access-denied-exception
                               #:add-draft-app-version-resource-mappings
                               #:add-draft-app-version-resource-mappings-request
                               #:add-draft-app-version-resource-mappings-response
@@ -33,8 +30,6 @@
                               #:batch-update-recommendation-status
                               #:batch-update-recommendation-status-failed-entries
                               #:batch-update-recommendation-status-failed-entry
-                              #:batch-update-recommendation-status-request
-                              #:batch-update-recommendation-status-response
                               #:batch-update-recommendation-status-successful-entries
                               #:batch-update-recommendation-status-successful-entry
                               #:boolean-optional #:client-token
@@ -45,10 +40,9 @@
                               #:condition-list #:condition-operator-type
                               #:config-recommendation
                               #:config-recommendation-list
-                              #:config-recommendation-optimization-type
-                              #:conflict-exception #:cost #:cost-frequency
-                              #:create-app #:create-app-request
-                              #:create-app-response
+                              #:config-recommendation-optimization-type #:cost
+                              #:cost-frequency #:create-app
+                              #:create-app-request #:create-app-response
                               #:create-app-version-app-component
                               #:create-app-version-app-component-request
                               #:create-app-version-app-component-response
@@ -105,14 +99,10 @@
                               #:describe-draft-app-version-resources-import-status-request
                               #:describe-draft-app-version-resources-import-status-response
                               #:describe-metrics-export
-                              #:describe-metrics-export-request
-                              #:describe-metrics-export-response
                               #:describe-resiliency-policy
                               #:describe-resiliency-policy-request
                               #:describe-resiliency-policy-response
                               #:describe-resource-grouping-recommendation-task
-                              #:describe-resource-grouping-recommendation-task-request
-                              #:describe-resource-grouping-recommendation-task-response
                               #:difference-type #:disruption-compliance
                               #:disruption-policy #:disruption-resiliency-score
                               #:disruption-type #:document-name #:double
@@ -142,16 +132,11 @@
                               #:import-resources-to-draft-app-version-request
                               #:import-resources-to-draft-app-version-response
                               #:integer #:integer-optional
-                              #:internal-server-exception
                               #:list-alarm-recommendations
                               #:list-alarm-recommendations-request
                               #:list-alarm-recommendations-response
                               #:list-app-assessment-compliance-drifts
-                              #:list-app-assessment-compliance-drifts-request
-                              #:list-app-assessment-compliance-drifts-response
                               #:list-app-assessment-resource-drifts
-                              #:list-app-assessment-resource-drifts-request
-                              #:list-app-assessment-resource-drifts-response
                               #:list-app-assessments
                               #:list-app-assessments-request
                               #:list-app-assessments-response
@@ -176,17 +161,13 @@
                               #:list-app-versions #:list-app-versions-request
                               #:list-app-versions-response #:list-apps
                               #:list-apps-request #:list-apps-response
-                              #:list-metrics #:list-metrics-request
-                              #:list-metrics-response
-                              #:list-recommendation-templates
+                              #:list-metrics #:list-recommendation-templates
                               #:list-recommendation-templates-request
                               #:list-recommendation-templates-response
                               #:list-resiliency-policies
                               #:list-resiliency-policies-request
                               #:list-resiliency-policies-response
                               #:list-resource-grouping-recommendations
-                              #:list-resource-grouping-recommendations-request
-                              #:list-resource-grouping-recommendations-response
                               #:list-sop-recommendations
                               #:list-sop-recommendations-request
                               #:list-sop-recommendations-response
@@ -226,8 +207,6 @@
                               #:reject-grouping-recommendation-entries
                               #:reject-grouping-recommendation-entry
                               #:reject-resource-grouping-recommendations
-                              #:reject-resource-grouping-recommendations-request
-                              #:reject-resource-grouping-recommendations-response
                               #:remove-draft-app-version-resource-mappings
                               #:remove-draft-app-version-resource-mappings-request
                               #:remove-draft-app-version-resource-mappings-response
@@ -247,7 +226,6 @@
                               #:resource-import-strategy-type
                               #:resource-mapping #:resource-mapping-list
                               #:resource-mapping-type
-                              #:resource-not-found-exception
                               #:resource-resolution-status-type
                               #:resource-source-type #:resource-type
                               #:resources-grouping-rec-gen-status-type
@@ -255,18 +233,13 @@
                               #:s3location #:s3url
                               #:scoring-component-resiliency-score
                               #:scoring-component-resiliency-scores #:seconds
-                              #:service-quota-exceeded-exception
                               #:sop-recommendation #:sop-recommendation-list
                               #:sop-service-type #:sort #:sort-list
                               #:spec-reference-id #:start-app-assessment
                               #:start-app-assessment-request
                               #:start-app-assessment-response
                               #:start-metrics-export
-                              #:start-metrics-export-request
-                              #:start-metrics-export-response
                               #:start-resource-grouping-recommendation-task
-                              #:start-resource-grouping-recommendation-task-request
-                              #:start-resource-grouping-recommendation-task-response
                               #:string1024 #:string128without-whitespace
                               #:string2048 #:string255 #:string255list
                               #:string500 #:suggested-changes-list #:tag-key
@@ -275,8 +248,7 @@
                               #:tag-value #:template-format #:terraform-source
                               #:terraform-source-list #:test-recommendation
                               #:test-recommendation-list #:test-risk
-                              #:test-type #:throttling-exception #:time-stamp
-                              #:unsupported-resource
+                              #:test-type #:time-stamp #:unsupported-resource
                               #:unsupported-resource-list #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-app
@@ -295,8 +267,7 @@
                               #:update-recommendation-status-request-entry
                               #:update-resiliency-policy
                               #:update-resiliency-policy-request
-                              #:update-resiliency-policy-response #:uuid
-                              #:validation-exception))
+                              #:update-resiliency-policy-response #:uuid))
 (common-lisp:in-package #:pira/resiliencehub)
 
 (smithy/sdk/service:define-service aws-resilience-hub :shape-name

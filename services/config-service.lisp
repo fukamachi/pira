@@ -31,18 +31,12 @@
                               #:aggregator-region-list #:all-supported
                               #:amazon-resource-name #:annotation
                               #:associate-resource-types
-                              #:associate-resource-types-request
-                              #:associate-resource-types-response
                               #:auto-remediation-attempt-seconds
                               #:auto-remediation-attempts #:availability-zone
                               #:aws-region #:base-configuration-item
                               #:base-configuration-items #:base-resource-id
                               #:batch-get-aggregate-resource-config
-                              #:batch-get-aggregate-resource-config-request
-                              #:batch-get-aggregate-resource-config-response
-                              #:batch-get-resource-config
-                              #:batch-get-resource-config-request
-                              #:batch-get-resource-config-response #:boolean
+                              #:batch-get-resource-config #:boolean
                               #:channel-name #:chronological-order
                               #:client-token #:compliance
                               #:compliance-by-config-rule
@@ -88,8 +82,7 @@
                               #:configuration-recorder-status-list
                               #:configuration-recorder-summaries
                               #:configuration-recorder-summary
-                              #:configuration-state-id #:conflict-exception
-                              #:conformance-pack-arn
+                              #:configuration-state-id #:conformance-pack-arn
                               #:conformance-pack-compliance-filters
                               #:conformance-pack-compliance-resource-ids
                               #:conformance-pack-compliance-score
@@ -116,50 +109,25 @@
                               #:conformance-pack-state
                               #:conformance-pack-status-detail
                               #:conformance-pack-status-details-list
-                              #:conformance-pack-status-reason
-                              #:conformance-pack-template-validation-exception
-                              #:controls-list #:cosmos-page-limit
-                              #:custom-policy-details #:date
-                              #:debug-log-delivery-accounts
+                              #:conformance-pack-status-reason #:controls-list
+                              #:cosmos-page-limit #:custom-policy-details
+                              #:date #:debug-log-delivery-accounts
                               #:delete-aggregation-authorization
-                              #:delete-aggregation-authorization-request
-                              #:delete-config-rule #:delete-config-rule-request
+                              #:delete-config-rule
                               #:delete-configuration-aggregator
-                              #:delete-configuration-aggregator-request
                               #:delete-configuration-recorder
-                              #:delete-configuration-recorder-request
                               #:delete-conformance-pack
-                              #:delete-conformance-pack-request
                               #:delete-delivery-channel
-                              #:delete-delivery-channel-request
                               #:delete-evaluation-results
-                              #:delete-evaluation-results-request
-                              #:delete-evaluation-results-response
                               #:delete-organization-config-rule
-                              #:delete-organization-config-rule-request
                               #:delete-organization-conformance-pack
-                              #:delete-organization-conformance-pack-request
                               #:delete-pending-aggregation-request
-                              #:delete-pending-aggregation-request-request
                               #:delete-remediation-configuration
-                              #:delete-remediation-configuration-request
-                              #:delete-remediation-configuration-response
                               #:delete-remediation-exceptions
-                              #:delete-remediation-exceptions-request
-                              #:delete-remediation-exceptions-response
                               #:delete-resource-config
-                              #:delete-resource-config-request
                               #:delete-retention-configuration
-                              #:delete-retention-configuration-request
                               #:delete-service-linked-configuration-recorder
-                              #:delete-service-linked-configuration-recorder-request
-                              #:delete-service-linked-configuration-recorder-response
-                              #:delete-stored-query
-                              #:delete-stored-query-request
-                              #:delete-stored-query-response
-                              #:deliver-config-snapshot
-                              #:deliver-config-snapshot-request
-                              #:deliver-config-snapshot-response
+                              #:delete-stored-query #:deliver-config-snapshot
                               #:delivery-channel #:delivery-channel-list
                               #:delivery-channel-name-list
                               #:delivery-channel-status
@@ -167,86 +135,34 @@
                               #:delivery-s3bucket #:delivery-s3key-prefix
                               #:delivery-status
                               #:describe-aggregate-compliance-by-config-rules
-                              #:describe-aggregate-compliance-by-config-rules-request
-                              #:describe-aggregate-compliance-by-config-rules-response
                               #:describe-aggregate-compliance-by-conformance-packs
-                              #:describe-aggregate-compliance-by-conformance-packs-request
-                              #:describe-aggregate-compliance-by-conformance-packs-response
                               #:describe-aggregation-authorizations
-                              #:describe-aggregation-authorizations-request
-                              #:describe-aggregation-authorizations-response
                               #:describe-compliance-by-config-rule
-                              #:describe-compliance-by-config-rule-request
-                              #:describe-compliance-by-config-rule-response
                               #:describe-compliance-by-resource
-                              #:describe-compliance-by-resource-request
-                              #:describe-compliance-by-resource-response
                               #:describe-config-rule-evaluation-status
-                              #:describe-config-rule-evaluation-status-request
-                              #:describe-config-rule-evaluation-status-response
                               #:describe-config-rules
                               #:describe-config-rules-filters
-                              #:describe-config-rules-request
-                              #:describe-config-rules-response
                               #:describe-configuration-aggregator-sources-status
-                              #:describe-configuration-aggregator-sources-status-request
-                              #:describe-configuration-aggregator-sources-status-response
                               #:describe-configuration-aggregators
-                              #:describe-configuration-aggregators-request
-                              #:describe-configuration-aggregators-response
                               #:describe-configuration-recorder-status
-                              #:describe-configuration-recorder-status-request
-                              #:describe-configuration-recorder-status-response
                               #:describe-configuration-recorders
-                              #:describe-configuration-recorders-request
-                              #:describe-configuration-recorders-response
                               #:describe-conformance-pack-compliance
                               #:describe-conformance-pack-compliance-limit
-                              #:describe-conformance-pack-compliance-request
-                              #:describe-conformance-pack-compliance-response
                               #:describe-conformance-pack-status
-                              #:describe-conformance-pack-status-request
-                              #:describe-conformance-pack-status-response
                               #:describe-conformance-packs
-                              #:describe-conformance-packs-request
-                              #:describe-conformance-packs-response
                               #:describe-delivery-channel-status
-                              #:describe-delivery-channel-status-request
-                              #:describe-delivery-channel-status-response
                               #:describe-delivery-channels
-                              #:describe-delivery-channels-request
-                              #:describe-delivery-channels-response
                               #:describe-organization-config-rule-statuses
-                              #:describe-organization-config-rule-statuses-request
-                              #:describe-organization-config-rule-statuses-response
                               #:describe-organization-config-rules
-                              #:describe-organization-config-rules-request
-                              #:describe-organization-config-rules-response
                               #:describe-organization-conformance-pack-statuses
-                              #:describe-organization-conformance-pack-statuses-request
-                              #:describe-organization-conformance-pack-statuses-response
                               #:describe-organization-conformance-packs
-                              #:describe-organization-conformance-packs-request
-                              #:describe-organization-conformance-packs-response
                               #:describe-pending-aggregation-requests
                               #:describe-pending-aggregation-requests-limit
-                              #:describe-pending-aggregation-requests-request
-                              #:describe-pending-aggregation-requests-response
                               #:describe-remediation-configurations
-                              #:describe-remediation-configurations-request
-                              #:describe-remediation-configurations-response
                               #:describe-remediation-exceptions
-                              #:describe-remediation-exceptions-request
-                              #:describe-remediation-exceptions-response
                               #:describe-remediation-execution-status
-                              #:describe-remediation-execution-status-request
-                              #:describe-remediation-execution-status-response
-                              #:describe-retention-configurations
-                              #:describe-retention-configurations-request
-                              #:describe-retention-configurations-response
-                              #:description #:disassociate-resource-types
-                              #:disassociate-resource-types-request
-                              #:disassociate-resource-types-response
+                              #:describe-retention-configurations #:description
+                              #:disassociate-resource-types
                               #:discovered-resource-identifier-list
                               #:earlier-time
                               #:emptiable-string-with-char-limit256
@@ -269,137 +185,42 @@
                               #:failed-remediation-exception-batches
                               #:field-info #:field-info-list #:field-name
                               #:get-aggregate-compliance-details-by-config-rule
-                              #:get-aggregate-compliance-details-by-config-rule-request
-                              #:get-aggregate-compliance-details-by-config-rule-response
                               #:get-aggregate-config-rule-compliance-summary
-                              #:get-aggregate-config-rule-compliance-summary-request
-                              #:get-aggregate-config-rule-compliance-summary-response
                               #:get-aggregate-conformance-pack-compliance-summary
-                              #:get-aggregate-conformance-pack-compliance-summary-request
-                              #:get-aggregate-conformance-pack-compliance-summary-response
                               #:get-aggregate-discovered-resource-counts
-                              #:get-aggregate-discovered-resource-counts-request
-                              #:get-aggregate-discovered-resource-counts-response
                               #:get-aggregate-resource-config
-                              #:get-aggregate-resource-config-request
-                              #:get-aggregate-resource-config-response
                               #:get-compliance-details-by-config-rule
-                              #:get-compliance-details-by-config-rule-request
-                              #:get-compliance-details-by-config-rule-response
                               #:get-compliance-details-by-resource
-                              #:get-compliance-details-by-resource-request
-                              #:get-compliance-details-by-resource-response
                               #:get-compliance-summary-by-config-rule
-                              #:get-compliance-summary-by-config-rule-response
                               #:get-compliance-summary-by-resource-type
-                              #:get-compliance-summary-by-resource-type-request
-                              #:get-compliance-summary-by-resource-type-response
                               #:get-conformance-pack-compliance-details
                               #:get-conformance-pack-compliance-details-limit
-                              #:get-conformance-pack-compliance-details-request
-                              #:get-conformance-pack-compliance-details-response
                               #:get-conformance-pack-compliance-summary
-                              #:get-conformance-pack-compliance-summary-request
-                              #:get-conformance-pack-compliance-summary-response
                               #:get-custom-rule-policy
-                              #:get-custom-rule-policy-request
-                              #:get-custom-rule-policy-response
                               #:get-discovered-resource-counts
-                              #:get-discovered-resource-counts-request
-                              #:get-discovered-resource-counts-response
                               #:get-organization-config-rule-detailed-status
-                              #:get-organization-config-rule-detailed-status-request
-                              #:get-organization-config-rule-detailed-status-response
                               #:get-organization-conformance-pack-detailed-status
-                              #:get-organization-conformance-pack-detailed-status-request
-                              #:get-organization-conformance-pack-detailed-status-response
                               #:get-organization-custom-rule-policy
-                              #:get-organization-custom-rule-policy-request
-                              #:get-organization-custom-rule-policy-response
                               #:get-resource-config-history
-                              #:get-resource-config-history-request
-                              #:get-resource-config-history-response
                               #:get-resource-evaluation-summary
-                              #:get-resource-evaluation-summary-request
-                              #:get-resource-evaluation-summary-response
-                              #:get-stored-query #:get-stored-query-request
-                              #:get-stored-query-response #:group-by-apilimit
+                              #:get-stored-query #:group-by-apilimit
                               #:grouped-resource-count
                               #:grouped-resource-count-list
-                              #:idempotent-parameter-mismatch
-                              #:include-global-resource-types
-                              #:insufficient-delivery-policy-exception
-                              #:insufficient-permissions-exception #:integer
-                              #:invalid-configuration-recorder-name-exception
-                              #:invalid-delivery-channel-name-exception
-                              #:invalid-expression-exception
-                              #:invalid-limit-exception
-                              #:invalid-next-token-exception
-                              #:invalid-parameter-value-exception
-                              #:invalid-recording-group-exception
-                              #:invalid-result-token-exception
-                              #:invalid-role-exception
-                              #:invalid-s3key-prefix-exception
-                              #:invalid-s3kms-key-arn-exception
-                              #:invalid-snstopic-arnexception
-                              #:invalid-time-range-exception
-                              #:last-delivery-channel-delete-failed-exception
+                              #:include-global-resource-types #:integer
                               #:last-updated-time #:later-time #:limit
-                              #:limit-exceeded-exception
                               #:list-aggregate-discovered-resources
-                              #:list-aggregate-discovered-resources-request
-                              #:list-aggregate-discovered-resources-response
                               #:list-configuration-recorders
-                              #:list-configuration-recorders-request
-                              #:list-configuration-recorders-response
                               #:list-conformance-pack-compliance-scores
-                              #:list-conformance-pack-compliance-scores-request
-                              #:list-conformance-pack-compliance-scores-response
                               #:list-discovered-resources
-                              #:list-discovered-resources-request
-                              #:list-discovered-resources-response
                               #:list-resource-evaluations
                               #:list-resource-evaluations-page-item-limit
-                              #:list-resource-evaluations-request
-                              #:list-resource-evaluations-response
-                              #:list-stored-queries
-                              #:list-stored-queries-request
-                              #:list-stored-queries-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:long
-                              #:max-active-resources-exceeded-exception
-                              #:max-number-of-config-rules-exceeded-exception
-                              #:max-number-of-configuration-recorders-exceeded-exception
-                              #:max-number-of-conformance-packs-exceeded-exception
-                              #:max-number-of-delivery-channels-exceeded-exception
-                              #:max-number-of-organization-config-rules-exceeded-exception
-                              #:max-number-of-organization-conformance-packs-exceeded-exception
-                              #:max-number-of-retention-configurations-exceeded-exception
-                              #:max-results #:maximum-execution-frequency
+                              #:list-stored-queries #:list-tags-for-resource
+                              #:long #:max-results
+                              #:maximum-execution-frequency
                               #:member-account-rule-status
                               #:member-account-status #:message-type #:name
-                              #:next-token
-                              #:no-available-configuration-recorder-exception
-                              #:no-available-delivery-channel-exception
-                              #:no-available-organization-exception
-                              #:no-running-configuration-recorder-exception
-                              #:no-such-bucket-exception
-                              #:no-such-config-rule-exception
-                              #:no-such-config-rule-in-conformance-pack-exception
-                              #:no-such-configuration-aggregator-exception
-                              #:no-such-configuration-recorder-exception
-                              #:no-such-conformance-pack-exception
-                              #:no-such-delivery-channel-exception
-                              #:no-such-organization-config-rule-exception
-                              #:no-such-organization-conformance-pack-exception
-                              #:no-such-remediation-configuration-exception
-                              #:no-such-remediation-exception-exception
-                              #:no-such-retention-configuration-exception
-                              #:ordering-timestamp
-                              #:organization-access-denied-exception
+                              #:next-token #:ordering-timestamp
                               #:organization-aggregation-source
-                              #:organization-all-features-not-enabled-exception
                               #:organization-config-rule
                               #:organization-config-rule-detailed-status
                               #:organization-config-rule-name
@@ -418,7 +239,6 @@
                               #:organization-conformance-pack-names
                               #:organization-conformance-pack-status
                               #:organization-conformance-pack-statuses
-                              #:organization-conformance-pack-template-validation-exception
                               #:organization-conformance-packs
                               #:organization-custom-policy-rule-metadata
                               #:organization-custom-policy-rule-metadata-no-policy
@@ -427,53 +247,24 @@
                               #:organization-resource-detailed-status
                               #:organization-resource-detailed-status-filters
                               #:organization-resource-status
-                              #:organization-rule-status
-                              #:oversized-configuration-item-exception #:owner
+                              #:organization-rule-status #:owner
                               #:page-size-limit #:parameter-name
                               #:parameter-value #:pending-aggregation-request
                               #:pending-aggregation-request-list #:percentage
                               #:policy-runtime #:policy-text
-                              #:put-aggregation-authorization
-                              #:put-aggregation-authorization-request
-                              #:put-aggregation-authorization-response
-                              #:put-config-rule #:put-config-rule-request
+                              #:put-aggregation-authorization #:put-config-rule
                               #:put-configuration-aggregator
-                              #:put-configuration-aggregator-request
-                              #:put-configuration-aggregator-response
                               #:put-configuration-recorder
-                              #:put-configuration-recorder-request
-                              #:put-conformance-pack
-                              #:put-conformance-pack-request
-                              #:put-conformance-pack-response
-                              #:put-delivery-channel
-                              #:put-delivery-channel-request #:put-evaluations
-                              #:put-evaluations-request
-                              #:put-evaluations-response
-                              #:put-external-evaluation
-                              #:put-external-evaluation-request
-                              #:put-external-evaluation-response
+                              #:put-conformance-pack #:put-delivery-channel
+                              #:put-evaluations #:put-external-evaluation
                               #:put-organization-config-rule
-                              #:put-organization-config-rule-request
-                              #:put-organization-config-rule-response
                               #:put-organization-conformance-pack
-                              #:put-organization-conformance-pack-request
-                              #:put-organization-conformance-pack-response
                               #:put-remediation-configurations
-                              #:put-remediation-configurations-request
-                              #:put-remediation-configurations-response
                               #:put-remediation-exceptions
-                              #:put-remediation-exceptions-request
-                              #:put-remediation-exceptions-response
                               #:put-resource-config
-                              #:put-resource-config-request
                               #:put-retention-configuration
-                              #:put-retention-configuration-request
-                              #:put-retention-configuration-response
                               #:put-service-linked-configuration-recorder
-                              #:put-service-linked-configuration-recorder-request
-                              #:put-service-linked-configuration-recorder-response
-                              #:put-stored-query #:put-stored-query-request
-                              #:put-stored-query-response #:query-arn
+                              #:put-stored-query #:query-arn
                               #:query-description #:query-expression #:query-id
                               #:query-info #:query-name #:recorder-name
                               #:recorder-status #:recording-frequency
@@ -498,11 +289,9 @@
                               #:remediation-execution-step
                               #:remediation-execution-step-state
                               #:remediation-execution-steps
-                              #:remediation-in-progress-exception
                               #:remediation-parameter-value
                               #:remediation-parameters
                               #:remediation-target-type
-                              #:resource-concurrent-modification-exception
                               #:resource-configuration
                               #:resource-configuration-schema-type
                               #:resource-count #:resource-count-filters
@@ -515,11 +304,8 @@
                               #:resource-evaluations #:resource-filters
                               #:resource-id #:resource-id-list
                               #:resource-identifier #:resource-identifier-list
-                              #:resource-identifiers-list
-                              #:resource-in-use-exception #:resource-key
-                              #:resource-keys #:resource-name
-                              #:resource-not-discovered-exception
-                              #:resource-not-found-exception #:resource-type
+                              #:resource-identifiers-list #:resource-key
+                              #:resource-keys #:resource-name #:resource-type
                               #:resource-type-list #:resource-type-string
                               #:resource-type-value #:resource-type-value-list
                               #:resource-types #:resource-types-scope
@@ -532,32 +318,20 @@
                               #:ssmdocument-name #:ssmdocument-version
                               #:schema-version-id #:scope
                               #:select-aggregate-resource-config
-                              #:select-aggregate-resource-config-request
-                              #:select-aggregate-resource-config-response
-                              #:select-resource-config
-                              #:select-resource-config-request
-                              #:select-resource-config-response
-                              #:service-principal #:service-principal-value
+                              #:select-resource-config #:service-principal
+                              #:service-principal-value
                               #:service-principal-value-list #:sort-by
                               #:sort-order #:source #:source-detail
                               #:source-details #:ssm-controls #:stack-arn
                               #:starling-dove-service
                               #:start-config-rules-evaluation
-                              #:start-config-rules-evaluation-request
-                              #:start-config-rules-evaluation-response
                               #:start-configuration-recorder
-                              #:start-configuration-recorder-request
                               #:start-remediation-execution
-                              #:start-remediation-execution-request
-                              #:start-remediation-execution-response
                               #:start-resource-evaluation
-                              #:start-resource-evaluation-request
-                              #:start-resource-evaluation-response
                               #:static-parameter-values #:static-value
                               #:status-detail-filters
-                              #:stop-configuration-recorder
-                              #:stop-configuration-recorder-request
-                              #:stored-query #:stored-query-metadata
+                              #:stop-configuration-recorder #:stored-query
+                              #:stored-query-metadata
                               #:stored-query-metadata-list #:string
                               #:string-with-char-limit1024
                               #:string-with-char-limit128
@@ -570,14 +344,11 @@
                               #:supplementary-configuration-name
                               #:supplementary-configuration-value #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request #:tag-value
-                              #:tags #:tags-list #:template-body
-                              #:template-s3uri #:template-ssmdocument-details
-                              #:time-window #:too-many-tags-exception
-                              #:unmodifiable-entity-exception
+                              #:tag-resource #:tag-value #:tags #:tags-list
+                              #:template-body #:template-s3uri
+                              #:template-ssmdocument-details #:time-window
                               #:unprocessed-resource-identifier-list
-                              #:untag-resource #:untag-resource-request
-                              #:validation-exception #:value #:version))
+                              #:untag-resource #:value #:version))
 (common-lisp:in-package #:pira/config-service)
 
 (smithy/sdk/service:define-service starling-dove-service :shape-name

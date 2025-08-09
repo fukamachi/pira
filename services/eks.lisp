@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/eks (:use)
                              (:export #:amitypes #:awswesley-frontend
-                              #:access-config-response
-                              #:access-denied-exception #:access-entry
+                              #:access-config-response #:access-entry
                               #:access-policies-list #:access-policy
                               #:access-scope #:access-scope-type
                               #:additional-info-map #:addon
@@ -16,25 +15,19 @@
                               #:addon-status #:addon-version-info
                               #:addon-version-info-list #:addons
                               #:associate-access-policy
-                              #:associate-access-policy-request
-                              #:associate-access-policy-response
                               #:associate-encryption-config
-                              #:associate-encryption-config-request
-                              #:associate-encryption-config-response
                               #:associate-identity-provider-config
-                              #:associate-identity-provider-config-request
-                              #:associate-identity-provider-config-response
                               #:associated-access-policies-list
                               #:associated-access-policy #:authentication-mode
                               #:auto-scaling-group #:auto-scaling-group-list
-                              #:bad-request-exception #:block-storage #:boolean
-                              #:boxed-boolean #:boxed-integer #:capacity
-                              #:capacity-types #:category #:category-list
-                              #:certificate #:client-exception #:client-stat
-                              #:client-stats #:cluster #:cluster-health
-                              #:cluster-issue #:cluster-issue-code
-                              #:cluster-issue-list #:cluster-name
-                              #:cluster-status #:cluster-version-information
+                              #:block-storage #:boolean #:boxed-boolean
+                              #:boxed-integer #:capacity #:capacity-types
+                              #:category #:category-list #:certificate
+                              #:client-stat #:client-stats #:cluster
+                              #:cluster-health #:cluster-issue
+                              #:cluster-issue-code #:cluster-issue-list
+                              #:cluster-name #:cluster-status
+                              #:cluster-version-information
                               #:cluster-version-list #:cluster-version-status
                               #:compatibilities #:compatibility
                               #:compute-config-request
@@ -45,85 +38,31 @@
                               #:control-plane-placement-request
                               #:control-plane-placement-response
                               #:create-access-config-request
-                              #:create-access-entry
-                              #:create-access-entry-request
-                              #:create-access-entry-response #:create-addon
-                              #:create-addon-request #:create-addon-response
-                              #:create-cluster #:create-cluster-request
-                              #:create-cluster-response
+                              #:create-access-entry #:create-addon
+                              #:create-cluster
                               #:create-eks-anywhere-subscription
-                              #:create-eks-anywhere-subscription-request
-                              #:create-eks-anywhere-subscription-response
-                              #:create-fargate-profile
-                              #:create-fargate-profile-request
-                              #:create-fargate-profile-response
-                              #:create-nodegroup #:create-nodegroup-request
-                              #:create-nodegroup-response
+                              #:create-fargate-profile #:create-nodegroup
                               #:create-pod-identity-association
-                              #:create-pod-identity-association-request
-                              #:create-pod-identity-association-response
-                              #:delete-access-entry
-                              #:delete-access-entry-request
-                              #:delete-access-entry-response #:delete-addon
-                              #:delete-addon-request #:delete-addon-response
-                              #:delete-cluster #:delete-cluster-request
-                              #:delete-cluster-response
+                              #:delete-access-entry #:delete-addon
+                              #:delete-cluster
                               #:delete-eks-anywhere-subscription
-                              #:delete-eks-anywhere-subscription-request
-                              #:delete-eks-anywhere-subscription-response
-                              #:delete-fargate-profile
-                              #:delete-fargate-profile-request
-                              #:delete-fargate-profile-response
-                              #:delete-nodegroup #:delete-nodegroup-request
-                              #:delete-nodegroup-response
+                              #:delete-fargate-profile #:delete-nodegroup
                               #:delete-pod-identity-association
-                              #:delete-pod-identity-association-request
-                              #:delete-pod-identity-association-response
                               #:deprecation-detail #:deprecation-details
-                              #:deregister-cluster #:deregister-cluster-request
-                              #:deregister-cluster-response
-                              #:describe-access-entry
-                              #:describe-access-entry-request
-                              #:describe-access-entry-response #:describe-addon
-                              #:describe-addon-configuration
-                              #:describe-addon-configuration-request
-                              #:describe-addon-configuration-response
-                              #:describe-addon-request
-                              #:describe-addon-response
+                              #:deregister-cluster #:describe-access-entry
+                              #:describe-addon #:describe-addon-configuration
                               #:describe-addon-versions
-                              #:describe-addon-versions-request
                               #:describe-addon-versions-request-max-results
-                              #:describe-addon-versions-response
-                              #:describe-cluster #:describe-cluster-request
-                              #:describe-cluster-response
+                              #:describe-cluster
                               #:describe-cluster-version-max-results
                               #:describe-cluster-versions
-                              #:describe-cluster-versions-request
-                              #:describe-cluster-versions-response
                               #:describe-eks-anywhere-subscription
-                              #:describe-eks-anywhere-subscription-request
-                              #:describe-eks-anywhere-subscription-response
                               #:describe-fargate-profile
-                              #:describe-fargate-profile-request
-                              #:describe-fargate-profile-response
                               #:describe-identity-provider-config
-                              #:describe-identity-provider-config-request
-                              #:describe-identity-provider-config-response
-                              #:describe-insight #:describe-insight-request
-                              #:describe-insight-response #:describe-nodegroup
-                              #:describe-nodegroup-request
-                              #:describe-nodegroup-response
+                              #:describe-insight #:describe-nodegroup
                               #:describe-pod-identity-association
-                              #:describe-pod-identity-association-request
-                              #:describe-pod-identity-association-response
-                              #:describe-update #:describe-update-request
-                              #:describe-update-response
-                              #:disassociate-access-policy
-                              #:disassociate-access-policy-request
-                              #:disassociate-access-policy-response
+                              #:describe-update #:disassociate-access-policy
                               #:disassociate-identity-provider-config
-                              #:disassociate-identity-provider-config-request
-                              #:disassociate-identity-provider-config-response
                               #:eks-anywhere-subscription
                               #:eks-anywhere-subscription-license-type
                               #:eks-anywhere-subscription-list
@@ -153,119 +92,66 @@
                               #:insight-status-value
                               #:insight-status-value-list #:insight-summaries
                               #:insight-summary #:insights-filter #:integer
-                              #:invalid-parameter-exception
-                              #:invalid-request-exception
-                              #:invalid-state-exception #:ip-family #:issue
-                              #:issue-list #:kubernetes-network-config-request
+                              #:ip-family #:issue #:issue-list
+                              #:kubernetes-network-config-request
                               #:kubernetes-network-config-response
                               #:launch-template-specification #:license
                               #:license-list #:list-access-entries
-                              #:list-access-entries-request
                               #:list-access-entries-request-max-results
-                              #:list-access-entries-response
                               #:list-access-policies
-                              #:list-access-policies-request
                               #:list-access-policies-request-max-results
-                              #:list-access-policies-response #:list-addons
-                              #:list-addons-request
-                              #:list-addons-request-max-results
-                              #:list-addons-response
+                              #:list-addons #:list-addons-request-max-results
                               #:list-associated-access-policies
-                              #:list-associated-access-policies-request
                               #:list-associated-access-policies-request-max-results
-                              #:list-associated-access-policies-response
-                              #:list-clusters #:list-clusters-request
+                              #:list-clusters
                               #:list-clusters-request-max-results
-                              #:list-clusters-response
                               #:list-eks-anywhere-subscriptions
-                              #:list-eks-anywhere-subscriptions-request
                               #:list-eks-anywhere-subscriptions-request-max-results
-                              #:list-eks-anywhere-subscriptions-response
                               #:list-fargate-profiles
-                              #:list-fargate-profiles-request
-                              #:list-fargate-profiles-response
                               #:list-identity-provider-configs
-                              #:list-identity-provider-configs-request
                               #:list-identity-provider-configs-request-max-results
-                              #:list-identity-provider-configs-response
                               #:list-insights #:list-insights-max-results
-                              #:list-insights-request #:list-insights-response
-                              #:list-nodegroups #:list-nodegroups-request
+                              #:list-nodegroups
                               #:list-nodegroups-request-max-results
-                              #:list-nodegroups-response
                               #:list-pod-identity-associations
                               #:list-pod-identity-associations-max-results
-                              #:list-pod-identity-associations-request
-                              #:list-pod-identity-associations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-updates
-                              #:list-updates-request
-                              #:list-updates-request-max-results
-                              #:list-updates-response #:log-setup #:log-setups
-                              #:log-type #:log-types #:logging
+                              #:list-tags-for-resource #:list-updates
+                              #:list-updates-request-max-results #:log-setup
+                              #:log-setups #:log-type #:log-types #:logging
                               #:marketplace-information #:node-repair-config
                               #:nodegroup #:nodegroup-health
                               #:nodegroup-issue-code #:nodegroup-resources
                               #:nodegroup-scaling-config #:nodegroup-status
                               #:nodegroup-update-config
                               #:nodegroup-update-strategies #:non-zero-integer
-                              #:not-found-exception #:oidc
-                              #:oidc-identity-provider-config
+                              #:oidc #:oidc-identity-provider-config
                               #:oidc-identity-provider-config-request
                               #:outpost-config-request
                               #:outpost-config-response #:percent-capacity
                               #:pod-identity-association
                               #:pod-identity-association-summaries
                               #:pod-identity-association-summary #:provider
-                              #:register-cluster #:register-cluster-request
-                              #:register-cluster-response
-                              #:remote-access-config
+                              #:register-cluster #:remote-access-config
                               #:remote-network-config-request
                               #:remote-network-config-response
                               #:remote-node-network #:remote-node-network-list
                               #:remote-pod-network #:remote-pod-network-list
-                              #:resolve-conflicts #:resource-in-use-exception
-                              #:resource-limit-exceeded-exception
-                              #:resource-not-found-exception
-                              #:resource-propagation-delay-exception #:role-arn
-                              #:server-exception
-                              #:service-unavailable-exception
+                              #:resolve-conflicts #:role-arn
                               #:storage-config-request
                               #:storage-config-response #:string #:string-list
                               #:support-type #:tag-key #:tag-key-list #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:taint
-                              #:taint-effect #:throttling-exception #:timestamp
-                              #:unsupported-availability-zone-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update
+                              #:tag-resource #:tag-value #:taint #:taint-effect
+                              #:timestamp #:untag-resource #:update
                               #:update-access-config-request
-                              #:update-access-entry
-                              #:update-access-entry-request
-                              #:update-access-entry-response #:update-addon
-                              #:update-addon-request #:update-addon-response
-                              #:update-cluster-config
-                              #:update-cluster-config-request
-                              #:update-cluster-config-response
-                              #:update-cluster-version
-                              #:update-cluster-version-request
-                              #:update-cluster-version-response
+                              #:update-access-entry #:update-addon
+                              #:update-cluster-config #:update-cluster-version
                               #:update-eks-anywhere-subscription
-                              #:update-eks-anywhere-subscription-request
-                              #:update-eks-anywhere-subscription-response
                               #:update-labels-payload #:update-nodegroup-config
-                              #:update-nodegroup-config-request
-                              #:update-nodegroup-config-response
-                              #:update-nodegroup-version
-                              #:update-nodegroup-version-request
-                              #:update-nodegroup-version-response
-                              #:update-param #:update-param-type
-                              #:update-params #:update-pod-identity-association
-                              #:update-pod-identity-association-request
-                              #:update-pod-identity-association-response
-                              #:update-status #:update-taints-payload
-                              #:update-type #:upgrade-policy-request
+                              #:update-nodegroup-version #:update-param
+                              #:update-param-type #:update-params
+                              #:update-pod-identity-association #:update-status
+                              #:update-taints-payload #:update-type
+                              #:upgrade-policy-request
                               #:upgrade-policy-response #:version-status
                               #:vpc-config-request #:vpc-config-response
                               #:zero-capacity #:zonal-shift-config-request

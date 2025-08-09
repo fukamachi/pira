@@ -1,11 +1,7 @@
 (uiop/package:define-package #:pira/sagemaker-metrics (:use)
-                             (:export #:batch-get-metrics
-                              #:batch-get-metrics-request
-                              #:batch-get-metrics-response #:batch-put-metrics
+                             (:export #:batch-get-metrics #:batch-put-metrics
                               #:batch-put-metrics-error
-                              #:batch-put-metrics-error-list
-                              #:batch-put-metrics-request
-                              #:batch-put-metrics-response #:double
+                              #:batch-put-metrics-error-list #:double
                               #:experiment-entity-name #:integer #:long
                               #:message #:metric-name #:metric-query
                               #:metric-query-list #:metric-query-result

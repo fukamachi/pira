@@ -1,23 +1,10 @@
 (uiop/package:define-package #:pira/ec2-instance-connect (:use)
                              (:export #:awsec2instance-connect-service
-                              #:auth-exception #:availability-zone
-                              #:ec2instance-not-found-exception
-                              #:ec2instance-state-invalid-exception
-                              #:ec2instance-type-invalid-exception
-                              #:ec2instance-unavailable-exception #:instance-id
-                              #:instance-osuser #:invalid-args-exception
-                              #:request-id #:sshpublic-key #:send-sshpublic-key
-                              #:send-sshpublic-key-request
-                              #:send-sshpublic-key-response
-                              #:send-serial-console-sshpublic-key
-                              #:send-serial-console-sshpublic-key-request
-                              #:send-serial-console-sshpublic-key-response
-                              #:serial-console-access-disabled-exception
-                              #:serial-console-session-limit-exceeded-exception
-                              #:serial-console-session-unavailable-exception
-                              #:serial-console-session-unsupported-exception
-                              #:serial-port #:service-exception #:string
-                              #:success #:throttling-exception))
+                              #:availability-zone #:instance-id
+                              #:instance-osuser #:request-id #:sshpublic-key
+                              #:send-sshpublic-key
+                              #:send-serial-console-sshpublic-key #:serial-port
+                              #:string #:success))
 (common-lisp:in-package #:pira/ec2-instance-connect)
 
 (smithy/sdk/service:define-service awsec2instance-connect-service :shape-name

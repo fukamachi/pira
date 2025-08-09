@@ -1,10 +1,9 @@
 (uiop/package:define-package #:pira/bedrock-runtime (:use)
-                             (:export #:access-denied-exception #:account-id
+                             (:export #:account-id
                               #:additional-model-response-field-paths
                               #:amazon-bedrock-frontend-service
                               #:any-tool-choice #:apply-guardrail
-                              #:apply-guardrail-request
-                              #:apply-guardrail-response #:async-invoke-arn
+                              #:async-invoke-arn
                               #:async-invoke-idempotency-token
                               #:async-invoke-identifier #:async-invoke-message
                               #:async-invoke-output-data-config
@@ -23,28 +22,23 @@
                               #:citation-source-content-list
                               #:citation-source-content-list-delta #:citations
                               #:citations-config #:citations-content-block
-                              #:citations-delta #:conflict-exception
-                              #:content-block #:content-block-delta
-                              #:content-block-delta-event #:content-block-start
-                              #:content-block-start-event
+                              #:citations-delta #:content-block
+                              #:content-block-delta #:content-block-delta-event
+                              #:content-block-start #:content-block-start-event
                               #:content-block-stop-event #:content-blocks
                               #:conversation-role #:conversational-model-id
                               #:converse #:converse-metrics #:converse-output
-                              #:converse-request #:converse-response
                               #:converse-stream
                               #:converse-stream-metadata-event
                               #:converse-stream-metrics
-                              #:converse-stream-output
-                              #:converse-stream-request
-                              #:converse-stream-response
-                              #:converse-stream-trace #:converse-trace
-                              #:document-block #:document-char-location
+                              #:converse-stream-output #:converse-stream-trace
+                              #:converse-trace #:document-block
+                              #:document-char-location
                               #:document-chunk-location
                               #:document-content-block
                               #:document-content-blocks #:document-format
                               #:document-page-location #:document-source
-                              #:get-async-invoke #:get-async-invoke-request
-                              #:get-async-invoke-response #:guardrail-action
+                              #:get-async-invoke #:guardrail-action
                               #:guardrail-assessment
                               #:guardrail-assessment-list
                               #:guardrail-assessment-list-map
@@ -147,26 +141,17 @@
                               #:image-block #:image-format #:image-source
                               #:images-guarded #:images-total
                               #:inference-configuration #:inference-resource
-                              #:internal-server-exception #:invocation-arn
-                              #:invoke-model #:invoke-model-identifier
-                              #:invoke-model-request #:invoke-model-response
+                              #:invocation-arn #:invoke-model
+                              #:invoke-model-identifier
                               #:invoke-model-with-bidirectional-stream
                               #:invoke-model-with-bidirectional-stream-input
                               #:invoke-model-with-bidirectional-stream-output
-                              #:invoke-model-with-bidirectional-stream-request
-                              #:invoke-model-with-bidirectional-stream-response
                               #:invoke-model-with-response-stream
-                              #:invoke-model-with-response-stream-request
-                              #:invoke-model-with-response-stream-response
                               #:invoked-model-id #:kms-key-id
-                              #:list-async-invokes #:list-async-invokes-request
-                              #:list-async-invokes-response #:max-results
-                              #:message #:message-start-event
-                              #:message-stop-event #:messages #:mime-type
-                              #:model-error-exception #:model-input-payload
-                              #:model-not-ready-exception #:model-outputs
-                              #:model-stream-error-exception
-                              #:model-timeout-exception #:non-blank-string
+                              #:list-async-invokes #:max-results #:message
+                              #:message-start-event #:message-stop-event
+                              #:messages #:mime-type #:model-input-payload
+                              #:model-outputs #:non-blank-string
                               #:non-empty-string #:non-empty-string-list
                               #:non-negative-integer #:pagination-token
                               #:part-body #:payload-part
@@ -176,18 +161,13 @@
                               #:reasoning-content-block
                               #:reasoning-content-block-delta
                               #:reasoning-text-block #:request-metadata
-                              #:resource-not-found-exception #:response-stream
-                              #:s3location #:s3uri
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception
+                              #:response-stream #:s3location #:s3uri
                               #:sort-async-invocation-by #:sort-order
                               #:specific-tool-choice #:start-async-invoke
-                              #:start-async-invoke-request
-                              #:start-async-invoke-response #:status-code
-                              #:stop-reason #:system-content-block
-                              #:system-content-blocks #:tag #:tag-key
-                              #:tag-list #:tag-value #:text-characters-guarded
-                              #:text-characters-total #:throttling-exception
+                              #:status-code #:stop-reason
+                              #:system-content-block #:system-content-blocks
+                              #:tag #:tag-key #:tag-list #:tag-value
+                              #:text-characters-guarded #:text-characters-total
                               #:timestamp #:token-usage #:tool #:tool-choice
                               #:tool-configuration #:tool-input-schema
                               #:tool-name #:tool-result-block
@@ -195,8 +175,7 @@
                               #:tool-result-content-blocks #:tool-result-status
                               #:tool-specification #:tool-use-block
                               #:tool-use-block-delta #:tool-use-block-start
-                              #:tool-use-id #:tools #:trace
-                              #:validation-exception #:video-block
+                              #:tool-use-id #:tools #:trace #:video-block
                               #:video-format #:video-source))
 (common-lisp:in-package #:pira/bedrock-runtime)
 

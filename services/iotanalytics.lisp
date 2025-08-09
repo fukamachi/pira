@@ -5,12 +5,8 @@
                               #:attribute-names #:batch-put-message
                               #:batch-put-message-error-entries
                               #:batch-put-message-error-entry
-                              #:batch-put-message-request
-                              #:batch-put-message-response
                               #:bucket-key-expression #:bucket-name
-                              #:cancel-pipeline-reprocessing
-                              #:cancel-pipeline-reprocessing-request
-                              #:cancel-pipeline-reprocessing-response #:channel
+                              #:cancel-pipeline-reprocessing #:channel
                               #:channel-activity #:channel-arn
                               #:channel-messages #:channel-name
                               #:channel-statistics #:channel-status
@@ -18,17 +14,9 @@
                               #:channel-summaries #:channel-summary #:column
                               #:column-data-type #:column-name #:columns
                               #:compute-type #:container-dataset-action
-                              #:create-channel #:create-channel-request
-                              #:create-channel-response #:create-dataset
-                              #:create-dataset-content
-                              #:create-dataset-content-request
-                              #:create-dataset-content-response
-                              #:create-dataset-request
-                              #:create-dataset-response #:create-datastore
-                              #:create-datastore-request
-                              #:create-datastore-response #:create-pipeline
-                              #:create-pipeline-request
-                              #:create-pipeline-response
+                              #:create-channel #:create-dataset
+                              #:create-dataset-content #:create-datastore
+                              #:create-pipeline
                               #:customer-managed-channel-s3storage
                               #:customer-managed-channel-s3storage-summary
                               #:customer-managed-datastore-s3storage
@@ -56,38 +44,21 @@
                               #:datastore-status #:datastore-storage
                               #:datastore-storage-summary #:datastore-summaries
                               #:datastore-summary #:delete-channel
-                              #:delete-channel-request #:delete-dataset
-                              #:delete-dataset-content
-                              #:delete-dataset-content-request
-                              #:delete-dataset-request #:delete-datastore
-                              #:delete-datastore-request #:delete-pipeline
-                              #:delete-pipeline-request #:delta-time
+                              #:delete-dataset #:delete-dataset-content
+                              #:delete-datastore #:delete-pipeline #:delta-time
                               #:delta-time-session-window-configuration
-                              #:describe-channel #:describe-channel-request
-                              #:describe-channel-response #:describe-dataset
-                              #:describe-dataset-request
-                              #:describe-dataset-response #:describe-datastore
-                              #:describe-datastore-request
-                              #:describe-datastore-response
-                              #:describe-logging-options
-                              #:describe-logging-options-request
-                              #:describe-logging-options-response
-                              #:describe-pipeline #:describe-pipeline-request
-                              #:describe-pipeline-response
+                              #:describe-channel #:describe-dataset
+                              #:describe-datastore #:describe-logging-options
+                              #:describe-pipeline
                               #:device-registry-enrich-activity
                               #:device-shadow-enrich-activity #:double-value
                               #:end-time #:entry-name #:error-code
                               #:error-message #:estimated-resource-size
                               #:file-format-configuration #:file-format-type
                               #:filter-activity #:filter-expression
-                              #:get-dataset-content
-                              #:get-dataset-content-request
-                              #:get-dataset-content-response
-                              #:glue-configuration #:glue-database-name
-                              #:glue-table-name #:image
+                              #:get-dataset-content #:glue-configuration
+                              #:glue-database-name #:glue-table-name #:image
                               #:include-statistics-flag
-                              #:internal-failure-exception
-                              #:invalid-request-exception
                               #:iot-events-destination-configuration
                               #:iot-events-input-name
                               #:iot-site-wise-customer-managed-datastore-s3storage
@@ -96,20 +67,10 @@
                               #:lambda-name #:late-data-rule
                               #:late-data-rule-configuration
                               #:late-data-rule-name #:late-data-rules
-                              #:limit-exceeded-exception #:list-channels
-                              #:list-channels-request #:list-channels-response
-                              #:list-dataset-contents
-                              #:list-dataset-contents-request
-                              #:list-dataset-contents-response #:list-datasets
-                              #:list-datasets-request #:list-datasets-response
-                              #:list-datastores #:list-datastores-request
-                              #:list-datastores-response #:list-pipelines
-                              #:list-pipelines-request
-                              #:list-pipelines-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:log-result
-                              #:logging-enabled #:logging-level
+                              #:list-channels #:list-dataset-contents
+                              #:list-datasets #:list-datastores
+                              #:list-pipelines #:list-tags-for-resource
+                              #:log-result #:logging-enabled #:logging-level
                               #:logging-options #:math-activity
                               #:math-expression #:max-messages #:max-results
                               #:max-versions #:message #:message-id
@@ -121,51 +82,34 @@
                               #:pipeline-activity #:pipeline-arn
                               #:pipeline-name #:pipeline-summaries
                               #:pipeline-summary #:presigned-uri
-                              #:put-logging-options
-                              #:put-logging-options-request #:query-filter
+                              #:put-logging-options #:query-filter
                               #:query-filters #:reason
                               #:remove-attributes-activity #:reprocessing-id
                               #:reprocessing-status #:reprocessing-summaries
-                              #:reprocessing-summary
-                              #:resource-already-exists-exception
-                              #:resource-arn #:resource-arn2
-                              #:resource-configuration
-                              #:resource-not-found-exception #:retention-period
-                              #:retention-period-in-days #:role-arn
-                              #:run-pipeline-activity
-                              #:run-pipeline-activity-request
-                              #:run-pipeline-activity-response
+                              #:reprocessing-summary #:resource-arn
+                              #:resource-arn2 #:resource-configuration
+                              #:retention-period #:retention-period-in-days
+                              #:role-arn #:run-pipeline-activity
                               #:s3destination-configuration #:s3key-prefix
                               #:s3path-channel-message
                               #:s3path-channel-messages #:sample-channel-data
-                              #:sample-channel-data-request
-                              #:sample-channel-data-response #:schedule
-                              #:schedule-expression #:schema-definition
-                              #:select-attributes-activity
+                              #:schedule #:schedule-expression
+                              #:schema-definition #:select-attributes-activity
                               #:service-managed-channel-s3storage
                               #:service-managed-channel-s3storage-summary
                               #:service-managed-datastore-s3storage
                               #:service-managed-datastore-s3storage-summary
-                              #:service-unavailable-exception
                               #:session-timeout-in-minutes #:size-in-bytes
                               #:sql-query #:sql-query-dataset-action
-                              #:start-pipeline-reprocessing
-                              #:start-pipeline-reprocessing-request
-                              #:start-pipeline-reprocessing-response
-                              #:start-time #:string-value #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception
+                              #:start-pipeline-reprocessing #:start-time
+                              #:string-value #:tag #:tag-key #:tag-key-list
+                              #:tag-list #:tag-resource #:tag-value
                               #:time-expression #:timestamp #:timestamp-format
                               #:timestamp-partition #:triggering-dataset
                               #:unlimited-retention-period
                               #:unlimited-versioning #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-channel
-                              #:update-channel-request #:update-dataset
-                              #:update-dataset-request #:update-datastore
-                              #:update-datastore-request #:update-pipeline
-                              #:update-pipeline-request #:variable
+                              #:update-channel #:update-dataset
+                              #:update-datastore #:update-pipeline #:variable
                               #:variable-name #:variables
                               #:versioning-configuration #:volume-size-in-gb
                               #:resource-id))

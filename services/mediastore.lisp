@@ -2,68 +2,28 @@
                              (:export #:allowed-headers #:allowed-methods
                               #:allowed-origins #:container #:container-arn
                               #:container-access-logging-enabled
-                              #:container-in-use-exception
                               #:container-level-metrics #:container-list
                               #:container-list-limit #:container-name
-                              #:container-not-found-exception
                               #:container-policy #:container-status
-                              #:cors-policy #:cors-policy-not-found-exception
-                              #:cors-rule #:create-container
-                              #:create-container-input
-                              #:create-container-output #:delete-container
-                              #:delete-container-input
-                              #:delete-container-output
-                              #:delete-container-policy
-                              #:delete-container-policy-input
-                              #:delete-container-policy-output
-                              #:delete-cors-policy #:delete-cors-policy-input
-                              #:delete-cors-policy-output
-                              #:delete-lifecycle-policy
-                              #:delete-lifecycle-policy-input
-                              #:delete-lifecycle-policy-output
-                              #:delete-metric-policy
-                              #:delete-metric-policy-input
-                              #:delete-metric-policy-output
-                              #:describe-container #:describe-container-input
-                              #:describe-container-output #:endpoint
-                              #:error-message #:expose-headers
-                              #:get-container-policy
-                              #:get-container-policy-input
-                              #:get-container-policy-output #:get-cors-policy
-                              #:get-cors-policy-input #:get-cors-policy-output
-                              #:get-lifecycle-policy
-                              #:get-lifecycle-policy-input
-                              #:get-lifecycle-policy-output #:get-metric-policy
-                              #:get-metric-policy-input
-                              #:get-metric-policy-output #:header
-                              #:internal-server-error #:lifecycle-policy
-                              #:limit-exceeded-exception #:list-containers
-                              #:list-containers-input #:list-containers-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:max-age-seconds
+                              #:cors-policy #:cors-rule #:create-container
+                              #:delete-container #:delete-container-policy
+                              #:delete-cors-policy #:delete-lifecycle-policy
+                              #:delete-metric-policy #:describe-container
+                              #:endpoint #:error-message #:expose-headers
+                              #:get-container-policy #:get-cors-policy
+                              #:get-lifecycle-policy #:get-metric-policy
+                              #:header #:lifecycle-policy #:list-containers
+                              #:list-tags-for-resource #:max-age-seconds
                               #:media-store-20170901 #:method-name
                               #:metric-policy #:metric-policy-rule
                               #:metric-policy-rules #:object-group
                               #:object-group-name #:origin #:pagination-token
-                              #:policy-not-found-exception
-                              #:put-container-policy
-                              #:put-container-policy-input
-                              #:put-container-policy-output #:put-cors-policy
-                              #:put-cors-policy-input #:put-cors-policy-output
-                              #:put-lifecycle-policy
-                              #:put-lifecycle-policy-input
-                              #:put-lifecycle-policy-output #:put-metric-policy
-                              #:put-metric-policy-input
-                              #:put-metric-policy-output #:start-access-logging
-                              #:start-access-logging-input
-                              #:start-access-logging-output
-                              #:stop-access-logging #:stop-access-logging-input
-                              #:stop-access-logging-output #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:time-stamp #:untag-resource
-                              #:untag-resource-input #:untag-resource-output))
+                              #:put-container-policy #:put-cors-policy
+                              #:put-lifecycle-policy #:put-metric-policy
+                              #:start-access-logging #:stop-access-logging
+                              #:tag #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:time-stamp
+                              #:untag-resource))
 (common-lisp:in-package #:pira/mediastore)
 
 (smithy/sdk/service:define-service media-store-20170901 :shape-name

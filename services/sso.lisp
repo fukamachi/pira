@@ -4,20 +4,12 @@
                               #:account-list-type #:account-name-type
                               #:email-address-type #:error-description
                               #:expiration-timestamp-type
-                              #:get-role-credentials
-                              #:get-role-credentials-request
-                              #:get-role-credentials-response
-                              #:invalid-request-exception #:list-account-roles
-                              #:list-account-roles-request
-                              #:list-account-roles-response #:list-accounts
-                              #:list-accounts-request #:list-accounts-response
-                              #:logout #:logout-request #:max-result-type
-                              #:next-token-type #:resource-not-found-exception
-                              #:role-credentials #:role-info #:role-list-type
-                              #:role-name-type #:swbportal-service
-                              #:secret-access-key-type #:session-token-type
-                              #:too-many-requests-exception
-                              #:unauthorized-exception))
+                              #:get-role-credentials #:list-account-roles
+                              #:list-accounts #:logout #:max-result-type
+                              #:next-token-type #:role-credentials #:role-info
+                              #:role-list-type #:role-name-type
+                              #:swbportal-service #:secret-access-key-type
+                              #:session-token-type))
 (common-lisp:in-package #:pira/sso)
 
 (smithy/sdk/service:define-service swbportal-service :shape-name

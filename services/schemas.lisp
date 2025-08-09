@@ -1,77 +1,27 @@
 (uiop/package:define-package #:pira/schemas (:use)
-                             (:export #:bad-request-exception #:body
-                              #:code-generation-status #:conflict-exception
-                              #:create-discoverer #:create-discoverer-request
-                              #:create-discoverer-response #:create-registry
-                              #:create-registry-request
-                              #:create-registry-response #:create-schema
-                              #:create-schema-request #:create-schema-response
-                              #:delete-discoverer #:delete-discoverer-request
-                              #:delete-registry #:delete-registry-request
-                              #:delete-resource-policy
-                              #:delete-resource-policy-request #:delete-schema
-                              #:delete-schema-request #:delete-schema-version
-                              #:delete-schema-version-request
-                              #:describe-code-binding
-                              #:describe-code-binding-request
-                              #:describe-code-binding-response
-                              #:describe-discoverer
-                              #:describe-discoverer-request
-                              #:describe-discoverer-response
-                              #:describe-registry #:describe-registry-request
-                              #:describe-registry-response #:describe-schema
-                              #:describe-schema-request
-                              #:describe-schema-response #:discoverer-state
-                              #:discoverer-summary #:export-schema
-                              #:export-schema-request #:export-schema-response
-                              #:forbidden-exception #:get-code-binding-source
-                              #:get-code-binding-source-request
-                              #:get-code-binding-source-response
+                             (:export #:body #:code-generation-status
+                              #:create-discoverer #:create-registry
+                              #:create-schema #:delete-discoverer
+                              #:delete-registry #:delete-resource-policy
+                              #:delete-schema #:delete-schema-version
+                              #:describe-code-binding #:describe-discoverer
+                              #:describe-registry #:describe-schema
+                              #:discoverer-state #:discoverer-summary
+                              #:export-schema #:get-code-binding-source
                               #:get-discovered-schema
-                              #:get-discovered-schema-request
-                              #:get-discovered-schema-response
                               #:get-discovered-schema-version-item-input
-                              #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response #:gone-exception
-                              #:internal-server-error-exception
-                              #:list-discoverers #:list-discoverers-request
-                              #:list-discoverers-response #:list-registries
-                              #:list-registries-request
-                              #:list-registries-response #:list-schema-versions
-                              #:list-schema-versions-request
-                              #:list-schema-versions-response #:list-schemas
-                              #:list-schemas-request #:list-schemas-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:not-found-exception
-                              #:precondition-failed-exception
-                              #:put-code-binding #:put-code-binding-request
-                              #:put-code-binding-response #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:registry-summary
-                              #:schema-summary #:schema-version-summary
-                              #:search-schema-summary
+                              #:get-resource-policy #:list-discoverers
+                              #:list-registries #:list-schema-versions
+                              #:list-schemas #:list-tags-for-resource
+                              #:put-code-binding #:put-resource-policy
+                              #:registry-summary #:schema-summary
+                              #:schema-version-summary #:search-schema-summary
                               #:search-schema-version-summary #:search-schemas
-                              #:search-schemas-request
-                              #:search-schemas-response
-                              #:service-unavailable-exception
-                              #:start-discoverer #:start-discoverer-request
-                              #:start-discoverer-response #:stop-discoverer
-                              #:stop-discoverer-request
-                              #:stop-discoverer-response
-                              #:synthesized-json-string #:tag-resource
-                              #:tag-resource-request #:tags
-                              #:too-many-requests-exception #:type
-                              #:unauthorized-exception #:untag-resource
-                              #:untag-resource-request #:update-discoverer
-                              #:update-discoverer-request
-                              #:update-discoverer-response #:update-registry
-                              #:update-registry-request
-                              #:update-registry-response #:update-schema
-                              #:update-schema-request #:update-schema-response
-                              #:boolean #:integer #:list-of-discoverer-summary
+                              #:start-discoverer #:stop-discoverer
+                              #:synthesized-json-string #:tag-resource #:tags
+                              #:type #:untag-resource #:update-discoverer
+                              #:update-registry #:update-schema #:boolean
+                              #:integer #:list-of-discoverer-summary
                               #:list-of-get-discovered-schema-version-item-input
                               #:list-of-registry-summary
                               #:list-of-schema-summary

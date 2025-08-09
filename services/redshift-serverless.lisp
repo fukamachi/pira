@@ -1,136 +1,46 @@
 (uiop/package:define-package #:pira/redshift-serverless (:use)
-                             (:export #:access-denied-exception
-                              #:account-id-list #:amazon-resource-name
+                             (:export #:account-id-list #:amazon-resource-name
                               #:association #:association-list #:capacity
                               #:charge #:config-parameter
-                              #:config-parameter-list #:conflict-exception
+                              #:config-parameter-list
                               #:convert-recovery-point-to-snapshot
-                              #:convert-recovery-point-to-snapshot-request
-                              #:convert-recovery-point-to-snapshot-response
                               #:create-custom-domain-association
-                              #:create-custom-domain-association-request
-                              #:create-custom-domain-association-response
-                              #:create-endpoint-access
-                              #:create-endpoint-access-request
-                              #:create-endpoint-access-response
-                              #:create-namespace #:create-namespace-request
-                              #:create-namespace-response #:create-reservation
-                              #:create-reservation-request
-                              #:create-reservation-response
-                              #:create-scheduled-action
-                              #:create-scheduled-action-request
-                              #:create-scheduled-action-response
+                              #:create-endpoint-access #:create-namespace
+                              #:create-reservation #:create-scheduled-action
                               #:create-snapshot
                               #:create-snapshot-copy-configuration
-                              #:create-snapshot-copy-configuration-request
-                              #:create-snapshot-copy-configuration-response
-                              #:create-snapshot-request
-                              #:create-snapshot-response
                               #:create-snapshot-schedule-action-parameters
-                              #:create-usage-limit #:create-usage-limit-request
-                              #:create-usage-limit-response #:create-workgroup
-                              #:create-workgroup-request
-                              #:create-workgroup-response
+                              #:create-usage-limit #:create-workgroup
                               #:cross-vpc-endpoint-resource #:currency-code
                               #:custom-domain-certificate-arn-string
                               #:custom-domain-name #:db-name #:db-password
                               #:db-user #:delete-custom-domain-association
-                              #:delete-custom-domain-association-request
-                              #:delete-custom-domain-association-response
-                              #:delete-endpoint-access
-                              #:delete-endpoint-access-request
-                              #:delete-endpoint-access-response
-                              #:delete-namespace #:delete-namespace-request
-                              #:delete-namespace-response
+                              #:delete-endpoint-access #:delete-namespace
                               #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response
-                              #:delete-scheduled-action
-                              #:delete-scheduled-action-request
-                              #:delete-scheduled-action-response
-                              #:delete-snapshot
+                              #:delete-scheduled-action #:delete-snapshot
                               #:delete-snapshot-copy-configuration
-                              #:delete-snapshot-copy-configuration-request
-                              #:delete-snapshot-copy-configuration-response
-                              #:delete-snapshot-request
-                              #:delete-snapshot-response #:delete-usage-limit
-                              #:delete-usage-limit-request
-                              #:delete-usage-limit-response #:delete-workgroup
-                              #:delete-workgroup-request
-                              #:delete-workgroup-response #:duration #:endpoint
-                              #:endpoint-access #:endpoint-access-list
-                              #:get-credentials #:get-credentials-request
-                              #:get-credentials-response
+                              #:delete-usage-limit #:delete-workgroup
+                              #:duration #:endpoint #:endpoint-access
+                              #:endpoint-access-list #:get-credentials
                               #:get-custom-domain-association
-                              #:get-custom-domain-association-request
-                              #:get-custom-domain-association-response
-                              #:get-endpoint-access
-                              #:get-endpoint-access-request
-                              #:get-endpoint-access-response #:get-namespace
-                              #:get-namespace-request #:get-namespace-response
-                              #:get-recovery-point #:get-recovery-point-request
-                              #:get-recovery-point-response #:get-reservation
-                              #:get-reservation-offering
-                              #:get-reservation-offering-request
-                              #:get-reservation-offering-response
-                              #:get-reservation-request
-                              #:get-reservation-response #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response
-                              #:get-scheduled-action
-                              #:get-scheduled-action-request
-                              #:get-scheduled-action-response #:get-snapshot
-                              #:get-snapshot-request #:get-snapshot-response
-                              #:get-table-restore-status
-                              #:get-table-restore-status-request
-                              #:get-table-restore-status-response #:get-track
-                              #:get-track-request #:get-track-response
-                              #:get-usage-limit #:get-usage-limit-request
-                              #:get-usage-limit-response #:get-workgroup
-                              #:get-workgroup-request #:get-workgroup-response
-                              #:iam-role-arn #:iam-role-arn-list
-                              #:insufficient-capacity-exception
-                              #:internal-server-exception
-                              #:invalid-pagination-exception #:ip-address-type
-                              #:ipv6cidr-block-not-found-exception #:kms-key-id
-                              #:list-custom-domain-associations
-                              #:list-custom-domain-associations-request
-                              #:list-custom-domain-associations-response
-                              #:list-endpoint-access
-                              #:list-endpoint-access-request
-                              #:list-endpoint-access-response
-                              #:list-managed-workgroups
-                              #:list-managed-workgroups-request
-                              #:list-managed-workgroups-response
-                              #:list-namespaces #:list-namespaces-request
-                              #:list-namespaces-response #:list-recovery-points
-                              #:list-recovery-points-request
-                              #:list-recovery-points-response
-                              #:list-reservation-offerings
-                              #:list-reservation-offerings-request
-                              #:list-reservation-offerings-response
-                              #:list-reservations #:list-reservations-request
-                              #:list-reservations-response
+                              #:get-endpoint-access #:get-namespace
+                              #:get-recovery-point #:get-reservation
+                              #:get-reservation-offering #:get-resource-policy
+                              #:get-scheduled-action #:get-snapshot
+                              #:get-table-restore-status #:get-track
+                              #:get-usage-limit #:get-workgroup #:iam-role-arn
+                              #:iam-role-arn-list #:ip-address-type
+                              #:kms-key-id #:list-custom-domain-associations
+                              #:list-endpoint-access #:list-managed-workgroups
+                              #:list-namespaces #:list-recovery-points
+                              #:list-reservation-offerings #:list-reservations
                               #:list-scheduled-actions
-                              #:list-scheduled-actions-request
-                              #:list-scheduled-actions-response
                               #:list-snapshot-copy-configurations
-                              #:list-snapshot-copy-configurations-request
-                              #:list-snapshot-copy-configurations-response
-                              #:list-snapshots #:list-snapshots-request
-                              #:list-snapshots-response
-                              #:list-table-restore-status
-                              #:list-table-restore-status-request
-                              #:list-table-restore-status-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-tracks
-                              #:list-tracks-request #:list-tracks-response
-                              #:list-usage-limits #:list-usage-limits-request
-                              #:list-usage-limits-response #:list-workgroups
-                              #:list-workgroups-request
-                              #:list-workgroups-response #:log-export
-                              #:log-export-list #:managed-workgroup-list-item
+                              #:list-snapshots #:list-table-restore-status
+                              #:list-tags-for-resource #:list-tracks
+                              #:list-usage-limits #:list-workgroups
+                              #:log-export #:log-export-list
+                              #:managed-workgroup-list-item
                               #:managed-workgroup-name
                               #:managed-workgroup-resource
                               #:managed-workgroup-status #:managed-workgroups
@@ -142,36 +52,25 @@
                               #:pagination-token #:parameter-key
                               #:parameter-value #:performance-target
                               #:performance-target-status #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:recovery-point
-                              #:recovery-point-list #:recovery-point-resource
+                              #:recovery-point #:recovery-point-list
+                              #:recovery-point-resource
                               #:redshift-idc-application-arn
                               #:redshift-serverless #:reservation
                               #:reservation-arn #:reservation-id
                               #:reservation-offering
                               #:reservation-offerings-list
                               #:reservation-resource #:reservations-list
-                              #:resource-not-found-exception #:resource-policy
-                              #:restore-from-recovery-point
-                              #:restore-from-recovery-point-request
-                              #:restore-from-recovery-point-response
+                              #:resource-policy #:restore-from-recovery-point
                               #:restore-from-snapshot
-                              #:restore-from-snapshot-request
-                              #:restore-from-snapshot-response
                               #:restore-table-from-recovery-point
-                              #:restore-table-from-recovery-point-request
-                              #:restore-table-from-recovery-point-response
-                              #:restore-table-from-snapshot
-                              #:restore-table-from-snapshot-request
-                              #:restore-table-from-snapshot-response #:schedule
+                              #:restore-table-from-snapshot #:schedule
                               #:scheduled-action-association
                               #:scheduled-action-name
                               #:scheduled-action-resource
                               #:scheduled-action-response
                               #:scheduled-actions-list #:security-group-id
                               #:security-group-id-list #:serverless-track
-                              #:service-quota-exceeded-exception #:snapshot
-                              #:snapshot-copy-configuration
+                              #:snapshot #:snapshot-copy-configuration
                               #:snapshot-copy-configurations #:snapshot-list
                               #:snapshot-name-prefix #:snapshot-resource
                               #:snapshot-status #:source-arn #:state #:status
@@ -179,37 +78,17 @@
                               #:table-restore-status
                               #:table-restore-status-list #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:target-action
-                              #:throttling-exception #:too-many-tags-exception
-                              #:track-list #:track-name #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:tag-value #:target-action #:track-list
+                              #:track-name #:untag-resource
                               #:update-custom-domain-association
-                              #:update-custom-domain-association-request
-                              #:update-custom-domain-association-response
-                              #:update-endpoint-access
-                              #:update-endpoint-access-request
-                              #:update-endpoint-access-response
-                              #:update-namespace #:update-namespace-request
-                              #:update-namespace-response
-                              #:update-scheduled-action
-                              #:update-scheduled-action-request
-                              #:update-scheduled-action-response
-                              #:update-snapshot
+                              #:update-endpoint-access #:update-namespace
+                              #:update-scheduled-action #:update-snapshot
                               #:update-snapshot-copy-configuration
-                              #:update-snapshot-copy-configuration-request
-                              #:update-snapshot-copy-configuration-response
-                              #:update-snapshot-request
-                              #:update-snapshot-response #:update-target
-                              #:update-targets-list #:update-usage-limit
-                              #:update-usage-limit-request
-                              #:update-usage-limit-response #:update-workgroup
-                              #:update-workgroup-request
-                              #:update-workgroup-response #:usage-limit
-                              #:usage-limit-breach-action #:usage-limit-period
-                              #:usage-limit-resource #:usage-limit-usage-type
-                              #:usage-limits #:validation-exception
+                              #:update-target #:update-targets-list
+                              #:update-usage-limit #:update-workgroup
+                              #:usage-limit #:usage-limit-breach-action
+                              #:usage-limit-period #:usage-limit-resource
+                              #:usage-limit-usage-type #:usage-limits
                               #:vpc-endpoint #:vpc-endpoint-list #:vpc-ids
                               #:vpc-security-group-id
                               #:vpc-security-group-id-list

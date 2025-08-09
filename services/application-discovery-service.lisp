@@ -8,82 +8,51 @@
                               #:application-id #:application-ids-list
                               #:application-name #:application-wave
                               #:associate-configuration-items-to-application
-                              #:associate-configuration-items-to-application-request
-                              #:associate-configuration-items-to-application-response
-                              #:authorization-error-exception
                               #:batch-delete-agent-error
                               #:batch-delete-agent-errors #:batch-delete-agents
-                              #:batch-delete-agents-request
-                              #:batch-delete-agents-response
                               #:batch-delete-configuration-task
                               #:batch-delete-configuration-task-status
                               #:batch-delete-import-data
                               #:batch-delete-import-data-error
                               #:batch-delete-import-data-error-code
                               #:batch-delete-import-data-error-description
-                              #:batch-delete-import-data-error-list
-                              #:batch-delete-import-data-request
-                              #:batch-delete-import-data-response #:boolean
+                              #:batch-delete-import-data-error-list #:boolean
                               #:boxed-integer #:client-request-token
                               #:condition #:configuration #:configuration-id
                               #:configuration-id-list #:configuration-item-type
                               #:configuration-tag #:configuration-tag-set
                               #:configurations #:configurations-download-url
                               #:configurations-export-id
-                              #:conflict-error-exception
                               #:continuous-export-description
                               #:continuous-export-descriptions
                               #:continuous-export-ids
                               #:continuous-export-status #:create-application
-                              #:create-application-request
-                              #:create-application-response #:create-tags
-                              #:create-tags-request #:create-tags-response
-                              #:customer-agent-info
+                              #:create-tags #:customer-agent-info
                               #:customer-agentless-collector-info
                               #:customer-connector-info
                               #:customer-me-collector-info #:data-source
                               #:database-name #:delete-agent
                               #:delete-agent-error-code #:delete-agents
-                              #:delete-applications
-                              #:delete-applications-request
-                              #:delete-applications-response #:delete-tags
-                              #:delete-tags-request #:delete-tags-response
+                              #:delete-applications #:delete-tags
                               #:deletion-configuration-item-type
                               #:deletion-warning #:deletion-warnings-list
-                              #:describe-agents #:describe-agents-request
-                              #:describe-agents-response
+                              #:describe-agents
                               #:describe-batch-delete-configuration-task
-                              #:describe-batch-delete-configuration-task-request
-                              #:describe-batch-delete-configuration-task-response
                               #:describe-configurations
                               #:describe-configurations-attribute
                               #:describe-configurations-attributes
-                              #:describe-configurations-request
-                              #:describe-configurations-response
                               #:describe-continuous-exports
                               #:describe-continuous-exports-max-results
-                              #:describe-continuous-exports-request
-                              #:describe-continuous-exports-response
                               #:describe-export-configurations
-                              #:describe-export-configurations-request
-                              #:describe-export-configurations-response
-                              #:describe-export-tasks
-                              #:describe-export-tasks-request
-                              #:describe-export-tasks-response
-                              #:describe-import-tasks
+                              #:describe-export-tasks #:describe-import-tasks
                               #:describe-import-tasks-filter-list
                               #:describe-import-tasks-max-results
-                              #:describe-import-tasks-request
-                              #:describe-import-tasks-response #:describe-tags
-                              #:describe-tags-request #:describe-tags-response
+                              #:describe-tags
                               #:disassociate-configuration-items-from-application
-                              #:disassociate-configuration-items-from-application-request
-                              #:disassociate-configuration-items-from-application-response
                               #:ec2instance-type
                               #:ec2recommendations-export-preferences
                               #:error-message #:error-status-code
                               #:excluded-instance-types #:export-configurations
-                              #:export-configurations-response
                               #:export-data-format #:export-data-formats
                               #:export-enabled #:export-filter #:export-filters
                               #:export-ids #:export-info #:export-preferences
@@ -93,60 +62,32 @@
                               #:failed-configuration-list #:file-classification
                               #:filter #:filter-name #:filter-value
                               #:filter-values #:filters #:get-discovery-summary
-                              #:get-discovery-summary-request
-                              #:get-discovery-summary-response
-                              #:home-region-not-set-exception #:import-status
-                              #:import-task #:import-task-filter
-                              #:import-task-filter-name
+                              #:import-status #:import-task
+                              #:import-task-filter #:import-task-filter-name
                               #:import-task-filter-value
                               #:import-task-filter-value-list
                               #:import-task-identifier #:import-task-list
                               #:import-task-name #:import-url #:integer
-                              #:invalid-parameter-exception
-                              #:invalid-parameter-value-exception
-                              #:limit-exceeded-exception #:list-configurations
-                              #:list-configurations-request
-                              #:list-configurations-response
-                              #:list-server-neighbors
-                              #:list-server-neighbors-request
-                              #:list-server-neighbors-response #:long #:message
-                              #:neighbor-connection-detail
+                              #:list-configurations #:list-server-neighbors
+                              #:long #:message #:neighbor-connection-detail
                               #:neighbor-details-list #:next-token
-                              #:offering-class
-                              #:operation-not-permitted-exception
-                              #:order-by-element #:order-by-element-field-name
-                              #:order-by-list #:purchasing-option
-                              #:reserved-instance-options
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception #:s3bucket
-                              #:s3presigned-url #:schema-storage-config
-                              #:server-internal-error-exception
+                              #:offering-class #:order-by-element
+                              #:order-by-element-field-name #:order-by-list
+                              #:purchasing-option #:reserved-instance-options
+                              #:s3bucket #:s3presigned-url
+                              #:schema-storage-config
                               #:start-batch-delete-configuration-task
-                              #:start-batch-delete-configuration-task-request
-                              #:start-batch-delete-configuration-task-response
                               #:start-continuous-export
-                              #:start-continuous-export-request
-                              #:start-continuous-export-response
                               #:start-data-collection-by-agent-ids
-                              #:start-data-collection-by-agent-ids-request
-                              #:start-data-collection-by-agent-ids-response
-                              #:start-export-task #:start-export-task-request
-                              #:start-export-task-response #:start-import-task
-                              #:start-import-task-request
-                              #:start-import-task-response
+                              #:start-export-task #:start-import-task
                               #:stop-continuous-export
-                              #:stop-continuous-export-request
-                              #:stop-continuous-export-response
-                              #:stop-data-collection-by-agent-ids
-                              #:stop-data-collection-by-agent-ids-request
-                              #:stop-data-collection-by-agent-ids-response
-                              #:string #:string-max255 #:tag #:tag-filter
-                              #:tag-filters #:tag-key #:tag-set #:tag-value
-                              #:tenancy #:term-length #:time-stamp
+                              #:stop-data-collection-by-agent-ids #:string
+                              #:string-max255 #:tag #:tag-filter #:tag-filters
+                              #:tag-key #:tag-set #:tag-value #:tenancy
+                              #:term-length #:time-stamp
                               #:to-delete-identifier-list #:uuid
-                              #:update-application #:update-application-request
-                              #:update-application-response
-                              #:usage-metric-basis #:usage-metric-basis-name
+                              #:update-application #:usage-metric-basis
+                              #:usage-metric-basis-name
                               #:usage-metric-percentage-adjust
                               #:user-preferred-region #:warning-code
                               #:warning-text #:order-string))

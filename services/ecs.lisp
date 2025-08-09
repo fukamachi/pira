@@ -1,19 +1,18 @@
 (uiop/package:define-package #:pira/ecs (:use)
-                             (:export #:access-denied-exception
-                              #:advanced-configuration #:agent-update-status
+                             (:export #:advanced-configuration
+                              #:agent-update-status
                               #:amazon-ec2container-service-v20141113
                               #:application-protocol #:assign-public-ip
                               #:attachment #:attachment-details
                               #:attachment-state-change
                               #:attachment-state-changes #:attachments
-                              #:attribute #:attribute-limit-exceeded-exception
-                              #:attributes #:auto-scaling-group-provider
+                              #:attribute #:attributes
+                              #:auto-scaling-group-provider
                               #:auto-scaling-group-provider-update
                               #:availability-zone-rebalancing
-                              #:aws-vpc-configuration #:blocked-exception
-                              #:boolean #:boxed-boolean #:boxed-integer
-                              #:cpuarchitecture #:capacity-provider
-                              #:capacity-provider-field
+                              #:aws-vpc-configuration #:boolean #:boxed-boolean
+                              #:boxed-integer #:cpuarchitecture
+                              #:capacity-provider #:capacity-provider-field
                               #:capacity-provider-field-list
                               #:capacity-provider-status
                               #:capacity-provider-strategy
@@ -21,23 +20,19 @@
                               #:capacity-provider-strategy-item-base
                               #:capacity-provider-strategy-item-weight
                               #:capacity-provider-update-status
-                              #:capacity-providers #:client-exception #:cluster
-                              #:cluster-configuration
-                              #:cluster-contains-container-instances-exception
-                              #:cluster-contains-services-exception
-                              #:cluster-contains-tasks-exception
-                              #:cluster-field #:cluster-field-list
-                              #:cluster-not-found-exception
+                              #:capacity-providers #:cluster
+                              #:cluster-configuration #:cluster-field
+                              #:cluster-field-list
                               #:cluster-service-connect-defaults
                               #:cluster-service-connect-defaults-request
                               #:cluster-setting #:cluster-setting-name
                               #:cluster-settings #:clusters #:compatibility
-                              #:compatibility-list #:conflict-exception
-                              #:connectivity #:container #:container-condition
-                              #:container-definition #:container-definitions
-                              #:container-dependencies #:container-dependency
-                              #:container-image #:container-images
-                              #:container-instance #:container-instance-field
+                              #:compatibility-list #:connectivity #:container
+                              #:container-condition #:container-definition
+                              #:container-definitions #:container-dependencies
+                              #:container-dependency #:container-image
+                              #:container-images #:container-instance
+                              #:container-instance-field
                               #:container-instance-field-list
                               #:container-instance-health-status
                               #:container-instance-status #:container-instances
@@ -45,32 +40,12 @@
                               #:container-restart-policy
                               #:container-state-change
                               #:container-state-changes #:containers
-                              #:create-capacity-provider
-                              #:create-capacity-provider-request
-                              #:create-capacity-provider-response
-                              #:create-cluster #:create-cluster-request
-                              #:create-cluster-response #:create-service
-                              #:create-service-request
-                              #:create-service-response #:create-task-set
-                              #:create-task-set-request
-                              #:create-task-set-response #:created-at
-                              #:delete-account-setting
-                              #:delete-account-setting-request
-                              #:delete-account-setting-response
-                              #:delete-attributes #:delete-attributes-request
-                              #:delete-attributes-response
-                              #:delete-capacity-provider
-                              #:delete-capacity-provider-request
-                              #:delete-capacity-provider-response
-                              #:delete-cluster #:delete-cluster-request
-                              #:delete-cluster-response #:delete-service
-                              #:delete-service-request
-                              #:delete-service-response
-                              #:delete-task-definitions
-                              #:delete-task-definitions-request
-                              #:delete-task-definitions-response
-                              #:delete-task-set #:delete-task-set-request
-                              #:delete-task-set-response #:deployment
+                              #:create-capacity-provider #:create-cluster
+                              #:create-service #:create-task-set #:created-at
+                              #:delete-account-setting #:delete-attributes
+                              #:delete-capacity-provider #:delete-cluster
+                              #:delete-service #:delete-task-definitions
+                              #:delete-task-set #:deployment
                               #:deployment-alarms #:deployment-circuit-breaker
                               #:deployment-configuration
                               #:deployment-controller
@@ -82,45 +57,21 @@
                               #:deployment-lifecycle-hook-stage-list
                               #:deployment-rollout-state #:deployment-strategy
                               #:deployments #:deregister-container-instance
-                              #:deregister-container-instance-request
-                              #:deregister-container-instance-response
                               #:deregister-task-definition
-                              #:deregister-task-definition-request
-                              #:deregister-task-definition-response
-                              #:describe-capacity-providers
-                              #:describe-capacity-providers-request
-                              #:describe-capacity-providers-response
-                              #:describe-clusters #:describe-clusters-request
-                              #:describe-clusters-response
+                              #:describe-capacity-providers #:describe-clusters
                               #:describe-container-instances
-                              #:describe-container-instances-request
-                              #:describe-container-instances-response
                               #:describe-service-deployments
-                              #:describe-service-deployments-request
-                              #:describe-service-deployments-response
-                              #:describe-service-revisions
-                              #:describe-service-revisions-request
-                              #:describe-service-revisions-response
-                              #:describe-services #:describe-services-request
-                              #:describe-services-response
-                              #:describe-task-definition
-                              #:describe-task-definition-request
-                              #:describe-task-definition-response
-                              #:describe-task-sets #:describe-task-sets-request
-                              #:describe-task-sets-response #:describe-tasks
-                              #:describe-tasks-request
-                              #:describe-tasks-response #:desired-status
-                              #:device #:device-cgroup-permission
+                              #:describe-service-revisions #:describe-services
+                              #:describe-task-definition #:describe-task-sets
+                              #:describe-tasks #:desired-status #:device
+                              #:device-cgroup-permission
                               #:device-cgroup-permissions #:devices-list
-                              #:discover-poll-endpoint
-                              #:discover-poll-endpoint-request
-                              #:discover-poll-endpoint-response
-                              #:docker-labels-map #:docker-volume-configuration
-                              #:double #:duration #:ebskmskey-id
-                              #:ebsresource-type #:ebssnapshot-id
-                              #:ebstag-specification #:ebstag-specifications
-                              #:ebsvolume-type #:ecsvolume-name
-                              #:efsauthorization-config
+                              #:discover-poll-endpoint #:docker-labels-map
+                              #:docker-volume-configuration #:double #:duration
+                              #:ebskmskey-id #:ebsresource-type
+                              #:ebssnapshot-id #:ebstag-specification
+                              #:ebstag-specifications #:ebsvolume-type
+                              #:ecsvolume-name #:efsauthorization-config
                               #:efsauthorization-config-iam
                               #:efstransit-encryption #:efsvolume-configuration
                               #:environment-file #:environment-file-type
@@ -129,19 +80,15 @@
                               #:execute-command-configuration
                               #:execute-command-log-configuration
                               #:execute-command-logging
-                              #:execute-command-request
-                              #:execute-command-response
                               #:fsx-windows-file-server-authorization-config
                               #:fsx-windows-file-server-volume-configuration
                               #:failure #:failures #:firelens-configuration
                               #:firelens-configuration-options-map
                               #:firelens-configuration-type
-                              #:get-task-protection
-                              #:get-task-protection-request
-                              #:get-task-protection-response #:gpu-ids
-                              #:health-check #:health-status #:host-entry
-                              #:host-entry-list #:host-volume-properties
-                              #:iamrole-arn #:inference-accelerator
+                              #:get-task-protection #:gpu-ids #:health-check
+                              #:health-status #:host-entry #:host-entry-list
+                              #:host-volume-properties #:iamrole-arn
+                              #:inference-accelerator
                               #:inference-accelerator-override
                               #:inference-accelerator-overrides
                               #:inference-accelerators
@@ -149,35 +96,15 @@
                               #:instance-health-check-result-list
                               #:instance-health-check-state
                               #:instance-health-check-type #:integer
-                              #:integer-list #:invalid-parameter-exception
-                              #:ipc-mode #:kernel-capabilities #:key-value-pair
-                              #:launch-type #:limit-exceeded-exception
-                              #:linux-parameters #:list-account-settings
-                              #:list-account-settings-request
-                              #:list-account-settings-response
-                              #:list-attributes #:list-attributes-request
-                              #:list-attributes-response #:list-clusters
-                              #:list-clusters-request #:list-clusters-response
-                              #:list-container-instances
-                              #:list-container-instances-request
-                              #:list-container-instances-response
-                              #:list-service-deployments
-                              #:list-service-deployments-request
-                              #:list-service-deployments-response
-                              #:list-services #:list-services-by-namespace
-                              #:list-services-by-namespace-request
-                              #:list-services-by-namespace-response
-                              #:list-services-request #:list-services-response
+                              #:integer-list #:ipc-mode #:kernel-capabilities
+                              #:key-value-pair #:launch-type #:linux-parameters
+                              #:list-account-settings #:list-attributes
+                              #:list-clusters #:list-container-instances
+                              #:list-service-deployments #:list-services
+                              #:list-services-by-namespace
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-task-definition-families
-                              #:list-task-definition-families-request
-                              #:list-task-definition-families-response
-                              #:list-task-definitions
-                              #:list-task-definitions-request
-                              #:list-task-definitions-response #:list-tasks
-                              #:list-tasks-request #:list-tasks-response
+                              #:list-task-definitions #:list-tasks
                               #:load-balancer #:load-balancers
                               #:log-configuration
                               #:log-configuration-options-map #:log-driver
@@ -190,53 +117,34 @@
                               #:managed-scaling-step-size
                               #:managed-scaling-target-capacity
                               #:managed-storage-configuration
-                              #:managed-termination-protection
-                              #:missing-version-exception #:mount-point
-                              #:mount-point-list
-                              #:namespace-not-found-exception #:network-binding
+                              #:managed-termination-protection #:mount-point
+                              #:mount-point-list #:network-binding
                               #:network-bindings #:network-configuration
                               #:network-interface #:network-interfaces
-                              #:network-mode #:no-update-available-exception
-                              #:osfamily #:pid-mode #:placement-constraint
+                              #:network-mode #:osfamily #:pid-mode
+                              #:placement-constraint
                               #:placement-constraint-type
                               #:placement-constraints #:placement-strategies
                               #:placement-strategy #:placement-strategy-type
                               #:platform-device #:platform-device-type
-                              #:platform-devices
-                              #:platform-task-definition-incompatibility-exception
-                              #:platform-unknown-exception #:port-mapping
+                              #:platform-devices #:port-mapping
                               #:port-mapping-list #:port-number
                               #:propagate-tags #:protected-task
                               #:protected-tasks #:proxy-configuration
                               #:proxy-configuration-properties
                               #:proxy-configuration-type #:put-account-setting
-                              #:put-account-setting-default
-                              #:put-account-setting-default-request
-                              #:put-account-setting-default-response
-                              #:put-account-setting-request
-                              #:put-account-setting-response #:put-attributes
-                              #:put-attributes-request
-                              #:put-attributes-response
+                              #:put-account-setting-default #:put-attributes
                               #:put-cluster-capacity-providers
-                              #:put-cluster-capacity-providers-request
-                              #:put-cluster-capacity-providers-response
                               #:register-container-instance
-                              #:register-container-instance-request
-                              #:register-container-instance-response
                               #:register-task-definition
-                              #:register-task-definition-request
-                              #:register-task-definition-response
                               #:repository-credentials #:requires-attributes
                               #:resolved-configuration #:resource
-                              #:resource-ids #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:resource-requirement #:resource-requirements
-                              #:resource-type #:resources #:rollback #:run-task
-                              #:run-task-request #:run-task-response
+                              #:resource-ids #:resource-requirement
+                              #:resource-requirements #:resource-type
+                              #:resources #:rollback #:run-task
                               #:runtime-platform #:scale #:scale-unit
                               #:scheduling-strategy #:scope #:secret
-                              #:secret-list #:sensitive-string
-                              #:server-exception #:service
+                              #:secret-list #:sensitive-string #:service
                               #:service-connect-client-alias
                               #:service-connect-client-alias-list
                               #:service-connect-configuration
@@ -253,7 +161,6 @@
                               #:service-deployment-brief
                               #:service-deployment-circuit-breaker
                               #:service-deployment-lifecycle-stage
-                              #:service-deployment-not-found-exception
                               #:service-deployment-rollback-monitors-status
                               #:service-deployment-status
                               #:service-deployment-status-list
@@ -261,8 +168,6 @@
                               #:service-event #:service-events #:service-field
                               #:service-field-list
                               #:service-managed-ebsvolume-configuration
-                              #:service-not-active-exception
-                              #:service-not-found-exception
                               #:service-registries #:service-registry
                               #:service-revision
                               #:service-revision-load-balancer
@@ -273,30 +178,17 @@
                               #:service-volume-configurations #:services
                               #:session #:setting #:setting-name #:setting-type
                               #:settings #:sort-order #:stability-status
-                              #:start-task #:start-task-request
-                              #:start-task-response #:statistics
+                              #:start-task #:statistics
                               #:stop-service-deployment
-                              #:stop-service-deployment-request
-                              #:stop-service-deployment-response
                               #:stop-service-deployment-stop-type #:stop-task
-                              #:stop-task-request #:stop-task-response #:string
-                              #:string-list #:string-map
+                              #:string #:string-list #:string-map
                               #:submit-attachment-state-changes
-                              #:submit-attachment-state-changes-request
-                              #:submit-attachment-state-changes-response
                               #:submit-container-state-change
-                              #:submit-container-state-change-request
-                              #:submit-container-state-change-response
-                              #:submit-task-state-change
-                              #:submit-task-state-change-request
-                              #:submit-task-state-change-response
-                              #:system-control #:system-controls #:tag
-                              #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags
-                              #:target-not-connected-exception
-                              #:target-not-found-exception #:target-type #:task
-                              #:task-definition #:task-definition-family-status
+                              #:submit-task-state-change #:system-control
+                              #:system-controls #:tag #:tag-key #:tag-keys
+                              #:tag-resource #:tag-value #:tags #:target-type
+                              #:task #:task-definition
+                              #:task-definition-family-status
                               #:task-definition-field
                               #:task-definition-field-list
                               #:task-definition-list
@@ -309,43 +201,21 @@
                               #:task-managed-ebsvolume-configuration
                               #:task-managed-ebsvolume-termination-policy
                               #:task-override #:task-set #:task-set-field
-                              #:task-set-field-list
-                              #:task-set-not-found-exception #:task-sets
+                              #:task-set-field-list #:task-sets
                               #:task-stop-code #:task-volume-configuration
                               #:task-volume-configurations #:tasks
                               #:timeout-configuration #:timestamp #:tmpfs
                               #:tmpfs-list #:transport-protocol #:ulimit
-                              #:ulimit-list #:ulimit-name
-                              #:unsupported-feature-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-capacity-provider
-                              #:update-capacity-provider-request
-                              #:update-capacity-provider-response
-                              #:update-cluster #:update-cluster-request
-                              #:update-cluster-response
+                              #:ulimit-list #:ulimit-name #:untag-resource
+                              #:update-capacity-provider #:update-cluster
                               #:update-cluster-settings
-                              #:update-cluster-settings-request
-                              #:update-cluster-settings-response
                               #:update-container-agent
-                              #:update-container-agent-request
-                              #:update-container-agent-response
                               #:update-container-instances-state
-                              #:update-container-instances-state-request
-                              #:update-container-instances-state-response
-                              #:update-in-progress-exception #:update-service
+                              #:update-service
                               #:update-service-primary-task-set
-                              #:update-service-primary-task-set-request
-                              #:update-service-primary-task-set-response
-                              #:update-service-request
-                              #:update-service-response
-                              #:update-task-protection
-                              #:update-task-protection-request
-                              #:update-task-protection-response
-                              #:update-task-set #:update-task-set-request
-                              #:update-task-set-response #:version-consistency
-                              #:version-info #:volume #:volume-from
-                              #:volume-from-list #:volume-list
+                              #:update-task-protection #:update-task-set
+                              #:version-consistency #:version-info #:volume
+                              #:volume-from #:volume-from-list #:volume-list
                               #:vpc-lattice-configuration
                               #:vpc-lattice-configurations))
 (common-lisp:in-package #:pira/ecs)

@@ -1,37 +1,18 @@
 (uiop/package:define-package #:pira/sso-oidc (:use)
-                             (:export #:awsssooidcservice
-                              #:access-denied-exception #:access-token
+                             (:export #:awsssooidcservice #:access-token
                               #:arn-type #:assertion #:auth-code
-                              #:authorization-pending-exception
                               #:aws-additional-details #:client-id
                               #:client-name #:client-secret #:client-type
                               #:code-verifier #:create-token
-                              #:create-token-request #:create-token-response
-                              #:create-token-with-iam
-                              #:create-token-with-iamrequest
-                              #:create-token-with-iamresponse #:device-code
-                              #:error #:error-description
-                              #:expiration-in-seconds #:expired-token-exception
+                              #:create-token-with-iam #:device-code #:error
+                              #:error-description #:expiration-in-seconds
                               #:grant-type #:grant-types #:id-token
-                              #:identity-context #:internal-server-exception
-                              #:interval-in-seconds #:invalid-client-exception
-                              #:invalid-client-metadata-exception
-                              #:invalid-grant-exception
-                              #:invalid-redirect-uri-exception
-                              #:invalid-request-exception
-                              #:invalid-request-region-exception
-                              #:invalid-scope-exception #:location
-                              #:long-time-stamp-type #:redirect-uris
+                              #:identity-context #:interval-in-seconds
+                              #:location #:long-time-stamp-type #:redirect-uris
                               #:refresh-token #:region #:register-client
-                              #:register-client-request
-                              #:register-client-response #:scope #:scopes
-                              #:slow-down-exception
-                              #:start-device-authorization
-                              #:start-device-authorization-request
-                              #:start-device-authorization-response
+                              #:scope #:scopes #:start-device-authorization
                               #:subject-token #:token-type #:token-type-uri
-                              #:uri #:unauthorized-client-exception
-                              #:unsupported-grant-type-exception #:user-code))
+                              #:uri #:user-code))
 (common-lisp:in-package #:pira/sso-oidc)
 
 (smithy/sdk/service:define-service awsssooidcservice :shape-name

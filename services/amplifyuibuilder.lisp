@@ -74,27 +74,22 @@
                               #:form-style-config #:form-summary
                               #:form-summary-list
                               #:generic-data-relationship-type
-                              #:get-codegen-job #:get-codegen-job-request
-                              #:get-codegen-job-response #:get-component
+                              #:get-codegen-job #:get-component
                               #:get-component-request #:get-component-response
                               #:get-form #:get-form-request #:get-form-response
                               #:get-metadata #:get-metadata-request
                               #:get-metadata-response #:get-theme
                               #:get-theme-request #:get-theme-response
                               #:graph-qlrender-config #:identifier-list
-                              #:internal-server-exception
-                              #:invalid-parameter-exception #:jsmodule
-                              #:jsscript #:jstarget #:label-decorator
-                              #:list-codegen-jobs #:list-codegen-jobs-limit
-                              #:list-codegen-jobs-request
-                              #:list-codegen-jobs-response #:list-components
+                              #:jsmodule #:jsscript #:jstarget
+                              #:label-decorator #:list-codegen-jobs
+                              #:list-codegen-jobs-limit #:list-components
                               #:list-components-request
                               #:list-components-response #:list-entity-limit
                               #:list-forms #:list-forms-request
                               #:list-forms-response #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-themes
-                              #:list-themes-request #:list-themes-response
+                              #:list-themes #:list-themes-request
+                              #:list-themes-response
                               #:mutation-action-set-state-parameter
                               #:no-api-render-config #:num-values
                               #:operand-type #:predicate #:predicate-list
@@ -105,28 +100,18 @@
                               #:refresh-token-request
                               #:refresh-token-request-body
                               #:refresh-token-response
-                              #:related-model-fields-list
-                              #:resource-conflict-exception
-                              #:resource-not-found-exception
-                              #:sectional-element #:sectional-element-map
-                              #:sensitive-string
-                              #:service-quota-exceeded-exception
+                              #:related-model-fields-list #:sectional-element
+                              #:sectional-element-map #:sensitive-string
                               #:sort-direction #:sort-property
                               #:sort-property-list #:start-codegen-job
-                              #:start-codegen-job-data
-                              #:start-codegen-job-request
-                              #:start-codegen-job-response
-                              #:storage-access-level #:str-values #:tag-key
-                              #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:theme #:theme-list
-                              #:theme-name #:theme-resource #:theme-summary
-                              #:theme-summary-list #:theme-value #:theme-values
-                              #:theme-values-list #:throttling-exception
-                              #:token-providers #:unauthorized-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-component
-                              #:update-component-data
+                              #:start-codegen-job-data #:storage-access-level
+                              #:str-values #:tag-key #:tag-key-list
+                              #:tag-resource #:tag-value #:tags #:theme
+                              #:theme-list #:theme-name #:theme-resource
+                              #:theme-summary #:theme-summary-list
+                              #:theme-value #:theme-values #:theme-values-list
+                              #:token-providers #:untag-resource
+                              #:update-component #:update-component-data
                               #:update-component-request
                               #:update-component-response #:update-form
                               #:update-form-data #:update-form-request

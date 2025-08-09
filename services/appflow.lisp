@@ -1,8 +1,7 @@
 (uiop/package:define-package #:pira/appflow (:use)
-                             (:export #:arn #:access-denied-exception
-                              #:access-key-id #:access-token #:account-name
-                              #:aggregation-config #:aggregation-type
-                              #:amplitude-connector-operator
+                             (:export #:arn #:access-key-id #:access-token
+                              #:account-name #:aggregation-config
+                              #:aggregation-type #:amplitude-connector-operator
                               #:amplitude-connector-profile-credentials
                               #:amplitude-connector-profile-properties
                               #:amplitude-metadata
@@ -16,14 +15,10 @@
                               #:authentication-type #:basic-auth-credentials
                               #:boolean #:bucket-name #:bucket-prefix
                               #:business-unit-id #:cancel-flow-executions
-                              #:cancel-flow-executions-request
-                              #:cancel-flow-executions-response #:catalog-type
-                              #:client-credentials-arn #:client-id
-                              #:client-number #:client-secret #:client-token
-                              #:cluster-identifier #:conflict-exception
-                              #:connection-mode
-                              #:connector-authentication-exception
-                              #:connector-configuration
+                              #:catalog-type #:client-credentials-arn
+                              #:client-id #:client-number #:client-secret
+                              #:client-token #:cluster-identifier
+                              #:connection-mode #:connector-configuration
                               #:connector-configurations-map
                               #:connector-description #:connector-detail
                               #:connector-entity #:connector-entity-field
@@ -47,16 +42,12 @@
                               #:connector-runtime-setting-data-type
                               #:connector-runtime-setting-list
                               #:connector-runtime-setting-scope
-                              #:connector-server-exception
                               #:connector-supplied-value
                               #:connector-supplied-value-list
                               #:connector-supplied-value-option-list
                               #:connector-type #:connector-type-list
                               #:connector-version #:create-connector-profile
-                              #:create-connector-profile-request
-                              #:create-connector-profile-response #:create-flow
-                              #:create-flow-request #:create-flow-response
-                              #:created-by #:credentials-map
+                              #:create-flow #:created-by #:credentials-map
                               #:credentials-map-key #:credentials-map-value
                               #:custom-auth-config #:custom-auth-config-list
                               #:custom-auth-credentials
@@ -77,26 +68,12 @@
                               #:datadog-connector-profile-properties
                               #:datadog-metadata #:datadog-source-properties
                               #:date #:datetime-type-field-name
-                              #:delete-connector-profile
-                              #:delete-connector-profile-request
-                              #:delete-connector-profile-response #:delete-flow
-                              #:delete-flow-request #:delete-flow-response
+                              #:delete-connector-profile #:delete-flow
                               #:describe-connector #:describe-connector-entity
-                              #:describe-connector-entity-request
-                              #:describe-connector-entity-response
                               #:describe-connector-profiles
-                              #:describe-connector-profiles-request
-                              #:describe-connector-profiles-response
-                              #:describe-connector-request
-                              #:describe-connector-response
-                              #:describe-connectors
-                              #:describe-connectors-request
-                              #:describe-connectors-response #:describe-flow
-                              #:describe-flow-execution-records
-                              #:describe-flow-execution-records-request
-                              #:describe-flow-execution-records-response
-                              #:describe-flow-request #:describe-flow-response
-                              #:description #:destination-connector-properties
+                              #:describe-connectors #:describe-flow
+                              #:describe-flow-execution-records #:description
+                              #:destination-connector-properties
                               #:destination-field
                               #:destination-field-properties
                               #:destination-flow-config
@@ -139,19 +116,11 @@
                               #:infor-nexus-connector-profile-properties
                               #:infor-nexus-metadata
                               #:infor-nexus-source-properties #:instance-url
-                              #:internal-server-exception #:java-boolean
-                              #:jwt-token #:kmsarn #:key #:label
+                              #:java-boolean #:jwt-token #:kmsarn #:key #:label
                               #:lambda-connector-provisioning-config
-                              #:list-connector-entities
-                              #:list-connector-entities-request
-                              #:list-connector-entities-response
-                              #:list-connectors #:list-connectors-request
-                              #:list-connectors-response
+                              #:list-connector-entities #:list-connectors
                               #:list-entities-max-results #:list-flows
-                              #:list-flows-request #:list-flows-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:logo-url
+                              #:list-tags-for-resource #:logo-url
                               #:logon-language #:long
                               #:lookout-metrics-destination-properties
                               #:marketo-connector-operator
@@ -192,13 +161,8 @@
                               #:redshift-destination-properties
                               #:redshift-metadata #:refresh-token #:region
                               #:region-list #:register-connector
-                              #:register-connector-request
-                              #:register-connector-response #:registered-by
-                              #:registration-output
-                              #:reset-connector-metadata-cache
-                              #:reset-connector-metadata-cache-request
-                              #:reset-connector-metadata-cache-response
-                              #:resource-not-found-exception #:role-arn
+                              #:registered-by #:registration-output
+                              #:reset-connector-metadata-cache #:role-arn
                               #:s3connector-operator #:s3destination-properties
                               #:s3input-file-type #:s3input-format-config
                               #:s3metadata #:s3output-format-config
@@ -229,7 +193,6 @@
                               #:service-now-connector-profile-properties
                               #:service-now-metadata
                               #:service-now-source-properties
-                              #:service-quota-exceeded-exception
                               #:singular-connector-operator
                               #:singular-connector-profile-credentials
                               #:singular-connector-profile-properties
@@ -245,9 +208,7 @@
                               #:source-connector-properties
                               #:source-field-properties #:source-fields
                               #:source-flow-config #:stage #:start-flow
-                              #:start-flow-request #:start-flow-response
-                              #:stop-flow #:stop-flow-request
-                              #:stop-flow-response #:string
+                              #:stop-flow #:string
                               #:success-response-handling-config
                               #:supported-api-version
                               #:supported-api-version-list
@@ -258,10 +219,8 @@
                               #:supported-operator-list #:supported-value-list
                               #:supported-write-operation-list #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:task #:task-properties-map
-                              #:task-type #:tasks #:throttling-exception
-                              #:timezone #:token-url
+                              #:task-type #:tasks #:timezone #:token-url
                               #:token-url-custom-properties #:token-url-list
                               #:trendmicro-connector-operator
                               #:trendmicro-connector-profile-credentials
@@ -270,25 +229,13 @@
                               #:trendmicro-source-properties #:trigger-config
                               #:trigger-properties #:trigger-type
                               #:trigger-type-list #:unregister-connector
-                              #:unregister-connector-request
-                              #:unregister-connector-response
-                              #:unsupported-operation-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-connector-profile
-                              #:update-connector-profile-request
-                              #:update-connector-profile-response
-                              #:update-connector-registration
-                              #:update-connector-registration-request
-                              #:update-connector-registration-response
-                              #:update-flow #:update-flow-request
-                              #:update-flow-response #:updated-by
-                              #:upsolver-bucket-name
+                              #:untag-resource #:update-connector-profile
+                              #:update-connector-registration #:update-flow
+                              #:updated-by #:upsolver-bucket-name
                               #:upsolver-destination-properties
                               #:upsolver-metadata
                               #:upsolver-s3output-format-config #:username
-                              #:validation-exception #:value
-                              #:veeva-connector-operator
+                              #:value #:veeva-connector-operator
                               #:veeva-connector-profile-credentials
                               #:veeva-connector-profile-properties
                               #:veeva-metadata #:veeva-source-properties

@@ -5,26 +5,16 @@
                               #:error-code #:header
                               #:inference-component-header #:inference-id
                               #:input-location-header
-                              #:internal-dependency-exception
-                              #:internal-failure #:internal-stream-failure
                               #:invocation-timeout-seconds-header
                               #:invoke-endpoint #:invoke-endpoint-async
-                              #:invoke-endpoint-async-input
-                              #:invoke-endpoint-async-output
-                              #:invoke-endpoint-input #:invoke-endpoint-output
                               #:invoke-endpoint-with-response-stream
-                              #:invoke-endpoint-with-response-stream-input
-                              #:invoke-endpoint-with-response-stream-output
-                              #:log-stream-arn #:message #:model-error
-                              #:model-not-ready-exception #:model-stream-error
+                              #:log-stream-arn #:message
                               #:new-session-response-header #:part-blob
                               #:payload-part #:request-ttlseconds-header
-                              #:response-stream #:service-unavailable
-                              #:session-id-header
+                              #:response-stream #:session-id-header
                               #:session-id-or-new-session-constant-header
                               #:status-code #:target-container-hostname-header
-                              #:target-model-header #:target-variant-header
-                              #:validation-error))
+                              #:target-model-header #:target-variant-header))
 (common-lisp:in-package #:pira/sagemaker-runtime)
 
 (smithy/sdk/service:define-service amazon-sage-maker-runtime :shape-name

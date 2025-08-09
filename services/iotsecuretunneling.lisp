@@ -1,32 +1,19 @@
 (uiop/package:define-package #:pira/iotsecuretunneling (:use)
                              (:export #:amazon-resource-name
                               #:client-access-token #:client-mode
-                              #:close-tunnel #:close-tunnel-request
-                              #:close-tunnel-response #:connection-state
+                              #:close-tunnel #:connection-state
                               #:connection-status #:date-type #:delete-flag
-                              #:describe-tunnel #:describe-tunnel-request
-                              #:describe-tunnel-response #:description
+                              #:describe-tunnel #:description
                               #:destination-config #:error-message
-                              #:io-tsecured-tunneling
-                              #:limit-exceeded-exception
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-tunnels
-                              #:list-tunnels-request #:list-tunnels-response
-                              #:max-results #:next-token #:open-tunnel
-                              #:open-tunnel-request #:open-tunnel-response
-                              #:resource-not-found-exception
-                              #:rotate-tunnel-access-token
-                              #:rotate-tunnel-access-token-request
-                              #:rotate-tunnel-access-token-response #:service
-                              #:service-list #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:thing-name
-                              #:timeout-config #:timeout-in-min #:tunnel
-                              #:tunnel-arn #:tunnel-id #:tunnel-status
-                              #:tunnel-summary #:tunnel-summary-list
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response))
+                              #:io-tsecured-tunneling #:list-tags-for-resource
+                              #:list-tunnels #:max-results #:next-token
+                              #:open-tunnel #:rotate-tunnel-access-token
+                              #:service #:service-list #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:thing-name #:timeout-config
+                              #:timeout-in-min #:tunnel #:tunnel-arn
+                              #:tunnel-id #:tunnel-status #:tunnel-summary
+                              #:tunnel-summary-list #:untag-resource))
 (common-lisp:in-package #:pira/iotsecuretunneling)
 
 (smithy/sdk/service:define-service io-tsecured-tunneling :shape-name

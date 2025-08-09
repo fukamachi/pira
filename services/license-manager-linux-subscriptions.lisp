@@ -1,16 +1,12 @@
 (uiop/package:define-package #:pira/license-manager-linux-subscriptions (:use)
                              (:export #:box-integer #:box-long
-                              #:deregister-subscription-provider
-                              #:deregister-subscription-provider-request
-                              #:deregister-subscription-provider-response
-                              #:filter #:filter-list
+                              #:deregister-subscription-provider #:filter
+                              #:filter-list
                               #:get-registered-subscription-provider
-                              #:get-registered-subscription-provider-request
-                              #:get-registered-subscription-provider-response
                               #:get-service-settings
                               #:get-service-settings-request
                               #:get-service-settings-response #:instance
-                              #:instance-list #:internal-server-exception
+                              #:instance-list
                               #:license-manager-linux-subscriptions
                               #:linux-subscriptions-discovery
                               #:linux-subscriptions-discovery-settings
@@ -21,33 +17,21 @@
                               #:list-linux-subscriptions-request
                               #:list-linux-subscriptions-response
                               #:list-registered-subscription-providers
-                              #:list-registered-subscription-providers-request
-                              #:list-registered-subscription-providers-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:operator
+                              #:list-tags-for-resource #:operator
                               #:organization-integration #:product-code-list
                               #:register-subscription-provider
-                              #:register-subscription-provider-request
-                              #:register-subscription-provider-response
                               #:registered-subscription-provider
                               #:registered-subscription-provider-list
-                              #:resource-not-found-exception #:secret-arn
-                              #:status #:string-list #:string-map
+                              #:secret-arn #:status #:string-list #:string-map
                               #:subscription #:subscription-list
                               #:subscription-provider-arn
                               #:subscription-provider-source
                               #:subscription-provider-source-list
                               #:subscription-provider-status #:tag-key-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tags
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:tag-resource #:tags #:untag-resource
                               #:update-service-settings
                               #:update-service-settings-request
-                              #:update-service-settings-response
-                              #:validation-exception))
+                              #:update-service-settings-response))
 (common-lisp:in-package #:pira/license-manager-linux-subscriptions)
 
 (smithy/sdk/service:define-service license-manager-linux-subscriptions

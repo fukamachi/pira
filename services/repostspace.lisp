@@ -1,60 +1,32 @@
 (uiop/package:define-package #:pira/repostspace (:use)
-                             (:export #:access-denied-exception #:accessor-id
-                              #:accessor-id-list #:admin-id
-                              #:allowed-domains-list #:arn
+                             (:export #:accessor-id #:accessor-id-list
+                              #:admin-id #:allowed-domains-list #:arn
                               #:batch-add-channel-role-to-accessors
-                              #:batch-add-channel-role-to-accessors-input
-                              #:batch-add-channel-role-to-accessors-output
-                              #:batch-add-role #:batch-add-role-input
-                              #:batch-add-role-output #:batch-error
-                              #:batch-error-list
+                              #:batch-add-role #:batch-error #:batch-error-list
                               #:batch-remove-channel-role-from-accessors
-                              #:batch-remove-channel-role-from-accessors-input
-                              #:batch-remove-channel-role-from-accessors-output
-                              #:batch-remove-role #:batch-remove-role-input
-                              #:batch-remove-role-output #:channel-data
+                              #:batch-remove-role #:channel-data
                               #:channel-description #:channel-id #:channel-name
                               #:channel-role #:channel-role-list
                               #:channel-roles #:channel-status #:channels-list
-                              #:client-id #:configuration-status
-                              #:conflict-exception #:content-size
-                              #:create-channel #:create-channel-input
-                              #:create-channel-output #:create-space
-                              #:create-space-input #:create-space-output
-                              #:delete-space #:delete-space-input
-                              #:deregister-admin #:deregister-admin-input
-                              #:email-domain #:error-code #:error-message
-                              #:feature-enable-parameter
-                              #:feature-enable-status #:get-channel
-                              #:get-channel-input #:get-channel-output
-                              #:get-space #:get-space-input #:get-space-output
+                              #:client-id #:configuration-status #:content-size
+                              #:create-channel #:create-space #:delete-space
+                              #:deregister-admin #:email-domain #:error-code
+                              #:error-message #:feature-enable-parameter
+                              #:feature-enable-status #:get-channel #:get-space
                               #:group-admins #:group-count #:identity-store-id
-                              #:internal-server-exception #:invite-body
-                              #:invite-title #:kmskey #:list-channels
-                              #:list-channels-input #:list-channels-limit
-                              #:list-channels-output #:list-spaces
-                              #:list-spaces-input #:list-spaces-limit
-                              #:list-spaces-output #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:provisioning-status #:register-admin
-                              #:register-admin-input #:repost-space
-                              #:resource-not-found-exception #:role #:role-list
-                              #:roles #:send-invites #:send-invites-input
-                              #:service-quota-exceeded-exception #:space-data
+                              #:invite-body #:invite-title #:kmskey
+                              #:list-channels #:list-channels-limit
+                              #:list-spaces #:list-spaces-limit
+                              #:list-tags-for-resource #:provisioning-status
+                              #:register-admin #:repost-space #:role
+                              #:role-list #:roles #:send-invites #:space-data
                               #:space-description #:space-id #:space-name
                               #:space-subdomain #:spaces-list #:storage-limit
                               #:supported-email-domains-parameters
                               #:supported-email-domains-status #:tag-key
-                              #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:throttling-exception
-                              #:tier-level #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-channel
-                              #:update-channel-input #:update-channel-output
-                              #:update-space #:update-space-input #:url
-                              #:user-admins #:user-count #:validation-exception
+                              #:tag-key-list #:tag-resource #:tag-value #:tags
+                              #:tier-level #:untag-resource #:update-channel
+                              #:update-space #:url #:user-admins #:user-count
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason

@@ -2,22 +2,16 @@
                              (:export #:allow-notifications
                               #:app-instance-user-membership-summary
                               #:associate-channel-flow
-                              #:associate-channel-flow-request
-                              #:bad-request-exception
                               #:batch-channel-memberships
                               #:batch-create-channel-membership
                               #:batch-create-channel-membership-error
                               #:batch-create-channel-membership-errors
-                              #:batch-create-channel-membership-request
-                              #:batch-create-channel-membership-response
                               #:callback-id-type #:channel
                               #:channel-associated-with-flow-summary
                               #:channel-associated-with-flow-summary-list
                               #:channel-ban #:channel-ban-summary
                               #:channel-ban-summary-list #:channel-flow
                               #:channel-flow-callback
-                              #:channel-flow-callback-request
-                              #:channel-flow-callback-response
                               #:channel-flow-execution-order
                               #:channel-flow-summary
                               #:channel-flow-summary-list #:channel-id
@@ -43,108 +37,44 @@
                               #:channel-privacy #:channel-summary
                               #:channel-summary-list #:chime-arn
                               #:chime-messaging-service #:client-request-token
-                              #:conflict-exception #:content #:content-type
-                              #:create-channel #:create-channel-ban
-                              #:create-channel-ban-request
-                              #:create-channel-ban-response
-                              #:create-channel-flow
-                              #:create-channel-flow-request
-                              #:create-channel-flow-response
+                              #:content #:content-type #:create-channel
+                              #:create-channel-ban #:create-channel-flow
                               #:create-channel-membership
-                              #:create-channel-membership-request
-                              #:create-channel-membership-response
-                              #:create-channel-moderator
-                              #:create-channel-moderator-request
-                              #:create-channel-moderator-response
-                              #:create-channel-request
-                              #:create-channel-response #:delete-channel
-                              #:delete-channel-ban #:delete-channel-ban-request
-                              #:delete-channel-flow
-                              #:delete-channel-flow-request
+                              #:create-channel-moderator #:delete-channel
+                              #:delete-channel-ban #:delete-channel-flow
                               #:delete-channel-membership
-                              #:delete-channel-membership-request
                               #:delete-channel-message
-                              #:delete-channel-message-request
                               #:delete-channel-moderator
-                              #:delete-channel-moderator-request
-                              #:delete-channel-request
                               #:delete-messaging-streaming-configurations
-                              #:delete-messaging-streaming-configurations-request
                               #:describe-channel #:describe-channel-ban
-                              #:describe-channel-ban-request
-                              #:describe-channel-ban-response
                               #:describe-channel-flow
-                              #:describe-channel-flow-request
-                              #:describe-channel-flow-response
                               #:describe-channel-membership
                               #:describe-channel-membership-for-app-instance-user
-                              #:describe-channel-membership-for-app-instance-user-request
-                              #:describe-channel-membership-for-app-instance-user-response
-                              #:describe-channel-membership-request
-                              #:describe-channel-membership-response
                               #:describe-channel-moderated-by-app-instance-user
-                              #:describe-channel-moderated-by-app-instance-user-request
-                              #:describe-channel-moderated-by-app-instance-user-response
                               #:describe-channel-moderator
-                              #:describe-channel-moderator-request
-                              #:describe-channel-moderator-response
-                              #:describe-channel-request
-                              #:describe-channel-response
                               #:disassociate-channel-flow
-                              #:disassociate-channel-flow-request
                               #:elastic-channel-configuration #:error-code
                               #:expiration-criterion #:expiration-days
                               #:expiration-settings #:fallback-action
-                              #:filter-rule #:forbidden-exception
+                              #:filter-rule
                               #:get-channel-membership-preferences
-                              #:get-channel-membership-preferences-request
-                              #:get-channel-membership-preferences-response
                               #:get-channel-message
-                              #:get-channel-message-request
-                              #:get-channel-message-response
                               #:get-channel-message-status
-                              #:get-channel-message-status-request
-                              #:get-channel-message-status-response
                               #:get-messaging-session-endpoint
-                              #:get-messaging-session-endpoint-request
-                              #:get-messaging-session-endpoint-response
                               #:get-messaging-streaming-configurations
-                              #:get-messaging-streaming-configurations-request
-                              #:get-messaging-streaming-configurations-response
                               #:identity #:invocation-type
                               #:lambda-configuration #:lambda-function-arn
-                              #:list-channel-bans #:list-channel-bans-request
-                              #:list-channel-bans-response #:list-channel-flows
-                              #:list-channel-flows-request
-                              #:list-channel-flows-response
+                              #:list-channel-bans #:list-channel-flows
                               #:list-channel-memberships
                               #:list-channel-memberships-for-app-instance-user
-                              #:list-channel-memberships-for-app-instance-user-request
-                              #:list-channel-memberships-for-app-instance-user-response
-                              #:list-channel-memberships-request
-                              #:list-channel-memberships-response
-                              #:list-channel-messages
-                              #:list-channel-messages-request
-                              #:list-channel-messages-response
-                              #:list-channel-moderators
-                              #:list-channel-moderators-request
-                              #:list-channel-moderators-response
+                              #:list-channel-messages #:list-channel-moderators
                               #:list-channels
                               #:list-channels-associated-with-channel-flow
-                              #:list-channels-associated-with-channel-flow-request
-                              #:list-channels-associated-with-channel-flow-response
                               #:list-channels-moderated-by-app-instance-user
-                              #:list-channels-moderated-by-app-instance-user-request
-                              #:list-channels-moderated-by-app-instance-user-response
-                              #:list-channels-request #:list-channels-response
-                              #:list-sub-channels #:list-sub-channels-request
-                              #:list-sub-channels-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:maximum-sub-channels #:member-arns #:members
-                              #:membership-count #:message-attribute-map
-                              #:message-attribute-name
+                              #:list-sub-channels #:list-tags-for-resource
+                              #:max-results #:maximum-sub-channels
+                              #:member-arns #:members #:membership-count
+                              #:message-attribute-map #:message-attribute-name
                               #:message-attribute-string-value
                               #:message-attribute-string-values
                               #:message-attribute-value #:message-id
@@ -152,58 +82,32 @@
                               #:messaging-session-endpoint #:metadata
                               #:minimum-membership-percentage #:next-token
                               #:non-empty-content #:non-empty-resource-name
-                              #:non-nullable-boolean #:not-found-exception
-                              #:processor #:processor-configuration
-                              #:processor-list #:push-notification-body
+                              #:non-nullable-boolean #:processor
+                              #:processor-configuration #:processor-list
+                              #:push-notification-body
                               #:push-notification-configuration
                               #:push-notification-preferences
                               #:push-notification-title
                               #:push-notification-type
                               #:put-channel-expiration-settings
-                              #:put-channel-expiration-settings-request
-                              #:put-channel-expiration-settings-response
                               #:put-channel-membership-preferences
-                              #:put-channel-membership-preferences-request
-                              #:put-channel-membership-preferences-response
                               #:put-messaging-streaming-configurations
-                              #:put-messaging-streaming-configurations-request
-                              #:put-messaging-streaming-configurations-response
-                              #:redact-channel-message
-                              #:redact-channel-message-request
-                              #:redact-channel-message-response
-                              #:resource-limit-exceeded-exception
-                              #:resource-name #:search-channels
-                              #:search-channels-request
-                              #:search-channels-response #:search-field
+                              #:redact-channel-message #:resource-name
+                              #:search-channels #:search-field
                               #:search-field-key #:search-field-operator
                               #:search-field-value #:search-field-values
                               #:search-fields #:send-channel-message
-                              #:send-channel-message-request
-                              #:send-channel-message-response
-                              #:service-failure-exception
-                              #:service-unavailable-exception #:sort-order
-                              #:status-detail #:streaming-configuration
+                              #:sort-order #:status-detail
+                              #:streaming-configuration
                               #:streaming-configuration-list #:string
                               #:sub-channel-id #:sub-channel-summary
                               #:sub-channel-summary-list #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-value #:target
-                              #:target-list
-                              #:target-memberships-per-sub-channel
-                              #:throttled-client-exception #:timestamp
-                              #:unauthorized-client-exception #:untag-resource
-                              #:untag-resource-request #:update-channel
-                              #:update-channel-flow
-                              #:update-channel-flow-request
-                              #:update-channel-flow-response
-                              #:update-channel-message
-                              #:update-channel-message-request
-                              #:update-channel-message-response
-                              #:update-channel-read-marker
-                              #:update-channel-read-marker-request
-                              #:update-channel-read-marker-response
-                              #:update-channel-request
-                              #:update-channel-response #:url-type))
+                              #:tag-value #:target #:target-list
+                              #:target-memberships-per-sub-channel #:timestamp
+                              #:untag-resource #:update-channel
+                              #:update-channel-flow #:update-channel-message
+                              #:update-channel-read-marker #:url-type))
 (common-lisp:in-package #:pira/chime-sdk-messaging)
 
 (smithy/sdk/service:define-service chime-messaging-service :shape-name

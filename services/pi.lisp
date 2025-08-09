@@ -7,17 +7,10 @@
                               #:analysis-report-summary-list #:analysis-status
                               #:authorized-actions-list #:boolean
                               #:context-type
-                              #:create-performance-analysis-report
-                              #:create-performance-analysis-report-request
-                              #:create-performance-analysis-report-response
-                              #:data #:data-list #:data-point
-                              #:data-points-list
+                              #:create-performance-analysis-report #:data
+                              #:data-list #:data-point #:data-points-list
                               #:delete-performance-analysis-report
-                              #:delete-performance-analysis-report-request
-                              #:delete-performance-analysis-report-response
-                              #:describe-dimension-keys
-                              #:describe-dimension-keys-request
-                              #:describe-dimension-keys-response #:description
+                              #:describe-dimension-keys #:description
                               #:descriptive-map #:descriptive-string
                               #:detail-status #:dimension-detail
                               #:dimension-detail-list #:dimension-group
@@ -31,40 +24,20 @@
                               #:feature-metadata #:feature-metadata-map
                               #:feature-status #:fine-grained-action
                               #:get-dimension-key-details
-                              #:get-dimension-key-details-request
-                              #:get-dimension-key-details-response
                               #:get-performance-analysis-report
-                              #:get-performance-analysis-report-request
-                              #:get-performance-analysis-report-response
-                              #:get-resource-metadata
-                              #:get-resource-metadata-request
-                              #:get-resource-metadata-response
-                              #:get-resource-metrics
-                              #:get-resource-metrics-request
-                              #:get-resource-metrics-response #:isotimestamp
-                              #:identifier-string #:insight #:insight-list
-                              #:integer #:internal-service-error
-                              #:invalid-argument-exception #:limit
+                              #:get-resource-metadata #:get-resource-metrics
+                              #:isotimestamp #:identifier-string #:insight
+                              #:insight-list #:integer #:limit
                               #:list-available-resource-dimensions
-                              #:list-available-resource-dimensions-request
-                              #:list-available-resource-dimensions-response
                               #:list-available-resource-metrics
-                              #:list-available-resource-metrics-request
-                              #:list-available-resource-metrics-response
                               #:list-performance-analysis-reports
-                              #:list-performance-analysis-reports-request
-                              #:list-performance-analysis-reports-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:markdown-string #:max-results
-                              #:metric-dimension-groups
+                              #:list-tags-for-resource #:markdown-string
+                              #:max-results #:metric-dimension-groups
                               #:metric-dimensions-list #:metric-key-data-points
                               #:metric-key-data-points-list #:metric-query
                               #:metric-query-filter-map #:metric-query-list
                               #:metric-type-list #:metric-values-list
-                              #:next-token #:not-authorized-exception
-                              #:performance-insights-metric
+                              #:next-token #:performance-insights-metric
                               #:performance-insightsv20180227
                               #:period-alignment #:recommendation
                               #:recommendation-list #:request-string
@@ -77,10 +50,8 @@
                               #:sanitized-string #:sanitized-string-list
                               #:service-type #:severity #:string #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:text-format
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response))
+                              #:tag-resource #:tag-value #:text-format
+                              #:untag-resource))
 (common-lisp:in-package #:pira/pi)
 
 (smithy/sdk/service:define-service performance-insightsv20180227 :shape-name

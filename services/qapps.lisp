@@ -1,82 +1,46 @@
 (uiop/package:define-package #:pira/qapps (:use)
-                             (:export #:access-denied-exception #:action
-                              #:action-identifier #:amazon-resource-name
-                              #:app-arn #:app-definition #:app-definition-input
+                             (:export #:action #:action-identifier
+                              #:amazon-resource-name #:app-arn #:app-definition
+                              #:app-definition-input
                               #:app-required-capabilities
                               #:app-required-capability #:app-status
                               #:app-version #:associate-library-item-review
-                              #:associate-library-item-review-input
-                              #:associate-qapp-with-user
-                              #:associate-qapp-with-user-input
-                              #:attribute-filter #:attribute-filters
-                              #:batch-create-category
-                              #:batch-create-category-input
+                              #:associate-qapp-with-user #:attribute-filter
+                              #:attribute-filters #:batch-create-category
                               #:batch-create-category-input-category
                               #:batch-create-category-input-category-list
-                              #:batch-delete-category
-                              #:batch-delete-category-input
-                              #:batch-update-category
-                              #:batch-update-category-input #:card #:card-input
-                              #:card-list #:card-model-list
+                              #:batch-delete-category #:batch-update-category
+                              #:card #:card-input #:card-list #:card-model-list
                               #:card-output-source #:card-status
                               #:card-status-map #:card-type #:card-value
                               #:card-value-list #:categories-list #:category
                               #:category-id-list #:category-input
                               #:category-list #:category-list-input
-                              #:conflict-exception
-                              #:content-too-large-exception
                               #:conversation-message #:create-library-item
-                              #:create-library-item-input
-                              #:create-library-item-output
-                              #:create-presigned-url
-                              #:create-presigned-url-input
-                              #:create-presigned-url-output #:create-qapp
-                              #:create-qapp-input #:create-qapp-output
-                              #:default #:delete-category-input-list
-                              #:delete-library-item #:delete-library-item-input
-                              #:delete-qapp #:delete-qapp-input
+                              #:create-presigned-url #:create-qapp #:default
+                              #:delete-category-input-list
+                              #:delete-library-item #:delete-qapp
                               #:dependency-list #:describe-qapp-permissions
-                              #:describe-qapp-permissions-input
-                              #:describe-qapp-permissions-output #:description
-                              #:disassociate-library-item-review
-                              #:disassociate-library-item-review-input
+                              #:description #:disassociate-library-item-review
                               #:disassociate-qapp-from-user
-                              #:disassociate-qapp-from-user-input
                               #:document-attribute #:document-attribute-key
                               #:document-attribute-string-list-value
                               #:document-attribute-string-value
                               #:document-attribute-value #:document-scope
                               #:execution-status #:export-qapp-session-data
-                              #:export-qapp-session-data-input
-                              #:export-qapp-session-data-output
                               #:file-upload-card #:file-upload-card-input
                               #:filename #:form-input-card
                               #:form-input-card-input
                               #:form-input-card-metadata
                               #:form-input-card-metadata-schema
-                              #:get-library-item #:get-library-item-input
-                              #:get-library-item-output #:get-qapp
-                              #:get-qapp-input #:get-qapp-output
-                              #:get-qapp-session #:get-qapp-session-input
-                              #:get-qapp-session-metadata
-                              #:get-qapp-session-metadata-input
-                              #:get-qapp-session-metadata-output
-                              #:get-qapp-session-output #:import-document
-                              #:import-document-input #:import-document-output
+                              #:get-library-item #:get-qapp #:get-qapp-session
+                              #:get-qapp-session-metadata #:import-document
                               #:initial-prompt #:input-card-compute-mode
-                              #:instance-id #:internal-server-exception
-                              #:library-item-list #:library-item-member
-                              #:library-item-status #:list-categories
-                              #:list-categories-input #:list-categories-output
-                              #:list-library-items #:list-library-items-input
-                              #:list-library-items-output
-                              #:list-qapp-session-data
-                              #:list-qapp-session-data-input
-                              #:list-qapp-session-data-output #:list-qapps
-                              #:list-qapps-input #:list-qapps-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:long
+                              #:instance-id #:library-item-list
+                              #:library-item-member #:library-item-status
+                              #:list-categories #:list-library-items
+                              #:list-qapp-session-data #:list-qapps
+                              #:list-tags-for-resource #:long
                               #:memory-reference-list #:message-list
                               #:page-limit #:pagination-token
                               #:permission-input #:permission-output
@@ -84,46 +48,29 @@
                               #:permissions-output-list #:placeholder
                               #:plato-string #:plugin-id #:plugin-type
                               #:predict-app-definition #:predict-qapp
-                              #:predict-qapp-input #:predict-qapp-input-options
-                              #:predict-qapp-output #:presigned-url-fields
-                              #:principal-output #:prompt #:qapp-session-data
+                              #:predict-qapp-input-options
+                              #:presigned-url-fields #:principal-output
+                              #:prompt #:qapp-session-data
                               #:qapp-session-data-list #:qapps-service
                               #:qapps-timestamp #:qplugin-card
                               #:qplugin-card-input #:qquery-card
-                              #:qquery-card-input
-                              #:resource-not-found-exception #:sender
-                              #:service-quota-exceeded-exception #:session-name
+                              #:qquery-card-input #:sender #:session-name
                               #:session-sharing-accept-responses
                               #:session-sharing-configuration
                               #:session-sharing-enabled
                               #:session-sharing-reveal-cards
-                              #:start-qapp-session #:start-qapp-session-input
-                              #:start-qapp-session-output #:stop-qapp-session
-                              #:stop-qapp-session-input #:submission
-                              #:submission-list #:submission-mutation
-                              #:submission-mutation-kind #:tag-key #:tag-keys
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
-                              #:text-input-card #:text-input-card-input
-                              #:throttling-exception #:timestamp #:title #:uuid
-                              #:unauthorized-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-library-item
-                              #:update-library-item-input
-                              #:update-library-item-metadata
-                              #:update-library-item-metadata-input
-                              #:update-library-item-output #:update-qapp
-                              #:update-qapp-input #:update-qapp-output
-                              #:update-qapp-permissions
-                              #:update-qapp-permissions-input
-                              #:update-qapp-permissions-output
-                              #:update-qapp-session #:update-qapp-session-input
-                              #:update-qapp-session-metadata
-                              #:update-qapp-session-metadata-input
-                              #:update-qapp-session-metadata-output
-                              #:update-qapp-session-output #:user
+                              #:start-qapp-session #:stop-qapp-session
+                              #:submission #:submission-list
+                              #:submission-mutation #:submission-mutation-kind
+                              #:tag-key #:tag-keys #:tag-map #:tag-resource
+                              #:tag-value #:tags #:text-input-card
+                              #:text-input-card-input #:timestamp #:title
+                              #:uuid #:untag-resource #:update-library-item
+                              #:update-library-item-metadata #:update-qapp
+                              #:update-qapp-permissions #:update-qapp-session
+                              #:update-qapp-session-metadata #:user
                               #:user-app-item #:user-apps-list #:user-id
-                              #:user-type #:validation-exception))
+                              #:user-type))
 (common-lisp:in-package #:pira/qapps)
 
 (smithy/sdk/service:define-service qapps-service :shape-name "QAppsService"

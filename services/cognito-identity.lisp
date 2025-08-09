@@ -8,41 +8,18 @@
                               #:cognito-identity-provider-list
                               #:cognito-identity-provider-name
                               #:cognito-identity-provider-token-check
-                              #:concurrent-modification-exception
-                              #:create-identity-pool
-                              #:create-identity-pool-input #:credentials
-                              #:date-type #:delete-identities
-                              #:delete-identities-input
-                              #:delete-identities-response
-                              #:delete-identity-pool
-                              #:delete-identity-pool-input #:describe-identity
-                              #:describe-identity-input
-                              #:describe-identity-pool
-                              #:describe-identity-pool-input
+                              #:create-identity-pool #:credentials #:date-type
+                              #:delete-identities #:delete-identity-pool
+                              #:describe-identity #:describe-identity-pool
                               #:developer-provider-name
-                              #:developer-user-already-registered-exception
                               #:developer-user-identifier
                               #:developer-user-identifier-list #:error-code
-                              #:external-service-exception
-                              #:get-credentials-for-identity
-                              #:get-credentials-for-identity-input
-                              #:get-credentials-for-identity-response #:get-id
-                              #:get-id-input #:get-id-response
-                              #:get-identity-pool-roles
-                              #:get-identity-pool-roles-input
-                              #:get-identity-pool-roles-response
-                              #:get-open-id-token
+                              #:get-credentials-for-identity #:get-id
+                              #:get-identity-pool-roles #:get-open-id-token
                               #:get-open-id-token-for-developer-identity
-                              #:get-open-id-token-for-developer-identity-input
-                              #:get-open-id-token-for-developer-identity-response
-                              #:get-open-id-token-input
-                              #:get-open-id-token-response
-                              #:get-principal-tag-attribute-map
-                              #:get-principal-tag-attribute-map-input
-                              #:get-principal-tag-attribute-map-response
-                              #:hide-disabled #:identities-list
-                              #:identity-description #:identity-id
-                              #:identity-id-list #:identity-pool
+                              #:get-principal-tag-attribute-map #:hide-disabled
+                              #:identities-list #:identity-description
+                              #:identity-id #:identity-id-list #:identity-pool
                               #:identity-pool-id #:identity-pool-name
                               #:identity-pool-short-description
                               #:identity-pool-tags-list-type
@@ -51,48 +28,24 @@
                               #:identity-pools-list #:identity-provider-id
                               #:identity-provider-name
                               #:identity-provider-token #:identity-providers
-                              #:internal-error-exception
-                              #:invalid-identity-pool-configuration-exception
-                              #:invalid-parameter-exception
-                              #:limit-exceeded-exception #:list-identities
-                              #:list-identities-input
-                              #:list-identities-response #:list-identity-pools
-                              #:list-identity-pools-input
-                              #:list-identity-pools-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-response #:logins-list
+                              #:list-identities #:list-identity-pools
+                              #:list-tags-for-resource #:logins-list
                               #:logins-map #:lookup-developer-identity
-                              #:lookup-developer-identity-input
-                              #:lookup-developer-identity-response
                               #:mapping-rule #:mapping-rule-match-type
                               #:mapping-rules-list #:merge-developer-identities
-                              #:merge-developer-identities-input
-                              #:merge-developer-identities-response
-                              #:not-authorized-exception #:oidcprovider-list
-                              #:oidctoken #:pagination-key #:principal-tag-id
-                              #:principal-tag-value #:principal-tags
-                              #:query-limit #:resource-conflict-exception
-                              #:resource-not-found-exception #:role-mapping
+                              #:oidcprovider-list #:oidctoken #:pagination-key
+                              #:principal-tag-id #:principal-tag-value
+                              #:principal-tags #:query-limit #:role-mapping
                               #:role-mapping-map #:role-mapping-type
                               #:role-type #:roles-map
                               #:rules-configuration-type #:samlprovider-list
                               #:secret-key-string #:session-token-string
                               #:set-identity-pool-roles
-                              #:set-identity-pool-roles-input
-                              #:set-principal-tag-attribute-map
-                              #:set-principal-tag-attribute-map-input
-                              #:set-principal-tag-attribute-map-response
-                              #:string #:tag-keys-type #:tag-resource
-                              #:tag-resource-input #:tag-resource-response
-                              #:tag-value-type #:token-duration
-                              #:too-many-requests-exception
-                              #:unlink-developer-identity
-                              #:unlink-developer-identity-input
-                              #:unlink-identity #:unlink-identity-input
-                              #:unprocessed-identity-id
+                              #:set-principal-tag-attribute-map #:string
+                              #:tag-keys-type #:tag-resource #:tag-value-type
+                              #:token-duration #:unlink-developer-identity
+                              #:unlink-identity #:unprocessed-identity-id
                               #:unprocessed-identity-id-list #:untag-resource
-                              #:untag-resource-input #:untag-resource-response
                               #:update-identity-pool #:use-defaults))
 (common-lisp:in-package #:pira/cognito-identity)
 

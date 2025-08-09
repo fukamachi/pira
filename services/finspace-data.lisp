@@ -1,29 +1,18 @@
 (uiop/package:define-package #:pira/finspace-data (:use)
-                             (:export #:awshabanero-public-api
-                              #:access-denied-exception #:access-key-id
+                             (:export #:awshabanero-public-api #:access-key-id
                               #:alias-string #:api-access
                               #:application-permission
                               #:application-permission-list
                               #:associate-user-to-permission-group
-                              #:associate-user-to-permission-group-request
-                              #:associate-user-to-permission-group-response
                               #:aws-credentials #:boolean #:change-type
                               #:changeset-arn #:changeset-error-info
                               #:changeset-id #:changeset-list
                               #:changeset-summary #:client-token
                               #:column-data-type #:column-definition
                               #:column-description #:column-list #:column-name
-                              #:column-name-list #:conflict-exception
-                              #:create-changeset #:create-changeset-request
-                              #:create-changeset-response #:create-data-view
-                              #:create-data-view-request
-                              #:create-data-view-response #:create-dataset
-                              #:create-dataset-request
-                              #:create-dataset-response
-                              #:create-permission-group
-                              #:create-permission-group-request
-                              #:create-permission-group-response #:create-user
-                              #:create-user-request #:create-user-response
+                              #:column-name-list #:create-changeset
+                              #:create-data-view #:create-dataset
+                              #:create-permission-group #:create-user
                               #:credentials #:data-view-arn
                               #:data-view-destination-type
                               #:data-view-destination-type-params
@@ -33,66 +22,30 @@
                               #:dataset-description #:dataset-id #:dataset-kind
                               #:dataset-list #:dataset-owner-info
                               #:dataset-status #:dataset-title #:delete-dataset
-                              #:delete-dataset-request
-                              #:delete-dataset-response
-                              #:delete-permission-group
-                              #:delete-permission-group-request
-                              #:delete-permission-group-response #:disable-user
-                              #:disable-user-request #:disable-user-response
-                              #:disassociate-user-from-permission-group
-                              #:disassociate-user-from-permission-group-request
-                              #:disassociate-user-from-permission-group-response
-                              #:email #:enable-user #:enable-user-request
-                              #:enable-user-response #:error-category
-                              #:error-message #:error-message2
-                              #:export-file-format #:first-name #:format-params
-                              #:get-changeset #:get-changeset-request
-                              #:get-changeset-response #:get-data-view
-                              #:get-data-view-request #:get-data-view-response
-                              #:get-dataset #:get-dataset-request
-                              #:get-dataset-response
+                              #:delete-permission-group #:disable-user
+                              #:disassociate-user-from-permission-group #:email
+                              #:enable-user #:error-category #:error-message
+                              #:error-message2 #:export-file-format
+                              #:first-name #:format-params #:get-changeset
+                              #:get-data-view #:get-dataset
                               #:get-external-data-view-access-details
-                              #:get-external-data-view-access-details-request
-                              #:get-external-data-view-access-details-response
                               #:get-permission-group
-                              #:get-permission-group-request
-                              #:get-permission-group-response
-                              #:get-programmatic-access-credentials
-                              #:get-programmatic-access-credentials-request
-                              #:get-programmatic-access-credentials-response
-                              #:get-user #:get-user-request #:get-user-response
-                              #:get-working-location
-                              #:get-working-location-request
-                              #:get-working-location-response #:id-type
-                              #:ingestion-status #:internal-server-exception
-                              #:last-name #:limit-exceeded-exception
-                              #:list-changesets #:list-changesets-request
-                              #:list-changesets-response #:list-data-views
-                              #:list-data-views-request
-                              #:list-data-views-response #:list-datasets
-                              #:list-datasets-request #:list-datasets-response
+                              #:get-programmatic-access-credentials #:get-user
+                              #:get-working-location #:id-type
+                              #:ingestion-status #:last-name #:list-changesets
+                              #:list-data-views #:list-datasets
                               #:list-permission-groups
-                              #:list-permission-groups-by-user
-                              #:list-permission-groups-by-user-request
-                              #:list-permission-groups-by-user-response
-                              #:list-permission-groups-request
-                              #:list-permission-groups-response #:list-users
-                              #:list-users-by-permission-group
-                              #:list-users-by-permission-group-request
-                              #:list-users-by-permission-group-response
-                              #:list-users-request #:list-users-response
-                              #:owner-name #:pagination-token
-                              #:partition-column-list #:password
-                              #:permission-group #:permission-group-by-user
+                              #:list-permission-groups-by-user #:list-users
+                              #:list-users-by-permission-group #:owner-name
+                              #:pagination-token #:partition-column-list
+                              #:password #:permission-group
+                              #:permission-group-by-user
                               #:permission-group-by-user-list
                               #:permission-group-description
                               #:permission-group-id #:permission-group-list
                               #:permission-group-membership-status
                               #:permission-group-name #:permission-group-params
                               #:phone-number #:reset-user-password
-                              #:reset-user-password-request
-                              #:reset-user-password-response
-                              #:resource-not-found-exception
                               #:resource-permission #:resource-permissions-list
                               #:result-limit #:role-arn #:s3bucket-name
                               #:s3destination-format-options #:s3key
@@ -102,21 +55,13 @@
                               #:source-params #:status-code #:string-map-key
                               #:string-map-value #:string-value-length1to250
                               #:string-value-length1to255
-                              #:string-value-length1to2552
-                              #:throttling-exception #:timestamp-epoch
-                              #:update-changeset #:update-changeset-request
-                              #:update-changeset-response #:update-dataset
-                              #:update-dataset-request
-                              #:update-dataset-response
-                              #:update-permission-group
-                              #:update-permission-group-request
-                              #:update-permission-group-response #:update-user
-                              #:update-user-request #:update-user-response
-                              #:user #:user-by-permission-group
+                              #:string-value-length1to2552 #:timestamp-epoch
+                              #:update-changeset #:update-dataset
+                              #:update-permission-group #:update-user #:user
+                              #:user-by-permission-group
                               #:user-by-permission-group-list #:user-id
                               #:user-list #:user-status #:user-type
-                              #:validation-exception #:location-type
-                              #:string-value-length1to1024
+                              #:location-type #:string-value-length1to1024
                               #:string-value-length1to63
                               #:string-value-max-length1000))
 (common-lisp:in-package #:pira/finspace-data)

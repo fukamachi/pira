@@ -2,80 +2,36 @@
                              (:export #:awsiesnowball-job-management-service
                               #:address #:address-id #:address-list
                               #:address-type #:ami-id #:boolean
-                              #:cancel-cluster #:cancel-cluster-request
-                              #:cancel-cluster-result #:cancel-job
-                              #:cancel-job-request #:cancel-job-result
-                              #:cluster-id #:cluster-limit-exceeded-exception
+                              #:cancel-cluster #:cancel-job #:cluster-id
                               #:cluster-list-entry #:cluster-list-entry-list
                               #:cluster-metadata #:cluster-state
                               #:compatible-image #:compatible-image-list
-                              #:conflict-exception #:create-address
-                              #:create-address-request #:create-address-result
-                              #:create-cluster #:create-cluster-request
-                              #:create-cluster-result #:create-job
-                              #:create-job-request #:create-job-result
+                              #:create-address #:create-cluster #:create-job
                               #:create-long-term-pricing
-                              #:create-long-term-pricing-request
-                              #:create-long-term-pricing-result
-                              #:create-return-shipping-label
-                              #:create-return-shipping-label-request
-                              #:create-return-shipping-label-result
-                              #:data-transfer #:dependent-service
-                              #:dependent-service-list #:describe-address
-                              #:describe-address-request
-                              #:describe-address-result #:describe-addresses
-                              #:describe-addresses-request
-                              #:describe-addresses-result #:describe-cluster
-                              #:describe-cluster-request
-                              #:describe-cluster-result #:describe-job
-                              #:describe-job-request #:describe-job-result
+                              #:create-return-shipping-label #:data-transfer
+                              #:dependent-service #:dependent-service-list
+                              #:describe-address #:describe-addresses
+                              #:describe-cluster #:describe-job
                               #:describe-return-shipping-label
-                              #:describe-return-shipping-label-request
-                              #:describe-return-shipping-label-result
                               #:device-configuration #:device-pickup-id
                               #:device-service-name
                               #:ekson-device-service-configuration
-                              #:ec2ami-resource #:ec2ami-resource-list
-                              #:ec2request-failed-exception #:email
+                              #:ec2ami-resource #:ec2ami-resource-list #:email
                               #:event-trigger-definition
                               #:event-trigger-definition-list #:gstin
-                              #:get-job-manifest #:get-job-manifest-request
-                              #:get-job-manifest-result #:get-job-unlock-code
-                              #:get-job-unlock-code-request
-                              #:get-job-unlock-code-result #:get-snowball-usage
-                              #:get-snowball-usage-request
-                              #:get-snowball-usage-result
-                              #:get-software-updates
-                              #:get-software-updates-request
-                              #:get-software-updates-result #:indtax-documents
-                              #:impact-level #:initial-cluster-size #:integer
-                              #:invalid-address-exception
-                              #:invalid-input-combination-exception
-                              #:invalid-job-state-exception
-                              #:invalid-next-token-exception
-                              #:invalid-resource-exception #:java-boolean
+                              #:get-job-manifest #:get-job-unlock-code
+                              #:get-snowball-usage #:get-software-updates
+                              #:indtax-documents #:impact-level
+                              #:initial-cluster-size #:integer #:java-boolean
                               #:job-id #:job-list-entry #:job-list-entry-list
                               #:job-logs #:job-metadata #:job-metadata-list
                               #:job-resource #:job-state #:job-state-list
-                              #:job-type #:kmsrequest-failed-exception
-                              #:key-range #:kms-key-arn #:lambda-resource
-                              #:lambda-resource-list #:list-cluster-jobs
-                              #:list-cluster-jobs-request
-                              #:list-cluster-jobs-result #:list-clusters
-                              #:list-clusters-request #:list-clusters-result
-                              #:list-compatible-images
-                              #:list-compatible-images-request
-                              #:list-compatible-images-result #:list-jobs
-                              #:list-jobs-request #:list-jobs-result
-                              #:list-limit #:list-long-term-pricing
-                              #:list-long-term-pricing-request
-                              #:list-long-term-pricing-result
-                              #:list-pickup-locations
-                              #:list-pickup-locations-request
-                              #:list-pickup-locations-result
-                              #:list-service-versions
-                              #:list-service-versions-request
-                              #:list-service-versions-result #:long
+                              #:job-type #:key-range #:kms-key-arn
+                              #:lambda-resource #:lambda-resource-list
+                              #:list-cluster-jobs #:list-clusters
+                              #:list-compatible-images #:list-jobs #:list-limit
+                              #:list-long-term-pricing #:list-pickup-locations
+                              #:list-service-versions #:long
                               #:long-term-pricing-associated-job-id-list
                               #:long-term-pricing-entry-list
                               #:long-term-pricing-id
@@ -86,10 +42,9 @@
                               #:node-fault-tolerance #:notification
                               #:on-device-service-configuration #:phone-number
                               #:pickup-details #:remote-management
-                              #:resource-arn
-                              #:return-shipping-label-already-exists-exception
-                              #:role-arn #:s3on-device-service-configuration
-                              #:s3resource #:s3resource-list #:s3storage-limit
+                              #:resource-arn #:role-arn
+                              #:s3on-device-service-configuration #:s3resource
+                              #:s3resource-list #:s3storage-limit
                               #:service-name #:service-size #:service-version
                               #:service-version-list #:shipment
                               #:shipment-state #:shipping-details
@@ -100,17 +55,9 @@
                               #:tgwon-device-service-configuration
                               #:target-on-device-service
                               #:target-on-device-service-list #:tax-documents
-                              #:timestamp #:transfer-option
-                              #:unsupported-address-exception #:update-cluster
-                              #:update-cluster-request #:update-cluster-result
-                              #:update-job #:update-job-request
-                              #:update-job-result #:update-job-shipment-state
-                              #:update-job-shipment-state-request
-                              #:update-job-shipment-state-result
-                              #:update-long-term-pricing
-                              #:update-long-term-pricing-request
-                              #:update-long-term-pricing-result
-                              #:wireless-connection))
+                              #:timestamp #:transfer-option #:update-cluster
+                              #:update-job #:update-job-shipment-state
+                              #:update-long-term-pricing #:wireless-connection))
 (common-lisp:in-package #:pira/snowball)
 
 (smithy/sdk/service:define-service awsiesnowball-job-management-service

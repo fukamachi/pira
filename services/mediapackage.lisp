@@ -4,72 +4,31 @@
                               #:channel #:cmaf-encryption
                               #:cmaf-encryption-method #:cmaf-package
                               #:cmaf-package-create-or-update-parameters
-                              #:configure-logs #:configure-logs-request
-                              #:configure-logs-response #:create-channel
-                              #:create-channel-request
-                              #:create-channel-response #:create-harvest-job
-                              #:create-harvest-job-request
-                              #:create-harvest-job-response
-                              #:create-origin-endpoint
-                              #:create-origin-endpoint-request
-                              #:create-origin-endpoint-response
+                              #:configure-logs #:create-channel
+                              #:create-harvest-job #:create-origin-endpoint
                               #:dash-encryption #:dash-package #:delete-channel
-                              #:delete-channel-request
-                              #:delete-channel-response
-                              #:delete-origin-endpoint
-                              #:delete-origin-endpoint-request
-                              #:delete-origin-endpoint-response
-                              #:describe-channel #:describe-channel-request
-                              #:describe-channel-response
-                              #:describe-harvest-job
-                              #:describe-harvest-job-request
-                              #:describe-harvest-job-response
-                              #:describe-origin-endpoint
-                              #:describe-origin-endpoint-request
-                              #:describe-origin-endpoint-response
+                              #:delete-origin-endpoint #:describe-channel
+                              #:describe-harvest-job #:describe-origin-endpoint
                               #:egress-access-logs
                               #:encryption-contract-configuration
-                              #:encryption-method #:forbidden-exception
-                              #:harvest-job #:hls-encryption #:hls-ingest
-                              #:hls-manifest
+                              #:encryption-method #:harvest-job
+                              #:hls-encryption #:hls-ingest #:hls-manifest
                               #:hls-manifest-create-or-update-parameters
                               #:hls-package #:ingest-endpoint
-                              #:ingress-access-logs
-                              #:internal-server-error-exception #:list-channels
-                              #:list-channels-request #:list-channels-response
-                              #:list-harvest-jobs #:list-harvest-jobs-request
-                              #:list-harvest-jobs-response
-                              #:list-origin-endpoints
-                              #:list-origin-endpoints-request
-                              #:list-origin-endpoints-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:manifest-layout #:max-results #:media-package
-                              #:mss-encryption #:mss-package
-                              #:not-found-exception #:origin-endpoint
-                              #:origination #:playlist-type
-                              #:preset-speke20audio #:preset-speke20video
-                              #:profile #:rotate-channel-credentials
-                              #:rotate-channel-credentials-request
-                              #:rotate-channel-credentials-response
+                              #:ingress-access-logs #:list-channels
+                              #:list-harvest-jobs #:list-origin-endpoints
+                              #:list-tags-for-resource #:manifest-layout
+                              #:max-results #:media-package #:mss-encryption
+                              #:mss-package #:origin-endpoint #:origination
+                              #:playlist-type #:preset-speke20audio
+                              #:preset-speke20video #:profile
+                              #:rotate-channel-credentials
                               #:rotate-ingest-endpoint-credentials
-                              #:rotate-ingest-endpoint-credentials-request
-                              #:rotate-ingest-endpoint-credentials-response
                               #:s3destination #:segment-template-format
-                              #:sensitive-string
-                              #:service-unavailable-exception
-                              #:speke-key-provider #:status #:stream-order
-                              #:stream-selection #:tag-resource
-                              #:tag-resource-request #:tags
-                              #:too-many-requests-exception
-                              #:unprocessable-entity-exception #:untag-resource
-                              #:untag-resource-request #:update-channel
-                              #:update-channel-request
-                              #:update-channel-response
-                              #:update-origin-endpoint
-                              #:update-origin-endpoint-request
-                              #:update-origin-endpoint-response #:utc-timing
+                              #:sensitive-string #:speke-key-provider #:status
+                              #:stream-order #:stream-selection #:tag-resource
+                              #:tags #:untag-resource #:update-channel
+                              #:update-origin-endpoint #:utc-timing
                               #:ad-triggers-element #:period-triggers-element
                               #:boolean #:integer #:list-of-channel
                               #:list-of-harvest-job #:list-of-hls-manifest

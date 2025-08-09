@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/connectcampaignsv2 (:use)
-                             (:export #:access-denied-exception
-                              #:agentless-config
+                             (:export #:agentless-config
                               #:amazon-connect-campaign-service-v2
                               #:answer-machine-detection-config #:arn
                               #:attribute-name #:attribute-value #:attributes
@@ -19,30 +18,20 @@
                               #:communication-limits-config-type
                               #:communication-time-config
                               #:communication-time-config-type
-                              #:conflict-exception #:contact-flow-id
-                              #:create-campaign #:create-campaign-request
-                              #:create-campaign-response
+                              #:contact-flow-id #:create-campaign
                               #:customer-profiles-integration-config
                               #:customer-profiles-integration-identifier
                               #:customer-profiles-integration-summary
                               #:daily-hours #:day-of-week #:delete-campaign
                               #:delete-campaign-channel-subtype-config
-                              #:delete-campaign-channel-subtype-config-request
                               #:delete-campaign-communication-limits
-                              #:delete-campaign-communication-limits-request
                               #:delete-campaign-communication-time
-                              #:delete-campaign-communication-time-request
-                              #:delete-campaign-request
                               #:delete-connect-instance-config
-                              #:delete-connect-instance-config-request
                               #:delete-connect-instance-integration
-                              #:delete-connect-instance-integration-request
                               #:delete-instance-onboarding-job
-                              #:delete-instance-onboarding-job-request
-                              #:describe-campaign #:describe-campaign-request
-                              #:describe-campaign-response
-                              #:destination-phone-number #:dial-request-id
-                              #:email-address #:email-channel-subtype-config
+                              #:describe-campaign #:destination-phone-number
+                              #:dial-request-id #:email-address
+                              #:email-channel-subtype-config
                               #:email-channel-subtype-parameters
                               #:email-display-name #:email-outbound-config
                               #:email-outbound-mode #:enabled
@@ -56,19 +45,9 @@
                               #:failure-code #:get-campaign-state
                               #:get-campaign-state-batch
                               #:get-campaign-state-batch-failure-code
-                              #:get-campaign-state-batch-request
-                              #:get-campaign-state-batch-response
-                              #:get-campaign-state-request
-                              #:get-campaign-state-response
                               #:get-connect-instance-config
-                              #:get-connect-instance-config-request
-                              #:get-connect-instance-config-response
                               #:get-instance-communication-limits
-                              #:get-instance-communication-limits-request
-                              #:get-instance-communication-limits-response
                               #:get-instance-onboarding-job-status
-                              #:get-instance-onboarding-job-status-request
-                              #:get-instance-onboarding-job-status-response
                               #:instance-communication-limits-config
                               #:instance-config #:instance-id
                               #:instance-id-filter
@@ -79,88 +58,55 @@
                               #:instance-onboarding-job-status-code
                               #:integration-config #:integration-identifier
                               #:integration-summary #:integration-summary-list
-                              #:internal-server-exception
-                              #:invalid-campaign-state-exception
-                              #:invalid-state-exception #:iso8601date
-                              #:iso8601duration #:iso8601time #:list-campaigns
-                              #:list-campaigns-request
-                              #:list-campaigns-response
+                              #:iso8601date #:iso8601duration #:iso8601time
+                              #:list-campaigns
                               #:list-connect-instance-integrations
-                              #:list-connect-instance-integrations-request
-                              #:list-connect-instance-integrations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:local-time-zone-config
+                              #:list-tags-for-resource #:local-time-zone-config
                               #:local-time-zone-detection
                               #:local-time-zone-detection-type #:max-results
                               #:next-token #:object-type-name
                               #:object-type-names-map #:open-hours
                               #:outbound-request #:outbound-request-list
-                              #:pause-campaign #:pause-campaign-request
-                              #:predictive-config #:profile-id
+                              #:pause-campaign #:predictive-config #:profile-id
                               #:profile-outbound-request
                               #:profile-outbound-request-failure-code
                               #:profile-outbound-request-id
                               #:profile-outbound-request-list
                               #:progressive-config
                               #:put-connect-instance-integration
-                              #:put-connect-instance-integration-request
                               #:put-instance-communication-limits
-                              #:put-instance-communication-limits-request
                               #:put-outbound-request-batch
-                              #:put-outbound-request-batch-request
-                              #:put-outbound-request-batch-response
                               #:put-profile-outbound-request-batch
-                              #:put-profile-outbound-request-batch-request
-                              #:put-profile-outbound-request-batch-response
                               #:qconnect-integration-config
                               #:qconnect-integration-identifier
                               #:qconnect-integration-summary #:queue-id
-                              #:resource-not-found-exception
                               #:restricted-period #:restricted-period-list
                               #:restricted-period-name #:restricted-periods
-                              #:resume-campaign #:resume-campaign-request
-                              #:schedule #:service-linked-role-arn
-                              #:service-quota-exceeded-exception
+                              #:resume-campaign #:schedule
+                              #:service-linked-role-arn
                               #:sms-channel-subtype-config
                               #:sms-channel-subtype-parameters
                               #:sms-outbound-config #:sms-outbound-mode
                               #:source #:source-phone-number #:start-campaign
-                              #:start-campaign-request
-                              #:start-instance-onboarding-job
-                              #:start-instance-onboarding-job-request
-                              #:start-instance-onboarding-job-response
-                              #:stop-campaign #:stop-campaign-request
+                              #:start-instance-onboarding-job #:stop-campaign
                               #:successful-campaign-state-response
                               #:successful-campaign-state-response-list
                               #:successful-profile-outbound-request
                               #:successful-profile-outbound-request-list
                               #:successful-request #:successful-request-list
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-value
-                              #:telephony-channel-subtype-config
+                              #:tag-value #:telephony-channel-subtype-config
                               #:telephony-channel-subtype-parameters
                               #:telephony-outbound-config
-                              #:telephony-outbound-mode #:throttling-exception
-                              #:time-range #:time-range-list #:time-stamp
-                              #:time-window #:time-zone #:untag-resource
-                              #:untag-resource-request
+                              #:telephony-outbound-mode #:time-range
+                              #:time-range-list #:time-stamp #:time-window
+                              #:time-zone #:untag-resource
                               #:update-campaign-channel-subtype-config
-                              #:update-campaign-channel-subtype-config-request
                               #:update-campaign-communication-limits
-                              #:update-campaign-communication-limits-request
                               #:update-campaign-communication-time
-                              #:update-campaign-communication-time-request
                               #:update-campaign-flow-association
-                              #:update-campaign-flow-association-request
-                              #:update-campaign-name
-                              #:update-campaign-name-request
-                              #:update-campaign-schedule
-                              #:update-campaign-schedule-request
-                              #:update-campaign-source
-                              #:update-campaign-source-request
-                              #:validation-exception #:xamazon-error-type))
+                              #:update-campaign-name #:update-campaign-schedule
+                              #:update-campaign-source #:xamazon-error-type))
 (common-lisp:in-package #:pira/connectcampaignsv2)
 
 (smithy/sdk/service:define-service amazon-connect-campaign-service-v2

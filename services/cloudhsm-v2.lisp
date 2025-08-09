@@ -4,62 +4,27 @@
                               #:backup-retention-type #:backup-retention-value
                               #:backup-state #:backups #:backups-max-size
                               #:baldr-api-service #:boolean #:cert
-                              #:certificates
-                              #:cloud-hsm-access-denied-exception
-                              #:cloud-hsm-arn
-                              #:cloud-hsm-internal-failure-exception
-                              #:cloud-hsm-invalid-request-exception
-                              #:cloud-hsm-resource-limit-exceeded-exception
-                              #:cloud-hsm-resource-not-found-exception
-                              #:cloud-hsm-service-exception
-                              #:cloud-hsm-tag-exception #:cluster #:cluster-id
-                              #:cluster-mode #:cluster-state #:clusters
-                              #:clusters-max-size #:copy-backup-to-region
-                              #:copy-backup-to-region-request
-                              #:copy-backup-to-region-response #:create-cluster
-                              #:create-cluster-request
-                              #:create-cluster-response #:create-hsm
-                              #:create-hsm-request #:create-hsm-response
-                              #:delete-backup #:delete-backup-request
-                              #:delete-backup-response #:delete-cluster
-                              #:delete-cluster-request
-                              #:delete-cluster-response #:delete-hsm
-                              #:delete-hsm-request #:delete-hsm-response
-                              #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response
-                              #:describe-backups #:describe-backups-request
-                              #:describe-backups-response #:describe-clusters
-                              #:describe-clusters-request
-                              #:describe-clusters-response #:destination-backup
-                              #:eni-id #:external-az #:external-subnet-mapping
-                              #:field #:filters #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response #:hsm #:hsm-id
-                              #:hsm-state #:hsm-type #:hsms
-                              #:initialize-cluster #:initialize-cluster-request
-                              #:initialize-cluster-response #:ip-address
-                              #:ip-v6address #:list-tags #:list-tags-request
-                              #:list-tags-response #:max-size
-                              #:modify-backup-attributes
-                              #:modify-backup-attributes-request
-                              #:modify-backup-attributes-response
-                              #:modify-cluster #:modify-cluster-request
-                              #:modify-cluster-response #:network-type
-                              #:next-token #:pre-co-password
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:region
+                              #:certificates #:cloud-hsm-arn #:cluster
+                              #:cluster-id #:cluster-mode #:cluster-state
+                              #:clusters #:clusters-max-size
+                              #:copy-backup-to-region #:create-cluster
+                              #:create-hsm #:delete-backup #:delete-cluster
+                              #:delete-hsm #:delete-resource-policy
+                              #:describe-backups #:describe-clusters
+                              #:destination-backup #:eni-id #:external-az
+                              #:external-subnet-mapping #:field #:filters
+                              #:get-resource-policy #:hsm #:hsm-id #:hsm-state
+                              #:hsm-type #:hsms #:initialize-cluster
+                              #:ip-address #:ip-v6address #:list-tags
+                              #:max-size #:modify-backup-attributes
+                              #:modify-cluster #:network-type #:next-token
+                              #:pre-co-password #:put-resource-policy #:region
                               #:resource-id #:resource-policy #:restore-backup
-                              #:restore-backup-request
-                              #:restore-backup-response #:security-group
-                              #:state-message #:string #:strings #:subnet-id
-                              #:subnet-ids #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:timestamp
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:vpc-id
-                              #:error-message))
+                              #:security-group #:state-message #:string
+                              #:strings #:subnet-id #:subnet-ids #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:timestamp
+                              #:untag-resource #:vpc-id #:error-message))
 (common-lisp:in-package #:pira/cloudhsm-v2)
 
 (smithy/sdk/service:define-service baldr-api-service :shape-name

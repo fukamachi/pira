@@ -1,22 +1,13 @@
 (uiop/package:define-package #:pira/geo-maps (:use)
-                             (:export #:access-denied-exception #:api-key
-                              #:color-scheme #:compact-overlay #:country-code
+                             (:export #:api-key #:color-scheme
+                              #:compact-overlay #:country-code
                               #:distance-meters #:geo-json-overlay #:get-glyphs
-                              #:get-glyphs-request #:get-glyphs-response
-                              #:get-sprites #:get-sprites-request
-                              #:get-sprites-response #:get-static-map
-                              #:get-static-map-request
-                              #:get-static-map-response #:get-style-descriptor
-                              #:get-style-descriptor-request
-                              #:get-style-descriptor-response #:get-tile
-                              #:get-tile-request #:get-tile-response
-                              #:internal-server-exception #:label-size
+                              #:get-sprites #:get-static-map
+                              #:get-style-descriptor #:get-tile #:label-size
                               #:language-tag #:map-feature-mode #:map-style
                               #:maps-service #:position-list-string
                               #:position-string #:provider-resource
-                              #:scale-bar-unit #:static-map-style
-                              #:throttling-exception #:tileset
-                              #:validation-exception
+                              #:scale-bar-unit #:static-map-style #:tileset
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:variant))

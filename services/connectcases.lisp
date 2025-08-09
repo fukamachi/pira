@@ -1,17 +1,14 @@
 (uiop/package:define-package #:pira/connectcases (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-connect-cases #:arn #:association-time
-                              #:audit-event #:audit-event-date-time
-                              #:audit-event-field #:audit-event-field-id
-                              #:audit-event-field-list
+                             (:export #:amazon-connect-cases #:arn
+                              #:association-time #:audit-event
+                              #:audit-event-date-time #:audit-event-field
+                              #:audit-event-field-id #:audit-event-field-list
                               #:audit-event-field-value-union #:audit-event-id
                               #:audit-event-performed-by #:audit-event-type
                               #:audit-events-list #:basic-layout
                               #:batch-get-case-rule
                               #:batch-get-case-rule-error-list
-                              #:batch-get-case-rule-list
-                              #:batch-get-case-rule-request
-                              #:batch-get-case-rule-response #:batch-get-field
+                              #:batch-get-case-rule-list #:batch-get-field
                               #:batch-get-field-error-list
                               #:batch-get-field-identifier-list
                               #:batch-get-field-list #:batch-get-field-request
@@ -31,13 +28,11 @@
                               #:case-summary #:case-summary-list #:channel
                               #:channel-list #:comment-body
                               #:comment-body-text-type #:comment-content
-                              #:comment-filter #:conflict-exception
-                              #:connected-to-system-time #:contact
-                              #:contact-arn #:contact-content #:contact-filter
-                              #:create-case #:create-case-request
-                              #:create-case-response #:create-case-rule
-                              #:create-case-rule-request
-                              #:create-case-rule-response #:create-domain
+                              #:comment-filter #:connected-to-system-time
+                              #:contact #:contact-arn #:contact-content
+                              #:contact-filter #:create-case
+                              #:create-case-request #:create-case-response
+                              #:create-case-rule #:create-domain
                               #:create-domain-request #:create-domain-response
                               #:create-field #:create-field-request
                               #:create-field-response #:create-layout
@@ -47,23 +42,14 @@
                               #:create-related-item-response #:create-template
                               #:create-template-request
                               #:create-template-response #:created-time
-                              #:custom-entity #:delete-case
-                              #:delete-case-request #:delete-case-response
-                              #:delete-case-rule #:delete-case-rule-request
-                              #:delete-case-rule-response #:delete-domain
-                              #:delete-domain-request #:delete-domain-response
-                              #:delete-field #:delete-field-request
-                              #:delete-field-response #:delete-layout
-                              #:delete-layout-request #:delete-layout-response
-                              #:delete-related-item
-                              #:delete-related-item-request
-                              #:delete-related-item-response #:delete-template
-                              #:delete-template-request
-                              #:delete-template-response #:deleted #:domain
-                              #:domain-arn #:domain-id #:domain-name
-                              #:domain-status #:domain-summary
-                              #:domain-summary-list #:empty-field-value
-                              #:empty-operand-value
+                              #:custom-entity #:delete-case #:delete-case-rule
+                              #:delete-domain #:delete-domain-request
+                              #:delete-domain-response #:delete-field
+                              #:delete-layout #:delete-related-item
+                              #:delete-template #:deleted #:domain #:domain-arn
+                              #:domain-id #:domain-name #:domain-status
+                              #:domain-summary #:domain-summary-list
+                              #:empty-field-value #:empty-operand-value
                               #:event-bridge-configuration
                               #:event-included-data #:field #:field-arn
                               #:field-description #:field-error #:field-filter
@@ -77,8 +63,6 @@
                               #:field-value-list #:field-value-union #:file-arn
                               #:file-content #:file-filter #:get-case
                               #:get-case-audit-events
-                              #:get-case-audit-events-request
-                              #:get-case-audit-events-response
                               #:get-case-event-configuration
                               #:get-case-event-configuration-request
                               #:get-case-event-configuration-response
@@ -89,14 +73,11 @@
                               #:get-layout-request #:get-layout-response
                               #:get-template #:get-template-request
                               #:get-template-response #:iam-principal-arn
-                              #:internal-server-exception #:last-modified-time
-                              #:layout #:layout-arn #:layout-configuration
-                              #:layout-content #:layout-id #:layout-name
-                              #:layout-sections #:layout-summary
-                              #:layout-summary-list #:list-case-rules
-                              #:list-case-rules-request
-                              #:list-case-rules-response
-                              #:list-cases-for-contact
+                              #:last-modified-time #:layout #:layout-arn
+                              #:layout-configuration #:layout-content
+                              #:layout-id #:layout-name #:layout-sections
+                              #:layout-summary #:layout-summary-list
+                              #:list-case-rules #:list-cases-for-contact
                               #:list-cases-for-contact-request
                               #:list-cases-for-contact-response #:list-domains
                               #:list-domains-request #:list-domains-response
@@ -120,8 +101,7 @@
                               #:related-item-input-content #:related-item-type
                               #:related-item-type-filter #:required-case-rule
                               #:required-field #:required-field-list
-                              #:resource-not-found-exception #:rule-type
-                              #:search-cases #:search-cases-request
+                              #:rule-type #:search-cases #:search-cases-request
                               #:search-cases-response
                               #:search-cases-response-item
                               #:search-cases-response-item-list
@@ -130,32 +110,28 @@
                               #:search-related-items-response
                               #:search-related-items-response-item
                               #:search-related-items-response-item-list
-                              #:section #:sections-list
-                              #:service-quota-exceeded-exception
-                              #:sla-completion-time #:sla-configuration
-                              #:sla-content #:sla-field-value-union-list
-                              #:sla-filter #:sla-input-configuration
-                              #:sla-input-content #:sla-name #:sla-status
-                              #:sla-target-time #:sla-type #:sort #:sort-list
-                              #:tag-key #:tag-key-list #:tag-resource
+                              #:section #:sections-list #:sla-completion-time
+                              #:sla-configuration #:sla-content
+                              #:sla-field-value-union-list #:sla-filter
+                              #:sla-input-configuration #:sla-input-content
+                              #:sla-name #:sla-status #:sla-target-time
+                              #:sla-type #:sort #:sort-list #:tag-key
+                              #:tag-key-list #:tag-resource
                               #:tag-resource-request #:tags
                               #:target-sla-minutes #:template #:template-arn
                               #:template-case-rule-list #:template-description
                               #:template-id #:template-name #:template-rule
                               #:template-status #:template-status-filters
                               #:template-summary #:template-summary-list
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request #:update-case
-                              #:update-case-request #:update-case-response
-                              #:update-case-rule #:update-case-rule-request
-                              #:update-case-rule-response #:update-field
-                              #:update-field-request #:update-field-response
-                              #:update-layout #:update-layout-request
-                              #:update-layout-response #:update-template
-                              #:update-template-request
+                              #:untag-resource #:untag-resource-request
+                              #:update-case #:update-case-request
+                              #:update-case-response #:update-case-rule
+                              #:update-field #:update-field-request
+                              #:update-field-response #:update-layout
+                              #:update-layout-request #:update-layout-response
+                              #:update-template #:update-template-request
                               #:update-template-response #:user-arn
-                              #:user-union #:validation-exception #:value
-                              #:values-list))
+                              #:user-union #:value #:values-list))
 (common-lisp:in-package #:pira/connectcases)
 
 (smithy/sdk/service:define-service amazon-connect-cases :shape-name

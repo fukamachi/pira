@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/m2 (:use)
-                             (:export #:access-denied-exception #:alternate-key
-                              #:alternate-key-list #:application
-                              #:application-deployment-lifecycle
+                             (:export #:alternate-key #:alternate-key-list
+                              #:application #:application-deployment-lifecycle
                               #:application-lifecycle #:application-summary
                               #:application-summary-list
                               #:application-version-lifecycle
@@ -20,12 +19,9 @@
                               #:cancel-batch-job-execution-request
                               #:cancel-batch-job-execution-response
                               #:capacity-value #:client-token
-                              #:conflict-exception #:create-application
-                              #:create-application-request
+                              #:create-application #:create-application-request
                               #:create-application-response
                               #:create-data-set-export-task
-                              #:create-data-set-export-task-request
-                              #:create-data-set-export-task-response
                               #:create-data-set-import-task
                               #:create-data-set-import-task-request
                               #:create-data-set-import-task-response
@@ -61,8 +57,7 @@
                               #:entity-description #:entity-name
                               #:entity-name-list #:environment
                               #:environment-lifecycle #:environment-summary
-                              #:environment-summary-list
-                              #:execution-timeout-exception #:external-location
+                              #:environment-summary-list #:external-location
                               #:file-batch-job-definition
                               #:file-batch-job-identifier
                               #:fsx-storage-configuration #:gdg-attributes
@@ -75,12 +70,7 @@
                               #:get-batch-job-execution
                               #:get-batch-job-execution-request
                               #:get-batch-job-execution-response
-                              #:get-data-set-details
-                              #:get-data-set-details-request
-                              #:get-data-set-details-response
-                              #:get-data-set-export-task
-                              #:get-data-set-export-task-request
-                              #:get-data-set-export-task-response
+                              #:get-data-set-details #:get-data-set-export-task
                               #:get-data-set-import-task
                               #:get-data-set-import-task-request
                               #:get-data-set-import-task-response
@@ -89,41 +79,21 @@
                               #:get-environment-request
                               #:get-environment-response
                               #:get-signed-bluinsights-url
-                              #:get-signed-bluinsights-url-response
                               #:high-availability-config #:identifier
-                              #:identifier-list #:integer
-                              #:internal-server-exception #:job-identifier
+                              #:identifier-list #:integer #:job-identifier
                               #:job-step #:job-step-restart-marker #:kmskey-id
-                              #:list-application-versions
-                              #:list-application-versions-request
-                              #:list-application-versions-response
-                              #:list-applications #:list-applications-request
-                              #:list-applications-response
+                              #:list-application-versions #:list-applications
                               #:list-batch-job-definitions
-                              #:list-batch-job-definitions-request
-                              #:list-batch-job-definitions-response
                               #:list-batch-job-executions
                               #:list-batch-job-executions-request
                               #:list-batch-job-executions-response
                               #:list-batch-job-restart-points
-                              #:list-batch-job-restart-points-request
-                              #:list-batch-job-restart-points-response
                               #:list-data-set-export-history
-                              #:list-data-set-export-history-request
-                              #:list-data-set-export-history-response
-                              #:list-data-set-import-history
-                              #:list-data-set-import-history-request
-                              #:list-data-set-import-history-response
-                              #:list-data-sets #:list-data-sets-request
-                              #:list-data-sets-response #:list-deployments
-                              #:list-deployments-request
-                              #:list-deployments-response
-                              #:list-engine-versions
+                              #:list-data-set-import-history #:list-data-sets
+                              #:list-deployments #:list-engine-versions
                               #:list-engine-versions-request
                               #:list-engine-versions-response
-                              #:list-environments #:list-environments-request
-                              #:list-environments-response
-                              #:list-tags-for-resource
+                              #:list-environments #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response
                               #:log-group-identifier #:log-group-summaries
@@ -132,14 +102,11 @@
                               #:pending-maintenance #:po-attributes
                               #:po-detail-attributes #:port-list #:primary-key
                               #:ps-attributes #:ps-detail-attributes
-                              #:record-length #:resource-not-found-exception
-                              #:restart-batch-job-identifier
+                              #:record-length #:restart-batch-job-identifier
                               #:s3batch-job-identifier
                               #:script-batch-job-definition
-                              #:script-batch-job-identifier
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception
-                              #:start-application #:start-application-request
+                              #:script-batch-job-identifier #:start-application
+                              #:start-application-request
                               #:start-application-response #:start-batch-job
                               #:start-batch-job-request
                               #:start-batch-job-response #:stop-application
@@ -151,15 +118,13 @@
                               #:string20list #:string50 #:string50list
                               #:string-free65000 #:tag-key #:tag-key-list
                               #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:timestamp
+                              #:tag-resource-response #:tag-value #:timestamp
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-application
                               #:update-application-request
                               #:update-application-response
                               #:update-environment #:update-environment-request
                               #:update-environment-response
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:version

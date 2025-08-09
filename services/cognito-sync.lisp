@@ -1,72 +1,29 @@
 (uiop/package:define-package #:pira/cognito-sync (:use)
                              (:export #:awscognito-sync-service
-                              #:already-streamed-exception #:application-arn
-                              #:application-arn-list #:assume-role-arn
-                              #:boolean #:bulk-publish #:bulk-publish-request
-                              #:bulk-publish-response #:bulk-publish-status
-                              #:client-context #:cognito-event-type
-                              #:cognito-streams
-                              #:concurrent-modification-exception #:dataset
+                              #:application-arn #:application-arn-list
+                              #:assume-role-arn #:boolean #:bulk-publish
+                              #:bulk-publish-status #:client-context
+                              #:cognito-event-type #:cognito-streams #:dataset
                               #:dataset-list #:dataset-name #:date
-                              #:delete-dataset #:delete-dataset-request
-                              #:delete-dataset-response #:describe-dataset
-                              #:describe-dataset-request
-                              #:describe-dataset-response
+                              #:delete-dataset #:describe-dataset
                               #:describe-identity-pool-usage
-                              #:describe-identity-pool-usage-request
-                              #:describe-identity-pool-usage-response
-                              #:describe-identity-usage
-                              #:describe-identity-usage-request
-                              #:describe-identity-usage-response #:device-id
-                              #:duplicate-request-exception #:events
+                              #:describe-identity-usage #:device-id #:events
                               #:exception-message #:get-bulk-publish-details
-                              #:get-bulk-publish-details-request
-                              #:get-bulk-publish-details-response
-                              #:get-cognito-events #:get-cognito-events-request
-                              #:get-cognito-events-response
-                              #:get-identity-pool-configuration
-                              #:get-identity-pool-configuration-request
-                              #:get-identity-pool-configuration-response
-                              #:identity-id #:identity-pool-id
-                              #:identity-pool-usage #:identity-pool-usage-list
-                              #:identity-usage #:integer #:integer-string
-                              #:internal-error-exception
-                              #:invalid-configuration-exception
-                              #:invalid-lambda-function-output-exception
-                              #:invalid-parameter-exception
-                              #:lambda-function-arn
-                              #:lambda-throttled-exception
-                              #:limit-exceeded-exception #:list-datasets
-                              #:list-datasets-request #:list-datasets-response
-                              #:list-identity-pool-usage
-                              #:list-identity-pool-usage-request
-                              #:list-identity-pool-usage-response
-                              #:list-records #:list-records-request
-                              #:list-records-response #:long
-                              #:merged-dataset-name-list
-                              #:not-authorized-exception #:operation #:platform
-                              #:push-sync #:push-token #:record #:record-key
-                              #:record-list #:record-patch #:record-patch-list
-                              #:record-value #:register-device
-                              #:register-device-request
-                              #:register-device-response
-                              #:resource-conflict-exception
-                              #:resource-not-found-exception
-                              #:set-cognito-events #:set-cognito-events-request
-                              #:set-identity-pool-configuration
-                              #:set-identity-pool-configuration-request
-                              #:set-identity-pool-configuration-response
-                              #:stream-name #:streaming-status #:string
-                              #:subscribe-to-dataset
-                              #:subscribe-to-dataset-request
-                              #:subscribe-to-dataset-response
-                              #:sync-session-token
-                              #:too-many-requests-exception
-                              #:unsubscribe-from-dataset
-                              #:unsubscribe-from-dataset-request
-                              #:unsubscribe-from-dataset-response
-                              #:update-records #:update-records-request
-                              #:update-records-response))
+                              #:get-cognito-events
+                              #:get-identity-pool-configuration #:identity-id
+                              #:identity-pool-id #:identity-pool-usage
+                              #:identity-pool-usage-list #:identity-usage
+                              #:integer #:integer-string #:lambda-function-arn
+                              #:list-datasets #:list-identity-pool-usage
+                              #:list-records #:long #:merged-dataset-name-list
+                              #:operation #:platform #:push-sync #:push-token
+                              #:record #:record-key #:record-list
+                              #:record-patch #:record-patch-list #:record-value
+                              #:register-device #:set-cognito-events
+                              #:set-identity-pool-configuration #:stream-name
+                              #:streaming-status #:string
+                              #:subscribe-to-dataset #:sync-session-token
+                              #:unsubscribe-from-dataset #:update-records))
 (common-lisp:in-package #:pira/cognito-sync)
 
 (smithy/sdk/service:define-service awscognito-sync-service :shape-name

@@ -30,14 +30,10 @@
                               #:catalog-configuration
                               #:cloud-watch-logging-options #:cluster-jdbcurl
                               #:column-to-json-key-mappings
-                              #:compression-format
-                              #:concurrent-modification-exception
-                              #:connectivity #:content-encoding #:copy-command
-                              #:copy-options #:create-delivery-stream
-                              #:create-delivery-stream-input
-                              #:create-delivery-stream-output
-                              #:custom-time-zone #:data
-                              #:data-format-conversion-configuration
+                              #:compression-format #:connectivity
+                              #:content-encoding #:copy-command #:copy-options
+                              #:create-delivery-stream #:custom-time-zone
+                              #:data #:data-format-conversion-configuration
                               #:data-table-columns #:data-table-name
                               #:database-column-include-or-exclude-list
                               #:database-column-list #:database-column-name
@@ -55,8 +51,6 @@
                               #:database-table-list #:database-table-name
                               #:database-type #:default-document-id-format
                               #:delete-delivery-stream
-                              #:delete-delivery-stream-input
-                              #:delete-delivery-stream-output
                               #:delivery-start-timestamp #:delivery-stream-arn
                               #:delivery-stream-description
                               #:delivery-stream-encryption-configuration
@@ -68,10 +62,8 @@
                               #:delivery-stream-status #:delivery-stream-type
                               #:delivery-stream-version-id
                               #:describe-delivery-stream
-                              #:describe-delivery-stream-input
                               #:describe-delivery-stream-input-limit
-                              #:describe-delivery-stream-output #:deserializer
-                              #:destination-description
+                              #:deserializer #:destination-description
                               #:destination-description-list #:destination-id
                               #:destination-table-configuration
                               #:destination-table-configuration-list
@@ -125,24 +117,16 @@
                               #:iceberg-destination-update
                               #:iceberg-s3backup-mode
                               #:input-format-configuration
-                              #:interval-in-seconds
-                              #:invalid-argument-exception
-                              #:invalid-kmsresource-exception
-                              #:invalid-source-exception #:kmsencryption-config
+                              #:interval-in-seconds #:kmsencryption-config
                               #:key-type #:kinesis-stream-arn
                               #:kinesis-stream-source-configuration
                               #:kinesis-stream-source-description
-                              #:limit-exceeded-exception
                               #:list-delivery-streams
-                              #:list-delivery-streams-input
                               #:list-delivery-streams-input-limit
-                              #:list-delivery-streams-output
                               #:list-of-non-empty-strings
                               #:list-of-non-empty-strings-without-whitespace
                               #:list-tags-for-delivery-stream
-                              #:list-tags-for-delivery-stream-input
                               #:list-tags-for-delivery-stream-input-limit
-                              #:list-tags-for-delivery-stream-output
                               #:list-tags-for-delivery-stream-output-tag-list
                               #:log-group-name #:log-stream-name
                               #:mskcluster-arn #:msksource-configuration
@@ -164,20 +148,15 @@
                               #:processor-parameter-name
                               #:processor-parameter-value #:processor-type
                               #:proportion #:put-record #:put-record-batch
-                              #:put-record-batch-input
-                              #:put-record-batch-output
                               #:put-record-batch-request-entry-list
                               #:put-record-batch-response-entry
                               #:put-record-batch-response-entry-list
-                              #:put-record-input #:put-record-output
                               #:put-response-record-id #:read-from-timestamp
                               #:record #:redshift-destination-configuration
                               #:redshift-destination-description
                               #:redshift-destination-update
                               #:redshift-retry-duration-in-seconds
                               #:redshift-retry-options #:redshift-s3backup-mode
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
                               #:retry-duration-in-seconds #:retry-options
                               #:role-arn #:s3backup-mode
                               #:s3destination-configuration
@@ -187,9 +166,8 @@
                               #:schema-evolution-configuration #:secret-arn
                               #:secrets-manager-configuration
                               #:security-group-id-list #:serializer
-                              #:service-unavailable-exception #:size-in-mbs
-                              #:snapshot-requested-by #:snapshot-status
-                              #:snowflake-account-url
+                              #:size-in-mbs #:snapshot-requested-by
+                              #:snapshot-status #:snowflake-account-url
                               #:snowflake-buffering-hints
                               #:snowflake-buffering-interval-in-seconds
                               #:snowflake-buffering-size-in-mbs
@@ -218,25 +196,15 @@
                               #:splunk-retry-duration-in-seconds
                               #:splunk-retry-options #:splunk-s3backup-mode
                               #:start-delivery-stream-encryption
-                              #:start-delivery-stream-encryption-input
-                              #:start-delivery-stream-encryption-output
                               #:stop-delivery-stream-encryption
-                              #:stop-delivery-stream-encryption-input
-                              #:stop-delivery-stream-encryption-output
                               #:string-with-letters-digits-underscores-dots
                               #:subnet-id-list #:table-creation-configuration
                               #:tag #:tag-delivery-stream
-                              #:tag-delivery-stream-input
-                              #:tag-delivery-stream-input-tag-list
-                              #:tag-delivery-stream-output #:tag-key
+                              #:tag-delivery-stream-input-tag-list #:tag-key
                               #:tag-key-list #:tag-value
                               #:throughput-hint-in-mbs #:timestamp #:topic-name
-                              #:untag-delivery-stream
-                              #:untag-delivery-stream-input
-                              #:untag-delivery-stream-output
-                              #:update-destination #:update-destination-input
-                              #:update-destination-output #:username
-                              #:vpc-configuration
+                              #:untag-delivery-stream #:update-destination
+                              #:username #:vpc-configuration
                               #:vpc-configuration-description
                               #:vpc-endpoint-service-name #:warehouse-location))
 (common-lisp:in-package #:pira/firehose)

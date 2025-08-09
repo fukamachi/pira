@@ -18,22 +18,16 @@
                               #:auto-scaling-target-tracking-scaling-policy-configuration-update
                               #:backfilling #:backup-arn
                               #:backup-creation-date-time #:backup-description
-                              #:backup-details #:backup-in-use-exception
-                              #:backup-name #:backup-not-found-exception
+                              #:backup-details #:backup-name
                               #:backup-size-bytes #:backup-status
                               #:backup-summaries #:backup-summary #:backup-type
                               #:backup-type-filter #:backups-input-limit
-                              #:batch-execute-statement
-                              #:batch-execute-statement-input
-                              #:batch-execute-statement-output #:batch-get-item
-                              #:batch-get-item-input #:batch-get-item-output
+                              #:batch-execute-statement #:batch-get-item
                               #:batch-get-request-map #:batch-get-response-map
                               #:batch-statement-error
                               #:batch-statement-error-code-enum
                               #:batch-statement-request
                               #:batch-statement-response #:batch-write-item
-                              #:batch-write-item-input
-                              #:batch-write-item-output
                               #:batch-write-item-request-map
                               #:billed-size-bytes #:billing-mode
                               #:billing-mode-summary #:binary-attribute-value
@@ -44,7 +38,6 @@
                               #:cloud-watch-log-group-arn #:code
                               #:comparison-operator #:condition
                               #:condition-check #:condition-expression
-                              #:conditional-check-failed-exception
                               #:conditional-operator
                               #:confirm-remove-self-resource-access
                               #:consistent-read #:consumed-capacity
@@ -52,99 +45,59 @@
                               #:consumed-capacity-units
                               #:continuous-backups-description
                               #:continuous-backups-status
-                              #:continuous-backups-unavailable-exception
                               #:contributor-insights-action
                               #:contributor-insights-rule
                               #:contributor-insights-rule-list
                               #:contributor-insights-status
                               #:contributor-insights-summaries
                               #:contributor-insights-summary #:create-backup
-                              #:create-backup-input #:create-backup-output
                               #:create-global-secondary-index-action
-                              #:create-global-table #:create-global-table-input
-                              #:create-global-table-output
+                              #:create-global-table
                               #:create-global-table-witness-group-member-action
                               #:create-replica-action
                               #:create-replication-group-member-action
-                              #:create-table #:create-table-input
-                              #:create-table-output #:csv-delimiter
-                              #:csv-header #:csv-header-list #:csv-options
-                              #:date #:delete #:delete-backup
-                              #:delete-backup-input #:delete-backup-output
+                              #:create-table #:csv-delimiter #:csv-header
+                              #:csv-header-list #:csv-options #:date #:delete
+                              #:delete-backup
                               #:delete-global-secondary-index-action
                               #:delete-global-table-witness-group-member-action
-                              #:delete-item #:delete-item-input
-                              #:delete-item-output #:delete-replica-action
+                              #:delete-item #:delete-replica-action
                               #:delete-replication-group-member-action
                               #:delete-request #:delete-resource-policy
-                              #:delete-resource-policy-input
-                              #:delete-resource-policy-output #:delete-table
-                              #:delete-table-input #:delete-table-output
-                              #:deletion-protection-enabled #:describe-backup
-                              #:describe-backup-input #:describe-backup-output
-                              #:describe-continuous-backups
-                              #:describe-continuous-backups-input
-                              #:describe-continuous-backups-output
+                              #:delete-table #:deletion-protection-enabled
+                              #:describe-backup #:describe-continuous-backups
                               #:describe-contributor-insights
-                              #:describe-contributor-insights-input
-                              #:describe-contributor-insights-output
-                              #:describe-endpoints #:describe-endpoints-request
-                              #:describe-endpoints-response #:describe-export
-                              #:describe-export-input #:describe-export-output
+                              #:describe-endpoints #:describe-export
                               #:describe-global-table
-                              #:describe-global-table-input
-                              #:describe-global-table-output
                               #:describe-global-table-settings
-                              #:describe-global-table-settings-input
-                              #:describe-global-table-settings-output
-                              #:describe-import #:describe-import-input
-                              #:describe-import-output
+                              #:describe-import
                               #:describe-kinesis-streaming-destination
-                              #:describe-kinesis-streaming-destination-input
-                              #:describe-kinesis-streaming-destination-output
-                              #:describe-limits #:describe-limits-input
-                              #:describe-limits-output #:describe-table
-                              #:describe-table-input #:describe-table-output
+                              #:describe-limits #:describe-table
                               #:describe-table-replica-auto-scaling
-                              #:describe-table-replica-auto-scaling-input
-                              #:describe-table-replica-auto-scaling-output
-                              #:describe-time-to-live
-                              #:describe-time-to-live-input
-                              #:describe-time-to-live-output
-                              #:destination-status
+                              #:describe-time-to-live #:destination-status
                               #:disable-kinesis-streaming-destination
-                              #:double-object #:duplicate-item-exception
-                              #:dynamo-db-20120810
+                              #:double-object #:dynamo-db-20120810
                               #:enable-kinesis-streaming-configuration
                               #:enable-kinesis-streaming-destination #:endpoint
                               #:endpoints #:error-count #:error-message
                               #:exception-description #:exception-name
-                              #:execute-statement #:execute-statement-input
-                              #:execute-statement-output #:execute-transaction
-                              #:execute-transaction-input
-                              #:execute-transaction-output
+                              #:execute-statement #:execute-transaction
                               #:expected-attribute-map
                               #:expected-attribute-value #:export-arn
-                              #:export-conflict-exception #:export-description
-                              #:export-end-time #:export-format
-                              #:export-from-time #:export-manifest
-                              #:export-next-token #:export-not-found-exception
+                              #:export-description #:export-end-time
+                              #:export-format #:export-from-time
+                              #:export-manifest #:export-next-token
                               #:export-start-time #:export-status
                               #:export-summaries #:export-summary
-                              #:export-table-to-point-in-time
-                              #:export-table-to-point-in-time-input
-                              #:export-table-to-point-in-time-output
-                              #:export-time #:export-to-time #:export-type
-                              #:export-view-type
+                              #:export-table-to-point-in-time #:export-time
+                              #:export-to-time #:export-type #:export-view-type
                               #:expression-attribute-name-map
                               #:expression-attribute-name-variable
                               #:expression-attribute-value-map
                               #:expression-attribute-value-variable
                               #:failure-code #:failure-exception
                               #:failure-message #:filter-condition-map #:get
-                              #:get-item #:get-item-input #:get-item-output
-                              #:get-resource-policy #:get-resource-policy-input
-                              #:get-resource-policy-output
+                              #:get-item #:get-resource-policy
                               #:global-secondary-index
                               #:global-secondary-index-auto-scaling-update
                               #:global-secondary-index-auto-scaling-update-list
@@ -156,41 +109,30 @@
                               #:global-secondary-index-update-list
                               #:global-secondary-index-warm-throughput-description
                               #:global-secondary-indexes #:global-table
-                              #:global-table-already-exists-exception
                               #:global-table-arn-string
                               #:global-table-description
                               #:global-table-global-secondary-index-settings-update
                               #:global-table-global-secondary-index-settings-update-list
-                              #:global-table-list
-                              #:global-table-not-found-exception
-                              #:global-table-status
+                              #:global-table-list #:global-table-status
                               #:global-table-witness-description
                               #:global-table-witness-description-list
                               #:global-table-witness-group-update
                               #:global-table-witness-group-update-list
-                              #:idempotent-parameter-mismatch-exception
-                              #:import-arn #:import-conflict-exception
-                              #:import-end-time #:import-next-token
-                              #:import-not-found-exception #:import-start-time
+                              #:import-arn #:import-end-time
+                              #:import-next-token #:import-start-time
                               #:import-status #:import-summary
                               #:import-summary-list #:import-table
-                              #:import-table-description #:import-table-input
-                              #:import-table-output #:imported-item-count
+                              #:import-table-description #:imported-item-count
                               #:incremental-export-specification #:index-name
-                              #:index-not-found-exception #:index-status
-                              #:input-compression-type #:input-format
-                              #:input-format-options #:integer #:integer-object
-                              #:internal-server-error
-                              #:invalid-endpoint-exception
-                              #:invalid-export-time-exception
-                              #:invalid-restore-time-exception
+                              #:index-status #:input-compression-type
+                              #:input-format #:input-format-options #:integer
+                              #:integer-object
                               #:item-collection-key-attribute-map
                               #:item-collection-metrics
                               #:item-collection-metrics-multiple
                               #:item-collection-metrics-per-table
                               #:item-collection-size-estimate-bound
                               #:item-collection-size-estimate-range
-                              #:item-collection-size-limit-exceeded-exception
                               #:item-count #:item-list #:item-response
                               #:item-response-list #:kmsmaster-key-arn
                               #:kmsmaster-key-id #:key #:key-conditions
@@ -201,24 +143,13 @@
                               #:kinesis-data-stream-destinations
                               #:kinesis-streaming-destination-input
                               #:kinesis-streaming-destination-output
-                              #:last-update-date-time
-                              #:limit-exceeded-exception #:list-attribute-value
-                              #:list-backups #:list-backups-input
-                              #:list-backups-output #:list-contributor-insights
-                              #:list-contributor-insights-input
-                              #:list-contributor-insights-limit
-                              #:list-contributor-insights-output #:list-exports
-                              #:list-exports-input #:list-exports-max-limit
-                              #:list-exports-output #:list-global-tables
-                              #:list-global-tables-input
-                              #:list-global-tables-output #:list-imports
-                              #:list-imports-input #:list-imports-max-limit
-                              #:list-imports-output #:list-tables
-                              #:list-tables-input #:list-tables-input-limit
-                              #:list-tables-output #:list-tags-of-resource
-                              #:list-tags-of-resource-input
-                              #:list-tags-of-resource-output
-                              #:local-secondary-index
+                              #:last-update-date-time #:list-attribute-value
+                              #:list-backups #:list-contributor-insights
+                              #:list-contributor-insights-limit #:list-exports
+                              #:list-exports-max-limit #:list-global-tables
+                              #:list-imports #:list-imports-max-limit
+                              #:list-tables #:list-tables-input-limit
+                              #:list-tags-of-resource #:local-secondary-index
                               #:local-secondary-index-description
                               #:local-secondary-index-description-list
                               #:local-secondary-index-info
@@ -239,24 +170,17 @@
                               #:point-in-time-recovery-description
                               #:point-in-time-recovery-specification
                               #:point-in-time-recovery-status
-                              #:point-in-time-recovery-unavailable-exception
-                              #:policy-not-found-exception #:policy-revision-id
-                              #:positive-integer-object #:positive-long-object
+                              #:policy-revision-id #:positive-integer-object
+                              #:positive-long-object
                               #:prepared-statement-parameters
                               #:processed-item-count #:projection
                               #:projection-expression #:projection-type
                               #:provisioned-throughput
                               #:provisioned-throughput-description
-                              #:provisioned-throughput-exceeded-exception
                               #:provisioned-throughput-override #:put
-                              #:put-item #:put-item-input
-                              #:put-item-input-attribute-map #:put-item-output
-                              #:put-request #:put-resource-policy
-                              #:put-resource-policy-input
-                              #:put-resource-policy-output #:query
-                              #:query-input #:query-output
+                              #:put-item #:put-item-input-attribute-map
+                              #:put-request #:put-resource-policy #:query
                               #:recovery-period-in-days #:region-name #:replica
-                              #:replica-already-exists-exception
                               #:replica-auto-scaling-description
                               #:replica-auto-scaling-description-list
                               #:replica-auto-scaling-update
@@ -274,27 +198,19 @@
                               #:replica-global-secondary-index-settings-description-list
                               #:replica-global-secondary-index-settings-update
                               #:replica-global-secondary-index-settings-update-list
-                              #:replica-list #:replica-not-found-exception
-                              #:replica-settings-description
+                              #:replica-list #:replica-settings-description
                               #:replica-settings-description-list
                               #:replica-settings-update
                               #:replica-settings-update-list #:replica-status
                               #:replica-status-description
                               #:replica-status-percent-progress
                               #:replica-update #:replica-update-list
-                              #:replicated-write-conflict-exception
                               #:replication-group-update
                               #:replication-group-update-list
-                              #:request-limit-exceeded #:resource-arn-string
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception #:resource-policy
+                              #:resource-arn-string #:resource-policy
                               #:restore-in-progress #:restore-summary
                               #:restore-table-from-backup
-                              #:restore-table-from-backup-input
-                              #:restore-table-from-backup-output
                               #:restore-table-to-point-in-time
-                              #:restore-table-to-point-in-time-input
-                              #:restore-table-to-point-in-time-output
                               #:return-consumed-capacity
                               #:return-item-collection-metrics #:return-value
                               #:return-values-on-condition-check-failure
@@ -302,68 +218,41 @@
                               #:s3prefix #:s3sse-algorithm #:s3sse-kms-key-id
                               #:ssedescription #:sseenabled #:ssespecification
                               #:ssestatus #:ssetype #:scalar-attribute-type
-                              #:scan #:scan-input #:scan-output #:scan-segment
-                              #:scan-total-segments
+                              #:scan #:scan-segment #:scan-total-segments
                               #:secondary-indexes-capacity-map #:select
                               #:source-table-details
                               #:source-table-feature-details #:stream-arn
                               #:stream-enabled #:stream-specification
                               #:stream-view-type #:string
                               #:string-attribute-value
-                              #:string-set-attribute-value
-                              #:table-already-exists-exception #:table-arn
+                              #:string-set-attribute-value #:table-arn
                               #:table-auto-scaling-description #:table-class
                               #:table-class-summary #:table-creation-date-time
                               #:table-creation-parameters #:table-description
-                              #:table-id #:table-in-use-exception #:table-name
-                              #:table-name-list #:table-not-found-exception
+                              #:table-id #:table-name #:table-name-list
                               #:table-status
                               #:table-warm-throughput-description #:tag
                               #:tag-key-list #:tag-key-string #:tag-list
-                              #:tag-resource #:tag-resource-input
-                              #:tag-value-string #:time-range-lower-bound
-                              #:time-range-upper-bound
+                              #:tag-resource #:tag-value-string
+                              #:time-range-lower-bound #:time-range-upper-bound
                               #:time-to-live-attribute-name
                               #:time-to-live-description #:time-to-live-enabled
                               #:time-to-live-specification
                               #:time-to-live-status #:transact-get-item
                               #:transact-get-item-list #:transact-get-items
-                              #:transact-get-items-input
-                              #:transact-get-items-output #:transact-write-item
-                              #:transact-write-item-list #:transact-write-items
-                              #:transact-write-items-input
-                              #:transact-write-items-output
-                              #:transaction-canceled-exception
-                              #:transaction-conflict-exception
-                              #:transaction-in-progress-exception
-                              #:untag-resource #:untag-resource-input #:update
+                              #:transact-write-item #:transact-write-item-list
+                              #:transact-write-items #:untag-resource #:update
                               #:update-continuous-backups
-                              #:update-continuous-backups-input
-                              #:update-continuous-backups-output
-                              #:update-contributor-insights
-                              #:update-contributor-insights-input
-                              #:update-contributor-insights-output
-                              #:update-expression
+                              #:update-contributor-insights #:update-expression
                               #:update-global-secondary-index-action
-                              #:update-global-table #:update-global-table-input
-                              #:update-global-table-output
-                              #:update-global-table-settings
-                              #:update-global-table-settings-input
-                              #:update-global-table-settings-output
-                              #:update-item #:update-item-input
-                              #:update-item-output
+                              #:update-global-table
+                              #:update-global-table-settings #:update-item
                               #:update-kinesis-streaming-configuration
                               #:update-kinesis-streaming-destination
-                              #:update-kinesis-streaming-destination-input
-                              #:update-kinesis-streaming-destination-output
                               #:update-replication-group-member-action
-                              #:update-table #:update-table-input
-                              #:update-table-output
+                              #:update-table
                               #:update-table-replica-auto-scaling
-                              #:update-table-replica-auto-scaling-input
-                              #:update-table-replica-auto-scaling-output
-                              #:update-time-to-live #:update-time-to-live-input
-                              #:update-time-to-live-output #:warm-throughput
+                              #:update-time-to-live #:warm-throughput
                               #:witness-status #:write-request
                               #:write-requests))
 (common-lisp:in-package #:pira/dynamodb)

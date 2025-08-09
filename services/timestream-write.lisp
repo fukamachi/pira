@@ -1,46 +1,25 @@
 (uiop/package:define-package #:pira/timestream-write (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-resource-name #:batch-load-data-format
+                             (:export #:amazon-resource-name
+                              #:batch-load-data-format
                               #:batch-load-progress-report #:batch-load-status
                               #:batch-load-task #:batch-load-task-description
                               #:batch-load-task-id #:batch-load-task-list
                               #:boolean #:client-request-token
-                              #:conflict-exception #:create-batch-load-task
-                              #:create-batch-load-task-request
-                              #:create-batch-load-task-response
-                              #:create-database #:create-database-request
-                              #:create-database-response #:create-table
-                              #:create-table-request #:create-table-response
-                              #:csv-configuration #:data-model
+                              #:create-batch-load-task #:create-database
+                              #:create-table #:csv-configuration #:data-model
                               #:data-model-configuration
                               #:data-model-s3configuration
                               #:data-source-configuration
                               #:data-source-s3configuration #:database
                               #:database-list #:date #:delete-database
-                              #:delete-database-request #:delete-table
-                              #:delete-table-request #:describe-batch-load-task
-                              #:describe-batch-load-task-request
-                              #:describe-batch-load-task-response
-                              #:describe-database #:describe-database-request
-                              #:describe-database-response #:describe-endpoints
-                              #:describe-endpoints-request
-                              #:describe-endpoints-response #:describe-table
-                              #:describe-table-request
-                              #:describe-table-response #:dimension
-                              #:dimension-mapping #:dimension-mappings
-                              #:dimension-value-type #:dimensions #:endpoint
-                              #:endpoints #:error-message #:integer
-                              #:internal-server-exception
-                              #:invalid-endpoint-exception
-                              #:list-batch-load-tasks
-                              #:list-batch-load-tasks-request
-                              #:list-batch-load-tasks-response #:list-databases
-                              #:list-databases-request
-                              #:list-databases-response #:list-tables
-                              #:list-tables-request #:list-tables-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:long
+                              #:delete-table #:describe-batch-load-task
+                              #:describe-database #:describe-endpoints
+                              #:describe-table #:dimension #:dimension-mapping
+                              #:dimension-mappings #:dimension-value-type
+                              #:dimensions #:endpoint #:endpoints
+                              #:error-message #:integer #:list-batch-load-tasks
+                              #:list-databases #:list-tables
+                              #:list-tags-for-resource #:long
                               #:magnetic-store-rejected-data-location
                               #:magnetic-store-retention-period-in-days
                               #:magnetic-store-write-properties #:measure-value
@@ -56,33 +35,20 @@
                               #:partition-key-list #:partition-key-type
                               #:record #:record-index #:record-version
                               #:records #:records-ingested #:rejected-record
-                              #:rejected-records #:rejected-records-exception
-                              #:report-configuration #:report-s3configuration
+                              #:rejected-records #:report-configuration
+                              #:report-s3configuration
                               #:resource-create-apiname #:resource-name
-                              #:resource-not-found-exception
-                              #:resume-batch-load-task
-                              #:resume-batch-load-task-request
-                              #:resume-batch-load-task-response
-                              #:retention-properties #:s3bucket-name
-                              #:s3configuration #:s3encryption-option
-                              #:s3object-key #:s3object-key-prefix
-                              #:scalar-measure-value-type #:schema
-                              #:schema-name #:schema-value
-                              #:service-quota-exceeded-exception #:string
+                              #:resume-batch-load-task #:retention-properties
+                              #:s3bucket-name #:s3configuration
+                              #:s3encryption-option #:s3object-key
+                              #:s3object-key-prefix #:scalar-measure-value-type
+                              #:schema #:schema-name #:schema-value #:string
                               #:string-value1 #:string-value2048
                               #:string-value256 #:table #:table-list
                               #:table-status #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:time-unit
+                              #:tag-list #:tag-resource #:tag-value #:time-unit
                               #:timestream-20181101 #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-database
-                              #:update-database-request
-                              #:update-database-response #:update-table
-                              #:update-table-request #:update-table-response
-                              #:validation-exception #:write-records
-                              #:write-records-request #:write-records-response))
+                              #:update-database #:update-table #:write-records))
 (common-lisp:in-package #:pira/timestream-write)
 
 (smithy/sdk/service:define-service timestream-20181101 :shape-name

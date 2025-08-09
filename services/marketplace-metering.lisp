@@ -1,34 +1,14 @@
 (uiop/package:define-package #:pira/marketplace-metering (:use)
                              (:export #:awsmpmetering-service
                               #:allocated-usage-quantity #:batch-meter-usage
-                              #:batch-meter-usage-request
-                              #:batch-meter-usage-result #:boolean
-                              #:customer-awsaccount-id #:customer-identifier
-                              #:customer-not-entitled-exception
-                              #:disabled-api-exception
-                              #:duplicate-request-exception
-                              #:expired-token-exception
-                              #:internal-service-error-exception
-                              #:invalid-customer-identifier-exception
-                              #:invalid-endpoint-region-exception
-                              #:invalid-product-code-exception
-                              #:invalid-public-key-version-exception
-                              #:invalid-region-exception
-                              #:invalid-tag-exception #:invalid-token-exception
-                              #:invalid-usage-allocations-exception
-                              #:invalid-usage-dimension-exception #:meter-usage
-                              #:meter-usage-request #:meter-usage-result
-                              #:non-empty-string #:nonce
-                              #:platform-not-supported-exception #:product-code
-                              #:register-usage #:register-usage-request
-                              #:register-usage-result #:resolve-customer
-                              #:resolve-customer-request
-                              #:resolve-customer-result #:string #:tag
-                              #:tag-key #:tag-list #:tag-value
-                              #:throttling-exception #:timestamp
-                              #:timestamp-out-of-bounds-exception
-                              #:usage-allocation #:usage-allocations
-                              #:usage-dimension #:usage-quantity #:usage-record
+                              #:boolean #:customer-awsaccount-id
+                              #:customer-identifier #:meter-usage
+                              #:non-empty-string #:nonce #:product-code
+                              #:register-usage #:resolve-customer #:string
+                              #:tag #:tag-key #:tag-list #:tag-value
+                              #:timestamp #:usage-allocation
+                              #:usage-allocations #:usage-dimension
+                              #:usage-quantity #:usage-record
                               #:usage-record-list #:usage-record-result
                               #:usage-record-result-list
                               #:usage-record-result-status #:version-integer

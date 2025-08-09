@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/auditmanager (:use)
                              (:export #:awsaccount #:awsaccounts #:awsservice
-                              #:awsservice-name #:awsservices
-                              #:access-denied-exception #:account-id
+                              #:awsservice-name #:awsservices #:account-id
                               #:account-name #:account-status #:action-enum
                               #:action-plan-instructions #:action-plan-title
                               #:assessment #:assessment-control
@@ -28,30 +27,18 @@
                               #:assessment-reports-destination
                               #:assessment-reports-metadata #:assessment-status
                               #:associate-assessment-report-evidence-folder
-                              #:associate-assessment-report-evidence-folder-request
-                              #:associate-assessment-report-evidence-folder-response
                               #:audit-manager-arn
                               #:batch-associate-assessment-report-evidence
-                              #:batch-associate-assessment-report-evidence-request
-                              #:batch-associate-assessment-report-evidence-response
                               #:batch-create-delegation-by-assessment
                               #:batch-create-delegation-by-assessment-error
                               #:batch-create-delegation-by-assessment-errors
-                              #:batch-create-delegation-by-assessment-request
-                              #:batch-create-delegation-by-assessment-response
                               #:batch-delete-delegation-by-assessment
                               #:batch-delete-delegation-by-assessment-error
                               #:batch-delete-delegation-by-assessment-errors
-                              #:batch-delete-delegation-by-assessment-request
-                              #:batch-delete-delegation-by-assessment-response
                               #:batch-disassociate-assessment-report-evidence
-                              #:batch-disassociate-assessment-report-evidence-request
-                              #:batch-disassociate-assessment-report-evidence-response
                               #:batch-import-evidence-to-assessment-control
                               #:batch-import-evidence-to-assessment-control-error
                               #:batch-import-evidence-to-assessment-control-errors
-                              #:batch-import-evidence-to-assessment-control-request
-                              #:batch-import-evidence-to-assessment-control-response
                               #:bedrock-assessment-manager-lambda #:boolean
                               #:change-log #:change-logs #:cloud-trail-arn
                               #:compliance-type #:control #:control-catalog-id
@@ -77,17 +64,9 @@
                               #:create-assessment-framework-control-set
                               #:create-assessment-framework-control-sets
                               #:create-assessment-framework-controls
-                              #:create-assessment-framework-request
-                              #:create-assessment-framework-response
-                              #:create-assessment-report
-                              #:create-assessment-report-request
-                              #:create-assessment-report-response
-                              #:create-assessment-request
-                              #:create-assessment-response #:create-control
+                              #:create-assessment-report #:create-control
                               #:create-control-mapping-source
                               #:create-control-mapping-sources
-                              #:create-control-request
-                              #:create-control-response
                               #:create-delegation-request
                               #:create-delegation-requests #:created-by
                               #:data-source-type #:default-export-destination
@@ -96,27 +75,12 @@
                               #:delegation-metadata-list #:delegation-status
                               #:delegations #:delete-assessment
                               #:delete-assessment-framework
-                              #:delete-assessment-framework-request
-                              #:delete-assessment-framework-response
                               #:delete-assessment-framework-share
-                              #:delete-assessment-framework-share-request
-                              #:delete-assessment-framework-share-response
-                              #:delete-assessment-report
-                              #:delete-assessment-report-request
-                              #:delete-assessment-report-response
-                              #:delete-assessment-request
-                              #:delete-assessment-response #:delete-control
-                              #:delete-control-request
-                              #:delete-control-response #:delete-resources
-                              #:deregister-account #:deregister-account-request
-                              #:deregister-account-response
+                              #:delete-assessment-report #:delete-control
+                              #:delete-resources #:deregister-account
                               #:deregister-organization-admin-account
-                              #:deregister-organization-admin-account-request
-                              #:deregister-organization-admin-account-response
                               #:deregistration-policy
                               #:disassociate-assessment-report-evidence-folder
-                              #:disassociate-assessment-report-evidence-folder-request
-                              #:disassociate-assessment-report-evidence-folder-response
                               #:email-address #:error-code #:error-message
                               #:event-name #:evidence #:evidence-attribute-key
                               #:evidence-attribute-value #:evidence-attributes
@@ -129,148 +93,63 @@
                               #:framework-description #:framework-metadata
                               #:framework-metadata-list #:framework-name
                               #:framework-type #:generic-arn
-                              #:get-account-status #:get-account-status-request
-                              #:get-account-status-response #:get-assessment
+                              #:get-account-status #:get-assessment
                               #:get-assessment-framework
-                              #:get-assessment-framework-request
-                              #:get-assessment-framework-response
-                              #:get-assessment-report-url
-                              #:get-assessment-report-url-request
-                              #:get-assessment-report-url-response
-                              #:get-assessment-request
-                              #:get-assessment-response #:get-change-logs
-                              #:get-change-logs-request
-                              #:get-change-logs-response #:get-control
-                              #:get-control-request #:get-control-response
-                              #:get-delegations #:get-delegations-request
-                              #:get-delegations-response #:get-evidence
+                              #:get-assessment-report-url #:get-change-logs
+                              #:get-control #:get-delegations #:get-evidence
                               #:get-evidence-by-evidence-folder
-                              #:get-evidence-by-evidence-folder-request
-                              #:get-evidence-by-evidence-folder-response
                               #:get-evidence-file-upload-url
-                              #:get-evidence-file-upload-url-request
-                              #:get-evidence-file-upload-url-response
                               #:get-evidence-folder
-                              #:get-evidence-folder-request
-                              #:get-evidence-folder-response
                               #:get-evidence-folders-by-assessment
                               #:get-evidence-folders-by-assessment-control
-                              #:get-evidence-folders-by-assessment-control-request
-                              #:get-evidence-folders-by-assessment-control-response
-                              #:get-evidence-folders-by-assessment-request
-                              #:get-evidence-folders-by-assessment-response
-                              #:get-evidence-request #:get-evidence-response
                               #:get-insights #:get-insights-by-assessment
-                              #:get-insights-by-assessment-request
-                              #:get-insights-by-assessment-response
-                              #:get-insights-request #:get-insights-response
                               #:get-organization-admin-account
-                              #:get-organization-admin-account-request
-                              #:get-organization-admin-account-response
-                              #:get-services-in-scope
-                              #:get-services-in-scope-request
-                              #:get-services-in-scope-response #:get-settings
-                              #:get-settings-request #:get-settings-response
+                              #:get-services-in-scope #:get-settings
                               #:hyperlink-name #:iam-arn #:insights
                               #:insights-by-assessment #:integer
-                              #:internal-server-exception #:keyword-input-type
-                              #:keyword-value #:keywords #:kms-key
-                              #:last-updated-by
+                              #:keyword-input-type #:keyword-value #:keywords
+                              #:kms-key #:last-updated-by
                               #:list-assessment-control-insights-by-control-domain
-                              #:list-assessment-control-insights-by-control-domain-request
-                              #:list-assessment-control-insights-by-control-domain-response
                               #:list-assessment-framework-share-requests
-                              #:list-assessment-framework-share-requests-request
-                              #:list-assessment-framework-share-requests-response
                               #:list-assessment-frameworks
-                              #:list-assessment-frameworks-request
-                              #:list-assessment-frameworks-response
                               #:list-assessment-metadata
-                              #:list-assessment-reports
-                              #:list-assessment-reports-request
-                              #:list-assessment-reports-response
-                              #:list-assessments #:list-assessments-request
-                              #:list-assessments-response
+                              #:list-assessment-reports #:list-assessments
                               #:list-control-domain-insights
                               #:list-control-domain-insights-by-assessment
-                              #:list-control-domain-insights-by-assessment-request
-                              #:list-control-domain-insights-by-assessment-response
-                              #:list-control-domain-insights-request
-                              #:list-control-domain-insights-response
                               #:list-control-insights-by-control-domain
-                              #:list-control-insights-by-control-domain-request
-                              #:list-control-insights-by-control-domain-response
-                              #:list-controls #:list-controls-request
-                              #:list-controls-response
-                              #:list-keywords-for-data-source
-                              #:list-keywords-for-data-source-request
-                              #:list-keywords-for-data-source-response
-                              #:list-notifications #:list-notifications-request
-                              #:list-notifications-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-controls #:list-keywords-for-data-source
+                              #:list-notifications #:list-tags-for-resource
                               #:manual-evidence #:manual-evidence-list
                               #:manual-evidence-local-file-name
                               #:manual-evidence-text-response #:max-results
                               #:non-empty-string #:notification #:notifications
                               #:nullable-integer #:object-type-enum
                               #:query-statement #:region #:register-account
-                              #:register-account-request
-                              #:register-account-response
-                              #:register-organization-admin-account
-                              #:register-organization-admin-account-request
-                              #:register-organization-admin-account-response
-                              #:resource #:resource-not-found-exception
+                              #:register-organization-admin-account #:resource
                               #:resources #:role #:role-type #:roles #:s3url
                               #:snstopic #:scope #:service-metadata
-                              #:service-metadata-list
-                              #:service-quota-exceeded-exception
-                              #:setting-attribute #:settings
-                              #:share-request-action #:share-request-comment
-                              #:share-request-status #:share-request-type
-                              #:sns-arn #:source-description #:source-frequency
+                              #:service-metadata-list #:setting-attribute
+                              #:settings #:share-request-action
+                              #:share-request-comment #:share-request-status
+                              #:share-request-type #:sns-arn
+                              #:source-description #:source-frequency
                               #:source-keyword #:source-name
                               #:source-set-up-option #:source-type
-                              #:start-assessment-framework-share
-                              #:start-assessment-framework-share-request
-                              #:start-assessment-framework-share-response
-                              #:string #:tag-key #:tag-key-list #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:testing-information #:throttling-exception
-                              #:timestamp #:timestamp-uuid #:token
-                              #:troubleshooting-text #:url #:uuid
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-assessment
+                              #:start-assessment-framework-share #:string
+                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:testing-information #:timestamp
+                              #:timestamp-uuid #:token #:troubleshooting-text
+                              #:url #:uuid #:untag-resource #:update-assessment
                               #:update-assessment-control
-                              #:update-assessment-control-request
-                              #:update-assessment-control-response
                               #:update-assessment-control-set-status
-                              #:update-assessment-control-set-status-request
-                              #:update-assessment-control-set-status-response
                               #:update-assessment-framework
                               #:update-assessment-framework-control-set
                               #:update-assessment-framework-control-sets
-                              #:update-assessment-framework-request
-                              #:update-assessment-framework-response
                               #:update-assessment-framework-share
-                              #:update-assessment-framework-share-request
-                              #:update-assessment-framework-share-response
-                              #:update-assessment-request
-                              #:update-assessment-response
-                              #:update-assessment-status
-                              #:update-assessment-status-request
-                              #:update-assessment-status-response
-                              #:update-control #:update-control-request
-                              #:update-control-response #:update-settings
-                              #:update-settings-request
-                              #:update-settings-response #:url-link #:username
+                              #:update-assessment-status #:update-control
+                              #:update-settings #:url-link #:username
                               #:validate-assessment-report-integrity
-                              #:validate-assessment-report-integrity-request
-                              #:validate-assessment-report-integrity-response
-                              #:validation-errors #:validation-exception
-                              #:validation-exception-field
+                              #:validation-errors #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:organization-id))
 (common-lisp:in-package #:pira/auditmanager)

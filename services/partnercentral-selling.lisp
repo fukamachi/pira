@@ -1,16 +1,13 @@
 (uiop/package:define-package #:pira/partnercentral-selling (:use)
                              (:export #:awspartner-central-selling
-                              #:accept-engagement-invitation
-                              #:accept-engagement-invitation-request
-                              #:access-denied-exception #:account
+                              #:accept-engagement-invitation #:account
                               #:account-receiver #:account-summary #:address
                               #:address-part #:address-summary #:alias
                               #:apn-programs #:assign-opportunity
-                              #:assign-opportunity-request #:assignee-contact
-                              #:associate-opportunity
-                              #:associate-opportunity-request #:aws-account
-                              #:aws-account-id-or-alias-list #:aws-account-list
-                              #:aws-closed-lost-reason #:aws-funding-used
+                              #:assignee-contact #:associate-opportunity
+                              #:aws-account #:aws-account-id-or-alias-list
+                              #:aws-account-list #:aws-closed-lost-reason
+                              #:aws-funding-used
                               #:aws-marketplace-offer-identifier
                               #:aws-marketplace-offer-identifiers
                               #:aws-member-business-title
@@ -26,30 +23,17 @@
                               #:aws-team-member #:catalog-identifier #:channel
                               #:channels #:client-token #:closed-lost-reason
                               #:company-name #:company-website-url
-                              #:competitor-name #:conflict-exception #:contact
-                              #:country-code #:create-engagement
+                              #:competitor-name #:contact #:country-code
+                              #:create-engagement
                               #:create-engagement-invitation
-                              #:create-engagement-invitation-request
-                              #:create-engagement-invitation-response
-                              #:create-engagement-request
-                              #:create-engagement-response #:create-opportunity
-                              #:create-opportunity-request
-                              #:create-opportunity-response
-                              #:create-resource-snapshot
-                              #:create-resource-snapshot-job
-                              #:create-resource-snapshot-job-request
-                              #:create-resource-snapshot-job-response
-                              #:create-resource-snapshot-request
-                              #:create-resource-snapshot-response
-                              #:currency-code #:customer
-                              #:customer-contacts-list
+                              #:create-opportunity #:create-resource-snapshot
+                              #:create-resource-snapshot-job #:currency-code
+                              #:customer #:customer-contacts-list
                               #:customer-projects-context #:customer-summary
                               #:date #:date-time #:delete-resource-snapshot-job
-                              #:delete-resource-snapshot-job-request
                               #:delivery-model #:delivery-models
-                              #:disassociate-opportunity
-                              #:disassociate-opportunity-request #:duns-number
-                              #:email #:engagement #:engagement-arn
+                              #:disassociate-opportunity #:duns-number #:email
+                              #:engagement #:engagement-arn
                               #:engagement-arn-or-identifier
                               #:engagement-by-accepting-invitation-task
                               #:engagement-context-details
@@ -84,71 +68,35 @@
                               #:filter-identifier
                               #:filter-life-cycle-review-status
                               #:filter-life-cycle-stage #:filter-status
-                              #:get-aws-opportunity-summary
-                              #:get-aws-opportunity-summary-request
-                              #:get-aws-opportunity-summary-response
-                              #:get-engagement #:get-engagement-invitation
-                              #:get-engagement-invitation-request
-                              #:get-engagement-invitation-response
-                              #:get-engagement-request
-                              #:get-engagement-response #:get-opportunity
-                              #:get-opportunity-request
-                              #:get-opportunity-response
+                              #:get-aws-opportunity-summary #:get-engagement
+                              #:get-engagement-invitation #:get-opportunity
                               #:get-resource-snapshot
                               #:get-resource-snapshot-job
-                              #:get-resource-snapshot-job-request
-                              #:get-resource-snapshot-job-response
-                              #:get-resource-snapshot-request
-                              #:get-resource-snapshot-response
-                              #:get-selling-system-settings
-                              #:get-selling-system-settings-request
-                              #:get-selling-system-settings-response #:industry
-                              #:internal-server-exception #:invitation
-                              #:invitation-message #:invitation-status
-                              #:invitation-status-list
+                              #:get-selling-system-settings #:industry
+                              #:invitation #:invitation-message
+                              #:invitation-status #:invitation-status-list
                               #:involvement-type-change-reason #:job-title
                               #:last-modified-date #:life-cycle
                               #:life-cycle-for-view #:life-cycle-summary
                               #:list-engagement-by-accepting-invitation-task-summaries
                               #:list-engagement-by-accepting-invitation-task-summary
                               #:list-engagement-by-accepting-invitation-tasks
-                              #:list-engagement-by-accepting-invitation-tasks-request
-                              #:list-engagement-by-accepting-invitation-tasks-response
                               #:list-engagement-from-opportunity-task-summaries
                               #:list-engagement-from-opportunity-task-summary
                               #:list-engagement-from-opportunity-tasks
-                              #:list-engagement-from-opportunity-tasks-request
-                              #:list-engagement-from-opportunity-tasks-response
                               #:list-engagement-invitations
-                              #:list-engagement-invitations-request
-                              #:list-engagement-invitations-response
                               #:list-engagement-members
-                              #:list-engagement-members-request
-                              #:list-engagement-members-response
                               #:list-engagement-resource-associations
-                              #:list-engagement-resource-associations-request
-                              #:list-engagement-resource-associations-response
-                              #:list-engagements #:list-engagements-request
-                              #:list-engagements-response #:list-opportunities
-                              #:list-opportunities-request
-                              #:list-opportunities-response
+                              #:list-engagements #:list-opportunities
                               #:list-resource-snapshot-jobs
-                              #:list-resource-snapshot-jobs-request
-                              #:list-resource-snapshot-jobs-response
-                              #:list-resource-snapshots
-                              #:list-resource-snapshots-request
-                              #:list-resource-snapshots-response
-                              #:list-solutions #:list-solutions-request
-                              #:list-solutions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-tasks-sort-base #:list-tasks-sort-name
-                              #:marketing #:marketing-source
-                              #:member-company-name #:member-page-size
-                              #:monetary-value #:name #:national-security
-                              #:next-steps-histories #:next-steps-history
-                              #:opportunity #:opportunity-arn
+                              #:list-resource-snapshots #:list-solutions
+                              #:list-tags-for-resource #:list-tasks-sort-base
+                              #:list-tasks-sort-name #:marketing
+                              #:marketing-source #:member-company-name
+                              #:member-page-size #:monetary-value #:name
+                              #:national-security #:next-steps-histories
+                              #:next-steps-history #:opportunity
+                              #:opportunity-arn
                               #:opportunity-engagement-invitation-sort
                               #:opportunity-engagement-invitation-sort-name
                               #:opportunity-identifier
@@ -165,20 +113,15 @@
                               #:profile-next-steps-history #:project
                               #:project-details #:project-summary
                               #:project-view #:put-selling-system-settings
-                              #:put-selling-system-settings-request
-                              #:put-selling-system-settings-response
                               #:reason-code #:receiver
                               #:receiver-responsibility
                               #:receiver-responsibility-list
                               #:reject-engagement-invitation
-                              #:reject-engagement-invitation-request
                               #:rejection-reason-string
                               #:related-entity-identifiers
                               #:related-entity-type #:resource-arn
-                              #:resource-identifier
-                              #:resource-not-found-exception
-                              #:resource-snapshot #:resource-snapshot-arn
-                              #:resource-snapshot-job
+                              #:resource-identifier #:resource-snapshot
+                              #:resource-snapshot-arn #:resource-snapshot-job
                               #:resource-snapshot-job-arn
                               #:resource-snapshot-job-identifier
                               #:resource-snapshot-job-role-arn
@@ -195,7 +138,6 @@
                               #:sales-activities #:sales-activity
                               #:sales-involvement-type #:sender-contact
                               #:sender-contact-email #:sender-contact-list
-                              #:service-quota-exceeded-exception
                               #:software-revenue #:solution #:solution-arn
                               #:solution-base #:solution-identifier
                               #:solution-identifiers #:solution-list
@@ -203,28 +145,15 @@
                               #:solution-status #:sort-by #:sort-object
                               #:sort-order #:stage
                               #:start-engagement-by-accepting-invitation-task
-                              #:start-engagement-by-accepting-invitation-task-request
-                              #:start-engagement-by-accepting-invitation-task-response
                               #:start-engagement-from-opportunity-task
-                              #:start-engagement-from-opportunity-task-request
-                              #:start-engagement-from-opportunity-task-response
                               #:start-resource-snapshot-job
-                              #:start-resource-snapshot-job-request
-                              #:stop-resource-snapshot-job
-                              #:stop-resource-snapshot-job-request
-                              #:string-list #:submit-opportunity
-                              #:submit-opportunity-request #:tag #:tag-key
+                              #:stop-resource-snapshot-job #:string-list
+                              #:submit-opportunity #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:taggable-resource-arn #:task-arn
                               #:task-arn-or-identifier #:task-identifier
                               #:task-identifiers #:task-status #:task-statuses
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-opportunity
-                              #:update-opportunity-request
-                              #:update-opportunity-response #:use-cases
-                              #:validation-exception
+                              #:untag-resource #:update-opportunity #:use-cases
                               #:validation-exception-error
                               #:validation-exception-error-code
                               #:validation-exception-error-list

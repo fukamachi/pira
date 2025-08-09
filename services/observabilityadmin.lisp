@@ -1,78 +1,45 @@
 (uiop/package:define-package #:pira/observabilityadmin (:use)
-                             (:export #:access-denied-exception
-                              #:account-identifier #:account-identifiers
-                              #:conflict-exception #:create-telemetry-rule
+                             (:export #:account-identifier
+                              #:account-identifiers #:create-telemetry-rule
                               #:create-telemetry-rule-for-organization
-                              #:create-telemetry-rule-for-organization-input
-                              #:create-telemetry-rule-for-organization-output
-                              #:create-telemetry-rule-input
-                              #:create-telemetry-rule-output
                               #:delete-telemetry-rule
                               #:delete-telemetry-rule-for-organization
-                              #:delete-telemetry-rule-for-organization-input
-                              #:delete-telemetry-rule-input #:destination-type
-                              #:failure-reason
+                              #:destination-type #:failure-reason
                               #:get-telemetry-evaluation-status
                               #:get-telemetry-evaluation-status-for-organization
-                              #:get-telemetry-evaluation-status-for-organization-output
-                              #:get-telemetry-evaluation-status-output
                               #:get-telemetry-rule
                               #:get-telemetry-rule-for-organization
-                              #:get-telemetry-rule-for-organization-input
-                              #:get-telemetry-rule-for-organization-output
-                              #:get-telemetry-rule-input
-                              #:get-telemetry-rule-output
-                              #:internal-server-exception
                               #:list-resource-telemetry
                               #:list-resource-telemetry-for-organization
-                              #:list-resource-telemetry-for-organization-input
                               #:list-resource-telemetry-for-organization-max-results
-                              #:list-resource-telemetry-for-organization-output
-                              #:list-resource-telemetry-input
                               #:list-resource-telemetry-max-results
-                              #:list-resource-telemetry-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
-                              #:list-telemetry-rules
+                              #:list-tags-for-resource #:list-telemetry-rules
                               #:list-telemetry-rules-for-organization
-                              #:list-telemetry-rules-for-organization-input
                               #:list-telemetry-rules-for-organization-max-results
-                              #:list-telemetry-rules-for-organization-output
-                              #:list-telemetry-rules-input
-                              #:list-telemetry-rules-max-results
-                              #:list-telemetry-rules-output #:next-token
+                              #:list-telemetry-rules-max-results #:next-token
                               #:observability-admin
                               #:organization-unit-identifier
                               #:organization-unit-identifiers #:resource-arn
                               #:resource-identifier
-                              #:resource-identifier-prefix
-                              #:resource-not-found-exception #:resource-type
+                              #:resource-identifier-prefix #:resource-type
                               #:resource-types #:retention-period-in-days
                               #:rule-identifier #:rule-name
-                              #:service-quota-exceeded-exception
                               #:start-telemetry-evaluation
                               #:start-telemetry-evaluation-for-organization
                               #:status #:stop-telemetry-evaluation
                               #:stop-telemetry-evaluation-for-organization
                               #:tag-key #:tag-key-list #:tag-map-input
-                              #:tag-map-output #:tag-resource
-                              #:tag-resource-input #:tag-value
+                              #:tag-map-output #:tag-resource #:tag-value
                               #:telemetry-configuration
                               #:telemetry-configuration-state
                               #:telemetry-configurations
                               #:telemetry-destination-configuration
                               #:telemetry-rule #:telemetry-rule-summaries
                               #:telemetry-rule-summary #:telemetry-state
-                              #:telemetry-type #:too-many-requests-exception
-                              #:untag-resource #:untag-resource-input
+                              #:telemetry-type #:untag-resource
                               #:update-telemetry-rule
                               #:update-telemetry-rule-for-organization
-                              #:update-telemetry-rule-for-organization-input
-                              #:update-telemetry-rule-for-organization-output
-                              #:update-telemetry-rule-input
-                              #:update-telemetry-rule-output
-                              #:vpcflow-log-parameters #:validation-exception))
+                              #:vpcflow-log-parameters))
 (common-lisp:in-package #:pira/observabilityadmin)
 
 (smithy/sdk/service:define-service observability-admin :shape-name

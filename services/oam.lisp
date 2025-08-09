@@ -1,47 +1,24 @@
 (uiop/package:define-package #:pira/oam (:use)
-                             (:export #:arn #:conflict-exception #:create-link
-                              #:create-link-input #:create-link-output
-                              #:create-sink #:create-sink-input
-                              #:create-sink-output #:delete-link
-                              #:delete-link-input #:delete-link-output
-                              #:delete-sink #:delete-sink-input
-                              #:delete-sink-output #:get-link #:get-link-input
-                              #:get-link-output #:get-sink #:get-sink-input
-                              #:get-sink-output #:get-sink-policy
-                              #:get-sink-policy-input #:get-sink-policy-output
-                              #:include-tags #:internal-service-fault
-                              #:invalid-parameter-exception #:label-template
+                             (:export #:arn #:create-link #:create-sink
+                              #:delete-link #:delete-sink #:get-link #:get-sink
+                              #:get-sink-policy #:include-tags #:label-template
                               #:link-configuration #:list-attached-links
-                              #:list-attached-links-input
                               #:list-attached-links-item
                               #:list-attached-links-items
-                              #:list-attached-links-max-results
-                              #:list-attached-links-output #:list-links
-                              #:list-links-input #:list-links-item
-                              #:list-links-items #:list-links-max-results
-                              #:list-links-output #:list-sinks
-                              #:list-sinks-input #:list-sinks-item
-                              #:list-sinks-items #:list-sinks-max-results
-                              #:list-sinks-output #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
+                              #:list-attached-links-max-results #:list-links
+                              #:list-links-item #:list-links-items
+                              #:list-links-max-results #:list-sinks
+                              #:list-sinks-item #:list-sinks-items
+                              #:list-sinks-max-results #:list-tags-for-resource
                               #:log-group-configuration #:logs-filter
                               #:metric-configuration #:metrics-filter
-                              #:missing-required-parameter-exception
                               #:next-token #:put-sink-policy
-                              #:put-sink-policy-input #:put-sink-policy-output
-                              #:resource-identifier
-                              #:resource-not-found-exception #:resource-type
+                              #:resource-identifier #:resource-type
                               #:resource-types-input #:resource-types-output
-                              #:service-quota-exceeded-exception #:sink-name
-                              #:sink-policy #:tag-key #:tag-keys
+                              #:sink-name #:sink-policy #:tag-key #:tag-keys
                               #:tag-map-input #:tag-map-output #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:too-many-tags-exception
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-link
-                              #:update-link-input #:update-link-output
-                              #:validation-exception #:oamservice))
+                              #:tag-value #:untag-resource #:update-link
+                              #:oamservice))
 (common-lisp:in-package #:pira/oam)
 
 (smithy/sdk/service:define-service oamservice :shape-name "oamservice" :version

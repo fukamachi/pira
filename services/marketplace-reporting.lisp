@@ -1,12 +1,7 @@
 (uiop/package:define-package #:pira/marketplace-reporting (:use)
-                             (:export #:awsmarketplace-reporting
-                              #:access-denied-exception #:bad-request-exception
-                              #:dashboard #:dashboard-identifier
-                              #:embedding-domain #:embedding-domains
-                              #:get-buyer-dashboard #:get-buyer-dashboard-input
-                              #:get-buyer-dashboard-output
-                              #:internal-server-exception
-                              #:unauthorized-exception))
+                             (:export #:awsmarketplace-reporting #:dashboard
+                              #:dashboard-identifier #:embedding-domain
+                              #:embedding-domains #:get-buyer-dashboard))
 (common-lisp:in-package #:pira/marketplace-reporting)
 
 (smithy/sdk/service:define-service awsmarketplace-reporting :shape-name

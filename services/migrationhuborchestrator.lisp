@@ -1,12 +1,9 @@
 (uiop/package:define-package #:pira/migrationhuborchestrator (:use)
                              (:export #:awsmigration-hub-orchestrator
-                              #:access-denied-exception
                               #:application-configuration-name #:client-token
-                              #:conflict-exception
                               #:create-migration-workflow-request
                               #:create-migration-workflow-response
-                              #:create-template #:create-template-request
-                              #:create-template-response #:create-workflow
+                              #:create-template #:create-workflow
                               #:create-workflow-step
                               #:create-workflow-step-group
                               #:create-workflow-step-group-request
@@ -15,8 +12,7 @@
                               #:create-workflow-step-response #:data-type
                               #:delete-migration-workflow-request
                               #:delete-migration-workflow-response
-                              #:delete-template #:delete-template-request
-                              #:delete-template-response #:delete-workflow
+                              #:delete-template #:delete-workflow
                               #:delete-workflow-step
                               #:delete-workflow-step-group
                               #:delete-workflow-step-group-request
@@ -38,7 +34,6 @@
                               #:get-workflow-step-group-response
                               #:get-workflow-step-request
                               #:get-workflow-step-response #:ipaddress
-                              #:internal-server-exception
                               #:list-migration-workflow-templates-request
                               #:list-migration-workflow-templates-response
                               #:list-migration-workflows-request
@@ -71,7 +66,6 @@
                               #:plugin #:plugin-health #:plugin-id
                               #:plugin-summaries #:plugin-summary
                               #:plugin-version #:resource-arn
-                              #:resource-not-found-exception
                               #:retry-workflow-step
                               #:retry-workflow-step-request
                               #:retry-workflow-step-response #:run-environment
@@ -103,21 +97,18 @@
                               #:template-step-group-summary-list
                               #:template-step-groups #:template-step-summary
                               #:template-step-summary-list #:template-summary
-                              #:template-summary-list #:throttling-exception
-                              #:tool #:tools-list #:untag-resource
-                              #:untag-resource-request
+                              #:template-summary-list #:tool #:tools-list
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-migration-workflow-request
                               #:update-migration-workflow-response
-                              #:update-template #:update-template-request
-                              #:update-template-response #:update-workflow
+                              #:update-template #:update-workflow
                               #:update-workflow-step
                               #:update-workflow-step-group
                               #:update-workflow-step-group-request
                               #:update-workflow-step-group-response
                               #:update-workflow-step-request
-                              #:update-workflow-step-response
-                              #:validation-exception #:workflow-step
+                              #:update-workflow-step-response #:workflow-step
                               #:workflow-step-automation-configuration
                               #:workflow-step-group
                               #:workflow-step-group-summary

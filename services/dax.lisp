@@ -1,103 +1,38 @@
 (uiop/package:define-package #:pira/dax (:use)
                              (:export #:amazon-daxv3 #:availability-zone-list
                               #:aws-query-error-message #:change-type #:cluster
-                              #:cluster-already-exists-fault
                               #:cluster-endpoint-encryption-type #:cluster-list
-                              #:cluster-name-list #:cluster-not-found-fault
-                              #:cluster-quota-for-customer-exceeded-fault
-                              #:create-cluster #:create-cluster-request
-                              #:create-cluster-response
-                              #:create-parameter-group
-                              #:create-parameter-group-request
-                              #:create-parameter-group-response
-                              #:create-subnet-group
-                              #:create-subnet-group-request
-                              #:create-subnet-group-response
-                              #:decrease-replication-factor
-                              #:decrease-replication-factor-request
-                              #:decrease-replication-factor-response
-                              #:delete-cluster #:delete-cluster-request
-                              #:delete-cluster-response
-                              #:delete-parameter-group
-                              #:delete-parameter-group-request
-                              #:delete-parameter-group-response
-                              #:delete-subnet-group
-                              #:delete-subnet-group-request
-                              #:delete-subnet-group-response
-                              #:describe-clusters #:describe-clusters-request
-                              #:describe-clusters-response
-                              #:describe-default-parameters
-                              #:describe-default-parameters-request
-                              #:describe-default-parameters-response
-                              #:describe-events #:describe-events-request
-                              #:describe-events-response
-                              #:describe-parameter-groups
-                              #:describe-parameter-groups-request
-                              #:describe-parameter-groups-response
-                              #:describe-parameters
-                              #:describe-parameters-request
-                              #:describe-parameters-response
-                              #:describe-subnet-groups
-                              #:describe-subnet-groups-request
-                              #:describe-subnet-groups-response #:endpoint
-                              #:event #:event-list #:exception-message
-                              #:increase-replication-factor
-                              #:increase-replication-factor-request
-                              #:increase-replication-factor-response
-                              #:insufficient-cluster-capacity-fault #:integer
-                              #:integer-optional #:invalid-arnfault
-                              #:invalid-cluster-state-fault
-                              #:invalid-parameter-combination-exception
-                              #:invalid-parameter-group-state-fault
-                              #:invalid-parameter-value-exception
-                              #:invalid-subnet #:invalid-vpcnetwork-state-fault
-                              #:is-modifiable #:key-list #:list-tags
-                              #:list-tags-request #:list-tags-response #:node
+                              #:cluster-name-list #:create-cluster
+                              #:create-parameter-group #:create-subnet-group
+                              #:decrease-replication-factor #:delete-cluster
+                              #:delete-parameter-group #:delete-subnet-group
+                              #:describe-clusters #:describe-default-parameters
+                              #:describe-events #:describe-parameter-groups
+                              #:describe-parameters #:describe-subnet-groups
+                              #:endpoint #:event #:event-list
+                              #:exception-message #:increase-replication-factor
+                              #:integer #:integer-optional #:is-modifiable
+                              #:key-list #:list-tags #:node
                               #:node-identifier-list #:node-list
-                              #:node-not-found-fault
-                              #:node-quota-for-cluster-exceeded-fault
-                              #:node-quota-for-customer-exceeded-fault
                               #:node-type-specific-value
                               #:node-type-specific-value-list
                               #:notification-configuration #:parameter
-                              #:parameter-group
-                              #:parameter-group-already-exists-fault
-                              #:parameter-group-list
+                              #:parameter-group #:parameter-group-list
                               #:parameter-group-name-list
-                              #:parameter-group-not-found-fault
-                              #:parameter-group-quota-exceeded-fault
                               #:parameter-group-status #:parameter-list
                               #:parameter-name-value
                               #:parameter-name-value-list #:parameter-type
-                              #:reboot-node #:reboot-node-request
-                              #:reboot-node-response #:ssedescription
-                              #:sseenabled #:ssespecification #:ssestatus
+                              #:reboot-node #:ssedescription #:sseenabled
+                              #:ssespecification #:ssestatus
                               #:security-group-identifier-list
                               #:security-group-membership
-                              #:security-group-membership-list
-                              #:service-linked-role-not-found-fault
-                              #:service-quota-exceeded-exception #:source-type
+                              #:security-group-membership-list #:source-type
                               #:string #:subnet #:subnet-group
-                              #:subnet-group-already-exists-fault
-                              #:subnet-group-in-use-fault #:subnet-group-list
-                              #:subnet-group-name-list
-                              #:subnet-group-not-found-fault
-                              #:subnet-group-quota-exceeded-fault
-                              #:subnet-identifier-list #:subnet-in-use
-                              #:subnet-list #:subnet-quota-exceeded-fault
-                              #:tstamp #:tag #:tag-list #:tag-not-found-fault
-                              #:tag-quota-per-resource-exceeded #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-cluster
-                              #:update-cluster-request
-                              #:update-cluster-response
-                              #:update-parameter-group
-                              #:update-parameter-group-request
-                              #:update-parameter-group-response
-                              #:update-subnet-group
-                              #:update-subnet-group-request
-                              #:update-subnet-group-response))
+                              #:subnet-group-list #:subnet-group-name-list
+                              #:subnet-identifier-list #:subnet-list #:tstamp
+                              #:tag #:tag-list #:tag-resource #:untag-resource
+                              #:update-cluster #:update-parameter-group
+                              #:update-subnet-group))
 (common-lisp:in-package #:pira/dax)
 
 (smithy/sdk/service:define-service amazon-daxv3 :shape-name "AmazonDAXV3"

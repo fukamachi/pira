@@ -1,92 +1,43 @@
 (uiop/package:define-package #:pira/elastic-load-balancing (:use)
                              (:export #:access-log #:access-log-enabled
                               #:access-log-interval #:access-log-prefix
-                              #:access-point-name
-                              #:access-point-not-found-exception
-                              #:access-point-port
-                              #:add-availability-zones-input
-                              #:add-availability-zones-output #:add-tags
-                              #:add-tags-input #:add-tags-output
-                              #:additional-attribute #:additional-attribute-key
+                              #:access-point-name #:access-point-port
+                              #:add-tags #:additional-attribute
+                              #:additional-attribute-key
                               #:additional-attribute-value
                               #:additional-attributes
                               #:app-cookie-stickiness-policies
                               #:app-cookie-stickiness-policy
                               #:apply-security-groups-to-load-balancer
-                              #:apply-security-groups-to-load-balancer-input
-                              #:apply-security-groups-to-load-balancer-output
                               #:attach-load-balancer-to-subnets
-                              #:attach-load-balancer-to-subnets-input
-                              #:attach-load-balancer-to-subnets-output
                               #:attribute-name #:attribute-type
                               #:attribute-value #:availability-zone
                               #:availability-zones #:backend-server-description
                               #:backend-server-descriptions #:cardinality
-                              #:certificate-not-found-exception
-                              #:configure-health-check
-                              #:configure-health-check-input
-                              #:configure-health-check-output
-                              #:connection-draining
+                              #:configure-health-check #:connection-draining
                               #:connection-draining-enabled
                               #:connection-draining-timeout
                               #:connection-settings #:cookie-expiration-period
-                              #:cookie-name #:create-access-point-input
-                              #:create-access-point-output
+                              #:cookie-name
                               #:create-app-cookie-stickiness-policy
-                              #:create-app-cookie-stickiness-policy-input
-                              #:create-app-cookie-stickiness-policy-output
                               #:create-lbcookie-stickiness-policy
-                              #:create-lbcookie-stickiness-policy-input
-                              #:create-lbcookie-stickiness-policy-output
                               #:create-load-balancer
-                              #:create-load-balancer-listener-input
-                              #:create-load-balancer-listener-output
                               #:create-load-balancer-listeners
-                              #:create-load-balancer-policy
-                              #:create-load-balancer-policy-input
-                              #:create-load-balancer-policy-output
-                              #:created-time #:cross-zone-load-balancing
+                              #:create-load-balancer-policy #:created-time
+                              #:cross-zone-load-balancing
                               #:cross-zone-load-balancing-enabled #:dnsname
-                              #:default-value #:delete-access-point-input
-                              #:delete-access-point-output
-                              #:delete-load-balancer
-                              #:delete-load-balancer-listener-input
-                              #:delete-load-balancer-listener-output
+                              #:default-value #:delete-load-balancer
                               #:delete-load-balancer-listeners
                               #:delete-load-balancer-policy
-                              #:delete-load-balancer-policy-input
-                              #:delete-load-balancer-policy-output
-                              #:dependency-throttle-exception
-                              #:deregister-end-points-input
-                              #:deregister-end-points-output
                               #:deregister-instances-from-load-balancer
-                              #:describe-access-points-input
-                              #:describe-access-points-output
                               #:describe-account-limits
-                              #:describe-account-limits-input
-                              #:describe-account-limits-output
-                              #:describe-end-point-state-input
-                              #:describe-end-point-state-output
                               #:describe-instance-health
                               #:describe-load-balancer-attributes
-                              #:describe-load-balancer-attributes-input
-                              #:describe-load-balancer-attributes-output
                               #:describe-load-balancer-policies
-                              #:describe-load-balancer-policies-input
-                              #:describe-load-balancer-policies-output
                               #:describe-load-balancer-policy-types
-                              #:describe-load-balancer-policy-types-input
-                              #:describe-load-balancer-policy-types-output
                               #:describe-load-balancers #:describe-tags
-                              #:describe-tags-input #:describe-tags-output
                               #:description #:detach-load-balancer-from-subnets
-                              #:detach-load-balancer-from-subnets-input
-                              #:detach-load-balancer-from-subnets-output
                               #:disable-availability-zones-for-load-balancer
-                              #:duplicate-access-point-name-exception
-                              #:duplicate-listener-exception
-                              #:duplicate-policy-name-exception
-                              #:duplicate-tag-keys-exception
                               #:elastic-load-balancing-v7
                               #:enable-availability-zones-for-load-balancer
                               #:end-point-port #:error-description
@@ -95,65 +46,39 @@
                               #:healthy-threshold #:idle-timeout #:instance
                               #:instance-id #:instance-port #:instance-state
                               #:instance-states #:instances
-                              #:invalid-configuration-request-exception
-                              #:invalid-end-point-exception
-                              #:invalid-scheme-exception
-                              #:invalid-security-group-exception
-                              #:invalid-subnet-exception
                               #:lbcookie-stickiness-policies
                               #:lbcookie-stickiness-policy #:limit #:limits
                               #:listener #:listener-description
-                              #:listener-descriptions
-                              #:listener-not-found-exception #:listeners
-                              #:load-balancer-attribute-not-found-exception
+                              #:listener-descriptions #:listeners
                               #:load-balancer-attributes
                               #:load-balancer-description
                               #:load-balancer-descriptions
                               #:load-balancer-names #:load-balancer-names-max20
                               #:load-balancer-scheme #:marker #:max
-                              #:modify-load-balancer-attributes
-                              #:modify-load-balancer-attributes-input
-                              #:modify-load-balancer-attributes-output #:name
-                              #:operation-not-permitted-exception #:page-size
-                              #:policies #:policy-attribute
+                              #:modify-load-balancer-attributes #:name
+                              #:page-size #:policies #:policy-attribute
                               #:policy-attribute-description
                               #:policy-attribute-descriptions
                               #:policy-attribute-type-description
                               #:policy-attribute-type-descriptions
                               #:policy-attributes #:policy-description
                               #:policy-descriptions #:policy-name
-                              #:policy-names #:policy-not-found-exception
-                              #:policy-type-description
+                              #:policy-names #:policy-type-description
                               #:policy-type-descriptions #:policy-type-name
-                              #:policy-type-names
-                              #:policy-type-not-found-exception #:ports
-                              #:protocol #:reason-code
-                              #:register-end-points-input
-                              #:register-end-points-output
+                              #:policy-type-names #:ports #:protocol
+                              #:reason-code
                               #:register-instances-with-load-balancer
-                              #:remove-availability-zones-input
-                              #:remove-availability-zones-output #:remove-tags
-                              #:remove-tags-input #:remove-tags-output
-                              #:s3bucket-name #:sslcertificate-id
+                              #:remove-tags #:s3bucket-name #:sslcertificate-id
                               #:security-group-id #:security-group-name
                               #:security-group-owner-alias #:security-groups
                               #:set-load-balancer-listener-sslcertificate
-                              #:set-load-balancer-listener-sslcertificate-input
-                              #:set-load-balancer-listener-sslcertificate-output
                               #:set-load-balancer-policies-for-backend-server
-                              #:set-load-balancer-policies-for-backend-server-input
-                              #:set-load-balancer-policies-for-backend-server-output
                               #:set-load-balancer-policies-of-listener
-                              #:set-load-balancer-policies-of-listener-input
-                              #:set-load-balancer-policies-of-listener-output
                               #:source-security-group #:state #:subnet-id
-                              #:subnet-not-found-exception #:subnets #:tag
-                              #:tag-description #:tag-descriptions #:tag-key
-                              #:tag-key-list #:tag-key-only #:tag-list
-                              #:tag-value #:too-many-access-points-exception
-                              #:too-many-policies-exception
-                              #:too-many-tags-exception #:unhealthy-threshold
-                              #:unsupported-protocol-exception #:vpcid))
+                              #:subnets #:tag #:tag-description
+                              #:tag-descriptions #:tag-key #:tag-key-list
+                              #:tag-key-only #:tag-list #:tag-value
+                              #:unhealthy-threshold #:vpcid))
 (common-lisp:in-package #:pira/elastic-load-balancing)
 
 (smithy/sdk/service:define-service elastic-load-balancing-v7 :shape-name

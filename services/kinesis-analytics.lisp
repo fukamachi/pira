@@ -1,20 +1,10 @@
 (uiop/package:define-package #:pira/kinesis-analytics (:use)
                              (:export
                               #:add-application-cloud-watch-logging-option
-                              #:add-application-cloud-watch-logging-option-request
-                              #:add-application-cloud-watch-logging-option-response
                               #:add-application-input
                               #:add-application-input-processing-configuration
-                              #:add-application-input-processing-configuration-request
-                              #:add-application-input-processing-configuration-response
-                              #:add-application-input-request
-                              #:add-application-input-response
                               #:add-application-output
-                              #:add-application-output-request
-                              #:add-application-output-response
                               #:add-application-reference-data-source
-                              #:add-application-reference-data-source-request
-                              #:add-application-reference-data-source-response
                               #:application-code #:application-description
                               #:application-detail #:application-name
                               #:application-status #:application-summaries
@@ -27,31 +17,13 @@
                               #:cloud-watch-logging-option-update
                               #:cloud-watch-logging-option-updates
                               #:cloud-watch-logging-options
-                              #:code-validation-exception
-                              #:concurrent-modification-exception
-                              #:create-application #:create-application-request
-                              #:create-application-response
-                              #:delete-application
+                              #:create-application #:delete-application
                               #:delete-application-cloud-watch-logging-option
-                              #:delete-application-cloud-watch-logging-option-request
-                              #:delete-application-cloud-watch-logging-option-response
                               #:delete-application-input-processing-configuration
-                              #:delete-application-input-processing-configuration-request
-                              #:delete-application-input-processing-configuration-response
                               #:delete-application-output
-                              #:delete-application-output-request
-                              #:delete-application-output-response
                               #:delete-application-reference-data-source
-                              #:delete-application-reference-data-source-request
-                              #:delete-application-reference-data-source-response
-                              #:delete-application-request
-                              #:delete-application-response
-                              #:describe-application
-                              #:describe-application-request
-                              #:describe-application-response
-                              #:destination-schema #:discover-input-schema
-                              #:discover-input-schema-request
-                              #:discover-input-schema-response #:error-message
+                              #:describe-application #:destination-schema
+                              #:discover-input-schema #:error-message
                               #:file-key #:id #:in-app-stream-name
                               #:in-app-stream-names #:in-app-table-name #:input
                               #:input-configuration #:input-configurations
@@ -67,8 +39,6 @@
                               #:input-schema-update #:input-starting-position
                               #:input-starting-position-configuration
                               #:input-update #:input-updates #:inputs
-                              #:invalid-application-configuration-exception
-                              #:invalid-argument-exception
                               #:jsonmapping-parameters #:kinesis-analytics-arn
                               #:kinesis-analytics-20150814
                               #:kinesis-firehose-input
@@ -84,15 +54,10 @@
                               #:kinesis-streams-output-description
                               #:kinesis-streams-output-update #:lambda-output
                               #:lambda-output-description
-                              #:lambda-output-update #:limit-exceeded-exception
-                              #:list-applications
+                              #:lambda-output-update #:list-applications
                               #:list-applications-input-limit
-                              #:list-applications-request
-                              #:list-applications-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:log-stream-arn #:mapping-parameters #:output
+                              #:list-tags-for-resource #:log-stream-arn
+                              #:mapping-parameters #:output
                               #:output-description #:output-descriptions
                               #:output-update #:output-updates #:outputs
                               #:parsed-input-record #:parsed-input-record-field
@@ -109,27 +74,14 @@
                               #:reference-data-source-descriptions
                               #:reference-data-source-update
                               #:reference-data-source-updates #:resource-arn
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:resource-provisioned-throughput-exceeded-exception
                               #:role-arn #:s3configuration
                               #:s3reference-data-source
                               #:s3reference-data-source-description
-                              #:s3reference-data-source-update
-                              #:service-unavailable-exception #:source-schema
-                              #:start-application #:start-application-request
-                              #:start-application-response #:stop-application
-                              #:stop-application-request
-                              #:stop-application-response #:tag #:tag-key
-                              #:tag-keys #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
-                              #:timestamp #:too-many-tags-exception
-                              #:unable-to-detect-schema-exception
-                              #:unsupported-operation-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-application
-                              #:update-application-request
-                              #:update-application-response))
+                              #:s3reference-data-source-update #:source-schema
+                              #:start-application #:stop-application #:tag
+                              #:tag-key #:tag-keys #:tag-resource #:tag-value
+                              #:tags #:timestamp #:untag-resource
+                              #:update-application))
 (common-lisp:in-package #:pira/kinesis-analytics)
 
 (smithy/sdk/service:define-service kinesis-analytics-20150814 :shape-name

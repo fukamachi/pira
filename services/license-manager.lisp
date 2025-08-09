@@ -1,90 +1,41 @@
 (uiop/package:define-package #:pira/license-manager (:use)
                              (:export #:awslicense-manager #:accept-grant
-                              #:accept-grant-request #:accept-grant-response
-                              #:access-denied-exception
                               #:activation-override-behavior
                               #:allowed-operation #:allowed-operation-list
-                              #:arn #:arn-list #:authorization-exception
+                              #:arn #:arn-list
                               #:automated-discovery-information #:boolean
                               #:borrow-configuration #:box-boolean
                               #:box-integer #:box-long #:check-in-license
-                              #:check-in-license-request
-                              #:check-in-license-response
-                              #:checkout-borrow-license
-                              #:checkout-borrow-license-request
-                              #:checkout-borrow-license-response
-                              #:checkout-license #:checkout-license-request
-                              #:checkout-license-response #:checkout-type
-                              #:client-request-token #:client-token
-                              #:conflict-exception #:consumed-license-summary
+                              #:checkout-borrow-license #:checkout-license
+                              #:checkout-type #:client-request-token
+                              #:client-token #:consumed-license-summary
                               #:consumed-license-summary-list
                               #:consumption-configuration #:create-grant
-                              #:create-grant-request #:create-grant-response
-                              #:create-grant-version
-                              #:create-grant-version-request
-                              #:create-grant-version-response #:create-license
+                              #:create-grant-version #:create-license
                               #:create-license-configuration
-                              #:create-license-configuration-request
-                              #:create-license-configuration-response
                               #:create-license-conversion-task-for-resource
-                              #:create-license-conversion-task-for-resource-request
-                              #:create-license-conversion-task-for-resource-response
                               #:create-license-manager-report-generator
-                              #:create-license-manager-report-generator-request
-                              #:create-license-manager-report-generator-response
-                              #:create-license-request
-                              #:create-license-response
-                              #:create-license-version
-                              #:create-license-version-request
-                              #:create-license-version-response #:create-token
-                              #:create-token-request #:create-token-response
+                              #:create-license-version #:create-token
                               #:date-time #:datetime-range #:delete-grant
-                              #:delete-grant-request #:delete-grant-response
                               #:delete-license #:delete-license-configuration
-                              #:delete-license-configuration-request
-                              #:delete-license-configuration-response
                               #:delete-license-manager-report-generator
-                              #:delete-license-manager-report-generator-request
-                              #:delete-license-manager-report-generator-response
-                              #:delete-license-request
-                              #:delete-license-response #:delete-token
-                              #:delete-token-request #:delete-token-response
-                              #:digital-signature-method #:entitlement
-                              #:entitlement-data #:entitlement-data-list
-                              #:entitlement-data-unit #:entitlement-list
-                              #:entitlement-not-allowed-exception
-                              #:entitlement-unit #:entitlement-usage
-                              #:entitlement-usage-list
-                              #:extend-license-consumption
-                              #:extend-license-consumption-request
-                              #:extend-license-consumption-response
-                              #:failed-dependency-exception #:filter
-                              #:filter-limit-exceeded-exception #:filter-list
-                              #:filter-name #:filter-value #:filter-values
-                              #:filters #:get-access-token
-                              #:get-access-token-request
-                              #:get-access-token-response #:get-grant
-                              #:get-grant-request #:get-grant-response
-                              #:get-license #:get-license-configuration
-                              #:get-license-configuration-request
-                              #:get-license-configuration-response
+                              #:delete-token #:digital-signature-method
+                              #:entitlement #:entitlement-data
+                              #:entitlement-data-list #:entitlement-data-unit
+                              #:entitlement-list #:entitlement-unit
+                              #:entitlement-usage #:entitlement-usage-list
+                              #:extend-license-consumption #:filter
+                              #:filter-list #:filter-name #:filter-value
+                              #:filter-values #:filters #:get-access-token
+                              #:get-grant #:get-license
+                              #:get-license-configuration
                               #:get-license-conversion-task
-                              #:get-license-conversion-task-request
-                              #:get-license-conversion-task-response
                               #:get-license-manager-report-generator
-                              #:get-license-manager-report-generator-request
-                              #:get-license-manager-report-generator-response
-                              #:get-license-request #:get-license-response
-                              #:get-license-usage #:get-license-usage-request
-                              #:get-license-usage-response
-                              #:get-service-settings
-                              #:get-service-settings-request
-                              #:get-service-settings-response #:grant
-                              #:grant-list #:grant-status #:granted-license
-                              #:granted-license-list #:iso8601date-time
-                              #:integer #:invalid-parameter-value-exception
-                              #:invalid-resource-state-exception
-                              #:inventory-filter #:inventory-filter-condition
+                              #:get-license-usage #:get-service-settings
+                              #:grant #:grant-list #:grant-status
+                              #:granted-license #:granted-license-list
+                              #:iso8601date-time #:integer #:inventory-filter
+                              #:inventory-filter-condition
                               #:inventory-filter-list #:issuer #:issuer-details
                               #:license #:license-configuration
                               #:license-configuration-association
@@ -103,59 +54,25 @@
                               #:license-operation-failure-list
                               #:license-specification #:license-specifications
                               #:license-status #:license-usage
-                              #:license-usage-exception
                               #:list-associations-for-license-configuration
-                              #:list-associations-for-license-configuration-request
-                              #:list-associations-for-license-configuration-response
                               #:list-distributed-grants
-                              #:list-distributed-grants-request
-                              #:list-distributed-grants-response
                               #:list-failures-for-license-configuration-operations
-                              #:list-failures-for-license-configuration-operations-request
-                              #:list-failures-for-license-configuration-operations-response
                               #:list-license-configurations
-                              #:list-license-configurations-request
-                              #:list-license-configurations-response
                               #:list-license-conversion-tasks
-                              #:list-license-conversion-tasks-request
-                              #:list-license-conversion-tasks-response
                               #:list-license-manager-report-generators
-                              #:list-license-manager-report-generators-request
-                              #:list-license-manager-report-generators-response
                               #:list-license-specifications-for-resource
-                              #:list-license-specifications-for-resource-request
-                              #:list-license-specifications-for-resource-response
-                              #:list-license-versions
-                              #:list-license-versions-request
-                              #:list-license-versions-response #:list-licenses
-                              #:list-licenses-request #:list-licenses-response
+                              #:list-license-versions #:list-licenses
                               #:list-received-grants
                               #:list-received-grants-for-organization
-                              #:list-received-grants-for-organization-request
-                              #:list-received-grants-for-organization-response
-                              #:list-received-grants-request
-                              #:list-received-grants-response
                               #:list-received-licenses
                               #:list-received-licenses-for-organization
-                              #:list-received-licenses-for-organization-request
-                              #:list-received-licenses-for-organization-response
-                              #:list-received-licenses-request
-                              #:list-received-licenses-response
                               #:list-resource-inventory
-                              #:list-resource-inventory-request
-                              #:list-resource-inventory-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-tokens
-                              #:list-tokens-request #:list-tokens-response
-                              #:list-usage-for-license-configuration
-                              #:list-usage-for-license-configuration-request
-                              #:list-usage-for-license-configuration-response
-                              #:location #:long #:managed-resource-summary
+                              #:list-tags-for-resource #:list-tokens
+                              #:list-usage-for-license-configuration #:location
+                              #:long #:managed-resource-summary
                               #:managed-resource-summary-list #:max-size100
                               #:max-size3string-list #:message #:metadata
-                              #:metadata-list
-                              #:no-entitlements-allowed-exception #:options
+                              #:metadata-list #:options
                               #:organization-configuration #:principal-arn-list
                               #:product-code-id #:product-code-list
                               #:product-code-list-item #:product-code-type
@@ -163,40 +80,22 @@
                               #:product-information-filter
                               #:product-information-filter-list
                               #:product-information-list
-                              #:provisional-configuration
-                              #:rate-limit-exceeded-exception
-                              #:received-metadata #:received-status
-                              #:redirect-exception #:reject-grant
-                              #:reject-grant-request #:reject-grant-response
-                              #:renew-type #:report-context #:report-frequency
+                              #:provisional-configuration #:received-metadata
+                              #:received-status #:reject-grant #:renew-type
+                              #:report-context #:report-frequency
                               #:report-frequency-type #:report-generator
                               #:report-generator-list #:report-generator-name
                               #:report-type #:report-type-list
                               #:resource-inventory #:resource-inventory-list
-                              #:resource-limit-exceeded-exception
-                              #:resource-not-found-exception #:resource-type
-                              #:s3location #:server-internal-exception
-                              #:signed-token #:status-reason-message #:string
-                              #:string-list #:tag #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:token-data #:token-list
-                              #:token-string #:token-type
-                              #:unsupported-digital-signature-method-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:resource-type #:s3location #:signed-token
+                              #:status-reason-message #:string #:string-list
+                              #:tag #:tag-key-list #:tag-list #:tag-resource
+                              #:token-data #:token-list #:token-string
+                              #:token-type #:untag-resource
                               #:update-license-configuration
-                              #:update-license-configuration-request
-                              #:update-license-configuration-response
                               #:update-license-manager-report-generator
-                              #:update-license-manager-report-generator-request
-                              #:update-license-manager-report-generator-response
                               #:update-license-specifications-for-resource
-                              #:update-license-specifications-for-resource-request
-                              #:update-license-specifications-for-resource-response
-                              #:update-service-settings
-                              #:update-service-settings-request
-                              #:update-service-settings-response
-                              #:usage-operation #:validation-exception))
+                              #:update-service-settings #:usage-operation))
 (common-lisp:in-package #:pira/license-manager)
 
 (smithy/sdk/service:define-service awslicense-manager :shape-name

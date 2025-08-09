@@ -17,101 +17,41 @@
                               #:connector-capability-list #:connector-id
                               #:connector-list #:connector-status
                               #:connector-version #:create-app
-                              #:create-app-request #:create-app-response
-                              #:create-replication-job
-                              #:create-replication-job-request
-                              #:create-replication-job-response #:delete-app
+                              #:create-replication-job #:delete-app
                               #:delete-app-launch-configuration
-                              #:delete-app-launch-configuration-request
-                              #:delete-app-launch-configuration-response
                               #:delete-app-replication-configuration
-                              #:delete-app-replication-configuration-request
-                              #:delete-app-replication-configuration-response
-                              #:delete-app-request #:delete-app-response
                               #:delete-app-validation-configuration
-                              #:delete-app-validation-configuration-request
-                              #:delete-app-validation-configuration-response
-                              #:delete-replication-job
-                              #:delete-replication-job-request
-                              #:delete-replication-job-response
-                              #:delete-server-catalog
-                              #:delete-server-catalog-request
-                              #:delete-server-catalog-response #:description
-                              #:disassociate-connector
-                              #:disassociate-connector-request
-                              #:disassociate-connector-response
-                              #:dry-run-operation-exception #:ec2key-name
-                              #:encrypted #:error-message
+                              #:delete-replication-job #:delete-server-catalog
+                              #:description #:disassociate-connector
+                              #:ec2key-name #:encrypted #:error-message
                               #:execution-timeout-seconds
                               #:force-stop-app-replication
                               #:force-terminate-app #:frequency
-                              #:generate-change-set
-                              #:generate-change-set-request
-                              #:generate-change-set-response
-                              #:generate-template #:generate-template-request
-                              #:generate-template-response #:get-app
-                              #:get-app-launch-configuration
-                              #:get-app-launch-configuration-request
-                              #:get-app-launch-configuration-response
+                              #:generate-change-set #:generate-template
+                              #:get-app #:get-app-launch-configuration
                               #:get-app-replication-configuration
-                              #:get-app-replication-configuration-request
-                              #:get-app-replication-configuration-response
-                              #:get-app-request #:get-app-response
                               #:get-app-validation-configuration
-                              #:get-app-validation-configuration-request
-                              #:get-app-validation-configuration-response
-                              #:get-app-validation-output
-                              #:get-app-validation-output-request
-                              #:get-app-validation-output-response
-                              #:get-connectors #:get-connectors-request
-                              #:get-connectors-response #:get-replication-jobs
-                              #:get-replication-jobs-request
-                              #:get-replication-jobs-response
-                              #:get-replication-runs
-                              #:get-replication-runs-request
-                              #:get-replication-runs-response #:get-servers
-                              #:get-servers-request #:get-servers-response
-                              #:import-app-catalog #:import-app-catalog-request
-                              #:import-app-catalog-response
-                              #:import-server-catalog
-                              #:import-server-catalog-request
-                              #:import-server-catalog-response
-                              #:imported-app-id #:instance-id #:instance-type
-                              #:internal-error #:invalid-parameter-exception
-                              #:ip-address #:kms-key-id #:launch-app
-                              #:launch-app-request #:launch-app-response
-                              #:launch-details #:launch-order #:license-type
-                              #:list-apps #:list-apps-request
-                              #:list-apps-response #:logical-id #:mac-address
-                              #:max-results
-                              #:missing-required-parameter-exception
-                              #:next-token #:no-connectors-available-exception
-                              #:non-empty-string-with-max-len255
+                              #:get-app-validation-output #:get-connectors
+                              #:get-replication-jobs #:get-replication-runs
+                              #:get-servers #:import-app-catalog
+                              #:import-server-catalog #:imported-app-id
+                              #:instance-id #:instance-type #:ip-address
+                              #:kms-key-id #:launch-app #:launch-details
+                              #:launch-order #:license-type #:list-apps
+                              #:logical-id #:mac-address #:max-results
+                              #:next-token #:non-empty-string-with-max-len255
                               #:notification-context
                               #:notify-app-validation-output
-                              #:notify-app-validation-output-request
-                              #:notify-app-validation-output-response
-                              #:number-of-recent-amis-to-keep
-                              #:operation-not-permitted-exception
-                              #:output-format #:put-app-launch-configuration
-                              #:put-app-launch-configuration-request
-                              #:put-app-launch-configuration-response
+                              #:number-of-recent-amis-to-keep #:output-format
+                              #:put-app-launch-configuration
                               #:put-app-replication-configuration
-                              #:put-app-replication-configuration-request
-                              #:put-app-replication-configuration-response
                               #:put-app-validation-configuration
-                              #:put-app-validation-configuration-request
-                              #:put-app-validation-configuration-response
-                              #:replication-job
-                              #:replication-job-already-exists-exception
-                              #:replication-job-id #:replication-job-list
-                              #:replication-job-not-found-exception
-                              #:replication-job-state
+                              #:replication-job #:replication-job-id
+                              #:replication-job-list #:replication-job-state
                               #:replication-job-status-message
                               #:replication-job-terminated #:replication-run
-                              #:replication-run-id
-                              #:replication-run-limit-exceeded-exception
-                              #:replication-run-list #:replication-run-stage
+                              #:replication-run-id #:replication-run-list
+                              #:replication-run-stage
                               #:replication-run-stage-details
                               #:replication-run-stage-progress
                               #:replication-run-state
@@ -120,7 +60,6 @@
                               #:s3bucket-name #:s3key-name #:s3location
                               #:ssmoutput #:ssmvalidation-parameters
                               #:script-type #:security-group #:server
-                              #:server-cannot-be-replicated-exception
                               #:server-catalog-status #:server-group
                               #:server-group-id
                               #:server-group-launch-configuration
@@ -141,27 +80,12 @@
                               #:server-validation-output
                               #:server-validation-strategy #:source #:stack-id
                               #:stack-name #:start-app-replication
-                              #:start-app-replication-request
-                              #:start-app-replication-response
                               #:start-on-demand-app-replication
-                              #:start-on-demand-app-replication-request
-                              #:start-on-demand-app-replication-response
                               #:start-on-demand-replication-run
-                              #:start-on-demand-replication-run-request
-                              #:start-on-demand-replication-run-response
-                              #:stop-app-replication
-                              #:stop-app-replication-request
-                              #:stop-app-replication-response #:subnet #:tag
-                              #:tag-key #:tag-value #:tags
-                              #:temporarily-unavailable-exception
-                              #:terminate-app #:terminate-app-request
-                              #:terminate-app-response #:timestamp
+                              #:stop-app-replication #:subnet #:tag #:tag-key
+                              #:tag-value #:tags #:terminate-app #:timestamp
                               #:total-server-groups #:total-servers
-                              #:unauthorized-operation-exception #:update-app
-                              #:update-app-request #:update-app-response
-                              #:update-replication-job
-                              #:update-replication-job-request
-                              #:update-replication-job-response #:user-data
+                              #:update-app #:update-replication-job #:user-data
                               #:user-data-validation-parameters #:vpc
                               #:validation-id #:validation-output
                               #:validation-output-list #:validation-status

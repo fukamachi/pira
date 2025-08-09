@@ -18,9 +18,8 @@
                               #:application-settings-resource
                               #:applications-response #:attribute-dimension
                               #:attribute-type #:attributes-resource
-                              #:bad-request-exception #:baidu-channel-request
-                              #:baidu-channel-response #:baidu-message
-                              #:base-kpi-result #:button-action
+                              #:baidu-channel-request #:baidu-channel-response
+                              #:baidu-message #:base-kpi-result #:button-action
                               #:campaign-custom-message
                               #:campaign-date-range-kpi-response
                               #:campaign-email-message #:campaign-event-filter
@@ -31,100 +30,35 @@
                               #:channel-response #:channel-type
                               #:channels-response #:closed-days
                               #:closed-days-rule #:condition
-                              #:conditional-split-activity #:conflict-exception
+                              #:conditional-split-activity
                               #:contact-center-activity #:create-app
-                              #:create-app-request #:create-app-response
                               #:create-application-request #:create-campaign
-                              #:create-campaign-request
-                              #:create-campaign-response
-                              #:create-email-template
-                              #:create-email-template-request
-                              #:create-email-template-response
-                              #:create-export-job #:create-export-job-request
-                              #:create-export-job-response #:create-import-job
-                              #:create-import-job-request
-                              #:create-import-job-response
-                              #:create-in-app-template
-                              #:create-in-app-template-request
-                              #:create-in-app-template-response
-                              #:create-journey #:create-journey-request
-                              #:create-journey-response #:create-push-template
-                              #:create-push-template-request
-                              #:create-push-template-response
+                              #:create-email-template #:create-export-job
+                              #:create-import-job #:create-in-app-template
+                              #:create-journey #:create-push-template
                               #:create-recommender-configuration
-                              #:create-recommender-configuration-request
-                              #:create-recommender-configuration-response
                               #:create-recommender-configuration-shape
-                              #:create-segment #:create-segment-request
-                              #:create-segment-response #:create-sms-template
-                              #:create-sms-template-request
-                              #:create-sms-template-response
+                              #:create-segment #:create-sms-template
                               #:create-template-message-body
                               #:create-voice-template
-                              #:create-voice-template-request
-                              #:create-voice-template-response
                               #:custom-delivery-configuration
                               #:custom-message-activity #:day-of-week
                               #:default-button-configuration #:default-message
                               #:default-push-notification-message
                               #:default-push-notification-template
-                              #:delete-adm-channel #:delete-adm-channel-request
-                              #:delete-adm-channel-response
-                              #:delete-apns-channel
-                              #:delete-apns-channel-request
-                              #:delete-apns-channel-response
+                              #:delete-adm-channel #:delete-apns-channel
                               #:delete-apns-sandbox-channel
-                              #:delete-apns-sandbox-channel-request
-                              #:delete-apns-sandbox-channel-response
                               #:delete-apns-voip-channel
-                              #:delete-apns-voip-channel-request
-                              #:delete-apns-voip-channel-response
-                              #:delete-apns-voip-sandbox-channel
-                              #:delete-apns-voip-sandbox-channel-request
-                              #:delete-apns-voip-sandbox-channel-response
-                              #:delete-app #:delete-app-request
-                              #:delete-app-response #:delete-baidu-channel
-                              #:delete-baidu-channel-request
-                              #:delete-baidu-channel-response #:delete-campaign
-                              #:delete-campaign-request
-                              #:delete-campaign-response #:delete-email-channel
-                              #:delete-email-channel-request
-                              #:delete-email-channel-response
-                              #:delete-email-template
-                              #:delete-email-template-request
-                              #:delete-email-template-response
-                              #:delete-endpoint #:delete-endpoint-request
-                              #:delete-endpoint-response #:delete-event-stream
-                              #:delete-event-stream-request
-                              #:delete-event-stream-response
-                              #:delete-gcm-channel #:delete-gcm-channel-request
-                              #:delete-gcm-channel-response
-                              #:delete-in-app-template
-                              #:delete-in-app-template-request
-                              #:delete-in-app-template-response
-                              #:delete-journey #:delete-journey-request
-                              #:delete-journey-response #:delete-push-template
-                              #:delete-push-template-request
-                              #:delete-push-template-response
+                              #:delete-apns-voip-sandbox-channel #:delete-app
+                              #:delete-baidu-channel #:delete-campaign
+                              #:delete-email-channel #:delete-email-template
+                              #:delete-endpoint #:delete-event-stream
+                              #:delete-gcm-channel #:delete-in-app-template
+                              #:delete-journey #:delete-push-template
                               #:delete-recommender-configuration
-                              #:delete-recommender-configuration-request
-                              #:delete-recommender-configuration-response
-                              #:delete-segment #:delete-segment-request
-                              #:delete-segment-response #:delete-sms-channel
-                              #:delete-sms-channel-request
-                              #:delete-sms-channel-response
-                              #:delete-sms-template
-                              #:delete-sms-template-request
-                              #:delete-sms-template-response
-                              #:delete-user-endpoints
-                              #:delete-user-endpoints-request
-                              #:delete-user-endpoints-response
-                              #:delete-voice-channel
-                              #:delete-voice-channel-request
-                              #:delete-voice-channel-response
-                              #:delete-voice-template
-                              #:delete-voice-template-request
-                              #:delete-voice-template-response
+                              #:delete-segment #:delete-sms-channel
+                              #:delete-sms-template #:delete-user-endpoints
+                              #:delete-voice-channel #:delete-voice-template
                               #:delivery-status #:dimension-type
                               #:direct-message-configuration #:duration
                               #:email-channel-request #:email-channel-response
@@ -142,121 +76,40 @@
                               #:events-batch #:events-request #:events-response
                               #:export-job-request #:export-job-resource
                               #:export-job-response #:export-jobs-response
-                              #:filter-type #:forbidden-exception #:format
-                              #:frequency #:gcmchannel-request
-                              #:gcmchannel-response #:gcmmessage
-                              #:gpscoordinates #:gpspoint-dimension
-                              #:get-adm-channel #:get-adm-channel-request
-                              #:get-adm-channel-response #:get-apns-channel
-                              #:get-apns-channel-request
-                              #:get-apns-channel-response
-                              #:get-apns-sandbox-channel
-                              #:get-apns-sandbox-channel-request
-                              #:get-apns-sandbox-channel-response
+                              #:filter-type #:format #:frequency
+                              #:gcmchannel-request #:gcmchannel-response
+                              #:gcmmessage #:gpscoordinates
+                              #:gpspoint-dimension #:get-adm-channel
+                              #:get-apns-channel #:get-apns-sandbox-channel
                               #:get-apns-voip-channel
-                              #:get-apns-voip-channel-request
-                              #:get-apns-voip-channel-response
-                              #:get-apns-voip-sandbox-channel
-                              #:get-apns-voip-sandbox-channel-request
-                              #:get-apns-voip-sandbox-channel-response
-                              #:get-app #:get-app-request #:get-app-response
+                              #:get-apns-voip-sandbox-channel #:get-app
                               #:get-application-date-range-kpi
-                              #:get-application-date-range-kpi-request
-                              #:get-application-date-range-kpi-response
-                              #:get-application-settings
-                              #:get-application-settings-request
-                              #:get-application-settings-response #:get-apps
-                              #:get-apps-request #:get-apps-response
-                              #:get-baidu-channel #:get-baidu-channel-request
-                              #:get-baidu-channel-response #:get-campaign
+                              #:get-application-settings #:get-apps
+                              #:get-baidu-channel #:get-campaign
                               #:get-campaign-activities
-                              #:get-campaign-activities-request
-                              #:get-campaign-activities-response
                               #:get-campaign-date-range-kpi
-                              #:get-campaign-date-range-kpi-request
-                              #:get-campaign-date-range-kpi-response
-                              #:get-campaign-request #:get-campaign-response
-                              #:get-campaign-version
-                              #:get-campaign-version-request
-                              #:get-campaign-version-response
-                              #:get-campaign-versions
-                              #:get-campaign-versions-request
-                              #:get-campaign-versions-response #:get-campaigns
-                              #:get-campaigns-request #:get-campaigns-response
-                              #:get-channels #:get-channels-request
-                              #:get-channels-response #:get-email-channel
-                              #:get-email-channel-request
-                              #:get-email-channel-response #:get-email-template
-                              #:get-email-template-request
-                              #:get-email-template-response #:get-endpoint
-                              #:get-endpoint-request #:get-endpoint-response
-                              #:get-event-stream #:get-event-stream-request
-                              #:get-event-stream-response #:get-export-job
-                              #:get-export-job-request
-                              #:get-export-job-response #:get-export-jobs
-                              #:get-export-jobs-request
-                              #:get-export-jobs-response #:get-gcm-channel
-                              #:get-gcm-channel-request
-                              #:get-gcm-channel-response #:get-import-job
-                              #:get-import-job-request
-                              #:get-import-job-response #:get-import-jobs
-                              #:get-import-jobs-request
-                              #:get-import-jobs-response #:get-in-app-messages
-                              #:get-in-app-messages-request
-                              #:get-in-app-messages-response
-                              #:get-in-app-template
-                              #:get-in-app-template-request
-                              #:get-in-app-template-response #:get-journey
+                              #:get-campaign-version #:get-campaign-versions
+                              #:get-campaigns #:get-channels
+                              #:get-email-channel #:get-email-template
+                              #:get-endpoint #:get-event-stream
+                              #:get-export-job #:get-export-jobs
+                              #:get-gcm-channel #:get-import-job
+                              #:get-import-jobs #:get-in-app-messages
+                              #:get-in-app-template #:get-journey
                               #:get-journey-date-range-kpi
-                              #:get-journey-date-range-kpi-request
-                              #:get-journey-date-range-kpi-response
                               #:get-journey-execution-activity-metrics
-                              #:get-journey-execution-activity-metrics-request
-                              #:get-journey-execution-activity-metrics-response
                               #:get-journey-execution-metrics
-                              #:get-journey-execution-metrics-request
-                              #:get-journey-execution-metrics-response
-                              #:get-journey-request #:get-journey-response
                               #:get-journey-run-execution-activity-metrics
-                              #:get-journey-run-execution-activity-metrics-request
-                              #:get-journey-run-execution-activity-metrics-response
                               #:get-journey-run-execution-metrics
-                              #:get-journey-run-execution-metrics-request
-                              #:get-journey-run-execution-metrics-response
-                              #:get-journey-runs #:get-journey-runs-request
-                              #:get-journey-runs-response #:get-push-template
-                              #:get-push-template-request
-                              #:get-push-template-response
+                              #:get-journey-runs #:get-push-template
                               #:get-recommender-configuration
-                              #:get-recommender-configuration-request
-                              #:get-recommender-configuration-response
-                              #:get-recommender-configurations
-                              #:get-recommender-configurations-request
-                              #:get-recommender-configurations-response
-                              #:get-segment #:get-segment-export-jobs
-                              #:get-segment-export-jobs-request
-                              #:get-segment-export-jobs-response
-                              #:get-segment-import-jobs
-                              #:get-segment-import-jobs-request
-                              #:get-segment-import-jobs-response
-                              #:get-segment-request #:get-segment-response
-                              #:get-segment-version
-                              #:get-segment-version-request
-                              #:get-segment-version-response
-                              #:get-segment-versions
-                              #:get-segment-versions-request
-                              #:get-segment-versions-response #:get-segments
-                              #:get-segments-request #:get-segments-response
-                              #:get-sms-channel #:get-sms-channel-request
-                              #:get-sms-channel-response #:get-sms-template
-                              #:get-sms-template-request
-                              #:get-sms-template-response #:get-user-endpoints
-                              #:get-user-endpoints-request
-                              #:get-user-endpoints-response #:get-voice-channel
-                              #:get-voice-channel-request
-                              #:get-voice-channel-response #:get-voice-template
-                              #:get-voice-template-request
-                              #:get-voice-template-response #:holdout-activity
+                              #:get-recommender-configurations #:get-segment
+                              #:get-segment-export-jobs
+                              #:get-segment-import-jobs #:get-segment-version
+                              #:get-segment-versions #:get-segments
+                              #:get-sms-channel #:get-sms-template
+                              #:get-user-endpoints #:get-voice-channel
+                              #:get-voice-template #:holdout-activity
                               #:import-job-request #:import-job-resource
                               #:import-job-response #:import-jobs-response
                               #:in-app-campaign-schedule #:in-app-message
@@ -267,8 +120,8 @@
                               #:in-app-messages-response
                               #:in-app-template-request
                               #:in-app-template-response #:include
-                              #:internal-server-error-exception #:item-response
-                              #:job-status #:journey-channel-settings
+                              #:item-response #:job-status
+                              #:journey-channel-settings
                               #:journey-custom-message
                               #:journey-date-range-kpi-response
                               #:journey-email-message
@@ -282,8 +135,7 @@
                               #:journey-runs-response #:journey-smsmessage
                               #:journey-schedule #:journey-state-request
                               #:journey-timeframe-cap #:journeys-response
-                              #:layout #:list-journeys #:list-journeys-request
-                              #:list-journeys-response
+                              #:layout #:list-journeys
                               #:list-of-activity-response
                               #:list-of-application-response
                               #:list-of-campaign-response
@@ -315,14 +167,8 @@
                               #:list-of-timezone-estimation-methods-element
                               #:list-of-string
                               #:list-recommender-configurations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-template-versions
-                              #:list-template-versions-request
-                              #:list-template-versions-response
-                              #:list-templates #:list-templates-request
-                              #:list-templates-response #:map-of-activity
+                              #:list-tags-for-resource #:list-template-versions
+                              #:list-templates #:map-of-activity
                               #:map-of-address-configuration
                               #:map-of-attribute-dimension
                               #:map-of-channel-response
@@ -338,30 +184,22 @@
                               #:message #:message-body #:message-configuration
                               #:message-header #:message-request
                               #:message-response #:message-result
-                              #:message-type #:method-not-allowed-exception
-                              #:metric-dimension #:mode
+                              #:message-type #:metric-dimension #:mode
                               #:multi-conditional-branch
                               #:multi-conditional-split-activity
-                              #:not-found-exception #:number-validate-request
+                              #:number-validate-request
                               #:number-validate-response #:open-hours
                               #:open-hours-rule #:operator
                               #:override-button-configuration
-                              #:payload-too-large-exception
-                              #:phone-number-validate
-                              #:phone-number-validate-request
-                              #:phone-number-validate-response #:pinpoint
+                              #:phone-number-validate #:pinpoint
                               #:public-endpoint #:push-message-activity
                               #:push-notification-template-request
                               #:push-notification-template-response
-                              #:put-event-stream #:put-event-stream-request
-                              #:put-event-stream-response #:put-events
-                              #:put-events-request #:put-events-response
-                              #:quiet-time #:random-split-activity
-                              #:random-split-entry #:raw-email
-                              #:recency-dimension #:recency-type
+                              #:put-event-stream #:put-events #:quiet-time
+                              #:random-split-activity #:random-split-entry
+                              #:raw-email #:recency-dimension #:recency-type
                               #:recommender-configuration-response
-                              #:remove-attributes #:remove-attributes-request
-                              #:remove-attributes-response #:result-row
+                              #:remove-attributes #:result-row
                               #:result-row-value #:smschannel-request
                               #:smschannel-response #:smsmessage
                               #:smsmessage-activity #:smstemplate-request
@@ -372,98 +210,42 @@
                               #:segment-import-resource #:segment-location
                               #:segment-reference #:segment-response
                               #:segment-type #:segments-response
-                              #:send-messages #:send-messages-request
-                              #:send-messages-response #:send-otpmessage
-                              #:send-otpmessage-request
+                              #:send-messages #:send-otpmessage
                               #:send-otpmessage-request-parameters
-                              #:send-otpmessage-response
                               #:send-users-message-request
                               #:send-users-message-response
-                              #:send-users-messages
-                              #:send-users-messages-request
-                              #:send-users-messages-response #:session
-                              #:set-dimension #:simple-condition #:simple-email
+                              #:send-users-messages #:session #:set-dimension
+                              #:simple-condition #:simple-email
                               #:simple-email-part #:source-type
                               #:start-condition #:state #:tag-resource
-                              #:tag-resource-request #:tags-model #:template
+                              #:tags-model #:template
                               #:template-active-version-request
                               #:template-configuration
                               #:template-create-message-body
                               #:template-response #:template-type
                               #:template-version-response
                               #:template-versions-response #:templates-response
-                              #:too-many-requests-exception
                               #:treatment-resource #:type #:untag-resource
-                              #:untag-resource-request #:update-adm-channel
-                              #:update-adm-channel-request
-                              #:update-adm-channel-response
-                              #:update-apns-channel
-                              #:update-apns-channel-request
-                              #:update-apns-channel-response
+                              #:update-adm-channel #:update-apns-channel
                               #:update-apns-sandbox-channel
-                              #:update-apns-sandbox-channel-request
-                              #:update-apns-sandbox-channel-response
                               #:update-apns-voip-channel
-                              #:update-apns-voip-channel-request
-                              #:update-apns-voip-channel-response
                               #:update-apns-voip-sandbox-channel
-                              #:update-apns-voip-sandbox-channel-request
-                              #:update-apns-voip-sandbox-channel-response
                               #:update-application-settings
-                              #:update-application-settings-request
-                              #:update-application-settings-response
                               #:update-attributes-request
-                              #:update-baidu-channel
-                              #:update-baidu-channel-request
-                              #:update-baidu-channel-response #:update-campaign
-                              #:update-campaign-request
-                              #:update-campaign-response #:update-email-channel
-                              #:update-email-channel-request
-                              #:update-email-channel-response
-                              #:update-email-template
-                              #:update-email-template-request
-                              #:update-email-template-response
-                              #:update-endpoint #:update-endpoint-request
-                              #:update-endpoint-response
-                              #:update-endpoints-batch
-                              #:update-endpoints-batch-request
-                              #:update-endpoints-batch-response
-                              #:update-gcm-channel #:update-gcm-channel-request
-                              #:update-gcm-channel-response
-                              #:update-in-app-template
-                              #:update-in-app-template-request
-                              #:update-in-app-template-response
-                              #:update-journey #:update-journey-request
-                              #:update-journey-response #:update-journey-state
-                              #:update-journey-state-request
-                              #:update-journey-state-response
+                              #:update-baidu-channel #:update-campaign
+                              #:update-email-channel #:update-email-template
+                              #:update-endpoint #:update-endpoints-batch
+                              #:update-gcm-channel #:update-in-app-template
+                              #:update-journey #:update-journey-state
                               #:update-push-template
-                              #:update-push-template-request
-                              #:update-push-template-response
                               #:update-recommender-configuration
-                              #:update-recommender-configuration-request
-                              #:update-recommender-configuration-response
                               #:update-recommender-configuration-shape
-                              #:update-segment #:update-segment-request
-                              #:update-segment-response #:update-sms-channel
-                              #:update-sms-channel-request
-                              #:update-sms-channel-response
+                              #:update-segment #:update-sms-channel
                               #:update-sms-template
-                              #:update-sms-template-request
-                              #:update-sms-template-response
                               #:update-template-active-version
-                              #:update-template-active-version-request
-                              #:update-template-active-version-response
-                              #:update-voice-channel
-                              #:update-voice-channel-request
-                              #:update-voice-channel-response
-                              #:update-voice-template
-                              #:update-voice-template-request
-                              #:update-voice-template-response
+                              #:update-voice-channel #:update-voice-template
                               #:verification-response #:verify-otpmessage
-                              #:verify-otpmessage-request
                               #:verify-otpmessage-request-parameters
-                              #:verify-otpmessage-response
                               #:voice-channel-request #:voice-channel-response
                               #:voice-message #:voice-template-request
                               #:voice-template-response #:wait-activity

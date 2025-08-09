@@ -1,11 +1,11 @@
 (uiop/package:define-package #:pira/rum (:use)
-                             (:export #:access-denied-exception #:alias
-                              #:app-monitor #:app-monitor-configuration
-                              #:app-monitor-details #:app-monitor-domain
-                              #:app-monitor-domain-list #:app-monitor-id
-                              #:app-monitor-name #:app-monitor-resource
-                              #:app-monitor-summary #:app-monitor-summary-list
-                              #:arn #:batch-create-rum-metric-definitions
+                             (:export #:alias #:app-monitor
+                              #:app-monitor-configuration #:app-monitor-details
+                              #:app-monitor-domain #:app-monitor-domain-list
+                              #:app-monitor-id #:app-monitor-name
+                              #:app-monitor-resource #:app-monitor-summary
+                              #:app-monitor-summary-list #:arn
+                              #:batch-create-rum-metric-definitions
                               #:batch-create-rum-metric-definitions-error
                               #:batch-create-rum-metric-definitions-errors
                               #:batch-create-rum-metric-definitions-request
@@ -18,15 +18,12 @@
                               #:batch-get-rum-metric-definitions
                               #:batch-get-rum-metric-definitions-request
                               #:batch-get-rum-metric-definitions-response
-                              #:conflict-exception #:create-app-monitor
-                              #:create-app-monitor-request
+                              #:create-app-monitor #:create-app-monitor-request
                               #:create-app-monitor-response #:custom-events
                               #:custom-events-status #:cw-log #:data-storage
                               #:delete-app-monitor #:delete-app-monitor-request
                               #:delete-app-monitor-response
                               #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response
                               #:delete-rum-metrics-destination
                               #:delete-rum-metrics-destination-request
                               #:delete-rum-metrics-destination-response
@@ -41,13 +38,10 @@
                               #:get-app-monitor-data-response
                               #:get-app-monitor-request
                               #:get-app-monitor-response #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response
                               #:isotimestamp-string #:iam-role-arn
-                              #:identity-pool-id #:internal-server-exception
-                              #:invalid-policy-revision-id-exception
-                              #:java-script-source-maps #:json-value
-                              #:list-app-monitors #:list-app-monitors-request
+                              #:identity-pool-id #:java-script-source-maps
+                              #:json-value #:list-app-monitors
+                              #:list-app-monitors-request
                               #:list-app-monitors-response
                               #:list-rum-metrics-destinations
                               #:list-rum-metrics-destinations-request
@@ -55,7 +49,6 @@
                               #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response
-                              #:malformed-policy-document-exception
                               #:max-query-results #:max-results-integer
                               #:metric-definition #:metric-definition-id
                               #:metric-definition-ids
@@ -63,12 +56,8 @@
                               #:metric-definitions-request #:metric-destination
                               #:metric-destination-summary
                               #:metric-destination-summary-list #:metric-name
-                              #:namespace #:pages #:policy-not-found-exception
-                              #:policy-revision-id
-                              #:policy-size-limit-exceeded-exception
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:put-rum-events
+                              #:namespace #:pages #:policy-revision-id
+                              #:put-resource-policy #:put-rum-events
                               #:put-rum-events-request
                               #:put-rum-events-response
                               #:put-rum-metrics-destination
@@ -77,24 +66,20 @@
                               #:query-filter #:query-filter-key
                               #:query-filter-value #:query-filter-value-list
                               #:query-filters #:query-timestamp #:rum
-                              #:resource-not-found-exception #:rum-event
-                              #:rum-event-list
-                              #:service-quota-exceeded-exception
+                              #:rum-event #:rum-event-list
                               #:session-sample-rate #:state-enum #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
                               #:tag-resource-request #:tag-resource-response
                               #:tag-value #:telemetries #:telemetry
-                              #:throttling-exception #:time-range #:token
-                              #:unit-label #:untag-resource
-                              #:untag-resource-request
+                              #:time-range #:token #:unit-label
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-app-monitor
                               #:update-app-monitor-request
                               #:update-app-monitor-response
                               #:update-rum-metric-definition
                               #:update-rum-metric-definition-request
                               #:update-rum-metric-definition-response #:url
-                              #:user-details #:validation-exception
-                              #:value-key))
+                              #:user-details #:value-key))
 (common-lisp:in-package #:pira/rum)
 
 (smithy/sdk/service:define-service rum :shape-name "RUM" :version "2018-05-10"

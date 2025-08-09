@@ -1,34 +1,19 @@
 (uiop/package:define-package #:pira/dsql (:use)
-                             (:export #:access-denied-exception #:arn
-                              #:client-token #:cluster #:cluster-arn
-                              #:cluster-arn-list #:cluster-creation-time
-                              #:cluster-id #:cluster-list #:cluster-status
-                              #:cluster-summary #:conflict-exception
-                              #:create-cluster #:create-cluster-input
-                              #:create-cluster-output #:dsql #:delete-cluster
-                              #:delete-cluster-input #:delete-cluster-output
+                             (:export #:arn #:client-token #:cluster
+                              #:cluster-arn #:cluster-arn-list
+                              #:cluster-creation-time #:cluster-id
+                              #:cluster-list #:cluster-status #:cluster-summary
+                              #:create-cluster #:dsql #:delete-cluster
                               #:deletion-protection-enabled
                               #:encryption-details #:encryption-status
                               #:encryption-type #:get-cluster
-                              #:get-cluster-input #:get-cluster-output
                               #:get-vpc-endpoint-service-name
-                              #:get-vpc-endpoint-service-name-input
-                              #:get-vpc-endpoint-service-name-output
-                              #:internal-server-exception #:kms-encryption-key
-                              #:kms-key-arn #:list-clusters
-                              #:list-clusters-input #:list-clusters-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:max-results
-                              #:multi-region-properties #:next-token #:region
-                              #:resource-not-found-exception #:service-name
-                              #:service-quota-exceeded-exception #:tag-key
+                              #:kms-encryption-key #:kms-key-arn
+                              #:list-clusters #:list-tags-for-resource
+                              #:max-results #:multi-region-properties
+                              #:next-token #:region #:service-name #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-input #:tag-value
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-input #:update-cluster
-                              #:update-cluster-input #:update-cluster-output
-                              #:validation-exception
+                              #:tag-value #:untag-resource #:update-cluster
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

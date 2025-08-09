@@ -3,56 +3,31 @@
                               #:check #:check-result #:check-type #:checks-list
                               #:cidr #:client-token #:connectivity-info
                               #:create-environment #:create-environment-host
-                              #:create-environment-host-request
-                              #:create-environment-host-response
-                              #:create-environment-request
-                              #:create-environment-response #:dedicated-host-id
-                              #:delete-environment #:delete-environment-host
-                              #:delete-environment-host-request
-                              #:delete-environment-host-response
-                              #:delete-environment-request
-                              #:delete-environment-response #:environment
+                              #:dedicated-host-id #:delete-environment
+                              #:delete-environment-host #:environment
                               #:environment-id #:environment-name
                               #:environment-resource #:environment-state
                               #:environment-state-list #:environment-summary
                               #:environment-summary-list #:get-environment
-                              #:get-environment-request
-                              #:get-environment-response #:host
-                              #:host-info-for-create
+                              #:host #:host-info-for-create
                               #:host-info-for-create-list #:host-list
                               #:host-name #:host-state #:initial-vlan-info
                               #:initial-vlans #:instance-type #:ip-address
                               #:key-name #:license-info #:license-info-list
-                              #:list-environment-hosts
-                              #:list-environment-hosts-request
-                              #:list-environment-hosts-response
-                              #:list-environment-vlans
-                              #:list-environment-vlans-request
-                              #:list-environment-vlans-response
-                              #:list-environments #:list-environments-request
-                              #:list-environments-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:network-interface #:network-interface-id
-                              #:network-interface-list #:pagination-token
-                              #:placement-group-id #:request-tag-map
-                              #:resource-not-found-exception #:response-tag-map
+                              #:list-environment-hosts #:list-environment-vlans
+                              #:list-environments #:list-tags-for-resource
+                              #:max-results #:network-interface
+                              #:network-interface-id #:network-interface-list
+                              #:pagination-token #:placement-group-id
+                              #:request-tag-map #:response-tag-map
                               #:route-server-peering
                               #:route-server-peering-list #:secret
                               #:secret-list #:security-group-id
                               #:security-groups
-                              #:service-access-security-groups
-                              #:service-quota-exceeded-exception #:solution-key
+                              #:service-access-security-groups #:solution-key
                               #:state-details #:subnet-id #:tag-key #:tag-keys
-                              #:tag-policy-exception #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception
-                              #:too-many-tags-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:vsan-license-key
-                              #:validation-exception
-                              #:validation-exception-field
+                              #:tag-resource #:tag-value #:untag-resource
+                              #:vsan-license-key #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vcf-hostnames
                               #:vcf-version #:vlan #:vlan-id #:vlan-list

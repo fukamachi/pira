@@ -1,48 +1,26 @@
 (uiop/package:define-package #:pira/pinpoint-email (:use)
-                             (:export #:account-suspended-exception
-                              #:already-exists-exception
-                              #:amazon-pinpoint-email-service
-                              #:amazon-resource-name #:bad-request-exception
-                              #:behavior-on-mx-failure #:blacklist-entries
-                              #:blacklist-entry #:blacklist-item-name
-                              #:blacklist-item-names #:blacklist-report
-                              #:blacklisting-description #:body #:campaign-id
-                              #:charset #:cloud-watch-destination
+                             (:export #:amazon-pinpoint-email-service
+                              #:amazon-resource-name #:behavior-on-mx-failure
+                              #:blacklist-entries #:blacklist-entry
+                              #:blacklist-item-name #:blacklist-item-names
+                              #:blacklist-report #:blacklisting-description
+                              #:body #:campaign-id #:charset
+                              #:cloud-watch-destination
                               #:cloud-watch-dimension-configuration
                               #:cloud-watch-dimension-configurations
-                              #:concurrent-modification-exception
                               #:configuration-set-name
                               #:configuration-set-name-list #:content
                               #:create-configuration-set
                               #:create-configuration-set-event-destination
-                              #:create-configuration-set-event-destination-request
-                              #:create-configuration-set-event-destination-response
-                              #:create-configuration-set-request
-                              #:create-configuration-set-response
                               #:create-dedicated-ip-pool
-                              #:create-dedicated-ip-pool-request
-                              #:create-dedicated-ip-pool-response
                               #:create-deliverability-test-report
-                              #:create-deliverability-test-report-request
-                              #:create-deliverability-test-report-response
-                              #:create-email-identity
-                              #:create-email-identity-request
-                              #:create-email-identity-response
-                              #:custom-redirect-domain #:daily-volume
-                              #:daily-volumes #:dedicated-ip
+                              #:create-email-identity #:custom-redirect-domain
+                              #:daily-volume #:daily-volumes #:dedicated-ip
                               #:dedicated-ip-list #:default-dimension-value
                               #:delete-configuration-set
                               #:delete-configuration-set-event-destination
-                              #:delete-configuration-set-event-destination-request
-                              #:delete-configuration-set-event-destination-response
-                              #:delete-configuration-set-request
-                              #:delete-configuration-set-response
                               #:delete-dedicated-ip-pool
-                              #:delete-dedicated-ip-pool-request
-                              #:delete-dedicated-ip-pool-response
                               #:delete-email-identity
-                              #:delete-email-identity-request
-                              #:delete-email-identity-response
                               #:deliverability-dashboard-account-status
                               #:deliverability-test-report
                               #:deliverability-test-reports
@@ -63,124 +41,56 @@
                               #:event-destination-name #:event-destinations
                               #:event-type #:event-types
                               #:general-enforcement-status #:get-account
-                              #:get-account-request #:get-account-response
-                              #:get-blacklist-reports
-                              #:get-blacklist-reports-request
-                              #:get-blacklist-reports-response
-                              #:get-configuration-set
+                              #:get-blacklist-reports #:get-configuration-set
                               #:get-configuration-set-event-destinations
-                              #:get-configuration-set-event-destinations-request
-                              #:get-configuration-set-event-destinations-response
-                              #:get-configuration-set-request
-                              #:get-configuration-set-response
-                              #:get-dedicated-ip #:get-dedicated-ip-request
-                              #:get-dedicated-ip-response #:get-dedicated-ips
-                              #:get-dedicated-ips-request
-                              #:get-dedicated-ips-response
+                              #:get-dedicated-ip #:get-dedicated-ips
                               #:get-deliverability-dashboard-options
-                              #:get-deliverability-dashboard-options-request
-                              #:get-deliverability-dashboard-options-response
                               #:get-deliverability-test-report
-                              #:get-deliverability-test-report-request
-                              #:get-deliverability-test-report-response
                               #:get-domain-deliverability-campaign
-                              #:get-domain-deliverability-campaign-request
-                              #:get-domain-deliverability-campaign-response
                               #:get-domain-statistics-report
-                              #:get-domain-statistics-report-request
-                              #:get-domain-statistics-report-response
-                              #:get-email-identity #:get-email-identity-request
-                              #:get-email-identity-response #:identity
-                              #:identity-info #:identity-info-list
-                              #:identity-type #:image-url
+                              #:get-email-identity #:identity #:identity-info
+                              #:identity-info-list #:identity-type #:image-url
                               #:inbox-placement-tracking-option #:ip #:ip-list
                               #:isp-name #:isp-name-list #:isp-placement
                               #:isp-placements #:kinesis-firehose-destination
-                              #:last-fresh-start #:limit-exceeded-exception
-                              #:list-configuration-sets
-                              #:list-configuration-sets-request
-                              #:list-configuration-sets-response
+                              #:last-fresh-start #:list-configuration-sets
                               #:list-dedicated-ip-pools
-                              #:list-dedicated-ip-pools-request
-                              #:list-dedicated-ip-pools-response
                               #:list-deliverability-test-reports
-                              #:list-deliverability-test-reports-request
-                              #:list-deliverability-test-reports-response
                               #:list-domain-deliverability-campaigns
-                              #:list-domain-deliverability-campaigns-request
-                              #:list-domain-deliverability-campaigns-response
                               #:list-email-identities
-                              #:list-email-identities-request
-                              #:list-email-identities-response
                               #:list-of-dedicated-ip-pools
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:mail-from-attributes #:mail-from-domain-name
-                              #:mail-from-domain-not-verified-exception
-                              #:mail-from-domain-status #:max24hour-send
-                              #:max-items #:max-send-rate #:message
-                              #:message-content #:message-data
-                              #:message-rejected #:message-tag
-                              #:message-tag-list #:message-tag-name
-                              #:message-tag-value #:next-token
-                              #:not-found-exception #:outbound-message-id
+                              #:list-tags-for-resource #:mail-from-attributes
+                              #:mail-from-domain-name #:mail-from-domain-status
+                              #:max24hour-send #:max-items #:max-send-rate
+                              #:message #:message-content #:message-data
+                              #:message-tag #:message-tag-list
+                              #:message-tag-name #:message-tag-value
+                              #:next-token #:outbound-message-id
                               #:overall-volume #:percentage
                               #:percentage100wrapper #:pinpoint-destination
                               #:placement-statistics #:pool-name
                               #:put-account-dedicated-ip-warmup-attributes
-                              #:put-account-dedicated-ip-warmup-attributes-request
-                              #:put-account-dedicated-ip-warmup-attributes-response
                               #:put-account-sending-attributes
-                              #:put-account-sending-attributes-request
-                              #:put-account-sending-attributes-response
                               #:put-configuration-set-delivery-options
-                              #:put-configuration-set-delivery-options-request
-                              #:put-configuration-set-delivery-options-response
                               #:put-configuration-set-reputation-options
-                              #:put-configuration-set-reputation-options-request
-                              #:put-configuration-set-reputation-options-response
                               #:put-configuration-set-sending-options
-                              #:put-configuration-set-sending-options-request
-                              #:put-configuration-set-sending-options-response
                               #:put-configuration-set-tracking-options
-                              #:put-configuration-set-tracking-options-request
-                              #:put-configuration-set-tracking-options-response
                               #:put-dedicated-ip-in-pool
-                              #:put-dedicated-ip-in-pool-request
-                              #:put-dedicated-ip-in-pool-response
                               #:put-dedicated-ip-warmup-attributes
-                              #:put-dedicated-ip-warmup-attributes-request
-                              #:put-dedicated-ip-warmup-attributes-response
                               #:put-deliverability-dashboard-option
-                              #:put-deliverability-dashboard-option-request
-                              #:put-deliverability-dashboard-option-response
                               #:put-email-identity-dkim-attributes
-                              #:put-email-identity-dkim-attributes-request
-                              #:put-email-identity-dkim-attributes-response
                               #:put-email-identity-feedback-attributes
-                              #:put-email-identity-feedback-attributes-request
-                              #:put-email-identity-feedback-attributes-response
                               #:put-email-identity-mail-from-attributes
-                              #:put-email-identity-mail-from-attributes-request
-                              #:put-email-identity-mail-from-attributes-response
                               #:raw-message #:raw-message-data #:rbl-name
                               #:report-id #:report-name #:reputation-options
-                              #:send-email #:send-email-request
-                              #:send-email-response #:send-quota
-                              #:sending-options #:sending-paused-exception
+                              #:send-email #:send-quota #:sending-options
                               #:sending-pool-name #:sent-last24hours
                               #:sns-destination #:subject #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:template #:template-arn
                               #:template-data #:timestamp #:tls-policy
-                              #:too-many-requests-exception #:tracking-options
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:tracking-options #:untag-resource
                               #:update-configuration-set-event-destination
-                              #:update-configuration-set-event-destination-request
-                              #:update-configuration-set-event-destination-response
                               #:volume #:volume-statistics #:warmup-status))
 (common-lisp:in-package #:pira/pinpoint-email)
 

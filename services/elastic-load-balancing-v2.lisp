@@ -1,19 +1,13 @@
 (uiop/package:define-package #:pira/elastic-load-balancing-v2 (:use)
-                             (:export #:alpnpolicy-not-supported-exception
-                              #:action #:action-order #:action-type-enum
-                              #:actions #:add-listener-certificates
-                              #:add-listener-certificates-input
-                              #:add-listener-certificates-output #:add-tags
-                              #:add-tags-input #:add-tags-output
+                             (:export #:action #:action-order
+                              #:action-type-enum #:actions
+                              #:add-listener-certificates #:add-tags
                               #:add-trust-store-revocations
-                              #:add-trust-store-revocations-input
-                              #:add-trust-store-revocations-output
                               #:administrative-override
                               #:advertise-trust-store-ca-names-enum
-                              #:allocation-id
-                              #:allocation-id-not-found-exception
-                              #:alpn-policy-name #:alpn-policy-value
-                              #:anomaly-detection #:anomaly-result-enum
+                              #:allocation-id #:alpn-policy-name
+                              #:alpn-policy-value #:anomaly-detection
+                              #:anomaly-result-enum
                               #:authenticate-cognito-action-authentication-request-extra-params
                               #:authenticate-cognito-action-authentication-request-param-name
                               #:authenticate-cognito-action-authentication-request-param-value
@@ -40,99 +34,38 @@
                               #:authenticate-oidc-action-token-endpoint
                               #:authenticate-oidc-action-use-existing-client-secret
                               #:authenticate-oidc-action-user-info-endpoint
-                              #:availability-zone
-                              #:availability-zone-not-supported-exception
-                              #:availability-zones
-                              #:ca-certificates-bundle-not-found-exception
+                              #:availability-zone #:availability-zones
                               #:canonical-hosted-zone-id
-                              #:capacity-decrease-requests-limit-exceeded-exception
-                              #:capacity-reservation-pending-exception
                               #:capacity-reservation-state-enum
                               #:capacity-reservation-status #:capacity-units
-                              #:capacity-units-double
-                              #:capacity-units-limit-exceeded-exception
-                              #:certificate #:certificate-arn
-                              #:certificate-list
-                              #:certificate-not-found-exception #:cipher
+                              #:capacity-units-double #:certificate
+                              #:certificate-arn #:certificate-list #:cipher
                               #:cipher-name #:cipher-priority #:ciphers
                               #:condition-field-name #:create-listener
-                              #:create-listener-input #:create-listener-output
-                              #:create-load-balancer
-                              #:create-load-balancer-input
-                              #:create-load-balancer-output #:create-rule
-                              #:create-rule-input #:create-rule-output
-                              #:create-target-group #:create-target-group-input
-                              #:create-target-group-output #:create-trust-store
-                              #:create-trust-store-input
-                              #:create-trust-store-output #:created-time
-                              #:customer-owned-ipv4pool #:dnsname
-                              #:decrease-requests-remaining #:default
-                              #:delete-association-same-account-exception
-                              #:delete-listener #:delete-listener-input
-                              #:delete-listener-output #:delete-load-balancer
-                              #:delete-load-balancer-input
-                              #:delete-load-balancer-output #:delete-rule
-                              #:delete-rule-input #:delete-rule-output
+                              #:create-load-balancer #:create-rule
+                              #:create-target-group #:create-trust-store
+                              #:created-time #:customer-owned-ipv4pool
+                              #:dnsname #:decrease-requests-remaining #:default
+                              #:delete-listener #:delete-load-balancer
+                              #:delete-rule
                               #:delete-shared-trust-store-association
-                              #:delete-shared-trust-store-association-input
-                              #:delete-shared-trust-store-association-output
-                              #:delete-target-group #:delete-target-group-input
-                              #:delete-target-group-output #:delete-trust-store
-                              #:delete-trust-store-input
-                              #:delete-trust-store-output #:deregister-targets
-                              #:deregister-targets-input
-                              #:deregister-targets-output
-                              #:describe-account-limits
-                              #:describe-account-limits-input
-                              #:describe-account-limits-output
+                              #:delete-target-group #:delete-trust-store
+                              #:deregister-targets #:describe-account-limits
                               #:describe-capacity-reservation
-                              #:describe-capacity-reservation-input
-                              #:describe-capacity-reservation-output
                               #:describe-listener-attributes
-                              #:describe-listener-attributes-input
-                              #:describe-listener-attributes-output
                               #:describe-listener-certificates
-                              #:describe-listener-certificates-input
-                              #:describe-listener-certificates-output
-                              #:describe-listeners #:describe-listeners-input
-                              #:describe-listeners-output
+                              #:describe-listeners
                               #:describe-load-balancer-attributes
-                              #:describe-load-balancer-attributes-input
-                              #:describe-load-balancer-attributes-output
-                              #:describe-load-balancers
-                              #:describe-load-balancers-input
-                              #:describe-load-balancers-output #:describe-rules
-                              #:describe-rules-input #:describe-rules-output
-                              #:describe-sslpolicies
-                              #:describe-sslpolicies-input
-                              #:describe-sslpolicies-output #:describe-tags
-                              #:describe-tags-input #:describe-tags-output
+                              #:describe-load-balancers #:describe-rules
+                              #:describe-sslpolicies #:describe-tags
                               #:describe-target-group-attributes
-                              #:describe-target-group-attributes-input
-                              #:describe-target-group-attributes-output
-                              #:describe-target-groups
-                              #:describe-target-groups-input
-                              #:describe-target-groups-output
-                              #:describe-target-health
-                              #:describe-target-health-input
+                              #:describe-target-groups #:describe-target-health
                               #:describe-target-health-input-include-enum
-                              #:describe-target-health-output
                               #:describe-trust-store-associations
-                              #:describe-trust-store-associations-input
-                              #:describe-trust-store-associations-output
                               #:describe-trust-store-revocation
                               #:describe-trust-store-revocation-response
                               #:describe-trust-store-revocations
-                              #:describe-trust-store-revocations-input
-                              #:describe-trust-store-revocations-output
-                              #:describe-trust-stores
-                              #:describe-trust-stores-input
-                              #:describe-trust-stores-output #:description
-                              #:duplicate-listener-exception
-                              #:duplicate-load-balancer-name-exception
-                              #:duplicate-tag-keys-exception
-                              #:duplicate-target-group-name-exception
-                              #:duplicate-trust-store-name-exception
+                              #:describe-trust-stores #:description
                               #:elastic-load-balancing-v10
                               #:enable-prefix-for-ipv6source-nat-enum
                               #:enforce-security-group-inbound-rules-on-private-link-traffic
@@ -143,88 +76,52 @@
                               #:fixed-response-action-message
                               #:fixed-response-action-status-code
                               #:forward-action-config #:get-resource-policy
-                              #:get-resource-policy-input
-                              #:get-resource-policy-output
                               #:get-trust-store-ca-certificates-bundle
-                              #:get-trust-store-ca-certificates-bundle-input
-                              #:get-trust-store-ca-certificates-bundle-output
-                              #:get-trust-store-revocation-content
-                              #:get-trust-store-revocation-content-input
-                              #:get-trust-store-revocation-content-output
-                              #:grpc-code #:health-check-enabled
+                              #:get-trust-store-revocation-content #:grpc-code
+                              #:health-check-enabled
                               #:health-check-interval-seconds
                               #:health-check-port
                               #:health-check-threshold-count
                               #:health-check-timeout-seconds
-                              #:health-unavailable-exception
                               #:host-header-condition-config #:http-code
                               #:http-header-condition-config
                               #:http-header-condition-name
                               #:http-request-method-condition-config
                               #:ipv6address #:ignore-client-certificate-expiry
-                              #:incompatible-protocols-exception
-                              #:insufficient-capacity-exception
-                              #:invalid-ca-certificates-bundle-exception
-                              #:invalid-configuration-request-exception
-                              #:invalid-load-balancer-action-exception
-                              #:invalid-revocation-content-exception
-                              #:invalid-scheme-exception
-                              #:invalid-security-group-exception
-                              #:invalid-subnet-exception
-                              #:invalid-target-exception #:ip-address
-                              #:ip-address-type #:ipam-pool-id #:ipam-pools
-                              #:is-default #:last-modified-time #:limit
-                              #:limits
+                              #:ip-address #:ip-address-type #:ipam-pool-id
+                              #:ipam-pools #:is-default #:last-modified-time
+                              #:limit #:limits
                               #:list-of-describe-target-health-include-options
                               #:list-of-string #:listener #:listener-arn
                               #:listener-arns #:listener-attribute
                               #:listener-attribute-key
                               #:listener-attribute-value #:listener-attributes
-                              #:listener-not-found-exception #:listeners
-                              #:load-balancer #:load-balancer-address
-                              #:load-balancer-addresses #:load-balancer-arn
-                              #:load-balancer-arns #:load-balancer-attribute
+                              #:listeners #:load-balancer
+                              #:load-balancer-address #:load-balancer-addresses
+                              #:load-balancer-arn #:load-balancer-arns
+                              #:load-balancer-attribute
                               #:load-balancer-attribute-key
                               #:load-balancer-attribute-value
                               #:load-balancer-attributes #:load-balancer-name
-                              #:load-balancer-names
-                              #:load-balancer-not-found-exception
-                              #:load-balancer-scheme-enum #:load-balancer-state
-                              #:load-balancer-state-enum
+                              #:load-balancer-names #:load-balancer-scheme-enum
+                              #:load-balancer-state #:load-balancer-state-enum
                               #:load-balancer-type-enum #:load-balancers
                               #:location #:marker #:matcher #:max
                               #:minimum-load-balancer-capacity
                               #:mitigation-in-effect-enum #:mode
-                              #:modify-capacity-reservation
-                              #:modify-capacity-reservation-input
-                              #:modify-capacity-reservation-output
-                              #:modify-ip-pools #:modify-ip-pools-input
-                              #:modify-ip-pools-output #:modify-listener
-                              #:modify-listener-attributes
-                              #:modify-listener-attributes-input
-                              #:modify-listener-attributes-output
-                              #:modify-listener-input #:modify-listener-output
-                              #:modify-load-balancer-attributes
-                              #:modify-load-balancer-attributes-input
-                              #:modify-load-balancer-attributes-output
-                              #:modify-rule #:modify-rule-input
-                              #:modify-rule-output #:modify-target-group
+                              #:modify-capacity-reservation #:modify-ip-pools
+                              #:modify-listener #:modify-listener-attributes
+                              #:modify-load-balancer-attributes #:modify-rule
+                              #:modify-target-group
                               #:modify-target-group-attributes
-                              #:modify-target-group-attributes-input
-                              #:modify-target-group-attributes-output
-                              #:modify-target-group-input
-                              #:modify-target-group-output #:modify-trust-store
-                              #:modify-trust-store-input
-                              #:modify-trust-store-output
+                              #:modify-trust-store
                               #:mutual-authentication-attributes #:name
                               #:number-of-ca-certificates
-                              #:number-of-revoked-entries
-                              #:operation-not-permitted-exception #:outpost-id
+                              #:number-of-revoked-entries #:outpost-id
                               #:page-size #:path
                               #:path-pattern-condition-config #:policy #:port
-                              #:prior-request-not-complete-exception
-                              #:priority-in-use-exception #:private-ipv4address
-                              #:protocol-enum #:protocol-version
+                              #:private-ipv4address #:protocol-enum
+                              #:protocol-version
                               #:query-string-condition-config
                               #:query-string-key-value-pair
                               #:query-string-key-value-pair-list
@@ -233,62 +130,41 @@
                               #:redirect-action-protocol
                               #:redirect-action-query
                               #:redirect-action-status-code-enum
-                              #:register-targets #:register-targets-input
-                              #:register-targets-output #:remove-ipam-pool-enum
+                              #:register-targets #:remove-ipam-pool-enum
                               #:remove-ipam-pools
-                              #:remove-listener-certificates
-                              #:remove-listener-certificates-input
-                              #:remove-listener-certificates-output
-                              #:remove-tags #:remove-tags-input
-                              #:remove-tags-output
+                              #:remove-listener-certificates #:remove-tags
                               #:remove-trust-store-revocations
-                              #:remove-trust-store-revocations-input
-                              #:remove-trust-store-revocations-output
                               #:reset-capacity-reservation #:resource-arn
-                              #:resource-arns #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:revocation-content
-                              #:revocation-content-not-found-exception
+                              #:resource-arns #:revocation-content
                               #:revocation-contents #:revocation-id
-                              #:revocation-id-not-found-exception
                               #:revocation-ids #:revocation-type #:rule
                               #:rule-arn #:rule-arns #:rule-condition
-                              #:rule-condition-list #:rule-not-found-exception
-                              #:rule-priority #:rule-priority-list
-                              #:rule-priority-pair #:rules #:s3bucket #:s3key
-                              #:s3object-version
-                              #:sslpolicy-not-found-exception
+                              #:rule-condition-list #:rule-priority
+                              #:rule-priority-list #:rule-priority-pair #:rules
+                              #:s3bucket #:s3key #:s3object-version
                               #:security-group-id #:security-groups
-                              #:set-ip-address-type #:set-ip-address-type-input
-                              #:set-ip-address-type-output
-                              #:set-rule-priorities #:set-rule-priorities-input
-                              #:set-rule-priorities-output
-                              #:set-security-groups #:set-security-groups-input
-                              #:set-security-groups-output #:set-subnets
-                              #:set-subnets-input #:set-subnets-output
+                              #:set-ip-address-type #:set-rule-priorities
+                              #:set-security-groups #:set-subnets
                               #:source-ip-condition-config
                               #:source-nat-ipv6prefix #:source-nat-ipv6prefixes
                               #:ssl-policies #:ssl-policy #:ssl-policy-name
                               #:ssl-policy-names #:ssl-protocol #:ssl-protocols
                               #:state-reason #:string #:string-value
                               #:subnet-id #:subnet-mapping #:subnet-mappings
-                              #:subnet-not-found-exception #:subnets #:tag
-                              #:tag-description #:tag-descriptions #:tag-key
-                              #:tag-keys #:tag-list #:tag-value
+                              #:subnets #:tag #:tag-description
+                              #:tag-descriptions #:tag-key #:tag-keys
+                              #:tag-list #:tag-value
                               #:target-administrative-override-reason-enum
                               #:target-administrative-override-state-enum
                               #:target-description #:target-descriptions
                               #:target-group #:target-group-arn
-                              #:target-group-arns
-                              #:target-group-association-limit-exception
-                              #:target-group-attribute
+                              #:target-group-arns #:target-group-attribute
                               #:target-group-attribute-key
                               #:target-group-attribute-value
                               #:target-group-attributes
                               #:target-group-ip-address-type-enum
                               #:target-group-list #:target-group-name
                               #:target-group-names
-                              #:target-group-not-found-exception
                               #:target-group-stickiness-config
                               #:target-group-stickiness-duration-seconds
                               #:target-group-stickiness-enabled
@@ -298,33 +174,16 @@
                               #:target-health-descriptions
                               #:target-health-reason-enum
                               #:target-health-state-enum #:target-id
-                              #:target-type-enum #:too-many-actions-exception
-                              #:too-many-certificates-exception
-                              #:too-many-listeners-exception
-                              #:too-many-load-balancers-exception
-                              #:too-many-registrations-for-target-id-exception
-                              #:too-many-rules-exception
-                              #:too-many-tags-exception
-                              #:too-many-target-groups-exception
-                              #:too-many-targets-exception
-                              #:too-many-trust-store-revocation-entries-exception
-                              #:too-many-trust-stores-exception
-                              #:too-many-unique-target-groups-per-load-balancer-exception
-                              #:total-revoked-entries #:trust-store
-                              #:trust-store-arn #:trust-store-arns
-                              #:trust-store-association
-                              #:trust-store-association-not-found-exception
+                              #:target-type-enum #:total-revoked-entries
+                              #:trust-store #:trust-store-arn
+                              #:trust-store-arns #:trust-store-association
                               #:trust-store-association-resource-arn
                               #:trust-store-association-status-enum
-                              #:trust-store-associations
-                              #:trust-store-in-use-exception #:trust-store-name
-                              #:trust-store-names
-                              #:trust-store-not-found-exception
-                              #:trust-store-not-ready-exception
-                              #:trust-store-revocation
+                              #:trust-store-associations #:trust-store-name
+                              #:trust-store-names #:trust-store-revocation
                               #:trust-store-revocations #:trust-store-status
-                              #:trust-stores #:unsupported-protocol-exception
-                              #:vpc-id #:zonal-capacity-reservation-state
+                              #:trust-stores #:vpc-id
+                              #:zonal-capacity-reservation-state
                               #:zonal-capacity-reservation-states #:zone-name))
 (common-lisp:in-package #:pira/elastic-load-balancing-v2)
 

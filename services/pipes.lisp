@@ -20,15 +20,11 @@
                               #:cloudwatch-log-group-arn
                               #:cloudwatch-logs-log-destination
                               #:cloudwatch-logs-log-destination-parameters
-                              #:conflict-exception #:create-pipe
-                              #:create-pipe-request #:create-pipe-response
-                              #:database #:db-user #:dead-letter-config
-                              #:delete-pipe #:delete-pipe-request
-                              #:delete-pipe-response #:describe-pipe
-                              #:describe-pipe-request #:describe-pipe-response
-                              #:dimension-mapping #:dimension-mappings
-                              #:dimension-name #:dimension-value
-                              #:dimension-value-type
+                              #:create-pipe #:database #:db-user
+                              #:dead-letter-config #:delete-pipe
+                              #:describe-pipe #:dimension-mapping
+                              #:dimension-mappings #:dimension-name
+                              #:dimension-value #:dimension-value-type
                               #:dynamo-dbstream-start-position
                               #:ecs-container-override
                               #:ecs-container-override-list
@@ -55,14 +51,12 @@
                               #:header-key #:header-parameters-map
                               #:header-value #:include-execution-data
                               #:include-execution-data-option #:input-template
-                              #:internal-exception #:json-path
-                              #:kafka-bootstrap-servers #:kafka-topic-name
-                              #:kinesis-partition-key
+                              #:json-path #:kafka-bootstrap-servers
+                              #:kafka-topic-name #:kinesis-partition-key
                               #:kinesis-stream-start-position
                               #:kms-key-identifier #:launch-type #:limit-max10
                               #:limit-max100 #:limit-max10000 #:limit-min1
-                              #:list-pipes #:list-pipes-request
-                              #:list-pipes-response #:list-tags-for-resource
+                              #:list-pipes #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response #:log-level
                               #:log-stream-name #:mqbroker-access-credentials
@@ -78,7 +72,7 @@
                               #:multi-measure-attribute-name
                               #:multi-measure-mapping #:multi-measure-mappings
                               #:multi-measure-name #:network-configuration
-                              #:next-token #:not-found-exception
+                              #:next-token
                               #:on-partial-batch-item-failure-streams
                               #:optional-arn #:path-parameter
                               #:path-parameter-list #:pipe #:pipe-arn
@@ -134,22 +128,18 @@
                               #:self-managed-kafka-access-configuration-credentials
                               #:self-managed-kafka-access-configuration-vpc
                               #:self-managed-kafka-start-position
-                              #:service-quota-exceeded-exception
                               #:single-measure-mapping
                               #:single-measure-mappings #:sql #:sqls
-                              #:start-pipe #:start-pipe-request
-                              #:start-pipe-response #:statement-name
-                              #:stop-pipe #:stop-pipe-request
-                              #:stop-pipe-response #:string #:string-list
-                              #:subnet #:subnet-id #:subnet-ids #:subnets #:tag
-                              #:tag-key #:tag-key-list #:tag-list #:tag-map
+                              #:start-pipe #:statement-name #:stop-pipe
+                              #:string #:string-list #:subnet #:subnet-id
+                              #:subnet-ids #:subnets #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-map
                               #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tag-value
-                              #:throttling-exception #:time-field-type
-                              #:time-value #:timestamp #:timestamp-format #:uri
-                              #:untag-resource #:untag-resource-request
+                              #:time-field-type #:time-value #:timestamp
+                              #:timestamp-format #:uri #:untag-resource
+                              #:untag-resource-request
                               #:untag-resource-response #:update-pipe
-                              #:update-pipe-request #:update-pipe-response
                               #:update-pipe-source-active-mqbroker-parameters
                               #:update-pipe-source-dynamo-dbstream-parameters
                               #:update-pipe-source-kinesis-stream-parameters
@@ -158,7 +148,6 @@
                               #:update-pipe-source-rabbit-mqbroker-parameters
                               #:update-pipe-source-self-managed-kafka-parameters
                               #:update-pipe-source-sqs-queue-parameters
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:version-value))

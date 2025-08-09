@@ -1,9 +1,7 @@
 (uiop/package:define-package #:pira/s3 (:use)
                              (:export #:abort-date
                               #:abort-incomplete-multipart-upload
-                              #:abort-multipart-upload
-                              #:abort-multipart-upload-output
-                              #:abort-multipart-upload-request #:abort-rule-id
+                              #:abort-multipart-upload #:abort-rule-id
                               #:accelerate-configuration #:accept-ranges
                               #:access-control-policy
                               #:access-control-translation
@@ -20,9 +18,8 @@
                               #:analytics-id #:analytics-s3bucket-destination
                               #:analytics-s3export-file-format #:archive-status
                               #:body #:bucket #:bucket-accelerate-status
-                              #:bucket-already-exists
-                              #:bucket-already-owned-by-you #:bucket-canned-acl
-                              #:bucket-info #:bucket-key-enabled
+                              #:bucket-canned-acl #:bucket-info
+                              #:bucket-key-enabled
                               #:bucket-lifecycle-configuration
                               #:bucket-location-constraint
                               #:bucket-location-name #:bucket-logging-status
@@ -39,8 +36,6 @@
                               #:checksum-sha1 #:checksum-sha256 #:checksum-type
                               #:client-token #:code #:comments #:common-prefix
                               #:common-prefix-list #:complete-multipart-upload
-                              #:complete-multipart-upload-output
-                              #:complete-multipart-upload-request
                               #:completed-multipart-upload #:completed-part
                               #:completed-part-list #:compression-type
                               #:condition #:confirm-remove-self-bucket-access
@@ -48,7 +43,6 @@
                               #:content-language #:content-length #:content-md5
                               #:content-range #:content-type
                               #:continuation-event #:copy-object
-                              #:copy-object-output #:copy-object-request
                               #:copy-object-result #:copy-part-result
                               #:copy-source #:copy-source-if-match
                               #:copy-source-if-modified-since
@@ -61,62 +55,35 @@
                               #:copy-source-version-id #:create-bucket
                               #:create-bucket-configuration
                               #:create-bucket-metadata-configuration
-                              #:create-bucket-metadata-configuration-request
                               #:create-bucket-metadata-table-configuration
-                              #:create-bucket-metadata-table-configuration-request
-                              #:create-bucket-output #:create-bucket-request
-                              #:create-multipart-upload
-                              #:create-multipart-upload-output
-                              #:create-multipart-upload-request
-                              #:create-session #:create-session-output
-                              #:create-session-request #:creation-date
-                              #:data-redundancy #:date #:days
+                              #:create-multipart-upload #:create-session
+                              #:creation-date #:data-redundancy #:date #:days
                               #:days-after-initiation #:default-retention
                               #:delete #:delete-bucket
                               #:delete-bucket-analytics-configuration
-                              #:delete-bucket-analytics-configuration-request
-                              #:delete-bucket-cors #:delete-bucket-cors-request
-                              #:delete-bucket-encryption
-                              #:delete-bucket-encryption-request
+                              #:delete-bucket-cors #:delete-bucket-encryption
                               #:delete-bucket-intelligent-tiering-configuration
-                              #:delete-bucket-intelligent-tiering-configuration-request
                               #:delete-bucket-inventory-configuration
-                              #:delete-bucket-inventory-configuration-request
                               #:delete-bucket-lifecycle
-                              #:delete-bucket-lifecycle-request
                               #:delete-bucket-metadata-configuration
-                              #:delete-bucket-metadata-configuration-request
                               #:delete-bucket-metadata-table-configuration
-                              #:delete-bucket-metadata-table-configuration-request
                               #:delete-bucket-metrics-configuration
-                              #:delete-bucket-metrics-configuration-request
                               #:delete-bucket-ownership-controls
-                              #:delete-bucket-ownership-controls-request
                               #:delete-bucket-policy
-                              #:delete-bucket-policy-request
                               #:delete-bucket-replication
-                              #:delete-bucket-replication-request
-                              #:delete-bucket-request #:delete-bucket-tagging
-                              #:delete-bucket-tagging-request
-                              #:delete-bucket-website
-                              #:delete-bucket-website-request #:delete-marker
-                              #:delete-marker-entry #:delete-marker-replication
+                              #:delete-bucket-tagging #:delete-bucket-website
+                              #:delete-marker #:delete-marker-entry
+                              #:delete-marker-replication
                               #:delete-marker-replication-status
                               #:delete-marker-version-id #:delete-markers
-                              #:delete-object #:delete-object-output
-                              #:delete-object-request #:delete-object-tagging
-                              #:delete-object-tagging-output
-                              #:delete-object-tagging-request #:delete-objects
-                              #:delete-objects-output #:delete-objects-request
-                              #:delete-public-access-block
-                              #:delete-public-access-block-request
+                              #:delete-object #:delete-object-tagging
+                              #:delete-objects #:delete-public-access-block
                               #:deleted-object #:deleted-objects #:delimiter
                               #:description #:destination #:destination-result
                               #:directory-bucket-token #:display-name #:etag
                               #:email-address #:enable-request-progress
                               #:encoding-type #:encryption
-                              #:encryption-configuration
-                              #:encryption-type-mismatch #:end #:end-event
+                              #:encryption-configuration #:end #:end-event
                               #:error #:error-code #:error-details
                               #:error-document #:error-message #:errors #:event
                               #:event-bridge-configuration #:event-list
@@ -130,98 +97,38 @@
                               #:filter-rule-list #:filter-rule-name
                               #:filter-rule-value
                               #:get-bucket-accelerate-configuration
-                              #:get-bucket-accelerate-configuration-output
-                              #:get-bucket-accelerate-configuration-request
-                              #:get-bucket-acl #:get-bucket-acl-output
-                              #:get-bucket-acl-request
+                              #:get-bucket-acl
                               #:get-bucket-analytics-configuration
-                              #:get-bucket-analytics-configuration-output
-                              #:get-bucket-analytics-configuration-request
-                              #:get-bucket-cors #:get-bucket-cors-output
-                              #:get-bucket-cors-request #:get-bucket-encryption
-                              #:get-bucket-encryption-output
-                              #:get-bucket-encryption-request
+                              #:get-bucket-cors #:get-bucket-encryption
                               #:get-bucket-intelligent-tiering-configuration
-                              #:get-bucket-intelligent-tiering-configuration-output
-                              #:get-bucket-intelligent-tiering-configuration-request
                               #:get-bucket-inventory-configuration
-                              #:get-bucket-inventory-configuration-output
-                              #:get-bucket-inventory-configuration-request
                               #:get-bucket-lifecycle-configuration
-                              #:get-bucket-lifecycle-configuration-output
-                              #:get-bucket-lifecycle-configuration-request
-                              #:get-bucket-location
-                              #:get-bucket-location-output
-                              #:get-bucket-location-request
-                              #:get-bucket-logging #:get-bucket-logging-output
-                              #:get-bucket-logging-request
+                              #:get-bucket-location #:get-bucket-logging
                               #:get-bucket-metadata-configuration
-                              #:get-bucket-metadata-configuration-output
-                              #:get-bucket-metadata-configuration-request
                               #:get-bucket-metadata-configuration-result
                               #:get-bucket-metadata-table-configuration
-                              #:get-bucket-metadata-table-configuration-output
-                              #:get-bucket-metadata-table-configuration-request
                               #:get-bucket-metadata-table-configuration-result
                               #:get-bucket-metrics-configuration
-                              #:get-bucket-metrics-configuration-output
-                              #:get-bucket-metrics-configuration-request
                               #:get-bucket-notification-configuration
-                              #:get-bucket-notification-configuration-request
                               #:get-bucket-ownership-controls
-                              #:get-bucket-ownership-controls-output
-                              #:get-bucket-ownership-controls-request
-                              #:get-bucket-policy #:get-bucket-policy-output
-                              #:get-bucket-policy-request
-                              #:get-bucket-policy-status
-                              #:get-bucket-policy-status-output
-                              #:get-bucket-policy-status-request
+                              #:get-bucket-policy #:get-bucket-policy-status
                               #:get-bucket-replication
-                              #:get-bucket-replication-output
-                              #:get-bucket-replication-request
-                              #:get-bucket-request-payment
-                              #:get-bucket-request-payment-output
-                              #:get-bucket-request-payment-request
-                              #:get-bucket-tagging #:get-bucket-tagging-output
-                              #:get-bucket-tagging-request
-                              #:get-bucket-versioning
-                              #:get-bucket-versioning-output
-                              #:get-bucket-versioning-request
-                              #:get-bucket-website #:get-bucket-website-output
-                              #:get-bucket-website-request #:get-object
-                              #:get-object-acl #:get-object-acl-output
-                              #:get-object-acl-request #:get-object-attributes
-                              #:get-object-attributes-output
+                              #:get-bucket-request-payment #:get-bucket-tagging
+                              #:get-bucket-versioning #:get-bucket-website
+                              #:get-object #:get-object-acl
+                              #:get-object-attributes
                               #:get-object-attributes-parts
-                              #:get-object-attributes-request
                               #:get-object-legal-hold
-                              #:get-object-legal-hold-output
-                              #:get-object-legal-hold-request
                               #:get-object-lock-configuration
-                              #:get-object-lock-configuration-output
-                              #:get-object-lock-configuration-request
-                              #:get-object-output #:get-object-request
                               #:get-object-response-status-code
-                              #:get-object-retention
-                              #:get-object-retention-output
-                              #:get-object-retention-request
-                              #:get-object-tagging #:get-object-tagging-output
-                              #:get-object-tagging-request #:get-object-torrent
-                              #:get-object-torrent-output
-                              #:get-object-torrent-request
-                              #:get-public-access-block
-                              #:get-public-access-block-output
-                              #:get-public-access-block-request
+                              #:get-object-retention #:get-object-tagging
+                              #:get-object-torrent #:get-public-access-block
                               #:glacier-job-parameters #:grant
                               #:grant-full-control #:grant-read
                               #:grant-read-acp #:grant-write #:grant-write-acp
-                              #:grantee #:grants #:head-bucket
-                              #:head-bucket-output #:head-bucket-request
-                              #:head-object #:head-object-output
-                              #:head-object-request #:host-name
-                              #:http-error-code-returned-equals
-                              #:http-redirect-code #:id
-                              #:idempotency-parameter-mismatch #:if-match
+                              #:grantee #:grants #:head-bucket #:head-object
+                              #:host-name #:http-error-code-returned-equals
+                              #:http-redirect-code #:id #:if-match
                               #:if-match-initiated-time
                               #:if-match-last-modified-time #:if-match-size
                               #:if-modified-since #:if-none-match
@@ -235,8 +142,7 @@
                               #:intelligent-tiering-filter
                               #:intelligent-tiering-id
                               #:intelligent-tiering-status
-                              #:invalid-object-state #:invalid-request
-                              #:invalid-write-offset #:inventory-configuration
+                              #:inventory-configuration
                               #:inventory-configuration-list
                               #:inventory-configuration-state
                               #:inventory-destination #:inventory-encryption
@@ -266,31 +172,12 @@
                               #:lifecycle-rule-and-operator
                               #:lifecycle-rule-filter #:lifecycle-rules
                               #:list-bucket-analytics-configurations
-                              #:list-bucket-analytics-configurations-output
-                              #:list-bucket-analytics-configurations-request
                               #:list-bucket-intelligent-tiering-configurations
-                              #:list-bucket-intelligent-tiering-configurations-output
-                              #:list-bucket-intelligent-tiering-configurations-request
                               #:list-bucket-inventory-configurations
-                              #:list-bucket-inventory-configurations-output
-                              #:list-bucket-inventory-configurations-request
                               #:list-bucket-metrics-configurations
-                              #:list-bucket-metrics-configurations-output
-                              #:list-bucket-metrics-configurations-request
-                              #:list-buckets #:list-buckets-output
-                              #:list-buckets-request #:list-directory-buckets
-                              #:list-directory-buckets-output
-                              #:list-directory-buckets-request
-                              #:list-multipart-uploads
-                              #:list-multipart-uploads-output
-                              #:list-multipart-uploads-request
-                              #:list-object-versions
-                              #:list-object-versions-output
-                              #:list-object-versions-request #:list-objects
-                              #:list-objects-output #:list-objects-request
-                              #:list-objects-v2 #:list-objects-v2output
-                              #:list-objects-v2request #:list-parts
-                              #:list-parts-output #:list-parts-request
+                              #:list-buckets #:list-directory-buckets
+                              #:list-multipart-uploads #:list-object-versions
+                              #:list-objects #:list-objects-v2 #:list-parts
                               #:location #:location-info
                               #:location-name-as-string #:location-prefix
                               #:location-type #:logging-enabled #:mfa
@@ -314,20 +201,17 @@
                               #:multipart-upload-list #:next-key-marker
                               #:next-marker #:next-part-number-marker
                               #:next-token #:next-upload-id-marker
-                              #:next-version-id-marker #:no-such-bucket
-                              #:no-such-key #:no-such-upload
+                              #:next-version-id-marker
                               #:noncurrent-version-expiration
                               #:noncurrent-version-transition
-                              #:noncurrent-version-transition-list #:not-found
+                              #:noncurrent-version-transition-list
                               #:notification-configuration
                               #:notification-configuration-filter
-                              #:notification-id #:object
-                              #:object-already-in-active-tier-error
-                              #:object-attributes #:object-attributes-list
-                              #:object-canned-acl #:object-identifier
-                              #:object-identifier-list #:object-key
-                              #:object-list #:object-lock-configuration
-                              #:object-lock-enabled
+                              #:notification-id #:object #:object-attributes
+                              #:object-attributes-list #:object-canned-acl
+                              #:object-identifier #:object-identifier-list
+                              #:object-key #:object-list
+                              #:object-lock-configuration #:object-lock-enabled
                               #:object-lock-enabled-for-bucket
                               #:object-lock-legal-hold
                               #:object-lock-legal-hold-status
@@ -335,9 +219,8 @@
                               #:object-lock-retain-until-date
                               #:object-lock-retention
                               #:object-lock-retention-mode #:object-lock-rule
-                              #:object-lock-token
-                              #:object-not-in-active-tier-error
-                              #:object-ownership #:object-part #:object-size
+                              #:object-lock-token #:object-ownership
+                              #:object-part #:object-size
                               #:object-size-greater-than-bytes
                               #:object-size-less-than-bytes
                               #:object-storage-class #:object-version
@@ -356,60 +239,31 @@
                               #:priority #:progress #:progress-event #:protocol
                               #:public-access-block-configuration
                               #:put-bucket-accelerate-configuration
-                              #:put-bucket-accelerate-configuration-request
-                              #:put-bucket-acl #:put-bucket-acl-request
+                              #:put-bucket-acl
                               #:put-bucket-analytics-configuration
-                              #:put-bucket-analytics-configuration-request
-                              #:put-bucket-cors #:put-bucket-cors-request
-                              #:put-bucket-encryption
-                              #:put-bucket-encryption-request
+                              #:put-bucket-cors #:put-bucket-encryption
                               #:put-bucket-intelligent-tiering-configuration
-                              #:put-bucket-intelligent-tiering-configuration-request
                               #:put-bucket-inventory-configuration
-                              #:put-bucket-inventory-configuration-request
                               #:put-bucket-lifecycle-configuration
-                              #:put-bucket-lifecycle-configuration-output
-                              #:put-bucket-lifecycle-configuration-request
-                              #:put-bucket-logging #:put-bucket-logging-request
+                              #:put-bucket-logging
                               #:put-bucket-metrics-configuration
-                              #:put-bucket-metrics-configuration-request
                               #:put-bucket-notification-configuration
-                              #:put-bucket-notification-configuration-request
                               #:put-bucket-ownership-controls
-                              #:put-bucket-ownership-controls-request
-                              #:put-bucket-policy #:put-bucket-policy-request
-                              #:put-bucket-replication
-                              #:put-bucket-replication-request
-                              #:put-bucket-request-payment
-                              #:put-bucket-request-payment-request
-                              #:put-bucket-tagging #:put-bucket-tagging-request
-                              #:put-bucket-versioning
-                              #:put-bucket-versioning-request
-                              #:put-bucket-website #:put-bucket-website-request
+                              #:put-bucket-policy #:put-bucket-replication
+                              #:put-bucket-request-payment #:put-bucket-tagging
+                              #:put-bucket-versioning #:put-bucket-website
                               #:put-object #:put-object-acl
-                              #:put-object-acl-output #:put-object-acl-request
                               #:put-object-legal-hold
-                              #:put-object-legal-hold-output
-                              #:put-object-legal-hold-request
                               #:put-object-lock-configuration
-                              #:put-object-lock-configuration-output
-                              #:put-object-lock-configuration-request
-                              #:put-object-output #:put-object-request
-                              #:put-object-retention
-                              #:put-object-retention-output
-                              #:put-object-retention-request
-                              #:put-object-tagging #:put-object-tagging-output
-                              #:put-object-tagging-request
-                              #:put-public-access-block
-                              #:put-public-access-block-request #:queue-arn
+                              #:put-object-retention #:put-object-tagging
+                              #:put-public-access-block #:queue-arn
                               #:queue-configuration #:queue-configuration-list
                               #:quiet #:quote-character
                               #:quote-escape-character #:quote-fields #:range
                               #:record-delimiter #:record-expiration
                               #:record-expiration-days #:records-event
                               #:redirect #:redirect-all-requests-to #:region
-                              #:rename-object #:rename-object-output
-                              #:rename-object-request #:rename-source
+                              #:rename-object #:rename-source
                               #:rename-source-if-match
                               #:rename-source-if-modified-since
                               #:rename-source-if-none-match
@@ -432,7 +286,6 @@
                               #:response-content-language
                               #:response-content-type #:response-expires
                               #:restore #:restore-expiry-date #:restore-object
-                              #:restore-object-output #:restore-object-request
                               #:restore-output-path #:restore-request
                               #:restore-request-type #:restore-status #:role
                               #:routing-rule #:routing-rules #:s3key-filter
@@ -446,8 +299,6 @@
                               #:ssekmsencryption-context #:ssekmskey-id #:sses3
                               #:scan-range #:select-object-content
                               #:select-object-content-event-stream
-                              #:select-object-content-output
-                              #:select-object-content-request
                               #:select-parameters #:server-side-encryption
                               #:server-side-encryption-by-default
                               #:server-side-encryption-configuration
@@ -468,27 +319,22 @@
                               #:tagging-directive #:tagging-header
                               #:target-bucket #:target-grant #:target-grants
                               #:target-object-key-format #:target-prefix #:tier
-                              #:tiering #:tiering-list #:token #:too-many-parts
-                              #:topic-arn #:topic-configuration
-                              #:topic-configuration-list #:transition
+                              #:tiering #:tiering-list #:token #:topic-arn
+                              #:topic-configuration #:topic-configuration-list
+                              #:transition
                               #:transition-default-minimum-object-size
                               #:transition-list #:transition-storage-class
                               #:type #:uri
                               #:update-bucket-metadata-inventory-table-configuration
-                              #:update-bucket-metadata-inventory-table-configuration-request
                               #:update-bucket-metadata-journal-table-configuration
-                              #:update-bucket-metadata-journal-table-configuration-request
                               #:upload-id-marker #:upload-part
-                              #:upload-part-copy #:upload-part-copy-output
-                              #:upload-part-copy-request #:upload-part-output
-                              #:upload-part-request #:user-metadata #:value
+                              #:upload-part-copy #:user-metadata #:value
                               #:version-count #:version-id-marker
                               #:versioning-configuration
                               #:website-configuration
                               #:website-redirect-location
-                              #:write-get-object-response
-                              #:write-get-object-response-request
-                              #:write-offset-bytes #:years))
+                              #:write-get-object-response #:write-offset-bytes
+                              #:years))
 (common-lisp:in-package #:pira/s3)
 
 (smithy/sdk/service:define-service amazon-s3 :shape-name "AmazonS3" :version

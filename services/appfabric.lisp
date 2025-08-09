@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/appfabric (:use)
-                             (:export #:access-denied-exception
-                              #:api-key-credential #:app-authorization
+                             (:export #:api-key-credential #:app-authorization
                               #:app-authorization-status
                               #:app-authorization-summary
                               #:app-authorization-summary-list #:app-bundle
@@ -9,92 +8,40 @@
                               #:audit-log-processing-configuration
                               #:auth-request #:auth-type
                               #:batch-get-user-access-tasks
-                              #:batch-get-user-access-tasks-request
-                              #:batch-get-user-access-tasks-response
-                              #:conflict-exception #:connect-app-authorization
-                              #:connect-app-authorization-request
-                              #:connect-app-authorization-response
-                              #:create-app-authorization
-                              #:create-app-authorization-request
-                              #:create-app-authorization-response
-                              #:create-app-bundle #:create-app-bundle-request
-                              #:create-app-bundle-response #:create-ingestion
-                              #:create-ingestion-destination
-                              #:create-ingestion-destination-request
-                              #:create-ingestion-destination-response
-                              #:create-ingestion-request
-                              #:create-ingestion-response #:credential
-                              #:date-time #:delete-app-authorization
-                              #:delete-app-authorization-request
-                              #:delete-app-authorization-response
-                              #:delete-app-bundle #:delete-app-bundle-request
-                              #:delete-app-bundle-response #:delete-ingestion
-                              #:delete-ingestion-destination
-                              #:delete-ingestion-destination-request
-                              #:delete-ingestion-destination-response
-                              #:delete-ingestion-request
-                              #:delete-ingestion-response #:destination
-                              #:destination-configuration #:email
+                              #:connect-app-authorization
+                              #:create-app-authorization #:create-app-bundle
+                              #:create-ingestion #:create-ingestion-destination
+                              #:credential #:date-time
+                              #:delete-app-authorization #:delete-app-bundle
+                              #:delete-ingestion #:delete-ingestion-destination
+                              #:destination #:destination-configuration #:email
                               #:fabric-front-end-service #:firehose-stream
-                              #:format #:get-app-authorization
-                              #:get-app-authorization-request
-                              #:get-app-authorization-response #:get-app-bundle
-                              #:get-app-bundle-request
-                              #:get-app-bundle-response #:get-ingestion
-                              #:get-ingestion-destination
-                              #:get-ingestion-destination-request
-                              #:get-ingestion-destination-response
-                              #:get-ingestion-request #:get-ingestion-response
+                              #:format #:get-app-authorization #:get-app-bundle
+                              #:get-ingestion #:get-ingestion-destination
                               #:identifier #:ingestion #:ingestion-destination
                               #:ingestion-destination-list
                               #:ingestion-destination-status
                               #:ingestion-destination-summary #:ingestion-list
                               #:ingestion-state #:ingestion-summary
                               #:ingestion-type #:integer
-                              #:internal-server-exception
-                              #:list-app-authorizations
-                              #:list-app-authorizations-request
-                              #:list-app-authorizations-response
-                              #:list-app-bundles #:list-app-bundles-request
-                              #:list-app-bundles-response
-                              #:list-ingestion-destinations
-                              #:list-ingestion-destinations-request
-                              #:list-ingestion-destinations-response
-                              #:list-ingestions #:list-ingestions-request
-                              #:list-ingestions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:list-app-authorizations #:list-app-bundles
+                              #:list-ingestion-destinations #:list-ingestions
+                              #:list-tags-for-resource #:max-results
                               #:oauth2credential #:persona
                               #:processing-configuration #:redirect-uri
-                              #:resource-not-found-exception #:result-status
-                              #:s3bucket #:schema #:sensitive-string2048
-                              #:service-quota-exceeded-exception
-                              #:start-ingestion #:start-ingestion-request
-                              #:start-ingestion-response
-                              #:start-user-access-tasks
-                              #:start-user-access-tasks-request
-                              #:start-user-access-tasks-response
-                              #:stop-ingestion #:stop-ingestion-request
-                              #:stop-ingestion-response #:string120
-                              #:string2048 #:string255 #:string63 #:string64
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:task-error
-                              #:task-id-list #:tenant #:tenant-identifier
-                              #:throttling-exception #:uuid #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:result-status #:s3bucket #:schema
+                              #:sensitive-string2048 #:start-ingestion
+                              #:start-user-access-tasks #:stop-ingestion
+                              #:string120 #:string2048 #:string255 #:string63
+                              #:string64 #:tag #:tag-key #:tag-key-list
+                              #:tag-list #:tag-resource #:tag-value
+                              #:task-error #:task-id-list #:tenant
+                              #:tenant-identifier #:uuid #:untag-resource
                               #:update-app-authorization
-                              #:update-app-authorization-request
-                              #:update-app-authorization-response
                               #:update-ingestion-destination
-                              #:update-ingestion-destination-request
-                              #:update-ingestion-destination-response
                               #:user-access-result-item
                               #:user-access-results-list
                               #:user-access-task-item #:user-access-tasks-list
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

@@ -1,9 +1,7 @@
 (uiop/package:define-package #:pira/synthetics (:use)
-                             (:export #:access-denied-exception
-                              #:artifact-config-input #:artifact-config-output
-                              #:associate-resource #:associate-resource-request
-                              #:associate-resource-response
-                              #:bad-request-exception #:base-screenshot
+                             (:export #:artifact-config-input
+                              #:artifact-config-output #:associate-resource
+                              #:base-screenshot
                               #:base-screenshot-config-ignore-coordinate
                               #:base-screenshot-ignore-coordinates
                               #:base-screenshots #:blob #:canaries
@@ -19,82 +17,43 @@
                               #:canary-schedule-input #:canary-schedule-output
                               #:canary-state #:canary-state-reason-code
                               #:canary-status #:canary-timeline #:code-handler
-                              #:conflict-exception #:create-canary
-                              #:create-canary-request #:create-canary-response
-                              #:create-group #:create-group-request
-                              #:create-group-response #:delete-canary
-                              #:delete-canary-request #:delete-canary-response
-                              #:delete-group #:delete-group-request
-                              #:delete-group-response #:dependencies
-                              #:dependency #:dependency-type
-                              #:describe-canaries #:describe-canaries-last-run
+                              #:create-canary #:create-group #:delete-canary
+                              #:delete-group #:dependencies #:dependency
+                              #:dependency-type #:describe-canaries
+                              #:describe-canaries-last-run
                               #:describe-canaries-last-run-name-filter
-                              #:describe-canaries-last-run-request
-                              #:describe-canaries-last-run-response
                               #:describe-canaries-name-filter
-                              #:describe-canaries-request
-                              #:describe-canaries-response
                               #:describe-runtime-versions
-                              #:describe-runtime-versions-request
-                              #:describe-runtime-versions-response
-                              #:disassociate-resource
-                              #:disassociate-resource-request
-                              #:disassociate-resource-response
-                              #:dry-run-config-output #:encryption-mode
-                              #:environment-variable-name
+                              #:disassociate-resource #:dry-run-config-output
+                              #:encryption-mode #:environment-variable-name
                               #:environment-variable-value
                               #:environment-variables-map
                               #:ephemeral-storage-size #:error-message
-                              #:function-arn #:get-canary #:get-canary-request
-                              #:get-canary-response #:get-canary-runs
-                              #:get-canary-runs-request
-                              #:get-canary-runs-response #:get-group
-                              #:get-group-request #:get-group-response #:group
-                              #:group-arn #:group-identifier #:group-name
-                              #:group-summary #:group-summary-list
-                              #:internal-failure-exception
-                              #:internal-server-exception #:kms-key-arn
-                              #:list-associated-groups
-                              #:list-associated-groups-request
-                              #:list-associated-groups-response
-                              #:list-group-resources
-                              #:list-group-resources-request
-                              #:list-group-resources-response #:list-groups
-                              #:list-groups-request #:list-groups-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:function-arn #:get-canary #:get-canary-runs
+                              #:get-group #:group #:group-arn
+                              #:group-identifier #:group-name #:group-summary
+                              #:group-summary-list #:kms-key-arn
+                              #:list-associated-groups #:list-group-resources
+                              #:list-groups #:list-tags-for-resource
                               #:max-canary-results
                               #:max-fifteen-minutes-in-seconds
                               #:max-group-results #:max-one-year-in-seconds
                               #:max-retries #:max-size100 #:max-size1024
-                              #:max-size3008 #:not-found-exception
-                              #:nullable-boolean #:pagination-token
+                              #:max-size3008 #:nullable-boolean
+                              #:pagination-token
                               #:provisioned-resource-cleanup-setting
-                              #:request-entity-too-large-exception
-                              #:resource-arn #:resource-list
-                              #:resource-not-found-exception #:resource-to-tag
+                              #:resource-arn #:resource-list #:resource-to-tag
                               #:retry-attempt #:retry-config-input
                               #:retry-config-output #:role-arn #:run-type
                               #:runtime-version #:runtime-version-list
                               #:s3encryption-config #:security-group-id
-                              #:security-group-ids
-                              #:service-quota-exceeded-exception #:start-canary
-                              #:start-canary-dry-run
-                              #:start-canary-dry-run-request
-                              #:start-canary-dry-run-response
-                              #:start-canary-request #:start-canary-response
-                              #:stop-canary #:stop-canary-request
-                              #:stop-canary-response #:string #:string-list
-                              #:subnet-id #:subnet-ids #:synthetics #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:timestamp #:token
-                              #:too-many-requests-exception #:uuid
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-canary
-                              #:update-canary-request #:update-canary-response
-                              #:validation-exception #:visual-reference-input
+                              #:security-group-ids #:start-canary
+                              #:start-canary-dry-run #:stop-canary #:string
+                              #:string-list #:subnet-id #:subnet-ids
+                              #:synthetics #:tag-key #:tag-key-list #:tag-map
+                              #:tag-resource #:tag-value #:timestamp #:token
+                              #:uuid #:untag-resource #:update-canary
+                              #:visual-reference-input
                               #:visual-reference-output #:vpc-config-input
                               #:vpc-config-output #:vpc-id #:boolean))
 (common-lisp:in-package #:pira/synthetics)

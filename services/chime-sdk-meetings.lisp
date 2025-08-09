@@ -3,59 +3,35 @@
                               #:attendee-capabilities #:attendee-features
                               #:attendee-id-item #:attendee-ids-list
                               #:attendee-list #:attendee-max #:audio-features
-                              #:bad-request-exception #:batch-create-attendee
+                              #:batch-create-attendee
                               #:batch-create-attendee-error-list
-                              #:batch-create-attendee-request
-                              #:batch-create-attendee-response
                               #:batch-update-attendee-capabilities-except
-                              #:batch-update-attendee-capabilities-except-request
                               #:boolean #:chime-meetings-sdkservice
-                              #:client-request-token #:conflict-exception
-                              #:content-features #:content-resolution
-                              #:create-attendee #:create-attendee-error
-                              #:create-attendee-request
+                              #:client-request-token #:content-features
+                              #:content-resolution #:create-attendee
+                              #:create-attendee-error
                               #:create-attendee-request-item
                               #:create-attendee-request-item-list
-                              #:create-attendee-response #:create-meeting
-                              #:create-meeting-request
-                              #:create-meeting-response
-                              #:create-meeting-with-attendees
-                              #:create-meeting-with-attendees-request
+                              #:create-meeting #:create-meeting-with-attendees
                               #:create-meeting-with-attendees-request-item-list
-                              #:create-meeting-with-attendees-response
-                              #:delete-attendee #:delete-attendee-request
-                              #:delete-meeting #:delete-meeting-request
+                              #:delete-attendee #:delete-meeting
                               #:engine-transcribe-medical-settings
                               #:engine-transcribe-settings
                               #:external-meeting-id #:external-user-id
-                              #:forbidden-exception #:get-attendee
-                              #:get-attendee-request #:get-attendee-response
-                              #:get-meeting #:get-meeting-request
-                              #:get-meeting-response #:guid-string
-                              #:join-token-string #:limit-exceeded-exception
-                              #:list-attendees #:list-attendees-request
-                              #:list-attendees-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:media-capabilities #:media-placement
-                              #:media-region #:meeting #:meeting-feature-status
+                              #:get-attendee #:get-meeting #:guid-string
+                              #:join-token-string #:list-attendees
+                              #:list-tags-for-resource #:media-capabilities
+                              #:media-placement #:media-region #:meeting
+                              #:meeting-feature-status
                               #:meeting-features-configuration
-                              #:not-found-exception
                               #:notifications-configuration
-                              #:primary-meeting-id
-                              #:resource-not-found-exception #:result-max
-                              #:retry-after-seconds #:service-failure-exception
-                              #:service-unavailable-exception
+                              #:primary-meeting-id #:result-max
+                              #:retry-after-seconds
                               #:start-meeting-transcription
-                              #:start-meeting-transcription-request
-                              #:stop-meeting-transcription
-                              #:stop-meeting-transcription-request #:string
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tenant-id
-                              #:tenant-id-list #:throttling-exception
-                              #:too-many-tags-exception
+                              #:stop-meeting-transcription #:string #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:tenant-id
+                              #:tenant-id-list
                               #:transcribe-content-identification-type
                               #:transcribe-content-redaction-type
                               #:transcribe-language-code
@@ -70,15 +46,9 @@
                               #:transcribe-pii-entity-types #:transcribe-region
                               #:transcribe-vocabulary-filter-method
                               #:transcribe-vocabulary-names-or-filter-names-string
-                              #:transcription-configuration
-                              #:unauthorized-exception
-                              #:unprocessable-entity-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-attendee-capabilities
-                              #:update-attendee-capabilities-request
-                              #:update-attendee-capabilities-response
-                              #:video-features #:video-resolution))
+                              #:transcription-configuration #:untag-resource
+                              #:update-attendee-capabilities #:video-features
+                              #:video-resolution))
 (common-lisp:in-package #:pira/chime-sdk-meetings)
 
 (smithy/sdk/service:define-service chime-meetings-sdkservice :shape-name

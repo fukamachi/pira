@@ -1,31 +1,24 @@
 (uiop/package:define-package #:pira/elastic-beanstalk (:use)
                              (:export #:arn #:awselastic-beanstalk-service
                               #:abort-environment-update
-                              #:abort-environment-update-message
                               #:abortable-operation-in-progress
                               #:action-history-status #:action-status
                               #:action-type #:application-arn
                               #:application-description
                               #:application-description-list
                               #:application-description-message
-                              #:application-descriptions-message
                               #:application-metrics #:application-name
                               #:application-names-list
                               #:application-resource-lifecycle-config
-                              #:application-resource-lifecycle-description-message
                               #:application-version-arn
                               #:application-version-description
                               #:application-version-description-list
                               #:application-version-description-message
-                              #:application-version-descriptions-message
                               #:application-version-lifecycle-config
                               #:application-version-proccess
                               #:application-version-status
                               #:apply-environment-managed-action
-                              #:apply-environment-managed-action-request
-                              #:apply-environment-managed-action-result
                               #:associate-environment-operations-role
-                              #:associate-environment-operations-role-message
                               #:auto-create-application #:auto-scaling-group
                               #:auto-scaling-group-list
                               #:available-solution-stack-details-list
@@ -33,13 +26,8 @@
                               #:boxed-boolean #:boxed-int #:branch-name
                               #:branch-order #:build-configuration #:builder
                               #:cpuutilization #:cause #:causes
-                              #:check-dnsavailability
-                              #:check-dnsavailability-message
-                              #:check-dnsavailability-result-message
-                              #:cname-availability
-                              #:code-build-not-in-service-region-exception
-                              #:compose-environments
-                              #:compose-environments-message #:compute-type
+                              #:check-dnsavailability #:cname-availability
+                              #:compose-environments #:compute-type
                               #:configuration-deployment-status
                               #:configuration-option-default-value
                               #:configuration-option-description
@@ -59,66 +47,31 @@
                               #:configuration-settings-validation-messages
                               #:configuration-template-name
                               #:configuration-template-names-list
-                              #:create-application #:create-application-message
-                              #:create-application-version
-                              #:create-application-version-message
+                              #:create-application #:create-application-version
                               #:create-configuration-template
-                              #:create-configuration-template-message
-                              #:create-environment #:create-environment-message
-                              #:create-platform-version
-                              #:create-platform-version-request
-                              #:create-platform-version-result
-                              #:create-storage-location
-                              #:create-storage-location-result-message
-                              #:creation-date #:custom-ami #:custom-ami-list
-                              #:dnscname #:dnscname-prefix #:delete-application
-                              #:delete-application-message
+                              #:create-environment #:create-platform-version
+                              #:create-storage-location #:creation-date
+                              #:custom-ami #:custom-ami-list #:dnscname
+                              #:dnscname-prefix #:delete-application
                               #:delete-application-version
-                              #:delete-application-version-message
                               #:delete-configuration-template
-                              #:delete-configuration-template-message
                               #:delete-environment-configuration
-                              #:delete-environment-configuration-message
-                              #:delete-platform-version
-                              #:delete-platform-version-request
-                              #:delete-platform-version-result
-                              #:delete-source-bundle #:deployment
-                              #:deployment-timestamp
+                              #:delete-platform-version #:delete-source-bundle
+                              #:deployment #:deployment-timestamp
                               #:describe-account-attributes
-                              #:describe-account-attributes-result
                               #:describe-application-versions
-                              #:describe-application-versions-message
                               #:describe-applications
-                              #:describe-applications-message
                               #:describe-configuration-options
-                              #:describe-configuration-options-message
                               #:describe-configuration-settings
-                              #:describe-configuration-settings-message
                               #:describe-environment-health
-                              #:describe-environment-health-request
-                              #:describe-environment-health-result
                               #:describe-environment-managed-action-history
-                              #:describe-environment-managed-action-history-request
-                              #:describe-environment-managed-action-history-result
                               #:describe-environment-managed-actions
-                              #:describe-environment-managed-actions-request
-                              #:describe-environment-managed-actions-result
                               #:describe-environment-resources
-                              #:describe-environment-resources-message
-                              #:describe-environments
-                              #:describe-environments-message #:describe-events
-                              #:describe-events-message
+                              #:describe-environments #:describe-events
                               #:describe-instances-health
-                              #:describe-instances-health-request
-                              #:describe-instances-health-result
-                              #:describe-platform-version
-                              #:describe-platform-version-request
-                              #:describe-platform-version-result #:description
+                              #:describe-platform-version #:description
                               #:disassociate-environment-operations-role
-                              #:disassociate-environment-operations-role-message
-                              #:ec2instance-id
-                              #:elastic-beanstalk-service-exception
-                              #:endpoint-url #:environment-arn
+                              #:ec2instance-id #:endpoint-url #:environment-arn
                               #:environment-description
                               #:environment-descriptions-list
                               #:environment-descriptions-message
@@ -133,12 +86,10 @@
                               #:environment-links #:environment-name
                               #:environment-names-list
                               #:environment-resource-description
-                              #:environment-resource-descriptions-message
                               #:environment-resources-description
                               #:environment-status #:environment-tier
                               #:event-date #:event-description
-                              #:event-description-list
-                              #:event-descriptions-message #:event-message
+                              #:event-description-list #:event-message
                               #:event-severity #:exception-message
                               #:failure-type #:file-type-extension
                               #:force-terminate #:group-name #:image-id
@@ -146,22 +97,13 @@
                               #:instance #:instance-health-list
                               #:instance-health-summary #:instance-id
                               #:instance-list #:instances-health-attribute
-                              #:instances-health-attributes
-                              #:insufficient-privileges-exception #:integer
-                              #:invalid-request-exception #:latency
+                              #:instances-health-attributes #:integer #:latency
                               #:launch-configuration
                               #:launch-configuration-list #:launch-template
                               #:launch-template-list #:launched-at
                               #:list-available-solution-stacks
-                              #:list-available-solution-stacks-result-message
-                              #:list-platform-branches
-                              #:list-platform-branches-request
-                              #:list-platform-branches-result
-                              #:list-platform-versions
-                              #:list-platform-versions-request
-                              #:list-platform-versions-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-message #:listener
+                              #:list-platform-branches #:list-platform-versions
+                              #:list-tags-for-resource #:listener
                               #:load-average #:load-average-value
                               #:load-balancer #:load-balancer-description
                               #:load-balancer-list
@@ -170,15 +112,13 @@
                               #:managed-action-history-item
                               #:managed-action-history-items
                               #:managed-action-history-max-items
-                              #:managed-action-invalid-state-exception
                               #:managed-actions #:max-age-rule #:max-count-rule
                               #:max-records #:message #:next-token
                               #:non-empty-string #:nullable-double
                               #:nullable-integer #:nullable-long
                               #:operating-system-name
-                              #:operating-system-version
-                              #:operation-in-progress-exception
-                              #:operations-role #:option-namespace
+                              #:operating-system-version #:operations-role
+                              #:option-namespace
                               #:option-restriction-max-length
                               #:option-restriction-max-value
                               #:option-restriction-min-value
@@ -199,25 +139,14 @@
                               #:platform-programming-languages
                               #:platform-status #:platform-summary
                               #:platform-summary-list #:platform-version
-                              #:platform-version-still-referenced-exception
                               #:queue #:queue-list #:rebuild-environment
-                              #:rebuild-environment-message #:refreshed-at
-                              #:regex-label #:regex-pattern #:request-count
-                              #:request-environment-info
-                              #:request-environment-info-message #:request-id
-                              #:resource-arn #:resource-id #:resource-name
-                              #:resource-not-found-exception #:resource-quota
-                              #:resource-quotas
-                              #:resource-tags-description-message
-                              #:resource-type-not-supported-exception
-                              #:restart-app-server #:restart-app-server-message
-                              #:retrieve-environment-info
-                              #:retrieve-environment-info-message
-                              #:retrieve-environment-info-result-message
-                              #:s3bucket #:s3key #:s3location
-                              #:s3location-not-in-service-region-exception
-                              #:s3subscription-required-exception
-                              #:sample-timestamp #:search-filter
+                              #:refreshed-at #:regex-label #:regex-pattern
+                              #:request-count #:request-environment-info
+                              #:request-id #:resource-arn #:resource-id
+                              #:resource-name #:resource-quota
+                              #:resource-quotas #:restart-app-server
+                              #:retrieve-environment-info #:s3bucket #:s3key
+                              #:s3location #:sample-timestamp #:search-filter
                               #:search-filter-attribute
                               #:search-filter-operator #:search-filter-value
                               #:search-filter-values #:search-filters
@@ -225,41 +154,24 @@
                               #:solution-stack-description
                               #:solution-stack-file-type-list
                               #:solution-stack-name #:source-build-information
-                              #:source-bundle-deletion-exception
                               #:source-configuration #:source-location
                               #:source-repository #:source-type #:status-codes
                               #:string #:supported-addon #:supported-addon-list
                               #:supported-tier #:supported-tier-list
-                              #:swap-environment-cnames
-                              #:swap-environment-cnames-message #:system-status
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-value #:tags #:terminate-env-force
+                              #:swap-environment-cnames #:system-status #:tag
+                              #:tag-key #:tag-key-list #:tag-list #:tag-value
+                              #:tags #:terminate-env-force
                               #:terminate-environment
-                              #:terminate-environment-message
                               #:terminate-environment-resources
                               #:time-filter-end #:time-filter-start #:timestamp
-                              #:token #:too-many-application-versions-exception
-                              #:too-many-applications-exception
-                              #:too-many-buckets-exception
-                              #:too-many-configuration-templates-exception
-                              #:too-many-environments-exception
-                              #:too-many-platforms-exception
-                              #:too-many-tags-exception #:trigger
-                              #:trigger-list #:update-application
-                              #:update-application-message
+                              #:token #:trigger #:trigger-list
+                              #:update-application
                               #:update-application-resource-lifecycle
-                              #:update-application-resource-lifecycle-message
                               #:update-application-version
-                              #:update-application-version-message
-                              #:update-configuration-template
-                              #:update-configuration-template-message
-                              #:update-date #:update-environment
-                              #:update-environment-message
-                              #:update-tags-for-resource
-                              #:update-tags-for-resource-message
+                              #:update-configuration-template #:update-date
+                              #:update-environment #:update-tags-for-resource
                               #:user-defined-option
                               #:validate-configuration-settings
-                              #:validate-configuration-settings-message
                               #:validation-message #:validation-message-string
                               #:validation-messages-list #:validation-severity
                               #:version-label #:version-labels

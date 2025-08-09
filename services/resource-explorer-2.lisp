@@ -1,36 +1,27 @@
 (uiop/package:define-package #:pira/resource-explorer-2 (:use)
-                             (:export #:awsservice-access-status
-                              #:access-denied-exception #:account-id
+                             (:export #:awsservice-access-status #:account-id
                               #:account-id-list #:associate-default-view
                               #:associate-default-view-input
                               #:associate-default-view-output #:batch-get-view
                               #:batch-get-view-error #:batch-get-view-errors
                               #:batch-get-view-input #:batch-get-view-output
-                              #:cfn-index #:cfn-view #:conflict-exception
-                              #:create-index #:create-index-input
-                              #:create-index-output #:create-view
-                              #:create-view-input #:create-view-output
-                              #:default-view-association #:delete-index
-                              #:delete-index-input #:delete-index-output
-                              #:delete-view #:delete-view-input
-                              #:delete-view-output #:disassociate-default-view
+                              #:cfn-index #:cfn-view #:create-index
+                              #:create-index-input #:create-index-output
+                              #:create-view #:create-view-input
+                              #:create-view-output #:default-view-association
+                              #:delete-index #:delete-index-input
+                              #:delete-index-output #:delete-view
+                              #:delete-view-input #:delete-view-output
+                              #:disassociate-default-view
                               #:get-account-level-service-configuration
-                              #:get-account-level-service-configuration-output
                               #:get-default-view #:get-default-view-output
                               #:get-index #:get-index-output #:get-managed-view
-                              #:get-managed-view-input
-                              #:get-managed-view-output #:get-view
-                              #:get-view-input #:get-view-output
+                              #:get-view #:get-view-input #:get-view-output
                               #:included-property #:included-property-list
                               #:index #:index-list #:index-state #:index-type
-                              #:internal-server-exception #:list-indexes
-                              #:list-indexes-for-members
-                              #:list-indexes-for-members-input
-                              #:list-indexes-for-members-output
+                              #:list-indexes #:list-indexes-for-members
                               #:list-indexes-input #:list-indexes-output
-                              #:list-managed-views #:list-managed-views-input
-                              #:list-managed-views-output #:list-resources
-                              #:list-resources-input #:list-resources-output
+                              #:list-managed-views #:list-resources
                               #:list-supported-resource-types
                               #:list-supported-resource-types-input
                               #:list-supported-resource-types-output
@@ -42,20 +33,17 @@
                               #:member-index #:member-index-list
                               #:org-configuration #:query-string #:region-list
                               #:resource #:resource-count #:resource-explorer
-                              #:resource-list #:resource-not-found-exception
-                              #:resource-property #:resource-property-list
-                              #:resource-type-list #:search #:search-filter
-                              #:search-input #:search-output
-                              #:service-quota-exceeded-exception #:string-list
+                              #:resource-list #:resource-property
+                              #:resource-property-list #:resource-type-list
+                              #:search #:search-filter #:search-input
+                              #:search-output #:string-list
                               #:supported-resource-type #:tag-map
                               #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:throttling-exception
-                              #:unauthorized-exception #:untag-resource
+                              #:tag-resource-output #:untag-resource
                               #:untag-resource-input #:untag-resource-output
                               #:update-index-type #:update-index-type-input
                               #:update-index-type-output #:update-view
                               #:update-view-input #:update-view-output
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list #:view
                               #:view-arn-list #:view-list #:view-name))

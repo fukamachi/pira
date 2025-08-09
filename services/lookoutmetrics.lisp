@@ -1,8 +1,5 @@
 (uiop/package:define-package #:pira/lookoutmetrics (:use)
-                             (:export #:access-denied-exception #:action
-                              #:activate-anomaly-detector
-                              #:activate-anomaly-detector-request
-                              #:activate-anomaly-detector-response
+                             (:export #:action #:activate-anomaly-detector
                               #:aggregation-function #:alert
                               #:alert-description #:alert-filters #:alert-name
                               #:alert-status #:alert-summary
@@ -30,47 +27,25 @@
                               #:auto-detection-metric-source
                               #:auto-detection-s3source-config
                               #:back-test-anomaly-detector
-                              #:back-test-anomaly-detector-request
-                              #:back-test-anomaly-detector-response
                               #:back-test-configuration
                               #:binary-attribute-value
                               #:binary-list-attribute-value #:boolean
                               #:csvfile-compression #:charset
                               #:cloud-watch-config #:column-name #:confidence
-                              #:conflict-exception #:contribution-matrix
-                              #:create-alert #:create-alert-request
-                              #:create-alert-response #:create-anomaly-detector
-                              #:create-anomaly-detector-request
-                              #:create-anomaly-detector-response
-                              #:create-metric-set #:create-metric-set-request
-                              #:create-metric-set-response
+                              #:contribution-matrix #:create-alert
+                              #:create-anomaly-detector #:create-metric-set
                               #:csv-format-descriptor #:data-item
                               #:data-quality-metric
                               #:data-quality-metric-description
                               #:data-quality-metric-list
                               #:data-quality-metric-type #:database-host
                               #:database-port #:date-time-format
-                              #:deactivate-anomaly-detector
-                              #:deactivate-anomaly-detector-request
-                              #:deactivate-anomaly-detector-response
-                              #:delete-alert #:delete-alert-request
-                              #:delete-alert-response #:delete-anomaly-detector
-                              #:delete-anomaly-detector-request
-                              #:delete-anomaly-detector-response #:delimiter
-                              #:describe-alert #:describe-alert-request
-                              #:describe-alert-response
+                              #:deactivate-anomaly-detector #:delete-alert
+                              #:delete-anomaly-detector #:delimiter
+                              #:describe-alert
                               #:describe-anomaly-detection-executions
-                              #:describe-anomaly-detection-executions-request
-                              #:describe-anomaly-detection-executions-response
-                              #:describe-anomaly-detector
-                              #:describe-anomaly-detector-request
-                              #:describe-anomaly-detector-response
-                              #:describe-metric-set
-                              #:describe-metric-set-request
-                              #:describe-metric-set-response
+                              #:describe-anomaly-detector #:describe-metric-set
                               #:detect-metric-set-config
-                              #:detect-metric-set-config-request
-                              #:detect-metric-set-config-response
                               #:detected-csv-format-descriptor #:detected-field
                               #:detected-file-format-descriptor
                               #:detected-json-format-descriptor
@@ -88,43 +63,22 @@
                               #:execution-list #:execution-status #:field-name
                               #:file-format-descriptor #:filter #:filter-list
                               #:filter-operation #:flow-name #:frequency
-                              #:get-anomaly-group #:get-anomaly-group-request
-                              #:get-anomaly-group-response
-                              #:get-data-quality-metrics
-                              #:get-data-quality-metrics-request
-                              #:get-data-quality-metrics-response
-                              #:get-feedback #:get-feedback-request
-                              #:get-feedback-response #:get-sample-data
-                              #:get-sample-data-request
-                              #:get-sample-data-response #:header-list
+                              #:get-anomaly-group #:get-data-quality-metrics
+                              #:get-feedback #:get-sample-data #:header-list
                               #:header-value #:header-value-list
                               #:historical-data-path
                               #:historical-data-path-list #:integer
                               #:inter-metric-impact-details
                               #:inter-metric-impact-list
-                              #:internal-server-exception
                               #:itemized-metric-stats
                               #:itemized-metric-stats-list
                               #:json-file-compression #:json-format-descriptor
                               #:kms-key-arn #:lambda-configuration
-                              #:list-alerts #:list-alerts-request
-                              #:list-alerts-response #:list-anomaly-detectors
-                              #:list-anomaly-detectors-request
-                              #:list-anomaly-detectors-response
+                              #:list-alerts #:list-anomaly-detectors
                               #:list-anomaly-group-related-metrics
-                              #:list-anomaly-group-related-metrics-request
-                              #:list-anomaly-group-related-metrics-response
                               #:list-anomaly-group-summaries
-                              #:list-anomaly-group-summaries-request
-                              #:list-anomaly-group-summaries-response
                               #:list-anomaly-group-time-series
-                              #:list-anomaly-group-time-series-request
-                              #:list-anomaly-group-time-series-response
-                              #:list-metric-sets #:list-metric-sets-request
-                              #:list-metric-sets-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-metric-sets #:list-tags-for-resource
                               #:lookout-metrics #:max-results #:message
                               #:metric #:metric-change-percentage
                               #:metric-level-impact #:metric-level-impact-list
@@ -140,40 +94,28 @@
                               #:next-token #:number-attribute-value
                               #:number-list-attribute-value #:offset
                               #:poirot-secret-manager-arn #:put-feedback
-                              #:put-feedback-request #:put-feedback-response
                               #:quota-code #:quote-symbol
                               #:rdsdatabase-identifier #:rdsdatabase-name
                               #:rdssource-config #:redshift-cluster-identifier
                               #:redshift-database-name #:redshift-source-config
                               #:related-column-name #:relationship-type
-                              #:resource-id #:resource-not-found-exception
-                              #:resource-type #:s3source-config
+                              #:resource-id #:resource-type #:s3source-config
                               #:snsconfiguration #:sample-data-s3source-config
                               #:sample-row #:sample-rows #:score
                               #:security-group-id #:security-group-id-list
                               #:sensitivity-threshold #:service-code
-                              #:service-quota-exceeded-exception #:sns-format
-                              #:string-attribute-value
+                              #:sns-format #:string-attribute-value
                               #:string-list-attribute-value #:subnet-id
                               #:subnet-id-list #:table-name #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:templated-path
                               #:templated-path-list #:time-series
                               #:time-series-feedback
                               #:time-series-feedback-list #:time-series-id
                               #:time-series-list #:timestamp #:timestamp-column
                               #:timestamp-list #:timestamp-string #:timezone
-                              #:too-many-requests-exception #:uuid
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-alert
-                              #:update-alert-request #:update-alert-response
-                              #:update-anomaly-detector
-                              #:update-anomaly-detector-request
-                              #:update-anomaly-detector-response
-                              #:update-metric-set #:update-metric-set-request
-                              #:update-metric-set-response
-                              #:validation-exception
+                              #:uuid #:untag-resource #:update-alert
+                              #:update-anomaly-detector #:update-metric-set
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason

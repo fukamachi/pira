@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/wellarchitected (:use)
-                             (:export #:access-denied-exception
-                              #:account-jira-configuration-input
+                             (:export #:account-jira-configuration-input
                               #:account-jira-configuration-output
                               #:account-jira-issue-management-status
                               #:account-summary #:additional-resource-type
@@ -8,8 +7,7 @@
                               #:additional-resources-list #:answer
                               #:answer-reason #:answer-summaries
                               #:answer-summary #:application-arn
-                              #:associate-lenses #:associate-lenses-input
-                              #:associate-profiles #:associate-profiles-input
+                              #:associate-lenses #:associate-profiles
                               #:aws-account-id #:aws-region #:base64string
                               #:best-practice #:best-practices
                               #:check-description #:check-detail
@@ -25,87 +23,39 @@
                               #:choice-improvement-plans #:choice-notes
                               #:choice-reason #:choice-status #:choice-title
                               #:choice-update #:choice-updates #:choices
-                              #:client-request-token #:conflict-exception
+                              #:client-request-token
                               #:consolidated-report-metric
                               #:consolidated-report-metrics #:count
-                              #:create-lens-share #:create-lens-share-input
-                              #:create-lens-share-output #:create-lens-version
-                              #:create-lens-version-input
-                              #:create-lens-version-output #:create-milestone
-                              #:create-milestone-input
-                              #:create-milestone-output #:create-profile
-                              #:create-profile-input #:create-profile-output
-                              #:create-profile-share
-                              #:create-profile-share-input
-                              #:create-profile-share-output
-                              #:create-review-template
-                              #:create-review-template-input
-                              #:create-review-template-output
-                              #:create-template-share
-                              #:create-template-share-input
-                              #:create-template-share-output #:create-workload
-                              #:create-workload-input #:create-workload-output
-                              #:create-workload-share
-                              #:create-workload-share-input
-                              #:create-workload-share-output #:definition-type
-                              #:delete-lens #:delete-lens-input
-                              #:delete-lens-share #:delete-lens-share-input
-                              #:delete-profile #:delete-profile-input
-                              #:delete-profile-share
-                              #:delete-profile-share-input
-                              #:delete-review-template
-                              #:delete-review-template-input
-                              #:delete-template-share
-                              #:delete-template-share-input #:delete-workload
-                              #:delete-workload-input #:delete-workload-share
-                              #:delete-workload-share-input #:difference-status
-                              #:disassociate-lenses #:disassociate-lenses-input
+                              #:create-lens-share #:create-lens-version
+                              #:create-milestone #:create-profile
+                              #:create-profile-share #:create-review-template
+                              #:create-template-share #:create-workload
+                              #:create-workload-share #:definition-type
+                              #:delete-lens #:delete-lens-share
+                              #:delete-profile #:delete-profile-share
+                              #:delete-review-template #:delete-template-share
+                              #:delete-workload #:delete-workload-share
+                              #:difference-status #:disassociate-lenses
                               #:disassociate-profiles
-                              #:disassociate-profiles-input
                               #:discovery-integration-status #:display-text
                               #:exception-message #:exception-resource-id
                               #:exception-resource-type #:export-lens
-                              #:export-lens-input #:export-lens-output
                               #:flagged-resources #:get-answer
-                              #:get-answer-input #:get-answer-output
                               #:get-consolidated-report
-                              #:get-consolidated-report-input
                               #:get-consolidated-report-max-results
-                              #:get-consolidated-report-output
-                              #:get-global-settings
-                              #:get-global-settings-output #:get-lens
-                              #:get-lens-input #:get-lens-output
-                              #:get-lens-review #:get-lens-review-input
-                              #:get-lens-review-output #:get-lens-review-report
-                              #:get-lens-review-report-input
-                              #:get-lens-review-report-output
-                              #:get-lens-version-difference
-                              #:get-lens-version-difference-input
-                              #:get-lens-version-difference-output
-                              #:get-milestone #:get-milestone-input
-                              #:get-milestone-output #:get-profile
-                              #:get-profile-input #:get-profile-output
-                              #:get-profile-template
-                              #:get-profile-template-input
-                              #:get-profile-template-output
+                              #:get-global-settings #:get-lens
+                              #:get-lens-review #:get-lens-review-report
+                              #:get-lens-version-difference #:get-milestone
+                              #:get-profile #:get-profile-template
                               #:get-review-template
                               #:get-review-template-answer
-                              #:get-review-template-answer-input
-                              #:get-review-template-answer-output
-                              #:get-review-template-input
-                              #:get-review-template-lens-review
-                              #:get-review-template-lens-review-input
-                              #:get-review-template-lens-review-output
-                              #:get-review-template-output #:get-workload
-                              #:get-workload-input #:get-workload-output
+                              #:get-review-template-lens-review #:get-workload
                               #:helpful-resource-url #:import-lens
-                              #:import-lens-input #:import-lens-output
                               #:import-lens-status #:improvement-plan-url
                               #:improvement-summaries #:improvement-summary
                               #:include-shared-resources #:integrating-service
                               #:integration-status #:integration-status-input
-                              #:internal-server-exception #:is-applicable
-                              #:is-major-version
+                              #:is-applicable #:is-major-version
                               #:is-review-owner-update-acknowledged
                               #:issue-management-type #:jira-configuration
                               #:jira-issue-url #:jira-project-key
@@ -119,62 +69,30 @@
                               #:lens-status #:lens-status-type #:lens-summaries
                               #:lens-summary #:lens-type #:lens-upgrade-summary
                               #:lens-version #:lenses-applied-count
-                              #:list-answers #:list-answers-input
-                              #:list-answers-max-results #:list-answers-output
-                              #:list-check-details #:list-check-details-input
-                              #:list-check-details-output
-                              #:list-check-summaries
-                              #:list-check-summaries-input
-                              #:list-check-summaries-output
+                              #:list-answers #:list-answers-max-results
+                              #:list-check-details #:list-check-summaries
                               #:list-lens-review-improvements
-                              #:list-lens-review-improvements-input
                               #:list-lens-review-improvements-max-results
-                              #:list-lens-review-improvements-output
-                              #:list-lens-reviews #:list-lens-reviews-input
-                              #:list-lens-reviews-output #:list-lens-shares
-                              #:list-lens-shares-input
-                              #:list-lens-shares-output #:list-lenses
-                              #:list-lenses-input #:list-lenses-output
-                              #:list-milestones #:list-milestones-input
-                              #:list-milestones-output #:list-notifications
-                              #:list-notifications-input
+                              #:list-lens-reviews #:list-lens-shares
+                              #:list-lenses #:list-milestones
+                              #:list-notifications
                               #:list-notifications-max-results
-                              #:list-notifications-output
                               #:list-profile-notifications
-                              #:list-profile-notifications-input
-                              #:list-profile-notifications-output
-                              #:list-profile-shares #:list-profile-shares-input
-                              #:list-profile-shares-max-results
-                              #:list-profile-shares-output #:list-profiles
-                              #:list-profiles-input #:list-profiles-output
+                              #:list-profile-shares
+                              #:list-profile-shares-max-results #:list-profiles
                               #:list-review-template-answers
-                              #:list-review-template-answers-input
                               #:list-review-template-answers-max-results
-                              #:list-review-template-answers-output
-                              #:list-review-templates
-                              #:list-review-templates-input
-                              #:list-review-templates-output
-                              #:list-share-invitations
-                              #:list-share-invitations-input
+                              #:list-review-templates #:list-share-invitations
                               #:list-share-invitations-max-results
-                              #:list-share-invitations-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
-                              #:list-template-shares
-                              #:list-template-shares-input
+                              #:list-tags-for-resource #:list-template-shares
                               #:list-template-shares-max-results
-                              #:list-template-shares-output
                               #:list-workload-shares
-                              #:list-workload-shares-input
                               #:list-workload-shares-max-results
-                              #:list-workload-shares-output #:list-workloads
-                              #:list-workloads-input
-                              #:list-workloads-max-results
-                              #:list-workloads-output #:max-results
-                              #:max-selected-profile-choices #:metric-type
-                              #:milestone #:milestone-name #:milestone-number
-                              #:milestone-summaries #:milestone-summary
+                              #:list-workloads #:list-workloads-max-results
+                              #:max-results #:max-selected-profile-choices
+                              #:metric-type #:milestone #:milestone-name
+                              #:milestone-number #:milestone-summaries
+                              #:milestone-summary
                               #:min-selected-profile-choices #:next-token
                               #:notes #:notification-summaries
                               #:notification-summary #:notification-type
@@ -203,8 +121,8 @@
                               #:question-metric #:question-metrics
                               #:question-priority #:question-title
                               #:question-type #:quota-code #:report-format
-                              #:resource-arn #:resource-not-found-exception
-                              #:review-template #:review-template-answer
+                              #:resource-arn #:review-template
+                              #:review-template-answer
                               #:review-template-answer-status
                               #:review-template-answer-summaries
                               #:review-template-answer-summary
@@ -221,51 +139,28 @@
                               #:selected-pillar #:selected-pillars
                               #:selected-profile-choice-ids
                               #:selected-question-id #:selected-question-ids
-                              #:service-code #:service-quota-exceeded-exception
-                              #:share-id #:share-invitation
+                              #:service-code #:share-id #:share-invitation
                               #:share-invitation-action #:share-invitation-id
                               #:share-invitation-summaries
                               #:share-invitation-summary #:share-resource-type
                               #:share-status #:shared-with #:shared-with-prefix
                               #:status-message #:subdomain #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
                               #:tag-value #:template-arn #:template-description
                               #:template-name #:template-name-prefix
                               #:template-questions #:template-share-summaries
-                              #:template-share-summary #:throttling-exception
-                              #:timestamp #:trusted-advisor-integration-status
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-answer
-                              #:update-answer-input #:update-answer-output
-                              #:update-global-settings
-                              #:update-global-settings-input
-                              #:update-integration #:update-integration-input
-                              #:update-lens-review #:update-lens-review-input
-                              #:update-lens-review-output #:update-profile
-                              #:update-profile-input #:update-profile-output
+                              #:template-share-summary #:timestamp
+                              #:trusted-advisor-integration-status
+                              #:untag-resource #:update-answer
+                              #:update-global-settings #:update-integration
+                              #:update-lens-review #:update-profile
                               #:update-review-template
                               #:update-review-template-answer
-                              #:update-review-template-answer-input
-                              #:update-review-template-answer-output
-                              #:update-review-template-input
                               #:update-review-template-lens-review
-                              #:update-review-template-lens-review-input
-                              #:update-review-template-lens-review-output
-                              #:update-review-template-output
-                              #:update-share-invitation
-                              #:update-share-invitation-input
-                              #:update-share-invitation-output
-                              #:update-workload #:update-workload-input
-                              #:update-workload-output #:update-workload-share
-                              #:update-workload-share-input
-                              #:update-workload-share-output
-                              #:upgrade-lens-review #:upgrade-lens-review-input
+                              #:update-share-invitation #:update-workload
+                              #:update-workload-share #:upgrade-lens-review
                               #:upgrade-profile-version
-                              #:upgrade-profile-version-input
-                              #:upgrade-review-template-lens-review
-                              #:upgrade-review-template-lens-review-input
-                              #:urls #:validation-exception
+                              #:upgrade-review-template-lens-review #:urls
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-field-name

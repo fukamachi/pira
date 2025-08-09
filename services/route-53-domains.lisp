@@ -1,131 +1,68 @@
 (uiop/package:define-package #:pira/route-53-domains (:use)
                              (:export
                               #:accept-domain-transfer-from-another-aws-account
-                              #:accept-domain-transfer-from-another-aws-account-request
-                              #:accept-domain-transfer-from-another-aws-account-response
                               #:account-id #:address-line
                               #:associate-delegation-signer-to-domain
-                              #:associate-delegation-signer-to-domain-request
-                              #:associate-delegation-signer-to-domain-response
                               #:billing-record #:billing-records #:boolean
                               #:cancel-domain-transfer-to-another-aws-account
-                              #:cancel-domain-transfer-to-another-aws-account-request
-                              #:cancel-domain-transfer-to-another-aws-account-response
                               #:check-domain-availability
-                              #:check-domain-availability-request
-                              #:check-domain-availability-response
-                              #:check-domain-transferability
-                              #:check-domain-transferability-request
-                              #:check-domain-transferability-response #:city
-                              #:consent #:contact-detail #:contact-name
-                              #:contact-number #:contact-type #:country-code
-                              #:currency #:current-expiry-year #:dnssec
-                              #:delete-domain #:delete-domain-request
-                              #:delete-domain-response #:delete-tags-for-domain
-                              #:delete-tags-for-domain-request
-                              #:delete-tags-for-domain-response
+                              #:check-domain-transferability #:city #:consent
+                              #:contact-detail #:contact-name #:contact-number
+                              #:contact-type #:country-code #:currency
+                              #:current-expiry-year #:dnssec #:delete-domain
+                              #:delete-tags-for-domain
                               #:disable-domain-auto-renew
-                              #:disable-domain-auto-renew-request
-                              #:disable-domain-auto-renew-response
                               #:disable-domain-transfer-lock
-                              #:disable-domain-transfer-lock-request
-                              #:disable-domain-transfer-lock-response
                               #:disassociate-delegation-signer-from-domain
-                              #:disassociate-delegation-signer-from-domain-request
-                              #:disassociate-delegation-signer-from-domain-response
                               #:dnssec-key #:dnssec-key-list
-                              #:dnssec-limit-exceeded #:dnssec-public-key
-                              #:dnssec-signing-attributes #:domain-auth-code
-                              #:domain-availability #:domain-limit-exceeded
+                              #:dnssec-public-key #:dnssec-signing-attributes
+                              #:domain-auth-code #:domain-availability
                               #:domain-name #:domain-price #:domain-price-list
                               #:domain-price-name #:domain-status
                               #:domain-status-list #:domain-suggestion
                               #:domain-suggestions-list #:domain-summary
                               #:domain-summary-list #:domain-transferability
-                              #:duplicate-request #:duration-in-years #:email
+                              #:duration-in-years #:email
                               #:enable-domain-auto-renew
-                              #:enable-domain-auto-renew-request
-                              #:enable-domain-auto-renew-response
-                              #:enable-domain-transfer-lock
-                              #:enable-domain-transfer-lock-request
-                              #:enable-domain-transfer-lock-response
-                              #:error-message #:extra-param #:extra-param-list
+                              #:enable-domain-transfer-lock #:error-message
+                              #:extra-param #:extra-param-list
                               #:extra-param-name #:extra-param-value
                               #:fiauth-key #:filter-condition
                               #:filter-conditions
                               #:get-contact-reachability-status
-                              #:get-contact-reachability-status-request
-                              #:get-contact-reachability-status-response
-                              #:get-domain-detail #:get-domain-detail-request
-                              #:get-domain-detail-response
-                              #:get-domain-suggestions
-                              #:get-domain-suggestions-request
-                              #:get-domain-suggestions-response
-                              #:get-operation-detail
-                              #:get-operation-detail-request
-                              #:get-operation-detail-response #:glue-ip
-                              #:glue-ip-list #:host-name #:integer
-                              #:invalid-input #:invoice-id #:label #:lang-code
-                              #:list-domains #:list-domains-attribute-name
-                              #:list-domains-request #:list-domains-response
-                              #:list-operations #:list-operations-request
-                              #:list-operations-response
+                              #:get-domain-detail #:get-domain-suggestions
+                              #:get-operation-detail #:glue-ip #:glue-ip-list
+                              #:host-name #:integer #:invoice-id #:label
+                              #:lang-code #:list-domains
+                              #:list-domains-attribute-name #:list-operations
                               #:list-operations-sort-attribute-name
                               #:list-prices #:list-prices-page-max-items
-                              #:list-prices-request #:list-prices-response
-                              #:list-tags-for-domain
-                              #:list-tags-for-domain-request
-                              #:list-tags-for-domain-response #:message
-                              #:nameserver #:nameserver-list #:nullable-integer
-                              #:operation-id #:operation-limit-exceeded
-                              #:operation-status #:operation-status-list
-                              #:operation-summary #:operation-summary-list
-                              #:operation-type #:operation-type-list #:operator
-                              #:page-marker #:page-max-items #:password #:price
+                              #:list-tags-for-domain #:message #:nameserver
+                              #:nameserver-list #:nullable-integer
+                              #:operation-id #:operation-status
+                              #:operation-status-list #:operation-summary
+                              #:operation-summary-list #:operation-type
+                              #:operation-type-list #:operator #:page-marker
+                              #:page-max-items #:password #:price
                               #:price-with-currency #:push-domain
-                              #:push-domain-request #:reachability-status
-                              #:register-domain #:register-domain-request
-                              #:register-domain-response #:registrar-name
-                              #:registrar-url #:registrar-who-is-server
-                              #:registry-domain-id
+                              #:reachability-status #:register-domain
+                              #:registrar-name #:registrar-url
+                              #:registrar-who-is-server #:registry-domain-id
                               #:reject-domain-transfer-from-another-aws-account
-                              #:reject-domain-transfer-from-another-aws-account-request
-                              #:reject-domain-transfer-from-another-aws-account-response
-                              #:renew-domain #:renew-domain-request
-                              #:renew-domain-response #:request-id #:reseller
+                              #:renew-domain #:request-id #:reseller
                               #:resend-contact-reachability-email
-                              #:resend-contact-reachability-email-request
-                              #:resend-contact-reachability-email-response
                               #:resend-operation-authorization
-                              #:resend-operation-authorization-request
                               #:retrieve-domain-auth-code
-                              #:retrieve-domain-auth-code-request
-                              #:retrieve-domain-auth-code-response
                               #:route53domains-v20140515 #:sort-condition
-                              #:sort-order #:state #:status-flag #:string
-                              #:tldrules-violation #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-value #:timestamp
-                              #:tld-name #:transfer-domain
-                              #:transfer-domain-request
-                              #:transfer-domain-response
+                              #:sort-order #:state #:status-flag #:string #:tag
+                              #:tag-key #:tag-key-list #:tag-list #:tag-value
+                              #:timestamp #:tld-name #:transfer-domain
                               #:transfer-domain-to-another-aws-account
-                              #:transfer-domain-to-another-aws-account-request
-                              #:transfer-domain-to-another-aws-account-response
-                              #:transferable #:unsupported-tld
-                              #:update-domain-contact
+                              #:transferable #:update-domain-contact
                               #:update-domain-contact-privacy
-                              #:update-domain-contact-privacy-request
-                              #:update-domain-contact-privacy-response
-                              #:update-domain-contact-request
-                              #:update-domain-contact-response
                               #:update-domain-nameservers
-                              #:update-domain-nameservers-request
-                              #:update-domain-nameservers-response
-                              #:update-tags-for-domain
-                              #:update-tags-for-domain-request
-                              #:update-tags-for-domain-response #:value
-                              #:values #:view-billing #:view-billing-request
-                              #:view-billing-response #:zip-code))
+                              #:update-tags-for-domain #:value #:values
+                              #:view-billing #:zip-code))
 (common-lisp:in-package #:pira/route-53-domains)
 
 (smithy/sdk/service:define-service route53domains-v20140515 :shape-name

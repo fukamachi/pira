@@ -4,17 +4,11 @@
                               #:action-list #:amazon-personalize-events #:arn
                               #:date #:error-message #:event
                               #:event-attribution-source #:event-list
-                              #:float-type #:impression
-                              #:invalid-input-exception #:item #:item-id
+                              #:float-type #:impression #:item #:item-id
                               #:item-list #:metric-attribution
-                              #:put-action-interactions
-                              #:put-action-interactions-request #:put-actions
-                              #:put-actions-request #:put-events
-                              #:put-events-request #:put-items
-                              #:put-items-request #:put-users
-                              #:put-users-request #:recommendation-id
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception #:string-type
+                              #:put-action-interactions #:put-actions
+                              #:put-events #:put-items #:put-users
+                              #:recommendation-id #:string-type
                               #:synthesized-json-action-interaction-properties
                               #:synthesized-json-action-properties
                               #:synthesized-json-event-properties-json

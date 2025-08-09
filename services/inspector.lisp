@@ -1,25 +1,20 @@
 (uiop/package:define-package #:pira/inspector (:use)
                              (:export #:access-denied-error-code
-                              #:access-denied-exception
                               #:add-attributes-to-findings
-                              #:add-attributes-to-findings-request
-                              #:add-attributes-to-findings-response
                               #:add-remove-attributes-finding-arn-list
                               #:agent-already-running-assessment
                               #:agent-already-running-assessment-list
                               #:agent-filter #:agent-health #:agent-health-code
                               #:agent-health-code-list #:agent-health-list
                               #:agent-id #:agent-id-list #:agent-preview
-                              #:agent-preview-list #:agent-version
-                              #:agents-already-running-assessment-exception
-                              #:ami-id #:arn #:arn-count
+                              #:agent-preview-list #:agent-version #:ami-id
+                              #:arn #:arn-count
                               #:assessment-rules-package-arn-list
                               #:assessment-run #:assessment-run-agent
                               #:assessment-run-agent-list
                               #:assessment-run-duration #:assessment-run-filter
                               #:assessment-run-finding-counts
                               #:assessment-run-in-progress-arn-list
-                              #:assessment-run-in-progress-exception
                               #:assessment-run-list #:assessment-run-name
                               #:assessment-run-notification
                               #:assessment-run-notification-list
@@ -42,114 +37,52 @@
                               #:batch-describe-arn-list
                               #:batch-describe-exclusions-arn-list #:bool
                               #:create-assessment-target
-                              #:create-assessment-target-request
-                              #:create-assessment-target-response
                               #:create-assessment-template
-                              #:create-assessment-template-request
-                              #:create-assessment-template-response
                               #:create-exclusions-preview
-                              #:create-exclusions-preview-request
-                              #:create-exclusions-preview-response
-                              #:create-resource-group
-                              #:create-resource-group-request
-                              #:create-resource-group-response
-                              #:delete-assessment-run
-                              #:delete-assessment-run-request
+                              #:create-resource-group #:delete-assessment-run
                               #:delete-assessment-target
-                              #:delete-assessment-target-request
                               #:delete-assessment-template
-                              #:delete-assessment-template-request
                               #:describe-assessment-runs
-                              #:describe-assessment-runs-request
-                              #:describe-assessment-runs-response
                               #:describe-assessment-targets
-                              #:describe-assessment-targets-request
-                              #:describe-assessment-targets-response
                               #:describe-assessment-templates
-                              #:describe-assessment-templates-request
-                              #:describe-assessment-templates-response
                               #:describe-cross-account-access-role
-                              #:describe-cross-account-access-role-response
-                              #:describe-exclusions
-                              #:describe-exclusions-request
-                              #:describe-exclusions-response
-                              #:describe-findings #:describe-findings-request
-                              #:describe-findings-response
+                              #:describe-exclusions #:describe-findings
                               #:describe-resource-groups
-                              #:describe-resource-groups-request
-                              #:describe-resource-groups-response
-                              #:describe-rules-packages
-                              #:describe-rules-packages-request
-                              #:describe-rules-packages-response
-                              #:duration-range #:error-message
-                              #:event-subscription #:event-subscription-list
-                              #:exclusion #:exclusion-map #:exclusion-preview
+                              #:describe-rules-packages #:duration-range
+                              #:error-message #:event-subscription
+                              #:event-subscription-list #:exclusion
+                              #:exclusion-map #:exclusion-preview
                               #:exclusion-preview-list #:failed-item-details
                               #:failed-item-error-code #:failed-items
                               #:filter-rules-package-arn-list #:finding
                               #:finding-count #:finding-filter #:finding-id
                               #:finding-list #:get-assessment-report
-                              #:get-assessment-report-request
-                              #:get-assessment-report-response
-                              #:get-exclusions-preview
-                              #:get-exclusions-preview-request
-                              #:get-exclusions-preview-response
-                              #:get-telemetry-metadata
-                              #:get-telemetry-metadata-request
-                              #:get-telemetry-metadata-response #:hostname
-                              #:inspector-event #:inspector-service
+                              #:get-exclusions-preview #:get-telemetry-metadata
+                              #:hostname #:inspector-event #:inspector-service
                               #:inspector-service-attributes
-                              #:internal-exception
                               #:invalid-cross-account-role-error-code
-                              #:invalid-cross-account-role-exception
-                              #:invalid-input-error-code
-                              #:invalid-input-exception #:ioc-confidence
+                              #:invalid-input-error-code #:ioc-confidence
                               #:ipv4address #:ipv4address-list #:ipv6addresses
                               #:kernel-version #:limit-exceeded-error-code
-                              #:limit-exceeded-exception
                               #:list-assessment-run-agents
-                              #:list-assessment-run-agents-request
-                              #:list-assessment-run-agents-response
-                              #:list-assessment-runs
-                              #:list-assessment-runs-request
-                              #:list-assessment-runs-response
-                              #:list-assessment-targets
-                              #:list-assessment-targets-request
-                              #:list-assessment-targets-response
+                              #:list-assessment-runs #:list-assessment-targets
                               #:list-assessment-templates
-                              #:list-assessment-templates-request
-                              #:list-assessment-templates-response
                               #:list-event-subscriptions
                               #:list-event-subscriptions-max-results
-                              #:list-event-subscriptions-request
-                              #:list-event-subscriptions-response
-                              #:list-exclusions #:list-exclusions-request
-                              #:list-exclusions-response #:list-findings
-                              #:list-findings-request #:list-findings-response
+                              #:list-exclusions #:list-findings
                               #:list-max-results #:list-parent-arn-list
                               #:list-returned-arn-list #:list-rules-packages
-                              #:list-rules-packages-request
-                              #:list-rules-packages-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:locale #:long
+                              #:list-tags-for-resource #:locale #:long
                               #:message #:message-type #:name-pattern
                               #:network-interface #:network-interfaces
-                              #:no-such-entity-error-code
-                              #:no-such-entity-exception #:numeric-severity
+                              #:no-such-entity-error-code #:numeric-severity
                               #:numeric-version #:operating-system
                               #:pagination-token #:preview-agents
-                              #:preview-agents-max-results
-                              #:preview-agents-request
-                              #:preview-agents-response
-                              #:preview-generation-in-progress-exception
-                              #:preview-status #:private-ip
-                              #:private-ip-addresses #:provider-name
+                              #:preview-agents-max-results #:preview-status
+                              #:private-ip #:private-ip-addresses
+                              #:provider-name
                               #:register-cross-account-access-role
-                              #:register-cross-account-access-role-request
                               #:remove-attributes-from-findings
-                              #:remove-attributes-from-findings-request
-                              #:remove-attributes-from-findings-response
                               #:report-file-format #:report-status
                               #:report-type #:resource-group
                               #:resource-group-list #:resource-group-tag
@@ -158,24 +91,15 @@
                               #:rules-package-list #:rules-package-name #:scope
                               #:scope-list #:scope-type #:scope-value
                               #:security-group #:security-groups #:service-name
-                              #:service-temporarily-unavailable-exception
-                              #:set-tags-for-resource
-                              #:set-tags-for-resource-request #:severity
+                              #:set-tags-for-resource #:severity
                               #:severity-list #:start-assessment-run
-                              #:start-assessment-run-request
-                              #:start-assessment-run-response #:stop-action
-                              #:stop-assessment-run
-                              #:stop-assessment-run-request
-                              #:subscribe-to-event #:subscribe-to-event-request
-                              #:subscription #:subscription-list #:tag
-                              #:tag-key #:tag-list #:tag-value #:tags
-                              #:telemetry-metadata #:telemetry-metadata-list
-                              #:text #:timestamp #:timestamp-range #:uuid
-                              #:unsubscribe-from-event
-                              #:unsubscribe-from-event-request
-                              #:unsupported-feature-exception
-                              #:update-assessment-target
-                              #:update-assessment-target-request #:url
+                              #:stop-action #:stop-assessment-run
+                              #:subscribe-to-event #:subscription
+                              #:subscription-list #:tag #:tag-key #:tag-list
+                              #:tag-value #:tags #:telemetry-metadata
+                              #:telemetry-metadata-list #:text #:timestamp
+                              #:timestamp-range #:uuid #:unsubscribe-from-event
+                              #:update-assessment-target #:url
                               #:user-attribute-key-list #:user-attribute-list
                               #:version))
 (common-lisp:in-package #:pira/inspector)

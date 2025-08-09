@@ -1,141 +1,59 @@
 (uiop/package:define-package #:pira/apigatewayv2 (:use)
-                             (:export #:access-denied-exception
-                              #:access-log-settings #:api #:api-gateway-v2
-                              #:api-mapping #:arn #:authorization-scopes
-                              #:authorization-type #:authorizer
-                              #:authorizer-type #:bad-request-exception
-                              #:conflict-exception #:connection-type
+                             (:export #:access-log-settings #:api
+                              #:api-gateway-v2 #:api-mapping #:arn
+                              #:authorization-scopes #:authorization-type
+                              #:authorizer #:authorizer-type #:connection-type
                               #:content-handling-strategy #:cors
                               #:cors-header-list #:cors-method-list
                               #:cors-origin-list #:create-api
-                              #:create-api-mapping #:create-api-mapping-request
-                              #:create-api-mapping-response
-                              #:create-api-request #:create-api-response
-                              #:create-authorizer #:create-authorizer-request
-                              #:create-authorizer-response #:create-deployment
-                              #:create-deployment-request
-                              #:create-deployment-response #:create-domain-name
-                              #:create-domain-name-request
-                              #:create-domain-name-response
-                              #:create-integration #:create-integration-request
-                              #:create-integration-response
-                              #:create-integration-response-request
-                              #:create-integration-response-response
-                              #:create-integration-result #:create-model
-                              #:create-model-request #:create-model-response
-                              #:create-route #:create-route-request
-                              #:create-route-response
-                              #:create-route-response-request
-                              #:create-route-response-response
-                              #:create-route-result #:create-routing-rule
-                              #:create-routing-rule-request
-                              #:create-routing-rule-response #:create-stage
-                              #:create-stage-request #:create-stage-response
-                              #:create-vpc-link #:create-vpc-link-request
-                              #:create-vpc-link-response
-                              #:delete-access-log-settings
-                              #:delete-access-log-settings-request #:delete-api
-                              #:delete-api-mapping #:delete-api-mapping-request
-                              #:delete-api-request #:delete-authorizer
-                              #:delete-authorizer-request
-                              #:delete-cors-configuration
-                              #:delete-cors-configuration-request
-                              #:delete-deployment #:delete-deployment-request
-                              #:delete-domain-name #:delete-domain-name-request
-                              #:delete-integration #:delete-integration-request
-                              #:delete-integration-response
-                              #:delete-integration-response-request
-                              #:delete-model #:delete-model-request
-                              #:delete-route #:delete-route-request
-                              #:delete-route-request-parameter
-                              #:delete-route-request-parameter-request
-                              #:delete-route-response
-                              #:delete-route-response-request
-                              #:delete-route-settings
-                              #:delete-route-settings-request
-                              #:delete-routing-rule
-                              #:delete-routing-rule-request #:delete-stage
-                              #:delete-stage-request #:delete-vpc-link
-                              #:delete-vpc-link-request
-                              #:delete-vpc-link-response #:deployment
+                              #:create-api-mapping #:create-authorizer
+                              #:create-deployment #:create-domain-name
+                              #:create-integration
+                              #:create-integration-response #:create-model
+                              #:create-route #:create-route-response
+                              #:create-routing-rule #:create-stage
+                              #:create-vpc-link #:delete-access-log-settings
+                              #:delete-api #:delete-api-mapping
+                              #:delete-authorizer #:delete-cors-configuration
+                              #:delete-deployment #:delete-domain-name
+                              #:delete-integration
+                              #:delete-integration-response #:delete-model
+                              #:delete-route #:delete-route-request-parameter
+                              #:delete-route-response #:delete-route-settings
+                              #:delete-routing-rule #:delete-stage
+                              #:delete-vpc-link #:deployment
                               #:deployment-status #:domain-name
                               #:domain-name-configuration
                               #:domain-name-configurations #:domain-name-status
-                              #:endpoint-type #:export-api #:export-api-request
-                              #:export-api-response #:exported-api #:get-api
-                              #:get-api-mapping #:get-api-mapping-request
-                              #:get-api-mapping-response #:get-api-mappings
-                              #:get-api-mappings-request
-                              #:get-api-mappings-response #:get-api-request
-                              #:get-api-response #:get-apis #:get-apis-request
-                              #:get-apis-response #:get-authorizer
-                              #:get-authorizer-request
-                              #:get-authorizer-response #:get-authorizers
-                              #:get-authorizers-request
-                              #:get-authorizers-response #:get-deployment
-                              #:get-deployment-request
-                              #:get-deployment-response #:get-deployments
-                              #:get-deployments-request
-                              #:get-deployments-response #:get-domain-name
-                              #:get-domain-name-request
-                              #:get-domain-name-response #:get-domain-names
-                              #:get-domain-names-request
-                              #:get-domain-names-response #:get-integration
-                              #:get-integration-request
-                              #:get-integration-response
-                              #:get-integration-response-request
-                              #:get-integration-response-response
-                              #:get-integration-responses
-                              #:get-integration-responses-request
-                              #:get-integration-responses-response
-                              #:get-integration-result #:get-integrations
-                              #:get-integrations-request
-                              #:get-integrations-response #:get-model
-                              #:get-model-request #:get-model-response
-                              #:get-model-template #:get-model-template-request
-                              #:get-model-template-response #:get-models
-                              #:get-models-request #:get-models-response
-                              #:get-route #:get-route-request
-                              #:get-route-response #:get-route-response-request
-                              #:get-route-response-response
-                              #:get-route-responses
-                              #:get-route-responses-request
-                              #:get-route-responses-response #:get-route-result
-                              #:get-routes #:get-routes-request
-                              #:get-routes-response #:get-routing-rule
-                              #:get-routing-rule-request
-                              #:get-routing-rule-response #:get-stage
-                              #:get-stage-request #:get-stage-response
-                              #:get-stages #:get-stages-request
-                              #:get-stages-response #:get-tags
-                              #:get-tags-request #:get-tags-response
-                              #:get-vpc-link #:get-vpc-link-request
-                              #:get-vpc-link-response #:get-vpc-links
-                              #:get-vpc-links-request #:get-vpc-links-response
-                              #:id #:identity-source-list #:import-api
-                              #:import-api-request #:import-api-response
+                              #:endpoint-type #:export-api #:exported-api
+                              #:get-api #:get-api-mapping #:get-api-mappings
+                              #:get-apis #:get-authorizer #:get-authorizers
+                              #:get-deployment #:get-deployments
+                              #:get-domain-name #:get-domain-names
+                              #:get-integration #:get-integration-response
+                              #:get-integration-responses #:get-integrations
+                              #:get-model #:get-model-template #:get-models
+                              #:get-route #:get-route-response
+                              #:get-route-responses #:get-routes
+                              #:get-routing-rule #:get-stage #:get-stages
+                              #:get-tags #:get-vpc-link #:get-vpc-links #:id
+                              #:identity-source-list #:import-api
                               #:integer-with-length-between0and3600
                               #:integer-with-length-between50and30000
                               #:integer-with-length-between-minus1and86400
                               #:integration #:integration-parameters
                               #:integration-response #:integration-type
                               #:ip-address-type #:jwtconfiguration
-                              #:list-routing-rules #:list-routing-rules-request
-                              #:list-routing-rules-response #:logging-level
+                              #:list-routing-rules #:logging-level
                               #:max-results #:model #:mutual-tls-authentication
                               #:mutual-tls-authentication-input #:next-token
-                              #:not-found-exception #:parameter-constraints
-                              #:passthrough-behavior #:protocol-type
-                              #:put-routing-rule #:put-routing-rule-request
-                              #:put-routing-rule-response #:reimport-api
-                              #:reimport-api-request #:reimport-api-response
-                              #:reset-authorizers-cache
-                              #:reset-authorizers-cache-request
-                              #:response-parameters #:route #:route-models
-                              #:route-parameters #:route-response
-                              #:route-settings #:route-settings-map
-                              #:routing-mode #:routing-rule
-                              #:routing-rule-action
+                              #:parameter-constraints #:passthrough-behavior
+                              #:protocol-type #:put-routing-rule #:reimport-api
+                              #:reset-authorizers-cache #:response-parameters
+                              #:route #:route-models #:route-parameters
+                              #:route-response #:route-settings
+                              #:route-settings-map #:routing-mode
+                              #:routing-rule #:routing-rule-action
                               #:routing-rule-action-invoke-api
                               #:routing-rule-condition
                               #:routing-rule-match-base-paths
@@ -153,35 +71,15 @@
                               #:string-with-length-between1and256
                               #:string-with-length-between1and512
                               #:string-with-length-between1and64
-                              #:subnet-id-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tags #:template-map #:tls-config
-                              #:tls-config-input #:too-many-requests-exception
-                              #:untag-resource #:untag-resource-request
-                              #:update-api #:update-api-mapping
-                              #:update-api-mapping-request
-                              #:update-api-mapping-response
-                              #:update-api-request #:update-api-response
-                              #:update-authorizer #:update-authorizer-request
-                              #:update-authorizer-response #:update-deployment
-                              #:update-deployment-request
-                              #:update-deployment-response #:update-domain-name
-                              #:update-domain-name-request
-                              #:update-domain-name-response
-                              #:update-integration #:update-integration-request
-                              #:update-integration-response
-                              #:update-integration-response-request
-                              #:update-integration-response-response
-                              #:update-integration-result #:update-model
-                              #:update-model-request #:update-model-response
-                              #:update-route #:update-route-request
-                              #:update-route-response
-                              #:update-route-response-request
-                              #:update-route-response-response
-                              #:update-route-result #:update-stage
-                              #:update-stage-request #:update-stage-response
-                              #:update-vpc-link #:update-vpc-link-request
-                              #:update-vpc-link-response
+                              #:subnet-id-list #:tag-resource #:tags
+                              #:template-map #:tls-config #:tls-config-input
+                              #:untag-resource #:update-api
+                              #:update-api-mapping #:update-authorizer
+                              #:update-deployment #:update-domain-name
+                              #:update-integration
+                              #:update-integration-response #:update-model
+                              #:update-route #:update-route-response
+                              #:update-stage #:update-vpc-link
                               #:uri-with-length-between1and2048 #:vpc-link
                               #:vpc-link-status #:vpc-link-version #:boolean
                               #:double #:integer #:list-of-api

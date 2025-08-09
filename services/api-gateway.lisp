@@ -4,67 +4,35 @@
                               #:api-key-ids #:api-key-source-type #:api-keys
                               #:api-keys-format #:api-stage #:authorizer
                               #:authorizer-type #:authorizers
-                              #:backplane-control-service
-                              #:bad-request-exception #:base-path-mapping
+                              #:backplane-control-service #:base-path-mapping
                               #:base-path-mappings #:blob #:boolean
                               #:cache-cluster-size #:cache-cluster-status
                               #:canary-settings #:client-certificate
-                              #:client-certificates #:conflict-exception
-                              #:connection-type #:content-handling-strategy
-                              #:create-api-key #:create-api-key-request
-                              #:create-authorizer #:create-authorizer-request
-                              #:create-base-path-mapping
-                              #:create-base-path-mapping-request
-                              #:create-deployment #:create-deployment-request
-                              #:create-documentation-part
-                              #:create-documentation-part-request
+                              #:client-certificates #:connection-type
+                              #:content-handling-strategy #:create-api-key
+                              #:create-authorizer #:create-base-path-mapping
+                              #:create-deployment #:create-documentation-part
                               #:create-documentation-version
-                              #:create-documentation-version-request
                               #:create-domain-name
                               #:create-domain-name-access-association
-                              #:create-domain-name-access-association-request
-                              #:create-domain-name-request #:create-model
-                              #:create-model-request #:create-request-validator
-                              #:create-request-validator-request
-                              #:create-resource #:create-resource-request
-                              #:create-rest-api #:create-rest-api-request
-                              #:create-stage #:create-stage-request
-                              #:create-usage-plan #:create-usage-plan-key
-                              #:create-usage-plan-key-request
-                              #:create-usage-plan-request #:create-vpc-link
-                              #:create-vpc-link-request #:delete-api-key
-                              #:delete-api-key-request #:delete-authorizer
-                              #:delete-authorizer-request
+                              #:create-model #:create-request-validator
+                              #:create-resource #:create-rest-api
+                              #:create-stage #:create-usage-plan
+                              #:create-usage-plan-key #:create-vpc-link
+                              #:delete-api-key #:delete-authorizer
                               #:delete-base-path-mapping
-                              #:delete-base-path-mapping-request
-                              #:delete-client-certificate
-                              #:delete-client-certificate-request
-                              #:delete-deployment #:delete-deployment-request
+                              #:delete-client-certificate #:delete-deployment
                               #:delete-documentation-part
-                              #:delete-documentation-part-request
                               #:delete-documentation-version
-                              #:delete-documentation-version-request
                               #:delete-domain-name
                               #:delete-domain-name-access-association
-                              #:delete-domain-name-access-association-request
-                              #:delete-domain-name-request
-                              #:delete-gateway-response
-                              #:delete-gateway-response-request
-                              #:delete-integration #:delete-integration-request
-                              #:delete-integration-response
-                              #:delete-integration-response-request
-                              #:delete-method #:delete-method-request
-                              #:delete-method-response
-                              #:delete-method-response-request #:delete-model
-                              #:delete-model-request #:delete-request-validator
-                              #:delete-request-validator-request
-                              #:delete-resource #:delete-resource-request
-                              #:delete-rest-api #:delete-rest-api-request
-                              #:delete-stage #:delete-stage-request
+                              #:delete-gateway-response #:delete-integration
+                              #:delete-integration-response #:delete-method
+                              #:delete-method-response #:delete-model
+                              #:delete-request-validator #:delete-resource
+                              #:delete-rest-api #:delete-stage
                               #:delete-usage-plan #:delete-usage-plan-key
-                              #:delete-usage-plan-key-request
-                              #:delete-usage-plan-request #:delete-vpc-link
-                              #:delete-vpc-link-request #:deployment
+                              #:delete-vpc-link #:deployment
                               #:deployment-canary-settings #:deployments
                               #:documentation-part #:documentation-part-ids
                               #:documentation-part-location
@@ -75,78 +43,35 @@
                               #:domain-name-access-associations
                               #:domain-name-status #:domain-names #:double
                               #:endpoint-configuration #:endpoint-type
-                              #:export-response #:flush-stage-authorizers-cache
-                              #:flush-stage-authorizers-cache-request
-                              #:flush-stage-cache #:flush-stage-cache-request
-                              #:gateway-response #:gateway-response-type
-                              #:gateway-responses #:generate-client-certificate
-                              #:generate-client-certificate-request
-                              #:get-account #:get-account-request #:get-api-key
-                              #:get-api-key-request #:get-api-keys
-                              #:get-api-keys-request #:get-authorizer
-                              #:get-authorizer-request #:get-authorizers
-                              #:get-authorizers-request #:get-base-path-mapping
-                              #:get-base-path-mapping-request
-                              #:get-base-path-mappings
-                              #:get-base-path-mappings-request
-                              #:get-client-certificate
-                              #:get-client-certificate-request
-                              #:get-client-certificates
-                              #:get-client-certificates-request
-                              #:get-deployment #:get-deployment-request
-                              #:get-deployments #:get-deployments-request
-                              #:get-documentation-part
-                              #:get-documentation-part-request
+                              #:flush-stage-authorizers-cache
+                              #:flush-stage-cache #:gateway-response
+                              #:gateway-response-type #:gateway-responses
+                              #:generate-client-certificate #:get-account
+                              #:get-api-key #:get-api-keys #:get-authorizer
+                              #:get-authorizers #:get-base-path-mapping
+                              #:get-base-path-mappings #:get-client-certificate
+                              #:get-client-certificates #:get-deployment
+                              #:get-deployments #:get-documentation-part
                               #:get-documentation-parts
-                              #:get-documentation-parts-request
                               #:get-documentation-version
-                              #:get-documentation-version-request
-                              #:get-documentation-versions
-                              #:get-documentation-versions-request
-                              #:get-domain-name
+                              #:get-documentation-versions #:get-domain-name
                               #:get-domain-name-access-associations
-                              #:get-domain-name-access-associations-request
-                              #:get-domain-name-request #:get-domain-names
-                              #:get-domain-names-request #:get-export
-                              #:get-export-request #:get-gateway-response
-                              #:get-gateway-response-request
-                              #:get-gateway-responses
-                              #:get-gateway-responses-request #:get-integration
-                              #:get-integration-request
-                              #:get-integration-response
-                              #:get-integration-response-request #:get-method
-                              #:get-method-request #:get-method-response
-                              #:get-method-response-request #:get-model
-                              #:get-model-request #:get-model-template
-                              #:get-model-template-request #:get-models
-                              #:get-models-request #:get-request-validator
-                              #:get-request-validator-request
-                              #:get-request-validators
-                              #:get-request-validators-request #:get-resource
-                              #:get-resource-request #:get-resources
-                              #:get-resources-request #:get-rest-api
-                              #:get-rest-api-request #:get-rest-apis
-                              #:get-rest-apis-request #:get-sdk
-                              #:get-sdk-request #:get-sdk-type
-                              #:get-sdk-type-request #:get-sdk-types
-                              #:get-sdk-types-request #:get-stage
-                              #:get-stage-request #:get-stages
-                              #:get-stages-request #:get-tags
-                              #:get-tags-request #:get-usage #:get-usage-plan
-                              #:get-usage-plan-key #:get-usage-plan-key-request
-                              #:get-usage-plan-keys
-                              #:get-usage-plan-keys-request
-                              #:get-usage-plan-request #:get-usage-plans
-                              #:get-usage-plans-request #:get-usage-request
-                              #:get-vpc-link #:get-vpc-link-request
-                              #:get-vpc-links #:get-vpc-links-request
-                              #:import-api-keys #:import-api-keys-request
-                              #:import-documentation-parts
-                              #:import-documentation-parts-request
-                              #:import-rest-api #:import-rest-api-request
-                              #:integer #:integration #:integration-response
-                              #:integration-type #:ip-address-type
-                              #:limit-exceeded-exception #:list-of-arns
+                              #:get-domain-names #:get-export
+                              #:get-gateway-response #:get-gateway-responses
+                              #:get-integration #:get-integration-response
+                              #:get-method #:get-method-response #:get-model
+                              #:get-model-template #:get-models
+                              #:get-request-validator #:get-request-validators
+                              #:get-resource #:get-resources #:get-rest-api
+                              #:get-rest-apis #:get-sdk #:get-sdk-type
+                              #:get-sdk-types #:get-stage #:get-stages
+                              #:get-tags #:get-usage #:get-usage-plan
+                              #:get-usage-plan-key #:get-usage-plan-keys
+                              #:get-usage-plans #:get-vpc-link #:get-vpc-links
+                              #:import-api-keys #:import-documentation-parts
+                              #:import-rest-api #:integer #:integration
+                              #:integration-response #:integration-type
+                              #:ip-address-type #:list-of-arns
                               #:list-of-api-key #:list-of-api-stage
                               #:list-of-authorizer #:list-of-base-path-mapping
                               #:list-of-client-certificate #:list-of-deployment
@@ -175,70 +100,40 @@
                               #:method-snapshot #:model #:models
                               #:mutual-tls-authentication
                               #:mutual-tls-authentication-input
-                              #:not-found-exception #:nullable-boolean
-                              #:nullable-integer #:op #:patch-operation
+                              #:nullable-boolean #:nullable-integer #:op
+                              #:patch-operation
                               #:path-to-map-of-method-snapshot #:provider-arn
-                              #:put-gateway-response
-                              #:put-gateway-response-request #:put-integration
-                              #:put-integration-request
-                              #:put-integration-response
-                              #:put-integration-response-request #:put-method
-                              #:put-method-request #:put-method-response
-                              #:put-method-response-request #:put-mode
-                              #:put-rest-api #:put-rest-api-request
+                              #:put-gateway-response #:put-integration
+                              #:put-integration-response #:put-method
+                              #:put-method-response #:put-mode #:put-rest-api
                               #:quota-period-type #:quota-settings
                               #:reject-domain-name-access-association
-                              #:reject-domain-name-access-association-request
                               #:request-validator #:request-validators
                               #:resource #:resource-owner #:resources
                               #:rest-api #:rest-apis #:routing-mode
-                              #:sdk-configuration-property #:sdk-response
-                              #:sdk-type #:sdk-types #:security-policy
-                              #:service-unavailable-exception #:stage
-                              #:stage-key #:stages #:status-code #:string
-                              #:tag-resource #:tag-resource-request #:tags
-                              #:template #:test-invoke-authorizer
-                              #:test-invoke-authorizer-request
-                              #:test-invoke-authorizer-response
-                              #:test-invoke-method #:test-invoke-method-request
-                              #:test-invoke-method-response #:throttle-settings
+                              #:sdk-configuration-property #:sdk-type
+                              #:sdk-types #:security-policy #:stage #:stage-key
+                              #:stages #:status-code #:string #:tag-resource
+                              #:tags #:template #:test-invoke-authorizer
+                              #:test-invoke-method #:throttle-settings
                               #:timestamp #:tls-config
-                              #:too-many-requests-exception
                               #:unauthorized-cache-control-header-strategy
-                              #:unauthorized-exception #:untag-resource
-                              #:untag-resource-request #:update-account
-                              #:update-account-request #:update-api-key
-                              #:update-api-key-request #:update-authorizer
-                              #:update-authorizer-request
+                              #:untag-resource #:update-account
+                              #:update-api-key #:update-authorizer
                               #:update-base-path-mapping
-                              #:update-base-path-mapping-request
-                              #:update-client-certificate
-                              #:update-client-certificate-request
-                              #:update-deployment #:update-deployment-request
+                              #:update-client-certificate #:update-deployment
                               #:update-documentation-part
-                              #:update-documentation-part-request
                               #:update-documentation-version
-                              #:update-documentation-version-request
-                              #:update-domain-name #:update-domain-name-request
-                              #:update-gateway-response
-                              #:update-gateway-response-request
-                              #:update-integration #:update-integration-request
-                              #:update-integration-response
-                              #:update-integration-response-request
-                              #:update-method #:update-method-request
-                              #:update-method-response
-                              #:update-method-response-request #:update-model
-                              #:update-model-request #:update-request-validator
-                              #:update-request-validator-request
-                              #:update-resource #:update-resource-request
-                              #:update-rest-api #:update-rest-api-request
-                              #:update-stage #:update-stage-request
-                              #:update-usage #:update-usage-plan
-                              #:update-usage-plan-request
-                              #:update-usage-request #:update-vpc-link
-                              #:update-vpc-link-request #:usage #:usage-plan
-                              #:usage-plan-key #:usage-plan-keys #:usage-plans
-                              #:vpc-link #:vpc-link-status #:vpc-links))
+                              #:update-domain-name #:update-gateway-response
+                              #:update-integration
+                              #:update-integration-response #:update-method
+                              #:update-method-response #:update-model
+                              #:update-request-validator #:update-resource
+                              #:update-rest-api #:update-stage #:update-usage
+                              #:update-usage-plan #:update-vpc-link #:usage
+                              #:usage-plan #:usage-plan-key #:usage-plan-keys
+                              #:usage-plans #:vpc-link #:vpc-link-status
+                              #:vpc-links))
 (common-lisp:in-package #:pira/api-gateway)
 
 (smithy/sdk/service:define-service backplane-control-service :shape-name

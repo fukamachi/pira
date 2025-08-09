@@ -9,163 +9,64 @@
                               #:actions-list #:aliases #:amazon-resource-name
                               #:application-arn
                               #:associate-delegate-to-resource
-                              #:associate-delegate-to-resource-request
-                              #:associate-delegate-to-resource-response
                               #:associate-member-to-group
-                              #:associate-member-to-group-request
-                              #:associate-member-to-group-response
                               #:assume-impersonation-role
-                              #:assume-impersonation-role-request
-                              #:assume-impersonation-role-response
                               #:availability-configuration
                               #:availability-configuration-list
                               #:availability-provider-type #:booking-options
                               #:boolean #:boolean-object
-                              #:cancel-mailbox-export-job
-                              #:cancel-mailbox-export-job-request
-                              #:cancel-mailbox-export-job-response
-                              #:create-alias #:create-alias-request
-                              #:create-alias-response
+                              #:cancel-mailbox-export-job #:create-alias
                               #:create-availability-configuration
-                              #:create-availability-configuration-request
-                              #:create-availability-configuration-response
-                              #:create-group #:create-group-request
-                              #:create-group-response
+                              #:create-group
                               #:create-identity-center-application
-                              #:create-identity-center-application-request
-                              #:create-identity-center-application-response
                               #:create-impersonation-role
-                              #:create-impersonation-role-request
-                              #:create-impersonation-role-response
                               #:create-mobile-device-access-rule
-                              #:create-mobile-device-access-rule-request
-                              #:create-mobile-device-access-rule-response
-                              #:create-organization
-                              #:create-organization-request
-                              #:create-organization-response #:create-resource
-                              #:create-resource-request
-                              #:create-resource-response #:create-user
-                              #:create-user-request #:create-user-response
-                              #:delegate #:delete-access-control-rule
-                              #:delete-access-control-rule-request
-                              #:delete-access-control-rule-response
-                              #:delete-alias #:delete-alias-request
-                              #:delete-alias-response
+                              #:create-organization #:create-resource
+                              #:create-user #:delegate
+                              #:delete-access-control-rule #:delete-alias
                               #:delete-availability-configuration
-                              #:delete-availability-configuration-request
-                              #:delete-availability-configuration-response
                               #:delete-email-monitoring-configuration
-                              #:delete-email-monitoring-configuration-request
-                              #:delete-email-monitoring-configuration-response
-                              #:delete-group #:delete-group-request
-                              #:delete-group-response
+                              #:delete-group
                               #:delete-identity-center-application
-                              #:delete-identity-center-application-request
-                              #:delete-identity-center-application-response
                               #:delete-identity-provider-configuration
-                              #:delete-identity-provider-configuration-request
-                              #:delete-identity-provider-configuration-response
                               #:delete-impersonation-role
-                              #:delete-impersonation-role-request
-                              #:delete-impersonation-role-response
                               #:delete-mailbox-permissions
-                              #:delete-mailbox-permissions-request
-                              #:delete-mailbox-permissions-response
                               #:delete-mobile-device-access-override
-                              #:delete-mobile-device-access-override-request
-                              #:delete-mobile-device-access-override-response
                               #:delete-mobile-device-access-rule
-                              #:delete-mobile-device-access-rule-request
-                              #:delete-mobile-device-access-rule-response
                               #:delete-organization
-                              #:delete-organization-request
-                              #:delete-organization-response
-                              #:delete-personal-access-token
-                              #:delete-personal-access-token-request
-                              #:delete-personal-access-token-response
-                              #:delete-resource #:delete-resource-request
-                              #:delete-resource-response
-                              #:delete-retention-policy
-                              #:delete-retention-policy-request
-                              #:delete-retention-policy-response #:delete-user
-                              #:delete-user-request #:delete-user-response
+                              #:delete-personal-access-token #:delete-resource
+                              #:delete-retention-policy #:delete-user
                               #:deregister-from-work-mail
-                              #:deregister-from-work-mail-request
-                              #:deregister-from-work-mail-response
                               #:deregister-mail-domain
-                              #:deregister-mail-domain-request
-                              #:deregister-mail-domain-response
                               #:describe-email-monitoring-configuration
-                              #:describe-email-monitoring-configuration-request
-                              #:describe-email-monitoring-configuration-response
-                              #:describe-entity #:describe-entity-request
-                              #:describe-entity-response #:describe-group
-                              #:describe-group-request
-                              #:describe-group-response
+                              #:describe-entity #:describe-group
                               #:describe-identity-provider-configuration
-                              #:describe-identity-provider-configuration-request
-                              #:describe-identity-provider-configuration-response
                               #:describe-inbound-dmarc-settings
-                              #:describe-inbound-dmarc-settings-request
-                              #:describe-inbound-dmarc-settings-response
                               #:describe-mailbox-export-job
-                              #:describe-mailbox-export-job-request
-                              #:describe-mailbox-export-job-response
-                              #:describe-organization
-                              #:describe-organization-request
-                              #:describe-organization-response
-                              #:describe-resource #:describe-resource-request
-                              #:describe-resource-response #:describe-user
-                              #:describe-user-request #:describe-user-response
-                              #:description #:device-id #:device-model
-                              #:device-model-list #:device-operating-system
+                              #:describe-organization #:describe-resource
+                              #:describe-user #:description #:device-id
+                              #:device-model #:device-model-list
+                              #:device-operating-system
                               #:device-operating-system-list #:device-type
                               #:device-type-list #:device-user-agent
                               #:device-user-agent-list #:directory-id
-                              #:directory-in-use-exception
-                              #:directory-service-authentication-failed-exception
-                              #:directory-unavailable-exception
                               #:disassociate-delegate-from-resource
-                              #:disassociate-delegate-from-resource-request
-                              #:disassociate-delegate-from-resource-response
-                              #:disassociate-member-from-group
-                              #:disassociate-member-from-group-request
-                              #:disassociate-member-from-group-response
-                              #:dns-record #:dns-record-verification-status
-                              #:dns-records #:domain #:domain-name #:domains
-                              #:email-address #:email-address-in-use-exception
-                              #:entity-already-registered-exception
-                              #:entity-identifier #:entity-not-found-exception
-                              #:entity-state #:entity-state-exception
-                              #:entity-type #:ews-availability-provider
-                              #:expires-in #:external-user-name
-                              #:folder-configuration #:folder-configurations
-                              #:folder-name #:get-access-control-effect
-                              #:get-access-control-effect-request
-                              #:get-access-control-effect-response
+                              #:disassociate-member-from-group #:dns-record
+                              #:dns-record-verification-status #:dns-records
+                              #:domain #:domain-name #:domains #:email-address
+                              #:entity-identifier #:entity-state #:entity-type
+                              #:ews-availability-provider #:expires-in
+                              #:external-user-name #:folder-configuration
+                              #:folder-configurations #:folder-name
+                              #:get-access-control-effect
                               #:get-default-retention-policy
-                              #:get-default-retention-policy-request
-                              #:get-default-retention-policy-response
                               #:get-impersonation-role
-                              #:get-impersonation-role-effect
-                              #:get-impersonation-role-effect-request
-                              #:get-impersonation-role-effect-response
-                              #:get-impersonation-role-request
-                              #:get-impersonation-role-response
-                              #:get-mail-domain #:get-mail-domain-request
-                              #:get-mail-domain-response #:get-mailbox-details
-                              #:get-mailbox-details-request
-                              #:get-mailbox-details-response
+                              #:get-impersonation-role-effect #:get-mail-domain
+                              #:get-mailbox-details
                               #:get-mobile-device-access-effect
-                              #:get-mobile-device-access-effect-request
-                              #:get-mobile-device-access-effect-response
                               #:get-mobile-device-access-override
-                              #:get-mobile-device-access-override-request
-                              #:get-mobile-device-access-override-response
-                              #:get-personal-access-token-metadata
-                              #:get-personal-access-token-metadata-request
-                              #:get-personal-access-token-metadata-response
-                              #:group #:group-identifier #:group-identifiers
+                              #:get-personal-access-token-metadata #:group
+                              #:group-identifier #:group-identifiers
                               #:group-name #:groups #:hosted-zone-id
                               #:idempotency-client-token
                               #:identity-center-application-name
@@ -187,64 +88,24 @@
                               #:impersonation-rule-description
                               #:impersonation-rule-id #:impersonation-rule-list
                               #:impersonation-rule-name #:impersonation-token
-                              #:instance-arn #:invalid-configuration-exception
-                              #:invalid-custom-ses-configuration-exception
-                              #:invalid-parameter-exception
-                              #:invalid-password-exception #:ip-address
-                              #:ip-range #:ip-range-list #:jobs #:kms-key-arn
-                              #:lambda-arn #:lambda-availability-provider
-                              #:limit-exceeded-exception
-                              #:list-access-control-rules
-                              #:list-access-control-rules-request
-                              #:list-access-control-rules-response
-                              #:list-aliases #:list-aliases-request
-                              #:list-aliases-response
+                              #:instance-arn #:ip-address #:ip-range
+                              #:ip-range-list #:jobs #:kms-key-arn #:lambda-arn
+                              #:lambda-availability-provider
+                              #:list-access-control-rules #:list-aliases
                               #:list-availability-configurations
-                              #:list-availability-configurations-request
-                              #:list-availability-configurations-response
-                              #:list-group-members #:list-group-members-request
-                              #:list-group-members-response #:list-groups
+                              #:list-group-members #:list-groups
                               #:list-groups-filters #:list-groups-for-entity
                               #:list-groups-for-entity-filters
-                              #:list-groups-for-entity-request
-                              #:list-groups-for-entity-response
-                              #:list-groups-request #:list-groups-response
-                              #:list-impersonation-roles
-                              #:list-impersonation-roles-request
-                              #:list-impersonation-roles-response
-                              #:list-mail-domains #:list-mail-domains-request
-                              #:list-mail-domains-response
+                              #:list-impersonation-roles #:list-mail-domains
                               #:list-mailbox-export-jobs
-                              #:list-mailbox-export-jobs-request
-                              #:list-mailbox-export-jobs-response
                               #:list-mailbox-permissions
-                              #:list-mailbox-permissions-request
-                              #:list-mailbox-permissions-response
                               #:list-mobile-device-access-overrides
-                              #:list-mobile-device-access-overrides-request
-                              #:list-mobile-device-access-overrides-response
                               #:list-mobile-device-access-rules
-                              #:list-mobile-device-access-rules-request
-                              #:list-mobile-device-access-rules-response
-                              #:list-organizations #:list-organizations-request
-                              #:list-organizations-response
+                              #:list-organizations
                               #:list-personal-access-tokens
-                              #:list-personal-access-tokens-request
-                              #:list-personal-access-tokens-response
-                              #:list-resource-delegates
-                              #:list-resource-delegates-request
-                              #:list-resource-delegates-response
-                              #:list-resources #:list-resources-filters
-                              #:list-resources-request
-                              #:list-resources-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-users
-                              #:list-users-filters #:list-users-request
-                              #:list-users-response #:log-group-arn
-                              #:mail-domain-in-use-exception
-                              #:mail-domain-not-found-exception
-                              #:mail-domain-state-exception
+                              #:list-resource-delegates #:list-resources
+                              #:list-resources-filters #:list-tags-for-resource
+                              #:list-users #:list-users-filters #:log-group-arn
                               #:mail-domain-summary #:mail-domains
                               #:mailbox-export-error-info #:mailbox-export-job
                               #:mailbox-export-job-id
@@ -261,11 +122,8 @@
                               #:mobile-device-access-rule-id
                               #:mobile-device-access-rule-name
                               #:mobile-device-access-rules-list
-                              #:name-availability-exception
                               #:new-resource-description #:next-token
                               #:organization-id #:organization-name
-                              #:organization-not-found-exception
-                              #:organization-state-exception
                               #:organization-summaries #:organization-summary
                               #:password #:percentage #:permission
                               #:permission-type #:permission-values
@@ -280,79 +138,32 @@
                               #:personal-access-token-summary
                               #:personal-access-token-summary-list
                               #:policy-description #:put-access-control-rule
-                              #:put-access-control-rule-request
-                              #:put-access-control-rule-response
                               #:put-email-monitoring-configuration
-                              #:put-email-monitoring-configuration-request
-                              #:put-email-monitoring-configuration-response
                               #:put-identity-provider-configuration
-                              #:put-identity-provider-configuration-request
-                              #:put-identity-provider-configuration-response
                               #:put-inbound-dmarc-settings
-                              #:put-inbound-dmarc-settings-request
-                              #:put-inbound-dmarc-settings-response
                               #:put-mailbox-permissions
-                              #:put-mailbox-permissions-request
-                              #:put-mailbox-permissions-response
                               #:put-mobile-device-access-override
-                              #:put-mobile-device-access-override-request
-                              #:put-mobile-device-access-override-response
                               #:put-retention-policy
-                              #:put-retention-policy-request
-                              #:put-retention-policy-response
                               #:redacted-ews-availability-provider
-                              #:register-mail-domain
-                              #:register-mail-domain-request
-                              #:register-mail-domain-response
-                              #:register-to-work-mail
-                              #:register-to-work-mail-request
-                              #:register-to-work-mail-response
-                              #:reserved-name-exception #:reset-password
-                              #:reset-password-request
-                              #:reset-password-response #:resource
-                              #:resource-delegates #:resource-description
-                              #:resource-id #:resource-name
-                              #:resource-not-found-exception #:resource-type
-                              #:resources #:retention-action #:retention-period
-                              #:role-arn #:s3bucket-name #:s3object-key
-                              #:short-string #:start-mailbox-export-job
-                              #:start-mailbox-export-job-request
-                              #:start-mailbox-export-job-response #:string
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:target-users #:test-availability-configuration
-                              #:test-availability-configuration-request
-                              #:test-availability-configuration-response
-                              #:timestamp #:too-many-tags-exception
-                              #:unsupported-operation-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:register-mail-domain #:register-to-work-mail
+                              #:reset-password #:resource #:resource-delegates
+                              #:resource-description #:resource-id
+                              #:resource-name #:resource-type #:resources
+                              #:retention-action #:retention-period #:role-arn
+                              #:s3bucket-name #:s3object-key #:short-string
+                              #:start-mailbox-export-job #:string #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:target-users
+                              #:test-availability-configuration #:timestamp
+                              #:untag-resource
                               #:update-availability-configuration
-                              #:update-availability-configuration-request
-                              #:update-availability-configuration-response
-                              #:update-default-mail-domain
-                              #:update-default-mail-domain-request
-                              #:update-default-mail-domain-response
-                              #:update-group #:update-group-request
-                              #:update-group-response
+                              #:update-default-mail-domain #:update-group
                               #:update-impersonation-role
-                              #:update-impersonation-role-request
-                              #:update-impersonation-role-response
                               #:update-mailbox-quota
-                              #:update-mailbox-quota-request
-                              #:update-mailbox-quota-response
                               #:update-mobile-device-access-rule
-                              #:update-mobile-device-access-rule-request
-                              #:update-mobile-device-access-rule-response
-                              #:update-primary-email-address
-                              #:update-primary-email-address-request
-                              #:update-primary-email-address-response
-                              #:update-resource #:update-resource-request
-                              #:update-resource-response #:update-user
-                              #:update-user-request #:update-user-response
-                              #:url #:user #:user-attribute #:user-id-list
-                              #:user-name #:user-role #:users
+                              #:update-primary-email-address #:update-resource
+                              #:update-user #:url #:user #:user-attribute
+                              #:user-id-list #:user-name #:user-role #:users
                               #:work-mail-domain-name #:work-mail-identifier
                               #:work-mail-service))
 (common-lisp:in-package #:pira/workmail)

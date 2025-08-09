@@ -1,8 +1,5 @@
 (uiop/package:define-package #:pira/macie2 (:use)
-                             (:export #:accept-invitation
-                              #:accept-invitation-request
-                              #:accept-invitation-response
-                              #:access-control-list #:access-denied-exception
+                             (:export #:accept-invitation #:access-control-list
                               #:account-detail #:account-level-permissions
                               #:admin-account #:admin-status
                               #:allow-list-criteria #:allow-list-status
@@ -19,11 +16,7 @@
                               #:aws-account #:aws-service
                               #:batch-get-custom-data-identifier-summary
                               #:batch-get-custom-data-identifiers
-                              #:batch-get-custom-data-identifiers-request
-                              #:batch-get-custom-data-identifiers-response
                               #:batch-update-automated-discovery-accounts
-                              #:batch-update-automated-discovery-accounts-request
-                              #:batch-update-automated-discovery-accounts-response
                               #:block-public-access
                               #:bucket-count-by-effective-permission
                               #:bucket-count-by-encryption-type
@@ -46,24 +39,10 @@
                               #:classification-scope-name
                               #:classification-scope-summary
                               #:classification-scope-update-operation
-                              #:conflict-exception #:create-allow-list
-                              #:create-allow-list-request
-                              #:create-allow-list-response
-                              #:create-classification-job
-                              #:create-classification-job-request
-                              #:create-classification-job-response
+                              #:create-allow-list #:create-classification-job
                               #:create-custom-data-identifier
-                              #:create-custom-data-identifier-request
-                              #:create-custom-data-identifier-response
-                              #:create-findings-filter
-                              #:create-findings-filter-request
-                              #:create-findings-filter-response
-                              #:create-invitations #:create-invitations-request
-                              #:create-invitations-response #:create-member
-                              #:create-member-request #:create-member-response
-                              #:create-sample-findings
-                              #:create-sample-findings-request
-                              #:create-sample-findings-response
+                              #:create-findings-filter #:create-invitations
+                              #:create-member #:create-sample-findings
                               #:criteria-block-for-job #:criteria-for-job
                               #:criterion #:criterion-additional-properties
                               #:currency #:custom-data-identifier-summary
@@ -71,48 +50,21 @@
                               #:custom-detections #:daily-schedule
                               #:data-identifier-severity #:data-identifier-type
                               #:day-of-week #:decline-invitations
-                              #:decline-invitations-request
-                              #:decline-invitations-response
                               #:default-detection #:default-detections
-                              #:delete-allow-list #:delete-allow-list-request
-                              #:delete-allow-list-response
+                              #:delete-allow-list
                               #:delete-custom-data-identifier
-                              #:delete-custom-data-identifier-request
-                              #:delete-custom-data-identifier-response
-                              #:delete-findings-filter
-                              #:delete-findings-filter-request
-                              #:delete-findings-filter-response
-                              #:delete-invitations #:delete-invitations-request
-                              #:delete-invitations-response #:delete-member
-                              #:delete-member-request #:delete-member-response
-                              #:describe-buckets #:describe-buckets-request
-                              #:describe-buckets-response
+                              #:delete-findings-filter #:delete-invitations
+                              #:delete-member #:describe-buckets
                               #:describe-classification-job
-                              #:describe-classification-job-request
-                              #:describe-classification-job-response
                               #:describe-organization-configuration
-                              #:describe-organization-configuration-request
-                              #:describe-organization-configuration-response
                               #:detected-data-details #:detection
-                              #:disable-macie #:disable-macie-request
-                              #:disable-macie-response
+                              #:disable-macie
                               #:disable-organization-admin-account
-                              #:disable-organization-admin-account-request
-                              #:disable-organization-admin-account-response
                               #:disassociate-from-administrator-account
-                              #:disassociate-from-administrator-account-request
-                              #:disassociate-from-administrator-account-response
                               #:disassociate-from-master-account
-                              #:disassociate-from-master-account-request
-                              #:disassociate-from-master-account-response
-                              #:disassociate-member
-                              #:disassociate-member-request
-                              #:disassociate-member-response #:domain-details
+                              #:disassociate-member #:domain-details
                               #:effective-permission #:enable-macie
-                              #:enable-macie-request #:enable-macie-response
                               #:enable-organization-admin-account
-                              #:enable-organization-admin-account-request
-                              #:enable-organization-admin-account-response
                               #:encryption-type #:error-code #:federated-user
                               #:finding #:finding-action #:finding-action-type
                               #:finding-actor #:finding-category
@@ -121,66 +73,23 @@
                               #:finding-statistics-sort-criteria #:finding-type
                               #:findings-filter-action
                               #:findings-filter-list-item
-                              #:get-administrator-account
-                              #:get-administrator-account-request
-                              #:get-administrator-account-response
-                              #:get-allow-list #:get-allow-list-request
-                              #:get-allow-list-response
+                              #:get-administrator-account #:get-allow-list
                               #:get-automated-discovery-configuration
-                              #:get-automated-discovery-configuration-request
-                              #:get-automated-discovery-configuration-response
                               #:get-bucket-statistics
-                              #:get-bucket-statistics-request
-                              #:get-bucket-statistics-response
                               #:get-classification-export-configuration
-                              #:get-classification-export-configuration-request
-                              #:get-classification-export-configuration-response
                               #:get-classification-scope
-                              #:get-classification-scope-request
-                              #:get-classification-scope-response
                               #:get-custom-data-identifier
-                              #:get-custom-data-identifier-request
-                              #:get-custom-data-identifier-response
-                              #:get-finding-statistics
-                              #:get-finding-statistics-request
-                              #:get-finding-statistics-response #:get-findings
+                              #:get-finding-statistics #:get-findings
                               #:get-findings-filter
-                              #:get-findings-filter-request
-                              #:get-findings-filter-response
                               #:get-findings-publication-configuration
-                              #:get-findings-publication-configuration-request
-                              #:get-findings-publication-configuration-response
-                              #:get-findings-request #:get-findings-response
-                              #:get-invitations-count
-                              #:get-invitations-count-request
-                              #:get-invitations-count-response
-                              #:get-macie-session #:get-macie-session-request
-                              #:get-macie-session-response #:get-master-account
-                              #:get-master-account-request
-                              #:get-master-account-response #:get-member
-                              #:get-member-request #:get-member-response
-                              #:get-resource-profile
-                              #:get-resource-profile-request
-                              #:get-resource-profile-response
-                              #:get-reveal-configuration
-                              #:get-reveal-configuration-request
-                              #:get-reveal-configuration-response
+                              #:get-invitations-count #:get-macie-session
+                              #:get-master-account #:get-member
+                              #:get-resource-profile #:get-reveal-configuration
                               #:get-sensitive-data-occurrences
                               #:get-sensitive-data-occurrences-availability
-                              #:get-sensitive-data-occurrences-availability-request
-                              #:get-sensitive-data-occurrences-availability-response
-                              #:get-sensitive-data-occurrences-request
-                              #:get-sensitive-data-occurrences-response
                               #:get-sensitivity-inspection-template
-                              #:get-sensitivity-inspection-template-request
-                              #:get-sensitivity-inspection-template-response
-                              #:get-usage-statistics
-                              #:get-usage-statistics-request
-                              #:get-usage-statistics-response
-                              #:get-usage-totals #:get-usage-totals-request
-                              #:get-usage-totals-response #:group-by
-                              #:group-count #:iam-user
-                              #:internal-server-exception #:invitation
+                              #:get-usage-statistics #:get-usage-totals
+                              #:group-by #:group-count #:iam-user #:invitation
                               #:ip-address-details #:ip-city #:ip-country
                               #:ip-geo-location #:ip-owner #:is-defined-in-job
                               #:is-monitored-by-job #:job-comparator
@@ -189,51 +98,22 @@
                               #:job-summary #:job-type #:key-value-pair
                               #:key-value-pair-list #:last-run-error-status
                               #:last-run-error-status-code #:list-allow-lists
-                              #:list-allow-lists-request
-                              #:list-allow-lists-response
                               #:list-automated-discovery-accounts
-                              #:list-automated-discovery-accounts-request
-                              #:list-automated-discovery-accounts-response
                               #:list-classification-jobs
-                              #:list-classification-jobs-request
-                              #:list-classification-jobs-response
                               #:list-classification-scopes
-                              #:list-classification-scopes-request
-                              #:list-classification-scopes-response
-                              #:list-custom-data-identifiers
-                              #:list-custom-data-identifiers-request
-                              #:list-custom-data-identifiers-response
-                              #:list-findings #:list-findings-filters
-                              #:list-findings-filters-request
-                              #:list-findings-filters-response
-                              #:list-findings-request #:list-findings-response
-                              #:list-invitations #:list-invitations-request
-                              #:list-invitations-response
+                              #:list-custom-data-identifiers #:list-findings
+                              #:list-findings-filters #:list-invitations
                               #:list-jobs-filter-criteria
                               #:list-jobs-filter-key #:list-jobs-filter-term
                               #:list-jobs-sort-attribute-name
                               #:list-jobs-sort-criteria
-                              #:list-managed-data-identifiers
-                              #:list-managed-data-identifiers-request
-                              #:list-managed-data-identifiers-response
-                              #:list-members #:list-members-request
-                              #:list-members-response
+                              #:list-managed-data-identifiers #:list-members
                               #:list-organization-admin-accounts
-                              #:list-organization-admin-accounts-request
-                              #:list-organization-admin-accounts-response
                               #:list-resource-profile-artifacts
-                              #:list-resource-profile-artifacts-request
-                              #:list-resource-profile-artifacts-response
                               #:list-resource-profile-detections
-                              #:list-resource-profile-detections-request
-                              #:list-resource-profile-detections-response
                               #:list-sensitivity-inspection-templates
-                              #:list-sensitivity-inspection-templates-request
-                              #:list-sensitivity-inspection-templates-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:macie2
-                              #:macie-status #:managed-data-identifier-selector
+                              #:list-tags-for-resource #:macie2 #:macie-status
+                              #:managed-data-identifier-selector
                               #:managed-data-identifier-summary
                               #:matching-bucket #:matching-resource
                               #:max-results #:member #:monthly-schedule
@@ -242,19 +122,14 @@
                               #:order-by #:origin-type #:page #:pages
                               #:policy-details
                               #:put-classification-export-configuration
-                              #:put-classification-export-configuration-request
-                              #:put-classification-export-configuration-response
-                              #:put-findings-publication-configuration
-                              #:put-findings-publication-configuration-request
-                              #:put-findings-publication-configuration-response
-                              #:range #:ranges #:record #:records
-                              #:relationship-status #:replication-details
-                              #:resource-not-found-exception
-                              #:resource-profile-artifact #:resource-statistics
-                              #:resources-affected #:retrieval-configuration
-                              #:retrieval-mode #:reveal-configuration
-                              #:reveal-request-status #:reveal-status
-                              #:s3bucket #:s3bucket-criteria-for-job
+                              #:put-findings-publication-configuration #:range
+                              #:ranges #:record #:records #:relationship-status
+                              #:replication-details #:resource-profile-artifact
+                              #:resource-statistics #:resources-affected
+                              #:retrieval-configuration #:retrieval-mode
+                              #:reveal-configuration #:reveal-request-status
+                              #:reveal-status #:s3bucket
+                              #:s3bucket-criteria-for-job
                               #:s3bucket-definition-for-job #:s3bucket-name
                               #:s3bucket-owner #:s3classification-scope
                               #:s3classification-scope-exclusion
@@ -266,8 +141,6 @@
                               #:search-resources-comparator
                               #:search-resources-criteria
                               #:search-resources-criteria-block
-                              #:search-resources-request
-                              #:search-resources-response
                               #:search-resources-simple-criterion
                               #:search-resources-simple-criterion-key
                               #:search-resources-sort-attribute-name
@@ -284,7 +157,6 @@
                               #:sensitivity-inspection-template-includes
                               #:sensitivity-inspection-templates-entry
                               #:server-side-encryption #:service-limit
-                              #:service-quota-exceeded-exception
                               #:session-context #:session-context-attributes
                               #:session-issuer #:severity
                               #:severity-description #:severity-level
@@ -295,54 +167,23 @@
                               #:storage-class #:suppress-data-identifier
                               #:tag-criterion-for-job
                               #:tag-criterion-pair-for-job #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-scope-term
-                              #:tag-target #:tag-value-pair
-                              #:test-custom-data-identifier
-                              #:test-custom-data-identifier-request
-                              #:test-custom-data-identifier-response
-                              #:throttling-exception #:time-range #:timestamp
-                              #:type #:unavailability-reason-code #:unit
-                              #:unprocessable-entity-exception
+                              #:tag-resource #:tag-scope-term #:tag-target
+                              #:tag-value-pair #:test-custom-data-identifier
+                              #:time-range #:timestamp #:type
+                              #:unavailability-reason-code #:unit
                               #:unprocessed-account #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-allow-list
-                              #:update-allow-list-request
-                              #:update-allow-list-response
+                              #:update-allow-list
                               #:update-automated-discovery-configuration
-                              #:update-automated-discovery-configuration-request
-                              #:update-automated-discovery-configuration-response
                               #:update-classification-job
-                              #:update-classification-job-request
-                              #:update-classification-job-response
                               #:update-classification-scope
-                              #:update-classification-scope-request
-                              #:update-classification-scope-response
-                              #:update-findings-filter
-                              #:update-findings-filter-request
-                              #:update-findings-filter-response
-                              #:update-macie-session
-                              #:update-macie-session-request
-                              #:update-macie-session-response
+                              #:update-findings-filter #:update-macie-session
                               #:update-member-session
-                              #:update-member-session-request
-                              #:update-member-session-response
                               #:update-organization-configuration
-                              #:update-organization-configuration-request
-                              #:update-organization-configuration-response
                               #:update-resource-profile
                               #:update-resource-profile-detections
-                              #:update-resource-profile-detections-request
-                              #:update-resource-profile-detections-response
-                              #:update-resource-profile-request
-                              #:update-resource-profile-response
                               #:update-retrieval-configuration
                               #:update-reveal-configuration
-                              #:update-reveal-configuration-request
-                              #:update-reveal-configuration-response
                               #:update-sensitivity-inspection-template
-                              #:update-sensitivity-inspection-template-request
-                              #:update-sensitivity-inspection-template-response
                               #:usage-by-account #:usage-record
                               #:usage-statistics-filter
                               #:usage-statistics-filter-comparator
@@ -351,8 +192,7 @@
                               #:usage-statistics-sort-key #:usage-total
                               #:usage-type #:user-identity #:user-identity-root
                               #:user-identity-type #:user-paused-details
-                              #:validation-exception #:weekly-schedule
-                              #:boolean #:double #:integer
+                              #:weekly-schedule #:boolean #:double #:integer
                               #:list-of-admin-account
                               #:list-of-allow-list-summary
                               #:list-of-automated-discovery-account

@@ -8,93 +8,40 @@
                               #:account-takeover-actions-type
                               #:account-takeover-event-action-type
                               #:account-takeover-risk-configuration-type
-                              #:add-custom-attributes
-                              #:add-custom-attributes-request
-                              #:add-custom-attributes-response
-                              #:admin-add-user-to-group
-                              #:admin-add-user-to-group-request
-                              #:admin-confirm-sign-up
-                              #:admin-confirm-sign-up-request
-                              #:admin-confirm-sign-up-response
-                              #:admin-create-user
+                              #:add-custom-attributes #:admin-add-user-to-group
+                              #:admin-confirm-sign-up #:admin-create-user
                               #:admin-create-user-config-type
-                              #:admin-create-user-request
-                              #:admin-create-user-response
                               #:admin-create-user-unused-account-validity-days-type
                               #:admin-delete-user
                               #:admin-delete-user-attributes
-                              #:admin-delete-user-attributes-request
-                              #:admin-delete-user-attributes-response
-                              #:admin-delete-user-request
                               #:admin-disable-provider-for-user
-                              #:admin-disable-provider-for-user-request
-                              #:admin-disable-provider-for-user-response
-                              #:admin-disable-user #:admin-disable-user-request
-                              #:admin-disable-user-response #:admin-enable-user
-                              #:admin-enable-user-request
-                              #:admin-enable-user-response
-                              #:admin-forget-device
-                              #:admin-forget-device-request #:admin-get-device
-                              #:admin-get-device-request
-                              #:admin-get-device-response #:admin-get-user
-                              #:admin-get-user-request
-                              #:admin-get-user-response #:admin-initiate-auth
-                              #:admin-initiate-auth-request
-                              #:admin-initiate-auth-response
+                              #:admin-disable-user #:admin-enable-user
+                              #:admin-forget-device #:admin-get-device
+                              #:admin-get-user #:admin-initiate-auth
                               #:admin-link-provider-for-user
-                              #:admin-link-provider-for-user-request
-                              #:admin-link-provider-for-user-response
-                              #:admin-list-devices #:admin-list-devices-request
-                              #:admin-list-devices-response
-                              #:admin-list-groups-for-user
-                              #:admin-list-groups-for-user-request
-                              #:admin-list-groups-for-user-response
+                              #:admin-list-devices #:admin-list-groups-for-user
                               #:admin-list-user-auth-events
-                              #:admin-list-user-auth-events-request
-                              #:admin-list-user-auth-events-response
                               #:admin-remove-user-from-group
-                              #:admin-remove-user-from-group-request
                               #:admin-reset-user-password
-                              #:admin-reset-user-password-request
-                              #:admin-reset-user-password-response
                               #:admin-respond-to-auth-challenge
-                              #:admin-respond-to-auth-challenge-request
-                              #:admin-respond-to-auth-challenge-response
                               #:admin-set-user-mfapreference
-                              #:admin-set-user-mfapreference-request
-                              #:admin-set-user-mfapreference-response
                               #:admin-set-user-password
-                              #:admin-set-user-password-request
-                              #:admin-set-user-password-response
                               #:admin-set-user-settings
-                              #:admin-set-user-settings-request
-                              #:admin-set-user-settings-response
                               #:admin-update-auth-event-feedback
-                              #:admin-update-auth-event-feedback-request
-                              #:admin-update-auth-event-feedback-response
                               #:admin-update-device-status
-                              #:admin-update-device-status-request
-                              #:admin-update-device-status-response
                               #:admin-update-user-attributes
-                              #:admin-update-user-attributes-request
-                              #:admin-update-user-attributes-response
                               #:admin-user-global-sign-out
-                              #:admin-user-global-sign-out-request
-                              #:admin-user-global-sign-out-response
                               #:advanced-security-additional-flows-type
                               #:advanced-security-enabled-mode-type
                               #:advanced-security-mode-type
                               #:alias-attribute-type
                               #:alias-attributes-list-type
-                              #:alias-exists-exception
                               #:allowed-first-auth-factors-list-type
                               #:analytics-configuration-type
                               #:analytics-metadata-type #:arn-type
                               #:asset-bytes-type #:asset-category-type
                               #:asset-extension-type #:asset-list-type
                               #:asset-type #:associate-software-token
-                              #:associate-software-token-request
-                              #:associate-software-token-response
                               #:attribute-data-type #:attribute-list-type
                               #:attribute-mapping-key-type
                               #:attribute-mapping-type
@@ -115,56 +62,27 @@
                               #:challenge-response-list-type
                               #:challenge-response-type
                               #:challenge-responses-type #:change-password
-                              #:change-password-request
-                              #:change-password-response #:client-id-type
-                              #:client-metadata-type #:client-name-type
-                              #:client-permission-list-type
+                              #:client-id-type #:client-metadata-type
+                              #:client-name-type #:client-permission-list-type
                               #:client-permission-type #:client-secret-type
                               #:cloud-watch-logs-configuration-type
                               #:code-delivery-details-list-type
                               #:code-delivery-details-type
-                              #:code-delivery-failure-exception
-                              #:code-mismatch-exception
                               #:color-scheme-mode-type
                               #:complete-web-authn-registration
-                              #:complete-web-authn-registration-request
-                              #:complete-web-authn-registration-response
                               #:completion-message-type
                               #:compromised-credentials-actions-type
                               #:compromised-credentials-event-action-type
                               #:compromised-credentials-risk-configuration-type
-                              #:concurrent-modification-exception
                               #:configured-user-auth-factors-list-type
-                              #:confirm-device #:confirm-device-request
-                              #:confirm-device-response
-                              #:confirm-forgot-password
-                              #:confirm-forgot-password-request
-                              #:confirm-forgot-password-response
-                              #:confirm-sign-up #:confirm-sign-up-request
-                              #:confirm-sign-up-response
-                              #:confirmation-code-type #:context-data-type
-                              #:create-group #:create-group-request
-                              #:create-group-response
+                              #:confirm-device #:confirm-forgot-password
+                              #:confirm-sign-up #:confirmation-code-type
+                              #:context-data-type #:create-group
                               #:create-identity-provider
-                              #:create-identity-provider-request
-                              #:create-identity-provider-response
                               #:create-managed-login-branding
-                              #:create-managed-login-branding-request
-                              #:create-managed-login-branding-response
-                              #:create-resource-server
-                              #:create-resource-server-request
-                              #:create-resource-server-response
-                              #:create-user-import-job
-                              #:create-user-import-job-request
-                              #:create-user-import-job-response
+                              #:create-resource-server #:create-user-import-job
                               #:create-user-pool #:create-user-pool-client
-                              #:create-user-pool-client-request
-                              #:create-user-pool-client-response
                               #:create-user-pool-domain
-                              #:create-user-pool-domain-request
-                              #:create-user-pool-domain-response
-                              #:create-user-pool-request
-                              #:create-user-pool-response
                               #:custom-attribute-name-type
                               #:custom-attributes-list-type
                               #:custom-domain-config-type
@@ -173,63 +91,31 @@
                               #:custom-smslambda-version-config-type
                               #:custom-smssender-lambda-version-type
                               #:date-type #:default-email-option-type
-                              #:delete-group #:delete-group-request
-                              #:delete-identity-provider
-                              #:delete-identity-provider-request
+                              #:delete-group #:delete-identity-provider
                               #:delete-managed-login-branding
-                              #:delete-managed-login-branding-request
-                              #:delete-resource-server
-                              #:delete-resource-server-request #:delete-user
-                              #:delete-user-attributes
-                              #:delete-user-attributes-request
-                              #:delete-user-attributes-response
-                              #:delete-user-pool #:delete-user-pool-client
-                              #:delete-user-pool-client-request
+                              #:delete-resource-server #:delete-user
+                              #:delete-user-attributes #:delete-user-pool
+                              #:delete-user-pool-client
                               #:delete-user-pool-domain
-                              #:delete-user-pool-domain-request
-                              #:delete-user-pool-domain-response
-                              #:delete-user-pool-request #:delete-user-request
                               #:delete-web-authn-credential
-                              #:delete-web-authn-credential-request
-                              #:delete-web-authn-credential-response
                               #:deletion-protection-type
                               #:delivery-medium-list-type
                               #:delivery-medium-type
                               #:describe-identity-provider
-                              #:describe-identity-provider-request
-                              #:describe-identity-provider-response
                               #:describe-managed-login-branding
                               #:describe-managed-login-branding-by-client
-                              #:describe-managed-login-branding-by-client-request
-                              #:describe-managed-login-branding-by-client-response
-                              #:describe-managed-login-branding-request
-                              #:describe-managed-login-branding-response
                               #:describe-resource-server
-                              #:describe-resource-server-request
-                              #:describe-resource-server-response
                               #:describe-risk-configuration
-                              #:describe-risk-configuration-request
-                              #:describe-risk-configuration-response
-                              #:describe-user-import-job
-                              #:describe-user-import-job-request
-                              #:describe-user-import-job-response
-                              #:describe-user-pool #:describe-user-pool-client
-                              #:describe-user-pool-client-request
-                              #:describe-user-pool-client-response
-                              #:describe-user-pool-domain
-                              #:describe-user-pool-domain-request
-                              #:describe-user-pool-domain-response
-                              #:describe-user-pool-request
-                              #:describe-user-pool-response #:description-type
-                              #:device-configuration-type
-                              #:device-key-exists-exception #:device-key-type
+                              #:describe-user-import-job #:describe-user-pool
+                              #:describe-user-pool-client
+                              #:describe-user-pool-domain #:description-type
+                              #:device-configuration-type #:device-key-type
                               #:device-list-type #:device-name-type
                               #:device-remembered-status-type
                               #:device-secret-verifier-config-type
                               #:device-type #:document
                               #:domain-description-type #:domain-status-type
                               #:domain-type #:domain-version-type
-                              #:duplicate-provider-exception
                               #:email-address-type #:email-configuration-type
                               #:email-invite-message-type
                               #:email-mfa-config-type #:email-mfa-message-type
@@ -242,130 +128,63 @@
                               #:email-verification-message-type
                               #:email-verification-subject-by-link-type
                               #:email-verification-subject-type
-                              #:enable-software-token-mfaexception
                               #:event-context-data-type #:event-feedback-type
                               #:event-filter-type #:event-filters-type
                               #:event-id-type #:event-response-type
                               #:event-risk-type #:event-source-name
-                              #:event-type #:expired-code-exception
-                              #:explicit-auth-flows-list-type
+                              #:event-type #:explicit-auth-flows-list-type
                               #:explicit-auth-flows-type #:feature-type
-                              #:feature-unavailable-in-tier-exception
                               #:feedback-value-type
                               #:firehose-configuration-type
-                              #:forbidden-exception #:force-alias-creation
-                              #:forget-device #:forget-device-request
-                              #:forgot-password #:forgot-password-request
-                              #:forgot-password-response #:generate-secret
-                              #:get-csvheader #:get-csvheader-request
-                              #:get-csvheader-response #:get-device
-                              #:get-device-request #:get-device-response
-                              #:get-group #:get-group-request
-                              #:get-group-response
+                              #:force-alias-creation #:forget-device
+                              #:forgot-password #:generate-secret
+                              #:get-csvheader #:get-device #:get-group
                               #:get-identity-provider-by-identifier
-                              #:get-identity-provider-by-identifier-request
-                              #:get-identity-provider-by-identifier-response
                               #:get-log-delivery-configuration
-                              #:get-log-delivery-configuration-request
-                              #:get-log-delivery-configuration-response
                               #:get-signing-certificate
-                              #:get-signing-certificate-request
-                              #:get-signing-certificate-response
                               #:get-tokens-from-refresh-token
-                              #:get-tokens-from-refresh-token-request
-                              #:get-tokens-from-refresh-token-response
-                              #:get-uicustomization
-                              #:get-uicustomization-request
-                              #:get-uicustomization-response #:get-user
+                              #:get-uicustomization #:get-user
                               #:get-user-attribute-verification-code
-                              #:get-user-attribute-verification-code-request
-                              #:get-user-attribute-verification-code-response
                               #:get-user-auth-factors
-                              #:get-user-auth-factors-request
-                              #:get-user-auth-factors-response
-                              #:get-user-pool-mfa-config
-                              #:get-user-pool-mfa-config-request
-                              #:get-user-pool-mfa-config-response
-                              #:get-user-request #:get-user-response
-                              #:global-sign-out #:global-sign-out-request
-                              #:global-sign-out-response
-                              #:group-exists-exception #:group-list-type
-                              #:group-name-type #:group-type #:hex-string-type
-                              #:http-header #:http-header-list
-                              #:id-token-validity-type #:identity-provider-type
+                              #:get-user-pool-mfa-config #:global-sign-out
+                              #:group-list-type #:group-name-type #:group-type
+                              #:hex-string-type #:http-header
+                              #:http-header-list #:id-token-validity-type
+                              #:identity-provider-type
                               #:identity-provider-type-type
                               #:idp-identifier-type #:idp-identifiers-list-type
                               #:image-file-type #:image-url-type
-                              #:initiate-auth #:initiate-auth-request
-                              #:initiate-auth-response #:integer-type
-                              #:internal-error-exception
-                              #:invalid-email-role-access-policy-exception
-                              #:invalid-lambda-response-exception
-                              #:invalid-oauth-flow-exception
-                              #:invalid-parameter-exception
+                              #:initiate-auth #:integer-type
                               #:invalid-parameter-exception-reason-code-type
-                              #:invalid-password-exception
-                              #:invalid-sms-role-access-policy-exception
-                              #:invalid-sms-role-trust-relationship-exception
-                              #:invalid-user-pool-configuration-exception
-                              #:lambda-config-type #:limit-exceeded-exception
-                              #:list-devices #:list-devices-request
-                              #:list-devices-response #:list-groups
-                              #:list-groups-request #:list-groups-response
-                              #:list-identity-providers
-                              #:list-identity-providers-request
-                              #:list-identity-providers-response
-                              #:list-of-string-types
+                              #:lambda-config-type #:list-devices #:list-groups
+                              #:list-identity-providers #:list-of-string-types
                               #:list-providers-limit-type
                               #:list-resource-servers
                               #:list-resource-servers-limit-type
-                              #:list-resource-servers-request
-                              #:list-resource-servers-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-user-import-jobs
-                              #:list-user-import-jobs-request
-                              #:list-user-import-jobs-response
-                              #:list-user-pool-clients
-                              #:list-user-pool-clients-request
-                              #:list-user-pool-clients-response
-                              #:list-user-pools #:list-user-pools-request
-                              #:list-user-pools-response #:list-users
-                              #:list-users-in-group
-                              #:list-users-in-group-request
-                              #:list-users-in-group-response
-                              #:list-users-request #:list-users-response
+                              #:list-tags-for-resource #:list-user-import-jobs
+                              #:list-user-pool-clients #:list-user-pools
+                              #:list-users #:list-users-in-group
                               #:list-web-authn-credentials
-                              #:list-web-authn-credentials-request
-                              #:list-web-authn-credentials-response
                               #:log-configuration-list-type
                               #:log-configuration-type
                               #:log-delivery-configuration-type #:log-level
                               #:logout-urls-list-type #:long-type
-                              #:mfamethod-not-found-exception
                               #:mfaoption-list-type #:mfaoption-type
-                              #:managed-login-branding-exists-exception
                               #:managed-login-branding-id-type
                               #:managed-login-branding-type
                               #:message-action-type #:message-template-type
                               #:message-type #:new-device-metadata-type
-                              #:not-authorized-exception
                               #:notify-configuration-type #:notify-email-type
                               #:number-attribute-constraints-type
                               #:oauth-flow-type #:oauth-flows-type
                               #:pagination-key #:pagination-key-type
-                              #:password-history-policy-violation-exception
                               #:password-history-size-type
                               #:password-policy-min-length-type
-                              #:password-policy-type
-                              #:password-reset-required-exception
-                              #:password-type #:pool-query-limit-type
-                              #:pre-signed-url-type
+                              #:password-policy-type #:password-type
+                              #:pool-query-limit-type #:pre-signed-url-type
                               #:pre-token-generation-lambda-version-type
                               #:pre-token-generation-version-config-type
                               #:precedence-type
-                              #:precondition-not-met-exception
                               #:prevent-user-existence-error-types
                               #:priority-type #:provider-description
                               #:provider-details-type #:provider-name-type
@@ -375,14 +194,10 @@
                               #:query-limit-type #:recovery-mechanisms-type
                               #:recovery-option-name-type
                               #:recovery-option-type #:redirect-url-type
-                              #:refresh-token-reuse-exception
                               #:refresh-token-rotation-type
                               #:refresh-token-validity-type #:region-code-type
                               #:relying-party-id-type
-                              #:resend-confirmation-code
-                              #:resend-confirmation-code-request
-                              #:resend-confirmation-code-response
-                              #:resource-id-type #:resource-not-found-exception
+                              #:resend-confirmation-code #:resource-id-type
                               #:resource-server-identifier-type
                               #:resource-server-name-type
                               #:resource-server-scope-description-type
@@ -392,115 +207,53 @@
                               #:resource-server-type
                               #:resource-servers-list-type
                               #:respond-to-auth-challenge
-                              #:respond-to-auth-challenge-request
-                              #:respond-to-auth-challenge-response
                               #:retry-grace-period-seconds-type #:revoke-token
-                              #:revoke-token-request #:revoke-token-response
                               #:risk-configuration-type #:risk-decision-type
                               #:risk-exception-configuration-type
                               #:risk-level-type #:s3arn-type #:s3bucket-type
                               #:s3configuration-type #:sesconfiguration-set
                               #:smsmfa-settings-type #:schema-attribute-type
-                              #:schema-attributes-list-type
-                              #:scope-does-not-exist-exception
-                              #:scope-list-type #:scope-type
-                              #:search-pagination-token-type
+                              #:schema-attributes-list-type #:scope-list-type
+                              #:scope-type #:search-pagination-token-type
                               #:searched-attribute-names-list-type
                               #:secret-code-type #:secret-hash-type
                               #:session-type #:set-log-delivery-configuration
-                              #:set-log-delivery-configuration-request
-                              #:set-log-delivery-configuration-response
-                              #:set-risk-configuration
-                              #:set-risk-configuration-request
-                              #:set-risk-configuration-response
-                              #:set-uicustomization
-                              #:set-uicustomization-request
-                              #:set-uicustomization-response
+                              #:set-risk-configuration #:set-uicustomization
                               #:set-user-mfapreference
-                              #:set-user-mfapreference-request
-                              #:set-user-mfapreference-response
-                              #:set-user-pool-mfa-config
-                              #:set-user-pool-mfa-config-request
-                              #:set-user-pool-mfa-config-response
-                              #:set-user-settings #:set-user-settings-request
-                              #:set-user-settings-response
-                              #:sign-in-policy-type #:sign-up #:sign-up-request
-                              #:sign-up-response #:skipped-iprange-list-type
+                              #:set-user-pool-mfa-config #:set-user-settings
+                              #:sign-in-policy-type #:sign-up
+                              #:skipped-iprange-list-type
                               #:sms-configuration-type
                               #:sms-invite-message-type #:sms-mfa-config-type
                               #:sms-verification-message-type
-                              #:software-token-mfanot-found-exception
                               #:software-token-mfauser-code-type
                               #:software-token-mfa-config-type
                               #:software-token-mfa-settings-type
                               #:start-user-import-job
-                              #:start-user-import-job-request
-                              #:start-user-import-job-response
-                              #:start-web-authn-registration
-                              #:start-web-authn-registration-request
-                              #:start-web-authn-registration-response
-                              #:status-type #:stop-user-import-job
-                              #:stop-user-import-job-request
-                              #:stop-user-import-job-response
+                              #:start-web-authn-registration #:status-type
+                              #:stop-user-import-job
                               #:string-attribute-constraints-type #:string-type
                               #:supported-identity-providers-list-type
-                              #:tag-keys-type #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value-type
+                              #:tag-keys-type #:tag-resource #:tag-value-type
                               #:temporary-password-validity-days-type
-                              #:tier-change-not-allowed-exception
                               #:time-units-type #:token-model-type
                               #:token-validity-units-type
-                              #:too-many-failed-attempts-exception
-                              #:too-many-requests-exception
-                              #:uicustomization-type #:unauthorized-exception
-                              #:unexpected-lambda-exception
-                              #:unsupported-identity-provider-exception
-                              #:unsupported-operation-exception
-                              #:unsupported-token-type-exception
-                              #:unsupported-user-state-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:uicustomization-type #:untag-resource
                               #:update-auth-event-feedback
-                              #:update-auth-event-feedback-request
-                              #:update-auth-event-feedback-response
-                              #:update-device-status
-                              #:update-device-status-request
-                              #:update-device-status-response #:update-group
-                              #:update-group-request #:update-group-response
+                              #:update-device-status #:update-group
                               #:update-identity-provider
-                              #:update-identity-provider-request
-                              #:update-identity-provider-response
                               #:update-managed-login-branding
-                              #:update-managed-login-branding-request
-                              #:update-managed-login-branding-response
-                              #:update-resource-server
-                              #:update-resource-server-request
-                              #:update-resource-server-response
-                              #:update-user-attributes
-                              #:update-user-attributes-request
-                              #:update-user-attributes-response
+                              #:update-resource-server #:update-user-attributes
                               #:update-user-pool #:update-user-pool-client
-                              #:update-user-pool-client-request
-                              #:update-user-pool-client-response
                               #:update-user-pool-domain
-                              #:update-user-pool-domain-request
-                              #:update-user-pool-domain-response
-                              #:update-user-pool-request
-                              #:update-user-pool-response
                               #:user-attribute-update-settings-type
                               #:user-context-data-type #:user-filter-type
-                              #:user-import-in-progress-exception
                               #:user-import-job-id-type
                               #:user-import-job-name-type
                               #:user-import-job-status-type
                               #:user-import-job-type
                               #:user-import-jobs-list-type
-                              #:user-lambda-validation-exception
                               #:user-mfasetting-list-type
-                              #:user-not-confirmed-exception
-                              #:user-not-found-exception
-                              #:user-pool-add-on-not-enabled-exception
                               #:user-pool-add-ons-type
                               #:user-pool-client-description
                               #:user-pool-client-list-type
@@ -508,40 +261,27 @@
                               #:user-pool-description-type #:user-pool-id-type
                               #:user-pool-list-type #:user-pool-mfa-type
                               #:user-pool-name-type #:user-pool-policy-type
-                              #:user-pool-tagging-exception
                               #:user-pool-tags-list-type #:user-pool-tags-type
                               #:user-pool-tier-type #:user-pool-type
                               #:user-status-type #:user-type
                               #:user-verification-type
                               #:username-attribute-type
                               #:username-attributes-list-type
-                              #:username-configuration-type
-                              #:username-exists-exception #:username-type
+                              #:username-configuration-type #:username-type
                               #:users-list-type
                               #:verification-message-template-type
                               #:verified-attribute-type
                               #:verified-attributes-list-type
                               #:verify-software-token
-                              #:verify-software-token-request
-                              #:verify-software-token-response
                               #:verify-software-token-response-type
                               #:verify-user-attribute
-                              #:verify-user-attribute-request
-                              #:verify-user-attribute-response
                               #:web-authn-authenticator-attachment-type
                               #:web-authn-authenticator-transport-type
                               #:web-authn-authenticator-transports-list
-                              #:web-authn-challenge-not-found-exception
-                              #:web-authn-client-mismatch-exception
-                              #:web-authn-configuration-missing-exception
                               #:web-authn-configuration-type
                               #:web-authn-credential-description
                               #:web-authn-credential-description-list-type
-                              #:web-authn-credential-not-supported-exception
                               #:web-authn-credentials-query-limit-type
-                              #:web-authn-not-enabled-exception
-                              #:web-authn-origin-not-allowed-exception
-                              #:web-authn-relying-party-mismatch-exception
                               #:wrapped-boolean-type #:wrapped-integer-type))
 (common-lisp:in-package #:pira/cognito-identity-provider)
 

@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/ses (:use)
-                             (:export #:account-sending-paused-exception
-                              #:add-header-action #:address #:address-list
-                              #:already-exists-exception #:amazon-resource-name
+                             (:export #:add-header-action #:address
+                              #:address-list #:amazon-resource-name
                               #:arrival-date #:behavior-on-mxfailure #:body
                               #:bounce-action #:bounce-message
                               #:bounce-smtp-reply-code #:bounce-status-code
@@ -11,192 +10,81 @@
                               #:bulk-email-destination-list
                               #:bulk-email-destination-status
                               #:bulk-email-destination-status-list
-                              #:bulk-email-status #:cannot-delete-exception
-                              #:charset #:cidr #:clone-receipt-rule-set
-                              #:clone-receipt-rule-set-request
-                              #:clone-receipt-rule-set-response
+                              #:bulk-email-status #:charset #:cidr
+                              #:clone-receipt-rule-set
                               #:cloud-watch-destination
                               #:cloud-watch-dimension-configuration
                               #:cloud-watch-dimension-configurations
-                              #:configuration-set
-                              #:configuration-set-already-exists-exception
-                              #:configuration-set-attribute
+                              #:configuration-set #:configuration-set-attribute
                               #:configuration-set-attribute-list
-                              #:configuration-set-does-not-exist-exception
-                              #:configuration-set-name
-                              #:configuration-set-sending-paused-exception
-                              #:configuration-sets #:connect-action
-                              #:connect-instance-arn #:content #:counter
-                              #:create-configuration-set
+                              #:configuration-set-name #:configuration-sets
+                              #:connect-action #:connect-instance-arn #:content
+                              #:counter #:create-configuration-set
                               #:create-configuration-set-event-destination
-                              #:create-configuration-set-event-destination-request
-                              #:create-configuration-set-event-destination-response
-                              #:create-configuration-set-request
-                              #:create-configuration-set-response
                               #:create-configuration-set-tracking-options
-                              #:create-configuration-set-tracking-options-request
-                              #:create-configuration-set-tracking-options-response
                               #:create-custom-verification-email-template
-                              #:create-custom-verification-email-template-request
-                              #:create-receipt-filter
-                              #:create-receipt-filter-request
-                              #:create-receipt-filter-response
-                              #:create-receipt-rule
-                              #:create-receipt-rule-request
-                              #:create-receipt-rule-response
-                              #:create-receipt-rule-set
-                              #:create-receipt-rule-set-request
-                              #:create-receipt-rule-set-response
-                              #:create-template #:create-template-request
-                              #:create-template-response
+                              #:create-receipt-filter #:create-receipt-rule
+                              #:create-receipt-rule-set #:create-template
                               #:custom-mail-from-status
                               #:custom-redirect-domain
-                              #:custom-verification-email-invalid-content-exception
                               #:custom-verification-email-template
-                              #:custom-verification-email-template-already-exists-exception
-                              #:custom-verification-email-template-does-not-exist-exception
                               #:custom-verification-email-templates
                               #:default-dimension-value
                               #:delete-configuration-set
                               #:delete-configuration-set-event-destination
-                              #:delete-configuration-set-event-destination-request
-                              #:delete-configuration-set-event-destination-response
-                              #:delete-configuration-set-request
-                              #:delete-configuration-set-response
                               #:delete-configuration-set-tracking-options
-                              #:delete-configuration-set-tracking-options-request
-                              #:delete-configuration-set-tracking-options-response
                               #:delete-custom-verification-email-template
-                              #:delete-custom-verification-email-template-request
                               #:delete-identity #:delete-identity-policy
-                              #:delete-identity-policy-request
-                              #:delete-identity-policy-response
-                              #:delete-identity-request
-                              #:delete-identity-response
-                              #:delete-receipt-filter
-                              #:delete-receipt-filter-request
-                              #:delete-receipt-filter-response
-                              #:delete-receipt-rule
-                              #:delete-receipt-rule-request
-                              #:delete-receipt-rule-response
-                              #:delete-receipt-rule-set
-                              #:delete-receipt-rule-set-request
-                              #:delete-receipt-rule-set-response
-                              #:delete-template #:delete-template-request
-                              #:delete-template-response
+                              #:delete-receipt-filter #:delete-receipt-rule
+                              #:delete-receipt-rule-set #:delete-template
                               #:delete-verified-email-address
-                              #:delete-verified-email-address-request
                               #:delivery-options
                               #:describe-active-receipt-rule-set
-                              #:describe-active-receipt-rule-set-request
-                              #:describe-active-receipt-rule-set-response
                               #:describe-configuration-set
-                              #:describe-configuration-set-request
-                              #:describe-configuration-set-response
                               #:describe-receipt-rule
-                              #:describe-receipt-rule-request
-                              #:describe-receipt-rule-response
-                              #:describe-receipt-rule-set
-                              #:describe-receipt-rule-set-request
-                              #:describe-receipt-rule-set-response
-                              #:destination #:diagnostic-code #:dimension-name
+                              #:describe-receipt-rule-set #:destination
+                              #:diagnostic-code #:dimension-name
                               #:dimension-value-source #:dkim-attributes
                               #:domain #:dsn-action #:dsn-status #:enabled
                               #:error #:error-message #:event-destination
-                              #:event-destination-already-exists-exception
-                              #:event-destination-does-not-exist-exception
                               #:event-destination-name #:event-destinations
                               #:event-type #:event-types #:explanation
                               #:extension-field #:extension-field-list
                               #:extension-field-name #:extension-field-value
                               #:failure-redirection-url #:from-address
-                              #:from-email-address-not-verified-exception
                               #:get-account-sending-enabled
-                              #:get-account-sending-enabled-response
                               #:get-custom-verification-email-template
-                              #:get-custom-verification-email-template-request
-                              #:get-custom-verification-email-template-response
                               #:get-identity-dkim-attributes
-                              #:get-identity-dkim-attributes-request
-                              #:get-identity-dkim-attributes-response
                               #:get-identity-mail-from-domain-attributes
-                              #:get-identity-mail-from-domain-attributes-request
-                              #:get-identity-mail-from-domain-attributes-response
                               #:get-identity-notification-attributes
-                              #:get-identity-notification-attributes-request
-                              #:get-identity-notification-attributes-response
                               #:get-identity-policies
-                              #:get-identity-policies-request
-                              #:get-identity-policies-response
                               #:get-identity-verification-attributes
-                              #:get-identity-verification-attributes-request
-                              #:get-identity-verification-attributes-response
-                              #:get-send-quota #:get-send-quota-response
-                              #:get-send-statistics
-                              #:get-send-statistics-response #:get-template
-                              #:get-template-request #:get-template-response
-                              #:header-name #:header-value #:html-part
-                              #:iamrole-arn #:identity
+                              #:get-send-quota #:get-send-statistics
+                              #:get-template #:header-name #:header-value
+                              #:html-part #:iamrole-arn #:identity
                               #:identity-dkim-attributes #:identity-list
                               #:identity-mail-from-domain-attributes
                               #:identity-notification-attributes
                               #:identity-type
                               #:identity-verification-attributes
-                              #:invalid-cloud-watch-destination-exception
-                              #:invalid-configuration-set-exception
-                              #:invalid-delivery-options-exception
-                              #:invalid-firehose-destination-exception
-                              #:invalid-lambda-function-exception
-                              #:invalid-policy-exception
-                              #:invalid-rendering-parameter-exception
-                              #:invalid-s3configuration-exception
-                              #:invalid-snsdestination-exception
-                              #:invalid-sns-topic-exception
-                              #:invalid-template-exception
-                              #:invalid-tracking-options-exception
                               #:invocation-type #:kinesis-firehose-destination
                               #:lambda-action #:last-attempt-date
-                              #:last-fresh-start #:limit-exceeded-exception
-                              #:list-configuration-sets
-                              #:list-configuration-sets-request
-                              #:list-configuration-sets-response
+                              #:last-fresh-start #:list-configuration-sets
                               #:list-custom-verification-email-templates
-                              #:list-custom-verification-email-templates-request
-                              #:list-custom-verification-email-templates-response
-                              #:list-identities #:list-identities-request
-                              #:list-identities-response
-                              #:list-identity-policies
-                              #:list-identity-policies-request
-                              #:list-identity-policies-response
-                              #:list-receipt-filters
-                              #:list-receipt-filters-request
-                              #:list-receipt-filters-response
-                              #:list-receipt-rule-sets
-                              #:list-receipt-rule-sets-request
-                              #:list-receipt-rule-sets-response
-                              #:list-templates #:list-templates-request
-                              #:list-templates-response
-                              #:list-verified-email-addresses
-                              #:list-verified-email-addresses-response
+                              #:list-identities #:list-identity-policies
+                              #:list-receipt-filters #:list-receipt-rule-sets
+                              #:list-templates #:list-verified-email-addresses
                               #:mail-from-domain-attributes
-                              #:mail-from-domain-name
-                              #:mail-from-domain-not-verified-exception
-                              #:max24hour-send #:max-items #:max-results
-                              #:max-send-rate #:message #:message-data
-                              #:message-dsn #:message-id #:message-rejected
-                              #:message-tag #:message-tag-list
+                              #:mail-from-domain-name #:max24hour-send
+                              #:max-items #:max-results #:max-send-rate
+                              #:message #:message-data #:message-dsn
+                              #:message-id #:message-tag #:message-tag-list
                               #:message-tag-name #:message-tag-value
-                              #:missing-rendering-attribute-exception
                               #:next-token #:notification-attributes
                               #:notification-topic #:notification-type #:policy
                               #:policy-map #:policy-name #:policy-name-list
-                              #:production-access-not-granted-exception
                               #:put-configuration-set-delivery-options
-                              #:put-configuration-set-delivery-options-request
-                              #:put-configuration-set-delivery-options-response
-                              #:put-identity-policy
-                              #:put-identity-policy-request
-                              #:put-identity-policy-response #:raw-message
+                              #:put-identity-policy #:raw-message
                               #:raw-message-data #:receipt-action
                               #:receipt-actions-list #:receipt-filter
                               #:receipt-filter-list #:receipt-filter-name
@@ -208,94 +96,41 @@
                               #:receipt-rules-list #:recipient
                               #:recipient-dsn-fields #:recipients-list
                               #:remote-mta #:rendered-template
-                              #:reorder-receipt-rule-set
-                              #:reorder-receipt-rule-set-request
-                              #:reorder-receipt-rule-set-response
-                              #:reporting-mta #:reputation-options
-                              #:rule-does-not-exist-exception
-                              #:rule-or-rule-set-name
-                              #:rule-set-does-not-exist-exception #:s3action
-                              #:s3bucket-name #:s3key-prefix #:snsaction
-                              #:snsaction-encoding #:snsdestination
-                              #:send-bounce #:send-bounce-request
-                              #:send-bounce-response
-                              #:send-bulk-templated-email
-                              #:send-bulk-templated-email-request
-                              #:send-bulk-templated-email-response
+                              #:reorder-receipt-rule-set #:reporting-mta
+                              #:reputation-options #:rule-or-rule-set-name
+                              #:s3action #:s3bucket-name #:s3key-prefix
+                              #:snsaction #:snsaction-encoding #:snsdestination
+                              #:send-bounce #:send-bulk-templated-email
                               #:send-custom-verification-email
-                              #:send-custom-verification-email-request
-                              #:send-custom-verification-email-response
                               #:send-data-point #:send-data-point-list
-                              #:send-email #:send-email-request
-                              #:send-email-response #:send-raw-email
-                              #:send-raw-email-request
-                              #:send-raw-email-response #:send-templated-email
-                              #:send-templated-email-request
-                              #:send-templated-email-response
-                              #:sent-last24hours #:set-active-receipt-rule-set
-                              #:set-active-receipt-rule-set-request
-                              #:set-active-receipt-rule-set-response
+                              #:send-email #:send-raw-email
+                              #:send-templated-email #:sent-last24hours
+                              #:set-active-receipt-rule-set
                               #:set-identity-dkim-enabled
-                              #:set-identity-dkim-enabled-request
-                              #:set-identity-dkim-enabled-response
                               #:set-identity-feedback-forwarding-enabled
-                              #:set-identity-feedback-forwarding-enabled-request
-                              #:set-identity-feedback-forwarding-enabled-response
                               #:set-identity-headers-in-notifications-enabled
-                              #:set-identity-headers-in-notifications-enabled-request
-                              #:set-identity-headers-in-notifications-enabled-response
                               #:set-identity-mail-from-domain
-                              #:set-identity-mail-from-domain-request
-                              #:set-identity-mail-from-domain-response
                               #:set-identity-notification-topic
-                              #:set-identity-notification-topic-request
-                              #:set-identity-notification-topic-response
                               #:set-receipt-rule-position
-                              #:set-receipt-rule-position-request
-                              #:set-receipt-rule-position-response
                               #:simple-email-service #:stop-action #:stop-scope
                               #:subject #:subject-part
                               #:success-redirection-url #:template
                               #:template-content #:template-data
-                              #:template-does-not-exist-exception
                               #:template-metadata #:template-metadata-list
                               #:template-name #:test-render-template
-                              #:test-render-template-request
-                              #:test-render-template-response #:text-part
-                              #:timestamp #:tls-policy #:tracking-options
-                              #:tracking-options-already-exists-exception
-                              #:tracking-options-does-not-exist-exception
+                              #:text-part #:timestamp #:tls-policy
+                              #:tracking-options
                               #:update-account-sending-enabled
-                              #:update-account-sending-enabled-request
                               #:update-configuration-set-event-destination
-                              #:update-configuration-set-event-destination-request
-                              #:update-configuration-set-event-destination-response
                               #:update-configuration-set-reputation-metrics-enabled
-                              #:update-configuration-set-reputation-metrics-enabled-request
                               #:update-configuration-set-sending-enabled
-                              #:update-configuration-set-sending-enabled-request
                               #:update-configuration-set-tracking-options
-                              #:update-configuration-set-tracking-options-request
-                              #:update-configuration-set-tracking-options-response
                               #:update-custom-verification-email-template
-                              #:update-custom-verification-email-template-request
-                              #:update-receipt-rule
-                              #:update-receipt-rule-request
-                              #:update-receipt-rule-response #:update-template
-                              #:update-template-request
-                              #:update-template-response
+                              #:update-receipt-rule #:update-template
                               #:verification-attributes #:verification-status
                               #:verification-token #:verification-token-list
-                              #:verify-domain-dkim #:verify-domain-dkim-request
-                              #:verify-domain-dkim-response
-                              #:verify-domain-identity
-                              #:verify-domain-identity-request
-                              #:verify-domain-identity-response
-                              #:verify-email-address
-                              #:verify-email-address-request
-                              #:verify-email-identity
-                              #:verify-email-identity-request
-                              #:verify-email-identity-response
+                              #:verify-domain-dkim #:verify-domain-identity
+                              #:verify-email-address #:verify-email-identity
                               #:workmail-action))
 (common-lisp:in-package #:pira/ses)
 

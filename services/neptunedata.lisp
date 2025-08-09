@@ -1,182 +1,69 @@
 (uiop/package:define-package #:pira/neptunedata (:use)
-                             (:export #:access-denied-exception #:action
-                              #:amazon-neptune-dataplane
-                              #:bad-request-exception
-                              #:bulk-load-id-not-found-exception
-                              #:cancel-gremlin-query
-                              #:cancel-gremlin-query-input
-                              #:cancel-gremlin-query-output #:cancel-loader-job
-                              #:cancel-loader-job-input
-                              #:cancel-loader-job-output
+                             (:export #:action #:amazon-neptune-dataplane
+                              #:cancel-gremlin-query #:cancel-loader-job
                               #:cancel-mldata-processing-job
-                              #:cancel-mldata-processing-job-input
-                              #:cancel-mldata-processing-job-output
                               #:cancel-mlmodel-training-job
-                              #:cancel-mlmodel-training-job-input
-                              #:cancel-mlmodel-training-job-output
                               #:cancel-mlmodel-transform-job
-                              #:cancel-mlmodel-transform-job-input
-                              #:cancel-mlmodel-transform-job-output
-                              #:cancel-open-cypher-query
-                              #:cancel-open-cypher-query-input
-                              #:cancel-open-cypher-query-output
-                              #:cancelled-by-user-exception #:classes
-                              #:client-timeout-exception
-                              #:concurrent-modification-exception
-                              #:constraint-violation-exception
-                              #:create-mlendpoint #:create-mlendpoint-input
-                              #:create-mlendpoint-output
+                              #:cancel-open-cypher-query #:classes
+                              #:create-mlendpoint
                               #:custom-model-training-parameters
                               #:custom-model-transform-parameters
-                              #:delete-mlendpoint #:delete-mlendpoint-input
-                              #:delete-mlendpoint-output
+                              #:delete-mlendpoint
                               #:delete-propertygraph-statistics
-                              #:delete-propertygraph-statistics-output
                               #:delete-sparql-statistics
-                              #:delete-sparql-statistics-output
                               #:delete-statistics-value-map
                               #:document-valued-map #:edge-labels
                               #:edge-properties #:edge-structure
                               #:edge-structures #:encoding #:execute-fast-reset
-                              #:execute-fast-reset-input
-                              #:execute-fast-reset-output
                               #:execute-gremlin-explain-query
-                              #:execute-gremlin-explain-query-input
-                              #:execute-gremlin-explain-query-output
                               #:execute-gremlin-profile-query
-                              #:execute-gremlin-profile-query-input
-                              #:execute-gremlin-profile-query-output
                               #:execute-gremlin-query
-                              #:execute-gremlin-query-input
-                              #:execute-gremlin-query-output
                               #:execute-open-cypher-explain-query
-                              #:execute-open-cypher-explain-query-input
-                              #:execute-open-cypher-explain-query-output
-                              #:execute-open-cypher-query
-                              #:execute-open-cypher-query-input
-                              #:execute-open-cypher-query-output
-                              #:expired-stream-exception
-                              #:failure-by-query-exception #:fast-reset-token
+                              #:execute-open-cypher-query #:fast-reset-token
                               #:format #:get-engine-status
-                              #:get-engine-status-output
                               #:get-gremlin-query-status
-                              #:get-gremlin-query-status-input
-                              #:get-gremlin-query-status-output
                               #:get-loader-job-status
-                              #:get-loader-job-status-input
-                              #:get-loader-job-status-output
-                              #:get-mldata-processing-job
-                              #:get-mldata-processing-job-input
-                              #:get-mldata-processing-job-output
-                              #:get-mlendpoint #:get-mlendpoint-input
-                              #:get-mlendpoint-output
+                              #:get-mldata-processing-job #:get-mlendpoint
                               #:get-mlmodel-training-job
-                              #:get-mlmodel-training-job-input
-                              #:get-mlmodel-training-job-output
                               #:get-mlmodel-transform-job
-                              #:get-mlmodel-transform-job-input
-                              #:get-mlmodel-transform-job-output
                               #:get-open-cypher-query-status
-                              #:get-open-cypher-query-status-input
-                              #:get-open-cypher-query-status-output
                               #:get-propertygraph-statistics
-                              #:get-propertygraph-statistics-output
                               #:get-propertygraph-stream
-                              #:get-propertygraph-stream-input
-                              #:get-propertygraph-stream-output
                               #:get-propertygraph-summary
-                              #:get-propertygraph-summary-input
-                              #:get-propertygraph-summary-output
-                              #:get-rdfgraph-summary
-                              #:get-rdfgraph-summary-input
-                              #:get-rdfgraph-summary-output
-                              #:get-sparql-statistics
-                              #:get-sparql-statistics-output
-                              #:get-sparql-stream #:get-sparql-stream-input
-                              #:get-sparql-stream-output #:graph-summary-type
+                              #:get-rdfgraph-summary #:get-sparql-statistics
+                              #:get-sparql-stream #:graph-summary-type
                               #:gremlin-queries #:gremlin-query-status
-                              #:gremlin-query-status-attributes
-                              #:illegal-argument-exception
-                              #:internal-failure-exception
-                              #:invalid-argument-exception
-                              #:invalid-numeric-data-exception
-                              #:invalid-parameter-exception #:iterator-type
-                              #:list-gremlin-queries
-                              #:list-gremlin-queries-input
-                              #:list-gremlin-queries-output #:list-loader-jobs
-                              #:list-loader-jobs-input
-                              #:list-loader-jobs-output
-                              #:list-mldata-processing-jobs
-                              #:list-mldata-processing-jobs-input
-                              #:list-mldata-processing-jobs-output
-                              #:list-mlendpoints #:list-mlendpoints-input
-                              #:list-mlendpoints-output
+                              #:gremlin-query-status-attributes #:iterator-type
+                              #:list-gremlin-queries #:list-loader-jobs
+                              #:list-mldata-processing-jobs #:list-mlendpoints
                               #:list-mlmodel-training-jobs
-                              #:list-mlmodel-training-jobs-input
-                              #:list-mlmodel-training-jobs-output
                               #:list-mlmodel-transform-jobs
-                              #:list-mlmodel-transform-jobs-input
-                              #:list-mlmodel-transform-jobs-output
-                              #:list-open-cypher-queries
-                              #:list-open-cypher-queries-input
-                              #:list-open-cypher-queries-output
-                              #:load-url-access-denied-exception
-                              #:loader-id-result #:long-valued-map
-                              #:long-valued-map-list
-                              #:mlresource-not-found-exception
-                              #:malformed-query-exception
+                              #:list-open-cypher-queries #:loader-id-result
+                              #:long-valued-map #:long-valued-map-list
                               #:manage-propertygraph-statistics
-                              #:manage-propertygraph-statistics-input
-                              #:manage-propertygraph-statistics-output
-                              #:manage-sparql-statistics
-                              #:manage-sparql-statistics-input
-                              #:manage-sparql-statistics-output
-                              #:memory-limit-exceeded-exception
-                              #:method-not-allowed-exception
-                              #:missing-parameter-exception
-                              #:ml-config-definition #:ml-models
-                              #:ml-resource-definition #:mode #:models
-                              #:node-labels #:node-properties #:node-structure
-                              #:node-structures #:open-cypher-explain-mode
-                              #:open-cypher-queries #:outgoing-edge-labels
-                              #:parallelism #:parsing-exception
-                              #:positive-integer
-                              #:preconditions-failed-exception #:predicates
+                              #:manage-sparql-statistics #:ml-config-definition
+                              #:ml-models #:ml-resource-definition #:mode
+                              #:models #:node-labels #:node-properties
+                              #:node-structure #:node-structures
+                              #:open-cypher-explain-mode #:open-cypher-queries
+                              #:outgoing-edge-labels #:parallelism
+                              #:positive-integer #:predicates
                               #:propertygraph-data #:propertygraph-record
                               #:propertygraph-records-list
                               #:propertygraph-summary
                               #:propertygraph-summary-value-map
                               #:query-eval-stats #:query-language-version
-                              #:query-limit-exceeded-exception
-                              #:query-limit-exception
-                              #:query-too-large-exception #:rdfgraph-summary
-                              #:rdfgraph-summary-value-map
-                              #:read-only-violation-exception
+                              #:rdfgraph-summary #:rdfgraph-summary-value-map
                               #:refresh-statistics-id-map #:report-as-text
-                              #:s3bucket-region #:s3exception
-                              #:server-shutdown-exception #:sparql-data
-                              #:sparql-record #:sparql-records-list
-                              #:start-loader-job #:start-loader-job-input
-                              #:start-loader-job-output
+                              #:s3bucket-region #:sparql-data #:sparql-record
+                              #:sparql-records-list #:start-loader-job
                               #:start-mldata-processing-job
-                              #:start-mldata-processing-job-input
-                              #:start-mldata-processing-job-output
                               #:start-mlmodel-training-job
-                              #:start-mlmodel-training-job-input
-                              #:start-mlmodel-training-job-output
-                              #:start-mlmodel-transform-job
-                              #:start-mlmodel-transform-job-input
-                              #:start-mlmodel-transform-job-output #:statistics
+                              #:start-mlmodel-transform-job #:statistics
                               #:statistics-auto-generation-mode
-                              #:statistics-not-available-exception
-                              #:statistics-summary
-                              #:stream-records-not-found-exception
-                              #:string-list #:string-valued-map
-                              #:subject-structure #:subject-structures
-                              #:throttling-exception
-                              #:time-limit-exceeded-exception
-                              #:too-many-requests-exception
-                              #:unsupported-operation-exception))
+                              #:statistics-summary #:string-list
+                              #:string-valued-map #:subject-structure
+                              #:subject-structures))
 (common-lisp:in-package #:pira/neptunedata)
 
 (smithy/sdk/service:define-service amazon-neptune-dataplane :shape-name

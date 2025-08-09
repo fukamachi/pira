@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/marketplace-catalog (:use)
                              (:export #:arn #:awsmpseymour
-                              #:access-denied-exception
                               #:ami-product-entity-id-filter
                               #:ami-product-entity-id-filter-value-list
                               #:ami-product-entity-id-string
@@ -15,13 +14,10 @@
                               #:ami-product-visibility-filter-value-list
                               #:ami-product-visibility-string
                               #:batch-describe-entities
-                              #:batch-describe-entities-request
-                              #:batch-describe-entities-response
                               #:batch-describe-error-code-string
                               #:batch-describe-error-detail
                               #:batch-describe-error-message-content
-                              #:cancel-change-set #:cancel-change-set-request
-                              #:cancel-change-set-response #:catalog #:change
+                              #:cancel-change-set #:catalog #:change
                               #:change-name #:change-set-description
                               #:change-set-name #:change-set-summary-list
                               #:change-set-summary-list-item #:change-status
@@ -57,13 +53,7 @@
                               #:data-product-visibility-filter-value-list
                               #:data-product-visibility-string
                               #:date-time-iso8601 #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response
-                              #:describe-change-set
-                              #:describe-change-set-request
-                              #:describe-change-set-response #:describe-entity
-                              #:describe-entity-request
-                              #:describe-entity-response #:entity
+                              #:describe-change-set #:describe-entity #:entity
                               #:entity-detail #:entity-details #:entity-id
                               #:entity-name-string #:entity-request
                               #:entity-request-list #:entity-summary
@@ -74,18 +64,12 @@
                               #:exception-message-content #:failure-code
                               #:filter #:filter-list #:filter-name
                               #:filter-value-content #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response #:identifier
-                              #:intent #:internal-service-exception #:json
-                              #:json-document-type #:list-change-sets
+                              #:identifier #:intent #:json #:json-document-type
+                              #:list-change-sets
                               #:list-change-sets-max-result-integer
-                              #:list-change-sets-request
-                              #:list-change-sets-response #:list-entities
+                              #:list-entities
                               #:list-entities-max-result-integer
-                              #:list-entities-request #:list-entities-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:machine-learning-product-entity-id-filter
                               #:machine-learning-product-entity-id-filter-value-list
                               #:machine-learning-product-entity-id-string
@@ -129,8 +113,6 @@
                               #:offer-targeting-filter-value-list
                               #:offer-targeting-list #:offer-targeting-string
                               #:ownership-type #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response
                               #:requested-change-list
                               #:resale-authorization-availability-end-date-filter
                               #:resale-authorization-availability-end-date-filter-date-range
@@ -182,9 +164,6 @@
                               #:resale-authorization-status-string
                               #:resale-authorization-summary #:resource-arn
                               #:resource-id #:resource-id-list
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:resource-not-supported-exception
                               #:resource-policy-json
                               #:saa-sproduct-entity-id-filter
                               #:saa-sproduct-entity-id-filter-value-list
@@ -199,17 +178,11 @@
                               #:saa-sproduct-title-string
                               #:saa-sproduct-visibility-filter
                               #:saa-sproduct-visibility-filter-value-list
-                              #:saa-sproduct-visibility-string
-                              #:service-quota-exceeded-exception #:sort
-                              #:sort-by #:sort-order #:start-change-set
-                              #:start-change-set-request
-                              #:start-change-set-response #:tag #:tag-key
+                              #:saa-sproduct-visibility-string #:sort #:sort-by
+                              #:sort-order #:start-change-set #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:validation-exception
-                              #:value-list #:visibility-value))
+                              #:tag-value #:untag-resource #:value-list
+                              #:visibility-value))
 (common-lisp:in-package #:pira/marketplace-catalog)
 
 (smithy/sdk/service:define-service awsmpseymour :shape-name "AWSMPSeymour"

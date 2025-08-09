@@ -1,34 +1,18 @@
 (uiop/package:define-package #:pira/service-catalog (:use)
                              (:export #:aws242service-catalog-service
                               #:accept-language #:accept-portfolio-share
-                              #:accept-portfolio-share-input
-                              #:accept-portfolio-share-output
                               #:access-level-filter #:access-level-filter-key
                               #:access-level-filter-value #:access-status
                               #:account-id #:account-ids #:add-tags
                               #:allowed-values #:approximate-count
                               #:associate-budget-with-resource
-                              #:associate-budget-with-resource-input
-                              #:associate-budget-with-resource-output
                               #:associate-principal-with-portfolio
-                              #:associate-principal-with-portfolio-input
-                              #:associate-principal-with-portfolio-output
                               #:associate-product-with-portfolio
-                              #:associate-product-with-portfolio-input
-                              #:associate-product-with-portfolio-output
                               #:associate-service-action-with-provisioning-artifact
-                              #:associate-service-action-with-provisioning-artifact-input
-                              #:associate-service-action-with-provisioning-artifact-output
                               #:associate-tag-option-with-resource
-                              #:associate-tag-option-with-resource-input
-                              #:associate-tag-option-with-resource-output
                               #:attribute-value
                               #:batch-associate-service-action-with-provisioning-artifact
-                              #:batch-associate-service-action-with-provisioning-artifact-input
-                              #:batch-associate-service-action-with-provisioning-artifact-output
                               #:batch-disassociate-service-action-from-provisioning-artifact
-                              #:batch-disassociate-service-action-from-provisioning-artifact-input
-                              #:batch-disassociate-service-action-from-provisioning-artifact-output
                               #:boolean #:budget-detail #:budget-name #:budgets
                               #:causing-entity #:change-action
                               #:cloud-watch-dashboard
@@ -39,124 +23,48 @@
                               #:constraint-details #:constraint-parameters
                               #:constraint-summaries #:constraint-summary
                               #:constraint-type #:copy-option #:copy-options
-                              #:copy-product #:copy-product-input
-                              #:copy-product-output #:copy-product-status
-                              #:create-constraint #:create-constraint-input
-                              #:create-constraint-output #:create-portfolio
-                              #:create-portfolio-input
-                              #:create-portfolio-output
-                              #:create-portfolio-share
-                              #:create-portfolio-share-input
-                              #:create-portfolio-share-output #:create-product
-                              #:create-product-input #:create-product-output
+                              #:copy-product #:copy-product-status
+                              #:create-constraint #:create-portfolio
+                              #:create-portfolio-share #:create-product
                               #:create-provisioned-product-plan
-                              #:create-provisioned-product-plan-input
-                              #:create-provisioned-product-plan-output
                               #:create-provisioning-artifact
-                              #:create-provisioning-artifact-input
-                              #:create-provisioning-artifact-output
-                              #:create-service-action
-                              #:create-service-action-input
-                              #:create-service-action-output
-                              #:create-tag-option #:create-tag-option-input
-                              #:create-tag-option-output #:created-time
-                              #:creation-time #:default-value
-                              #:delete-constraint #:delete-constraint-input
-                              #:delete-constraint-output #:delete-portfolio
-                              #:delete-portfolio-input
-                              #:delete-portfolio-output
-                              #:delete-portfolio-share
-                              #:delete-portfolio-share-input
-                              #:delete-portfolio-share-output #:delete-product
-                              #:delete-product-input #:delete-product-output
+                              #:create-service-action #:create-tag-option
+                              #:created-time #:creation-time #:default-value
+                              #:delete-constraint #:delete-portfolio
+                              #:delete-portfolio-share #:delete-product
                               #:delete-provisioned-product-plan
-                              #:delete-provisioned-product-plan-input
-                              #:delete-provisioned-product-plan-output
                               #:delete-provisioning-artifact
-                              #:delete-provisioning-artifact-input
-                              #:delete-provisioning-artifact-output
-                              #:delete-service-action
-                              #:delete-service-action-input
-                              #:delete-service-action-output
-                              #:delete-tag-option #:delete-tag-option-input
-                              #:delete-tag-option-output #:describe-constraint
-                              #:describe-constraint-input
-                              #:describe-constraint-output
+                              #:delete-service-action #:delete-tag-option
+                              #:describe-constraint
                               #:describe-copy-product-status
-                              #:describe-copy-product-status-input
-                              #:describe-copy-product-status-output
-                              #:describe-portfolio #:describe-portfolio-input
-                              #:describe-portfolio-output
+                              #:describe-portfolio
                               #:describe-portfolio-share-status
-                              #:describe-portfolio-share-status-input
-                              #:describe-portfolio-share-status-output
                               #:describe-portfolio-share-type
-                              #:describe-portfolio-shares
-                              #:describe-portfolio-shares-input
-                              #:describe-portfolio-shares-output
-                              #:describe-product #:describe-product-as-admin
-                              #:describe-product-as-admin-input
-                              #:describe-product-as-admin-output
-                              #:describe-product-input
-                              #:describe-product-output #:describe-product-view
-                              #:describe-product-view-input
-                              #:describe-product-view-output
+                              #:describe-portfolio-shares #:describe-product
+                              #:describe-product-as-admin
+                              #:describe-product-view
                               #:describe-provisioned-product
-                              #:describe-provisioned-product-input
-                              #:describe-provisioned-product-output
                               #:describe-provisioned-product-plan
-                              #:describe-provisioned-product-plan-input
-                              #:describe-provisioned-product-plan-output
                               #:describe-provisioning-artifact
-                              #:describe-provisioning-artifact-input
-                              #:describe-provisioning-artifact-output
                               #:describe-provisioning-parameters
-                              #:describe-provisioning-parameters-input
-                              #:describe-provisioning-parameters-output
-                              #:describe-record #:describe-record-input
-                              #:describe-record-output
-                              #:describe-service-action
+                              #:describe-record #:describe-service-action
                               #:describe-service-action-execution-parameters
-                              #:describe-service-action-execution-parameters-input
-                              #:describe-service-action-execution-parameters-output
-                              #:describe-service-action-input
-                              #:describe-service-action-output
-                              #:describe-tag-option #:describe-tag-option-input
-                              #:describe-tag-option-output #:description
+                              #:describe-tag-option #:description
                               #:disable-awsorganizations-access
-                              #:disable-awsorganizations-access-input
-                              #:disable-awsorganizations-access-output
                               #:disable-template-validation
                               #:disassociate-budget-from-resource
-                              #:disassociate-budget-from-resource-input
-                              #:disassociate-budget-from-resource-output
                               #:disassociate-principal-from-portfolio
-                              #:disassociate-principal-from-portfolio-input
-                              #:disassociate-principal-from-portfolio-output
                               #:disassociate-product-from-portfolio
-                              #:disassociate-product-from-portfolio-input
-                              #:disassociate-product-from-portfolio-output
                               #:disassociate-service-action-from-provisioning-artifact
-                              #:disassociate-service-action-from-provisioning-artifact-input
-                              #:disassociate-service-action-from-provisioning-artifact-output
                               #:disassociate-tag-option-from-resource
-                              #:disassociate-tag-option-from-resource-input
-                              #:disassociate-tag-option-from-resource-output
-                              #:duplicate-resource-exception
                               #:enable-awsorganizations-access
-                              #:enable-awsorganizations-access-input
-                              #:enable-awsorganizations-access-output
                               #:engine-workflow-failure-reason
                               #:engine-workflow-resource-identifier
                               #:engine-workflow-status #:engine-workflow-token
                               #:error #:error-code #:error-description
                               #:error-message #:evaluation-type
                               #:execute-provisioned-product-plan
-                              #:execute-provisioned-product-plan-input
-                              #:execute-provisioned-product-plan-output
                               #:execute-provisioned-product-service-action
-                              #:execute-provisioned-product-service-action-input
-                              #:execute-provisioned-product-service-action-output
                               #:execution-parameter #:execution-parameter-key
                               #:execution-parameter-map
                               #:execution-parameter-type
@@ -166,88 +74,40 @@
                               #:failed-service-action-association
                               #:failed-service-action-associations
                               #:get-awsorganizations-access-status
-                              #:get-awsorganizations-access-status-input
-                              #:get-awsorganizations-access-status-output
                               #:get-provisioned-product-outputs
-                              #:get-provisioned-product-outputs-input
-                              #:get-provisioned-product-outputs-output
                               #:has-default-path #:id #:idempotency-token
                               #:ignore-errors #:import-as-provisioned-product
-                              #:import-as-provisioned-product-input
-                              #:import-as-provisioned-product-output
                               #:instruction-type #:instruction-value
-                              #:invalid-parameters-exception
-                              #:invalid-state-exception #:last-request-id
-                              #:last-successful-sync-time #:last-sync
-                              #:last-sync-status #:last-sync-status-message
-                              #:last-sync-time #:launch-path
-                              #:launch-path-summaries #:launch-path-summary
-                              #:launch-paths #:limit-exceeded-exception
+                              #:last-request-id #:last-successful-sync-time
+                              #:last-sync #:last-sync-status
+                              #:last-sync-status-message #:last-sync-time
+                              #:launch-path #:launch-path-summaries
+                              #:launch-path-summary #:launch-paths
                               #:list-accepted-portfolio-shares
-                              #:list-accepted-portfolio-shares-input
-                              #:list-accepted-portfolio-shares-output
                               #:list-budgets-for-resource
-                              #:list-budgets-for-resource-input
-                              #:list-budgets-for-resource-output
                               #:list-constraints-for-portfolio
-                              #:list-constraints-for-portfolio-input
-                              #:list-constraints-for-portfolio-output
-                              #:list-launch-paths #:list-launch-paths-input
-                              #:list-launch-paths-output
+                              #:list-launch-paths
                               #:list-organization-portfolio-access
-                              #:list-organization-portfolio-access-input
-                              #:list-organization-portfolio-access-output
-                              #:list-portfolio-access
-                              #:list-portfolio-access-input
-                              #:list-portfolio-access-output #:list-portfolios
+                              #:list-portfolio-access #:list-portfolios
                               #:list-portfolios-for-product
-                              #:list-portfolios-for-product-input
-                              #:list-portfolios-for-product-output
-                              #:list-portfolios-input #:list-portfolios-output
                               #:list-principals-for-portfolio
-                              #:list-principals-for-portfolio-input
-                              #:list-principals-for-portfolio-output
                               #:list-provisioned-product-plans
-                              #:list-provisioned-product-plans-input
-                              #:list-provisioned-product-plans-output
                               #:list-provisioning-artifacts
                               #:list-provisioning-artifacts-for-service-action
-                              #:list-provisioning-artifacts-for-service-action-input
-                              #:list-provisioning-artifacts-for-service-action-output
-                              #:list-provisioning-artifacts-input
-                              #:list-provisioning-artifacts-output
-                              #:list-record-history #:list-record-history-input
-                              #:list-record-history-output
+                              #:list-record-history
                               #:list-record-history-search-filter
                               #:list-resources-for-tag-option
-                              #:list-resources-for-tag-option-input
-                              #:list-resources-for-tag-option-output
                               #:list-service-actions
                               #:list-service-actions-for-provisioning-artifact
-                              #:list-service-actions-for-provisioning-artifact-input
-                              #:list-service-actions-for-provisioning-artifact-output
-                              #:list-service-actions-input
-                              #:list-service-actions-output
                               #:list-stack-instances-for-provisioned-product
-                              #:list-stack-instances-for-provisioned-product-input
-                              #:list-stack-instances-for-provisioned-product-output
                               #:list-tag-options #:list-tag-options-filters
-                              #:list-tag-options-input
-                              #:list-tag-options-output #:logical-resource-id
-                              #:message #:namespaces #:no-echo
-                              #:notification-arn #:notification-arns
+                              #:logical-resource-id #:message #:namespaces
+                              #:no-echo #:notification-arn #:notification-arns
                               #:notify-provision-product-engine-workflow-result
-                              #:notify-provision-product-engine-workflow-result-input
-                              #:notify-provision-product-engine-workflow-result-output
                               #:notify-terminate-provisioned-product-engine-workflow-result
-                              #:notify-terminate-provisioned-product-engine-workflow-result-input
-                              #:notify-terminate-provisioned-product-engine-workflow-result-output
                               #:notify-update-provisioned-product-engine-workflow-result
-                              #:notify-update-provisioned-product-engine-workflow-result-input
-                              #:notify-update-provisioned-product-engine-workflow-result-output
-                              #:nullable-boolean
-                              #:operation-not-supported-exception
-                              #:organization-node #:organization-node-type
+                              #:nullable-boolean #:organization-node
+                              #:organization-node-type
                               #:organization-node-value #:organization-nodes
                               #:output-description #:output-key #:output-keys
                               #:output-value #:owner #:page-size
@@ -275,8 +135,7 @@
                               #:product-view-sort-by #:product-view-summaries
                               #:product-view-summary #:property-key
                               #:property-name #:property-value #:provider-name
-                              #:provision-product #:provision-product-input
-                              #:provision-product-output
+                              #:provision-product
                               #:provisioned-product-attribute
                               #:provisioned-product-attributes
                               #:provisioned-product-detail
@@ -330,9 +189,7 @@
                               #:record-output #:record-outputs #:record-status
                               #:record-tag #:record-tag-key #:record-tag-value
                               #:record-tags #:record-type #:region
-                              #:reject-portfolio-share
-                              #:reject-portfolio-share-input
-                              #:reject-portfolio-share-output #:replacement
+                              #:reject-portfolio-share #:replacement
                               #:repository #:repository-artifact-path
                               #:repository-branch #:requires-recreation
                               #:resource-arn #:resource-attribute
@@ -343,21 +200,12 @@
                               #:resource-detail-description
                               #:resource-detail-id #:resource-detail-name
                               #:resource-details #:resource-id
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
                               #:resource-target-definition #:resource-type
                               #:retain-physical-resources #:role-arn
-                              #:scan-provisioned-products
-                              #:scan-provisioned-products-input
-                              #:scan-provisioned-products-output #:scope
+                              #:scan-provisioned-products #:scope
                               #:search-filter-key #:search-filter-value
                               #:search-products #:search-products-as-admin
-                              #:search-products-as-admin-input
-                              #:search-products-as-admin-output
-                              #:search-products-input #:search-products-output
                               #:search-provisioned-products
-                              #:search-provisioned-products-input
-                              #:search-provisioned-products-output
                               #:search-provisioned-products-page-size
                               #:service-action-association
                               #:service-action-association-error-code
@@ -391,45 +239,24 @@
                               #:support-url #:tag #:tag-key #:tag-keys
                               #:tag-option-active #:tag-option-detail
                               #:tag-option-details #:tag-option-id
-                              #:tag-option-key
-                              #:tag-option-not-migrated-exception
-                              #:tag-option-summaries #:tag-option-summary
-                              #:tag-option-value #:tag-option-values
-                              #:tag-value #:tags
+                              #:tag-option-key #:tag-option-summaries
+                              #:tag-option-summary #:tag-option-value
+                              #:tag-option-values #:tag-value #:tags
                               #:terminate-provisioned-product
-                              #:terminate-provisioned-product-input
-                              #:terminate-provisioned-product-output
                               #:total-results-count #:unique-tag-key
                               #:unique-tag-resource-identifier
                               #:unique-tag-value #:update-constraint
-                              #:update-constraint-input
-                              #:update-constraint-output #:update-portfolio
-                              #:update-portfolio-input
-                              #:update-portfolio-output
-                              #:update-portfolio-share
-                              #:update-portfolio-share-input
-                              #:update-portfolio-share-output #:update-product
-                              #:update-product-input #:update-product-output
-                              #:update-provisioned-product
-                              #:update-provisioned-product-input
-                              #:update-provisioned-product-output
+                              #:update-portfolio #:update-portfolio-share
+                              #:update-product #:update-provisioned-product
                               #:update-provisioned-product-properties
-                              #:update-provisioned-product-properties-input
-                              #:update-provisioned-product-properties-output
                               #:update-provisioning-artifact
-                              #:update-provisioning-artifact-input
-                              #:update-provisioning-artifact-output
                               #:update-provisioning-parameter
                               #:update-provisioning-parameters
                               #:update-provisioning-preferences
-                              #:update-service-action
-                              #:update-service-action-input
-                              #:update-service-action-output
-                              #:update-tag-option #:update-tag-option-input
-                              #:update-tag-option-output #:updated-time
-                              #:usage-instruction #:usage-instructions
-                              #:use-previous-value #:user-arn
-                              #:user-arn-session #:verbose))
+                              #:update-service-action #:update-tag-option
+                              #:updated-time #:usage-instruction
+                              #:usage-instructions #:use-previous-value
+                              #:user-arn #:user-arn-session #:verbose))
 (common-lisp:in-package #:pira/service-catalog)
 
 (smithy/sdk/service:define-service aws242service-catalog-service :shape-name

@@ -6,40 +6,23 @@
                               #:alarm-state #:alarm-state-name
                               #:alarm-summaries #:alarm-summary
                               #:batch-acknowledge-alarm
-                              #:batch-acknowledge-alarm-request
-                              #:batch-acknowledge-alarm-response
                               #:batch-alarm-action-error-entries
                               #:batch-alarm-action-error-entry
                               #:batch-delete-detector
                               #:batch-delete-detector-error-entries
                               #:batch-delete-detector-error-entry
-                              #:batch-delete-detector-request
-                              #:batch-delete-detector-response
-                              #:batch-disable-alarm
-                              #:batch-disable-alarm-request
-                              #:batch-disable-alarm-response
-                              #:batch-enable-alarm #:batch-enable-alarm-request
-                              #:batch-enable-alarm-response #:batch-put-message
+                              #:batch-disable-alarm #:batch-enable-alarm
+                              #:batch-put-message
                               #:batch-put-message-error-entries
                               #:batch-put-message-error-entry
-                              #:batch-put-message-request
-                              #:batch-put-message-response #:batch-reset-alarm
-                              #:batch-reset-alarm-request
-                              #:batch-reset-alarm-response #:batch-snooze-alarm
-                              #:batch-snooze-alarm-request
-                              #:batch-snooze-alarm-response
+                              #:batch-reset-alarm #:batch-snooze-alarm
                               #:batch-update-detector
                               #:batch-update-detector-error-entries
                               #:batch-update-detector-error-entry
-                              #:batch-update-detector-request
-                              #:batch-update-detector-response
                               #:comparison-operator #:customer-action
                               #:customer-action-name #:delete-detector-request
                               #:delete-detector-requests #:describe-alarm
-                              #:describe-alarm-request
-                              #:describe-alarm-response #:describe-detector
-                              #:describe-detector-request
-                              #:describe-detector-response #:detector
+                              #:describe-detector #:detector
                               #:detector-model-name #:detector-model-version
                               #:detector-state #:detector-state-definition
                               #:detector-state-summary #:detector-summaries
@@ -51,30 +34,22 @@
                               #:enable-alarm-action-requests
                               #:ephemeral-input-name #:epoch-milli-timestamp
                               #:error-code #:error-message #:event-type
-                              #:input-property-value
-                              #:internal-failure-exception
-                              #:invalid-request-exception
-                              #:iot-columbo-data-service #:key-value
-                              #:list-alarms #:list-alarms-request
-                              #:list-alarms-response #:list-detectors
-                              #:list-detectors-request
-                              #:list-detectors-response #:max-results #:message
-                              #:message-id #:messages #:next-token #:note
-                              #:payload #:request-id
+                              #:input-property-value #:iot-columbo-data-service
+                              #:key-value #:list-alarms #:list-detectors
+                              #:max-results #:message #:message-id #:messages
+                              #:next-token #:note #:payload #:request-id
                               #:reset-action-configuration
                               #:reset-alarm-action-request
-                              #:reset-alarm-action-requests
-                              #:resource-not-found-exception #:rule-evaluation
-                              #:seconds #:service-unavailable-exception
-                              #:severity #:simple-rule-evaluation
+                              #:reset-alarm-action-requests #:rule-evaluation
+                              #:seconds #:severity #:simple-rule-evaluation
                               #:snooze-action-configuration
                               #:snooze-alarm-action-request
                               #:snooze-alarm-action-requests #:snooze-duration
                               #:state-change-configuration #:state-name
-                              #:system-event #:threshold-value
-                              #:throttling-exception #:timer #:timer-definition
-                              #:timer-definitions #:timer-name #:timers
-                              #:timestamp #:timestamp-value #:trigger-type
+                              #:system-event #:threshold-value #:timer
+                              #:timer-definition #:timer-definitions
+                              #:timer-name #:timers #:timestamp
+                              #:timestamp-value #:trigger-type
                               #:update-detector-request
                               #:update-detector-requests #:variable
                               #:variable-definition #:variable-definitions

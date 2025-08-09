@@ -7,11 +7,7 @@
                               #:batch-get-collection-request
                               #:batch-get-collection-response
                               #:batch-get-effective-lifecycle-policy
-                              #:batch-get-effective-lifecycle-policy-request
-                              #:batch-get-effective-lifecycle-policy-response
                               #:batch-get-lifecycle-policy
-                              #:batch-get-lifecycle-policy-request
-                              #:batch-get-lifecycle-policy-response
                               #:batch-get-vpc-endpoint
                               #:batch-get-vpc-endpoint-request
                               #:batch-get-vpc-endpoint-response
@@ -24,7 +20,7 @@
                               #:collection-status #:collection-summaries
                               #:collection-summary #:collection-type
                               #:config-description #:config-name
-                              #:conflict-exception #:create-access-policy
+                              #:create-access-policy
                               #:create-access-policy-request
                               #:create-access-policy-response
                               #:create-collection #:create-collection-detail
@@ -32,8 +28,6 @@
                               #:create-collection-response
                               #:create-iam-identity-center-config-options
                               #:create-lifecycle-policy
-                              #:create-lifecycle-policy-request
-                              #:create-lifecycle-policy-response
                               #:create-security-config
                               #:create-security-config-request
                               #:create-security-config-response
@@ -51,8 +45,6 @@
                               #:delete-collection-request
                               #:delete-collection-response
                               #:delete-lifecycle-policy
-                              #:delete-lifecycle-policy-request
-                              #:delete-lifecycle-policy-response
                               #:delete-security-config
                               #:delete-security-config-request
                               #:delete-security-config-response
@@ -86,8 +78,7 @@
                               #:iam-identity-center-group-attribute
                               #:iam-identity-center-instance-arn
                               #:iam-identity-center-user-attribute
-                              #:indexing-capacity-value
-                              #:internal-server-exception #:lifecycle-policy
+                              #:indexing-capacity-value #:lifecycle-policy
                               #:lifecycle-policy-detail
                               #:lifecycle-policy-details
                               #:lifecycle-policy-error-detail
@@ -106,10 +97,7 @@
                               #:list-access-policies-response
                               #:list-collections #:list-collections-request
                               #:list-collections-response
-                              #:list-lifecycle-policies
-                              #:list-lifecycle-policies-request
-                              #:list-lifecycle-policies-response
-                              #:list-security-configs
+                              #:list-lifecycle-policies #:list-security-configs
                               #:list-security-configs-request
                               #:list-security-configs-response
                               #:list-security-policies
@@ -120,14 +108,13 @@
                               #:list-tags-for-resource-response
                               #:list-vpc-endpoints #:list-vpc-endpoints-request
                               #:list-vpc-endpoints-response
-                              #:ocu-limit-exceeded-exception
                               #:open-search-serverless #:policy-description
                               #:policy-document #:policy-name #:policy-version
                               #:resource #:resource-filter #:resource-name
-                              #:resource-not-found-exception #:resource-type
-                              #:saml-config-options #:search-capacity-value
-                              #:security-config #:security-config-detail
-                              #:security-config-id #:security-config-stats
+                              #:resource-type #:saml-config-options
+                              #:search-capacity-value #:security-config
+                              #:security-config-detail #:security-config-id
+                              #:security-config-stats
                               #:security-config-summaries
                               #:security-config-summary #:security-config-type
                               #:security-group-id #:security-group-ids
@@ -135,7 +122,6 @@
                               #:security-policy-stats
                               #:security-policy-summaries
                               #:security-policy-summary #:security-policy-type
-                              #:service-quota-exceeded-exception
                               #:standby-replicas #:subnet-id #:subnet-ids #:tag
                               #:tag-key #:tag-keys #:tag-resource
                               #:tag-resource-request #:tag-resource-response
@@ -152,8 +138,6 @@
                               #:update-collection-response
                               #:update-iam-identity-center-config-options
                               #:update-lifecycle-policy
-                              #:update-lifecycle-policy-request
-                              #:update-lifecycle-policy-response
                               #:update-security-config
                               #:update-security-config-request
                               #:update-security-config-response
@@ -163,8 +147,7 @@
                               #:update-vpc-endpoint
                               #:update-vpc-endpoint-detail
                               #:update-vpc-endpoint-request
-                              #:update-vpc-endpoint-response
-                              #:validation-exception #:vpc-endpoint
+                              #:update-vpc-endpoint-response #:vpc-endpoint
                               #:vpc-endpoint-detail #:vpc-endpoint-details
                               #:vpc-endpoint-error-detail
                               #:vpc-endpoint-error-details

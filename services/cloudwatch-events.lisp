@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/cloudwatch-events (:use)
                              (:export #:awsevents #:account-id #:action
-                              #:activate-event-source
-                              #:activate-event-source-request #:api-destination
+                              #:activate-event-source #:api-destination
                               #:api-destination-arn
                               #:api-destination-description
                               #:api-destination-http-method
@@ -16,14 +15,12 @@
                               #:auth-header-parameters-sensitive
                               #:aws-vpc-configuration #:batch-array-properties
                               #:batch-parameters #:batch-retry-strategy
-                              #:boolean #:cancel-replay #:cancel-replay-request
-                              #:cancel-replay-response #:capacity-provider
+                              #:boolean #:cancel-replay #:capacity-provider
                               #:capacity-provider-strategy
                               #:capacity-provider-strategy-item
                               #:capacity-provider-strategy-item-base
                               #:capacity-provider-strategy-item-weight
-                              #:concurrent-modification-exception #:condition
-                              #:connection
+                              #:condition #:connection
                               #:connection-api-key-auth-response-parameters
                               #:connection-arn
                               #:connection-auth-response-parameters
@@ -42,112 +39,50 @@
                               #:connection-query-string-parameters-list
                               #:connection-response-list #:connection-state
                               #:connection-state-reason
-                              #:create-api-destination
-                              #:create-api-destination-request
-                              #:create-api-destination-response
-                              #:create-archive #:create-archive-request
-                              #:create-archive-response #:create-connection
+                              #:create-api-destination #:create-archive
+                              #:create-connection
                               #:create-connection-api-key-auth-request-parameters
                               #:create-connection-auth-request-parameters
                               #:create-connection-basic-auth-request-parameters
                               #:create-connection-oauth-client-request-parameters
                               #:create-connection-oauth-request-parameters
-                              #:create-connection-request
-                              #:create-connection-response #:create-event-bus
-                              #:create-event-bus-request
-                              #:create-event-bus-response
-                              #:create-partner-event-source
-                              #:create-partner-event-source-request
-                              #:create-partner-event-source-response
+                              #:create-event-bus #:create-partner-event-source
                               #:created-by #:database #:db-user
-                              #:deactivate-event-source
-                              #:deactivate-event-source-request
-                              #:dead-letter-config #:deauthorize-connection
-                              #:deauthorize-connection-request
-                              #:deauthorize-connection-response
-                              #:delete-api-destination
-                              #:delete-api-destination-request
-                              #:delete-api-destination-response
-                              #:delete-archive #:delete-archive-request
-                              #:delete-archive-response #:delete-connection
-                              #:delete-connection-request
-                              #:delete-connection-response #:delete-event-bus
-                              #:delete-event-bus-request
-                              #:delete-partner-event-source
-                              #:delete-partner-event-source-request
-                              #:delete-rule #:delete-rule-request
-                              #:describe-api-destination
-                              #:describe-api-destination-request
-                              #:describe-api-destination-response
-                              #:describe-archive #:describe-archive-request
-                              #:describe-archive-response #:describe-connection
-                              #:describe-connection-request
-                              #:describe-connection-response
-                              #:describe-event-bus #:describe-event-bus-request
-                              #:describe-event-bus-response
-                              #:describe-event-source
-                              #:describe-event-source-request
-                              #:describe-event-source-response
-                              #:describe-partner-event-source
-                              #:describe-partner-event-source-request
-                              #:describe-partner-event-source-response
-                              #:describe-replay #:describe-replay-request
-                              #:describe-replay-response #:describe-rule
-                              #:describe-rule-request #:describe-rule-response
-                              #:disable-rule #:disable-rule-request
-                              #:ecs-parameters #:enable-rule
-                              #:enable-rule-request #:error-code
-                              #:error-message #:event-bus #:event-bus-list
-                              #:event-bus-name #:event-bus-name-or-arn
-                              #:event-id #:event-pattern #:event-resource
+                              #:deactivate-event-source #:dead-letter-config
+                              #:deauthorize-connection #:delete-api-destination
+                              #:delete-archive #:delete-connection
+                              #:delete-event-bus #:delete-partner-event-source
+                              #:delete-rule #:describe-api-destination
+                              #:describe-archive #:describe-connection
+                              #:describe-event-bus #:describe-event-source
+                              #:describe-partner-event-source #:describe-replay
+                              #:describe-rule #:disable-rule #:ecs-parameters
+                              #:enable-rule #:error-code #:error-message
+                              #:event-bus #:event-bus-list #:event-bus-name
+                              #:event-bus-name-or-arn #:event-id
+                              #:event-pattern #:event-resource
                               #:event-resource-list #:event-source
                               #:event-source-list #:event-source-name
                               #:event-source-name-prefix #:event-source-state
                               #:event-time #:header-key #:header-parameters-map
                               #:header-value #:header-value-sensitive
                               #:http-parameters #:https-endpoint
-                              #:illegal-status-exception #:input-transformer
-                              #:input-transformer-path-key #:integer
-                              #:internal-exception
-                              #:invalid-event-pattern-exception
-                              #:invalid-state-exception #:kinesis-parameters
-                              #:launch-type #:limit-exceeded-exception
+                              #:input-transformer #:input-transformer-path-key
+                              #:integer #:kinesis-parameters #:launch-type
                               #:limit-max100 #:limit-min1
-                              #:list-api-destinations
-                              #:list-api-destinations-request
-                              #:list-api-destinations-response #:list-archives
-                              #:list-archives-request #:list-archives-response
-                              #:list-connections #:list-connections-request
-                              #:list-connections-response #:list-event-buses
-                              #:list-event-buses-request
-                              #:list-event-buses-response #:list-event-sources
-                              #:list-event-sources-request
-                              #:list-event-sources-response
+                              #:list-api-destinations #:list-archives
+                              #:list-connections #:list-event-buses
+                              #:list-event-sources
                               #:list-partner-event-source-accounts
-                              #:list-partner-event-source-accounts-request
-                              #:list-partner-event-source-accounts-response
-                              #:list-partner-event-sources
-                              #:list-partner-event-sources-request
-                              #:list-partner-event-sources-response
-                              #:list-replays #:list-replays-request
-                              #:list-replays-response
-                              #:list-rule-names-by-target
-                              #:list-rule-names-by-target-request
-                              #:list-rule-names-by-target-response #:list-rules
-                              #:list-rules-request #:list-rules-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-targets-by-rule
-                              #:list-targets-by-rule-request
-                              #:list-targets-by-rule-response #:long
-                              #:managed-by #:managed-rule-exception
+                              #:list-partner-event-sources #:list-replays
+                              #:list-rule-names-by-target #:list-rules
+                              #:list-tags-for-resource #:list-targets-by-rule
+                              #:long #:managed-by
                               #:maximum-event-age-in-seconds
                               #:maximum-retry-attempts #:message-group-id
                               #:network-configuration #:next-token
                               #:non-partner-event-bus-name
                               #:non-partner-event-bus-name-or-arn
-                              #:operation-disabled-exception
                               #:partner-event-source
                               #:partner-event-source-account
                               #:partner-event-source-account-list
@@ -159,40 +94,32 @@
                               #:placement-constraint-type
                               #:placement-constraints #:placement-strategies
                               #:placement-strategy #:placement-strategy-field
-                              #:placement-strategy-type
-                              #:policy-length-exceeded-exception #:principal
+                              #:placement-strategy-type #:principal
                               #:propagate-tags #:put-events
-                              #:put-events-request #:put-events-request-entry
+                              #:put-events-request-entry
                               #:put-events-request-entry-list
-                              #:put-events-response #:put-events-result-entry
+                              #:put-events-result-entry
                               #:put-events-result-entry-list
-                              #:put-partner-events #:put-partner-events-request
+                              #:put-partner-events
                               #:put-partner-events-request-entry
                               #:put-partner-events-request-entry-list
-                              #:put-partner-events-response
                               #:put-partner-events-result-entry
                               #:put-partner-events-result-entry-list
-                              #:put-permission #:put-permission-request
-                              #:put-rule #:put-rule-request #:put-rule-response
-                              #:put-targets #:put-targets-request
-                              #:put-targets-response #:put-targets-result-entry
+                              #:put-permission #:put-rule #:put-targets
+                              #:put-targets-result-entry
                               #:put-targets-result-entry-list
                               #:query-string-key #:query-string-parameters-map
                               #:query-string-value
                               #:query-string-value-sensitive
                               #:redshift-data-parameters
                               #:redshift-secret-manager-arn #:reference-id
-                              #:remove-permission #:remove-permission-request
-                              #:remove-targets #:remove-targets-request
-                              #:remove-targets-response
+                              #:remove-permission #:remove-targets
                               #:remove-targets-result-entry
                               #:remove-targets-result-entry-list #:replay
                               #:replay-arn #:replay-description
                               #:replay-destination #:replay-destination-filters
                               #:replay-list #:replay-name #:replay-state
-                              #:replay-state-reason
-                              #:resource-already-exists-exception
-                              #:resource-arn #:resource-not-found-exception
+                              #:replay-state-reason #:resource-arn
                               #:retention-days #:retry-policy #:role-arn #:rule
                               #:rule-arn #:rule-description #:rule-name
                               #:rule-name-list #:rule-response-list
@@ -208,32 +135,21 @@
                               #:schedule-expression
                               #:secrets-manager-secret-arn #:sensitive-string
                               #:sql #:sqs-parameters #:start-replay
-                              #:start-replay-request #:start-replay-response
                               #:statement-id #:statement-name #:string
                               #:string-list #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:target
+                              #:tag-list #:tag-resource #:tag-value #:target
                               #:target-arn #:target-id #:target-id-list
                               #:target-input #:target-input-path #:target-list
                               #:target-partition-key-path #:test-event-pattern
-                              #:test-event-pattern-request
-                              #:test-event-pattern-response #:timestamp
-                              #:trace-header #:transformer-input
+                              #:timestamp #:trace-header #:transformer-input
                               #:transformer-paths #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-api-destination
-                              #:update-api-destination-request
-                              #:update-api-destination-response
-                              #:update-archive #:update-archive-request
-                              #:update-archive-response #:update-connection
+                              #:update-api-destination #:update-archive
+                              #:update-connection
                               #:update-connection-api-key-auth-request-parameters
                               #:update-connection-auth-request-parameters
                               #:update-connection-basic-auth-request-parameters
                               #:update-connection-oauth-client-request-parameters
-                              #:update-connection-oauth-request-parameters
-                              #:update-connection-request
-                              #:update-connection-response))
+                              #:update-connection-oauth-request-parameters))
 (common-lisp:in-package #:pira/cloudwatch-events)
 
 (smithy/sdk/service:define-service awsevents :shape-name "AWSEvents" :version

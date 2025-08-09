@@ -3,24 +3,16 @@
                               #:attribute-value #:binary-attribute-value
                               #:binary-set-attribute-value
                               #:boolean-attribute-value #:date
-                              #:describe-stream #:describe-stream-input
-                              #:describe-stream-output
-                              #:dynamo-dbstreams-20120810 #:error-message
-                              #:expired-iterator-exception #:get-records
-                              #:get-records-input #:get-records-output
-                              #:get-shard-iterator #:get-shard-iterator-input
-                              #:get-shard-iterator-output #:identity
-                              #:internal-server-error #:key-schema
+                              #:describe-stream #:dynamo-dbstreams-20120810
+                              #:error-message #:get-records
+                              #:get-shard-iterator #:identity #:key-schema
                               #:key-schema-attribute-name #:key-schema-element
-                              #:key-type #:limit-exceeded-exception
-                              #:list-attribute-value #:list-streams
-                              #:list-streams-input #:list-streams-output
+                              #:key-type #:list-attribute-value #:list-streams
                               #:map-attribute-value #:null-attribute-value
                               #:number-attribute-value
                               #:number-set-attribute-value #:operation-type
                               #:positive-integer-object #:positive-long-object
-                              #:record #:record-list
-                              #:resource-not-found-exception #:sequence-number
+                              #:record #:record-list #:sequence-number
                               #:sequence-number-range #:shard
                               #:shard-description-list #:shard-filter
                               #:shard-filter-type #:shard-id #:shard-iterator
@@ -29,8 +21,7 @@
                               #:stream-record #:stream-status
                               #:stream-view-type #:string
                               #:string-attribute-value
-                              #:string-set-attribute-value #:table-name
-                              #:trimmed-data-access-exception))
+                              #:string-set-attribute-value #:table-name))
 (common-lisp:in-package #:pira/dynamodb-streams)
 
 (smithy/sdk/service:define-service dynamo-dbstreams-20120810 :shape-name

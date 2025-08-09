@@ -1,36 +1,21 @@
 (uiop/package:define-package #:pira/route-53 (:use)
                              (:export #:arn #:awsaccount-id #:awsdns-v20130401
                               #:awsregion #:account-limit #:account-limit-type
-                              #:activate-key-signing-key
-                              #:activate-key-signing-key-request
-                              #:activate-key-signing-key-response
-                              #:alarm-identifier #:alarm-name
-                              #:alias-health-enabled #:alias-target
-                              #:associate-vpccomment
-                              #:associate-vpcwith-hosted-zone
-                              #:associate-vpcwith-hosted-zone-request
-                              #:associate-vpcwith-hosted-zone-response #:bias
-                              #:change #:change-action #:change-batch
-                              #:change-cidr-collection
-                              #:change-cidr-collection-request
-                              #:change-cidr-collection-response #:change-id
+                              #:activate-key-signing-key #:alarm-identifier
+                              #:alarm-name #:alias-health-enabled
+                              #:alias-target #:associate-vpccomment
+                              #:associate-vpcwith-hosted-zone #:bias #:change
+                              #:change-action #:change-batch
+                              #:change-cidr-collection #:change-id
                               #:change-info #:change-resource-record-sets
-                              #:change-resource-record-sets-request
-                              #:change-resource-record-sets-response
                               #:change-status #:change-tags-for-resource
-                              #:change-tags-for-resource-request
-                              #:change-tags-for-resource-response #:changes
-                              #:checker-ip-ranges #:child-health-check-list
-                              #:cidr #:cidr-block-in-use-exception
+                              #:changes #:checker-ip-ranges
+                              #:child-health-check-list #:cidr
                               #:cidr-block-summaries #:cidr-block-summary
-                              #:cidr-collection
-                              #:cidr-collection-already-exists-exception
-                              #:cidr-collection-change
+                              #:cidr-collection #:cidr-collection-change
                               #:cidr-collection-change-action
-                              #:cidr-collection-changes
-                              #:cidr-collection-in-use-exception
-                              #:cidr-collection-version-mismatch-exception
-                              #:cidr-list #:cidr-location-name-default-allowed
+                              #:cidr-collection-changes #:cidr-list
+                              #:cidr-location-name-default-allowed
                               #:cidr-location-name-default-not-allowed
                               #:cidr-nonce #:cidr-routing-config
                               #:cloud-watch-alarm-configuration
@@ -38,84 +23,30 @@
                               #:cloud-watch-region #:collection-name
                               #:collection-summaries #:collection-summary
                               #:collection-version #:comparison-operator
-                              #:concurrent-modification
-                              #:conflicting-domain-exists #:conflicting-types
                               #:coordinates #:create-cidr-collection
-                              #:create-cidr-collection-request
-                              #:create-cidr-collection-response
-                              #:create-health-check
-                              #:create-health-check-request
-                              #:create-health-check-response
-                              #:create-hosted-zone #:create-hosted-zone-request
-                              #:create-hosted-zone-response
+                              #:create-health-check #:create-hosted-zone
                               #:create-key-signing-key
-                              #:create-key-signing-key-request
-                              #:create-key-signing-key-response
                               #:create-query-logging-config
-                              #:create-query-logging-config-request
-                              #:create-query-logging-config-response
                               #:create-reusable-delegation-set
-                              #:create-reusable-delegation-set-request
-                              #:create-reusable-delegation-set-response
                               #:create-traffic-policy
                               #:create-traffic-policy-instance
-                              #:create-traffic-policy-instance-request
-                              #:create-traffic-policy-instance-response
-                              #:create-traffic-policy-request
-                              #:create-traffic-policy-response
                               #:create-traffic-policy-version
-                              #:create-traffic-policy-version-request
-                              #:create-traffic-policy-version-response
-                              #:create-vpcassociation-authorization
-                              #:create-vpcassociation-authorization-request
-                              #:create-vpcassociation-authorization-response
-                              #:dnsname #:dnsrcode #:dnssecnot-found
-                              #:dnssecstatus #:deactivate-key-signing-key
-                              #:deactivate-key-signing-key-request
-                              #:deactivate-key-signing-key-response
-                              #:delegation-set #:delegation-set-already-created
-                              #:delegation-set-already-reusable
-                              #:delegation-set-in-use
-                              #:delegation-set-name-servers
-                              #:delegation-set-not-available
-                              #:delegation-set-not-reusable #:delegation-sets
-                              #:delete-cidr-collection
-                              #:delete-cidr-collection-request
-                              #:delete-cidr-collection-response
-                              #:delete-health-check
-                              #:delete-health-check-request
-                              #:delete-health-check-response
-                              #:delete-hosted-zone #:delete-hosted-zone-request
-                              #:delete-hosted-zone-response
-                              #:delete-key-signing-key
-                              #:delete-key-signing-key-request
-                              #:delete-key-signing-key-response
+                              #:create-vpcassociation-authorization #:dnsname
+                              #:dnsrcode #:dnssecstatus
+                              #:deactivate-key-signing-key #:delegation-set
+                              #:delegation-set-name-servers #:delegation-sets
+                              #:delete-cidr-collection #:delete-health-check
+                              #:delete-hosted-zone #:delete-key-signing-key
                               #:delete-query-logging-config
-                              #:delete-query-logging-config-request
-                              #:delete-query-logging-config-response
                               #:delete-reusable-delegation-set
-                              #:delete-reusable-delegation-set-request
-                              #:delete-reusable-delegation-set-response
                               #:delete-traffic-policy
                               #:delete-traffic-policy-instance
-                              #:delete-traffic-policy-instance-request
-                              #:delete-traffic-policy-instance-response
-                              #:delete-traffic-policy-request
-                              #:delete-traffic-policy-response
-                              #:delete-vpcassociation-authorization
-                              #:delete-vpcassociation-authorization-request
-                              #:delete-vpcassociation-authorization-response
-                              #:dimension #:dimension-field #:dimension-list
-                              #:disable-hosted-zone-dnssec
-                              #:disable-hosted-zone-dnssecrequest
-                              #:disable-hosted-zone-dnssecresponse #:disabled
+                              #:delete-vpcassociation-authorization #:dimension
+                              #:dimension-field #:dimension-list
+                              #:disable-hosted-zone-dnssec #:disabled
                               #:disassociate-vpccomment
                               #:disassociate-vpcfrom-hosted-zone
-                              #:disassociate-vpcfrom-hosted-zone-request
-                              #:disassociate-vpcfrom-hosted-zone-response
-                              #:enable-hosted-zone-dnssec
-                              #:enable-hosted-zone-dnssecrequest
-                              #:enable-hosted-zone-dnssecresponse #:enable-sni
+                              #:enable-hosted-zone-dnssec #:enable-sni
                               #:error-message #:error-messages
                               #:evaluation-periods #:failure-threshold
                               #:fully-qualified-domain-name #:geo-location
@@ -128,164 +59,58 @@
                               #:geo-location-subdivision-code
                               #:geo-location-subdivision-name
                               #:geo-proximity-location #:get-account-limit
-                              #:get-account-limit-request
-                              #:get-account-limit-response #:get-change
-                              #:get-change-request #:get-change-response
-                              #:get-checker-ip-ranges
-                              #:get-checker-ip-ranges-request
-                              #:get-checker-ip-ranges-response #:get-dnssec
-                              #:get-dnssecrequest #:get-dnssecresponse
-                              #:get-geo-location #:get-geo-location-request
-                              #:get-geo-location-response #:get-health-check
+                              #:get-change #:get-checker-ip-ranges #:get-dnssec
+                              #:get-geo-location #:get-health-check
                               #:get-health-check-count
-                              #:get-health-check-count-request
-                              #:get-health-check-count-response
                               #:get-health-check-last-failure-reason
-                              #:get-health-check-last-failure-reason-request
-                              #:get-health-check-last-failure-reason-response
-                              #:get-health-check-request
-                              #:get-health-check-response
-                              #:get-health-check-status
-                              #:get-health-check-status-request
-                              #:get-health-check-status-response
-                              #:get-hosted-zone #:get-hosted-zone-count
-                              #:get-hosted-zone-count-request
-                              #:get-hosted-zone-count-response
-                              #:get-hosted-zone-limit
-                              #:get-hosted-zone-limit-request
-                              #:get-hosted-zone-limit-response
-                              #:get-hosted-zone-request
-                              #:get-hosted-zone-response
+                              #:get-health-check-status #:get-hosted-zone
+                              #:get-hosted-zone-count #:get-hosted-zone-limit
                               #:get-query-logging-config
-                              #:get-query-logging-config-request
-                              #:get-query-logging-config-response
                               #:get-reusable-delegation-set
                               #:get-reusable-delegation-set-limit
-                              #:get-reusable-delegation-set-limit-request
-                              #:get-reusable-delegation-set-limit-response
-                              #:get-reusable-delegation-set-request
-                              #:get-reusable-delegation-set-response
                               #:get-traffic-policy
                               #:get-traffic-policy-instance
                               #:get-traffic-policy-instance-count
-                              #:get-traffic-policy-instance-count-request
-                              #:get-traffic-policy-instance-count-response
-                              #:get-traffic-policy-instance-request
-                              #:get-traffic-policy-instance-response
-                              #:get-traffic-policy-request
-                              #:get-traffic-policy-response #:health-check
-                              #:health-check-already-exists
-                              #:health-check-config #:health-check-count
-                              #:health-check-id #:health-check-in-use
+                              #:health-check #:health-check-config
+                              #:health-check-count #:health-check-id
                               #:health-check-nonce #:health-check-observation
                               #:health-check-observations #:health-check-region
                               #:health-check-region-list #:health-check-type
-                              #:health-check-version
-                              #:health-check-version-mismatch #:health-checks
+                              #:health-check-version #:health-checks
                               #:health-threshold #:hosted-zone
-                              #:hosted-zone-already-exists #:hosted-zone-config
-                              #:hosted-zone-count #:hosted-zone-limit
-                              #:hosted-zone-limit-type #:hosted-zone-not-empty
-                              #:hosted-zone-not-found #:hosted-zone-not-private
+                              #:hosted-zone-config #:hosted-zone-count
+                              #:hosted-zone-limit #:hosted-zone-limit-type
                               #:hosted-zone-owner #:hosted-zone-owning-service
-                              #:hosted-zone-partially-delegated
                               #:hosted-zone-rrset-count #:hosted-zone-summaries
                               #:hosted-zone-summary #:hosted-zone-type
                               #:hosted-zones #:ipaddress #:ipaddress-cidr
-                              #:incompatible-version
-                              #:insufficient-cloud-watch-logs-resource-policy
-                              #:insufficient-data-health-status
-                              #:invalid-argument #:invalid-change-batch
-                              #:invalid-domain-name #:invalid-input
-                              #:invalid-kmsarn #:invalid-key-signing-key-name
-                              #:invalid-key-signing-key-status
-                              #:invalid-pagination-token
-                              #:invalid-signing-status
-                              #:invalid-traffic-policy-document #:invalid-vpcid
-                              #:inverted #:is-private-zone #:key-signing-key
-                              #:key-signing-key-already-exists
-                              #:key-signing-key-in-parent-dsrecord
-                              #:key-signing-key-in-use
-                              #:key-signing-key-with-active-status-not-found
-                              #:key-signing-keys #:last-vpcassociation
-                              #:latitude #:limit-value #:limits-exceeded
+                              #:insufficient-data-health-status #:inverted
+                              #:is-private-zone #:key-signing-key
+                              #:key-signing-keys #:latitude #:limit-value
                               #:linked-service #:list-cidr-blocks
-                              #:list-cidr-blocks-request
-                              #:list-cidr-blocks-response
-                              #:list-cidr-collections
-                              #:list-cidr-collections-request
-                              #:list-cidr-collections-response
-                              #:list-cidr-locations
-                              #:list-cidr-locations-request
-                              #:list-cidr-locations-response
-                              #:list-geo-locations #:list-geo-locations-request
-                              #:list-geo-locations-response
-                              #:list-health-checks #:list-health-checks-request
-                              #:list-health-checks-response #:list-hosted-zones
-                              #:list-hosted-zones-by-name
-                              #:list-hosted-zones-by-name-request
-                              #:list-hosted-zones-by-name-response
+                              #:list-cidr-collections #:list-cidr-locations
+                              #:list-geo-locations #:list-health-checks
+                              #:list-hosted-zones #:list-hosted-zones-by-name
                               #:list-hosted-zones-by-vpc
-                              #:list-hosted-zones-by-vpcrequest
-                              #:list-hosted-zones-by-vpcresponse
-                              #:list-hosted-zones-request
-                              #:list-hosted-zones-response
                               #:list-query-logging-configs
-                              #:list-query-logging-configs-request
-                              #:list-query-logging-configs-response
                               #:list-resource-record-sets
-                              #:list-resource-record-sets-request
-                              #:list-resource-record-sets-response
                               #:list-reusable-delegation-sets
-                              #:list-reusable-delegation-sets-request
-                              #:list-reusable-delegation-sets-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-tags-for-resources
-                              #:list-tags-for-resources-request
-                              #:list-tags-for-resources-response
-                              #:list-traffic-policies
-                              #:list-traffic-policies-request
-                              #:list-traffic-policies-response
+                              #:list-tags-for-resources #:list-traffic-policies
                               #:list-traffic-policy-instances
                               #:list-traffic-policy-instances-by-hosted-zone
-                              #:list-traffic-policy-instances-by-hosted-zone-request
-                              #:list-traffic-policy-instances-by-hosted-zone-response
                               #:list-traffic-policy-instances-by-policy
-                              #:list-traffic-policy-instances-by-policy-request
-                              #:list-traffic-policy-instances-by-policy-response
-                              #:list-traffic-policy-instances-request
-                              #:list-traffic-policy-instances-response
                               #:list-traffic-policy-versions
-                              #:list-traffic-policy-versions-request
-                              #:list-traffic-policy-versions-response
                               #:list-vpcassociation-authorizations
-                              #:list-vpcassociation-authorizations-request
-                              #:list-vpcassociation-authorizations-response
                               #:local-zone-group #:location-summaries
                               #:location-summary #:longitude #:measure-latency
                               #:message #:metric-name #:nameserver #:namespace
-                              #:no-such-change
-                              #:no-such-cidr-collection-exception
-                              #:no-such-cidr-location-exception
-                              #:no-such-cloud-watch-logs-log-group
-                              #:no-such-delegation-set #:no-such-geo-location
-                              #:no-such-health-check #:no-such-hosted-zone
-                              #:no-such-key-signing-key
-                              #:no-such-query-logging-config
-                              #:no-such-traffic-policy
-                              #:no-such-traffic-policy-instance #:nonce
-                              #:not-authorized-exception #:page-marker
-                              #:page-truncated #:pagination-token #:period
-                              #:port #:prior-request-not-complete
-                              #:public-zone-vpcassociation
-                              #:query-logging-config
-                              #:query-logging-config-already-exists
-                              #:query-logging-config-id #:query-logging-configs
-                              #:rdata #:rrtype #:record-data
-                              #:record-data-entry #:request-interval
-                              #:resettable-element-name
+                              #:nonce #:page-marker #:page-truncated
+                              #:pagination-token #:period #:port
+                              #:query-logging-config #:query-logging-config-id
+                              #:query-logging-configs #:rdata #:rrtype
+                              #:record-data #:record-data-entry
+                              #:request-interval #:resettable-element-name
                               #:resettable-element-name-list
                               #:resource-description #:resource-id
                               #:resource-path #:resource-record
@@ -308,22 +133,11 @@
                               #:subnet-mask #:ttl #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource-id
                               #:tag-resource-id-list #:tag-resource-type
-                              #:tag-value #:test-dnsanswer
-                              #:test-dnsanswer-request
-                              #:test-dnsanswer-response #:threshold
-                              #:throttling-exception #:time-stamp
-                              #:too-many-health-checks #:too-many-hosted-zones
-                              #:too-many-key-signing-keys
-                              #:too-many-traffic-policies
-                              #:too-many-traffic-policy-instances
-                              #:too-many-traffic-policy-versions-for-current-policy
-                              #:too-many-vpcassociation-authorizations
-                              #:traffic-policies #:traffic-policy
-                              #:traffic-policy-already-exists
+                              #:tag-value #:test-dnsanswer #:threshold
+                              #:time-stamp #:traffic-policies #:traffic-policy
                               #:traffic-policy-comment
                               #:traffic-policy-document #:traffic-policy-id
-                              #:traffic-policy-in-use #:traffic-policy-instance
-                              #:traffic-policy-instance-already-exists
+                              #:traffic-policy-instance
                               #:traffic-policy-instance-count
                               #:traffic-policy-instance-id
                               #:traffic-policy-instance-state
@@ -332,21 +146,10 @@
                               #:traffic-policy-summary #:traffic-policy-version
                               #:traffic-policy-version-marker
                               #:transport-protocol #:uuid #:update-health-check
-                              #:update-health-check-request
-                              #:update-health-check-response
                               #:update-hosted-zone-comment
-                              #:update-hosted-zone-comment-request
-                              #:update-hosted-zone-comment-response
                               #:update-traffic-policy-comment
-                              #:update-traffic-policy-comment-request
-                              #:update-traffic-policy-comment-response
-                              #:update-traffic-policy-instance
-                              #:update-traffic-policy-instance-request
-                              #:update-traffic-policy-instance-response
-                              #:usage-count #:vpc
-                              #:vpcassociation-authorization-not-found
-                              #:vpcassociation-not-found #:vpcid #:vpcregion
-                              #:vpcs))
+                              #:update-traffic-policy-instance #:usage-count
+                              #:vpc #:vpcid #:vpcregion #:vpcs))
 (common-lisp:in-package #:pira/route-53)
 
 (smithy/sdk/service:define-service awsdns-v20130401 :shape-name

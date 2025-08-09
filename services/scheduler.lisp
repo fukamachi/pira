@@ -6,8 +6,8 @@
                               #:capacity-provider-strategy-item
                               #:capacity-provider-strategy-item-base
                               #:capacity-provider-strategy-item-weight
-                              #:client-token #:conflict-exception
-                              #:create-schedule #:create-schedule-group
+                              #:client-token #:create-schedule
+                              #:create-schedule-group
                               #:create-schedule-group-input
                               #:create-schedule-group-output
                               #:create-schedule-input #:create-schedule-output
@@ -24,9 +24,9 @@
                               #:get-schedule-group #:get-schedule-group-input
                               #:get-schedule-group-output #:get-schedule-input
                               #:get-schedule-output #:group
-                              #:internal-server-exception #:kinesis-parameters
-                              #:kms-key-arn #:last-modification-date
-                              #:launch-type #:list-schedule-groups
+                              #:kinesis-parameters #:kms-key-arn
+                              #:last-modification-date #:launch-type
+                              #:list-schedule-groups
                               #:list-schedule-groups-input
                               #:list-schedule-groups-output #:list-schedules
                               #:list-schedules-input #:list-schedules-output
@@ -44,8 +44,8 @@
                               #:placement-strategy #:placement-strategy-field
                               #:placement-strategy-type #:platform-version
                               #:propagate-tags #:reference-id #:resource-arn
-                              #:resource-not-found-exception #:retry-policy
-                              #:role-arn #:sage-maker-pipeline-parameter
+                              #:retry-policy #:role-arn
+                              #:sage-maker-pipeline-parameter
                               #:sage-maker-pipeline-parameter-list
                               #:sage-maker-pipeline-parameter-name
                               #:sage-maker-pipeline-parameter-value
@@ -58,20 +58,18 @@
                               #:schedule-group-state #:schedule-group-summary
                               #:schedule-list #:schedule-state
                               #:schedule-summary #:security-group
-                              #:security-groups
-                              #:service-quota-exceeded-exception #:source
-                              #:sqs-parameters #:start-date #:subnet #:subnets
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-map #:tag-resource #:tag-resource-arn
+                              #:security-groups #:source #:sqs-parameters
+                              #:start-date #:subnet #:subnets #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-map
+                              #:tag-resource #:tag-resource-arn
                               #:tag-resource-input #:tag-resource-output
                               #:tag-value #:tags #:target #:target-arn
                               #:target-input #:target-partition-key
                               #:target-summary #:task-count
-                              #:task-definition-arn #:throttling-exception
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-schedule
-                              #:update-schedule-input #:update-schedule-output
-                              #:validation-exception))
+                              #:task-definition-arn #:untag-resource
+                              #:untag-resource-input #:untag-resource-output
+                              #:update-schedule #:update-schedule-input
+                              #:update-schedule-output))
 (common-lisp:in-package #:pira/scheduler)
 
 (smithy/sdk/service:define-service awschronos-service :shape-name

@@ -1,8 +1,7 @@
 (uiop/package:define-package #:pira/qbusiness (:use)
                              (:export #:apischema #:apischema-type
                               #:access-configuration #:access-control
-                              #:access-controls #:access-denied-exception
-                              #:action-configuration
+                              #:access-controls #:action-configuration
                               #:action-configuration-list #:action-execution
                               #:action-execution-event
                               #:action-execution-payload
@@ -24,15 +23,13 @@
                               #:applied-attachments-configuration
                               #:applied-creator-mode-configuration
                               #:applied-orchestration-configuration
-                              #:associate-permission
-                              #:associate-permission-request
-                              #:associate-permission-response
-                              #:associated-group #:associated-groups
-                              #:associated-user #:associated-users #:attachment
-                              #:attachment-id #:attachment-input
-                              #:attachment-input-event #:attachment-list
-                              #:attachment-name #:attachment-output
-                              #:attachment-status #:attachments-configuration
+                              #:associate-permission #:associated-group
+                              #:associated-groups #:associated-user
+                              #:associated-users #:attachment #:attachment-id
+                              #:attachment-input #:attachment-input-event
+                              #:attachment-list #:attachment-name
+                              #:attachment-output #:attachment-status
+                              #:attachments-configuration
                               #:attachments-control-mode #:attachments-input
                               #:attachments-output #:attribute-filter
                               #:attribute-filters #:attribute-type
@@ -48,65 +45,37 @@
                               #:auto-subscription-configuration
                               #:auto-subscription-status
                               #:basic-auth-configuration
-                              #:batch-delete-document
-                              #:batch-delete-document-request
-                              #:batch-delete-document-response
-                              #:batch-put-document #:batch-put-document-request
-                              #:batch-put-document-response #:blob
-                              #:blocked-phrase #:blocked-phrases
+                              #:batch-delete-document #:batch-put-document
+                              #:blob #:blocked-phrase #:blocked-phrases
                               #:blocked-phrases-configuration
                               #:blocked-phrases-configuration-update
                               #:boosting-duration-in-seconds
                               #:browser-extension
                               #:browser-extension-configuration
                               #:browser-extension-list #:cancel-subscription
-                              #:cancel-subscription-request
-                              #:cancel-subscription-response #:chat
-                              #:chat-input #:chat-input-stream #:chat-mode
-                              #:chat-mode-configuration #:chat-output
-                              #:chat-output-stream
+                              #:chat #:chat-input-stream #:chat-mode
+                              #:chat-mode-configuration #:chat-output-stream
                               #:chat-response-configuration
                               #:chat-response-configuration-arn
                               #:chat-response-configuration-detail
                               #:chat-response-configuration-id
                               #:chat-response-configuration-status
                               #:chat-response-configurations #:chat-sync
-                              #:chat-sync-input #:chat-sync-output
-                              #:check-document-access
-                              #:check-document-access-request
-                              #:check-document-access-response
-                              #:client-id-for-oidc #:client-ids-for-oidc
-                              #:client-namespace #:client-token
-                              #:configuration-event #:conflict-exception
+                              #:check-document-access #:client-id-for-oidc
+                              #:client-ids-for-oidc #:client-namespace
+                              #:client-token #:configuration-event
                               #:content-blocker-rule #:content-retrieval-rule
                               #:content-source #:content-type #:conversation
                               #:conversation-id #:conversation-source
                               #:conversation-title #:conversations
                               #:copy-from-source
                               #:create-anonymous-web-experience-url
-                              #:create-anonymous-web-experience-url-request
-                              #:create-anonymous-web-experience-url-response
-                              #:create-application #:create-application-request
-                              #:create-application-response
+                              #:create-application
                               #:create-chat-response-configuration
-                              #:create-chat-response-configuration-request
-                              #:create-chat-response-configuration-response
-                              #:create-data-accessor
-                              #:create-data-accessor-request
-                              #:create-data-accessor-response
-                              #:create-data-source #:create-data-source-request
-                              #:create-data-source-response #:create-index
-                              #:create-index-request #:create-index-response
-                              #:create-plugin #:create-plugin-request
-                              #:create-plugin-response #:create-retriever
-                              #:create-retriever-request
-                              #:create-retriever-response #:create-subscription
-                              #:create-subscription-request
-                              #:create-subscription-response #:create-user
-                              #:create-user-request #:create-user-response
+                              #:create-data-accessor #:create-data-source
+                              #:create-index #:create-plugin #:create-retriever
+                              #:create-subscription #:create-user
                               #:create-web-experience
-                              #:create-web-experience-request
-                              #:create-web-experience-response
                               #:creator-mode-configuration
                               #:creator-mode-control #:custom-cssurl
                               #:custom-plugin-configuration
@@ -129,38 +98,15 @@
                               #:data-source-sync-jobs #:data-source-user-id
                               #:data-source-vpc-configuration #:data-sources
                               #:date-attribute-boosting-configuration
-                              #:delete-application #:delete-application-request
-                              #:delete-application-response #:delete-attachment
-                              #:delete-attachment-request
-                              #:delete-attachment-response
+                              #:delete-application #:delete-attachment
                               #:delete-chat-controls-configuration
-                              #:delete-chat-controls-configuration-request
-                              #:delete-chat-controls-configuration-response
                               #:delete-chat-response-configuration
-                              #:delete-chat-response-configuration-request
-                              #:delete-chat-response-configuration-response
-                              #:delete-conversation
-                              #:delete-conversation-request
-                              #:delete-conversation-response
-                              #:delete-data-accessor
-                              #:delete-data-accessor-request
-                              #:delete-data-accessor-response
-                              #:delete-data-source #:delete-data-source-request
-                              #:delete-data-source-response #:delete-document
-                              #:delete-documents #:delete-group
-                              #:delete-group-request #:delete-group-response
-                              #:delete-index #:delete-index-request
-                              #:delete-index-response #:delete-plugin
-                              #:delete-plugin-request #:delete-plugin-response
-                              #:delete-retriever #:delete-retriever-request
-                              #:delete-retriever-response #:delete-user
-                              #:delete-user-request #:delete-user-response
-                              #:delete-web-experience
-                              #:delete-web-experience-request
-                              #:delete-web-experience-response #:description
-                              #:disassociate-permission
-                              #:disassociate-permission-request
-                              #:disassociate-permission-response #:display-name
+                              #:delete-conversation #:delete-data-accessor
+                              #:delete-data-source #:delete-document
+                              #:delete-documents #:delete-group #:delete-index
+                              #:delete-plugin #:delete-retriever #:delete-user
+                              #:delete-web-experience #:description
+                              #:disassociate-permission #:display-name
                               #:document #:document-acl
                               #:document-acl-condition
                               #:document-acl-conditions #:document-acl-group
@@ -189,36 +135,18 @@
                               #:error-code #:error-detail #:error-message
                               #:example-chat-message #:example-chat-messages
                               #:execution-id #:expert-q
-                              #:external-resource-exception
                               #:failed-attachment-event #:failed-document
                               #:failed-documents #:favicon-url #:font-url
-                              #:get-application #:get-application-request
-                              #:get-application-response
+                              #:get-application
                               #:get-chat-controls-configuration
-                              #:get-chat-controls-configuration-request
-                              #:get-chat-controls-configuration-response
                               #:get-chat-response-configuration
-                              #:get-chat-response-configuration-request
-                              #:get-chat-response-configuration-response
-                              #:get-data-accessor #:get-data-accessor-request
-                              #:get-data-accessor-response #:get-data-source
-                              #:get-data-source-request
-                              #:get-data-source-response #:get-group
-                              #:get-group-request #:get-group-response
-                              #:get-index #:get-index-request
-                              #:get-index-response #:get-media
-                              #:get-media-request #:get-media-response
-                              #:get-plugin #:get-plugin-request
-                              #:get-plugin-response #:get-policy
-                              #:get-policy-request #:get-policy-response
-                              #:get-retriever #:get-retriever-request
-                              #:get-retriever-response #:get-user
-                              #:get-user-request #:get-user-response
-                              #:get-web-experience #:get-web-experience-request
-                              #:get-web-experience-response #:group-identifier
-                              #:group-members #:group-name #:group-status
-                              #:group-status-detail #:group-status-details
-                              #:group-summary #:group-summary-list
+                              #:get-data-accessor #:get-data-source #:get-group
+                              #:get-index #:get-media #:get-plugin #:get-policy
+                              #:get-retriever #:get-user #:get-web-experience
+                              #:group-identifier #:group-members #:group-name
+                              #:group-status #:group-status-detail
+                              #:group-status-details #:group-summary
+                              #:group-summary-list
                               #:hallucination-reduction-configuration
                               #:hallucination-reduction-control
                               #:hook-configuration #:iamidentity-provider-arn
@@ -238,55 +166,20 @@
                               #:instance-arn #:instruction
                               #:instruction-collection #:integer
                               #:integration-id #:integration-resource
-                              #:internal-server-exception
                               #:kendra-index-configuration #:kendra-index-id
-                              #:kms-key-id #:lambda-arn
-                              #:license-not-found-exception #:list-applications
-                              #:list-applications-request
-                              #:list-applications-response #:list-attachments
-                              #:list-attachments-request
-                              #:list-attachments-response
+                              #:kms-key-id #:lambda-arn #:list-applications
+                              #:list-attachments
                               #:list-chat-response-configurations
-                              #:list-chat-response-configurations-request
-                              #:list-chat-response-configurations-response
-                              #:list-conversations #:list-conversations-request
-                              #:list-conversations-response
-                              #:list-data-accessors
-                              #:list-data-accessors-request
-                              #:list-data-accessors-response
-                              #:list-data-source-sync-jobs
-                              #:list-data-source-sync-jobs-request
-                              #:list-data-source-sync-jobs-response
-                              #:list-data-sources #:list-data-sources-request
-                              #:list-data-sources-response #:list-documents
-                              #:list-documents-request
-                              #:list-documents-response #:list-groups
-                              #:list-groups-request #:list-groups-response
-                              #:list-indices #:list-indices-request
-                              #:list-indices-response #:list-messages
-                              #:list-messages-request #:list-messages-response
-                              #:list-plugin-actions
-                              #:list-plugin-actions-request
-                              #:list-plugin-actions-response
+                              #:list-conversations #:list-data-accessors
+                              #:list-data-source-sync-jobs #:list-data-sources
+                              #:list-documents #:list-groups #:list-indices
+                              #:list-messages #:list-plugin-actions
                               #:list-plugin-type-actions
-                              #:list-plugin-type-actions-request
-                              #:list-plugin-type-actions-response
                               #:list-plugin-type-metadata
-                              #:list-plugin-type-metadata-request
-                              #:list-plugin-type-metadata-response
                               #:list-plugin-type-metadata-summaries
-                              #:list-plugins #:list-plugins-request
-                              #:list-plugins-response #:list-retrievers
-                              #:list-retrievers-request
-                              #:list-retrievers-response #:list-subscriptions
-                              #:list-subscriptions-request
-                              #:list-subscriptions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-web-experiences
-                              #:list-web-experiences-request
-                              #:list-web-experiences-response #:logo-url #:long
+                              #:list-plugins #:list-retrievers
+                              #:list-subscriptions #:list-tags-for-resource
+                              #:list-web-experiences #:logo-url #:long
                               #:max-results
                               #:max-results-integer-for-get-topic-configurations
                               #:max-results-integer-for-list-applications
@@ -307,11 +200,11 @@
                               #:max-results-integer-for-list-subscriptions
                               #:max-results-integer-for-list-web-experiences-request
                               #:media-extraction-configuration #:media-id
-                              #:media-too-large-exception #:member-group
-                              #:member-groups #:member-relation #:member-user
-                              #:member-users #:membership-type #:message
-                              #:message-body #:message-id #:message-type
-                              #:message-usefulness #:message-usefulness-comment
+                              #:member-group #:member-groups #:member-relation
+                              #:member-user #:member-users #:membership-type
+                              #:message #:message-body #:message-id
+                              #:message-type #:message-usefulness
+                              #:message-usefulness-comment
                               #:message-usefulness-feedback
                               #:message-usefulness-reason #:messages
                               #:metadata-event #:metric-value
@@ -338,14 +231,11 @@
                               #:plugin-type-metadata-summary #:plugins
                               #:principal #:principal-group
                               #:principal-role-arn #:principal-user
-                              #:principals #:put-feedback
-                              #:put-feedback-request #:put-group
-                              #:put-group-request #:put-group-response
+                              #:principals #:put-feedback #:put-group
                               #:qapps-configuration #:qapps-control-mode
                               #:qiam-action #:qiam-actions #:query-text
                               #:quick-sight-configuration #:read-access-type
                               #:relevant-content #:relevant-content-list
-                              #:resource-not-found-exception
                               #:response-configuration
                               #:response-configuration-summary
                               #:response-configuration-type
@@ -361,22 +251,14 @@
                               #:saml-authentication-url #:saml-configuration
                               #:saml-metadata-xml #:saml-provider-configuration
                               #:score-attributes #:score-confidence
-                              #:search-relevant-content
-                              #:search-relevant-content-request
-                              #:search-relevant-content-response #:secret-arn
+                              #:search-relevant-content #:secret-arn
                               #:security-group-id #:security-group-ids
-                              #:service-quota-exceeded-exception
                               #:session-duration-in-minutes #:snippet-excerpt
                               #:snippet-excerpt-text #:source-attribution
                               #:source-attribution-media-id
                               #:source-attributions #:source-details
-                              #:start-data-source-sync-job
-                              #:start-data-source-sync-job-request
-                              #:start-data-source-sync-job-response
-                              #:statement-id #:status
-                              #:stop-data-source-sync-job
-                              #:stop-data-source-sync-job-request
-                              #:stop-data-source-sync-job-response #:string
+                              #:start-data-source-sync-job #:statement-id
+                              #:status #:stop-data-source-sync-job #:string
                               #:string-attribute-boosting-configuration
                               #:string-attribute-value-boosting
                               #:string-attribute-value-boosting-level
@@ -388,44 +270,22 @@
                               #:sync-schedule #:system-message-id
                               #:system-message-override #:system-message-type
                               #:tag #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:tags #:text-document-statistics
                               #:text-input-event #:text-output-event
-                              #:text-segment #:text-segment-list
-                              #:throttling-exception #:timestamp #:title
-                              #:topic-configuration #:topic-configuration-name
-                              #:topic-configurations #:topic-description
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-application
-                              #:update-application-request
-                              #:update-application-response
+                              #:text-segment #:text-segment-list #:timestamp
+                              #:title #:topic-configuration
+                              #:topic-configuration-name #:topic-configurations
+                              #:topic-description #:untag-resource
+                              #:update-application
                               #:update-chat-controls-configuration
-                              #:update-chat-controls-configuration-request
-                              #:update-chat-controls-configuration-response
                               #:update-chat-response-configuration
-                              #:update-chat-response-configuration-request
-                              #:update-chat-response-configuration-response
-                              #:update-data-accessor
-                              #:update-data-accessor-request
-                              #:update-data-accessor-response
-                              #:update-data-source #:update-data-source-request
-                              #:update-data-source-response #:update-index
-                              #:update-index-request #:update-index-response
-                              #:update-plugin #:update-plugin-request
-                              #:update-plugin-response #:update-retriever
-                              #:update-retriever-request
-                              #:update-retriever-response #:update-subscription
-                              #:update-subscription-request
-                              #:update-subscription-response #:update-user
-                              #:update-user-request #:update-user-response
-                              #:update-web-experience
-                              #:update-web-experience-request
-                              #:update-web-experience-response #:url
-                              #:user-alias #:user-aliases #:user-groups
-                              #:user-id #:user-identifier #:user-ids
-                              #:user-message #:users-and-groups
-                              #:validation-exception
-                              #:validation-exception-field
+                              #:update-data-accessor #:update-data-source
+                              #:update-index #:update-plugin #:update-retriever
+                              #:update-subscription #:update-user
+                              #:update-web-experience #:url #:user-alias
+                              #:user-aliases #:user-groups #:user-id
+                              #:user-identifier #:user-ids #:user-message
+                              #:users-and-groups #:validation-exception-field
                               #:validation-exception-fields
                               #:validation-exception-reason
                               #:video-extraction-configuration

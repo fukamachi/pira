@@ -1,8 +1,7 @@
 (uiop/package:define-package #:pira/transcribe-streaming (:use)
                              (:export #:alternative #:alternative-list
                               #:audio-chunk #:audio-event #:audio-stream
-                              #:bad-request-exception #:boolean #:bucket-name
-                              #:call-analytics-entity
+                              #:boolean #:bucket-name #:call-analytics-entity
                               #:call-analytics-entity-list
                               #:call-analytics-item #:call-analytics-item-list
                               #:call-analytics-language-code
@@ -13,21 +12,17 @@
                               #:clinical-note-generation-result
                               #:clinical-note-generation-settings
                               #:clinical-note-generation-status #:confidence
-                              #:configuration-event #:conflict-exception
+                              #:configuration-event
                               #:content-identification-type
                               #:content-redaction-output
                               #:content-redaction-type #:date-time #:double
                               #:entity #:entity-list
-                              #:get-medical-scribe-stream
-                              #:get-medical-scribe-stream-request
-                              #:get-medical-scribe-stream-response
-                              #:iam-role-arn #:integer
-                              #:internal-failure-exception #:issue-detected
-                              #:issues-detected #:item #:item-list #:item-type
+                              #:get-medical-scribe-stream #:iam-role-arn
+                              #:integer #:issue-detected #:issues-detected
+                              #:item #:item-list #:item-type
                               #:kmsencryption-context-map #:kmskey-id
                               #:language-code #:language-identification
-                              #:language-options #:language-with-score
-                              #:limit-exceeded-exception #:long
+                              #:language-options #:language-with-score #:long
                               #:matched-category-details #:media-encoding
                               #:media-sample-rate-hertz #:medical-alternative
                               #:medical-alternative-list
@@ -67,22 +62,12 @@
                               #:participant-role #:pii-entity-types
                               #:points-of-interest
                               #:post-call-analytics-settings #:request-id
-                              #:resource-not-found-exception #:result
-                              #:result-list #:sentiment
-                              #:service-unavailable-exception #:session-id
+                              #:result #:result-list #:sentiment #:session-id
                               #:specialty #:stable
                               #:start-call-analytics-stream-transcription
-                              #:start-call-analytics-stream-transcription-request
-                              #:start-call-analytics-stream-transcription-response
                               #:start-medical-scribe-stream
-                              #:start-medical-scribe-stream-request
-                              #:start-medical-scribe-stream-response
                               #:start-medical-stream-transcription
-                              #:start-medical-stream-transcription-request
-                              #:start-medical-stream-transcription-response
-                              #:start-stream-transcription
-                              #:start-stream-transcription-request
-                              #:start-stream-transcription-response #:string
+                              #:start-stream-transcription #:string
                               #:string-list #:timestamp-range
                               #:timestamp-ranges #:transcribe #:transcript
                               #:transcript-event #:transcript-result-stream

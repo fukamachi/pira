@@ -1,25 +1,14 @@
 (uiop/package:define-package #:pira/migrationhub-config (:use)
                              (:export #:awsmigration-hub-multi-account-service
-                              #:access-denied-exception #:control-id
-                              #:create-home-region-control
-                              #:create-home-region-control-request
-                              #:create-home-region-control-result
+                              #:control-id #:create-home-region-control
                               #:delete-home-region-control
-                              #:delete-home-region-control-request
-                              #:delete-home-region-control-result
                               #:describe-home-region-controls
                               #:describe-home-region-controls-max-results
-                              #:describe-home-region-controls-request
-                              #:describe-home-region-controls-result #:dry-run
-                              #:dry-run-operation #:error-message
-                              #:get-home-region #:get-home-region-request
-                              #:get-home-region-result #:home-region
-                              #:home-region-control #:home-region-controls
-                              #:internal-server-error #:invalid-input-exception
-                              #:requested-time #:retry-after-seconds
-                              #:service-unavailable-exception #:target
-                              #:target-id #:target-type #:throttling-exception
-                              #:token))
+                              #:dry-run #:error-message #:get-home-region
+                              #:home-region #:home-region-control
+                              #:home-region-controls #:requested-time
+                              #:retry-after-seconds #:target #:target-id
+                              #:target-type #:token))
 (common-lisp:in-package #:pira/migrationhub-config)
 
 (smithy/sdk/service:define-service awsmigration-hub-multi-account-service

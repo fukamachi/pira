@@ -1,30 +1,17 @@
 (uiop/package:define-package #:pira/direct-connect (:use)
                              (:export #:asn
                               #:accept-direct-connect-gateway-association-proposal
-                              #:accept-direct-connect-gateway-association-proposal-request
-                              #:accept-direct-connect-gateway-association-proposal-result
                               #:address-family #:agreement-list
                               #:agreement-name
                               #:allocate-connection-on-interconnect
-                              #:allocate-connection-on-interconnect-request
                               #:allocate-hosted-connection
-                              #:allocate-hosted-connection-request
                               #:allocate-private-virtual-interface
-                              #:allocate-private-virtual-interface-request
                               #:allocate-public-virtual-interface
-                              #:allocate-public-virtual-interface-request
                               #:allocate-transit-virtual-interface
-                              #:allocate-transit-virtual-interface-request
-                              #:allocate-transit-virtual-interface-result
                               #:amazon-address #:associate-connection-with-lag
-                              #:associate-connection-with-lag-request
                               #:associate-hosted-connection
-                              #:associate-hosted-connection-request
                               #:associate-mac-sec-key
-                              #:associate-mac-sec-key-request
-                              #:associate-mac-sec-key-response
                               #:associate-virtual-interface
-                              #:associate-virtual-interface-request
                               #:associated-core-network #:associated-gateway
                               #:associated-gateway-id
                               #:available-mac-sec-port-speeds
@@ -34,104 +21,43 @@
                               #:bgppeer-id-list #:bgppeer-list #:bgppeer-state
                               #:bgpstatus #:bandwidth #:boolean-flag #:cidr
                               #:cak #:ckn #:confirm-connection
-                              #:confirm-connection-request
-                              #:confirm-connection-response
                               #:confirm-customer-agreement
-                              #:confirm-customer-agreement-request
-                              #:confirm-customer-agreement-response
                               #:confirm-private-virtual-interface
-                              #:confirm-private-virtual-interface-request
-                              #:confirm-private-virtual-interface-response
                               #:confirm-public-virtual-interface
-                              #:confirm-public-virtual-interface-request
-                              #:confirm-public-virtual-interface-response
-                              #:confirm-transit-virtual-interface
-                              #:confirm-transit-virtual-interface-request
-                              #:confirm-transit-virtual-interface-response
-                              #:connection #:connection-id #:connection-list
+                              #:confirm-transit-virtual-interface #:connection
+                              #:connection-id #:connection-list
                               #:connection-name #:connection-state
                               #:connections #:core-network-attachment-id
                               #:core-network-identifier #:count
-                              #:create-bgppeer #:create-bgppeer-request
-                              #:create-bgppeer-response #:create-connection
-                              #:create-connection-request
+                              #:create-bgppeer #:create-connection
                               #:create-direct-connect-gateway
                               #:create-direct-connect-gateway-association
                               #:create-direct-connect-gateway-association-proposal
-                              #:create-direct-connect-gateway-association-proposal-request
-                              #:create-direct-connect-gateway-association-proposal-result
-                              #:create-direct-connect-gateway-association-request
-                              #:create-direct-connect-gateway-association-result
-                              #:create-direct-connect-gateway-request
-                              #:create-direct-connect-gateway-result
-                              #:create-interconnect
-                              #:create-interconnect-request #:create-lag
-                              #:create-lag-request
+                              #:create-interconnect #:create-lag
                               #:create-private-virtual-interface
-                              #:create-private-virtual-interface-request
                               #:create-public-virtual-interface
-                              #:create-public-virtual-interface-request
                               #:create-transit-virtual-interface
-                              #:create-transit-virtual-interface-request
-                              #:create-transit-virtual-interface-result
                               #:customer-address #:customer-agreement
-                              #:delete-bgppeer #:delete-bgppeer-request
-                              #:delete-bgppeer-response #:delete-connection
-                              #:delete-connection-request
+                              #:delete-bgppeer #:delete-connection
                               #:delete-direct-connect-gateway
                               #:delete-direct-connect-gateway-association
                               #:delete-direct-connect-gateway-association-proposal
-                              #:delete-direct-connect-gateway-association-proposal-request
-                              #:delete-direct-connect-gateway-association-proposal-result
-                              #:delete-direct-connect-gateway-association-request
-                              #:delete-direct-connect-gateway-association-result
-                              #:delete-direct-connect-gateway-request
-                              #:delete-direct-connect-gateway-result
-                              #:delete-interconnect
-                              #:delete-interconnect-request
-                              #:delete-interconnect-response #:delete-lag
-                              #:delete-lag-request #:delete-virtual-interface
-                              #:delete-virtual-interface-request
-                              #:delete-virtual-interface-response
-                              #:describe-connection-loa
-                              #:describe-connection-loa-request
-                              #:describe-connection-loa-response
-                              #:describe-connections
+                              #:delete-interconnect #:delete-lag
+                              #:delete-virtual-interface
+                              #:describe-connection-loa #:describe-connections
                               #:describe-connections-on-interconnect
-                              #:describe-connections-on-interconnect-request
-                              #:describe-connections-request
                               #:describe-customer-metadata
-                              #:describe-customer-metadata-response
                               #:describe-direct-connect-gateway-association-proposals
-                              #:describe-direct-connect-gateway-association-proposals-request
-                              #:describe-direct-connect-gateway-association-proposals-result
                               #:describe-direct-connect-gateway-associations
-                              #:describe-direct-connect-gateway-associations-request
-                              #:describe-direct-connect-gateway-associations-result
                               #:describe-direct-connect-gateway-attachments
-                              #:describe-direct-connect-gateway-attachments-request
-                              #:describe-direct-connect-gateway-attachments-result
                               #:describe-direct-connect-gateways
-                              #:describe-direct-connect-gateways-request
-                              #:describe-direct-connect-gateways-result
                               #:describe-hosted-connections
-                              #:describe-hosted-connections-request
                               #:describe-interconnect-loa
-                              #:describe-interconnect-loa-request
-                              #:describe-interconnect-loa-response
-                              #:describe-interconnects
-                              #:describe-interconnects-request #:describe-lags
-                              #:describe-lags-request #:describe-loa
-                              #:describe-loa-request #:describe-locations
-                              #:describe-router-configuration
-                              #:describe-router-configuration-request
-                              #:describe-router-configuration-response
-                              #:describe-tags #:describe-tags-request
-                              #:describe-tags-response
+                              #:describe-interconnects #:describe-lags
+                              #:describe-loa #:describe-locations
+                              #:describe-router-configuration #:describe-tags
                               #:describe-virtual-gateways
                               #:describe-virtual-interfaces
-                              #:describe-virtual-interfaces-request
-                              #:direct-connect-client-exception
                               #:direct-connect-gateway
                               #:direct-connect-gateway-association
                               #:direct-connect-gateway-association-id
@@ -149,13 +75,8 @@
                               #:direct-connect-gateway-list
                               #:direct-connect-gateway-name
                               #:direct-connect-gateway-state
-                              #:direct-connect-server-exception
                               #:disassociate-connection-from-lag
-                              #:disassociate-connection-from-lag-request
-                              #:disassociate-mac-sec-key
-                              #:disassociate-mac-sec-key-request
-                              #:disassociate-mac-sec-key-response
-                              #:duplicate-tag-keys-exception #:enable-site-link
+                              #:disassociate-mac-sec-key #:enable-site-link
                               #:encryption-mode #:end-time #:error-message
                               #:failure-test-history-status
                               #:gateway-id-to-associate #:gateway-identifier
@@ -165,13 +86,11 @@
                               #:interconnect-state #:interconnects
                               #:jumbo-frame-capable #:lag #:lag-id #:lag-list
                               #:lag-name #:lag-state #:lags
-                              #:list-virtual-interface-test-history
-                              #:list-virtual-interface-test-history-request
-                              #:list-virtual-interface-test-history-response
-                              #:loa #:loa-content #:loa-content-type
-                              #:loa-issue-time #:location #:location-code
-                              #:location-list #:location-name #:locations
-                              #:long-asn #:mtu #:mac-sec-capable #:mac-sec-key
+                              #:list-virtual-interface-test-history #:loa
+                              #:loa-content #:loa-content-type #:loa-issue-time
+                              #:location #:location-code #:location-list
+                              #:location-name #:locations #:long-asn #:mtu
+                              #:mac-sec-capable #:mac-sec-key
                               #:mac-sec-key-list #:max-result-set-size
                               #:new-bgppeer #:new-private-virtual-interface
                               #:new-private-virtual-interface-allocation
@@ -191,36 +110,21 @@
                               #:route-filter-prefix-list #:router-config
                               #:router-type #:router-type-identifier
                               #:secret-arn #:site-link-enabled #:software
-                              #:start-bgp-failover-test
-                              #:start-bgp-failover-test-request
-                              #:start-bgp-failover-test-response
-                              #:start-on-date #:start-time #:state
-                              #:state-change-error #:status
-                              #:stop-bgp-failover-test
-                              #:stop-bgp-failover-test-request
-                              #:stop-bgp-failover-test-response #:tag #:tag-key
+                              #:start-bgp-failover-test #:start-on-date
+                              #:start-time #:state #:state-change-error
+                              #:status #:stop-bgp-failover-test #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:test-duration #:test-id
-                              #:too-many-tags-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-connection
-                              #:update-connection-request
+                              #:untag-resource #:update-connection
                               #:update-direct-connect-gateway
                               #:update-direct-connect-gateway-association
-                              #:update-direct-connect-gateway-association-request
-                              #:update-direct-connect-gateway-association-result
-                              #:update-direct-connect-gateway-request
-                              #:update-direct-connect-gateway-response
-                              #:update-lag #:update-lag-request
-                              #:update-virtual-interface-attributes
-                              #:update-virtual-interface-attributes-request
-                              #:vlan #:vendor #:virtual-gateway
-                              #:virtual-gateway-id #:virtual-gateway-list
-                              #:virtual-gateway-region #:virtual-gateway-state
-                              #:virtual-gateways #:virtual-interface
-                              #:virtual-interface-id #:virtual-interface-list
-                              #:virtual-interface-name
+                              #:update-lag
+                              #:update-virtual-interface-attributes #:vlan
+                              #:vendor #:virtual-gateway #:virtual-gateway-id
+                              #:virtual-gateway-list #:virtual-gateway-region
+                              #:virtual-gateway-state #:virtual-gateways
+                              #:virtual-interface #:virtual-interface-id
+                              #:virtual-interface-list #:virtual-interface-name
                               #:virtual-interface-region
                               #:virtual-interface-state
                               #:virtual-interface-test-history

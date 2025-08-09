@@ -1,44 +1,16 @@
 (uiop/package:define-package #:pira/iotthingsgraph (:use)
                              (:export #:arn #:associate-entity-to-thing
-                              #:associate-entity-to-thing-request
-                              #:associate-entity-to-thing-response
-                              #:create-flow-template
-                              #:create-flow-template-request
-                              #:create-flow-template-response
-                              #:create-system-instance
-                              #:create-system-instance-request
-                              #:create-system-instance-response
-                              #:create-system-template
-                              #:create-system-template-request
-                              #:create-system-template-response
-                              #:definition-document #:definition-language
-                              #:definition-text #:delete-flow-template
-                              #:delete-flow-template-request
-                              #:delete-flow-template-response
-                              #:delete-namespace #:delete-namespace-request
-                              #:delete-namespace-response
-                              #:delete-system-instance
-                              #:delete-system-instance-request
-                              #:delete-system-instance-response
-                              #:delete-system-template
-                              #:delete-system-template-request
-                              #:delete-system-template-response
+                              #:create-flow-template #:create-system-instance
+                              #:create-system-template #:definition-document
+                              #:definition-language #:definition-text
+                              #:delete-flow-template #:delete-namespace
+                              #:delete-system-instance #:delete-system-template
                               #:dependency-revision #:dependency-revisions
-                              #:deploy-system-instance
-                              #:deploy-system-instance-request
-                              #:deploy-system-instance-response
-                              #:deployment-target #:deprecate-existing-entities
+                              #:deploy-system-instance #:deployment-target
+                              #:deprecate-existing-entities
                               #:deprecate-flow-template
-                              #:deprecate-flow-template-request
-                              #:deprecate-flow-template-response
-                              #:deprecate-system-template
-                              #:deprecate-system-template-request
-                              #:deprecate-system-template-response
-                              #:describe-namespace #:describe-namespace-request
-                              #:describe-namespace-response
-                              #:dissociate-entity-from-thing
-                              #:dissociate-entity-from-thing-request
-                              #:dissociate-entity-from-thing-response #:enabled
+                              #:deprecate-system-template #:describe-namespace
+                              #:dissociate-entity-from-thing #:enabled
                               #:entity-description #:entity-descriptions
                               #:entity-filter #:entity-filter-name
                               #:entity-filter-value #:entity-filter-values
@@ -57,62 +29,25 @@
                               #:flow-template-filter-values
                               #:flow-template-filters #:flow-template-summaries
                               #:flow-template-summary #:get-entities
-                              #:get-entities-request #:get-entities-response
-                              #:get-flow-template #:get-flow-template-request
-                              #:get-flow-template-response
-                              #:get-flow-template-revisions
-                              #:get-flow-template-revisions-request
-                              #:get-flow-template-revisions-response
+                              #:get-flow-template #:get-flow-template-revisions
                               #:get-namespace-deletion-status
-                              #:get-namespace-deletion-status-request
-                              #:get-namespace-deletion-status-response
-                              #:get-system-instance
-                              #:get-system-instance-request
-                              #:get-system-instance-response
-                              #:get-system-template
-                              #:get-system-template-request
-                              #:get-system-template-response
+                              #:get-system-instance #:get-system-template
                               #:get-system-template-revisions
-                              #:get-system-template-revisions-request
-                              #:get-system-template-revisions-response
-                              #:get-upload-status #:get-upload-status-request
-                              #:get-upload-status-response
-                              #:greengrass-deployment-id #:greengrass-group-id
+                              #:get-upload-status #:greengrass-deployment-id
+                              #:greengrass-group-id
                               #:greengrass-group-version-id #:group-name
-                              #:internal-failure-exception
-                              #:invalid-request-exception
                               #:iot-things-graph-front-end-service
-                              #:limit-exceeded-exception
                               #:list-flow-execution-messages
-                              #:list-flow-execution-messages-request
-                              #:list-flow-execution-messages-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:list-tags-for-resource #:max-results
                               #:metrics-configuration
                               #:namespace-deletion-status
                               #:namespace-deletion-status-error-codes
-                              #:namespace-name #:next-token
-                              #:resource-already-exists-exception
-                              #:resource-arn #:resource-in-use-exception
-                              #:resource-not-found-exception #:role-arn
-                              #:s3bucket-name #:search-entities
-                              #:search-entities-request
-                              #:search-entities-response
-                              #:search-flow-executions
-                              #:search-flow-executions-request
-                              #:search-flow-executions-response
-                              #:search-flow-templates
-                              #:search-flow-templates-request
-                              #:search-flow-templates-response
+                              #:namespace-name #:next-token #:resource-arn
+                              #:role-arn #:s3bucket-name #:search-entities
+                              #:search-flow-executions #:search-flow-templates
                               #:search-system-instances
-                              #:search-system-instances-request
-                              #:search-system-instances-response
-                              #:search-system-templates
-                              #:search-system-templates-request
-                              #:search-system-templates-response
-                              #:search-things #:search-things-request
-                              #:search-things-response #:string #:string-list
+                              #:search-system-templates #:search-things
+                              #:string #:string-list
                               #:sync-with-public-namespace
                               #:system-instance-deployment-status
                               #:system-instance-description
@@ -132,22 +67,11 @@
                               #:system-template-summaries
                               #:system-template-summary #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:thing #:thing-arn #:thing-name
-                              #:things #:throttling-exception #:timestamp
-                              #:undeploy-system-instance
-                              #:undeploy-system-instance-request
-                              #:undeploy-system-instance-response
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-flow-template
-                              #:update-flow-template-request
-                              #:update-flow-template-response
+                              #:things #:timestamp #:undeploy-system-instance
+                              #:untag-resource #:update-flow-template
                               #:update-system-template
-                              #:update-system-template-request
-                              #:update-system-template-response
-                              #:upload-entity-definitions
-                              #:upload-entity-definitions-request
-                              #:upload-entity-definitions-response #:upload-id
+                              #:upload-entity-definitions #:upload-id
                               #:upload-status #:urn #:urns #:version))
 (common-lisp:in-package #:pira/iotthingsgraph)
 

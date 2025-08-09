@@ -1,9 +1,6 @@
 (uiop/package:define-package #:pira/odb (:use)
                              (:export #:accept-marketplace-registration
-                              #:accept-marketplace-registration-input
-                              #:accept-marketplace-registration-output #:access
-                              #:access-denied-exception
-                              #:autonomous-virtual-machine-list
+                              #:access #:autonomous-virtual-machine-list
                               #:autonomous-virtual-machine-summary
                               #:cloud-autonomous-vm-cluster
                               #:cloud-autonomous-vm-cluster-list
@@ -19,21 +16,10 @@
                               #:cloud-vm-cluster #:cloud-vm-cluster-list
                               #:cloud-vm-cluster-resource
                               #:cloud-vm-cluster-summary #:compute-model
-                              #:conflict-exception
                               #:create-cloud-autonomous-vm-cluster
-                              #:create-cloud-autonomous-vm-cluster-input
-                              #:create-cloud-autonomous-vm-cluster-output
                               #:create-cloud-exadata-infrastructure
-                              #:create-cloud-exadata-infrastructure-input
-                              #:create-cloud-exadata-infrastructure-output
-                              #:create-cloud-vm-cluster
-                              #:create-cloud-vm-cluster-input
-                              #:create-cloud-vm-cluster-output
-                              #:create-odb-network #:create-odb-network-input
-                              #:create-odb-network-output
+                              #:create-cloud-vm-cluster #:create-odb-network
                               #:create-odb-peering-connection
-                              #:create-odb-peering-connection-input
-                              #:create-odb-peering-connection-output
                               #:customer-contact #:customer-contacts
                               #:data-collection-options #:day-of-week
                               #:day-of-week-name #:days-of-week
@@ -45,80 +31,27 @@
                               #:db-server-patching-status #:db-server-summary
                               #:db-system-shape-list #:db-system-shape-summary
                               #:delete-cloud-autonomous-vm-cluster
-                              #:delete-cloud-autonomous-vm-cluster-input
-                              #:delete-cloud-autonomous-vm-cluster-output
                               #:delete-cloud-exadata-infrastructure
-                              #:delete-cloud-exadata-infrastructure-input
-                              #:delete-cloud-exadata-infrastructure-output
-                              #:delete-cloud-vm-cluster
-                              #:delete-cloud-vm-cluster-input
-                              #:delete-cloud-vm-cluster-output
-                              #:delete-odb-network #:delete-odb-network-input
-                              #:delete-odb-network-output
-                              #:delete-odb-peering-connection
-                              #:delete-odb-peering-connection-input
-                              #:delete-odb-peering-connection-output
-                              #:disk-redundancy #:exadata-iorm-config
-                              #:general-input-string
+                              #:delete-cloud-vm-cluster #:delete-odb-network
+                              #:delete-odb-peering-connection #:disk-redundancy
+                              #:exadata-iorm-config #:general-input-string
                               #:get-cloud-autonomous-vm-cluster
-                              #:get-cloud-autonomous-vm-cluster-input
-                              #:get-cloud-autonomous-vm-cluster-output
                               #:get-cloud-exadata-infrastructure
-                              #:get-cloud-exadata-infrastructure-input
-                              #:get-cloud-exadata-infrastructure-output
                               #:get-cloud-exadata-infrastructure-unallocated-resources
-                              #:get-cloud-exadata-infrastructure-unallocated-resources-input
-                              #:get-cloud-exadata-infrastructure-unallocated-resources-output
-                              #:get-cloud-vm-cluster
-                              #:get-cloud-vm-cluster-input
-                              #:get-cloud-vm-cluster-output #:get-db-node
-                              #:get-db-node-input #:get-db-node-output
-                              #:get-db-server #:get-db-server-input
-                              #:get-db-server-output
-                              #:get-oci-onboarding-status
-                              #:get-oci-onboarding-status-input
-                              #:get-oci-onboarding-status-output
-                              #:get-odb-network #:get-odb-network-input
-                              #:get-odb-network-output
-                              #:get-odb-peering-connection
-                              #:get-odb-peering-connection-input
-                              #:get-odb-peering-connection-output
+                              #:get-cloud-vm-cluster #:get-db-node
+                              #:get-db-server #:get-oci-onboarding-status
+                              #:get-odb-network #:get-odb-peering-connection
                               #:gi-version-list #:gi-version-summary
                               #:hours-of-day #:initialize-service
-                              #:initialize-service-input
-                              #:initialize-service-output
-                              #:internal-server-exception
                               #:iorm-lifecycle-state #:license-model
                               #:list-autonomous-virtual-machines
-                              #:list-autonomous-virtual-machines-input
-                              #:list-autonomous-virtual-machines-output
                               #:list-cloud-autonomous-vm-clusters
-                              #:list-cloud-autonomous-vm-clusters-input
-                              #:list-cloud-autonomous-vm-clusters-output
                               #:list-cloud-exadata-infrastructures
-                              #:list-cloud-exadata-infrastructures-input
-                              #:list-cloud-exadata-infrastructures-output
-                              #:list-cloud-vm-clusters
-                              #:list-cloud-vm-clusters-input
-                              #:list-cloud-vm-clusters-output #:list-db-nodes
-                              #:list-db-nodes-input #:list-db-nodes-output
-                              #:list-db-servers #:list-db-servers-input
-                              #:list-db-servers-output #:list-db-system-shapes
-                              #:list-db-system-shapes-input
-                              #:list-db-system-shapes-output #:list-gi-versions
-                              #:list-gi-versions-input
-                              #:list-gi-versions-output #:list-odb-networks
-                              #:list-odb-networks-input
-                              #:list-odb-networks-output
+                              #:list-cloud-vm-clusters #:list-db-nodes
+                              #:list-db-servers #:list-db-system-shapes
+                              #:list-gi-versions #:list-odb-networks
                               #:list-odb-peering-connections
-                              #:list-odb-peering-connections-input
-                              #:list-odb-peering-connections-output
-                              #:list-system-versions
-                              #:list-system-versions-input
-                              #:list-system-versions-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-system-versions #:list-tags-for-resource
                               #:maintenance-window #:managed-resource-status
                               #:managed-s3backup-access #:managed-services
                               #:month #:month-name #:months #:objective
@@ -132,32 +65,18 @@
                               #:odb-peering-connection-summary
                               #:patching-mode-type #:policy-document
                               #:preference-type #:reboot-db-node
-                              #:reboot-db-node-input #:reboot-db-node-output
                               #:request-tag-map #:resource-arn
                               #:resource-display-name #:resource-id
-                              #:resource-id-or-arn
-                              #:resource-not-found-exception #:resource-status
+                              #:resource-id-or-arn #:resource-status
                               #:response-tag-map #:s3access #:sensitive-string
                               #:sensitive-string-list
-                              #:service-network-endpoint
-                              #:service-quota-exceeded-exception #:shape-type
-                              #:start-db-node #:start-db-node-input
-                              #:start-db-node-output #:stop-db-node
-                              #:stop-db-node-input #:stop-db-node-output
-                              #:string-list #:system-version-list
-                              #:system-version-summary #:tag-key #:tag-keys
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:service-network-endpoint #:shape-type
+                              #:start-db-node #:stop-db-node #:string-list
+                              #:system-version-list #:system-version-summary
+                              #:tag-key #:tag-keys #:tag-resource #:tag-value
+                              #:untag-resource
                               #:update-cloud-exadata-infrastructure
-                              #:update-cloud-exadata-infrastructure-input
-                              #:update-cloud-exadata-infrastructure-output
-                              #:update-odb-network #:update-odb-network-input
-                              #:update-odb-network-output
-                              #:validation-exception
-                              #:validation-exception-field
+                              #:update-odb-network #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vpc-endpoint-type
                               #:weeks-of-month #:zero-etl-access))

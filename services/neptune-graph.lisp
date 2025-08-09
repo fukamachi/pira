@@ -1,36 +1,18 @@
 (uiop/package:define-package #:pira/neptune-graph (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-neptune-graph #:arn
+                             (:export #:amazon-neptune-graph #:arn
                               #:blank-node-handling #:cancel-export-task
-                              #:cancel-export-task-input
-                              #:cancel-export-task-output #:cancel-import-task
-                              #:cancel-import-task-input
-                              #:cancel-import-task-output #:cancel-query
-                              #:cancel-query-input #:conflict-exception
+                              #:cancel-import-task #:cancel-query
                               #:conflict-exception-reason #:create-graph
-                              #:create-graph-input #:create-graph-output
                               #:create-graph-snapshot
-                              #:create-graph-snapshot-input
-                              #:create-graph-snapshot-output
                               #:create-graph-using-import-task
-                              #:create-graph-using-import-task-input
-                              #:create-graph-using-import-task-output
-                              #:create-private-graph-endpoint
-                              #:create-private-graph-endpoint-input
-                              #:create-private-graph-endpoint-output
-                              #:delete-graph #:delete-graph-input
-                              #:delete-graph-output #:delete-graph-snapshot
-                              #:delete-graph-snapshot-input
-                              #:delete-graph-snapshot-output
+                              #:create-private-graph-endpoint #:delete-graph
+                              #:delete-graph-snapshot
                               #:delete-private-graph-endpoint
-                              #:delete-private-graph-endpoint-input
-                              #:delete-private-graph-endpoint-output
                               #:document-valued-map #:edge-labels
                               #:edge-properties #:edge-structure
-                              #:edge-structures #:execute-query
-                              #:execute-query-input #:execute-query-output
-                              #:explain-mode #:export-filter
-                              #:export-filter-element #:export-filter-label
+                              #:edge-structures #:execute-query #:explain-mode
+                              #:export-filter #:export-filter-element
+                              #:export-filter-label
                               #:export-filter-output-data-type
                               #:export-filter-output-property-name
                               #:export-filter-per-label-map
@@ -40,19 +22,10 @@
                               #:export-format #:export-task-details
                               #:export-task-id #:export-task-status
                               #:export-task-summary #:export-task-summary-list
-                              #:format #:get-export-task
-                              #:get-export-task-input #:get-export-task-output
-                              #:get-graph #:get-graph-input #:get-graph-output
-                              #:get-graph-snapshot #:get-graph-snapshot-input
-                              #:get-graph-snapshot-output #:get-graph-summary
-                              #:get-graph-summary-input
-                              #:get-graph-summary-output #:get-import-task
-                              #:get-import-task-input #:get-import-task-output
-                              #:get-private-graph-endpoint
-                              #:get-private-graph-endpoint-input
-                              #:get-private-graph-endpoint-output #:get-query
-                              #:get-query-input #:get-query-output
-                              #:graph-data-summary #:graph-id
+                              #:format #:get-export-task #:get-graph
+                              #:get-graph-snapshot #:get-graph-summary
+                              #:get-import-task #:get-private-graph-endpoint
+                              #:get-query #:graph-data-summary #:graph-id
                               #:graph-identifier #:graph-name #:graph-resource
                               #:graph-snapshot-summary
                               #:graph-snapshot-summary-list #:graph-status
@@ -60,21 +33,11 @@
                               #:graph-summary-mode #:import-options
                               #:import-task-details #:import-task-status
                               #:import-task-summary #:import-task-summary-list
-                              #:internal-server-exception #:kms-key-arn
-                              #:list-export-tasks #:list-export-tasks-input
-                              #:list-export-tasks-output #:list-graph-snapshots
-                              #:list-graph-snapshots-input
-                              #:list-graph-snapshots-output #:list-graphs
-                              #:list-graphs-input #:list-graphs-output
-                              #:list-import-tasks #:list-import-tasks-input
-                              #:list-import-tasks-output
-                              #:list-private-graph-endpoints
-                              #:list-private-graph-endpoints-input
-                              #:list-private-graph-endpoints-output
-                              #:list-queries #:list-queries-input
-                              #:list-queries-output #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:long-valued-map
+                              #:kms-key-arn #:list-export-tasks
+                              #:list-graph-snapshots #:list-graphs
+                              #:list-import-tasks
+                              #:list-private-graph-endpoints #:list-queries
+                              #:list-tags-for-resource #:long-valued-map
                               #:long-valued-map-list #:max-results
                               #:multi-value-handling-type
                               #:neptune-import-options #:node-labels
@@ -90,29 +53,16 @@
                               #:query-response-blob #:query-state
                               #:query-state-input #:query-summary
                               #:query-summary-list #:replica-count
-                              #:reset-graph #:reset-graph-input
-                              #:reset-graph-output
-                              #:resource-not-found-exception
-                              #:restore-graph-from-snapshot
-                              #:restore-graph-from-snapshot-input
-                              #:restore-graph-from-snapshot-output #:role-arn
-                              #:security-group-id #:security-group-ids
-                              #:service-quota-exceeded-exception #:snapshot-id
+                              #:reset-graph #:restore-graph-from-snapshot
+                              #:role-arn #:security-group-id
+                              #:security-group-ids #:snapshot-id
                               #:snapshot-identifier #:snapshot-name
                               #:snapshot-resource #:snapshot-status
-                              #:start-export-task #:start-export-task-input
-                              #:start-export-task-output #:start-import-task
-                              #:start-import-task-input
-                              #:start-import-task-output #:subnet-id
-                              #:subnet-ids #:tag-key #:tag-key-list #:tag-map
-                              #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:tag-value #:task-id
-                              #:task-resource #:throttling-exception
-                              #:unprocessable-exception
-                              #:unprocessable-exception-reason #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:update-graph #:update-graph-input
-                              #:update-graph-output #:validation-exception
+                              #:start-export-task #:start-import-task
+                              #:subnet-id #:subnet-ids #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-value #:task-id
+                              #:task-resource #:unprocessable-exception-reason
+                              #:untag-resource #:update-graph
                               #:validation-exception-reason
                               #:vector-search-configuration
                               #:vector-search-dimension #:vpc-endpoint-id

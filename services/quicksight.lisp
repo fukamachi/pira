@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/quicksight (:use)
-                             (:export #:access-denied-exception
-                              #:account-customization #:account-info
+                             (:export #:account-customization #:account-info
                               #:account-name #:account-settings #:action-list
                               #:active-iampolicy-assignment
                               #:active-iampolicy-assignment-list
@@ -184,11 +183,7 @@
                               #:bar-chart-sort-configuration #:bar-chart-visual
                               #:bars-arrangement #:base-map-style-type
                               #:batch-create-topic-reviewed-answer
-                              #:batch-create-topic-reviewed-answer-request
-                              #:batch-create-topic-reviewed-answer-response
                               #:batch-delete-topic-reviewed-answer
-                              #:batch-delete-topic-reviewed-answer-request
-                              #:batch-delete-topic-reviewed-answer-response
                               #:big-query-parameters #:bin-count-limit
                               #:bin-count-options #:bin-count-value
                               #:bin-width-options #:bin-width-value
@@ -221,8 +216,7 @@
                               #:calculated-field-expression
                               #:calculated-field-reference-list
                               #:calculated-fields #:calculated-measure-field
-                              #:cancel-ingestion #:cancel-ingestion-request
-                              #:cancel-ingestion-response #:capabilities
+                              #:cancel-ingestion #:capabilities
                               #:capability-state
                               #:cascading-control-configuration
                               #:cascading-control-source
@@ -272,7 +266,6 @@
                               #:comparison-format-configuration
                               #:comparison-method #:comparison-method-type
                               #:computation #:computation-list
-                              #:concurrent-updating-exception
                               #:conditional-formatting-color
                               #:conditional-formatting-custom-icon-condition
                               #:conditional-formatting-custom-icon-options
@@ -283,8 +276,8 @@
                               #:conditional-formatting-icon-set
                               #:conditional-formatting-icon-set-type
                               #:conditional-formatting-solid-color
-                              #:conflict-exception #:constant-type
-                              #:constant-value-string #:context-menu-option
+                              #:constant-type #:constant-value-string
+                              #:context-menu-option
                               #:contribution-analysis-default
                               #:contribution-analysis-default-list
                               #:contribution-analysis-direction
@@ -294,62 +287,21 @@
                               #:contribution-analysis-time-ranges
                               #:contributor-dimension-list #:copy-source-arn
                               #:create-account-customization
-                              #:create-account-customization-request
-                              #:create-account-customization-response
-                              #:create-account-subscription
-                              #:create-account-subscription-request
-                              #:create-account-subscription-response
-                              #:create-analysis #:create-analysis-request
-                              #:create-analysis-response #:create-brand
-                              #:create-brand-request #:create-brand-response
-                              #:create-columns-operation
-                              #:create-custom-permissions
-                              #:create-custom-permissions-request
-                              #:create-custom-permissions-response
-                              #:create-dashboard #:create-dashboard-request
-                              #:create-dashboard-response #:create-data-set
-                              #:create-data-set-request
-                              #:create-data-set-response #:create-data-source
-                              #:create-data-source-request
-                              #:create-data-source-response #:create-folder
-                              #:create-folder-membership
-                              #:create-folder-membership-request
-                              #:create-folder-membership-response
-                              #:create-folder-request #:create-folder-response
+                              #:create-account-subscription #:create-analysis
+                              #:create-brand #:create-columns-operation
+                              #:create-custom-permissions #:create-dashboard
+                              #:create-data-set #:create-data-source
+                              #:create-folder #:create-folder-membership
                               #:create-group #:create-group-membership
-                              #:create-group-membership-request
-                              #:create-group-membership-response
-                              #:create-group-request #:create-group-response
-                              #:create-iampolicy-assignment
-                              #:create-iampolicy-assignment-request
-                              #:create-iampolicy-assignment-response
-                              #:create-ingestion #:create-ingestion-request
-                              #:create-ingestion-response #:create-namespace
-                              #:create-namespace-request
-                              #:create-namespace-response
-                              #:create-refresh-schedule
-                              #:create-refresh-schedule-request
-                              #:create-refresh-schedule-response
-                              #:create-role-membership
-                              #:create-role-membership-request
-                              #:create-role-membership-response
-                              #:create-template #:create-template-alias
-                              #:create-template-alias-request
-                              #:create-template-alias-response
-                              #:create-template-request
-                              #:create-template-response #:create-theme
-                              #:create-theme-alias #:create-theme-alias-request
-                              #:create-theme-alias-response
-                              #:create-theme-request #:create-theme-response
-                              #:create-topic #:create-topic-refresh-schedule
-                              #:create-topic-refresh-schedule-request
-                              #:create-topic-refresh-schedule-response
-                              #:create-topic-request #:create-topic-response
+                              #:create-iampolicy-assignment #:create-ingestion
+                              #:create-namespace #:create-refresh-schedule
+                              #:create-role-membership #:create-template
+                              #:create-template-alias #:create-theme
+                              #:create-theme-alias #:create-topic
+                              #:create-topic-refresh-schedule
                               #:create-topic-reviewed-answer
                               #:create-topic-reviewed-answers
-                              #:create-vpcconnection
-                              #:create-vpcconnection-request
-                              #:create-vpcconnection-response #:credential-pair
+                              #:create-vpcconnection #:credential-pair
                               #:cross-dataset-types #:currency-code
                               #:currency-display-format-configuration
                               #:custom-action-column-list
@@ -370,7 +322,6 @@
                               #:custom-permissions-list
                               #:custom-permissions-name #:custom-sql
                               #:custom-sql-name #:custom-values-configuration
-                              #:customer-managed-key-unavailable-exception
                               #:dashboard #:dashboard-behavior
                               #:dashboard-error #:dashboard-error-list
                               #:dashboard-error-type
@@ -475,229 +426,75 @@
                               #:default-text-area-control-options
                               #:default-text-field-control-options
                               #:delete-account-customization
-                              #:delete-account-customization-request
-                              #:delete-account-customization-response
-                              #:delete-account-subscription
-                              #:delete-account-subscription-request
-                              #:delete-account-subscription-response
-                              #:delete-analysis #:delete-analysis-request
-                              #:delete-analysis-response #:delete-brand
-                              #:delete-brand-assignment
-                              #:delete-brand-assignment-request
-                              #:delete-brand-assignment-response
-                              #:delete-brand-request #:delete-brand-response
-                              #:delete-custom-permissions
-                              #:delete-custom-permissions-request
-                              #:delete-custom-permissions-response
-                              #:delete-dashboard #:delete-dashboard-request
-                              #:delete-dashboard-response #:delete-data-set
+                              #:delete-account-subscription #:delete-analysis
+                              #:delete-brand #:delete-brand-assignment
+                              #:delete-custom-permissions #:delete-dashboard
+                              #:delete-data-set
                               #:delete-data-set-refresh-properties
-                              #:delete-data-set-refresh-properties-request
-                              #:delete-data-set-refresh-properties-response
-                              #:delete-data-set-request
-                              #:delete-data-set-response #:delete-data-source
-                              #:delete-data-source-request
-                              #:delete-data-source-response
+                              #:delete-data-source
                               #:delete-default-qbusiness-application
-                              #:delete-default-qbusiness-application-request
-                              #:delete-default-qbusiness-application-response
                               #:delete-folder #:delete-folder-membership
-                              #:delete-folder-membership-request
-                              #:delete-folder-membership-response
-                              #:delete-folder-request #:delete-folder-response
                               #:delete-group #:delete-group-membership
-                              #:delete-group-membership-request
-                              #:delete-group-membership-response
-                              #:delete-group-request #:delete-group-response
                               #:delete-iampolicy-assignment
-                              #:delete-iampolicy-assignment-request
-                              #:delete-iampolicy-assignment-response
                               #:delete-identity-propagation-config
-                              #:delete-identity-propagation-config-request
-                              #:delete-identity-propagation-config-response
-                              #:delete-namespace #:delete-namespace-request
-                              #:delete-namespace-response
-                              #:delete-refresh-schedule
-                              #:delete-refresh-schedule-request
-                              #:delete-refresh-schedule-response
+                              #:delete-namespace #:delete-refresh-schedule
                               #:delete-role-custom-permission
-                              #:delete-role-custom-permission-request
-                              #:delete-role-custom-permission-response
-                              #:delete-role-membership
-                              #:delete-role-membership-request
-                              #:delete-role-membership-response
-                              #:delete-template #:delete-template-alias
-                              #:delete-template-alias-request
-                              #:delete-template-alias-response
-                              #:delete-template-request
-                              #:delete-template-response #:delete-theme
-                              #:delete-theme-alias #:delete-theme-alias-request
-                              #:delete-theme-alias-response
-                              #:delete-theme-request #:delete-theme-response
-                              #:delete-topic #:delete-topic-refresh-schedule
-                              #:delete-topic-refresh-schedule-request
-                              #:delete-topic-refresh-schedule-response
-                              #:delete-topic-request #:delete-topic-response
-                              #:delete-user #:delete-user-by-principal-id
-                              #:delete-user-by-principal-id-request
-                              #:delete-user-by-principal-id-response
+                              #:delete-role-membership #:delete-template
+                              #:delete-template-alias #:delete-theme
+                              #:delete-theme-alias #:delete-topic
+                              #:delete-topic-refresh-schedule #:delete-user
+                              #:delete-user-by-principal-id
                               #:delete-user-custom-permission
-                              #:delete-user-custom-permission-request
-                              #:delete-user-custom-permission-response
-                              #:delete-user-request #:delete-user-response
-                              #:delete-vpcconnection
-                              #:delete-vpcconnection-request
-                              #:delete-vpcconnection-response #:delimiter
+                              #:delete-vpcconnection #:delimiter
                               #:describe-account-customization
-                              #:describe-account-customization-request
-                              #:describe-account-customization-response
                               #:describe-account-settings
-                              #:describe-account-settings-request
-                              #:describe-account-settings-response
                               #:describe-account-subscription
-                              #:describe-account-subscription-request
-                              #:describe-account-subscription-response
                               #:describe-analysis
                               #:describe-analysis-definition
-                              #:describe-analysis-definition-request
-                              #:describe-analysis-definition-response
                               #:describe-analysis-permissions
-                              #:describe-analysis-permissions-request
-                              #:describe-analysis-permissions-response
-                              #:describe-analysis-request
-                              #:describe-analysis-response
                               #:describe-asset-bundle-export-job
-                              #:describe-asset-bundle-export-job-request
-                              #:describe-asset-bundle-export-job-response
                               #:describe-asset-bundle-import-job
-                              #:describe-asset-bundle-import-job-request
-                              #:describe-asset-bundle-import-job-response
                               #:describe-brand #:describe-brand-assignment
-                              #:describe-brand-assignment-request
-                              #:describe-brand-assignment-response
                               #:describe-brand-published-version
-                              #:describe-brand-published-version-request
-                              #:describe-brand-published-version-response
-                              #:describe-brand-request
-                              #:describe-brand-response
                               #:describe-custom-permissions
-                              #:describe-custom-permissions-request
-                              #:describe-custom-permissions-response
                               #:describe-dashboard
                               #:describe-dashboard-definition
-                              #:describe-dashboard-definition-request
-                              #:describe-dashboard-definition-response
                               #:describe-dashboard-permissions
-                              #:describe-dashboard-permissions-request
-                              #:describe-dashboard-permissions-response
-                              #:describe-dashboard-request
-                              #:describe-dashboard-response
                               #:describe-dashboard-snapshot-job
-                              #:describe-dashboard-snapshot-job-request
-                              #:describe-dashboard-snapshot-job-response
                               #:describe-dashboard-snapshot-job-result
-                              #:describe-dashboard-snapshot-job-result-request
-                              #:describe-dashboard-snapshot-job-result-response
                               #:describe-dashboards-qaconfiguration
-                              #:describe-dashboards-qaconfiguration-request
-                              #:describe-dashboards-qaconfiguration-response
                               #:describe-data-set
                               #:describe-data-set-permissions
-                              #:describe-data-set-permissions-request
-                              #:describe-data-set-permissions-response
                               #:describe-data-set-refresh-properties
-                              #:describe-data-set-refresh-properties-request
-                              #:describe-data-set-refresh-properties-response
-                              #:describe-data-set-request
-                              #:describe-data-set-response
                               #:describe-data-source
                               #:describe-data-source-permissions
-                              #:describe-data-source-permissions-request
-                              #:describe-data-source-permissions-response
-                              #:describe-data-source-request
-                              #:describe-data-source-response
                               #:describe-default-qbusiness-application
-                              #:describe-default-qbusiness-application-request
-                              #:describe-default-qbusiness-application-response
                               #:describe-folder #:describe-folder-permissions
-                              #:describe-folder-permissions-request
-                              #:describe-folder-permissions-response
-                              #:describe-folder-request
                               #:describe-folder-resolved-permissions
-                              #:describe-folder-resolved-permissions-request
-                              #:describe-folder-resolved-permissions-response
-                              #:describe-folder-response #:describe-group
-                              #:describe-group-membership
-                              #:describe-group-membership-request
-                              #:describe-group-membership-response
-                              #:describe-group-request
-                              #:describe-group-response
+                              #:describe-group #:describe-group-membership
                               #:describe-iampolicy-assignment
-                              #:describe-iampolicy-assignment-request
-                              #:describe-iampolicy-assignment-response
-                              #:describe-ingestion #:describe-ingestion-request
-                              #:describe-ingestion-response
-                              #:describe-ip-restriction
-                              #:describe-ip-restriction-request
-                              #:describe-ip-restriction-response
-                              #:describe-key-registration
-                              #:describe-key-registration-request
-                              #:describe-key-registration-response
-                              #:describe-namespace #:describe-namespace-request
-                              #:describe-namespace-response
+                              #:describe-ingestion #:describe-ip-restriction
+                              #:describe-key-registration #:describe-namespace
                               #:describe-qpersonalization-configuration
-                              #:describe-qpersonalization-configuration-request
-                              #:describe-qpersonalization-configuration-response
                               #:describe-quick-sight-qsearch-configuration
-                              #:describe-quick-sight-qsearch-configuration-request
-                              #:describe-quick-sight-qsearch-configuration-response
                               #:describe-refresh-schedule
-                              #:describe-refresh-schedule-request
-                              #:describe-refresh-schedule-response
                               #:describe-role-custom-permission
-                              #:describe-role-custom-permission-request
-                              #:describe-role-custom-permission-response
                               #:describe-template #:describe-template-alias
-                              #:describe-template-alias-request
-                              #:describe-template-alias-response
                               #:describe-template-definition
-                              #:describe-template-definition-request
-                              #:describe-template-definition-response
-                              #:describe-template-permissions
-                              #:describe-template-permissions-request
-                              #:describe-template-permissions-response
-                              #:describe-template-request
-                              #:describe-template-response #:describe-theme
+                              #:describe-template-permissions #:describe-theme
                               #:describe-theme-alias
-                              #:describe-theme-alias-request
-                              #:describe-theme-alias-response
-                              #:describe-theme-permissions
-                              #:describe-theme-permissions-request
-                              #:describe-theme-permissions-response
-                              #:describe-theme-request
-                              #:describe-theme-response #:describe-topic
+                              #:describe-theme-permissions #:describe-topic
                               #:describe-topic-permissions
-                              #:describe-topic-permissions-request
-                              #:describe-topic-permissions-response
                               #:describe-topic-refresh
-                              #:describe-topic-refresh-request
-                              #:describe-topic-refresh-response
-                              #:describe-topic-refresh-schedule
-                              #:describe-topic-refresh-schedule-request
-                              #:describe-topic-refresh-schedule-response
-                              #:describe-topic-request
-                              #:describe-topic-response #:describe-user
-                              #:describe-user-request #:describe-user-response
-                              #:describe-vpcconnection
-                              #:describe-vpcconnection-request
-                              #:describe-vpcconnection-response #:description
+                              #:describe-topic-refresh-schedule #:describe-user
+                              #:describe-vpcconnection #:description
                               #:destination-parameter-value-configuration
                               #:digit-grouping-style #:dimension-field
                               #:dimension-field-list #:display-format
                               #:display-format-options #:dns-resolver-list
-                              #:domain #:domain-not-whitelisted-exception
-                              #:donut-center-options #:donut-options #:double
-                              #:drill-down-filter #:drill-down-filter-list
+                              #:domain #:donut-center-options #:donut-options
+                              #:double #:drill-down-filter
+                              #:drill-down-filter-list
                               #:drop-down-control-display-options
                               #:dynamic-default-value #:edition
                               #:embedding-identity-type #:embedding-url
@@ -793,14 +590,8 @@
                               #:gauge-chart-primary-value-conditional-formatting
                               #:gauge-chart-visual
                               #:generate-embed-url-for-anonymous-user
-                              #:generate-embed-url-for-anonymous-user-request
-                              #:generate-embed-url-for-anonymous-user-response
                               #:generate-embed-url-for-registered-user
-                              #:generate-embed-url-for-registered-user-request
-                              #:generate-embed-url-for-registered-user-response
                               #:generate-embed-url-for-registered-user-with-identity
-                              #:generate-embed-url-for-registered-user-with-identity-request
-                              #:generate-embed-url-for-registered-user-with-identity-response
                               #:generated-answer-result
                               #:generated-answer-status
                               #:generative-authoring-configurations
@@ -853,12 +644,7 @@
                               #:geospatial-solid-color
                               #:geospatial-static-file-source
                               #:geospatial-width #:geospatial-window-options
-                              #:get-dashboard-embed-url
-                              #:get-dashboard-embed-url-request
-                              #:get-dashboard-embed-url-response
-                              #:get-session-embed-url
-                              #:get-session-embed-url-request
-                              #:get-session-embed-url-response
+                              #:get-dashboard-embed-url #:get-session-embed-url
                               #:global-table-border-options #:gradient-color
                               #:gradient-stop #:gradient-stop-list
                               #:grid-layout-canvas-size-options
@@ -898,10 +684,8 @@
                               #:identity-center-configuration #:identity-map
                               #:identity-name #:identity-name-list
                               #:identity-provider-resource-uri #:identity-store
-                              #:identity-type
-                              #:identity-type-not-supported-exception #:image
-                              #:image-configuration #:image-custom-action
-                              #:image-custom-action-list
+                              #:identity-type #:image #:image-configuration
+                              #:image-custom-action #:image-custom-action-list
                               #:image-custom-action-name
                               #:image-custom-action-operation
                               #:image-custom-action-operation-list
@@ -930,11 +714,6 @@
                               #:integer-parameter-declaration
                               #:integer-parameter-list
                               #:integer-value-when-unset-configuration
-                              #:internal-failure-exception
-                              #:internal-server-exception
-                              #:invalid-next-token-exception
-                              #:invalid-parameter-value-exception
-                              #:invalid-request-exception
                               #:invalid-topic-reviewed-answer
                               #:invalid-topic-reviewed-answers
                               #:ip-restriction-rule-description
@@ -964,7 +743,7 @@
                               #:layout #:layout-configuration
                               #:layout-element-type #:layout-list
                               #:legend-options #:legend-position #:length
-                              #:limit-exceeded-exception #:limited-string
+                              #:limited-string
                               #:line-chart-aggregated-field-wells
                               #:line-chart-configuration
                               #:line-chart-default-series-settings
@@ -978,93 +757,30 @@
                               #:line-series-axis-display-options
                               #:link-entity-arn #:link-entity-arn-list
                               #:link-sharing-configuration #:list-analyses
-                              #:list-analyses-request #:list-analyses-response
                               #:list-asset-bundle-export-jobs
-                              #:list-asset-bundle-export-jobs-request
-                              #:list-asset-bundle-export-jobs-response
-                              #:list-asset-bundle-import-jobs
-                              #:list-asset-bundle-import-jobs-request
-                              #:list-asset-bundle-import-jobs-response
-                              #:list-brands #:list-brands-request
-                              #:list-brands-response
+                              #:list-asset-bundle-import-jobs #:list-brands
                               #:list-control-display-options
                               #:list-control-search-options
                               #:list-control-select-all-options
                               #:list-custom-permissions
-                              #:list-custom-permissions-request
-                              #:list-custom-permissions-response
-                              #:list-dashboard-versions
-                              #:list-dashboard-versions-request
-                              #:list-dashboard-versions-response
-                              #:list-dashboards #:list-dashboards-request
-                              #:list-dashboards-response #:list-data-sets
-                              #:list-data-sets-request
-                              #:list-data-sets-response #:list-data-sources
-                              #:list-data-sources-request
-                              #:list-data-sources-response
-                              #:list-folder-members
-                              #:list-folder-members-request
-                              #:list-folder-members-response #:list-folders
+                              #:list-dashboard-versions #:list-dashboards
+                              #:list-data-sets #:list-data-sources
+                              #:list-folder-members #:list-folders
                               #:list-folders-for-resource
-                              #:list-folders-for-resource-request
-                              #:list-folders-for-resource-response
-                              #:list-folders-request #:list-folders-response
-                              #:list-group-memberships
-                              #:list-group-memberships-request
-                              #:list-group-memberships-response #:list-groups
-                              #:list-groups-request #:list-groups-response
+                              #:list-group-memberships #:list-groups
                               #:list-iampolicy-assignments
                               #:list-iampolicy-assignments-for-user
-                              #:list-iampolicy-assignments-for-user-request
-                              #:list-iampolicy-assignments-for-user-response
-                              #:list-iampolicy-assignments-request
-                              #:list-iampolicy-assignments-response
                               #:list-identity-propagation-configs
-                              #:list-identity-propagation-configs-request
-                              #:list-identity-propagation-configs-response
                               #:list-identity-propagation-max-results
-                              #:list-ingestions #:list-ingestions-request
-                              #:list-ingestions-response #:list-namespaces
-                              #:list-namespaces-request
-                              #:list-namespaces-response
-                              #:list-refresh-schedules
-                              #:list-refresh-schedules-request
-                              #:list-refresh-schedules-response
-                              #:list-role-memberships
-                              #:list-role-memberships-request
-                              #:list-role-memberships-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-template-aliases
-                              #:list-template-aliases-request
-                              #:list-template-aliases-response
-                              #:list-template-versions
-                              #:list-template-versions-request
-                              #:list-template-versions-response
-                              #:list-templates #:list-templates-request
-                              #:list-templates-response #:list-theme-aliases
-                              #:list-theme-aliases-request
-                              #:list-theme-aliases-response
-                              #:list-theme-versions
-                              #:list-theme-versions-request
-                              #:list-theme-versions-response #:list-themes
-                              #:list-themes-request #:list-themes-response
-                              #:list-topic-refresh-schedules
-                              #:list-topic-refresh-schedules-request
-                              #:list-topic-refresh-schedules-response
-                              #:list-topic-reviewed-answers
-                              #:list-topic-reviewed-answers-request
-                              #:list-topic-reviewed-answers-response
-                              #:list-topics #:list-topics-request
-                              #:list-topics-response #:list-user-groups
-                              #:list-user-groups-request
-                              #:list-user-groups-response #:list-users
-                              #:list-users-request #:list-users-response
-                              #:list-vpcconnections
-                              #:list-vpcconnections-request
-                              #:list-vpcconnections-response
-                              #:loading-animation
+                              #:list-ingestions #:list-namespaces
+                              #:list-refresh-schedules #:list-role-memberships
+                              #:list-tags-for-resource #:list-template-aliases
+                              #:list-template-versions #:list-templates
+                              #:list-theme-aliases #:list-theme-versions
+                              #:list-themes #:list-topic-refresh-schedules
+                              #:list-topic-reviewed-answers #:list-topics
+                              #:list-user-groups #:list-users
+                              #:list-vpcconnections #:loading-animation
                               #:local-navigation-configuration #:logical-table
                               #:logical-table-alias #:logical-table-id
                               #:logical-table-map #:logical-table-source #:logo
@@ -1199,28 +915,21 @@
                               #:plugin-visual-sort-configuration
                               #:plugin-visual-table-query-sort #:port
                               #:positive-integer #:positive-long
-                              #:postgre-sql-parameters
-                              #:precondition-not-met-exception
-                              #:predefined-hierarchy
+                              #:postgre-sql-parameters #:predefined-hierarchy
                               #:predefined-hierarchy-column-list
-                              #:predict-qaresults #:predict-qaresults-request
-                              #:predict-qaresults-response
-                              #:prediction-interval #:prefix
-                              #:presto-parameters #:primary-value-display-type
-                              #:principal #:principal-list
-                              #:progress-bar-options #:project-id
-                              #:project-operation #:projected-column-list
-                              #:property-role #:property-usage #:purchase-mode
-                              #:put-data-set-refresh-properties
-                              #:put-data-set-refresh-properties-request
-                              #:put-data-set-refresh-properties-response
-                              #:qaquery-text #:qaresult #:qaresult-type
-                              #:qaresults #:qaurl #:qbusiness-insights-status
-                              #:qsearch-status #:query #:query-execution-mode
+                              #:predict-qaresults #:prediction-interval
+                              #:prefix #:presto-parameters
+                              #:primary-value-display-type #:principal
+                              #:principal-list #:progress-bar-options
+                              #:project-id #:project-operation
+                              #:projected-column-list #:property-role
+                              #:property-usage #:purchase-mode
+                              #:put-data-set-refresh-properties #:qaquery-text
+                              #:qaresult #:qaresult-type #:qaresults #:qaurl
+                              #:qbusiness-insights-status #:qsearch-status
+                              #:query #:query-execution-mode
                               #:query-execution-options #:question-id
-                              #:queue-info
-                              #:quick-sight-user-not-found-exception
-                              #:quick-sight-20180401
+                              #:queue-info #:quick-sight-20180401
                               #:radar-chart-aggregated-field-wells
                               #:radar-chart-area-style-settings
                               #:radar-chart-axes-range-scale
@@ -1257,7 +966,6 @@
                               #:refresh-failure-email-alert #:refresh-frequency
                               #:refresh-interval #:refresh-schedule
                               #:refresh-schedules #:register-user
-                              #:register-user-request #:register-user-response
                               #:registered-customer-managed-key
                               #:registered-user-console-feature-configurations
                               #:registered-user-dashboard-embedding-configuration
@@ -1272,14 +980,9 @@
                               #:relative-date-time-control-display-options
                               #:relative-date-type #:relative-dates-filter
                               #:relative-font-size #:rename-column-operation
-                              #:resize-option #:resource-exists-exception
-                              #:resource-id #:resource-name
-                              #:resource-not-found-exception
+                              #:resize-option #:resource-id #:resource-name
                               #:resource-permission #:resource-permission-list
-                              #:resource-status
-                              #:resource-unavailable-exception
-                              #:restore-analysis #:restore-analysis-request
-                              #:restore-analysis-response
+                              #:resource-status #:restore-analysis
                               #:restrictive-resource-id
                               #:reviewed-answer-error-code #:role #:role-arn
                               #:role-name #:role-session-name
@@ -1312,21 +1015,11 @@
                               #:scatter-plot-visual
                               #:schedule-refresh-on-entity
                               #:schedules-configurations #:scroll-bar-options
-                              #:search-analyses #:search-analyses-request
-                              #:search-analyses-response #:search-dashboards
-                              #:search-dashboards-request
-                              #:search-dashboards-response #:search-data-sets
-                              #:search-data-sets-request
-                              #:search-data-sets-response #:search-data-sources
-                              #:search-data-sources-request
-                              #:search-data-sources-response #:search-folders
-                              #:search-folders-request
-                              #:search-folders-response #:search-groups
-                              #:search-groups-request #:search-groups-response
-                              #:search-topics #:search-topics-request
-                              #:search-topics-response #:seasonality
-                              #:secondary-value-options #:secret-arn
-                              #:section-after-page-break
+                              #:search-analyses #:search-dashboards
+                              #:search-data-sets #:search-data-sources
+                              #:search-folders #:search-groups #:search-topics
+                              #:seasonality #:secondary-value-options
+                              #:secret-arn #:section-after-page-break
                               #:section-based-layout-canvas-size-options
                               #:section-based-layout-configuration
                               #:section-based-layout-paper-canvas-size-options
@@ -1347,7 +1040,6 @@
                               #:sensitive-timestamp-list #:series-item
                               #:series-item-list #:service-now-parameters
                               #:service-type #:session-lifetime-in-minutes
-                              #:session-lifetime-in-minutes-invalid-exception
                               #:session-tag #:session-tag-key
                               #:session-tag-key-list #:session-tag-list
                               #:session-tag-value
@@ -1426,17 +1118,9 @@
                               #:sql-server-parameters #:ssl-properties
                               #:starburst-parameters #:starburst-product-type
                               #:start-asset-bundle-export-job
-                              #:start-asset-bundle-export-job-request
-                              #:start-asset-bundle-export-job-response
                               #:start-asset-bundle-import-job
-                              #:start-asset-bundle-import-job-request
-                              #:start-asset-bundle-import-job-response
                               #:start-dashboard-snapshot-job
-                              #:start-dashboard-snapshot-job-request
-                              #:start-dashboard-snapshot-job-response
                               #:start-dashboard-snapshot-job-schedule
-                              #:start-dashboard-snapshot-job-schedule-request
-                              #:start-dashboard-snapshot-job-schedule-response
                               #:state-persistence-configurations #:static-file
                               #:static-file-list #:static-file-s3source-options
                               #:static-file-source
@@ -1491,7 +1175,6 @@
                               #:table-unaggregated-field-wells #:table-visual
                               #:tag #:tag-column-operation #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:target-visual-list
                               #:target-visual-options #:template
                               #:template-alias #:template-alias-list
@@ -1521,8 +1204,8 @@
                               #:theme-version-summary-list
                               #:thousand-separator-options
                               #:threshold-alerts-configurations
-                              #:throttling-exception #:tile-layout-style
-                              #:tile-style #:time-based-forecast-properties
+                              #:tile-layout-style #:tile-style
+                              #:time-based-forecast-properties
                               #:time-equality-filter #:time-granularity
                               #:time-range-drill-down-filter
                               #:time-range-filter #:time-range-filter-value
@@ -1591,130 +1274,42 @@
                               #:undefined-specified-value-type #:unicode-icon
                               #:unique-key #:unique-key-column-name-list
                               #:unique-key-list #:unique-values-computation
-                              #:unlimited-pixel-length
-                              #:unsupported-pricing-plan-exception
-                              #:unsupported-user-edition-exception
-                              #:untag-column-operation #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-account-customization
-                              #:update-account-customization-request
-                              #:update-account-customization-response
-                              #:update-account-settings
-                              #:update-account-settings-request
-                              #:update-account-settings-response
-                              #:update-analysis #:update-analysis-permissions
-                              #:update-analysis-permissions-request
-                              #:update-analysis-permissions-response
-                              #:update-analysis-request
-                              #:update-analysis-response
+                              #:unlimited-pixel-length #:untag-column-operation
+                              #:untag-resource #:update-account-customization
+                              #:update-account-settings #:update-analysis
+                              #:update-analysis-permissions
                               #:update-application-with-token-exchange-grant
-                              #:update-application-with-token-exchange-grant-request
-                              #:update-application-with-token-exchange-grant-response
                               #:update-brand #:update-brand-assignment
-                              #:update-brand-assignment-request
-                              #:update-brand-assignment-response
                               #:update-brand-published-version
-                              #:update-brand-published-version-request
-                              #:update-brand-published-version-response
-                              #:update-brand-request #:update-brand-response
-                              #:update-custom-permissions
-                              #:update-custom-permissions-request
-                              #:update-custom-permissions-response
-                              #:update-dashboard #:update-dashboard-links
-                              #:update-dashboard-links-request
-                              #:update-dashboard-links-response
+                              #:update-custom-permissions #:update-dashboard
+                              #:update-dashboard-links
                               #:update-dashboard-permissions
-                              #:update-dashboard-permissions-request
-                              #:update-dashboard-permissions-response
                               #:update-dashboard-published-version
-                              #:update-dashboard-published-version-request
-                              #:update-dashboard-published-version-response
-                              #:update-dashboard-request
-                              #:update-dashboard-response
                               #:update-dashboards-qaconfiguration
-                              #:update-dashboards-qaconfiguration-request
-                              #:update-dashboards-qaconfiguration-response
                               #:update-data-set #:update-data-set-permissions
-                              #:update-data-set-permissions-request
-                              #:update-data-set-permissions-response
-                              #:update-data-set-request
-                              #:update-data-set-response #:update-data-source
+                              #:update-data-source
                               #:update-data-source-permissions
-                              #:update-data-source-permissions-request
-                              #:update-data-source-permissions-response
-                              #:update-data-source-request
-                              #:update-data-source-response
                               #:update-default-qbusiness-application
-                              #:update-default-qbusiness-application-request
-                              #:update-default-qbusiness-application-response
                               #:update-folder #:update-folder-permissions
-                              #:update-folder-permissions-request
-                              #:update-folder-permissions-response
-                              #:update-folder-request #:update-folder-response
-                              #:update-group #:update-group-request
-                              #:update-group-response
-                              #:update-iampolicy-assignment
-                              #:update-iampolicy-assignment-request
-                              #:update-iampolicy-assignment-response
+                              #:update-group #:update-iampolicy-assignment
                               #:update-identity-propagation-config
-                              #:update-identity-propagation-config-request
-                              #:update-identity-propagation-config-response
-                              #:update-ip-restriction
-                              #:update-ip-restriction-request
-                              #:update-ip-restriction-response
-                              #:update-key-registration
-                              #:update-key-registration-request
-                              #:update-key-registration-response
+                              #:update-ip-restriction #:update-key-registration
                               #:update-link-permission-list
                               #:update-public-sharing-settings
-                              #:update-public-sharing-settings-request
-                              #:update-public-sharing-settings-response
                               #:update-qpersonalization-configuration
-                              #:update-qpersonalization-configuration-request
-                              #:update-qpersonalization-configuration-response
                               #:update-quick-sight-qsearch-configuration
-                              #:update-quick-sight-qsearch-configuration-request
-                              #:update-quick-sight-qsearch-configuration-response
                               #:update-refresh-schedule
-                              #:update-refresh-schedule-request
-                              #:update-refresh-schedule-response
                               #:update-resource-permission-list
                               #:update-role-custom-permission
-                              #:update-role-custom-permission-request
-                              #:update-role-custom-permission-response
                               #:update-spicecapacity-configuration
-                              #:update-spicecapacity-configuration-request
-                              #:update-spicecapacity-configuration-response
                               #:update-template #:update-template-alias
-                              #:update-template-alias-request
-                              #:update-template-alias-response
-                              #:update-template-permissions
-                              #:update-template-permissions-request
-                              #:update-template-permissions-response
-                              #:update-template-request
-                              #:update-template-response #:update-theme
-                              #:update-theme-alias #:update-theme-alias-request
-                              #:update-theme-alias-response
-                              #:update-theme-permissions
-                              #:update-theme-permissions-request
-                              #:update-theme-permissions-response
-                              #:update-theme-request #:update-theme-response
+                              #:update-template-permissions #:update-theme
+                              #:update-theme-alias #:update-theme-permissions
                               #:update-topic #:update-topic-permissions
-                              #:update-topic-permissions-request
-                              #:update-topic-permissions-response
-                              #:update-topic-refresh-schedule
-                              #:update-topic-refresh-schedule-request
-                              #:update-topic-refresh-schedule-response
-                              #:update-topic-request #:update-topic-response
-                              #:update-user #:update-user-custom-permission
-                              #:update-user-custom-permission-request
-                              #:update-user-custom-permission-response
-                              #:update-user-request #:update-user-response
-                              #:update-vpcconnection
-                              #:update-vpcconnection-request
-                              #:update-vpcconnection-response #:upload-settings
-                              #:user #:user-list #:user-name #:user-role
+                              #:update-topic-refresh-schedule #:update-user
+                              #:update-user-custom-permission
+                              #:update-vpcconnection #:upload-settings #:user
+                              #:user-list #:user-name #:user-role
                               #:vpcconnection
                               #:vpcconnection-availability-status
                               #:vpcconnection-resource-id-restricted

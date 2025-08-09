@@ -1,23 +1,11 @@
 (uiop/package:define-package #:pira/kinesis-analytics-v2 (:use)
                              (:export
                               #:add-application-cloud-watch-logging-option
-                              #:add-application-cloud-watch-logging-option-request
-                              #:add-application-cloud-watch-logging-option-response
                               #:add-application-input
                               #:add-application-input-processing-configuration
-                              #:add-application-input-processing-configuration-request
-                              #:add-application-input-processing-configuration-response
-                              #:add-application-input-request
-                              #:add-application-input-response
                               #:add-application-output
-                              #:add-application-output-request
-                              #:add-application-output-response
                               #:add-application-reference-data-source
-                              #:add-application-reference-data-source-request
-                              #:add-application-reference-data-source-response
                               #:add-application-vpc-configuration
-                              #:add-application-vpc-configuration-request
-                              #:add-application-vpc-configuration-response
                               #:application-code-configuration
                               #:application-code-configuration-description
                               #:application-code-configuration-update
@@ -64,61 +52,29 @@
                               #:cloud-watch-logging-options #:code-content
                               #:code-content-description #:code-content-type
                               #:code-content-update #:code-md5 #:code-size
-                              #:code-validation-exception
-                              #:concurrent-modification-exception
                               #:conditional-token #:configuration-type
                               #:create-application
                               #:create-application-presigned-url
-                              #:create-application-presigned-url-request
-                              #:create-application-presigned-url-response
-                              #:create-application-request
-                              #:create-application-response
                               #:create-application-snapshot
-                              #:create-application-snapshot-request
-                              #:create-application-snapshot-response
                               #:custom-artifact-configuration
                               #:custom-artifact-configuration-description
                               #:custom-artifacts-configuration-description-list
                               #:custom-artifacts-configuration-list
                               #:database-arn #:delete-application
                               #:delete-application-cloud-watch-logging-option
-                              #:delete-application-cloud-watch-logging-option-request
-                              #:delete-application-cloud-watch-logging-option-response
                               #:delete-application-input-processing-configuration
-                              #:delete-application-input-processing-configuration-request
-                              #:delete-application-input-processing-configuration-response
                               #:delete-application-output
-                              #:delete-application-output-request
-                              #:delete-application-output-response
                               #:delete-application-reference-data-source
-                              #:delete-application-reference-data-source-request
-                              #:delete-application-reference-data-source-response
-                              #:delete-application-request
-                              #:delete-application-response
                               #:delete-application-snapshot
-                              #:delete-application-snapshot-request
-                              #:delete-application-snapshot-response
                               #:delete-application-vpc-configuration
-                              #:delete-application-vpc-configuration-request
-                              #:delete-application-vpc-configuration-response
                               #:deploy-as-application-configuration
                               #:deploy-as-application-configuration-description
                               #:deploy-as-application-configuration-update
                               #:describe-application
                               #:describe-application-operation
-                              #:describe-application-operation-request
-                              #:describe-application-operation-response
-                              #:describe-application-request
-                              #:describe-application-response
                               #:describe-application-snapshot
-                              #:describe-application-snapshot-request
-                              #:describe-application-snapshot-response
                               #:describe-application-version
-                              #:describe-application-version-request
-                              #:describe-application-version-response
                               #:destination-schema #:discover-input-schema
-                              #:discover-input-schema-request
-                              #:discover-input-schema-response
                               #:environment-properties
                               #:environment-property-descriptions
                               #:environment-property-updates #:error-info
@@ -143,9 +99,6 @@
                               #:input-schema-update #:input-starting-position
                               #:input-starting-position-configuration
                               #:input-update #:input-updates #:inputs
-                              #:invalid-application-configuration-exception
-                              #:invalid-argument-exception
-                              #:invalid-request-exception
                               #:jsonmapping-parameters #:job-plan-description
                               #:kinesis-analytics-arn
                               #:kinesis-analytics-20180523
@@ -162,26 +115,16 @@
                               #:kinesis-streams-output-description
                               #:kinesis-streams-output-update #:lambda-output
                               #:lambda-output-description
-                              #:lambda-output-update #:limit-exceeded-exception
+                              #:lambda-output-update
                               #:list-application-operations
                               #:list-application-operations-input-limit
-                              #:list-application-operations-request
-                              #:list-application-operations-response
                               #:list-application-snapshots
-                              #:list-application-snapshots-request
-                              #:list-application-snapshots-response
                               #:list-application-versions
                               #:list-application-versions-input-limit
-                              #:list-application-versions-request
-                              #:list-application-versions-response
                               #:list-applications
                               #:list-applications-input-limit
-                              #:list-applications-request
-                              #:list-applications-response
                               #:list-snapshots-input-limit
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:log-level
+                              #:list-tags-for-resource #:log-level
                               #:log-stream-arn #:mapping-parameters
                               #:maven-artifact-id #:maven-group-id
                               #:maven-reference #:maven-version #:metrics-level
@@ -215,12 +158,7 @@
                               #:reference-data-source-update
                               #:reference-data-source-updates
                               #:reference-data-sources #:resource-arn
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:resource-provisioned-throughput-exceeded-exception
                               #:role-arn #:rollback-application
-                              #:rollback-application-request
-                              #:rollback-application-response
                               #:run-configuration
                               #:run-configuration-description
                               #:run-configuration-update #:runtime-environment
@@ -233,7 +171,6 @@
                               #:s3reference-data-source-description
                               #:s3reference-data-source-update
                               #:security-group-id #:security-group-ids
-                              #:service-unavailable-exception
                               #:session-expiration-duration-in-seconds
                               #:snapshot-details #:snapshot-name
                               #:snapshot-status #:snapshot-summaries
@@ -241,25 +178,13 @@
                               #:sql-application-configuration-description
                               #:sql-application-configuration-update
                               #:sql-run-configuration #:sql-run-configurations
-                              #:start-application #:start-application-request
-                              #:start-application-response #:stop-application
-                              #:stop-application-request
-                              #:stop-application-response #:subnet-id
-                              #:subnet-ids #:tag #:tag-key #:tag-keys
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
-                              #:text-content #:timestamp
-                              #:too-many-tags-exception
-                              #:unable-to-detect-schema-exception
-                              #:unsupported-operation-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-application
+                              #:start-application #:stop-application
+                              #:subnet-id #:subnet-ids #:tag #:tag-key
+                              #:tag-keys #:tag-resource #:tag-value #:tags
+                              #:text-content #:timestamp #:untag-resource
+                              #:update-application
                               #:update-application-maintenance-configuration
-                              #:update-application-maintenance-configuration-request
-                              #:update-application-maintenance-configuration-response
-                              #:update-application-request
-                              #:update-application-response #:url-type
-                              #:vpc-configuration
+                              #:url-type #:vpc-configuration
                               #:vpc-configuration-description
                               #:vpc-configuration-descriptions
                               #:vpc-configuration-update

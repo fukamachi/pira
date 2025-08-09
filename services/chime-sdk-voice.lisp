@@ -1,206 +1,87 @@
 (uiop/package:define-package #:pira/chime-sdk-voice (:use)
-                             (:export #:access-denied-exception #:address
-                              #:alexa-skill-id #:alexa-skill-id-list
-                              #:alexa-skill-status #:alpha2country-code
-                              #:area-code #:arn
+                             (:export #:address #:alexa-skill-id
+                              #:alexa-skill-id-list #:alexa-skill-status
+                              #:alpha2country-code #:area-code #:arn
                               #:associate-phone-numbers-with-voice-connector
                               #:associate-phone-numbers-with-voice-connector-group
-                              #:associate-phone-numbers-with-voice-connector-group-request
-                              #:associate-phone-numbers-with-voice-connector-group-response
-                              #:associate-phone-numbers-with-voice-connector-request
-                              #:associate-phone-numbers-with-voice-connector-response
-                              #:bad-request-exception
                               #:batch-delete-phone-number
-                              #:batch-delete-phone-number-request
-                              #:batch-delete-phone-number-response
-                              #:batch-update-phone-number
-                              #:batch-update-phone-number-request
-                              #:batch-update-phone-number-response #:boolean
+                              #:batch-update-phone-number #:boolean
                               #:call-details #:call-leg-type #:calling-name
                               #:calling-name-status #:calling-region
                               #:calling-region-list #:candidate-address
                               #:candidate-address-list #:capability
                               #:capability-list #:chime-sdktelephony-service
                               #:client-request-id #:confidence-score
-                              #:conflict-exception #:contact-center-system-type
+                              #:contact-center-system-type
                               #:contact-center-system-type-list #:country
                               #:country-list #:cps-limit
                               #:create-phone-number-order
-                              #:create-phone-number-order-request
-                              #:create-phone-number-order-response
                               #:create-proxy-session
-                              #:create-proxy-session-request
-                              #:create-proxy-session-response
                               #:create-sip-media-application
                               #:create-sip-media-application-call
-                              #:create-sip-media-application-call-request
-                              #:create-sip-media-application-call-response
-                              #:create-sip-media-application-request
-                              #:create-sip-media-application-response
-                              #:create-sip-rule #:create-sip-rule-request
-                              #:create-sip-rule-response
-                              #:create-voice-connector
+                              #:create-sip-rule #:create-voice-connector
                               #:create-voice-connector-group
-                              #:create-voice-connector-group-request
-                              #:create-voice-connector-group-response
-                              #:create-voice-connector-request
-                              #:create-voice-connector-response
                               #:create-voice-profile
-                              #:create-voice-profile-domain
-                              #:create-voice-profile-domain-request
-                              #:create-voice-profile-domain-response
-                              #:create-voice-profile-request
-                              #:create-voice-profile-response #:credential
+                              #:create-voice-profile-domain #:credential
                               #:credential-list
                               #:dnisemergency-calling-configuration
                               #:dnisemergency-calling-configuration-list
                               #:data-retention-in-hours #:delete-phone-number
-                              #:delete-phone-number-request
                               #:delete-proxy-session
-                              #:delete-proxy-session-request
-                              #:delete-sip-media-application
-                              #:delete-sip-media-application-request
-                              #:delete-sip-rule #:delete-sip-rule-request
+                              #:delete-sip-media-application #:delete-sip-rule
                               #:delete-voice-connector
                               #:delete-voice-connector-emergency-calling-configuration
-                              #:delete-voice-connector-emergency-calling-configuration-request
                               #:delete-voice-connector-external-systems-configuration
-                              #:delete-voice-connector-external-systems-configuration-request
                               #:delete-voice-connector-group
-                              #:delete-voice-connector-group-request
                               #:delete-voice-connector-origination
-                              #:delete-voice-connector-origination-request
                               #:delete-voice-connector-proxy
-                              #:delete-voice-connector-proxy-request
-                              #:delete-voice-connector-request
                               #:delete-voice-connector-streaming-configuration
-                              #:delete-voice-connector-streaming-configuration-request
                               #:delete-voice-connector-termination
                               #:delete-voice-connector-termination-credentials
-                              #:delete-voice-connector-termination-credentials-request
-                              #:delete-voice-connector-termination-request
                               #:delete-voice-profile
                               #:delete-voice-profile-domain
-                              #:delete-voice-profile-domain-request
-                              #:delete-voice-profile-request
                               #:disassociate-phone-numbers-from-voice-connector
                               #:disassociate-phone-numbers-from-voice-connector-group
-                              #:disassociate-phone-numbers-from-voice-connector-group-request
-                              #:disassociate-phone-numbers-from-voice-connector-group-response
-                              #:disassociate-phone-numbers-from-voice-connector-request
-                              #:disassociate-phone-numbers-from-voice-connector-response
                               #:e164phone-number #:e164phone-number-list
                               #:emergency-calling-configuration #:error-code
-                              #:external-systems-configuration
-                              #:forbidden-exception #:function-arn
+                              #:external-systems-configuration #:function-arn
                               #:geo-match-level #:geo-match-params
-                              #:get-global-settings
-                              #:get-global-settings-response #:get-phone-number
+                              #:get-global-settings #:get-phone-number
                               #:get-phone-number-order
-                              #:get-phone-number-order-request
-                              #:get-phone-number-order-response
-                              #:get-phone-number-request
-                              #:get-phone-number-response
-                              #:get-phone-number-settings
-                              #:get-phone-number-settings-response
-                              #:get-proxy-session #:get-proxy-session-request
-                              #:get-proxy-session-response
+                              #:get-phone-number-settings #:get-proxy-session
                               #:get-sip-media-application
                               #:get-sip-media-application-alexa-skill-configuration
-                              #:get-sip-media-application-alexa-skill-configuration-request
-                              #:get-sip-media-application-alexa-skill-configuration-response
                               #:get-sip-media-application-logging-configuration
-                              #:get-sip-media-application-logging-configuration-request
-                              #:get-sip-media-application-logging-configuration-response
-                              #:get-sip-media-application-request
-                              #:get-sip-media-application-response
-                              #:get-sip-rule #:get-sip-rule-request
-                              #:get-sip-rule-response #:get-speaker-search-task
-                              #:get-speaker-search-task-request
-                              #:get-speaker-search-task-response
+                              #:get-sip-rule #:get-speaker-search-task
                               #:get-voice-connector
                               #:get-voice-connector-emergency-calling-configuration
-                              #:get-voice-connector-emergency-calling-configuration-request
-                              #:get-voice-connector-emergency-calling-configuration-response
                               #:get-voice-connector-external-systems-configuration
-                              #:get-voice-connector-external-systems-configuration-request
-                              #:get-voice-connector-external-systems-configuration-response
                               #:get-voice-connector-group
-                              #:get-voice-connector-group-request
-                              #:get-voice-connector-group-response
                               #:get-voice-connector-logging-configuration
-                              #:get-voice-connector-logging-configuration-request
-                              #:get-voice-connector-logging-configuration-response
                               #:get-voice-connector-origination
-                              #:get-voice-connector-origination-request
-                              #:get-voice-connector-origination-response
                               #:get-voice-connector-proxy
-                              #:get-voice-connector-proxy-request
-                              #:get-voice-connector-proxy-response
-                              #:get-voice-connector-request
-                              #:get-voice-connector-response
                               #:get-voice-connector-streaming-configuration
-                              #:get-voice-connector-streaming-configuration-request
-                              #:get-voice-connector-streaming-configuration-response
                               #:get-voice-connector-termination
                               #:get-voice-connector-termination-health
-                              #:get-voice-connector-termination-health-request
-                              #:get-voice-connector-termination-health-response
-                              #:get-voice-connector-termination-request
-                              #:get-voice-connector-termination-response
                               #:get-voice-profile #:get-voice-profile-domain
-                              #:get-voice-profile-domain-request
-                              #:get-voice-profile-domain-response
-                              #:get-voice-profile-request
-                              #:get-voice-profile-response
-                              #:get-voice-tone-analysis-task
-                              #:get-voice-tone-analysis-task-request
-                              #:get-voice-tone-analysis-task-response
-                              #:gone-exception #:guid-string #:integer
-                              #:iso8601timestamp #:language-code
+                              #:get-voice-tone-analysis-task #:guid-string
+                              #:integer #:iso8601timestamp #:language-code
                               #:list-available-voice-connector-regions
-                              #:list-available-voice-connector-regions-response
-                              #:list-phone-number-orders
-                              #:list-phone-number-orders-request
-                              #:list-phone-number-orders-response
-                              #:list-phone-numbers #:list-phone-numbers-request
-                              #:list-phone-numbers-response
+                              #:list-phone-number-orders #:list-phone-numbers
                               #:list-proxy-sessions
-                              #:list-proxy-sessions-request
-                              #:list-proxy-sessions-response
-                              #:list-sip-media-applications
-                              #:list-sip-media-applications-request
-                              #:list-sip-media-applications-response
-                              #:list-sip-rules #:list-sip-rules-request
-                              #:list-sip-rules-response
+                              #:list-sip-media-applications #:list-sip-rules
                               #:list-supported-phone-number-countries
-                              #:list-supported-phone-number-countries-request
-                              #:list-supported-phone-number-countries-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-voice-connector-groups
-                              #:list-voice-connector-groups-request
-                              #:list-voice-connector-groups-response
                               #:list-voice-connector-termination-credentials
-                              #:list-voice-connector-termination-credentials-request
-                              #:list-voice-connector-termination-credentials-response
                               #:list-voice-connectors
-                              #:list-voice-connectors-request
-                              #:list-voice-connectors-response
                               #:list-voice-profile-domains
-                              #:list-voice-profile-domains-request
-                              #:list-voice-profile-domains-response
-                              #:list-voice-profiles
-                              #:list-voice-profiles-request
-                              #:list-voice-profiles-response
-                              #:logging-configuration
+                              #:list-voice-profiles #:logging-configuration
                               #:media-insights-configuration
                               #:next-token-string #:non-empty-string
                               #:non-empty-string128 #:non-empty-string256
-                              #:non-empty-string-list #:not-found-exception
-                              #:notification-target #:nullable-boolean
-                              #:number-selection-behavior
+                              #:non-empty-string-list #:notification-target
+                              #:nullable-boolean #:number-selection-behavior
                               #:ordered-phone-number
                               #:ordered-phone-number-list
                               #:ordered-phone-number-status #:origination
@@ -226,48 +107,22 @@
                               #:proxy-session-name-string
                               #:proxy-session-status #:proxy-sessions
                               #:put-sip-media-application-alexa-skill-configuration
-                              #:put-sip-media-application-alexa-skill-configuration-request
-                              #:put-sip-media-application-alexa-skill-configuration-response
                               #:put-sip-media-application-logging-configuration
-                              #:put-sip-media-application-logging-configuration-request
-                              #:put-sip-media-application-logging-configuration-response
                               #:put-voice-connector-emergency-calling-configuration
-                              #:put-voice-connector-emergency-calling-configuration-request
-                              #:put-voice-connector-emergency-calling-configuration-response
                               #:put-voice-connector-external-systems-configuration
-                              #:put-voice-connector-external-systems-configuration-request
-                              #:put-voice-connector-external-systems-configuration-response
                               #:put-voice-connector-logging-configuration
-                              #:put-voice-connector-logging-configuration-request
-                              #:put-voice-connector-logging-configuration-response
                               #:put-voice-connector-origination
-                              #:put-voice-connector-origination-request
-                              #:put-voice-connector-origination-response
                               #:put-voice-connector-proxy
-                              #:put-voice-connector-proxy-request
-                              #:put-voice-connector-proxy-response
                               #:put-voice-connector-streaming-configuration
-                              #:put-voice-connector-streaming-configuration-request
-                              #:put-voice-connector-streaming-configuration-response
                               #:put-voice-connector-termination
                               #:put-voice-connector-termination-credentials
-                              #:put-voice-connector-termination-credentials-request
-                              #:put-voice-connector-termination-request
-                              #:put-voice-connector-termination-response
-                              #:resource-limit-exceeded-exception
-                              #:restore-phone-number
-                              #:restore-phone-number-request
-                              #:restore-phone-number-response #:result-max
+                              #:restore-phone-number #:result-max
                               #:smacreate-call-arguments-map
                               #:smaupdate-call-arguments-map
                               #:search-available-phone-numbers
-                              #:search-available-phone-numbers-request
-                              #:search-available-phone-numbers-response
                               #:sensitive-non-empty-string #:sensitive-string
                               #:sensitive-string-list
                               #:server-side-encryption-configuration
-                              #:service-failure-exception
-                              #:service-unavailable-exception
                               #:session-border-controller-type
                               #:session-border-controller-type-list
                               #:sip-application-priority #:sip-headers-map
@@ -286,62 +141,29 @@
                               #:speaker-search-result
                               #:speaker-search-result-list
                               #:speaker-search-task #:start-speaker-search-task
-                              #:start-speaker-search-task-request
-                              #:start-speaker-search-task-response
                               #:start-voice-tone-analysis-task
-                              #:start-voice-tone-analysis-task-request
-                              #:start-voice-tone-analysis-task-response
                               #:stop-speaker-search-task
-                              #:stop-speaker-search-task-request
                               #:stop-voice-tone-analysis-task
-                              #:stop-voice-tone-analysis-task-request
                               #:streaming-configuration
                               #:streaming-notification-target
                               #:streaming-notification-target-list #:string
                               #:string128 #:string-list #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-value #:termination
-                              #:termination-health #:throttled-client-exception
-                              #:toll-free-prefix
-                              #:unauthorized-client-exception
-                              #:unprocessable-entity-exception #:untag-resource
-                              #:untag-resource-request #:update-global-settings
-                              #:update-global-settings-request
-                              #:update-phone-number
-                              #:update-phone-number-request
+                              #:tag-value #:termination #:termination-health
+                              #:toll-free-prefix #:untag-resource
+                              #:update-global-settings #:update-phone-number
                               #:update-phone-number-request-item
                               #:update-phone-number-request-item-list
-                              #:update-phone-number-response
                               #:update-phone-number-settings
-                              #:update-phone-number-settings-request
                               #:update-proxy-session
-                              #:update-proxy-session-request
-                              #:update-proxy-session-response
                               #:update-sip-media-application
                               #:update-sip-media-application-call
-                              #:update-sip-media-application-call-request
-                              #:update-sip-media-application-call-response
-                              #:update-sip-media-application-request
-                              #:update-sip-media-application-response
-                              #:update-sip-rule #:update-sip-rule-request
-                              #:update-sip-rule-response
-                              #:update-voice-connector
+                              #:update-sip-rule #:update-voice-connector
                               #:update-voice-connector-group
-                              #:update-voice-connector-group-request
-                              #:update-voice-connector-group-response
-                              #:update-voice-connector-request
-                              #:update-voice-connector-response
                               #:update-voice-profile
                               #:update-voice-profile-domain
-                              #:update-voice-profile-domain-request
-                              #:update-voice-profile-domain-response
-                              #:update-voice-profile-request
-                              #:update-voice-profile-response
-                              #:validate-e911address
-                              #:validate-e911address-request
-                              #:validate-e911address-response
-                              #:validation-result #:voice-connector
-                              #:voice-connector-aws-region
+                              #:validate-e911address #:validation-result
+                              #:voice-connector #:voice-connector-aws-region
                               #:voice-connector-aws-region-list
                               #:voice-connector-group
                               #:voice-connector-group-list

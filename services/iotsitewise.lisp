@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/iotsitewise (:use)
                              (:export #:arn #:awsio-tsite-wise
-                              #:access-denied-exception
                               #:access-policy-summaries #:access-policy-summary
                               #:action-definition #:action-definitions
                               #:action-payload #:action-payload-string
@@ -57,19 +56,14 @@
                               #:asset-relationship-summary
                               #:asset-relationship-type #:asset-state
                               #:asset-status #:asset-summaries #:asset-summary
-                              #:associate-assets #:associate-assets-request
+                              #:associate-assets
                               #:associate-time-series-to-asset-property
-                              #:associate-time-series-to-asset-property-request
                               #:associated-assets-summaries
                               #:associated-assets-summary #:attribute
                               #:auth-mode #:batch-associate-project-assets
                               #:batch-associate-project-assets-errors
-                              #:batch-associate-project-assets-request
-                              #:batch-associate-project-assets-response
                               #:batch-disassociate-project-assets
                               #:batch-disassociate-project-assets-errors
-                              #:batch-disassociate-project-assets-request
-                              #:batch-disassociate-project-assets-response
                               #:batch-entry-completion-status
                               #:batch-get-asset-property-aggregates
                               #:batch-get-asset-property-aggregates-entries
@@ -79,8 +73,6 @@
                               #:batch-get-asset-property-aggregates-error-entry
                               #:batch-get-asset-property-aggregates-error-info
                               #:batch-get-asset-property-aggregates-max-results
-                              #:batch-get-asset-property-aggregates-request
-                              #:batch-get-asset-property-aggregates-response
                               #:batch-get-asset-property-aggregates-skipped-entries
                               #:batch-get-asset-property-aggregates-skipped-entry
                               #:batch-get-asset-property-aggregates-success-entries
@@ -100,14 +92,10 @@
                               #:batch-get-asset-property-value-history-error-entry
                               #:batch-get-asset-property-value-history-error-info
                               #:batch-get-asset-property-value-history-max-results
-                              #:batch-get-asset-property-value-history-request
-                              #:batch-get-asset-property-value-history-response
                               #:batch-get-asset-property-value-history-skipped-entries
                               #:batch-get-asset-property-value-history-skipped-entry
                               #:batch-get-asset-property-value-history-success-entries
                               #:batch-get-asset-property-value-history-success-entry
-                              #:batch-get-asset-property-value-request
-                              #:batch-get-asset-property-value-response
                               #:batch-get-asset-property-value-skipped-entries
                               #:batch-get-asset-property-value-skipped-entry
                               #:batch-get-asset-property-value-success-entries
@@ -118,8 +106,6 @@
                               #:batch-put-asset-property-errors
                               #:batch-put-asset-property-value
                               #:batch-put-asset-property-value-error-code
-                              #:batch-put-asset-property-value-request
-                              #:batch-put-asset-property-value-response
                               #:binding-value-list #:boolean-value #:bucket
                               #:capability-configuration #:capability-namespace
                               #:capability-sync-status #:citation #:citations
@@ -150,34 +136,16 @@
                               #:computation-model-type #:compute-location
                               #:configuration-error-details
                               #:configuration-state #:configuration-status
-                              #:conflicting-operation-exception #:content
-                              #:conversation-id #:core-device-operating-system
+                              #:content #:conversation-id
+                              #:core-device-operating-system
                               #:core-device-thing-name #:create-access-policy
-                              #:create-access-policy-request
-                              #:create-access-policy-response #:create-asset
-                              #:create-asset-model
+                              #:create-asset #:create-asset-model
                               #:create-asset-model-composite-model
-                              #:create-asset-model-composite-model-request
-                              #:create-asset-model-composite-model-response
-                              #:create-asset-model-request
-                              #:create-asset-model-response
-                              #:create-asset-request #:create-asset-response
                               #:create-bulk-import-job
-                              #:create-bulk-import-job-request
-                              #:create-bulk-import-job-response
-                              #:create-computation-model
-                              #:create-computation-model-request
-                              #:create-computation-model-response
-                              #:create-dashboard #:create-dashboard-request
-                              #:create-dashboard-response #:create-dataset
-                              #:create-dataset-request
-                              #:create-dataset-response #:create-gateway
-                              #:create-gateway-request
-                              #:create-gateway-response
+                              #:create-computation-model #:create-dashboard
+                              #:create-dataset #:create-gateway
                               #:create-missing-property #:create-portal
-                              #:create-portal-request #:create-portal-response
-                              #:create-project #:create-project-request
-                              #:create-project-response #:csv #:custom-id
+                              #:create-project #:csv #:custom-id
                               #:customer-managed-s3storage
                               #:dashboard-definition #:dashboard-summaries
                               #:dashboard-summary #:data-binding-value
@@ -187,132 +155,59 @@
                               #:dataset-status #:dataset-summaries
                               #:dataset-summary #:datum #:datum-list
                               #:default-value #:delete-access-policy
-                              #:delete-access-policy-request
-                              #:delete-access-policy-response #:delete-asset
-                              #:delete-asset-model
+                              #:delete-asset #:delete-asset-model
                               #:delete-asset-model-composite-model
-                              #:delete-asset-model-composite-model-request
-                              #:delete-asset-model-composite-model-response
                               #:delete-asset-model-interface-relationship
-                              #:delete-asset-model-interface-relationship-request
-                              #:delete-asset-model-interface-relationship-response
-                              #:delete-asset-model-request
-                              #:delete-asset-model-response
-                              #:delete-asset-request #:delete-asset-response
-                              #:delete-computation-model
-                              #:delete-computation-model-request
-                              #:delete-computation-model-response
-                              #:delete-dashboard #:delete-dashboard-request
-                              #:delete-dashboard-response #:delete-dataset
-                              #:delete-dataset-request
-                              #:delete-dataset-response
-                              #:delete-files-after-import #:delete-gateway
-                              #:delete-gateway-request #:delete-portal
-                              #:delete-portal-request #:delete-portal-response
-                              #:delete-project #:delete-project-request
-                              #:delete-project-response #:delete-time-series
-                              #:delete-time-series-request
-                              #:describe-access-policy
-                              #:describe-access-policy-request
-                              #:describe-access-policy-response
-                              #:describe-action #:describe-action-request
-                              #:describe-action-response #:describe-asset
+                              #:delete-computation-model #:delete-dashboard
+                              #:delete-dataset #:delete-files-after-import
+                              #:delete-gateway #:delete-portal #:delete-project
+                              #:delete-time-series #:describe-access-policy
+                              #:describe-action #:describe-asset
                               #:describe-asset-composite-model
-                              #:describe-asset-composite-model-request
-                              #:describe-asset-composite-model-response
                               #:describe-asset-model
                               #:describe-asset-model-composite-model
-                              #:describe-asset-model-composite-model-request
-                              #:describe-asset-model-composite-model-response
                               #:describe-asset-model-interface-relationship
-                              #:describe-asset-model-interface-relationship-request
-                              #:describe-asset-model-interface-relationship-response
-                              #:describe-asset-model-request
-                              #:describe-asset-model-response
                               #:describe-asset-property
-                              #:describe-asset-property-request
-                              #:describe-asset-property-response
-                              #:describe-asset-request
-                              #:describe-asset-response
                               #:describe-bulk-import-job
-                              #:describe-bulk-import-job-request
-                              #:describe-bulk-import-job-response
                               #:describe-computation-model
                               #:describe-computation-model-execution-summary
-                              #:describe-computation-model-execution-summary-request
-                              #:describe-computation-model-execution-summary-response
-                              #:describe-computation-model-request
-                              #:describe-computation-model-response
-                              #:describe-dashboard #:describe-dashboard-request
-                              #:describe-dashboard-response #:describe-dataset
-                              #:describe-dataset-request
-                              #:describe-dataset-response
+                              #:describe-dashboard #:describe-dataset
                               #:describe-default-encryption-configuration
-                              #:describe-default-encryption-configuration-request
-                              #:describe-default-encryption-configuration-response
-                              #:describe-execution #:describe-execution-request
-                              #:describe-execution-response #:describe-gateway
+                              #:describe-execution #:describe-gateway
                               #:describe-gateway-capability-configuration
-                              #:describe-gateway-capability-configuration-request
-                              #:describe-gateway-capability-configuration-response
-                              #:describe-gateway-request
-                              #:describe-gateway-response
-                              #:describe-logging-options
-                              #:describe-logging-options-request
-                              #:describe-logging-options-response
-                              #:describe-portal #:describe-portal-request
-                              #:describe-portal-response #:describe-project
-                              #:describe-project-request
-                              #:describe-project-response
+                              #:describe-logging-options #:describe-portal
+                              #:describe-project
                               #:describe-storage-configuration
-                              #:describe-storage-configuration-request
-                              #:describe-storage-configuration-response
-                              #:describe-time-series
-                              #:describe-time-series-request
-                              #:describe-time-series-response #:description
+                              #:describe-time-series #:description
                               #:detailed-error #:detailed-error-code
                               #:detailed-error-message #:detailed-errors
                               #:disallow-ingest-null-na-n #:disassociate-assets
-                              #:disassociate-assets-request
                               #:disassociate-time-series-from-asset-property
-                              #:disassociate-time-series-from-asset-property-request
                               #:disassociated-data-storage-state #:etag #:email
                               #:encryption-type #:entry-id #:error-code
                               #:error-details #:error-message
                               #:error-report-location #:exception-message
                               #:exclude-properties #:execute-action
-                              #:execute-action-request
-                              #:execute-action-response #:execute-query
-                              #:execute-query-max-results
-                              #:execute-query-next-token
-                              #:execute-query-request #:execute-query-response
-                              #:execution-details #:execution-details-key
-                              #:execution-details-value #:execution-result
-                              #:execution-result-key #:execution-result-value
-                              #:execution-state #:execution-status
-                              #:execution-summaries #:execution-summary
-                              #:expression #:expression-variable
-                              #:expression-variables #:external-id #:file
-                              #:file-format #:files #:forwarding-config
-                              #:forwarding-config-state
+                              #:execute-query #:execute-query-max-results
+                              #:execute-query-next-token #:execution-details
+                              #:execution-details-key #:execution-details-value
+                              #:execution-result #:execution-result-key
+                              #:execution-result-value #:execution-state
+                              #:execution-status #:execution-summaries
+                              #:execution-summary #:expression
+                              #:expression-variable #:expression-variables
+                              #:external-id #:file #:file-format #:files
+                              #:forwarding-config #:forwarding-config-state
                               #:gateway-capability-summaries
                               #:gateway-capability-summary #:gateway-name
                               #:gateway-platform #:gateway-summaries
                               #:gateway-summary #:gateway-version
                               #:get-asset-property-aggregates
-                              #:get-asset-property-aggregates-request
-                              #:get-asset-property-aggregates-response
                               #:get-asset-property-value
                               #:get-asset-property-value-aggregates-max-results
                               #:get-asset-property-value-history
                               #:get-asset-property-value-history-max-results
-                              #:get-asset-property-value-history-request
-                              #:get-asset-property-value-history-response
-                              #:get-asset-property-value-request
-                              #:get-asset-property-value-response
                               #:get-interpolated-asset-property-values
-                              #:get-interpolated-asset-property-values-request
-                              #:get-interpolated-asset-property-values-response
                               #:greengrass #:greengrass-v2 #:group-identity
                               #:hierarchy-mapping #:hierarchy-mappings
                               #:iamrole-identity #:iamuser-identity #:id #:ids
@@ -324,77 +219,34 @@
                               #:interface-relationship-summaries
                               #:interface-relationship-summary
                               #:interface-summaries #:interface-summary
-                              #:internal-failure-exception
                               #:interpolated-asset-property-value
                               #:interpolated-asset-property-values
                               #:interpolation-type #:interval
                               #:interval-in-seconds
-                              #:interval-window-in-seconds
-                              #:invalid-request-exception #:invocation-output
-                              #:invoke-assistant #:invoke-assistant-request
-                              #:invoke-assistant-response #:iot-core-thing-name
+                              #:interval-window-in-seconds #:invocation-output
+                              #:invoke-assistant #:iot-core-thing-name
                               #:job-configuration #:job-status #:job-summaries
                               #:job-summary #:kendra-source-detail #:kms-key-id
-                              #:limit-exceeded-exception #:list-access-policies
-                              #:list-access-policies-request
-                              #:list-access-policies-response #:list-actions
-                              #:list-actions-request #:list-actions-response
+                              #:list-access-policies #:list-actions
                               #:list-asset-model-composite-models
-                              #:list-asset-model-composite-models-request
-                              #:list-asset-model-composite-models-response
                               #:list-asset-model-properties
                               #:list-asset-model-properties-filter
-                              #:list-asset-model-properties-request
-                              #:list-asset-model-properties-response
-                              #:list-asset-models #:list-asset-models-request
-                              #:list-asset-models-response
+                              #:list-asset-models
                               #:list-asset-models-type-filter
                               #:list-asset-properties
                               #:list-asset-properties-filter
-                              #:list-asset-properties-request
-                              #:list-asset-properties-response
-                              #:list-asset-relationships
-                              #:list-asset-relationships-request
-                              #:list-asset-relationships-response #:list-assets
-                              #:list-assets-filter #:list-assets-request
-                              #:list-assets-response #:list-associated-assets
-                              #:list-associated-assets-request
-                              #:list-associated-assets-response
+                              #:list-asset-relationships #:list-assets
+                              #:list-assets-filter #:list-associated-assets
                               #:list-bulk-import-jobs
                               #:list-bulk-import-jobs-filter
-                              #:list-bulk-import-jobs-request
-                              #:list-bulk-import-jobs-response
                               #:list-composition-relationships
-                              #:list-composition-relationships-request
-                              #:list-composition-relationships-response
                               #:list-computation-model-data-binding-usages
-                              #:list-computation-model-data-binding-usages-request
-                              #:list-computation-model-data-binding-usages-response
                               #:list-computation-model-resolve-to-resources
-                              #:list-computation-model-resolve-to-resources-request
-                              #:list-computation-model-resolve-to-resources-response
-                              #:list-computation-models
-                              #:list-computation-models-request
-                              #:list-computation-models-response
-                              #:list-dashboards #:list-dashboards-request
-                              #:list-dashboards-response #:list-datasets
-                              #:list-datasets-request #:list-datasets-response
-                              #:list-executions #:list-executions-request
-                              #:list-executions-response #:list-gateways
-                              #:list-gateways-request #:list-gateways-response
-                              #:list-interface-relationships
-                              #:list-interface-relationships-request
-                              #:list-interface-relationships-response
-                              #:list-portals #:list-portals-request
-                              #:list-portals-response #:list-project-assets
-                              #:list-project-assets-request
-                              #:list-project-assets-response #:list-projects
-                              #:list-projects-request #:list-projects-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-time-series #:list-time-series-request
-                              #:list-time-series-response
+                              #:list-computation-models #:list-dashboards
+                              #:list-datasets #:list-executions #:list-gateways
+                              #:list-interface-relationships #:list-portals
+                              #:list-project-assets #:list-projects
+                              #:list-tags-for-resource #:list-time-series
                               #:list-time-series-type #:location
                               #:logging-level #:logging-options #:macro
                               #:match-by-property-name #:matched-data-binding
@@ -411,10 +263,10 @@
                               #:portal-summaries #:portal-summary
                               #:portal-tools #:portal-type
                               #:portal-type-configuration #:portal-type-entry
-                              #:portal-type-key #:precondition-failed-exception
-                              #:project-resource #:project-summaries
-                              #:project-summary #:property #:property-alias
-                              #:property-data-type #:property-mapping
+                              #:portal-type-key #:project-resource
+                              #:project-summaries #:project-summary #:property
+                              #:property-alias #:property-data-type
+                              #:property-mapping
                               #:property-mapping-configuration
                               #:property-mappings #:property-notification
                               #:property-notification-state
@@ -425,75 +277,40 @@
                               #:property-value-null-value
                               #:property-value-string-value
                               #:put-asset-model-interface-relationship
-                              #:put-asset-model-interface-relationship-request
-                              #:put-asset-model-interface-relationship-response
                               #:put-asset-property-value-entries
                               #:put-asset-property-value-entry
                               #:put-default-encryption-configuration
-                              #:put-default-encryption-configuration-request
-                              #:put-default-encryption-configuration-response
-                              #:put-logging-options
-                              #:put-logging-options-request
-                              #:put-logging-options-response
-                              #:put-storage-configuration
-                              #:put-storage-configuration-request
-                              #:put-storage-configuration-response #:qualities
-                              #:quality #:query-statement
-                              #:query-timeout-exception #:raw-value-type
-                              #:reference #:resolution #:resolve-to
-                              #:resolve-to-resource-type #:resource
-                              #:resource-already-exists-exception
-                              #:resource-arn #:resource-id
-                              #:resource-not-found-exception #:resource-type
-                              #:response-stream #:restricted-description
-                              #:restricted-name #:result-property
-                              #:retention-period #:row #:rows
+                              #:put-logging-options #:put-storage-configuration
+                              #:qualities #:quality #:query-statement
+                              #:raw-value-type #:reference #:resolution
+                              #:resolve-to #:resolve-to-resource-type
+                              #:resource #:resource-arn #:resource-id
+                              #:resource-type #:response-stream
+                              #:restricted-description #:restricted-name
+                              #:result-property #:retention-period #:row #:rows
                               #:ssoapplication-id #:scalar-type #:scalar-value
-                              #:select-all #:service-unavailable-exception
-                              #:siemens-ie #:source #:source-detail
-                              #:storage-type #:string #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:target-resource #:target-resource-type
-                              #:throttling-exception #:time-in-nanos
+                              #:select-all #:siemens-ie #:source
+                              #:source-detail #:storage-type #:string #:tag-key
+                              #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:target-resource
+                              #:target-resource-type #:time-in-nanos
                               #:time-in-seconds #:time-ordering
                               #:time-series-id #:time-series-summaries
                               #:time-series-summary #:timestamp #:timestamps
-                              #:too-many-tags-exception #:trace #:transform
-                              #:transform-processing-config
+                              #:trace #:transform #:transform-processing-config
                               #:traversal-direction #:traversal-type
-                              #:tumbling-window #:unauthorized-exception
-                              #:unlimited #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-access-policy
-                              #:update-access-policy-request
-                              #:update-access-policy-response #:update-asset
+                              #:tumbling-window #:unlimited #:untag-resource
+                              #:update-access-policy #:update-asset
                               #:update-asset-model
                               #:update-asset-model-composite-model
-                              #:update-asset-model-composite-model-request
-                              #:update-asset-model-composite-model-response
-                              #:update-asset-model-request
-                              #:update-asset-model-response
                               #:update-asset-property
-                              #:update-asset-property-request
-                              #:update-asset-request #:update-asset-response
-                              #:update-computation-model
-                              #:update-computation-model-request
-                              #:update-computation-model-response
-                              #:update-dashboard #:update-dashboard-request
-                              #:update-dashboard-response #:update-dataset
-                              #:update-dataset-request
-                              #:update-dataset-response #:update-gateway
+                              #:update-computation-model #:update-dashboard
+                              #:update-dataset #:update-gateway
                               #:update-gateway-capability-configuration
-                              #:update-gateway-capability-configuration-request
-                              #:update-gateway-capability-configuration-response
-                              #:update-gateway-request #:update-portal
-                              #:update-portal-request #:update-portal-response
-                              #:update-project #:update-project-request
-                              #:update-project-response #:url #:user-identity
-                              #:validation-exception #:variable-name
-                              #:variable-value #:variant #:version
-                              #:warm-tier-retention-period #:warm-tier-state))
+                              #:update-portal #:update-project #:url
+                              #:user-identity #:variable-name #:variable-value
+                              #:variant #:version #:warm-tier-retention-period
+                              #:warm-tier-state))
 (common-lisp:in-package #:pira/iotsitewise)
 
 (smithy/sdk/service:define-service awsio-tsite-wise :shape-name

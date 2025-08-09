@@ -1,64 +1,33 @@
 (uiop/package:define-package #:pira/data-pipeline (:use)
-                             (:export #:activate-pipeline
-                              #:activate-pipeline-input
-                              #:activate-pipeline-output #:add-tags
-                              #:add-tags-input #:add-tags-output
-                              #:create-pipeline #:create-pipeline-input
-                              #:create-pipeline-output #:data-pipeline
-                              #:deactivate-pipeline #:deactivate-pipeline-input
-                              #:deactivate-pipeline-output #:delete-pipeline
-                              #:delete-pipeline-input #:describe-objects
-                              #:describe-objects-input
-                              #:describe-objects-output #:describe-pipelines
-                              #:describe-pipelines-input
-                              #:describe-pipelines-output #:evaluate-expression
-                              #:evaluate-expression-input
-                              #:evaluate-expression-output #:field
-                              #:get-pipeline-definition
-                              #:get-pipeline-definition-input
-                              #:get-pipeline-definition-output
-                              #:instance-identity #:internal-service-error
-                              #:invalid-request-exception #:list-pipelines
-                              #:list-pipelines-input #:list-pipelines-output
-                              #:operator #:operator-type #:parameter-attribute
-                              #:parameter-attribute-list #:parameter-object
-                              #:parameter-object-list #:parameter-value
-                              #:parameter-value-list
-                              #:pipeline-deleted-exception
+                             (:export #:activate-pipeline #:add-tags
+                              #:create-pipeline #:data-pipeline
+                              #:deactivate-pipeline #:delete-pipeline
+                              #:describe-objects #:describe-pipelines
+                              #:evaluate-expression #:field
+                              #:get-pipeline-definition #:instance-identity
+                              #:list-pipelines #:operator #:operator-type
+                              #:parameter-attribute #:parameter-attribute-list
+                              #:parameter-object #:parameter-object-list
+                              #:parameter-value #:parameter-value-list
                               #:pipeline-description
                               #:pipeline-description-list #:pipeline-id-name
-                              #:pipeline-not-found-exception #:pipeline-object
-                              #:pipeline-object-list #:pipeline-object-map
-                              #:poll-for-task #:poll-for-task-input
-                              #:poll-for-task-output #:put-pipeline-definition
-                              #:put-pipeline-definition-input
-                              #:put-pipeline-definition-output #:query
-                              #:query-objects #:query-objects-input
-                              #:query-objects-output #:remove-tags
-                              #:remove-tags-input #:remove-tags-output
-                              #:report-task-progress
-                              #:report-task-progress-input
-                              #:report-task-progress-output
-                              #:report-task-runner-heartbeat
-                              #:report-task-runner-heartbeat-input
-                              #:report-task-runner-heartbeat-output #:selector
-                              #:selector-list #:set-status #:set-status-input
-                              #:set-task-status #:set-task-status-input
-                              #:set-task-status-output #:tag
-                              #:task-not-found-exception #:task-object
-                              #:task-status #:validate-pipeline-definition
-                              #:validate-pipeline-definition-input
-                              #:validate-pipeline-definition-output
-                              #:validation-error #:validation-errors
-                              #:validation-warning #:validation-warnings
-                              #:attribute-name-string #:attribute-value-string
-                              #:boolean #:cancel-active #:error-message
-                              #:field-list #:field-name-string
-                              #:field-string-value #:id #:id-list #:int
-                              #:long-string #:pipeline-list #:string
-                              #:string-list #:tag-key #:tag-list #:tag-value
-                              #:task-id #:timestamp #:validation-message
-                              #:validation-messages))
+                              #:pipeline-object #:pipeline-object-list
+                              #:pipeline-object-map #:poll-for-task
+                              #:put-pipeline-definition #:query #:query-objects
+                              #:remove-tags #:report-task-progress
+                              #:report-task-runner-heartbeat #:selector
+                              #:selector-list #:set-status #:set-task-status
+                              #:tag #:task-object #:task-status
+                              #:validate-pipeline-definition #:validation-error
+                              #:validation-errors #:validation-warning
+                              #:validation-warnings #:attribute-name-string
+                              #:attribute-value-string #:boolean
+                              #:cancel-active #:error-message #:field-list
+                              #:field-name-string #:field-string-value #:id
+                              #:id-list #:int #:long-string #:pipeline-list
+                              #:string #:string-list #:tag-key #:tag-list
+                              #:tag-value #:task-id #:timestamp
+                              #:validation-message #:validation-messages))
 (common-lisp:in-package #:pira/data-pipeline)
 
 (smithy/sdk/service:define-service data-pipeline :shape-name "DataPipeline"

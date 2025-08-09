@@ -1,74 +1,36 @@
 (uiop/package:define-package #:pira/support (:use)
                              (:export #:awssupport-20130415
                               #:add-attachments-to-set
-                              #:add-attachments-to-set-request
-                              #:add-attachments-to-set-response
-                              #:add-communication-to-case
-                              #:add-communication-to-case-request
-                              #:add-communication-to-case-response #:after-time
+                              #:add-communication-to-case #:after-time
                               #:attachment #:attachment-details #:attachment-id
-                              #:attachment-id-not-found
-                              #:attachment-limit-exceeded #:attachment-set
-                              #:attachment-set-expired #:attachment-set-id
-                              #:attachment-set-id-not-found
-                              #:attachment-set-size-limit-exceeded
+                              #:attachment-set #:attachment-set-id
                               #:attachments #:availability-error-message
-                              #:before-time #:boolean
-                              #:case-creation-limit-exceeded #:case-details
-                              #:case-id #:case-id-list #:case-id-not-found
-                              #:case-list #:case-status #:category
-                              #:category-code #:category-list #:category-name
-                              #:cc-email-address #:cc-email-address-list #:code
-                              #:communication #:communication-body
-                              #:communication-list #:communication-type-options
+                              #:before-time #:boolean #:case-details #:case-id
+                              #:case-id-list #:case-list #:case-status
+                              #:category #:category-code #:category-list
+                              #:category-name #:cc-email-address
+                              #:cc-email-address-list #:code #:communication
+                              #:communication-body #:communication-list
+                              #:communication-type-options
                               #:communication-type-options-list #:create-case
-                              #:create-case-request #:create-case-response
                               #:data #:date-interval
                               #:dates-without-support-list
-                              #:describe-attachment
-                              #:describe-attachment-limit-exceeded
-                              #:describe-attachment-request
-                              #:describe-attachment-response #:describe-cases
-                              #:describe-cases-request
-                              #:describe-cases-response
+                              #:describe-attachment #:describe-cases
                               #:describe-communications
-                              #:describe-communications-request
-                              #:describe-communications-response
                               #:describe-create-case-options
-                              #:describe-create-case-options-request
-                              #:describe-create-case-options-response
-                              #:describe-services #:describe-services-request
-                              #:describe-services-response
-                              #:describe-severity-levels
-                              #:describe-severity-levels-request
-                              #:describe-severity-levels-response
+                              #:describe-services #:describe-severity-levels
                               #:describe-supported-languages
-                              #:describe-supported-languages-request
-                              #:describe-supported-languages-response
                               #:describe-trusted-advisor-check-refresh-statuses
-                              #:describe-trusted-advisor-check-refresh-statuses-request
-                              #:describe-trusted-advisor-check-refresh-statuses-response
                               #:describe-trusted-advisor-check-result
-                              #:describe-trusted-advisor-check-result-request
-                              #:describe-trusted-advisor-check-result-response
                               #:describe-trusted-advisor-check-summaries
-                              #:describe-trusted-advisor-check-summaries-request
-                              #:describe-trusted-advisor-check-summaries-response
-                              #:describe-trusted-advisor-checks
-                              #:describe-trusted-advisor-checks-request
-                              #:describe-trusted-advisor-checks-response
-                              #:display #:display-id #:double #:end-time
-                              #:error-message #:expiry-time #:file-name
+                              #:describe-trusted-advisor-checks #:display
+                              #:display-id #:double #:end-time #:error-message
+                              #:expiry-time #:file-name
                               #:include-communications #:include-resolved-cases
-                              #:internal-server-error #:issue-type #:language
-                              #:long #:max-results #:next-token
-                              #:recent-case-communications
-                              #:refresh-trusted-advisor-check
-                              #:refresh-trusted-advisor-check-request
-                              #:refresh-trusted-advisor-check-response
-                              #:resolve-case #:resolve-case-request
-                              #:resolve-case-response #:result #:service
-                              #:service-code #:service-code2
+                              #:issue-type #:language #:long #:max-results
+                              #:next-token #:recent-case-communications
+                              #:refresh-trusted-advisor-check #:resolve-case
+                              #:result #:service #:service-code #:service-code2
                               #:service-code-list #:service-list #:service-name
                               #:severity-code #:severity-level
                               #:severity-level-code #:severity-level-name
@@ -76,7 +38,7 @@
                               #:string #:string-list #:subject #:submitted-by
                               #:supported-hour #:supported-hours-list
                               #:supported-language #:supported-languages-list
-                              #:throttling-exception #:time-created
+                              #:time-created
                               #:trusted-advisor-category-specific-summary
                               #:trusted-advisor-check-description
                               #:trusted-advisor-check-list

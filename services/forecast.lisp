@@ -9,43 +9,17 @@
                               #:categorical-parameter-ranges #:condition
                               #:configuration #:continuous-parameter-range
                               #:continuous-parameter-ranges
-                              #:create-auto-predictor
-                              #:create-auto-predictor-request
-                              #:create-auto-predictor-response #:create-dataset
+                              #:create-auto-predictor #:create-dataset
                               #:create-dataset-group
-                              #:create-dataset-group-request
-                              #:create-dataset-group-response
                               #:create-dataset-import-job
-                              #:create-dataset-import-job-request
-                              #:create-dataset-import-job-response
-                              #:create-dataset-request
-                              #:create-dataset-response #:create-explainability
-                              #:create-explainability-export
-                              #:create-explainability-export-request
-                              #:create-explainability-export-response
-                              #:create-explainability-request
-                              #:create-explainability-response
-                              #:create-forecast #:create-forecast-export-job
-                              #:create-forecast-export-job-request
-                              #:create-forecast-export-job-response
-                              #:create-forecast-request
-                              #:create-forecast-response #:create-monitor
-                              #:create-monitor-request
-                              #:create-monitor-response #:create-predictor
+                              #:create-explainability
+                              #:create-explainability-export #:create-forecast
+                              #:create-forecast-export-job #:create-monitor
+                              #:create-predictor
                               #:create-predictor-backtest-export-job
-                              #:create-predictor-backtest-export-job-request
-                              #:create-predictor-backtest-export-job-response
-                              #:create-predictor-request
-                              #:create-predictor-response
                               #:create-what-if-analysis
-                              #:create-what-if-analysis-request
-                              #:create-what-if-analysis-response
                               #:create-what-if-forecast
-                              #:create-what-if-forecast-export
-                              #:create-what-if-forecast-export-request
-                              #:create-what-if-forecast-export-response
-                              #:create-what-if-forecast-request
-                              #:create-what-if-forecast-response #:data-config
+                              #:create-what-if-forecast-export #:data-config
                               #:data-destination #:data-source
                               #:dataset-group-summary #:dataset-groups
                               #:dataset-import-job-summary
@@ -53,66 +27,27 @@
                               #:dataset-type #:datasets #:day-of-month
                               #:day-of-week #:delete-dataset
                               #:delete-dataset-group
-                              #:delete-dataset-group-request
                               #:delete-dataset-import-job
-                              #:delete-dataset-import-job-request
-                              #:delete-dataset-request #:delete-explainability
-                              #:delete-explainability-export
-                              #:delete-explainability-export-request
-                              #:delete-explainability-request #:delete-forecast
-                              #:delete-forecast-export-job
-                              #:delete-forecast-export-job-request
-                              #:delete-forecast-request #:delete-monitor
-                              #:delete-monitor-request #:delete-predictor
+                              #:delete-explainability
+                              #:delete-explainability-export #:delete-forecast
+                              #:delete-forecast-export-job #:delete-monitor
+                              #:delete-predictor
                               #:delete-predictor-backtest-export-job
-                              #:delete-predictor-backtest-export-job-request
-                              #:delete-predictor-request #:delete-resource-tree
-                              #:delete-resource-tree-request
-                              #:delete-what-if-analysis
-                              #:delete-what-if-analysis-request
+                              #:delete-resource-tree #:delete-what-if-analysis
                               #:delete-what-if-forecast
                               #:delete-what-if-forecast-export
-                              #:delete-what-if-forecast-export-request
-                              #:delete-what-if-forecast-request
-                              #:describe-auto-predictor
-                              #:describe-auto-predictor-request
-                              #:describe-auto-predictor-response
-                              #:describe-dataset #:describe-dataset-group
-                              #:describe-dataset-group-request
-                              #:describe-dataset-group-response
+                              #:describe-auto-predictor #:describe-dataset
+                              #:describe-dataset-group
                               #:describe-dataset-import-job
-                              #:describe-dataset-import-job-request
-                              #:describe-dataset-import-job-response
-                              #:describe-dataset-request
-                              #:describe-dataset-response
                               #:describe-explainability
                               #:describe-explainability-export
-                              #:describe-explainability-export-request
-                              #:describe-explainability-export-response
-                              #:describe-explainability-request
-                              #:describe-explainability-response
                               #:describe-forecast
-                              #:describe-forecast-export-job
-                              #:describe-forecast-export-job-request
-                              #:describe-forecast-export-job-response
-                              #:describe-forecast-request
-                              #:describe-forecast-response #:describe-monitor
-                              #:describe-monitor-request
-                              #:describe-monitor-response #:describe-predictor
+                              #:describe-forecast-export-job #:describe-monitor
+                              #:describe-predictor
                               #:describe-predictor-backtest-export-job
-                              #:describe-predictor-backtest-export-job-request
-                              #:describe-predictor-backtest-export-job-response
-                              #:describe-predictor-request
-                              #:describe-predictor-response
                               #:describe-what-if-analysis
-                              #:describe-what-if-analysis-request
-                              #:describe-what-if-analysis-response
                               #:describe-what-if-forecast
-                              #:describe-what-if-forecast-export
-                              #:describe-what-if-forecast-export-request
-                              #:describe-what-if-forecast-export-response
-                              #:describe-what-if-forecast-request
-                              #:describe-what-if-forecast-response #:detail
+                              #:describe-what-if-forecast-export #:detail
                               #:domain #:double #:encryption-config
                               #:error-message #:error-metric #:error-metrics
                               #:evaluation-parameters #:evaluation-result
@@ -132,63 +67,29 @@
                               #:forecast-export-jobs #:forecast-summary
                               #:forecast-type #:forecast-types #:forecasts
                               #:format #:frequency #:geolocation-format
-                              #:get-accuracy-metrics
-                              #:get-accuracy-metrics-request
-                              #:get-accuracy-metrics-response #:hour
+                              #:get-accuracy-metrics #:hour
                               #:hyper-parameter-tuning-job-config #:import-mode
                               #:input-data-config #:integer
                               #:integer-parameter-range
-                              #:integer-parameter-ranges
-                              #:invalid-input-exception
-                              #:invalid-next-token-exception #:kmskey-arn
-                              #:limit-exceeded-exception #:list-dataset-groups
-                              #:list-dataset-groups-request
-                              #:list-dataset-groups-response
-                              #:list-dataset-import-jobs
-                              #:list-dataset-import-jobs-request
-                              #:list-dataset-import-jobs-response
-                              #:list-datasets #:list-datasets-request
-                              #:list-datasets-response #:list-explainabilities
-                              #:list-explainabilities-request
-                              #:list-explainabilities-response
+                              #:integer-parameter-ranges #:kmskey-arn
+                              #:list-dataset-groups #:list-dataset-import-jobs
+                              #:list-datasets #:list-explainabilities
                               #:list-explainability-exports
-                              #:list-explainability-exports-request
-                              #:list-explainability-exports-response
-                              #:list-forecast-export-jobs
-                              #:list-forecast-export-jobs-request
-                              #:list-forecast-export-jobs-response
-                              #:list-forecasts #:list-forecasts-request
-                              #:list-forecasts-response
-                              #:list-monitor-evaluations
-                              #:list-monitor-evaluations-request
-                              #:list-monitor-evaluations-response
-                              #:list-monitors #:list-monitors-request
-                              #:list-monitors-response
+                              #:list-forecast-export-jobs #:list-forecasts
+                              #:list-monitor-evaluations #:list-monitors
                               #:list-predictor-backtest-export-jobs
-                              #:list-predictor-backtest-export-jobs-request
-                              #:list-predictor-backtest-export-jobs-response
-                              #:list-predictors #:list-predictors-request
-                              #:list-predictors-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-predictors #:list-tags-for-resource
                               #:list-what-if-analyses
-                              #:list-what-if-analyses-request
-                              #:list-what-if-analyses-response
                               #:list-what-if-forecast-exports
-                              #:list-what-if-forecast-exports-request
-                              #:list-what-if-forecast-exports-response
-                              #:list-what-if-forecasts
-                              #:list-what-if-forecasts-request
-                              #:list-what-if-forecasts-response
-                              #:local-date-time #:long #:long-arn
-                              #:long-arn-list #:max-results #:message
-                              #:metric-name #:metric-result #:metric-results
-                              #:metrics #:monitor-config #:monitor-data-source
-                              #:monitor-info #:monitor-summary #:monitors
-                              #:month #:name #:next-token #:operation
-                              #:optimization-metric #:parameter-key
-                              #:parameter-ranges #:parameter-value
+                              #:list-what-if-forecasts #:local-date-time #:long
+                              #:long-arn #:long-arn-list #:max-results
+                              #:message #:metric-name #:metric-result
+                              #:metric-results #:metrics #:monitor-config
+                              #:monitor-data-source #:monitor-info
+                              #:monitor-summary #:monitors #:month #:name
+                              #:next-token #:operation #:optimization-metric
+                              #:parameter-key #:parameter-ranges
+                              #:parameter-value
                               #:predictor-backtest-export-job-summary
                               #:predictor-backtest-export-jobs
                               #:predictor-baseline
@@ -199,17 +100,12 @@
                               #:predictor-monitor-evaluation
                               #:predictor-monitor-evaluations
                               #:predictor-summary #:predictors
-                              #:reference-predictor-summary
-                              #:resource-already-exists-exception
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception #:resume-resource
-                              #:resume-resource-request #:s3config #:s3path
-                              #:scaling-type #:schema #:schema-attribute
-                              #:schema-attributes #:state #:statistics #:status
-                              #:stop-resource #:stop-resource-request #:string
+                              #:reference-predictor-summary #:resume-resource
+                              #:s3config #:s3path #:scaling-type #:schema
+                              #:schema-attribute #:schema-attributes #:state
+                              #:statistics #:status #:stop-resource #:string
                               #:supplementary-feature #:supplementary-features
                               #:tag #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:tags #:test-window-details
                               #:test-window-summary #:test-windows
                               #:time-alignment-boundary
@@ -223,10 +119,7 @@
                               #:time-series-transformations #:time-zone
                               #:timestamp #:timestamp-format
                               #:training-parameters #:transformations
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-dataset-group
-                              #:update-dataset-group-request
-                              #:update-dataset-group-response
+                              #:untag-resource #:update-dataset-group
                               #:use-geolocation-for-time-zone #:value #:values
                               #:weighted-quantile-loss
                               #:weighted-quantile-losses #:what-if-analyses

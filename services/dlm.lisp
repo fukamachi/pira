@@ -4,9 +4,7 @@
                               #:availability-zone #:availability-zone-list
                               #:aws-account-id #:cmk-arn #:copy-tags
                               #:copy-tags-nullable #:count #:create-interval
-                              #:create-lifecycle-policy
-                              #:create-lifecycle-policy-request
-                              #:create-lifecycle-policy-response #:create-rule
+                              #:create-lifecycle-policy #:create-rule
                               #:cron-expression #:cross-region-copy-action
                               #:cross-region-copy-action-list
                               #:cross-region-copy-deprecate-rule
@@ -17,10 +15,8 @@
                               #:cross-region-copy-target-list
                               #:default-policies-type-values #:default-policy
                               #:default-policy-type-values
-                              #:delete-lifecycle-policy
-                              #:delete-lifecycle-policy-request
-                              #:delete-lifecycle-policy-response
-                              #:deprecate-rule #:description-regex #:encrypted
+                              #:delete-lifecycle-policy #:deprecate-rule
+                              #:description-regex #:encrypted
                               #:encryption-configuration #:error-code
                               #:error-message #:event-parameters #:event-source
                               #:event-source-values #:event-type-values
@@ -33,29 +29,18 @@
                               #:execution-handler-service-values
                               #:execution-role-arn #:extend-deletion
                               #:fast-restore-rule #:get-lifecycle-policies
-                              #:get-lifecycle-policies-request
-                              #:get-lifecycle-policies-response
                               #:get-lifecycle-policy
-                              #:get-lifecycle-policy-request
-                              #:get-lifecycle-policy-response
-                              #:gettable-policy-state-values
-                              #:internal-server-exception #:interval
-                              #:interval-unit-values
-                              #:invalid-request-exception #:lifecycle-policy
+                              #:gettable-policy-state-values #:interval
+                              #:interval-unit-values #:lifecycle-policy
                               #:lifecycle-policy-summary
                               #:lifecycle-policy-summary-list
-                              #:limit-exceeded-exception
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:location-values #:no-reboot #:parameter
-                              #:parameter-list #:parameters #:policy-arn
-                              #:policy-description #:policy-details #:policy-id
-                              #:policy-id-list #:policy-language-values
-                              #:policy-type-values #:resource-location-list
-                              #:resource-location-values
-                              #:resource-not-found-exception
-                              #:resource-type-values
+                              #:list-tags-for-resource #:location-values
+                              #:no-reboot #:parameter #:parameter-list
+                              #:parameters #:policy-arn #:policy-description
+                              #:policy-details #:policy-id #:policy-id-list
+                              #:policy-language-values #:policy-type-values
+                              #:resource-location-list
+                              #:resource-location-values #:resource-type-values
                               #:resource-type-values-list #:retain-interval
                               #:retain-rule #:retention-archive-tier
                               #:retention-interval-unit-values #:schedule
@@ -69,18 +54,12 @@
                               #:standard-tier-retain-rule-interval
                               #:status-message #:string #:tag #:tag-filter
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:tags-to-add-filter-list
                               #:tags-to-add-list #:target #:target-region
                               #:target-tag-list #:target-tags-filter-list
                               #:time #:times-list #:timestamp #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-lifecycle-policy
-                              #:update-lifecycle-policy-request
-                              #:update-lifecycle-policy-response
-                              #:variable-tags-list #:volume-type-values
-                              #:dlm-20180112))
+                              #:update-lifecycle-policy #:variable-tags-list
+                              #:volume-type-values #:dlm-20180112))
 (common-lisp:in-package #:pira/dlm)
 
 (smithy/sdk/service:define-service dlm-20180112 :shape-name "dlm_20180112"

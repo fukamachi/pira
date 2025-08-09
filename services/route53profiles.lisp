@@ -1,63 +1,26 @@
 (uiop/package:define-package #:pira/route53profiles (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:arn #:associate-profile
-                              #:associate-profile-request
-                              #:associate-profile-response
-                              #:associate-resource-to-profile
-                              #:associate-resource-to-profile-request
-                              #:associate-resource-to-profile-response
-                              #:conflict-exception #:create-profile
-                              #:create-profile-request
-                              #:create-profile-response #:creator-request-id
-                              #:delete-profile #:delete-profile-request
-                              #:delete-profile-response #:disassociate-profile
-                              #:disassociate-profile-request
-                              #:disassociate-profile-response
+                             (:export #:account-id #:arn #:associate-profile
+                              #:associate-resource-to-profile #:create-profile
+                              #:creator-request-id #:delete-profile
+                              #:disassociate-profile
                               #:disassociate-resource-from-profile
-                              #:disassociate-resource-from-profile-request
-                              #:disassociate-resource-from-profile-response
                               #:exception-message #:get-profile
                               #:get-profile-association
-                              #:get-profile-association-request
-                              #:get-profile-association-response
-                              #:get-profile-request
                               #:get-profile-resource-association
-                              #:get-profile-resource-association-request
-                              #:get-profile-resource-association-response
-                              #:get-profile-response
-                              #:internal-service-error-exception
-                              #:invalid-next-token-exception
-                              #:invalid-parameter-exception
-                              #:limit-exceeded-exception
                               #:list-profile-associations
-                              #:list-profile-associations-request
-                              #:list-profile-associations-response
                               #:list-profile-resource-associations
-                              #:list-profile-resource-associations-request
-                              #:list-profile-resource-associations-response
-                              #:list-profiles #:list-profiles-request
-                              #:list-profiles-response #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:name #:next-token #:profile
+                              #:list-profiles #:list-tags-for-resource
+                              #:max-results #:name #:next-token #:profile
                               #:profile-association #:profile-associations
                               #:profile-resource-association
                               #:profile-resource-associations #:profile-status
                               #:profile-summary #:profile-summary-list
-                              #:resource-exists-exception #:resource-id
-                              #:resource-not-found-exception
-                              #:resource-properties #:rfc3339timestamp
-                              #:route53profiles #:share-status #:string #:tag
-                              #:tag-key #:tag-key-list #:tag-list #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-profile-resource-association
-                              #:update-profile-resource-association-request
-                              #:update-profile-resource-association-response
-                              #:validation-exception))
+                              #:resource-id #:resource-properties
+                              #:rfc3339timestamp #:route53profiles
+                              #:share-status #:string #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-map
+                              #:tag-resource #:tag-value #:untag-resource
+                              #:update-profile-resource-association))
 (common-lisp:in-package #:pira/route53profiles)
 
 (smithy/sdk/service:define-service route53profiles :shape-name

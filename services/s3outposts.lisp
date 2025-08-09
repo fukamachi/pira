@@ -1,30 +1,17 @@
 (uiop/package:define-package #:pira/s3outposts (:use)
-                             (:export #:access-denied-exception
-                              #:aws-account-id #:capacity-in-bytes #:cidr-block
-                              #:conflict-exception #:create-endpoint
-                              #:create-endpoint-request
-                              #:create-endpoint-result #:creation-time
+                             (:export #:aws-account-id #:capacity-in-bytes
+                              #:cidr-block #:create-endpoint #:creation-time
                               #:customer-owned-ipv4pool #:delete-endpoint
-                              #:delete-endpoint-request #:endpoint
-                              #:endpoint-access-type #:endpoint-arn
+                              #:endpoint #:endpoint-access-type #:endpoint-arn
                               #:endpoint-id #:endpoint-status #:endpoints
                               #:error-code #:error-message #:failed-reason
-                              #:internal-server-exception #:list-endpoints
-                              #:list-endpoints-request #:list-endpoints-result
-                              #:list-outposts-with-s3
-                              #:list-outposts-with-s3request
-                              #:list-outposts-with-s3result
-                              #:list-shared-endpoints
-                              #:list-shared-endpoints-request
-                              #:list-shared-endpoints-result #:max-results
-                              #:message #:network-interface
-                              #:network-interface-id #:network-interfaces
-                              #:next-token #:outpost #:outpost-arn #:outpost-id
-                              #:outpost-offline-exception #:outposts
-                              #:resource-not-found-exception #:s3outpost-arn
-                              #:s3outposts #:security-group-id #:subnet-id
-                              #:throttling-exception #:validation-exception
-                              #:vpc-id))
+                              #:list-endpoints #:list-outposts-with-s3
+                              #:list-shared-endpoints #:max-results #:message
+                              #:network-interface #:network-interface-id
+                              #:network-interfaces #:next-token #:outpost
+                              #:outpost-arn #:outpost-id #:outposts
+                              #:s3outpost-arn #:s3outposts #:security-group-id
+                              #:subnet-id #:vpc-id))
 (common-lisp:in-package #:pira/s3outposts)
 
 (smithy/sdk/service:define-service s3outposts :shape-name "S3Outposts" :version

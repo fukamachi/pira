@@ -1,30 +1,15 @@
 (uiop/package:define-package #:pira/route53-recovery-cluster (:use)
-                             (:export #:access-denied-exception #:arn #:arns
-                              #:conflict-exception #:control-panel-name
-                              #:endpoint-temporarily-unavailable-exception
+                             (:export #:arn #:arns #:control-panel-name
                               #:get-routing-control-state
-                              #:get-routing-control-state-request
-                              #:get-routing-control-state-response
-                              #:internal-server-exception
-                              #:list-routing-controls
-                              #:list-routing-controls-request
-                              #:list-routing-controls-response #:max-results
-                              #:owner #:page-token
-                              #:resource-not-found-exception
-                              #:retry-after-seconds #:routing-control
-                              #:routing-control-name #:routing-control-state
-                              #:routing-controls
-                              #:service-limit-exceeded-exception #:string
-                              #:throttling-exception #:toggle-customer-api
+                              #:list-routing-controls #:max-results #:owner
+                              #:page-token #:retry-after-seconds
+                              #:routing-control #:routing-control-name
+                              #:routing-control-state #:routing-controls
+                              #:string #:toggle-customer-api
                               #:update-routing-control-state
                               #:update-routing-control-state-entries
                               #:update-routing-control-state-entry
-                              #:update-routing-control-state-request
-                              #:update-routing-control-state-response
                               #:update-routing-control-states
-                              #:update-routing-control-states-request
-                              #:update-routing-control-states-response
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

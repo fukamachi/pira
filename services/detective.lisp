@@ -1,23 +1,14 @@
 (uiop/package:define-package #:pira/detective (:use)
                              (:export #:apifailure-count #:apiname
-                              #:apisuccess-count #:accept-invitation
-                              #:accept-invitation-request
-                              #:access-denied-exception #:account #:account-id
-                              #:account-id-extended-list #:account-id-list
-                              #:account-list #:administrator
+                              #:apisuccess-count #:accept-invitation #:account
+                              #:account-id #:account-id-extended-list
+                              #:account-id-list #:account-list #:administrator
                               #:administrator-list #:ai-pagination-token
                               #:amazon-detective #:aso
                               #:batch-get-graph-member-datasources
-                              #:batch-get-graph-member-datasources-request
-                              #:batch-get-graph-member-datasources-response
-                              #:batch-get-membership-datasources
-                              #:batch-get-membership-datasources-request
-                              #:batch-get-membership-datasources-response
-                              #:boolean #:byte-value #:conflict-exception
-                              #:create-graph #:create-graph-request
-                              #:create-graph-response #:create-members
-                              #:create-members-request
-                              #:create-members-response #:datasource-package
+                              #:batch-get-membership-datasources #:boolean
+                              #:byte-value #:create-graph #:create-members
+                              #:datasource-package
                               #:datasource-package-ingest-detail
                               #:datasource-package-ingest-details
                               #:datasource-package-ingest-history
@@ -25,88 +16,51 @@
                               #:datasource-package-ingest-states
                               #:datasource-package-list
                               #:datasource-package-usage-info #:date-filter
-                              #:delete-graph #:delete-graph-request
-                              #:delete-members #:delete-members-request
-                              #:delete-members-response
+                              #:delete-graph #:delete-members
                               #:describe-organization-configuration
-                              #:describe-organization-configuration-request
-                              #:describe-organization-configuration-response
                               #:disable-organization-admin-account
-                              #:disassociate-membership
-                              #:disassociate-membership-request #:email-address
+                              #:disassociate-membership #:email-address
                               #:email-message
-                              #:enable-organization-admin-account
-                              #:enable-organization-admin-account-request
-                              #:entity-arn #:entity-type #:error-code
-                              #:error-code-reason #:error-message #:field
-                              #:filter-criteria #:flagged-ip-address-detail
-                              #:get-investigation #:get-investigation-request
-                              #:get-investigation-response #:get-members
-                              #:get-members-request #:get-members-response
-                              #:graph #:graph-arn #:graph-arn-list #:graph-list
-                              #:hourly-time-delta #:id
-                              #:impossible-travel-detail #:indicator
+                              #:enable-organization-admin-account #:entity-arn
+                              #:entity-type #:error-code #:error-code-reason
+                              #:error-message #:field #:filter-criteria
+                              #:flagged-ip-address-detail #:get-investigation
+                              #:get-members #:graph #:graph-arn
+                              #:graph-arn-list #:graph-list #:hourly-time-delta
+                              #:id #:impossible-travel-detail #:indicator
                               #:indicator-detail #:indicator-type #:indicators
-                              #:internal-server-exception
                               #:investigation-detail #:investigation-details
                               #:investigation-id #:invitation-type #:ip-address
                               #:is-new-for-entire-account
                               #:last-ingest-state-change-dates
-                              #:list-datasource-packages
-                              #:list-datasource-packages-request
-                              #:list-datasource-packages-response #:list-graphs
-                              #:list-graphs-request #:list-graphs-response
-                              #:list-indicators #:list-indicators-request
-                              #:list-indicators-response #:list-investigations
-                              #:list-investigations-request
-                              #:list-investigations-response #:list-invitations
-                              #:list-invitations-request
-                              #:list-invitations-response #:list-members
-                              #:list-members-request #:list-members-response
+                              #:list-datasource-packages #:list-graphs
+                              #:list-indicators #:list-investigations
+                              #:list-invitations #:list-members
                               #:list-organization-admin-accounts
-                              #:list-organization-admin-accounts-request
-                              #:list-organization-admin-accounts-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:location
-                              #:max-results #:member-detail
-                              #:member-detail-list #:member-disabled-reason
-                              #:member-results-limit #:member-status
-                              #:membership-datasources
+                              #:list-tags-for-resource #:location #:max-results
+                              #:member-detail #:member-detail-list
+                              #:member-disabled-reason #:member-results-limit
+                              #:member-status #:membership-datasources
                               #:membership-datasources-list #:new-aso-detail
                               #:new-geolocation-detail #:new-user-agent-detail
                               #:pagination-token #:percentage #:procedure
                               #:reason #:reject-invitation
-                              #:reject-invitation-request
                               #:related-finding-detail
                               #:related-finding-group-detail #:resource
-                              #:resource-list #:resource-not-found-exception
-                              #:service-quota-exceeded-exception #:severity
-                              #:sort-criteria #:sort-order
-                              #:start-investigation
-                              #:start-investigation-request
-                              #:start-investigation-response
-                              #:start-monitoring-member
-                              #:start-monitoring-member-request #:state
-                              #:status #:string-filter #:ttps-observed-detail
-                              #:tactic #:tag-key #:tag-key-list #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:technique
-                              #:timestamp #:timestamp-for-collection
-                              #:too-many-requests-exception #:type
+                              #:resource-list #:severity #:sort-criteria
+                              #:sort-order #:start-investigation
+                              #:start-monitoring-member #:state #:status
+                              #:string-filter #:ttps-observed-detail #:tactic
+                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:technique #:timestamp
+                              #:timestamp-for-collection #:type
                               #:unprocessed-account #:unprocessed-account-list
                               #:unprocessed-graph #:unprocessed-graph-list
                               #:unprocessed-reason #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
                               #:update-datasource-packages
-                              #:update-datasource-packages-request
                               #:update-investigation-state
-                              #:update-investigation-state-request
-                              #:update-organization-configuration
-                              #:update-organization-configuration-request
-                              #:user-agent #:validation-exception #:value
-                              #:volume-usage-by-datasource-package))
+                              #:update-organization-configuration #:user-agent
+                              #:value #:volume-usage-by-datasource-package))
 (common-lisp:in-package #:pira/detective)
 
 (smithy/sdk/service:define-service amazon-detective :shape-name

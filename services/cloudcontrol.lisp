@@ -1,52 +1,32 @@
 (uiop/package:define-package #:pira/cloudcontrol (:use)
-                             (:export #:already-exists-exception
-                              #:cancel-resource-request
+                             (:export #:cancel-resource-request
                               #:cancel-resource-request-input
                               #:cancel-resource-request-output #:client-token
-                              #:client-token-conflict-exception
-                              #:cloud-api-service
-                              #:concurrent-modification-exception
-                              #:concurrent-operation-exception
-                              #:create-resource #:create-resource-input
-                              #:create-resource-output #:delete-resource
-                              #:delete-resource-input #:delete-resource-output
-                              #:error-message #:general-service-exception
+                              #:cloud-api-service #:create-resource
+                              #:create-resource-input #:create-resource-output
+                              #:delete-resource #:delete-resource-input
+                              #:delete-resource-output #:error-message
                               #:get-resource #:get-resource-input
                               #:get-resource-output
                               #:get-resource-request-status
                               #:get-resource-request-status-input
                               #:get-resource-request-status-output
-                              #:handler-error-code #:handler-failure-exception
-                              #:handler-internal-failure-exception
-                              #:handler-next-token #:hook-failure-mode
-                              #:hook-invocation-point #:hook-progress-event
-                              #:hook-status #:hook-type-arn
-                              #:hooks-progress-event #:identifier
-                              #:invalid-credentials-exception
-                              #:invalid-request-exception
-                              #:list-resource-requests
-                              #:list-resource-requests-input
-                              #:list-resource-requests-output #:list-resources
-                              #:list-resources-input #:list-resources-output
-                              #:max-results #:network-failure-exception
-                              #:next-token #:not-stabilized-exception
-                              #:not-updatable-exception #:operation
-                              #:operation-status #:operation-statuses
-                              #:operations #:patch-document
-                              #:private-type-exception #:progress-event
-                              #:properties #:request-token
-                              #:request-token-not-found-exception
-                              #:resource-conflict-exception
-                              #:resource-description #:resource-descriptions
-                              #:resource-not-found-exception
+                              #:handler-error-code #:handler-next-token
+                              #:hook-failure-mode #:hook-invocation-point
+                              #:hook-progress-event #:hook-status
+                              #:hook-type-arn #:hooks-progress-event
+                              #:identifier #:list-resource-requests
+                              #:list-resource-requests-input #:list-resources
+                              #:list-resources-input #:max-results #:next-token
+                              #:operation #:operation-status
+                              #:operation-statuses #:operations
+                              #:patch-document #:progress-event #:properties
+                              #:request-token #:resource-description
+                              #:resource-descriptions
                               #:resource-request-status-filter
                               #:resource-request-status-summaries #:role-arn
-                              #:service-internal-error-exception
-                              #:service-limit-exceeded-exception
-                              #:status-message #:throttling-exception
-                              #:timestamp #:type-name
-                              #:type-not-found-exception #:type-version-id
-                              #:unsupported-action-exception #:update-resource
+                              #:status-message #:timestamp #:type-name
+                              #:type-version-id #:update-resource
                               #:update-resource-input #:update-resource-output))
 (common-lisp:in-package #:pira/cloudcontrol)
 

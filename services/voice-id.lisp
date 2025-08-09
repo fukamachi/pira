@@ -1,13 +1,11 @@
 (uiop/package:define-package #:pira/voice-id (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-resource-name #:arn
+                             (:export #:amazon-resource-name #:arn
                               #:associate-fraudster
                               #:associate-fraudster-request
                               #:associate-fraudster-response
                               #:authentication-configuration
                               #:authentication-decision #:authentication-result
-                              #:boolean #:client-token-string
-                              #:conflict-exception #:conflict-type
+                              #:boolean #:client-token-string #:conflict-type
                               #:create-domain #:create-domain-request
                               #:create-domain-response #:create-watchlist
                               #:create-watchlist-request
@@ -56,8 +54,7 @@
                               #:fraudster-summaries #:fraudster-summary
                               #:generated-fraudster-id #:generated-speaker-id
                               #:iam-role-arn #:input-data-config #:integer
-                              #:internal-server-exception #:job-id #:job-name
-                              #:job-progress #:kms-key-id
+                              #:job-id #:job-name #:job-progress #:kms-key-id
                               #:known-fraudster-risk #:list-domains
                               #:list-domains-request #:list-domains-response
                               #:list-fraudster-registration-jobs
@@ -79,14 +76,12 @@
                               #:opt-out-speaker-response #:output-data-config
                               #:registration-config
                               #:registration-config-watchlist-ids
-                              #:resource-not-found-exception #:resource-type
-                              #:response-watchlist-ids #:s3uri #:score
-                              #:server-side-encryption-configuration
+                              #:resource-type #:response-watchlist-ids #:s3uri
+                              #:score #:server-side-encryption-configuration
                               #:server-side-encryption-update-details
                               #:server-side-encryption-update-status
-                              #:service-quota-exceeded-exception #:session-id
-                              #:session-name #:session-name-or-id #:speaker
-                              #:speaker-enrollment-job
+                              #:session-id #:session-name #:session-name-or-id
+                              #:speaker #:speaker-enrollment-job
                               #:speaker-enrollment-job-status
                               #:speaker-enrollment-job-summaries
                               #:speaker-enrollment-job-summary #:speaker-id
@@ -101,14 +96,12 @@
                               #:streaming-status #:string #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception #:timestamp
-                              #:unique-id-large #:untag-resource
-                              #:untag-resource-request
+                              #:tag-value #:timestamp #:unique-id-large
+                              #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-domain
                               #:update-domain-request #:update-domain-response
                               #:update-watchlist #:update-watchlist-request
-                              #:update-watchlist-response
-                              #:validation-exception #:voice-id
+                              #:update-watchlist-response #:voice-id
                               #:voice-spoofing-risk #:watchlist
                               #:watchlist-description #:watchlist-details
                               #:watchlist-id #:watchlist-name

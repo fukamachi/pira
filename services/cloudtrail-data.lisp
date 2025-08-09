@@ -2,16 +2,12 @@
                              (:export #:audit-event
                               #:audit-event-result-entries
                               #:audit-event-result-entry #:audit-events
-                              #:channel-arn #:channel-insufficient-permission
-                              #:channel-not-found #:channel-unsupported-schema
-                              #:cloud-trail-data-service
-                              #:duplicated-audit-event-id #:error-code
-                              #:error-message #:external-id
-                              #:invalid-channel-arn #:put-audit-events
-                              #:put-audit-events-request
+                              #:channel-arn #:cloud-trail-data-service
+                              #:error-code #:error-message #:external-id
+                              #:put-audit-events #:put-audit-events-request
                               #:put-audit-events-response
                               #:result-error-entries #:result-error-entry
-                              #:unsupported-operation-exception #:uuid))
+                              #:uuid))
 (common-lisp:in-package #:pira/cloudtrail-data)
 
 (smithy/sdk/service:define-service cloud-trail-data-service :shape-name

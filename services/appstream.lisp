@@ -21,171 +21,63 @@
                               #:application-settings-response #:applications
                               #:appstream-agent-version #:arn #:arn-list
                               #:associate-app-block-builder-app-block
-                              #:associate-app-block-builder-app-block-request
-                              #:associate-app-block-builder-app-block-result
                               #:associate-application-fleet
-                              #:associate-application-fleet-request
-                              #:associate-application-fleet-result
                               #:associate-application-to-entitlement
-                              #:associate-application-to-entitlement-request
-                              #:associate-application-to-entitlement-result
-                              #:associate-fleet #:associate-fleet-request
-                              #:associate-fleet-result #:authentication-type
+                              #:associate-fleet #:authentication-type
                               #:aws-account-id #:aws-account-id-list
                               #:batch-associate-user-stack
-                              #:batch-associate-user-stack-request
-                              #:batch-associate-user-stack-result
-                              #:batch-disassociate-user-stack
-                              #:batch-disassociate-user-stack-request
-                              #:batch-disassociate-user-stack-result #:boolean
+                              #:batch-disassociate-user-stack #:boolean
                               #:boolean-object
                               #:certificate-based-auth-properties
                               #:certificate-based-auth-status
                               #:compute-capacity #:compute-capacity-status
-                              #:concurrent-modification-exception #:copy-image
-                              #:copy-image-request #:copy-image-response
-                              #:create-app-block #:create-app-block-builder
-                              #:create-app-block-builder-request
-                              #:create-app-block-builder-result
+                              #:copy-image #:create-app-block
+                              #:create-app-block-builder
                               #:create-app-block-builder-streaming-url
-                              #:create-app-block-builder-streaming-urlrequest
-                              #:create-app-block-builder-streaming-urlresult
-                              #:create-app-block-request
-                              #:create-app-block-result #:create-application
-                              #:create-application-request
-                              #:create-application-result
-                              #:create-directory-config
-                              #:create-directory-config-request
-                              #:create-directory-config-result
-                              #:create-entitlement #:create-entitlement-request
-                              #:create-entitlement-result #:create-fleet
-                              #:create-fleet-request #:create-fleet-result
+                              #:create-application #:create-directory-config
+                              #:create-entitlement #:create-fleet
                               #:create-image-builder
-                              #:create-image-builder-request
-                              #:create-image-builder-result
                               #:create-image-builder-streaming-url
-                              #:create-image-builder-streaming-urlrequest
-                              #:create-image-builder-streaming-urlresult
-                              #:create-stack #:create-stack-request
-                              #:create-stack-result #:create-streaming-url
-                              #:create-streaming-urlrequest
-                              #:create-streaming-urlresult
-                              #:create-theme-for-stack
-                              #:create-theme-for-stack-request
-                              #:create-theme-for-stack-result
-                              #:create-updated-image
-                              #:create-updated-image-request
-                              #:create-updated-image-result
-                              #:create-usage-report-subscription
-                              #:create-usage-report-subscription-request
-                              #:create-usage-report-subscription-result
-                              #:create-user #:create-user-request
-                              #:create-user-result #:delete-app-block
-                              #:delete-app-block-builder
-                              #:delete-app-block-builder-request
-                              #:delete-app-block-builder-result
-                              #:delete-app-block-request
-                              #:delete-app-block-result #:delete-application
-                              #:delete-application-request
-                              #:delete-application-result
-                              #:delete-directory-config
-                              #:delete-directory-config-request
-                              #:delete-directory-config-result
-                              #:delete-entitlement #:delete-entitlement-request
-                              #:delete-entitlement-result #:delete-fleet
-                              #:delete-fleet-request #:delete-fleet-result
+                              #:create-stack #:create-streaming-url
+                              #:create-theme-for-stack #:create-updated-image
+                              #:create-usage-report-subscription #:create-user
+                              #:delete-app-block #:delete-app-block-builder
+                              #:delete-application #:delete-directory-config
+                              #:delete-entitlement #:delete-fleet
                               #:delete-image #:delete-image-builder
-                              #:delete-image-builder-request
-                              #:delete-image-builder-result
-                              #:delete-image-permissions
-                              #:delete-image-permissions-request
-                              #:delete-image-permissions-result
-                              #:delete-image-request #:delete-image-result
-                              #:delete-stack #:delete-stack-request
-                              #:delete-stack-result #:delete-theme-for-stack
-                              #:delete-theme-for-stack-request
-                              #:delete-theme-for-stack-result
-                              #:delete-usage-report-subscription
-                              #:delete-usage-report-subscription-request
-                              #:delete-usage-report-subscription-result
-                              #:delete-user #:delete-user-request
-                              #:delete-user-result
+                              #:delete-image-permissions #:delete-stack
+                              #:delete-theme-for-stack
+                              #:delete-usage-report-subscription #:delete-user
                               #:describe-app-block-builder-app-block-associations
-                              #:describe-app-block-builder-app-block-associations-request
-                              #:describe-app-block-builder-app-block-associations-result
                               #:describe-app-block-builders
-                              #:describe-app-block-builders-request
-                              #:describe-app-block-builders-result
                               #:describe-app-blocks
-                              #:describe-app-blocks-request
-                              #:describe-app-blocks-result
                               #:describe-application-fleet-associations
-                              #:describe-application-fleet-associations-request
-                              #:describe-application-fleet-associations-result
                               #:describe-applications
-                              #:describe-applications-request
-                              #:describe-applications-result
                               #:describe-directory-configs
-                              #:describe-directory-configs-request
-                              #:describe-directory-configs-result
-                              #:describe-entitlements
-                              #:describe-entitlements-request
-                              #:describe-entitlements-result #:describe-fleets
-                              #:describe-fleets-request
-                              #:describe-fleets-result
+                              #:describe-entitlements #:describe-fleets
                               #:describe-image-builders
-                              #:describe-image-builders-request
-                              #:describe-image-builders-result
-                              #:describe-image-permissions
-                              #:describe-image-permissions-request
-                              #:describe-image-permissions-result
-                              #:describe-images #:describe-images-max-results
-                              #:describe-images-request
-                              #:describe-images-result #:describe-sessions
-                              #:describe-sessions-request
-                              #:describe-sessions-result #:describe-stacks
-                              #:describe-stacks-request
-                              #:describe-stacks-result
-                              #:describe-theme-for-stack
-                              #:describe-theme-for-stack-request
-                              #:describe-theme-for-stack-result
+                              #:describe-image-permissions #:describe-images
+                              #:describe-images-max-results #:describe-sessions
+                              #:describe-stacks #:describe-theme-for-stack
                               #:describe-usage-report-subscriptions
-                              #:describe-usage-report-subscriptions-request
-                              #:describe-usage-report-subscriptions-result
                               #:describe-user-stack-associations
-                              #:describe-user-stack-associations-request
-                              #:describe-user-stack-associations-result
-                              #:describe-users #:describe-users-request
-                              #:describe-users-result #:description
-                              #:directory-config #:directory-config-list
-                              #:directory-name #:directory-name-list
-                              #:disable-user #:disable-user-request
-                              #:disable-user-result
+                              #:describe-users #:description #:directory-config
+                              #:directory-config-list #:directory-name
+                              #:directory-name-list #:disable-user
                               #:disassociate-app-block-builder-app-block
-                              #:disassociate-app-block-builder-app-block-request
-                              #:disassociate-app-block-builder-app-block-result
                               #:disassociate-application-fleet
-                              #:disassociate-application-fleet-request
-                              #:disassociate-application-fleet-result
                               #:disassociate-application-from-entitlement
-                              #:disassociate-application-from-entitlement-request
-                              #:disassociate-application-from-entitlement-result
-                              #:disassociate-fleet #:disassociate-fleet-request
-                              #:disassociate-fleet-result #:display-name
-                              #:domain #:domain-join-info #:domain-list
+                              #:disassociate-fleet #:display-name #:domain
+                              #:domain-join-info #:domain-list
                               #:dynamic-app-providers-enabled
                               #:embed-host-domain #:embed-host-domains
-                              #:enable-user #:enable-user-request
-                              #:enable-user-result #:entitled-application
+                              #:enable-user #:entitled-application
                               #:entitled-application-list #:entitlement
-                              #:entitlement-already-exists-exception
                               #:entitlement-attribute
                               #:entitlement-attribute-list #:entitlement-list
-                              #:entitlement-not-found-exception #:error-details
-                              #:error-details-list #:error-message
-                              #:expire-session #:expire-session-request
-                              #:expire-session-result #:feedback-url #:fleet
-                              #:fleet-attribute #:fleet-attributes
+                              #:error-details #:error-details-list
+                              #:error-message #:expire-session #:feedback-url
+                              #:fleet #:fleet-attribute #:fleet-attributes
                               #:fleet-error #:fleet-error-code #:fleet-errors
                               #:fleet-list #:fleet-state #:fleet-type #:image
                               #:image-builder #:image-builder-list
@@ -195,41 +87,22 @@
                               #:image-list #:image-permissions
                               #:image-shared-with-others #:image-state
                               #:image-state-change-reason
-                              #:image-state-change-reason-code
-                              #:incompatible-image-exception #:integer
-                              #:invalid-account-status-exception
-                              #:invalid-parameter-combination-exception
-                              #:invalid-role-exception
+                              #:image-state-change-reason-code #:integer
                               #:last-report-generation-execution-error
                               #:last-report-generation-execution-errors
                               #:latest-appstream-agent-version
-                              #:limit-exceeded-exception
-                              #:list-associated-fleets
-                              #:list-associated-fleets-request
-                              #:list-associated-fleets-result
-                              #:list-associated-stacks
-                              #:list-associated-stacks-request
-                              #:list-associated-stacks-result
+                              #:list-associated-fleets #:list-associated-stacks
                               #:list-entitled-applications
-                              #:list-entitled-applications-request
-                              #:list-entitled-applications-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:long
-                              #:max-results #:message-action #:metadata #:name
+                              #:list-tags-for-resource #:long #:max-results
+                              #:message-action #:metadata #:name
                               #:network-access-configuration
-                              #:operation-not-permitted-exception
                               #:organizational-unit-distinguished-name
                               #:organizational-unit-distinguished-names-list
                               #:packaging-type #:permission
                               #:photon-admin-proxy-service #:platform-type
                               #:platforms #:preferred-protocol #:redirect-url
-                              #:region-name #:request-limit-exceeded-exception
-                              #:resource-already-exists-exception
-                              #:resource-error #:resource-errors
-                              #:resource-identifier #:resource-in-use-exception
-                              #:resource-not-available-exception
-                              #:resource-not-found-exception #:s3bucket #:s3key
+                              #:region-name #:resource-error #:resource-errors
+                              #:resource-identifier #:s3bucket #:s3key
                               #:s3location #:script-details
                               #:security-group-id-list
                               #:service-account-credentials #:session
@@ -240,50 +113,24 @@
                               #:stack-attribute #:stack-attributes
                               #:stack-error #:stack-error-code #:stack-errors
                               #:stack-list #:start-app-block-builder
-                              #:start-app-block-builder-request
-                              #:start-app-block-builder-result #:start-fleet
-                              #:start-fleet-request #:start-fleet-result
-                              #:start-image-builder
-                              #:start-image-builder-request
-                              #:start-image-builder-result
-                              #:stop-app-block-builder
-                              #:stop-app-block-builder-request
-                              #:stop-app-block-builder-result #:stop-fleet
-                              #:stop-fleet-request #:stop-fleet-result
-                              #:stop-image-builder #:stop-image-builder-request
-                              #:stop-image-builder-result #:storage-connector
+                              #:start-fleet #:start-image-builder
+                              #:stop-app-block-builder #:stop-fleet
+                              #:stop-image-builder #:storage-connector
                               #:storage-connector-list #:storage-connector-type
                               #:stream-view #:streaming-experience-settings
                               #:streaming-url-user-id #:string #:string-list
                               #:subnet-id-list #:tag-key #:tag-key-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
-                              #:theme #:theme-attribute #:theme-attributes
+                              #:tag-resource #:tag-value #:tags #:theme
+                              #:theme-attribute #:theme-attributes
                               #:theme-footer-link
                               #:theme-footer-link-display-name
                               #:theme-footer-link-url #:theme-footer-links
                               #:theme-state #:theme-styling #:theme-title-text
                               #:timestamp #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-app-block-builder
-                              #:update-app-block-builder-request
-                              #:update-app-block-builder-result
-                              #:update-application #:update-application-request
-                              #:update-application-result
-                              #:update-directory-config
-                              #:update-directory-config-request
-                              #:update-directory-config-result
-                              #:update-entitlement #:update-entitlement-request
-                              #:update-entitlement-result #:update-fleet
-                              #:update-fleet-request #:update-fleet-result
-                              #:update-image-permissions
-                              #:update-image-permissions-request
-                              #:update-image-permissions-result #:update-stack
-                              #:update-stack-request #:update-stack-result
-                              #:update-theme-for-stack
-                              #:update-theme-for-stack-request
-                              #:update-theme-for-stack-result
+                              #:update-app-block-builder #:update-application
+                              #:update-directory-config #:update-entitlement
+                              #:update-fleet #:update-image-permissions
+                              #:update-stack #:update-theme-for-stack
                               #:usage-report-execution-error-code
                               #:usage-report-schedule
                               #:usage-report-subscription

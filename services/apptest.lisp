@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/apptest (:use)
-                             (:export #:access-denied-exception #:arn
-                              #:aws-apptest-control-plane-service #:batch
-                              #:batch-job-parameters #:batch-step-input
+                             (:export #:arn #:aws-apptest-control-plane-service
+                              #:batch #:batch-job-parameters #:batch-step-input
                               #:batch-step-output #:batch-summary
                               #:capture-tool #:cloud-formation
                               #:cloud-formation-action
@@ -14,59 +13,26 @@
                               #:compare-database-cdcstep-input
                               #:compare-database-cdcstep-output
                               #:compare-database-cdcsummary #:compare-file-type
-                              #:comparison-status-enum #:conflict-exception
+                              #:comparison-status-enum
                               #:create-cloud-formation-step-input
                               #:create-cloud-formation-step-output
                               #:create-cloud-formation-summary
-                              #:create-test-case #:create-test-case-request
-                              #:create-test-case-response
-                              #:create-test-configuration
-                              #:create-test-configuration-request
-                              #:create-test-configuration-response
-                              #:create-test-suite #:create-test-suite-request
-                              #:create-test-suite-response #:data-set
-                              #:data-set-list #:data-set-type #:database-cdc
+                              #:create-test-case #:create-test-configuration
+                              #:create-test-suite #:data-set #:data-set-list
+                              #:data-set-type #:database-cdc
                               #:delete-cloud-formation-step-input
                               #:delete-cloud-formation-step-output
                               #:delete-cloud-formation-summary
-                              #:delete-test-case #:delete-test-case-request
-                              #:delete-test-case-response
-                              #:delete-test-configuration
-                              #:delete-test-configuration-request
-                              #:delete-test-configuration-response
-                              #:delete-test-run #:delete-test-run-request
-                              #:delete-test-run-response #:delete-test-suite
-                              #:delete-test-suite-request
-                              #:delete-test-suite-response
+                              #:delete-test-case #:delete-test-configuration
+                              #:delete-test-run #:delete-test-suite
                               #:export-data-set-names #:file #:file-metadata
-                              #:format #:get-test-case #:get-test-case-request
-                              #:get-test-case-response #:get-test-configuration
-                              #:get-test-configuration-request
-                              #:get-test-configuration-response
-                              #:get-test-run-step #:get-test-run-step-request
-                              #:get-test-run-step-response #:get-test-suite
-                              #:get-test-suite-request
-                              #:get-test-suite-response
+                              #:format #:get-test-case #:get-test-configuration
+                              #:get-test-run-step #:get-test-suite
                               #:idempotency-token-string #:identifier #:input
-                              #:input-file #:internal-server-exception
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-test-cases #:list-test-cases-request
-                              #:list-test-cases-response
-                              #:list-test-configurations
-                              #:list-test-configurations-request
-                              #:list-test-configurations-response
-                              #:list-test-run-steps
-                              #:list-test-run-steps-request
-                              #:list-test-run-steps-response
-                              #:list-test-run-test-cases
-                              #:list-test-run-test-cases-request
-                              #:list-test-run-test-cases-response
-                              #:list-test-runs #:list-test-runs-request
-                              #:list-test-runs-response #:list-test-suites
-                              #:list-test-suites-request
-                              #:list-test-suites-response
+                              #:input-file #:list-tags-for-resource
+                              #:list-test-cases #:list-test-configurations
+                              #:list-test-run-steps #:list-test-run-test-cases
+                              #:list-test-runs #:list-test-suites
                               #:m2managed-action-properties
                               #:m2managed-action-type #:m2managed-application
                               #:m2managed-application-action
@@ -89,25 +55,20 @@
                               #:next-token #:output #:output-file #:properties
                               #:resource #:resource-action
                               #:resource-action-summary #:resource-description
-                              #:resource-list #:resource-name
-                              #:resource-not-found-exception #:resource-type
+                              #:resource-list #:resource-name #:resource-type
                               #:s3uri #:script #:script-summary #:script-type
-                              #:service-quota-exceeded-exception
                               #:service-settings #:source-database
                               #:source-database-metadata #:start-test-run
-                              #:start-test-run-request
-                              #:start-test-run-response #:step #:step-action
-                              #:step-list #:step-run-status #:step-run-summary
-                              #:string100 #:string50 #:tn3270
-                              #:tn3270step-input #:tn3270step-output
-                              #:tn3270summary #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:target-database #:target-database-metadata
-                              #:test-case #:test-case-id-list
-                              #:test-case-latest-version #:test-case-lifecycle
-                              #:test-case-list #:test-case-run-status
-                              #:test-case-run-summary
+                              #:step #:step-action #:step-list
+                              #:step-run-status #:step-run-summary #:string100
+                              #:string50 #:tn3270 #:tn3270step-input
+                              #:tn3270step-output #:tn3270summary #:tag-key
+                              #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:target-database
+                              #:target-database-metadata #:test-case
+                              #:test-case-id-list #:test-case-latest-version
+                              #:test-case-lifecycle #:test-case-list
+                              #:test-case-run-status #:test-case-run-summary
                               #:test-case-run-summary-list #:test-case-summary
                               #:test-case-summary-list #:test-cases
                               #:test-configuration #:test-configuration-id-list
@@ -121,18 +82,9 @@
                               #:test-run-summary-list #:test-suite
                               #:test-suite-id-list #:test-suite-latest-version
                               #:test-suite-lifecycle #:test-suite-list
-                              #:test-suite-summary #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-test-case
-                              #:update-test-case-request
-                              #:update-test-case-response
-                              #:update-test-configuration
-                              #:update-test-configuration-request
-                              #:update-test-configuration-response
-                              #:update-test-suite #:update-test-suite-request
-                              #:update-test-suite-response
-                              #:validation-exception
-                              #:validation-exception-field
+                              #:test-suite-summary #:untag-resource
+                              #:update-test-case #:update-test-configuration
+                              #:update-test-suite #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:variable
                               #:version))

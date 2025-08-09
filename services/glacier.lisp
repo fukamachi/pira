@@ -1,89 +1,44 @@
 (uiop/package:define-package #:pira/glacier (:use)
                              (:export #:abort-multipart-upload
-                              #:abort-multipart-upload-input #:abort-vault-lock
-                              #:abort-vault-lock-input
-                              #:access-control-policy-list #:action-code
-                              #:add-tags-to-vault #:add-tags-to-vault-input
+                              #:abort-vault-lock #:access-control-policy-list
+                              #:action-code #:add-tags-to-vault
                               #:archive-creation-output #:csvinput #:csvoutput
                               #:canned-acl #:complete-multipart-upload
-                              #:complete-multipart-upload-input
-                              #:complete-vault-lock #:complete-vault-lock-input
-                              #:create-vault #:create-vault-input
-                              #:create-vault-output #:data-retrieval-policy
-                              #:data-retrieval-rule #:data-retrieval-rules-list
-                              #:date-time #:delete-archive
-                              #:delete-archive-input #:delete-vault
+                              #:complete-vault-lock #:create-vault
+                              #:data-retrieval-policy #:data-retrieval-rule
+                              #:data-retrieval-rules-list #:date-time
+                              #:delete-archive #:delete-vault
                               #:delete-vault-access-policy
-                              #:delete-vault-access-policy-input
-                              #:delete-vault-input #:delete-vault-notifications
-                              #:delete-vault-notifications-input #:describe-job
-                              #:describe-job-input #:describe-vault
-                              #:describe-vault-input #:describe-vault-output
+                              #:delete-vault-notifications #:describe-job
+                              #:describe-vault #:describe-vault-output
                               #:encryption #:encryption-type #:expression-type
                               #:file-header-info #:get-data-retrieval-policy
-                              #:get-data-retrieval-policy-input
-                              #:get-data-retrieval-policy-output
-                              #:get-job-output #:get-job-output-input
-                              #:get-job-output-output #:get-vault-access-policy
-                              #:get-vault-access-policy-input
-                              #:get-vault-access-policy-output #:get-vault-lock
-                              #:get-vault-lock-input #:get-vault-lock-output
-                              #:get-vault-notifications
-                              #:get-vault-notifications-input
-                              #:get-vault-notifications-output #:glacier
-                              #:glacier-job-description #:grant #:grantee
-                              #:initiate-job #:initiate-job-input
-                              #:initiate-job-output #:initiate-multipart-upload
-                              #:initiate-multipart-upload-input
-                              #:initiate-multipart-upload-output
-                              #:initiate-vault-lock #:initiate-vault-lock-input
-                              #:initiate-vault-lock-output
+                              #:get-job-output #:get-vault-access-policy
+                              #:get-vault-lock #:get-vault-notifications
+                              #:glacier #:glacier-job-description #:grant
+                              #:grantee #:initiate-job
+                              #:initiate-multipart-upload #:initiate-vault-lock
                               #:input-serialization
-                              #:insufficient-capacity-exception
-                              #:invalid-parameter-value-exception
                               #:inventory-retrieval-job-description
                               #:inventory-retrieval-job-input #:job-list
-                              #:job-parameters #:limit-exceeded-exception
-                              #:list-jobs #:list-jobs-input #:list-jobs-output
-                              #:list-multipart-uploads
-                              #:list-multipart-uploads-input
-                              #:list-multipart-uploads-output #:list-parts
-                              #:list-parts-input #:list-parts-output
-                              #:list-provisioned-capacity
-                              #:list-provisioned-capacity-input
-                              #:list-provisioned-capacity-output
-                              #:list-tags-for-vault #:list-tags-for-vault-input
-                              #:list-tags-for-vault-output #:list-vaults
-                              #:list-vaults-input #:list-vaults-output
-                              #:missing-parameter-value-exception
-                              #:notification-event-list #:nullable-long
-                              #:output-location #:output-serialization
-                              #:part-list #:part-list-element #:permission
-                              #:policy-enforced-exception
+                              #:job-parameters #:list-jobs
+                              #:list-multipart-uploads #:list-parts
+                              #:list-provisioned-capacity #:list-tags-for-vault
+                              #:list-vaults #:notification-event-list
+                              #:nullable-long #:output-location
+                              #:output-serialization #:part-list
+                              #:part-list-element #:permission
                               #:provisioned-capacity-description
                               #:provisioned-capacity-list
-                              #:purchase-provisioned-capacity
-                              #:purchase-provisioned-capacity-input
-                              #:purchase-provisioned-capacity-output
-                              #:quote-fields #:remove-tags-from-vault
-                              #:remove-tags-from-vault-input
-                              #:request-timeout-exception
-                              #:resource-not-found-exception #:s3location
-                              #:select-parameters
-                              #:service-unavailable-exception
-                              #:set-data-retrieval-policy
-                              #:set-data-retrieval-policy-input
+                              #:purchase-provisioned-capacity #:quote-fields
+                              #:remove-tags-from-vault #:s3location
+                              #:select-parameters #:set-data-retrieval-policy
                               #:set-vault-access-policy
-                              #:set-vault-access-policy-input
-                              #:set-vault-notifications
-                              #:set-vault-notifications-input #:size
-                              #:status-code #:storage-class #:stream #:tag-key
-                              #:tag-key-list #:tag-map #:tag-value #:type
-                              #:upload-archive #:upload-archive-input
+                              #:set-vault-notifications #:size #:status-code
+                              #:storage-class #:stream #:tag-key #:tag-key-list
+                              #:tag-map #:tag-value #:type #:upload-archive
                               #:upload-list-element #:upload-multipart-part
-                              #:upload-multipart-part-input
-                              #:upload-multipart-part-output #:uploads-list
-                              #:vault-access-policy #:vault-list
+                              #:uploads-list #:vault-access-policy #:vault-list
                               #:vault-lock-policy #:vault-notification-config
                               #:boolean #:hashmap #:httpstatus #:long #:string))
 (common-lisp:in-package #:pira/glacier)

@@ -1,22 +1,15 @@
 (uiop/package:define-package #:pira/elasticsearch-service (:use)
                              (:export #:arn #:awsaccount
                               #:accept-inbound-cross-cluster-search-connection
-                              #:accept-inbound-cross-cluster-search-connection-request
-                              #:accept-inbound-cross-cluster-search-connection-response
-                              #:access-denied-exception
                               #:access-policies-status #:add-tags
-                              #:add-tags-request #:additional-limit
-                              #:additional-limit-list #:advanced-options
-                              #:advanced-options-status
+                              #:additional-limit #:additional-limit-list
+                              #:advanced-options #:advanced-options-status
                               #:advanced-security-options
                               #:advanced-security-options-input
                               #:advanced-security-options-status
                               #:amazon-elasticsearch-service2015
-                              #:associate-package #:associate-package-request
-                              #:associate-package-response
+                              #:associate-package
                               #:authorize-vpc-endpoint-access
-                              #:authorize-vpc-endpoint-access-request
-                              #:authorize-vpc-endpoint-access-response
                               #:authorized-principal
                               #:authorized-principal-list #:auto-tune
                               #:auto-tune-date #:auto-tune-desired-state
@@ -27,13 +20,9 @@
                               #:auto-tune-options-output
                               #:auto-tune-options-status #:auto-tune-state
                               #:auto-tune-status #:auto-tune-type
-                              #:backend-role #:base-exception #:boolean
+                              #:backend-role #:boolean
                               #:cancel-domain-config-change
-                              #:cancel-domain-config-change-request
-                              #:cancel-domain-config-change-response
                               #:cancel-elasticsearch-service-software-update
-                              #:cancel-elasticsearch-service-software-update-request
-                              #:cancel-elasticsearch-service-software-update-response
                               #:cancelled-change-property
                               #:cancelled-change-property-list
                               #:change-progress-details #:change-progress-stage
@@ -46,80 +35,36 @@
                               #:cold-storage-options #:commit-message
                               #:compatible-elasticsearch-versions-list
                               #:compatible-versions-map #:config-change-status
-                              #:conflict-exception #:connection-alias
-                              #:create-elasticsearch-domain
-                              #:create-elasticsearch-domain-request
-                              #:create-elasticsearch-domain-response
+                              #:connection-alias #:create-elasticsearch-domain
                               #:create-outbound-cross-cluster-search-connection
-                              #:create-outbound-cross-cluster-search-connection-request
-                              #:create-outbound-cross-cluster-search-connection-response
-                              #:create-package #:create-package-request
-                              #:create-package-response #:create-vpc-endpoint
-                              #:create-vpc-endpoint-request
-                              #:create-vpc-endpoint-response #:created-at
-                              #:cross-cluster-search-connection-id
+                              #:create-package #:create-vpc-endpoint
+                              #:created-at #:cross-cluster-search-connection-id
                               #:cross-cluster-search-connection-status-message
                               #:delete-elasticsearch-domain
-                              #:delete-elasticsearch-domain-request
-                              #:delete-elasticsearch-domain-response
                               #:delete-elasticsearch-service-role
                               #:delete-inbound-cross-cluster-search-connection
-                              #:delete-inbound-cross-cluster-search-connection-request
-                              #:delete-inbound-cross-cluster-search-connection-response
                               #:delete-outbound-cross-cluster-search-connection
-                              #:delete-outbound-cross-cluster-search-connection-request
-                              #:delete-outbound-cross-cluster-search-connection-response
-                              #:delete-package #:delete-package-request
-                              #:delete-package-response #:delete-vpc-endpoint
-                              #:delete-vpc-endpoint-request
-                              #:delete-vpc-endpoint-response
+                              #:delete-package #:delete-vpc-endpoint
                               #:deployment-close-date-time-stamp
                               #:deployment-status #:deployment-type
                               #:describe-domain-auto-tunes
-                              #:describe-domain-auto-tunes-request
-                              #:describe-domain-auto-tunes-response
                               #:describe-domain-change-progress
-                              #:describe-domain-change-progress-request
-                              #:describe-domain-change-progress-response
                               #:describe-elasticsearch-domain
                               #:describe-elasticsearch-domain-config
-                              #:describe-elasticsearch-domain-config-request
-                              #:describe-elasticsearch-domain-config-response
-                              #:describe-elasticsearch-domain-request
-                              #:describe-elasticsearch-domain-response
                               #:describe-elasticsearch-domains
-                              #:describe-elasticsearch-domains-request
-                              #:describe-elasticsearch-domains-response
                               #:describe-elasticsearch-instance-type-limits
-                              #:describe-elasticsearch-instance-type-limits-request
-                              #:describe-elasticsearch-instance-type-limits-response
                               #:describe-inbound-cross-cluster-search-connections
-                              #:describe-inbound-cross-cluster-search-connections-request
-                              #:describe-inbound-cross-cluster-search-connections-response
                               #:describe-outbound-cross-cluster-search-connections
-                              #:describe-outbound-cross-cluster-search-connections-request
-                              #:describe-outbound-cross-cluster-search-connections-response
                               #:describe-packages #:describe-packages-filter
                               #:describe-packages-filter-list
                               #:describe-packages-filter-name
                               #:describe-packages-filter-value
                               #:describe-packages-filter-values
-                              #:describe-packages-request
-                              #:describe-packages-response
                               #:describe-reserved-elasticsearch-instance-offerings
-                              #:describe-reserved-elasticsearch-instance-offerings-request
-                              #:describe-reserved-elasticsearch-instance-offerings-response
                               #:describe-reserved-elasticsearch-instances
-                              #:describe-reserved-elasticsearch-instances-request
-                              #:describe-reserved-elasticsearch-instances-response
-                              #:describe-vpc-endpoints
-                              #:describe-vpc-endpoints-request
-                              #:describe-vpc-endpoints-response #:description
-                              #:disable-timestamp
-                              #:disabled-operation-exception
-                              #:dissociate-package #:dissociate-package-request
-                              #:dissociate-package-response #:domain-arn
-                              #:domain-endpoint-options
+                              #:describe-vpc-endpoints #:description
+                              #:disable-timestamp #:dissociate-package
+                              #:domain-arn #:domain-endpoint-options
                               #:domain-endpoint-options-status #:domain-id
                               #:domain-info #:domain-info-list
                               #:domain-information #:domain-name
@@ -147,54 +92,25 @@
                               #:error-message #:error-type #:filter
                               #:filter-list #:guid #:guidlist
                               #:get-compatible-elasticsearch-versions
-                              #:get-compatible-elasticsearch-versions-request
-                              #:get-compatible-elasticsearch-versions-response
                               #:get-package-version-history
-                              #:get-package-version-history-request
-                              #:get-package-version-history-response
-                              #:get-upgrade-history
-                              #:get-upgrade-history-request
-                              #:get-upgrade-history-response
-                              #:get-upgrade-status #:get-upgrade-status-request
-                              #:get-upgrade-status-response #:identity-pool-id
+                              #:get-upgrade-history #:get-upgrade-status
+                              #:identity-pool-id
                               #:inbound-cross-cluster-search-connection
                               #:inbound-cross-cluster-search-connection-status
                               #:inbound-cross-cluster-search-connection-status-code
                               #:inbound-cross-cluster-search-connections
                               #:initiated-by #:instance-count
                               #:instance-count-limits #:instance-limits
-                              #:instance-role #:integer #:integer-class
-                              #:internal-exception
-                              #:invalid-pagination-token-exception
-                              #:invalid-type-exception #:issue #:issues
-                              #:kms-key-id #:last-updated
-                              #:limit-exceeded-exception #:limit-name
+                              #:instance-role #:integer #:integer-class #:issue
+                              #:issues #:kms-key-id #:last-updated #:limit-name
                               #:limit-value #:limit-value-list #:limits
                               #:limits-by-role #:list-domain-names
-                              #:list-domain-names-request
-                              #:list-domain-names-response
                               #:list-domains-for-package
-                              #:list-domains-for-package-request
-                              #:list-domains-for-package-response
                               #:list-elasticsearch-instance-types
-                              #:list-elasticsearch-instance-types-request
-                              #:list-elasticsearch-instance-types-response
                               #:list-elasticsearch-versions
-                              #:list-elasticsearch-versions-request
-                              #:list-elasticsearch-versions-response
-                              #:list-packages-for-domain
-                              #:list-packages-for-domain-request
-                              #:list-packages-for-domain-response #:list-tags
-                              #:list-tags-request #:list-tags-response
-                              #:list-vpc-endpoint-access
-                              #:list-vpc-endpoint-access-request
-                              #:list-vpc-endpoint-access-response
-                              #:list-vpc-endpoints
+                              #:list-packages-for-domain #:list-tags
+                              #:list-vpc-endpoint-access #:list-vpc-endpoints
                               #:list-vpc-endpoints-for-domain
-                              #:list-vpc-endpoints-for-domain-request
-                              #:list-vpc-endpoints-for-domain-response
-                              #:list-vpc-endpoints-request
-                              #:list-vpc-endpoints-response
                               #:log-publishing-option #:log-publishing-options
                               #:log-publishing-options-status #:log-type
                               #:master-user-options #:max-results
@@ -218,25 +134,16 @@
                               #:policy-document #:principal-type
                               #:property-value-type
                               #:purchase-reserved-elasticsearch-instance-offering
-                              #:purchase-reserved-elasticsearch-instance-offering-request
-                              #:purchase-reserved-elasticsearch-instance-offering-response
                               #:recurring-charge #:recurring-charge-list
                               #:reference-path #:region
                               #:reject-inbound-cross-cluster-search-connection
-                              #:reject-inbound-cross-cluster-search-connection-request
-                              #:reject-inbound-cross-cluster-search-connection-response
-                              #:remove-tags #:remove-tags-request
-                              #:reservation-token
+                              #:remove-tags #:reservation-token
                               #:reserved-elasticsearch-instance
                               #:reserved-elasticsearch-instance-list
                               #:reserved-elasticsearch-instance-offering
                               #:reserved-elasticsearch-instance-offering-list
                               #:reserved-elasticsearch-instance-payment-option
-                              #:resource-already-exists-exception
-                              #:resource-not-found-exception
-                              #:revoke-vpc-endpoint-access
-                              #:revoke-vpc-endpoint-access-request
-                              #:revoke-vpc-endpoint-access-response #:role-arn
+                              #:revoke-vpc-endpoint-access #:role-arn
                               #:rollback-on-disable #:s3bucket-name #:s3key
                               #:samlentity-id #:samlidp #:samlmetadata
                               #:samloptions-input #:samloptions-output
@@ -248,8 +155,6 @@
                               #:snapshot-options #:snapshot-options-status
                               #:start-at
                               #:start-elasticsearch-service-software-update
-                              #:start-elasticsearch-service-software-update-request
-                              #:start-elasticsearch-service-software-update-response
                               #:start-timestamp #:storage-sub-type-name
                               #:storage-type #:storage-type-limit
                               #:storage-type-limit-list #:storage-type-list
@@ -257,24 +162,16 @@
                               #:tlssecurity-policy #:tag #:tag-key #:tag-list
                               #:tag-value #:time-unit #:total-number-of-stages
                               #:uint-value #:update-elasticsearch-domain-config
-                              #:update-elasticsearch-domain-config-request
-                              #:update-elasticsearch-domain-config-response
-                              #:update-package #:update-package-request
-                              #:update-package-response #:update-timestamp
+                              #:update-package #:update-timestamp
                               #:update-vpc-endpoint
-                              #:update-vpc-endpoint-request
-                              #:update-vpc-endpoint-response
-                              #:upgrade-elasticsearch-domain
-                              #:upgrade-elasticsearch-domain-request
-                              #:upgrade-elasticsearch-domain-response
-                              #:upgrade-history #:upgrade-history-list
-                              #:upgrade-name #:upgrade-status #:upgrade-step
+                              #:upgrade-elasticsearch-domain #:upgrade-history
+                              #:upgrade-history-list #:upgrade-name
+                              #:upgrade-status #:upgrade-step
                               #:upgrade-step-item #:upgrade-steps-list
                               #:user-pool-id #:username #:vpcderived-info
                               #:vpcderived-info-status #:vpcoptions
-                              #:validation-exception #:value-string-list
-                              #:volume-type #:vpc-endpoint #:vpc-endpoint-error
-                              #:vpc-endpoint-error-code
+                              #:value-string-list #:volume-type #:vpc-endpoint
+                              #:vpc-endpoint-error #:vpc-endpoint-error-code
                               #:vpc-endpoint-error-list #:vpc-endpoint-id
                               #:vpc-endpoint-id-list #:vpc-endpoint-status
                               #:vpc-endpoint-summary

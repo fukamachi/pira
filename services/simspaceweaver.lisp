@@ -1,18 +1,16 @@
 (uiop/package:define-package #:pira/simspaceweaver (:use)
-                             (:export #:access-denied-exception
-                              #:app-port-mappings #:bucket-name #:client-token
-                              #:clock-status #:clock-target-status
-                              #:cloud-watch-logs-log-group #:conflict-exception
-                              #:create-snapshot #:create-snapshot-input
-                              #:create-snapshot-output #:delete-app
-                              #:delete-app-input #:delete-app-output
-                              #:delete-simulation #:delete-simulation-input
+                             (:export #:app-port-mappings #:bucket-name
+                              #:client-token #:clock-status
+                              #:clock-target-status
+                              #:cloud-watch-logs-log-group #:create-snapshot
+                              #:delete-app #:delete-app-input
+                              #:delete-app-output #:delete-simulation
+                              #:delete-simulation-input
                               #:delete-simulation-output #:describe-app
                               #:describe-app-input #:describe-app-output
                               #:describe-simulation #:describe-simulation-input
                               #:describe-simulation-output #:description
-                              #:domain #:domain-list
-                              #:internal-server-exception #:launch-command-list
+                              #:domain #:domain-list #:launch-command-list
                               #:launch-overrides
                               #:lifecycle-management-strategy #:list-apps
                               #:list-apps-input #:list-apps-output
@@ -26,10 +24,9 @@
                               #:logging-configuration #:non-empty-string
                               #:object-key #:object-key-prefix
                               #:optional-string #:port-number
-                              #:positive-integer #:resource-not-found-exception
-                              #:role-arn #:s3destination #:s3location
-                              #:service-quota-exceeded-exception
-                              #:sim-space-weaver #:sim-space-weaver-arn
+                              #:positive-integer #:role-arn #:s3destination
+                              #:s3location #:sim-space-weaver
+                              #:sim-space-weaver-arn
                               #:sim-space-weaver-long-resource-name
                               #:sim-space-weaver-resource-name #:simulation
                               #:simulation-app-endpoint-info
@@ -51,10 +48,9 @@
                               #:stop-simulation-output #:tag-key #:tag-key-list
                               #:tag-map #:tag-resource #:tag-resource-input
                               #:tag-resource-output #:tag-value
-                              #:time-to-live-string #:timestamp
-                              #:too-many-tags-exception #:uuid #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:validation-exception))
+                              #:time-to-live-string #:timestamp #:uuid
+                              #:untag-resource #:untag-resource-input
+                              #:untag-resource-output))
 (common-lisp:in-package #:pira/simspaceweaver)
 
 (smithy/sdk/service:define-service sim-space-weaver :shape-name

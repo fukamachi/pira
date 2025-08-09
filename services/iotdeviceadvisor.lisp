@@ -1,42 +1,22 @@
 (uiop/package:define-package #:pira/iotdeviceadvisor (:use)
                              (:export #:amazon-resource-name
                               #:authentication-method #:client-token
-                              #:conflict-exception #:create-suite-definition
-                              #:create-suite-definition-request
-                              #:create-suite-definition-response
-                              #:delete-suite-definition
-                              #:delete-suite-definition-request
-                              #:delete-suite-definition-response
-                              #:device-under-test #:device-under-test-list
-                              #:endpoint #:error-reason #:failure
-                              #:get-endpoint #:get-endpoint-request
-                              #:get-endpoint-response #:get-suite-definition
-                              #:get-suite-definition-request
-                              #:get-suite-definition-response #:get-suite-run
-                              #:get-suite-run-report
-                              #:get-suite-run-report-request
-                              #:get-suite-run-report-response
-                              #:get-suite-run-request #:get-suite-run-response
-                              #:group-name #:group-result #:group-result-list
+                              #:create-suite-definition
+                              #:delete-suite-definition #:device-under-test
+                              #:device-under-test-list #:endpoint
+                              #:error-reason #:failure #:get-endpoint
+                              #:get-suite-definition #:get-suite-run
+                              #:get-suite-run-report #:group-name
+                              #:group-result #:group-result-list
                               #:intended-for-qualification-boolean
-                              #:internal-server-exception #:iot-senate-service
+                              #:iot-senate-service
                               #:is-long-duration-test-boolean
-                              #:list-suite-definitions
-                              #:list-suite-definitions-request
-                              #:list-suite-definitions-response
-                              #:list-suite-runs #:list-suite-runs-request
-                              #:list-suite-runs-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:log-url
-                              #:max-results #:message #:parallel-run #:protocol
-                              #:qualification-report-download-url
-                              #:resource-not-found-exception #:root-group
-                              #:selected-test-list #:start-suite-run
-                              #:start-suite-run-request
-                              #:start-suite-run-response #:status
-                              #:stop-suite-run #:stop-suite-run-request
-                              #:stop-suite-run-response #:string128 #:string256
+                              #:list-suite-definitions #:list-suite-runs
+                              #:list-tags-for-resource #:log-url #:max-results
+                              #:message #:parallel-run #:protocol
+                              #:qualification-report-download-url #:root-group
+                              #:selected-test-list #:start-suite-run #:status
+                              #:stop-suite-run #:string128 #:string256
                               #:suite-definition-configuration
                               #:suite-definition-information
                               #:suite-definition-information-list
@@ -45,8 +25,7 @@
                               #:suite-run-configuration #:suite-run-information
                               #:suite-run-result-count #:suite-run-status
                               #:suite-runs-list #:system-message #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response
+                              #:tag-map #:tag-resource
                               #:test-case-definition-name #:test-case-run
                               #:test-case-runs #:test-case-scenario
                               #:test-case-scenario-id
@@ -54,12 +33,7 @@
                               #:test-case-scenario-type
                               #:test-case-scenarios-list #:test-result
                               #:timestamp #:token #:uuid #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-suite-definition
-                              #:update-suite-definition-request
-                              #:update-suite-definition-response
-                              #:validation-exception #:warnings))
+                              #:update-suite-definition #:warnings))
 (common-lisp:in-package #:pira/iotdeviceadvisor)
 
 (smithy/sdk/service:define-service iot-senate-service :shape-name

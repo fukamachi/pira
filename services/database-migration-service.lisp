@@ -1,13 +1,8 @@
 (uiop/package:define-package #:pira/database-migration-service (:use)
-                             (:export #:access-denied-fault #:account-quota
-                              #:account-quota-list #:add-tags-to-resource
-                              #:add-tags-to-resource-message
-                              #:add-tags-to-resource-response
-                              #:amazon-dmsv20160101
-                              #:apply-pending-maintenance-action
-                              #:apply-pending-maintenance-action-message
-                              #:apply-pending-maintenance-action-response
-                              #:arn-list #:assessment-report-type
+                             (:export #:account-quota #:account-quota-list
+                              #:add-tags-to-resource #:amazon-dmsv20160101
+                              #:apply-pending-maintenance-action #:arn-list
+                              #:assessment-report-type
                               #:assessment-report-types-list
                               #:auth-mechanism-value #:auth-type-value
                               #:availability-zone #:availability-zones-list
@@ -15,55 +10,26 @@
                               #:batch-start-recommendations
                               #:batch-start-recommendations-error-entry
                               #:batch-start-recommendations-error-entry-list
-                              #:batch-start-recommendations-request
-                              #:batch-start-recommendations-response #:boolean
-                              #:boolean-optional
+                              #:boolean #:boolean-optional
                               #:cancel-replication-task-assessment-run
-                              #:cancel-replication-task-assessment-run-message
-                              #:cancel-replication-task-assessment-run-response
                               #:canned-acl-for-objects-value #:certificate
                               #:certificate-list #:certificate-wallet
                               #:char-length-semantics #:collector-health-check
-                              #:collector-not-found-fault #:collector-response
-                              #:collector-responses
+                              #:collector-response #:collector-responses
                               #:collector-short-info-response
                               #:collector-status #:collectors-list
                               #:compression-type-value #:compute-config
                               #:connection #:connection-list
-                              #:create-data-migration
-                              #:create-data-migration-message
-                              #:create-data-migration-response
-                              #:create-data-provider
-                              #:create-data-provider-message
-                              #:create-data-provider-response #:create-endpoint
-                              #:create-endpoint-message
-                              #:create-endpoint-response
-                              #:create-event-subscription
-                              #:create-event-subscription-message
-                              #:create-event-subscription-response
+                              #:create-data-migration #:create-data-provider
+                              #:create-endpoint #:create-event-subscription
                               #:create-fleet-advisor-collector
-                              #:create-fleet-advisor-collector-request
-                              #:create-fleet-advisor-collector-response
                               #:create-instance-profile
-                              #:create-instance-profile-message
-                              #:create-instance-profile-response
                               #:create-migration-project
-                              #:create-migration-project-message
-                              #:create-migration-project-response
                               #:create-replication-config
-                              #:create-replication-config-message
-                              #:create-replication-config-response
                               #:create-replication-instance
-                              #:create-replication-instance-message
-                              #:create-replication-instance-response
                               #:create-replication-subnet-group
-                              #:create-replication-subnet-group-message
-                              #:create-replication-subnet-group-response
-                              #:create-replication-task
-                              #:create-replication-task-message
-                              #:create-replication-task-response
-                              #:data-format-value #:data-migration
-                              #:data-migration-cidr-block
+                              #:create-replication-task #:data-format-value
+                              #:data-migration #:data-migration-cidr-block
                               #:data-migration-settings
                               #:data-migration-statistics #:data-migrations
                               #:data-provider #:data-provider-descriptor
@@ -78,177 +44,59 @@
                               #:date-partition-delimiter-value
                               #:date-partition-sequence-value
                               #:default-error-details #:delete-certificate
-                              #:delete-certificate-message
-                              #:delete-certificate-response
-                              #:delete-collector-request #:delete-connection
-                              #:delete-connection-message
-                              #:delete-connection-response
-                              #:delete-data-migration
-                              #:delete-data-migration-message
-                              #:delete-data-migration-response
-                              #:delete-data-provider
-                              #:delete-data-provider-message
-                              #:delete-data-provider-response #:delete-endpoint
-                              #:delete-endpoint-message
-                              #:delete-endpoint-response
+                              #:delete-connection #:delete-data-migration
+                              #:delete-data-provider #:delete-endpoint
                               #:delete-event-subscription
-                              #:delete-event-subscription-message
-                              #:delete-event-subscription-response
                               #:delete-fleet-advisor-collector
                               #:delete-fleet-advisor-databases
-                              #:delete-fleet-advisor-databases-request
-                              #:delete-fleet-advisor-databases-response
                               #:delete-instance-profile
-                              #:delete-instance-profile-message
-                              #:delete-instance-profile-response
                               #:delete-migration-project
-                              #:delete-migration-project-message
-                              #:delete-migration-project-response
                               #:delete-replication-config
-                              #:delete-replication-config-message
-                              #:delete-replication-config-response
                               #:delete-replication-instance
-                              #:delete-replication-instance-message
-                              #:delete-replication-instance-response
                               #:delete-replication-subnet-group
-                              #:delete-replication-subnet-group-message
-                              #:delete-replication-subnet-group-response
                               #:delete-replication-task
                               #:delete-replication-task-assessment-run
-                              #:delete-replication-task-assessment-run-message
-                              #:delete-replication-task-assessment-run-response
-                              #:delete-replication-task-message
-                              #:delete-replication-task-response
                               #:describe-account-attributes
-                              #:describe-account-attributes-message
-                              #:describe-account-attributes-response
                               #:describe-applicable-individual-assessments
-                              #:describe-applicable-individual-assessments-message
-                              #:describe-applicable-individual-assessments-response
-                              #:describe-certificates
-                              #:describe-certificates-message
-                              #:describe-certificates-response
-                              #:describe-connections
-                              #:describe-connections-message
-                              #:describe-connections-response
+                              #:describe-certificates #:describe-connections
                               #:describe-conversion-configuration
-                              #:describe-conversion-configuration-message
-                              #:describe-conversion-configuration-response
                               #:describe-data-migrations
-                              #:describe-data-migrations-message
-                              #:describe-data-migrations-response
                               #:describe-data-providers
-                              #:describe-data-providers-message
-                              #:describe-data-providers-response
                               #:describe-endpoint-settings
-                              #:describe-endpoint-settings-message
-                              #:describe-endpoint-settings-response
-                              #:describe-endpoint-types
-                              #:describe-endpoint-types-message
-                              #:describe-endpoint-types-response
-                              #:describe-endpoints #:describe-endpoints-message
-                              #:describe-endpoints-response
+                              #:describe-endpoint-types #:describe-endpoints
                               #:describe-engine-versions
-                              #:describe-engine-versions-message
-                              #:describe-engine-versions-response
                               #:describe-event-categories
-                              #:describe-event-categories-message
-                              #:describe-event-categories-response
-                              #:describe-event-subscriptions
-                              #:describe-event-subscriptions-message
-                              #:describe-event-subscriptions-response
-                              #:describe-events #:describe-events-message
-                              #:describe-events-response
+                              #:describe-event-subscriptions #:describe-events
                               #:describe-extension-pack-associations
-                              #:describe-extension-pack-associations-message
-                              #:describe-extension-pack-associations-response
                               #:describe-fleet-advisor-collectors
-                              #:describe-fleet-advisor-collectors-request
-                              #:describe-fleet-advisor-collectors-response
                               #:describe-fleet-advisor-databases
-                              #:describe-fleet-advisor-databases-request
-                              #:describe-fleet-advisor-databases-response
                               #:describe-fleet-advisor-lsa-analysis
-                              #:describe-fleet-advisor-lsa-analysis-request
-                              #:describe-fleet-advisor-lsa-analysis-response
                               #:describe-fleet-advisor-schema-object-summary
-                              #:describe-fleet-advisor-schema-object-summary-request
-                              #:describe-fleet-advisor-schema-object-summary-response
                               #:describe-fleet-advisor-schemas
-                              #:describe-fleet-advisor-schemas-request
-                              #:describe-fleet-advisor-schemas-response
                               #:describe-instance-profiles
-                              #:describe-instance-profiles-message
-                              #:describe-instance-profiles-response
                               #:describe-metadata-model-assessments
-                              #:describe-metadata-model-assessments-message
-                              #:describe-metadata-model-assessments-response
                               #:describe-metadata-model-conversions
-                              #:describe-metadata-model-conversions-message
-                              #:describe-metadata-model-conversions-response
                               #:describe-metadata-model-exports-as-script
-                              #:describe-metadata-model-exports-as-script-message
-                              #:describe-metadata-model-exports-as-script-response
                               #:describe-metadata-model-exports-to-target
-                              #:describe-metadata-model-exports-to-target-message
-                              #:describe-metadata-model-exports-to-target-response
                               #:describe-metadata-model-imports
-                              #:describe-metadata-model-imports-message
-                              #:describe-metadata-model-imports-response
                               #:describe-migration-projects
-                              #:describe-migration-projects-message
-                              #:describe-migration-projects-response
                               #:describe-orderable-replication-instances
-                              #:describe-orderable-replication-instances-message
-                              #:describe-orderable-replication-instances-response
                               #:describe-pending-maintenance-actions
-                              #:describe-pending-maintenance-actions-message
-                              #:describe-pending-maintenance-actions-response
                               #:describe-recommendation-limitations
-                              #:describe-recommendation-limitations-request
-                              #:describe-recommendation-limitations-response
                               #:describe-recommendations
-                              #:describe-recommendations-request
-                              #:describe-recommendations-response
                               #:describe-refresh-schemas-status
-                              #:describe-refresh-schemas-status-message
-                              #:describe-refresh-schemas-status-response
                               #:describe-replication-configs
-                              #:describe-replication-configs-message
-                              #:describe-replication-configs-response
                               #:describe-replication-instance-task-logs
-                              #:describe-replication-instance-task-logs-message
-                              #:describe-replication-instance-task-logs-response
                               #:describe-replication-instances
-                              #:describe-replication-instances-message
-                              #:describe-replication-instances-response
                               #:describe-replication-subnet-groups
-                              #:describe-replication-subnet-groups-message
-                              #:describe-replication-subnet-groups-response
                               #:describe-replication-table-statistics
-                              #:describe-replication-table-statistics-message
-                              #:describe-replication-table-statistics-response
                               #:describe-replication-task-assessment-results
-                              #:describe-replication-task-assessment-results-message
-                              #:describe-replication-task-assessment-results-response
                               #:describe-replication-task-assessment-runs
-                              #:describe-replication-task-assessment-runs-message
-                              #:describe-replication-task-assessment-runs-response
                               #:describe-replication-task-individual-assessments
-                              #:describe-replication-task-individual-assessments-message
-                              #:describe-replication-task-individual-assessments-response
                               #:describe-replication-tasks
-                              #:describe-replication-tasks-message
-                              #:describe-replication-tasks-response
-                              #:describe-replications
-                              #:describe-replications-message
-                              #:describe-replications-response
-                              #:describe-schemas #:describe-schemas-message
-                              #:describe-schemas-response
-                              #:describe-table-statistics
-                              #:describe-table-statistics-message
-                              #:describe-table-statistics-response
-                              #:dms-ssl-mode-value #:dms-transfer-settings
+                              #:describe-replications #:describe-schemas
+                              #:describe-table-statistics #:dms-ssl-mode-value
+                              #:dms-transfer-settings
                               #:doc-db-data-provider-settings #:doc-db-settings
                               #:double-optional #:dynamo-db-settings
                               #:elasticsearch-settings #:encoding-type-value
@@ -263,11 +111,9 @@
                               #:event-subscription #:event-subscriptions-list
                               #:exception-message #:exclude-test-list
                               #:export-metadata-model-assessment
-                              #:export-metadata-model-assessment-message
-                              #:export-metadata-model-assessment-response
                               #:export-metadata-model-assessment-result-entry
-                              #:export-sql-details #:failed-dependency-fault
-                              #:filter #:filter-list #:filter-value-list
+                              #:export-sql-details #:filter #:filter-list
+                              #:filter-value-list
                               #:fleet-advisor-lsa-analysis-response
                               #:fleet-advisor-lsa-analysis-response-list
                               #:fleet-advisor-schema-list
@@ -276,29 +122,18 @@
                               #:gcp-my-sqlsettings #:ibmdb2settings
                               #:ibm-db2luw-data-provider-settings
                               #:ibm-db2z-os-data-provider-settings
-                              #:import-certificate #:import-certificate-message
-                              #:import-certificate-response #:include-test-list
+                              #:import-certificate #:include-test-list
                               #:individual-assessment-name-list
                               #:instance-profile #:instance-profile-list
-                              #:insufficient-resource-capacity-fault #:integer
-                              #:integer-list #:integer-optional
-                              #:invalid-certificate-fault
-                              #:invalid-operation-fault
-                              #:invalid-resource-state-fault #:invalid-subnet
+                              #:integer #:integer-list #:integer-optional
                               #:inventory-data #:iso8601date-time
-                              #:kmsaccess-denied-fault #:kmsdisabled-fault
-                              #:kmsfault #:kmsinvalid-state-fault
-                              #:kmskey-not-accessible-fault
-                              #:kmsnot-found-fault #:kmsthrottling-fault
                               #:kafka-sasl-mechanism #:kafka-security-protocol
                               #:kafka-settings
                               #:kafka-ssl-endpoint-identification-algorithm
                               #:kerberos-authentication-settings #:key-list
                               #:kinesis-settings #:limitation #:limitation-list
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-message
-                              #:list-tags-for-resource-response #:long
-                              #:long-optional #:long-varchar-mapping-type
+                              #:list-tags-for-resource #:long #:long-optional
+                              #:long-varchar-mapping-type
                               #:maria-db-data-provider-settings #:marker
                               #:message-format-value
                               #:microsoft-sqlserver-settings
@@ -307,41 +142,16 @@
                               #:migration-project-identifier
                               #:migration-project-list #:migration-type-value
                               #:modify-conversion-configuration
-                              #:modify-conversion-configuration-message
-                              #:modify-conversion-configuration-response
-                              #:modify-data-migration
-                              #:modify-data-migration-message
-                              #:modify-data-migration-response
-                              #:modify-data-provider
-                              #:modify-data-provider-message
-                              #:modify-data-provider-response #:modify-endpoint
-                              #:modify-endpoint-message
-                              #:modify-endpoint-response
-                              #:modify-event-subscription
-                              #:modify-event-subscription-message
-                              #:modify-event-subscription-response
+                              #:modify-data-migration #:modify-data-provider
+                              #:modify-endpoint #:modify-event-subscription
                               #:modify-instance-profile
-                              #:modify-instance-profile-message
-                              #:modify-instance-profile-response
                               #:modify-migration-project
-                              #:modify-migration-project-message
-                              #:modify-migration-project-response
                               #:modify-replication-config
-                              #:modify-replication-config-message
-                              #:modify-replication-config-response
                               #:modify-replication-instance
-                              #:modify-replication-instance-message
-                              #:modify-replication-instance-response
                               #:modify-replication-subnet-group
-                              #:modify-replication-subnet-group-message
-                              #:modify-replication-subnet-group-response
                               #:modify-replication-task
-                              #:modify-replication-task-message
-                              #:modify-replication-task-response
                               #:mongo-db-data-provider-settings
                               #:mongo-db-settings #:move-replication-task
-                              #:move-replication-task-message
-                              #:move-replication-task-response
                               #:my-sqlauthentication-method #:my-sqlsettings
                               #:my-sql-data-provider-settings
                               #:neptune-settings #:nesting-level-value
@@ -361,28 +171,17 @@
                               #:provision-data #:public-ip-address-list
                               #:rds-configuration #:rds-recommendation
                               #:rds-requirements #:reboot-replication-instance
-                              #:reboot-replication-instance-message
-                              #:reboot-replication-instance-response
                               #:recommendation #:recommendation-data
                               #:recommendation-list #:recommendation-settings
                               #:redis-auth-type-value #:redis-settings
                               #:redshift-data-provider-settings
                               #:redshift-settings #:refresh-schemas
-                              #:refresh-schemas-message
-                              #:refresh-schemas-response
                               #:refresh-schemas-status
                               #:refresh-schemas-status-type-value
                               #:release-status-values #:reload-option-value
-                              #:reload-replication-tables
-                              #:reload-replication-tables-message
-                              #:reload-replication-tables-response
-                              #:reload-tables #:reload-tables-message
-                              #:reload-tables-response
-                              #:remove-tags-from-resource
-                              #:remove-tags-from-resource-message
-                              #:remove-tags-from-resource-response
-                              #:replication #:replication-config
-                              #:replication-config-list
+                              #:reload-replication-tables #:reload-tables
+                              #:remove-tags-from-resource #:replication
+                              #:replication-config #:replication-config-list
                               #:replication-endpoint-type-value
                               #:replication-instance
                               #:replication-instance-class
@@ -395,7 +194,6 @@
                               #:replication-list
                               #:replication-pending-modified-values
                               #:replication-stats #:replication-subnet-group
-                              #:replication-subnet-group-does-not-cover-enough-azs
                               #:replication-subnet-groups
                               #:replication-table-statistics-list
                               #:replication-task
@@ -408,17 +206,10 @@
                               #:replication-task-individual-assessment
                               #:replication-task-individual-assessment-list
                               #:replication-task-list #:replication-task-stats
-                              #:resource-already-exists-fault #:resource-arn
-                              #:resource-not-found-fault
+                              #:resource-arn
                               #:resource-pending-maintenance-actions
-                              #:resource-quota-exceeded-fault
-                              #:run-fleet-advisor-lsa-analysis
-                              #:run-fleet-advisor-lsa-analysis-response
-                              #:s3access-denied-fault
-                              #:s3resource-not-found-fault #:s3settings
-                              #:scapplication-attributes
-                              #:snsinvalid-topic-fault
-                              #:snsno-authorization-fault #:safeguard-policy
+                              #:run-fleet-advisor-lsa-analysis #:s3settings
+                              #:scapplication-attributes #:safeguard-policy
                               #:schema-conversion-request
                               #:schema-conversion-request-list #:schema-list
                               #:schema-response #:schema-short-info-response
@@ -428,54 +219,24 @@
                               #:sql-server-authentication-method
                               #:ssl-security-protocol-value
                               #:start-data-migration
-                              #:start-data-migration-message
-                              #:start-data-migration-response
                               #:start-extension-pack-association
-                              #:start-extension-pack-association-message
-                              #:start-extension-pack-association-response
                               #:start-metadata-model-assessment
-                              #:start-metadata-model-assessment-message
-                              #:start-metadata-model-assessment-response
                               #:start-metadata-model-conversion
-                              #:start-metadata-model-conversion-message
-                              #:start-metadata-model-conversion-response
                               #:start-metadata-model-export-as-script
-                              #:start-metadata-model-export-as-script-message
-                              #:start-metadata-model-export-as-script-response
                               #:start-metadata-model-export-to-target
-                              #:start-metadata-model-export-to-target-message
-                              #:start-metadata-model-export-to-target-response
                               #:start-metadata-model-import
-                              #:start-metadata-model-import-message
-                              #:start-metadata-model-import-response
                               #:start-recommendations
-                              #:start-recommendations-request
                               #:start-recommendations-request-entry
                               #:start-recommendations-request-entry-list
-                              #:start-replication #:start-replication-message
+                              #:start-replication
                               #:start-replication-migration-type-value
-                              #:start-replication-response
                               #:start-replication-task
                               #:start-replication-task-assessment
-                              #:start-replication-task-assessment-message
-                              #:start-replication-task-assessment-response
                               #:start-replication-task-assessment-run
-                              #:start-replication-task-assessment-run-message
-                              #:start-replication-task-assessment-run-response
-                              #:start-replication-task-message
-                              #:start-replication-task-response
                               #:start-replication-task-type-value
-                              #:stop-data-migration
-                              #:stop-data-migration-message
-                              #:stop-data-migration-response #:stop-replication
-                              #:stop-replication-message
-                              #:stop-replication-response
-                              #:stop-replication-task
-                              #:stop-replication-task-message
-                              #:stop-replication-task-response
-                              #:storage-quota-exceeded-fault #:string
-                              #:string-list #:subnet #:subnet-already-in-use
-                              #:subnet-identifier-list #:subnet-list
+                              #:stop-data-migration #:stop-replication
+                              #:stop-replication-task #:string #:string-list
+                              #:subnet #:subnet-identifier-list #:subnet-list
                               #:supported-endpoint-type
                               #:supported-endpoint-type-list #:sybase-settings
                               #:tstamp #:table-list-to-reload
@@ -483,13 +244,9 @@
                               #:table-statistics-list #:table-to-reload #:tag
                               #:tag-list #:target-data-setting
                               #:target-data-settings #:target-db-type
-                              #:test-connection #:test-connection-message
-                              #:test-connection-response #:timestream-settings
+                              #:test-connection #:timestream-settings
                               #:tlog-access-mode
                               #:update-subscriptions-to-event-bridge
-                              #:update-subscriptions-to-event-bridge-message
-                              #:update-subscriptions-to-event-bridge-response
-                              #:upgrade-dependency-failure-fault
                               #:version-status #:vpc-security-group-id-list
                               #:vpc-security-group-membership
                               #:vpc-security-group-membership-list))

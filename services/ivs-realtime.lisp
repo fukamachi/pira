@@ -1,5 +1,5 @@
 (uiop/package:define-package #:pira/ivs-realtime (:use)
-                             (:export #:access-denied-exception
+                             (:export
                               #:amazon-interactive-video-service-real-time
                               #:attribute-key
                               #:auto-participant-recording-configuration
@@ -13,34 +13,20 @@
                               #:composition-summary-list
                               #:composition-thumbnail-configuration
                               #:composition-thumbnail-configuration-list
-                              #:conflict-exception
                               #:create-encoder-configuration
-                              #:create-encoder-configuration-request
-                              #:create-encoder-configuration-response
                               #:create-ingest-configuration
-                              #:create-ingest-configuration-request
-                              #:create-ingest-configuration-response
                               #:create-participant-token
                               #:create-participant-token-request
                               #:create-participant-token-response
                               #:create-stage #:create-stage-request
                               #:create-stage-response
                               #:create-storage-configuration
-                              #:create-storage-configuration-request
-                              #:create-storage-configuration-response
                               #:delete-encoder-configuration
-                              #:delete-encoder-configuration-request
-                              #:delete-encoder-configuration-response
-                              #:delete-ingest-configuration
-                              #:delete-ingest-configuration-request
-                              #:delete-ingest-configuration-response
-                              #:delete-public-key #:delete-public-key-request
-                              #:delete-public-key-response #:delete-stage
-                              #:delete-stage-request #:delete-stage-response
-                              #:delete-storage-configuration
-                              #:delete-storage-configuration-request
-                              #:delete-storage-configuration-response
-                              #:destination #:destination-configuration
+                              #:delete-ingest-configuration #:delete-public-key
+                              #:delete-stage #:delete-stage-request
+                              #:delete-stage-response
+                              #:delete-storage-configuration #:destination
+                              #:destination-configuration
                               #:destination-configuration-list
                               #:destination-configuration-name
                               #:destination-detail #:destination-list
@@ -58,59 +44,27 @@
                               #:encoder-configuration-summary-list #:event
                               #:event-error-code #:event-list #:event-name
                               #:framerate #:get-composition
-                              #:get-composition-request
-                              #:get-composition-response
                               #:get-encoder-configuration
-                              #:get-encoder-configuration-request
-                              #:get-encoder-configuration-response
-                              #:get-ingest-configuration
-                              #:get-ingest-configuration-request
-                              #:get-ingest-configuration-response
-                              #:get-participant #:get-participant-request
-                              #:get-participant-response #:get-public-key
-                              #:get-public-key-request
-                              #:get-public-key-response #:get-stage
-                              #:get-stage-request #:get-stage-response
-                              #:get-stage-session #:get-stage-session-request
-                              #:get-stage-session-response
-                              #:get-storage-configuration
-                              #:get-storage-configuration-request
-                              #:get-storage-configuration-response
-                              #:grid-configuration #:grid-gap #:height
-                              #:import-public-key #:import-public-key-request
-                              #:import-public-key-response
+                              #:get-ingest-configuration #:get-participant
+                              #:get-public-key #:get-stage #:get-stage-request
+                              #:get-stage-response #:get-stage-session
+                              #:get-storage-configuration #:grid-configuration
+                              #:grid-gap #:height #:import-public-key
                               #:ingest-configuration #:ingest-configuration-arn
                               #:ingest-configuration-list
                               #:ingest-configuration-name
                               #:ingest-configuration-stage-arn
                               #:ingest-configuration-state
                               #:ingest-configuration-summary #:ingest-protocol
-                              #:insecure-ingest #:internal-server-exception
-                              #:layout-configuration #:list-compositions
-                              #:list-compositions-request
-                              #:list-compositions-response
-                              #:list-encoder-configurations
-                              #:list-encoder-configurations-request
-                              #:list-encoder-configurations-response
+                              #:insecure-ingest #:layout-configuration
+                              #:list-compositions #:list-encoder-configurations
                               #:list-ingest-configurations
-                              #:list-ingest-configurations-request
-                              #:list-ingest-configurations-response
                               #:list-participant-events
-                              #:list-participant-events-request
-                              #:list-participant-events-response
-                              #:list-participant-replicas
-                              #:list-participant-replicas-request
-                              #:list-participant-replicas-response
-                              #:list-participants #:list-participants-request
-                              #:list-participants-response #:list-public-keys
-                              #:list-public-keys-request
-                              #:list-public-keys-response #:list-stage-sessions
-                              #:list-stage-sessions-request
-                              #:list-stage-sessions-response #:list-stages
-                              #:list-stages-request #:list-stages-response
+                              #:list-participant-replicas #:list-participants
+                              #:list-public-keys #:list-stage-sessions
+                              #:list-stages #:list-stages-request
+                              #:list-stages-response
                               #:list-storage-configurations
-                              #:list-storage-configurations-request
-                              #:list-storage-configurations-response
                               #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response
@@ -149,8 +103,7 @@
                               #:participant-token-expiration-time
                               #:participant-token-id #:participant-token-list
                               #:participant-token-string
-                              #:participant-token-user-id
-                              #:pending-verification #:pip-behavior
+                              #:participant-token-user-id #:pip-behavior
                               #:pip-configuration #:pip-height #:pip-offset
                               #:pip-position #:pip-width #:public-key
                               #:public-key-arn #:public-key-fingerprint
@@ -161,24 +114,16 @@
                               #:recording-configuration
                               #:recording-configuration-format #:replica
                               #:replication-state #:replication-type
-                              #:resource-arn #:resource-not-found-exception
-                              #:s3bucket-name #:s3destination-configuration
-                              #:s3detail #:s3storage-configuration
-                              #:service-quota-exceeded-exception #:stage
-                              #:stage-arn #:stage-endpoint #:stage-endpoints
-                              #:stage-name #:stage-session #:stage-session-id
+                              #:resource-arn #:s3bucket-name
+                              #:s3destination-configuration #:s3detail
+                              #:s3storage-configuration #:stage #:stage-arn
+                              #:stage-endpoint #:stage-endpoints #:stage-name
+                              #:stage-session #:stage-session-id
                               #:stage-session-list #:stage-session-summary
                               #:stage-summary #:stage-summary-list
-                              #:start-composition #:start-composition-request
-                              #:start-composition-response
+                              #:start-composition
                               #:start-participant-replication
-                              #:start-participant-replication-request
-                              #:start-participant-replication-response
-                              #:stop-composition #:stop-composition-request
-                              #:stop-composition-response
-                              #:stop-participant-replication
-                              #:stop-participant-replication-request
-                              #:stop-participant-replication-response
+                              #:stop-composition #:stop-participant-replication
                               #:storage-configuration
                               #:storage-configuration-arn
                               #:storage-configuration-name
@@ -192,14 +137,10 @@
                               #:thumbnail-storage-type-list #:time
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response
-                              #:update-ingest-configuration
-                              #:update-ingest-configuration-request
-                              #:update-ingest-configuration-response
-                              #:update-stage #:update-stage-request
-                              #:update-stage-response #:user-id
-                              #:validation-exception #:video
-                              #:video-aspect-ratio #:video-fill-mode #:width
-                              #:error-message))
+                              #:update-ingest-configuration #:update-stage
+                              #:update-stage-request #:update-stage-response
+                              #:user-id #:video #:video-aspect-ratio
+                              #:video-fill-mode #:width #:error-message))
 (common-lisp:in-package #:pira/ivs-realtime)
 
 (smithy/sdk/service:define-service amazon-interactive-video-service-real-time

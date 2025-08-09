@@ -9,9 +9,8 @@
                               #:cestate #:cestatus #:cetype
                               #:crallocation-strategy #:crtype
                               #:crupdate-allocation-strategy #:cancel-job
-                              #:cancel-job-request #:cancel-job-response
                               #:capacity-limit #:capacity-limits
-                              #:client-exception #:client-request-token
+                              #:client-request-token
                               #:compute-environment-detail
                               #:compute-environment-detail-list
                               #:compute-environment-order
@@ -25,58 +24,20 @@
                               #:container-detail #:container-overrides
                               #:container-properties #:container-summary
                               #:create-compute-environment
-                              #:create-compute-environment-request
-                              #:create-compute-environment-response
-                              #:create-consumable-resource
-                              #:create-consumable-resource-request
-                              #:create-consumable-resource-response
-                              #:create-job-queue #:create-job-queue-request
-                              #:create-job-queue-response
+                              #:create-consumable-resource #:create-job-queue
                               #:create-scheduling-policy
-                              #:create-scheduling-policy-request
-                              #:create-scheduling-policy-response
                               #:create-service-environment
-                              #:create-service-environment-request
-                              #:create-service-environment-response
                               #:delete-compute-environment
-                              #:delete-compute-environment-request
-                              #:delete-compute-environment-response
-                              #:delete-consumable-resource
-                              #:delete-consumable-resource-request
-                              #:delete-consumable-resource-response
-                              #:delete-job-queue #:delete-job-queue-request
-                              #:delete-job-queue-response
+                              #:delete-consumable-resource #:delete-job-queue
                               #:delete-scheduling-policy
-                              #:delete-scheduling-policy-request
-                              #:delete-scheduling-policy-response
                               #:delete-service-environment
-                              #:delete-service-environment-request
-                              #:delete-service-environment-response
                               #:deregister-job-definition
-                              #:deregister-job-definition-request
-                              #:deregister-job-definition-response
                               #:describe-compute-environments
-                              #:describe-compute-environments-request
-                              #:describe-compute-environments-response
                               #:describe-consumable-resource
-                              #:describe-consumable-resource-request
-                              #:describe-consumable-resource-response
-                              #:describe-job-definitions
-                              #:describe-job-definitions-request
-                              #:describe-job-definitions-response
-                              #:describe-job-queues
-                              #:describe-job-queues-request
-                              #:describe-job-queues-response #:describe-jobs
-                              #:describe-jobs-request #:describe-jobs-response
-                              #:describe-scheduling-policies
-                              #:describe-scheduling-policies-request
-                              #:describe-scheduling-policies-response
+                              #:describe-job-definitions #:describe-job-queues
+                              #:describe-jobs #:describe-scheduling-policies
                               #:describe-service-environments
-                              #:describe-service-environments-request
-                              #:describe-service-environments-response
-                              #:describe-service-job
-                              #:describe-service-job-request
-                              #:describe-service-job-response #:device
+                              #:describe-service-job #:device
                               #:device-cgroup-permission
                               #:device-cgroup-permissions #:devices-list
                               #:efsauthorization-config
@@ -116,9 +77,7 @@
                               #:front-of-queue-detail
                               #:front-of-queue-job-summary
                               #:front-of-queue-job-summary-list
-                              #:get-job-queue-snapshot
-                              #:get-job-queue-snapshot-request
-                              #:get-job-queue-snapshot-response #:host
+                              #:get-job-queue-snapshot #:host
                               #:image-id-override #:image-pull-secret
                               #:image-pull-secrets #:image-type #:integer
                               #:jqstate #:jqstatus #:job-definition
@@ -142,25 +101,15 @@
                               #:list-attempt-task-container-details
                               #:list-consumable-resources
                               #:list-consumable-resources-filter-list
-                              #:list-consumable-resources-request
-                              #:list-consumable-resources-response
                               #:list-ecs-task-details
                               #:list-ecs-task-properties #:list-jobs
                               #:list-jobs-by-consumable-resource
                               #:list-jobs-by-consumable-resource-filter-list
-                              #:list-jobs-by-consumable-resource-request
-                              #:list-jobs-by-consumable-resource-response
                               #:list-jobs-by-consumable-resource-summary
                               #:list-jobs-by-consumable-resource-summary-list
-                              #:list-jobs-filter-list #:list-jobs-request
-                              #:list-jobs-response #:list-scheduling-policies
-                              #:list-scheduling-policies-request
-                              #:list-scheduling-policies-response
-                              #:list-service-jobs #:list-service-jobs-request
-                              #:list-service-jobs-response
+                              #:list-jobs-filter-list
+                              #:list-scheduling-policies #:list-service-jobs
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-task-container-details
                               #:list-task-container-overrides
                               #:list-task-container-properties
@@ -178,8 +127,6 @@
                               #:parameters-map #:platform-capability
                               #:platform-capability-list #:quantity
                               #:register-job-definition
-                              #:register-job-definition-request
-                              #:register-job-definition-response
                               #:repository-credentials #:resource-requirement
                               #:resource-requirements #:resource-type
                               #:retry-action #:retry-strategy
@@ -187,8 +134,7 @@
                               #:scheduling-policy-detail-list
                               #:scheduling-policy-listing-detail
                               #:scheduling-policy-listing-detail-list #:secret
-                              #:secret-list #:server-exception
-                              #:service-environment-detail
+                              #:secret-list #:service-environment-detail
                               #:service-environment-detail-list
                               #:service-environment-order
                               #:service-environment-orders
@@ -206,40 +152,21 @@
                               #:service-resource-id #:service-resource-id-name
                               #:share-attributes #:share-attributes-list
                               #:string #:string-list #:submit-job
-                              #:submit-job-request #:submit-job-response
-                              #:submit-service-job #:submit-service-job-request
-                              #:submit-service-job-response #:tag-key
-                              #:tag-keys-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tagris-tags-map #:tags-map
-                              #:task-container-dependency
+                              #:submit-service-job #:tag-key #:tag-keys-list
+                              #:tag-resource #:tag-value #:tagris-tags-map
+                              #:tags-map #:task-container-dependency
                               #:task-container-dependency-list
                               #:task-container-details
                               #:task-container-overrides
                               #:task-container-properties
                               #:task-properties-override #:terminate-job
-                              #:terminate-job-request #:terminate-job-response
-                              #:terminate-service-job
-                              #:terminate-service-job-request
-                              #:terminate-service-job-response #:tmpfs
-                              #:tmpfs-list #:ulimit #:ulimits #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:terminate-service-job #:tmpfs #:tmpfs-list
+                              #:ulimit #:ulimits #:untag-resource
                               #:update-compute-environment
-                              #:update-compute-environment-request
-                              #:update-compute-environment-response
-                              #:update-consumable-resource
-                              #:update-consumable-resource-request
-                              #:update-consumable-resource-response
-                              #:update-job-queue #:update-job-queue-request
-                              #:update-job-queue-response #:update-policy
-                              #:update-scheduling-policy
-                              #:update-scheduling-policy-request
-                              #:update-scheduling-policy-response
-                              #:update-service-environment
-                              #:update-service-environment-request
-                              #:update-service-environment-response
-                              #:userdata-type #:volume #:volumes))
+                              #:update-consumable-resource #:update-job-queue
+                              #:update-policy #:update-scheduling-policy
+                              #:update-service-environment #:userdata-type
+                              #:volume #:volumes))
 (common-lisp:in-package #:pira/batch)
 
 (smithy/sdk/service:define-service awsbatch-v20160810 :shape-name

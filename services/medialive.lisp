@@ -7,8 +7,6 @@
                               #:ac3drc-profile #:ac3lfe-filter
                               #:ac3metadata-control #:ac3settings
                               #:accept-header #:accept-input-device-transfer
-                              #:accept-input-device-transfer-request
-                              #:accept-input-device-transfer-response
                               #:accessibility-type #:account-configuration
                               #:afd-signaling #:algorithm
                               #:ancillary-source-settings #:anywhere-settings
@@ -42,25 +40,18 @@
                               #:av1rate-control-mode #:av1scene-change-detect
                               #:av1settings #:avail-blanking
                               #:avail-blanking-state #:avail-configuration
-                              #:avail-settings #:bad-gateway-exception
-                              #:bad-request-exception
+                              #:avail-settings
                               #:bandwidth-reduction-filter-settings
                               #:bandwidth-reduction-filter-strength
                               #:bandwidth-reduction-post-filter-sharpening
-                              #:batch-delete #:batch-delete-request
-                              #:batch-delete-response
-                              #:batch-failed-result-model
+                              #:batch-delete #:batch-failed-result-model
                               #:batch-schedule-action-create-request
                               #:batch-schedule-action-create-result
                               #:batch-schedule-action-delete-request
                               #:batch-schedule-action-delete-result
-                              #:batch-start #:batch-start-request
-                              #:batch-start-response #:batch-stop
-                              #:batch-stop-request #:batch-stop-response
+                              #:batch-start #:batch-stop
                               #:batch-successful-result-model
-                              #:batch-update-schedule
-                              #:batch-update-schedule-request
-                              #:batch-update-schedule-response #:blackout-slate
+                              #:batch-update-schedule #:blackout-slate
                               #:blackout-slate-network-end-blackout
                               #:blackout-slate-state #:burn-in-alignment
                               #:burn-in-background-color
@@ -69,8 +60,6 @@
                               #:burn-in-shadow-color
                               #:burn-in-teletext-grid-control
                               #:cancel-input-device-transfer
-                              #:cancel-input-device-transfer-request
-                              #:cancel-input-device-transfer-response
                               #:caption-description
                               #:caption-destination-settings
                               #:caption-language-mapping #:caption-rectangle
@@ -83,7 +72,6 @@
                               #:channel-pipeline-id-to-restart
                               #:channel-placement-group-state #:channel-state
                               #:channel-summary #:claim-device
-                              #:claim-device-request #:claim-device-response
                               #:cloud-watch-alarm-template-comparison-operator
                               #:cloud-watch-alarm-template-group-summary
                               #:cloud-watch-alarm-template-statistic
@@ -103,134 +91,45 @@
                               #:cmaf-timed-metadata-passthrough
                               #:color-correction #:color-correction-settings
                               #:color-space #:color-space-passthrough-settings
-                              #:conflict-exception #:content-type
-                              #:create-channel #:create-channel-placement-group
-                              #:create-channel-placement-group-request
-                              #:create-channel-placement-group-response
-                              #:create-channel-request
-                              #:create-channel-response
+                              #:content-type #:create-channel
+                              #:create-channel-placement-group
                               #:create-cloud-watch-alarm-template
                               #:create-cloud-watch-alarm-template-group
-                              #:create-cloud-watch-alarm-template-group-request
-                              #:create-cloud-watch-alarm-template-group-response
-                              #:create-cloud-watch-alarm-template-request
-                              #:create-cloud-watch-alarm-template-response
-                              #:create-cluster #:create-cluster-request
-                              #:create-cluster-response
+                              #:create-cluster
                               #:create-event-bridge-rule-template
                               #:create-event-bridge-rule-template-group
-                              #:create-event-bridge-rule-template-group-request
-                              #:create-event-bridge-rule-template-group-response
-                              #:create-event-bridge-rule-template-request
-                              #:create-event-bridge-rule-template-response
-                              #:create-input #:create-input-request
-                              #:create-input-response
-                              #:create-input-security-group
-                              #:create-input-security-group-request
-                              #:create-input-security-group-response
+                              #:create-input #:create-input-security-group
                               #:create-multiplex #:create-multiplex-program
-                              #:create-multiplex-program-request
-                              #:create-multiplex-program-response
-                              #:create-multiplex-request
-                              #:create-multiplex-response #:create-network
-                              #:create-network-request
-                              #:create-network-response #:create-node
+                              #:create-network #:create-node
                               #:create-node-registration-script
-                              #:create-node-registration-script-request
-                              #:create-node-registration-script-response
-                              #:create-node-request #:create-node-response
-                              #:create-partner-input
-                              #:create-partner-input-request
-                              #:create-partner-input-response
-                              #:create-sdi-source #:create-sdi-source-request
-                              #:create-sdi-source-response #:create-signal-map
-                              #:create-signal-map-request
-                              #:create-signal-map-response #:create-tags
-                              #:create-tags-request #:dash-role-audio
-                              #:dash-role-caption #:delete-channel
-                              #:delete-channel-placement-group
-                              #:delete-channel-placement-group-request
-                              #:delete-channel-placement-group-response
-                              #:delete-channel-request
-                              #:delete-channel-response
+                              #:create-partner-input #:create-sdi-source
+                              #:create-signal-map #:create-tags
+                              #:dash-role-audio #:dash-role-caption
+                              #:delete-channel #:delete-channel-placement-group
                               #:delete-cloud-watch-alarm-template
                               #:delete-cloud-watch-alarm-template-group
-                              #:delete-cloud-watch-alarm-template-group-request
-                              #:delete-cloud-watch-alarm-template-request
-                              #:delete-cluster #:delete-cluster-request
-                              #:delete-cluster-response
+                              #:delete-cluster
                               #:delete-event-bridge-rule-template
                               #:delete-event-bridge-rule-template-group
-                              #:delete-event-bridge-rule-template-group-request
-                              #:delete-event-bridge-rule-template-request
-                              #:delete-input #:delete-input-request
-                              #:delete-input-response
-                              #:delete-input-security-group
-                              #:delete-input-security-group-request
-                              #:delete-input-security-group-response
+                              #:delete-input #:delete-input-security-group
                               #:delete-multiplex #:delete-multiplex-program
-                              #:delete-multiplex-program-request
-                              #:delete-multiplex-program-response
-                              #:delete-multiplex-request
-                              #:delete-multiplex-response #:delete-network
-                              #:delete-network-request
-                              #:delete-network-response #:delete-node
-                              #:delete-node-request #:delete-node-response
-                              #:delete-reservation #:delete-reservation-request
-                              #:delete-reservation-response #:delete-schedule
-                              #:delete-schedule-request
-                              #:delete-schedule-response #:delete-sdi-source
-                              #:delete-sdi-source-request
-                              #:delete-sdi-source-response #:delete-signal-map
-                              #:delete-signal-map-request #:delete-tags
-                              #:delete-tags-request
-                              #:describe-account-configuration
-                              #:describe-account-configuration-request
-                              #:describe-account-configuration-response
+                              #:delete-network #:delete-node
+                              #:delete-reservation #:delete-schedule
+                              #:delete-sdi-source #:delete-signal-map
+                              #:delete-tags #:describe-account-configuration
                               #:describe-anywhere-settings #:describe-channel
                               #:describe-channel-placement-group
-                              #:describe-channel-placement-group-request
-                              #:describe-channel-placement-group-response
                               #:describe-channel-placement-group-summary
-                              #:describe-channel-request
-                              #:describe-channel-response #:describe-cluster
-                              #:describe-cluster-request
-                              #:describe-cluster-response
-                              #:describe-cluster-summary #:describe-input
-                              #:describe-input-device
-                              #:describe-input-device-request
-                              #:describe-input-device-response
+                              #:describe-cluster #:describe-cluster-summary
+                              #:describe-input #:describe-input-device
                               #:describe-input-device-thumbnail
-                              #:describe-input-device-thumbnail-request
-                              #:describe-input-device-thumbnail-response
-                              #:describe-input-request
-                              #:describe-input-response
                               #:describe-input-security-group
-                              #:describe-input-security-group-request
-                              #:describe-input-security-group-response
                               #:describe-multiplex #:describe-multiplex-program
-                              #:describe-multiplex-program-request
-                              #:describe-multiplex-program-response
-                              #:describe-multiplex-request
-                              #:describe-multiplex-response #:describe-network
-                              #:describe-network-request
-                              #:describe-network-response
-                              #:describe-network-summary #:describe-node
-                              #:describe-node-request #:describe-node-response
-                              #:describe-node-summary #:describe-offering
-                              #:describe-offering-request
-                              #:describe-offering-response
-                              #:describe-reservation
-                              #:describe-reservation-request
-                              #:describe-reservation-response
-                              #:describe-schedule #:describe-schedule-request
-                              #:describe-schedule-response
-                              #:describe-sdi-source
-                              #:describe-sdi-source-request
-                              #:describe-sdi-source-response
+                              #:describe-network #:describe-network-summary
+                              #:describe-node #:describe-node-summary
+                              #:describe-offering #:describe-reservation
+                              #:describe-schedule #:describe-sdi-source
                               #:describe-thumbnails
-                              #:describe-thumbnails-request
-                              #:describe-thumbnails-response
                               #:device-settings-sync-state
                               #:device-update-status #:dolby-eprogram-selection
                               #:dolby-vision81settings #:dvb-dash-accessibility
@@ -278,29 +177,18 @@
                               #:fmp4hls-settings #:fmp4nielsen-id3behavior
                               #:fmp4timed-metadata-behavior
                               #:follow-mode-schedule-action-start-settings
-                              #:follow-point #:forbidden-exception
-                              #:frame-capture-cdn-settings
+                              #:follow-point #:frame-capture-cdn-settings
                               #:frame-capture-group-settings
                               #:frame-capture-hls-settings
                               #:frame-capture-interval-unit
                               #:frame-capture-output-settings
                               #:frame-capture-s3settings
                               #:frame-capture-settings
-                              #:gateway-timeout-exception
                               #:get-cloud-watch-alarm-template
                               #:get-cloud-watch-alarm-template-group
-                              #:get-cloud-watch-alarm-template-group-request
-                              #:get-cloud-watch-alarm-template-group-response
-                              #:get-cloud-watch-alarm-template-request
-                              #:get-cloud-watch-alarm-template-response
                               #:get-event-bridge-rule-template
                               #:get-event-bridge-rule-template-group
-                              #:get-event-bridge-rule-template-group-request
-                              #:get-event-bridge-rule-template-group-response
-                              #:get-event-bridge-rule-template-request
-                              #:get-event-bridge-rule-template-response
-                              #:get-signal-map #:get-signal-map-request
-                              #:get-signal-map-response #:global-configuration
+                              #:get-signal-map #:global-configuration
                               #:global-configuration-input-end-action
                               #:global-configuration-low-framerate-inputs
                               #:global-configuration-output-locking-mode
@@ -408,59 +296,23 @@
                               #:input-vpc-request #:input-whitelist-rule
                               #:input-whitelist-rule-cidr #:interface-mapping
                               #:interface-mapping-create-request
-                              #:interface-mapping-update-request
-                              #:internal-server-error-exception #:ip-pool
+                              #:interface-mapping-update-request #:ip-pool
                               #:ip-pool-create-request #:ip-pool-update-request
                               #:key-provider-settings
                               #:last-frame-clipping-behavior
-                              #:list-channel-placement-groups
-                              #:list-channel-placement-groups-request
-                              #:list-channel-placement-groups-response
-                              #:list-channels #:list-channels-request
-                              #:list-channels-response
+                              #:list-channel-placement-groups #:list-channels
                               #:list-cloud-watch-alarm-template-groups
-                              #:list-cloud-watch-alarm-template-groups-request
-                              #:list-cloud-watch-alarm-template-groups-response
                               #:list-cloud-watch-alarm-templates
-                              #:list-cloud-watch-alarm-templates-request
-                              #:list-cloud-watch-alarm-templates-response
-                              #:list-clusters #:list-clusters-request
-                              #:list-clusters-response
+                              #:list-clusters
                               #:list-event-bridge-rule-template-groups
-                              #:list-event-bridge-rule-template-groups-request
-                              #:list-event-bridge-rule-template-groups-response
                               #:list-event-bridge-rule-templates
-                              #:list-event-bridge-rule-templates-request
-                              #:list-event-bridge-rule-templates-response
                               #:list-input-device-transfers
-                              #:list-input-device-transfers-request
-                              #:list-input-device-transfers-response
-                              #:list-input-devices #:list-input-devices-request
-                              #:list-input-devices-response
-                              #:list-input-security-groups
-                              #:list-input-security-groups-request
-                              #:list-input-security-groups-response
-                              #:list-inputs #:list-inputs-request
-                              #:list-inputs-response #:list-multiplex-programs
-                              #:list-multiplex-programs-request
-                              #:list-multiplex-programs-response
-                              #:list-multiplexes #:list-multiplexes-request
-                              #:list-multiplexes-response #:list-networks
-                              #:list-networks-request #:list-networks-response
-                              #:list-nodes #:list-nodes-request
-                              #:list-nodes-response #:list-offerings
-                              #:list-offerings-request
-                              #:list-offerings-response #:list-reservations
-                              #:list-reservations-request
-                              #:list-reservations-response #:list-sdi-sources
-                              #:list-sdi-sources-request
-                              #:list-sdi-sources-response #:list-signal-maps
-                              #:list-signal-maps-request
-                              #:list-signal-maps-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-versions
-                              #:list-versions-request #:list-versions-response
+                              #:list-input-devices #:list-input-security-groups
+                              #:list-inputs #:list-multiplex-programs
+                              #:list-multiplexes #:list-networks #:list-nodes
+                              #:list-offerings #:list-reservations
+                              #:list-sdi-sources #:list-signal-maps
+                              #:list-tags-for-resource #:list-versions
                               #:log-level #:m2ts-absent-input-audio-behavior
                               #:m2ts-arib #:m2ts-arib-captions-pid-control
                               #:m2ts-audio-buffer-model #:m2ts-audio-interval
@@ -532,9 +384,9 @@
                               #:nielsen-watermarks-settings
                               #:node-connection-state #:node-interface-mapping
                               #:node-interface-mapping-create-request
-                              #:node-role #:node-state #:not-found-exception
-                              #:offering #:offering-duration-units
-                              #:offering-type #:output #:output-destination
+                              #:node-role #:node-state #:offering
+                              #:offering-duration-units #:offering-type
+                              #:output #:output-destination
                               #:output-destination-settings #:output-group
                               #:output-group-settings #:output-location-ref
                               #:output-locking-settings #:output-settings
@@ -544,14 +396,9 @@
                               #:pipeline-locking-settings
                               #:pipeline-pause-state-settings
                               #:preferred-channel-pipeline #:purchase-offering
-                              #:purchase-offering-request
-                              #:purchase-offering-response #:raw-settings
-                              #:reboot-input-device #:reboot-input-device-force
-                              #:reboot-input-device-request
-                              #:reboot-input-device-response #:rec601settings
+                              #:raw-settings #:reboot-input-device
+                              #:reboot-input-device-force #:rec601settings
                               #:rec709settings #:reject-input-device-transfer
-                              #:reject-input-device-transfer-request
-                              #:reject-input-device-transfer-response
                               #:remix-settings #:renewal-settings #:reservation
                               #:reservation-automatic-renewal
                               #:reservation-codec #:reservation-maximum-bitrate
@@ -561,9 +408,7 @@
                               #:reservation-resource-type
                               #:reservation-special-feature #:reservation-state
                               #:reservation-video-quality
-                              #:restart-channel-pipelines
-                              #:restart-channel-pipelines-request
-                              #:restart-channel-pipelines-response #:route
+                              #:restart-channel-pipelines #:route
                               #:route-create-request #:route-update-request
                               #:rtmp-ad-markers #:rtmp-cache-full-behavior
                               #:rtmp-caption-data
@@ -624,37 +469,19 @@
                               #:srt-output-destination-settings
                               #:srt-output-settings #:srt-settings
                               #:srt-settings-request #:standard-hls-settings
-                              #:start-channel #:start-channel-request
-                              #:start-channel-response
-                              #:start-delete-monitor-deployment
-                              #:start-delete-monitor-deployment-request
-                              #:start-delete-monitor-deployment-response
+                              #:start-channel #:start-delete-monitor-deployment
                               #:start-input-device
                               #:start-input-device-maintenance-window
-                              #:start-input-device-maintenance-window-request
-                              #:start-input-device-maintenance-window-response
-                              #:start-input-device-request
-                              #:start-input-device-response
-                              #:start-monitor-deployment
-                              #:start-monitor-deployment-request
-                              #:start-monitor-deployment-response
-                              #:start-multiplex #:start-multiplex-request
-                              #:start-multiplex-response #:start-timecode
-                              #:start-update-signal-map
-                              #:start-update-signal-map-request
-                              #:start-update-signal-map-response
+                              #:start-monitor-deployment #:start-multiplex
+                              #:start-timecode #:start-update-signal-map
                               #:static-image-activate-schedule-action-settings
                               #:static-image-deactivate-schedule-action-settings
                               #:static-image-output-activate-schedule-action-settings
                               #:static-image-output-deactivate-schedule-action-settings
                               #:static-key-settings #:stop-channel
-                              #:stop-channel-request #:stop-channel-response
-                              #:stop-input-device #:stop-input-device-request
-                              #:stop-input-device-response #:stop-multiplex
-                              #:stop-multiplex-request
-                              #:stop-multiplex-response #:stop-timecode
-                              #:successful-monitor-deployment #:tag-map #:tags
-                              #:teletext-destination-settings
+                              #:stop-input-device #:stop-multiplex
+                              #:stop-timecode #:successful-monitor-deployment
+                              #:tag-map #:tags #:teletext-destination-settings
                               #:teletext-source-settings
                               #:temporal-filter-post-filter-sharpening
                               #:temporal-filter-settings
@@ -666,64 +493,27 @@
                               #:timecode-burnin-settings #:timecode-config
                               #:timecode-config-source
                               #:timed-metadata-schedule-action-settings
-                              #:too-many-requests-exception
                               #:transfer-input-device
-                              #:transfer-input-device-request
-                              #:transfer-input-device-response
                               #:transferring-input-device-summary
                               #:ttml-destination-settings
                               #:ttml-destination-style-control
                               #:udp-container-settings #:udp-group-settings
                               #:udp-output-settings
                               #:udp-timed-metadata-id3frame
-                              #:unprocessable-entity-exception
-                              #:update-account-configuration
-                              #:update-account-configuration-request
-                              #:update-account-configuration-response
-                              #:update-channel #:update-channel-class
-                              #:update-channel-class-request
-                              #:update-channel-class-response
+                              #:update-account-configuration #:update-channel
+                              #:update-channel-class
                               #:update-channel-placement-group
-                              #:update-channel-placement-group-request
-                              #:update-channel-placement-group-response
-                              #:update-channel-request
-                              #:update-channel-response
                               #:update-cloud-watch-alarm-template
                               #:update-cloud-watch-alarm-template-group
-                              #:update-cloud-watch-alarm-template-group-request
-                              #:update-cloud-watch-alarm-template-group-response
-                              #:update-cloud-watch-alarm-template-request
-                              #:update-cloud-watch-alarm-template-response
-                              #:update-cluster #:update-cluster-request
-                              #:update-cluster-response
+                              #:update-cluster
                               #:update-event-bridge-rule-template
                               #:update-event-bridge-rule-template-group
-                              #:update-event-bridge-rule-template-group-request
-                              #:update-event-bridge-rule-template-group-response
-                              #:update-event-bridge-rule-template-request
-                              #:update-event-bridge-rule-template-response
                               #:update-input #:update-input-device
-                              #:update-input-device-request
-                              #:update-input-device-response
-                              #:update-input-request #:update-input-response
-                              #:update-input-security-group
-                              #:update-input-security-group-request
-                              #:update-input-security-group-response
-                              #:update-multiplex #:update-multiplex-program
-                              #:update-multiplex-program-request
-                              #:update-multiplex-program-response
-                              #:update-multiplex-request
-                              #:update-multiplex-response #:update-network
-                              #:update-network-request
-                              #:update-network-response #:update-node
-                              #:update-node-request #:update-node-response
-                              #:update-node-state #:update-node-state-request
-                              #:update-node-state-response
+                              #:update-input-security-group #:update-multiplex
+                              #:update-multiplex-program #:update-network
+                              #:update-node #:update-node-state
                               #:update-node-state-shape #:update-reservation
-                              #:update-reservation-request
-                              #:update-reservation-response #:update-sdi-source
-                              #:update-sdi-source-request
-                              #:update-sdi-source-response #:validation-error
+                              #:update-sdi-source #:validation-error
                               #:video-black-failover-settings
                               #:video-codec-settings #:video-description
                               #:video-description-respond-to-afd

@@ -1,16 +1,9 @@
 (uiop/package:define-package #:pira/kinesis-video-media (:use)
-                             (:export #:awsacuity-inlet-service
-                              #:client-limit-exceeded-exception
-                              #:connection-limit-exceeded-exception
-                              #:content-type #:continuation-token
-                              #:error-message #:fragment-number-string
-                              #:get-media #:get-media-input #:get-media-output
-                              #:invalid-argument-exception
-                              #:invalid-endpoint-exception
-                              #:not-authorized-exception #:payload
-                              #:resource-arn #:resource-not-found-exception
-                              #:start-selector #:start-selector-type
-                              #:stream-name #:timestamp))
+                             (:export #:awsacuity-inlet-service #:content-type
+                              #:continuation-token #:error-message
+                              #:fragment-number-string #:get-media #:payload
+                              #:resource-arn #:start-selector
+                              #:start-selector-type #:stream-name #:timestamp))
 (common-lisp:in-package #:pira/kinesis-video-media)
 
 (smithy/sdk/service:define-service awsacuity-inlet-service :shape-name

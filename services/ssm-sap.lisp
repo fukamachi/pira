@@ -12,9 +12,9 @@
                               #:component-id-list #:component-info
                               #:component-info-list #:component-status
                               #:component-summary #:component-summary-list
-                              #:component-type #:conflict-exception
-                              #:connected-entity-type #:credential-type
-                              #:database #:database-connection
+                              #:component-type #:connected-entity-type
+                              #:credential-type #:database
+                              #:database-connection
                               #:database-connection-method #:database-id
                               #:database-id-list #:database-name
                               #:database-status #:database-summary
@@ -36,17 +36,15 @@
                               #:get-resource-permission-input
                               #:get-resource-permission-output #:host
                               #:host-list #:host-role #:instance-id
-                              #:instance-list #:internal-server-exception
-                              #:ip-address-list #:ip-address-member
-                              #:list-applications #:list-applications-input
+                              #:instance-list #:ip-address-list
+                              #:ip-address-member #:list-applications
+                              #:list-applications-input
                               #:list-applications-output #:list-components
                               #:list-components-input #:list-components-output
                               #:list-databases #:list-databases-input
                               #:list-databases-output #:list-operation-events
-                              #:list-operation-events-input
-                              #:list-operation-events-output #:list-operations
-                              #:list-operations-input #:list-operations-output
-                              #:list-tags-for-resource
+                              #:list-operations #:list-operations-input
+                              #:list-operations-output #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response #:max-results
                               #:next-token #:operation #:operation-event
@@ -64,25 +62,17 @@
                               #:register-application-input
                               #:register-application-output #:replication-mode
                               #:resilience #:resource #:resource-id
-                              #:resource-not-found-exception #:resource-type
-                              #:sapinstance-number #:sid #:secret-id #:ssm-sap
-                              #:ssm-sap-arn #:start-application
-                              #:start-application-input
-                              #:start-application-output
-                              #:start-application-refresh
-                              #:start-application-refresh-input
-                              #:start-application-refresh-output
-                              #:stop-application #:stop-application-input
-                              #:stop-application-output #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:unauthorized-exception
+                              #:resource-type #:sapinstance-number #:sid
+                              #:secret-id #:ssm-sap #:ssm-sap-arn
+                              #:start-application #:start-application-refresh
+                              #:stop-application #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-resource-request
+                              #:tag-resource-response #:tag-value
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-application-settings
                               #:update-application-settings-input
-                              #:update-application-settings-output
-                              #:validation-exception))
+                              #:update-application-settings-output))
 (common-lisp:in-package #:pira/ssm-sap)
 
 (smithy/sdk/service:define-service ssm-sap :shape-name "SsmSap" :version

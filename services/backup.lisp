@@ -2,9 +2,7 @@
                              (:export #:arn #:account-id
                               #:advanced-backup-setting
                               #:advanced-backup-settings #:aggregation-period
-                              #:already-exists-exception
                               #:associate-backup-vault-mpa-approval-team
-                              #:associate-backup-vault-mpa-approval-team-input
                               #:backup-job #:backup-job-child-jobs-in-state
                               #:backup-job-state #:backup-job-status
                               #:backup-job-summary #:backup-job-summary-list
@@ -24,245 +22,101 @@
                               #:backup-vault-list #:backup-vault-list-member
                               #:backup-vault-name #:boolean #:boolean2
                               #:calculated-lifecycle #:cancel-legal-hold
-                              #:cancel-legal-hold-input
-                              #:cancel-legal-hold-output
                               #:compliance-resource-id-list #:condition
                               #:condition-key #:condition-parameter
                               #:condition-parameters #:condition-type
                               #:condition-value #:conditions
-                              #:conflict-exception #:control-input-parameter
+                              #:control-input-parameter
                               #:control-input-parameters #:control-name
                               #:control-scope #:copy-action #:copy-actions
                               #:copy-job #:copy-job-child-jobs-in-state
                               #:copy-job-state #:copy-job-status
                               #:copy-job-summary #:copy-job-summary-list
                               #:copy-jobs-list #:create-backup-plan
-                              #:create-backup-plan-input
-                              #:create-backup-plan-output
-                              #:create-backup-selection
-                              #:create-backup-selection-input
-                              #:create-backup-selection-output
-                              #:create-backup-vault #:create-backup-vault-input
-                              #:create-backup-vault-output #:create-framework
-                              #:create-framework-input
-                              #:create-framework-output #:create-legal-hold
-                              #:create-legal-hold-input
-                              #:create-legal-hold-output
+                              #:create-backup-selection #:create-backup-vault
+                              #:create-framework #:create-legal-hold
                               #:create-logically-air-gapped-backup-vault
-                              #:create-logically-air-gapped-backup-vault-input
-                              #:create-logically-air-gapped-backup-vault-output
-                              #:create-report-plan #:create-report-plan-input
-                              #:create-report-plan-output
+                              #:create-report-plan
                               #:create-restore-access-backup-vault
-                              #:create-restore-access-backup-vault-input
-                              #:create-restore-access-backup-vault-output
                               #:create-restore-testing-plan
-                              #:create-restore-testing-plan-input
-                              #:create-restore-testing-plan-output
                               #:create-restore-testing-selection
-                              #:create-restore-testing-selection-input
-                              #:create-restore-testing-selection-output
                               #:cron-expression #:cryo-controller-user-manager
                               #:date-range #:delete-backup-plan
-                              #:delete-backup-plan-input
-                              #:delete-backup-plan-output
-                              #:delete-backup-selection
-                              #:delete-backup-selection-input
-                              #:delete-backup-vault
+                              #:delete-backup-selection #:delete-backup-vault
                               #:delete-backup-vault-access-policy
-                              #:delete-backup-vault-access-policy-input
-                              #:delete-backup-vault-input
                               #:delete-backup-vault-lock-configuration
-                              #:delete-backup-vault-lock-configuration-input
                               #:delete-backup-vault-notifications
-                              #:delete-backup-vault-notifications-input
-                              #:delete-framework #:delete-framework-input
-                              #:delete-recovery-point
-                              #:delete-recovery-point-input
-                              #:delete-report-plan #:delete-report-plan-input
+                              #:delete-framework #:delete-recovery-point
+                              #:delete-report-plan
                               #:delete-restore-testing-plan
-                              #:delete-restore-testing-plan-input
                               #:delete-restore-testing-selection
-                              #:delete-restore-testing-selection-input
-                              #:dependency-failure-exception
-                              #:describe-backup-job #:describe-backup-job-input
-                              #:describe-backup-job-output
-                              #:describe-backup-vault
-                              #:describe-backup-vault-input
-                              #:describe-backup-vault-output
-                              #:describe-copy-job #:describe-copy-job-input
-                              #:describe-copy-job-output #:describe-framework
-                              #:describe-framework-input
-                              #:describe-framework-output
+                              #:describe-backup-job #:describe-backup-vault
+                              #:describe-copy-job #:describe-framework
                               #:describe-global-settings
-                              #:describe-global-settings-input
-                              #:describe-global-settings-output
                               #:describe-protected-resource
-                              #:describe-protected-resource-input
-                              #:describe-protected-resource-output
                               #:describe-recovery-point
-                              #:describe-recovery-point-input
-                              #:describe-recovery-point-output
-                              #:describe-region-settings
-                              #:describe-region-settings-input
-                              #:describe-region-settings-output
-                              #:describe-report-job #:describe-report-job-input
-                              #:describe-report-job-output
-                              #:describe-report-plan
-                              #:describe-report-plan-input
-                              #:describe-report-plan-output
-                              #:describe-restore-job
-                              #:describe-restore-job-input
-                              #:describe-restore-job-output
+                              #:describe-region-settings #:describe-report-job
+                              #:describe-report-plan #:describe-restore-job
                               #:disassociate-backup-vault-mpa-approval-team
-                              #:disassociate-backup-vault-mpa-approval-team-input
                               #:disassociate-recovery-point
                               #:disassociate-recovery-point-from-parent
-                              #:disassociate-recovery-point-from-parent-input
-                              #:disassociate-recovery-point-input
-                              #:export-backup-plan-template
-                              #:export-backup-plan-template-input
-                              #:export-backup-plan-template-output
-                              #:format-list #:framework #:framework-control
+                              #:export-backup-plan-template #:format-list
+                              #:framework #:framework-control
                               #:framework-controls #:framework-description
                               #:framework-list #:framework-name
                               #:get-backup-plan #:get-backup-plan-from-json
-                              #:get-backup-plan-from-jsoninput
-                              #:get-backup-plan-from-jsonoutput
                               #:get-backup-plan-from-template
-                              #:get-backup-plan-from-template-input
-                              #:get-backup-plan-from-template-output
-                              #:get-backup-plan-input #:get-backup-plan-output
                               #:get-backup-selection
-                              #:get-backup-selection-input
-                              #:get-backup-selection-output
                               #:get-backup-vault-access-policy
-                              #:get-backup-vault-access-policy-input
-                              #:get-backup-vault-access-policy-output
-                              #:get-backup-vault-notifications
-                              #:get-backup-vault-notifications-input
-                              #:get-backup-vault-notifications-output
-                              #:get-legal-hold #:get-legal-hold-input
-                              #:get-legal-hold-output
+                              #:get-backup-vault-notifications #:get-legal-hold
                               #:get-recovery-point-index-details
-                              #:get-recovery-point-index-details-input
-                              #:get-recovery-point-index-details-output
                               #:get-recovery-point-restore-metadata
-                              #:get-recovery-point-restore-metadata-input
-                              #:get-recovery-point-restore-metadata-output
                               #:get-restore-job-metadata
-                              #:get-restore-job-metadata-input
-                              #:get-restore-job-metadata-output
                               #:get-restore-testing-inferred-metadata
-                              #:get-restore-testing-inferred-metadata-input
-                              #:get-restore-testing-inferred-metadata-output
                               #:get-restore-testing-plan
-                              #:get-restore-testing-plan-input
-                              #:get-restore-testing-plan-output
                               #:get-restore-testing-selection
-                              #:get-restore-testing-selection-input
-                              #:get-restore-testing-selection-output
-                              #:get-supported-resource-types
-                              #:get-supported-resource-types-output
-                              #:global-settings #:global-settings-name
-                              #:global-settings-value #:iampolicy #:iamrole-arn
-                              #:index #:index-action #:index-actions
-                              #:index-status #:indexed-recovery-point
-                              #:indexed-recovery-point-list
-                              #:invalid-parameter-value-exception
-                              #:invalid-request-exception
-                              #:invalid-resource-state-exception #:is-enabled
+                              #:get-supported-resource-types #:global-settings
+                              #:global-settings-name #:global-settings-value
+                              #:iampolicy #:iamrole-arn #:index #:index-action
+                              #:index-actions #:index-status
+                              #:indexed-recovery-point
+                              #:indexed-recovery-point-list #:is-enabled
                               #:key-value #:key-value-list
                               #:latest-mpa-approval-team-update
                               #:latest-revoke-request #:legal-hold
                               #:legal-hold-status #:legal-holds-list
-                              #:lifecycle #:limit-exceeded-exception
-                              #:list-backup-job-summaries
-                              #:list-backup-job-summaries-input
-                              #:list-backup-job-summaries-output
-                              #:list-backup-jobs #:list-backup-jobs-input
-                              #:list-backup-jobs-output
-                              #:list-backup-plan-templates
-                              #:list-backup-plan-templates-input
-                              #:list-backup-plan-templates-output
-                              #:list-backup-plan-versions
-                              #:list-backup-plan-versions-input
-                              #:list-backup-plan-versions-output
-                              #:list-backup-plans #:list-backup-plans-input
-                              #:list-backup-plans-output
-                              #:list-backup-selections
-                              #:list-backup-selections-input
-                              #:list-backup-selections-output
-                              #:list-backup-vaults #:list-backup-vaults-input
-                              #:list-backup-vaults-output
-                              #:list-copy-job-summaries
-                              #:list-copy-job-summaries-input
-                              #:list-copy-job-summaries-output #:list-copy-jobs
-                              #:list-copy-jobs-input #:list-copy-jobs-output
-                              #:list-frameworks #:list-frameworks-input
-                              #:list-frameworks-output
-                              #:list-indexed-recovery-points
-                              #:list-indexed-recovery-points-input
-                              #:list-indexed-recovery-points-output
-                              #:list-legal-holds #:list-legal-holds-input
-                              #:list-legal-holds-output #:list-of-tags
+                              #:lifecycle #:list-backup-job-summaries
+                              #:list-backup-jobs #:list-backup-plan-templates
+                              #:list-backup-plan-versions #:list-backup-plans
+                              #:list-backup-selections #:list-backup-vaults
+                              #:list-copy-job-summaries #:list-copy-jobs
+                              #:list-frameworks #:list-indexed-recovery-points
+                              #:list-legal-holds #:list-of-tags
                               #:list-protected-resources
                               #:list-protected-resources-by-backup-vault
-                              #:list-protected-resources-by-backup-vault-input
-                              #:list-protected-resources-by-backup-vault-output
-                              #:list-protected-resources-input
-                              #:list-protected-resources-output
                               #:list-recovery-points-by-backup-vault
-                              #:list-recovery-points-by-backup-vault-input
-                              #:list-recovery-points-by-backup-vault-output
                               #:list-recovery-points-by-legal-hold
-                              #:list-recovery-points-by-legal-hold-input
-                              #:list-recovery-points-by-legal-hold-output
                               #:list-recovery-points-by-resource
-                              #:list-recovery-points-by-resource-input
-                              #:list-recovery-points-by-resource-output
-                              #:list-report-jobs #:list-report-jobs-input
-                              #:list-report-jobs-output #:list-report-plans
-                              #:list-report-plans-input
-                              #:list-report-plans-output
+                              #:list-report-jobs #:list-report-plans
                               #:list-restore-access-backup-vaults
-                              #:list-restore-access-backup-vaults-input
-                              #:list-restore-access-backup-vaults-output
-                              #:list-restore-job-summaries
-                              #:list-restore-job-summaries-input
-                              #:list-restore-job-summaries-output
-                              #:list-restore-jobs
+                              #:list-restore-job-summaries #:list-restore-jobs
                               #:list-restore-jobs-by-protected-resource
-                              #:list-restore-jobs-by-protected-resource-input
-                              #:list-restore-jobs-by-protected-resource-output
-                              #:list-restore-jobs-input
-                              #:list-restore-jobs-output
                               #:list-restore-testing-plans
-                              #:list-restore-testing-plans-input
                               #:list-restore-testing-plans-input-max-results-integer
-                              #:list-restore-testing-plans-output
                               #:list-restore-testing-selections
-                              #:list-restore-testing-selections-input
                               #:list-restore-testing-selections-input-max-results-integer
-                              #:list-restore-testing-selections-output
-                              #:list-tags #:list-tags-input #:list-tags-output
-                              #:long #:long2 #:max-framework-inputs
+                              #:list-tags #:long #:long2 #:max-framework-inputs
                               #:max-results #:message-category #:metadata
                               #:metadata-key #:metadata-value
-                              #:missing-parameter-value-exception
                               #:mpa-revoke-session-status #:mpa-session-status
                               #:parameter-name #:parameter-value
                               #:protected-resource
                               #:protected-resource-conditions
                               #:protected-resources-list
                               #:put-backup-vault-access-policy
-                              #:put-backup-vault-access-policy-input
                               #:put-backup-vault-lock-configuration
-                              #:put-backup-vault-lock-configuration-input
                               #:put-backup-vault-notifications
-                              #:put-backup-vault-notifications-input
                               #:put-restore-validation-result
-                              #:put-restore-validation-result-input
                               #:recovery-point-by-backup-vault
                               #:recovery-point-by-backup-vault-list
                               #:recovery-point-by-resource
@@ -276,8 +130,7 @@
                               #:report-plan-description #:report-plan-list
                               #:report-plan-name #:report-setting
                               #:requester-comment #:resource-arns
-                              #:resource-identifiers
-                              #:resource-not-found-exception #:resource-type
+                              #:resource-identifiers #:resource-type
                               #:resource-type-list
                               #:resource-type-management-preference
                               #:resource-type-opt-in-preference
@@ -305,46 +158,21 @@
                               #:restore-testing-selections
                               #:restore-validation-status
                               #:revoke-restore-access-backup-vault
-                              #:revoke-restore-access-backup-vault-input
-                              #:sensitive-string-map
-                              #:service-unavailable-exception
-                              #:start-backup-job #:start-backup-job-input
-                              #:start-backup-job-output #:start-copy-job
-                              #:start-copy-job-input #:start-copy-job-output
-                              #:start-report-job #:start-report-job-input
-                              #:start-report-job-output #:start-restore-job
-                              #:start-restore-job-input
-                              #:start-restore-job-output #:stop-backup-job
-                              #:stop-backup-job-input #:storage-class #:tag-key
-                              #:tag-key-list #:tag-resource
-                              #:tag-resource-input #:tag-value #:tags
-                              #:timezone #:untag-resource
-                              #:untag-resource-input #:update-backup-plan
-                              #:update-backup-plan-input
-                              #:update-backup-plan-output #:update-framework
-                              #:update-framework-input
-                              #:update-framework-output
-                              #:update-global-settings
-                              #:update-global-settings-input
+                              #:sensitive-string-map #:start-backup-job
+                              #:start-copy-job #:start-report-job
+                              #:start-restore-job #:stop-backup-job
+                              #:storage-class #:tag-key #:tag-key-list
+                              #:tag-resource #:tag-value #:tags #:timezone
+                              #:untag-resource #:update-backup-plan
+                              #:update-framework #:update-global-settings
                               #:update-recovery-point-index-settings
-                              #:update-recovery-point-index-settings-input
-                              #:update-recovery-point-index-settings-output
                               #:update-recovery-point-lifecycle
-                              #:update-recovery-point-lifecycle-input
-                              #:update-recovery-point-lifecycle-output
-                              #:update-region-settings
-                              #:update-region-settings-input
-                              #:update-report-plan #:update-report-plan-input
-                              #:update-report-plan-output
+                              #:update-region-settings #:update-report-plan
                               #:update-restore-testing-plan
-                              #:update-restore-testing-plan-input
-                              #:update-restore-testing-plan-output
-                              #:update-restore-testing-selection
-                              #:update-restore-testing-selection-input
-                              #:update-restore-testing-selection-output
-                              #:vault-names #:vault-state #:vault-type
-                              #:window-minutes #:integer #:string #:string-list
-                              #:string-map #:timestamp))
+                              #:update-restore-testing-selection #:vault-names
+                              #:vault-state #:vault-type #:window-minutes
+                              #:integer #:string #:string-list #:string-map
+                              #:timestamp))
 (common-lisp:in-package #:pira/backup)
 
 (smithy/sdk/service:define-service cryo-controller-user-manager :shape-name

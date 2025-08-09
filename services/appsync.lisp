@@ -1,57 +1,32 @@
 (uiop/package:define-package #:pira/appsync (:use)
                              (:export #:awsdeepdish-control-plane-service
-                              #:access-denied-exception
                               #:additional-authentication-provider
                               #:additional-authentication-providers #:api
                               #:api-association #:api-cache #:api-cache-status
                               #:api-cache-type #:api-caching-behavior #:api-key
-                              #:api-key-limit-exceeded-exception
-                              #:api-key-validity-out-of-bounds-exception
-                              #:api-keys #:api-limit-exceeded-exception
-                              #:api-name #:apis #:app-sync-runtime
-                              #:associate-api #:associate-api-request
-                              #:associate-api-response
-                              #:associate-merged-graphql-api
-                              #:associate-merged-graphql-api-request
-                              #:associate-merged-graphql-api-response
+                              #:api-keys #:api-name #:apis #:app-sync-runtime
+                              #:associate-api #:associate-merged-graphql-api
                               #:associate-source-graphql-api
-                              #:associate-source-graphql-api-request
-                              #:associate-source-graphql-api-response
                               #:association-status #:auth-mode #:auth-modes
                               #:auth-provider #:auth-providers
                               #:authentication-type #:authorization-config
                               #:authorization-type #:aws-iam-config
-                              #:bad-request-detail #:bad-request-exception
-                              #:bad-request-reason #:blob #:boolean
-                              #:boolean-value #:cache-health-metrics-config
-                              #:caching-config #:caching-keys #:certificate-arn
+                              #:bad-request-detail #:bad-request-reason #:blob
+                              #:boolean #:boolean-value
+                              #:cache-health-metrics-config #:caching-config
+                              #:caching-keys #:certificate-arn
                               #:channel-namespace #:channel-namespaces #:code
                               #:code-error #:code-error-column
                               #:code-error-line #:code-error-location
                               #:code-error-span #:code-errors #:cognito-config
                               #:cognito-user-pool-config
-                              #:concurrent-modification-exception
-                              #:conflict-detection-type #:conflict-exception
-                              #:conflict-handler-type #:context #:create-api
-                              #:create-api-cache #:create-api-cache-request
-                              #:create-api-cache-response #:create-api-key
-                              #:create-api-key-request
-                              #:create-api-key-response #:create-api-request
-                              #:create-api-response #:create-channel-namespace
-                              #:create-channel-namespace-request
-                              #:create-channel-namespace-response
-                              #:create-data-source #:create-data-source-request
-                              #:create-data-source-response
-                              #:create-domain-name #:create-domain-name-request
-                              #:create-domain-name-response #:create-function
-                              #:create-function-request
-                              #:create-function-response #:create-graphql-api
-                              #:create-graphql-api-request
-                              #:create-graphql-api-response #:create-resolver
-                              #:create-resolver-request
-                              #:create-resolver-response #:create-type
-                              #:create-type-request #:create-type-response
-                              #:data-source #:data-source-introspection-model
+                              #:conflict-detection-type #:conflict-handler-type
+                              #:context #:create-api #:create-api-cache
+                              #:create-api-key #:create-channel-namespace
+                              #:create-data-source #:create-domain-name
+                              #:create-function #:create-graphql-api
+                              #:create-resolver #:create-type #:data-source
+                              #:data-source-introspection-model
                               #:data-source-introspection-model-field
                               #:data-source-introspection-model-field-type
                               #:data-source-introspection-model-field-type-values
@@ -66,35 +41,15 @@
                               #:data-source-level-metrics-config
                               #:data-source-type #:data-sources #:date
                               #:default-action #:delete-api #:delete-api-cache
-                              #:delete-api-cache-request
-                              #:delete-api-cache-response #:delete-api-key
-                              #:delete-api-key-request
-                              #:delete-api-key-response #:delete-api-request
-                              #:delete-api-response #:delete-channel-namespace
-                              #:delete-channel-namespace-request
-                              #:delete-channel-namespace-response
-                              #:delete-data-source #:delete-data-source-request
-                              #:delete-data-source-response
-                              #:delete-domain-name #:delete-domain-name-request
-                              #:delete-domain-name-response #:delete-function
-                              #:delete-function-request
-                              #:delete-function-response #:delete-graphql-api
-                              #:delete-graphql-api-request
-                              #:delete-graphql-api-response #:delete-resolver
-                              #:delete-resolver-request
-                              #:delete-resolver-response #:delete-type
-                              #:delete-type-request #:delete-type-response
+                              #:delete-api-key #:delete-channel-namespace
+                              #:delete-data-source #:delete-domain-name
+                              #:delete-function #:delete-graphql-api
+                              #:delete-resolver #:delete-type
                               #:delta-sync-config #:description
-                              #:disassociate-api #:disassociate-api-request
-                              #:disassociate-api-response
+                              #:disassociate-api
                               #:disassociate-merged-graphql-api
-                              #:disassociate-merged-graphql-api-request
-                              #:disassociate-merged-graphql-api-response
-                              #:disassociate-source-graphql-api
-                              #:disassociate-source-graphql-api-request
-                              #:disassociate-source-graphql-api-response
-                              #:domain-name #:domain-name-config
-                              #:domain-name-configs
+                              #:disassociate-source-graphql-api #:domain-name
+                              #:domain-name-config #:domain-name-configs
                               #:dynamodb-data-source-config
                               #:elasticsearch-data-source-config
                               #:enhanced-metrics-config
@@ -103,102 +58,43 @@
                               #:environment-variable-value #:error-detail
                               #:error-message #:evaluate-code
                               #:evaluate-code-error-detail
-                              #:evaluate-code-request #:evaluate-code-response
-                              #:evaluate-mapping-template
-                              #:evaluate-mapping-template-request
-                              #:evaluate-mapping-template-response
-                              #:evaluation-result
+                              #:evaluate-mapping-template #:evaluation-result
                               #:event-bridge-data-source-config #:event-config
                               #:event-log-config #:event-log-level
                               #:field-log-level #:flush-api-cache
-                              #:flush-api-cache-request
-                              #:flush-api-cache-response
                               #:function-configuration #:functions
                               #:functions-ids #:get-api #:get-api-association
-                              #:get-api-association-request
-                              #:get-api-association-response #:get-api-cache
-                              #:get-api-cache-request #:get-api-cache-response
-                              #:get-api-request #:get-api-response
-                              #:get-channel-namespace
-                              #:get-channel-namespace-request
-                              #:get-channel-namespace-response
+                              #:get-api-cache #:get-channel-namespace
                               #:get-data-source #:get-data-source-introspection
-                              #:get-data-source-introspection-request
-                              #:get-data-source-introspection-response
-                              #:get-data-source-request
-                              #:get-data-source-response #:get-domain-name
-                              #:get-domain-name-request
-                              #:get-domain-name-response #:get-function
-                              #:get-function-request #:get-function-response
+                              #:get-domain-name #:get-function
                               #:get-graphql-api
                               #:get-graphql-api-environment-variables
-                              #:get-graphql-api-environment-variables-request
-                              #:get-graphql-api-environment-variables-response
-                              #:get-graphql-api-request
-                              #:get-graphql-api-response
-                              #:get-introspection-schema
-                              #:get-introspection-schema-request
-                              #:get-introspection-schema-response
-                              #:get-resolver #:get-resolver-request
-                              #:get-resolver-response
+                              #:get-introspection-schema #:get-resolver
                               #:get-schema-creation-status
-                              #:get-schema-creation-status-request
-                              #:get-schema-creation-status-response
-                              #:get-source-api-association
-                              #:get-source-api-association-request
-                              #:get-source-api-association-response #:get-type
-                              #:get-type-request #:get-type-response
+                              #:get-source-api-association #:get-type
                               #:graph-qlapi-introspection-config
                               #:graph-qlapi-type #:graph-qlapi-visibility
-                              #:graph-qlschema-exception #:graphql-api
-                              #:graphql-apis #:handler-behavior
+                              #:graphql-api #:graphql-apis #:handler-behavior
                               #:handler-config #:handler-configs
                               #:http-data-source-config #:integration
-                              #:internal-failure-exception #:invoke-type
-                              #:lambda-authorizer-config #:lambda-config
-                              #:lambda-conflict-handler-config
-                              #:lambda-data-source-config
-                              #:limit-exceeded-exception #:list-api-keys
-                              #:list-api-keys-request #:list-api-keys-response
-                              #:list-apis #:list-apis-request
-                              #:list-apis-response #:list-channel-namespaces
-                              #:list-channel-namespaces-request
-                              #:list-channel-namespaces-response
-                              #:list-data-sources #:list-data-sources-request
-                              #:list-data-sources-response #:list-domain-names
-                              #:list-domain-names-request
-                              #:list-domain-names-response #:list-functions
-                              #:list-functions-request
-                              #:list-functions-response #:list-graphql-apis
-                              #:list-graphql-apis-request
-                              #:list-graphql-apis-response #:list-resolvers
-                              #:list-resolvers-by-function
-                              #:list-resolvers-by-function-request
-                              #:list-resolvers-by-function-response
-                              #:list-resolvers-request
-                              #:list-resolvers-response
+                              #:invoke-type #:lambda-authorizer-config
+                              #:lambda-config #:lambda-conflict-handler-config
+                              #:lambda-data-source-config #:list-api-keys
+                              #:list-apis #:list-channel-namespaces
+                              #:list-data-sources #:list-domain-names
+                              #:list-functions #:list-graphql-apis
+                              #:list-resolvers #:list-resolvers-by-function
                               #:list-source-api-associations
-                              #:list-source-api-associations-request
-                              #:list-source-api-associations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-types
-                              #:list-types-by-association
-                              #:list-types-by-association-request
-                              #:list-types-by-association-response
-                              #:list-types-request #:list-types-response
-                              #:log-config #:logs #:long
-                              #:map-of-string-to-string #:mapping-template
-                              #:max-batch-size #:max-results #:merge-type
-                              #:namespace #:not-found-exception
-                              #:open-idconnect-config
+                              #:list-tags-for-resource #:list-types
+                              #:list-types-by-association #:log-config #:logs
+                              #:long #:map-of-string-to-string
+                              #:mapping-template #:max-batch-size #:max-results
+                              #:merge-type #:namespace #:open-idconnect-config
                               #:open-search-service-data-source-config
                               #:operation-level-metrics-config #:out-errors
                               #:output-type #:owner-contact #:ownership
                               #:pagination-token #:pipeline-config
                               #:put-graphql-api-environment-variables
-                              #:put-graphql-api-environment-variables-request
-                              #:put-graphql-api-environment-variables-response
                               #:query-depth-limit #:rds-data-api-config
                               #:rds-data-api-config-database-name
                               #:rds-data-api-config-resource-arn
@@ -210,50 +106,23 @@
                               #:resolver-level-metrics-behavior
                               #:resolver-level-metrics-config #:resolvers
                               #:resource-arn #:resource-name #:runtime-name
-                              #:schema-status
-                              #:service-quota-exceeded-exception
-                              #:source-api-association
+                              #:schema-status #:source-api-association
                               #:source-api-association-config
                               #:source-api-association-status
                               #:source-api-association-summary
                               #:source-api-association-summary-list
                               #:start-data-source-introspection
-                              #:start-data-source-introspection-request
-                              #:start-data-source-introspection-response
-                              #:start-schema-creation
-                              #:start-schema-creation-request
-                              #:start-schema-creation-response
-                              #:start-schema-merge #:start-schema-merge-request
-                              #:start-schema-merge-response #:stash #:string
-                              #:sync-config #:ttl #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:template
-                              #:timestamp #:type #:type-definition-format
-                              #:type-list #:unauthorized-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-api
-                              #:update-api-cache #:update-api-cache-request
-                              #:update-api-cache-response #:update-api-key
-                              #:update-api-key-request
-                              #:update-api-key-response #:update-api-request
-                              #:update-api-response #:update-channel-namespace
-                              #:update-channel-namespace-request
-                              #:update-channel-namespace-response
-                              #:update-data-source #:update-data-source-request
-                              #:update-data-source-response
-                              #:update-domain-name #:update-domain-name-request
-                              #:update-domain-name-response #:update-function
-                              #:update-function-request
-                              #:update-function-response #:update-graphql-api
-                              #:update-graphql-api-request
-                              #:update-graphql-api-response #:update-resolver
-                              #:update-resolver-request
-                              #:update-resolver-response
-                              #:update-source-api-association
-                              #:update-source-api-association-request
-                              #:update-source-api-association-response
-                              #:update-type #:update-type-request
-                              #:update-type-response #:user-pool-config))
+                              #:start-schema-creation #:start-schema-merge
+                              #:stash #:string #:sync-config #:ttl #:tag-key
+                              #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:template #:timestamp #:type
+                              #:type-definition-format #:type-list
+                              #:untag-resource #:update-api #:update-api-cache
+                              #:update-api-key #:update-channel-namespace
+                              #:update-data-source #:update-domain-name
+                              #:update-function #:update-graphql-api
+                              #:update-resolver #:update-source-api-association
+                              #:update-type #:user-pool-config))
 (common-lisp:in-package #:pira/appsync)
 
 (smithy/sdk/service:define-service awsdeepdish-control-plane-service

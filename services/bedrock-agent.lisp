@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/bedrock-agent (:use)
-                             (:export #:apischema #:access-denied-exception
-                              #:action-group-executor #:action-group-resource
-                              #:action-group-signature
+                             (:export #:apischema #:action-group-executor
+                              #:action-group-resource #:action-group-signature
                               #:action-group-signature-params
                               #:action-group-state #:action-group-summaries
                               #:action-group-summary
@@ -29,11 +28,7 @@
                               #:alias-invocation-state #:alias-resource
                               #:amazon-bedrock-agent-build-time-lambda
                               #:any-tool-choice #:associate-agent-collaborator
-                              #:associate-agent-collaborator-request
-                              #:associate-agent-collaborator-response
                               #:associate-agent-knowledge-base
-                              #:associate-agent-knowledge-base-request
-                              #:associate-agent-knowledge-base-response
                               #:auto-tool-choice #:aws-data-catalog-table-name
                               #:aws-data-catalog-table-names
                               #:base-prompt-template
@@ -52,7 +47,7 @@
                               #:collector-flow-node-configuration #:column-name
                               #:concurrency-type
                               #:condition-flow-node-configuration
-                              #:conflict-exception #:confluence-auth-type
+                              #:confluence-auth-type
                               #:confluence-crawler-configuration
                               #:confluence-data-source-configuration
                               #:confluence-host-type
@@ -62,27 +57,11 @@
                               #:context-enrichment-type #:conversation-role
                               #:crawl-filter-configuration
                               #:crawl-filter-configuration-type #:create-agent
-                              #:create-agent-action-group
-                              #:create-agent-action-group-request
-                              #:create-agent-action-group-response
-                              #:create-agent-alias #:create-agent-alias-request
-                              #:create-agent-alias-response
-                              #:create-agent-request #:create-agent-response
-                              #:create-data-source #:create-data-source-request
-                              #:create-data-source-response #:create-flow
-                              #:create-flow-alias #:create-flow-alias-request
-                              #:create-flow-alias-response
-                              #:create-flow-request #:create-flow-response
-                              #:create-flow-version
-                              #:create-flow-version-request
-                              #:create-flow-version-response
-                              #:create-knowledge-base
-                              #:create-knowledge-base-request
-                              #:create-knowledge-base-response #:create-prompt
-                              #:create-prompt-request #:create-prompt-response
-                              #:create-prompt-version
-                              #:create-prompt-version-request
-                              #:create-prompt-version-response #:creation-mode
+                              #:create-agent-action-group #:create-agent-alias
+                              #:create-data-source #:create-flow
+                              #:create-flow-alias #:create-flow-version
+                              #:create-knowledge-base #:create-prompt
+                              #:create-prompt-version #:creation-mode
                               #:curated-queries #:curated-query
                               #:custom-content #:custom-control-method
                               #:custom-document-identifier
@@ -96,36 +75,14 @@
                               #:data-source-summaries #:data-source-summary
                               #:data-source-type #:date-timestamp
                               #:delete-agent #:delete-agent-action-group
-                              #:delete-agent-action-group-request
-                              #:delete-agent-action-group-response
-                              #:delete-agent-alias #:delete-agent-alias-request
-                              #:delete-agent-alias-response
-                              #:delete-agent-request #:delete-agent-response
-                              #:delete-agent-version
-                              #:delete-agent-version-request
-                              #:delete-agent-version-response
-                              #:delete-data-source #:delete-data-source-request
-                              #:delete-data-source-response #:delete-flow
-                              #:delete-flow-alias #:delete-flow-alias-request
-                              #:delete-flow-alias-response
-                              #:delete-flow-request #:delete-flow-response
-                              #:delete-flow-version
-                              #:delete-flow-version-request
-                              #:delete-flow-version-response
+                              #:delete-agent-alias #:delete-agent-version
+                              #:delete-data-source #:delete-flow
+                              #:delete-flow-alias #:delete-flow-version
                               #:delete-knowledge-base
-                              #:delete-knowledge-base-documents
-                              #:delete-knowledge-base-documents-request
-                              #:delete-knowledge-base-documents-response
-                              #:delete-knowledge-base-request
-                              #:delete-knowledge-base-response #:delete-prompt
-                              #:delete-prompt-request #:delete-prompt-response
+                              #:delete-knowledge-base-documents #:delete-prompt
                               #:description #:description-string #:dimensions
                               #:disassociate-agent-collaborator
-                              #:disassociate-agent-collaborator-request
-                              #:disassociate-agent-collaborator-response
                               #:disassociate-agent-knowledge-base
-                              #:disassociate-agent-knowledge-base-request
-                              #:disassociate-agent-knowledge-base-response
                               #:document-content #:document-identifier
                               #:document-identifiers #:document-metadata
                               #:document-status #:draft-version
@@ -173,35 +130,13 @@
                               #:flow-version-summaries #:flow-version-summary
                               #:function #:function-description
                               #:function-schema #:functions #:get-agent
-                              #:get-agent-action-group
-                              #:get-agent-action-group-request
-                              #:get-agent-action-group-response
-                              #:get-agent-alias #:get-agent-alias-request
-                              #:get-agent-alias-response
+                              #:get-agent-action-group #:get-agent-alias
                               #:get-agent-collaborator
-                              #:get-agent-collaborator-request
-                              #:get-agent-collaborator-response
-                              #:get-agent-knowledge-base
-                              #:get-agent-knowledge-base-request
-                              #:get-agent-knowledge-base-response
-                              #:get-agent-request #:get-agent-response
-                              #:get-agent-version #:get-agent-version-request
-                              #:get-agent-version-response #:get-data-source
-                              #:get-data-source-request
-                              #:get-data-source-response #:get-flow
-                              #:get-flow-alias #:get-flow-alias-request
-                              #:get-flow-alias-response #:get-flow-request
-                              #:get-flow-response #:get-flow-version
-                              #:get-flow-version-request
-                              #:get-flow-version-response #:get-ingestion-job
-                              #:get-ingestion-job-request
-                              #:get-ingestion-job-response #:get-knowledge-base
-                              #:get-knowledge-base-documents
-                              #:get-knowledge-base-documents-request
-                              #:get-knowledge-base-documents-response
-                              #:get-knowledge-base-request
-                              #:get-knowledge-base-response #:get-prompt
-                              #:get-prompt-request #:get-prompt-response
+                              #:get-agent-knowledge-base #:get-agent-version
+                              #:get-data-source #:get-flow #:get-flow-alias
+                              #:get-flow-version #:get-ingestion-job
+                              #:get-knowledge-base
+                              #:get-knowledge-base-documents #:get-prompt
                               #:graph-arn #:guardrail-configuration
                               #:guardrail-identifier #:guardrail-version
                               #:hierarchical-chunking-configuration
@@ -211,10 +146,8 @@
                               #:incompatible-connection-data-type-flow-validation-details
                               #:incompatible-loop-node-type #:index-arn
                               #:index-name #:inference-configuration
-                              #:ingest-knowledge-base-documents
-                              #:ingest-knowledge-base-documents-request
-                              #:ingest-knowledge-base-documents-response
-                              #:ingestion-job #:ingestion-job-filter
+                              #:ingest-knowledge-base-documents #:ingestion-job
+                              #:ingestion-job-filter
                               #:ingestion-job-filter-attribute
                               #:ingestion-job-filter-operator
                               #:ingestion-job-filter-value
@@ -229,7 +162,6 @@
                               #:inline-content #:inline-content-type
                               #:input-flow-node-configuration #:instruction
                               #:intermediate-storage
-                              #:internal-server-exception
                               #:invalid-loop-boundary-flow-validation-details
                               #:iterator-flow-node-configuration
                               #:kendra-index-arn
@@ -258,41 +190,16 @@
                               #:lambda-function-flow-node-configuration
                               #:lex-bot-alias-arn #:lex-bot-locale-id
                               #:lex-flow-node-configuration
-                              #:list-agent-action-groups
-                              #:list-agent-action-groups-request
-                              #:list-agent-action-groups-response
-                              #:list-agent-aliases #:list-agent-aliases-request
-                              #:list-agent-aliases-response
+                              #:list-agent-action-groups #:list-agent-aliases
                               #:list-agent-collaborators
-                              #:list-agent-collaborators-request
-                              #:list-agent-collaborators-response
                               #:list-agent-knowledge-bases
-                              #:list-agent-knowledge-bases-request
-                              #:list-agent-knowledge-bases-response
-                              #:list-agent-versions
-                              #:list-agent-versions-request
-                              #:list-agent-versions-response #:list-agents
-                              #:list-agents-request #:list-agents-response
-                              #:list-data-sources #:list-data-sources-request
-                              #:list-data-sources-response #:list-flow-aliases
-                              #:list-flow-aliases-request
-                              #:list-flow-aliases-response #:list-flow-versions
-                              #:list-flow-versions-request
-                              #:list-flow-versions-response #:list-flows
-                              #:list-flows-request #:list-flows-response
+                              #:list-agent-versions #:list-agents
+                              #:list-data-sources #:list-flow-aliases
+                              #:list-flow-versions #:list-flows
                               #:list-ingestion-jobs
-                              #:list-ingestion-jobs-request
-                              #:list-ingestion-jobs-response
                               #:list-knowledge-base-documents
-                              #:list-knowledge-base-documents-request
-                              #:list-knowledge-base-documents-response
-                              #:list-knowledge-bases
-                              #:list-knowledge-bases-request
-                              #:list-knowledge-bases-response #:list-prompts
-                              #:list-prompts-request #:list-prompts-response
+                              #:list-knowledge-bases #:list-prompts
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:loop-controller-flow-node-configuration
                               #:loop-flow-node-configuration
                               #:loop-incompatible-node-type-flow-validation-details
@@ -357,9 +264,7 @@
                               #:pinecone-configuration
                               #:pinecone-connection-string
                               #:pinecone-field-mapping #:pinecone-namespace
-                              #:prepare-agent #:prepare-agent-request
-                              #:prepare-agent-response #:prepare-flow
-                              #:prepare-flow-request #:prepare-flow-response
+                              #:prepare-agent #:prepare-flow
                               #:prompt-agent-resource #:prompt-arn
                               #:prompt-configuration #:prompt-configurations
                               #:prompt-description
@@ -421,7 +326,6 @@
                               #:require-confirmation
                               #:reranking-metadata-selection-mode
                               #:reranking-metadata-selective-mode-configuration
-                              #:resource-not-found-exception
                               #:retrieval-flow-node-configuration
                               #:retrieval-flow-node-s3configuration
                               #:retrieval-flow-node-service-configuration
@@ -436,7 +340,6 @@
                               #:seed-url #:seed-urls
                               #:semantic-chunking-configuration
                               #:server-side-encryption-configuration
-                              #:service-quota-exceeded-exception
                               #:session-summary-configuration #:session-ttl
                               #:share-point-auth-type
                               #:share-point-crawler-configuration
@@ -446,11 +349,8 @@
                               #:share-point-source-configuration #:sort-order
                               #:specific-tool-choice
                               #:sql-knowledge-base-configuration #:sql-string
-                              #:start-ingestion-job
-                              #:start-ingestion-job-request
-                              #:start-ingestion-job-response #:step-type
-                              #:stop-ingestion-job #:stop-ingestion-job-request
-                              #:stop-ingestion-job-response #:stop-sequences
+                              #:start-ingestion-job #:step-type
+                              #:stop-ingestion-job #:stop-sequences
                               #:storage-configuration #:storage-days
                               #:storage-flow-node-configuration
                               #:storage-flow-node-s3configuration
@@ -462,17 +362,15 @@
                               #:supplemental-data-storage-locations
                               #:supported-languages #:system-content-block
                               #:system-content-blocks #:tag-key #:tag-key-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:tag-resource #:tag-value
                               #:taggable-resources-arn #:tagging-resource
                               #:tags-map #:temperature #:text-content-doc
                               #:text-prompt
-                              #:text-prompt-template-configuration
-                              #:throttling-exception #:tool #:tool-choice
-                              #:tool-configuration #:tool-input-schema
-                              #:tool-name #:tool-specification #:tools #:top-k
-                              #:top-p #:transformation
-                              #:transformation-function
+                              #:text-prompt-template-configuration #:tool
+                              #:tool-choice #:tool-configuration
+                              #:tool-input-schema #:tool-name
+                              #:tool-specification #:tools #:top-k #:top-p
+                              #:transformation #:transformation-function
                               #:transformation-lambda-configuration
                               #:transformations #:type
                               #:unfulfilled-node-input-flow-validation-details
@@ -486,34 +384,15 @@
                               #:unreachable-node-flow-validation-details
                               #:unsatisfied-connection-conditions-flow-validation-details
                               #:unspecified-flow-validation-details
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-agent
-                              #:update-agent-action-group
-                              #:update-agent-action-group-request
-                              #:update-agent-action-group-response
-                              #:update-agent-alias #:update-agent-alias-request
-                              #:update-agent-alias-response
+                              #:untag-resource #:update-agent
+                              #:update-agent-action-group #:update-agent-alias
                               #:update-agent-collaborator
-                              #:update-agent-collaborator-request
-                              #:update-agent-collaborator-response
                               #:update-agent-knowledge-base
-                              #:update-agent-knowledge-base-request
-                              #:update-agent-knowledge-base-response
-                              #:update-agent-request #:update-agent-response
-                              #:update-data-source #:update-data-source-request
-                              #:update-data-source-response #:update-flow
-                              #:update-flow-alias #:update-flow-alias-request
-                              #:update-flow-alias-response
-                              #:update-flow-request #:update-flow-response
-                              #:update-knowledge-base
-                              #:update-knowledge-base-request
-                              #:update-knowledge-base-response #:update-prompt
-                              #:update-prompt-request #:update-prompt-response
-                              #:url #:url-configuration #:user-agent
-                              #:user-agent-header #:validate-flow-definition
-                              #:validate-flow-definition-request
-                              #:validate-flow-definition-response
-                              #:validation-exception
+                              #:update-data-source #:update-flow
+                              #:update-flow-alias #:update-knowledge-base
+                              #:update-prompt #:url #:url-configuration
+                              #:user-agent #:user-agent-header
+                              #:validate-flow-definition
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:vector-bucket-arn

@@ -1,62 +1,35 @@
 (uiop/package:define-package #:pira/security-ir (:use)
-                             (:export #:awsaccount-id #:awsaccount-ids
-                              #:access-denied-exception #:arn #:attachment-id
-                              #:aws-region #:aws-service
+                             (:export #:awsaccount-id #:awsaccount-ids #:arn
+                              #:attachment-id #:aws-region #:aws-service
                               #:batch-get-member-account-details
-                              #:batch-get-member-account-details-request
-                              #:batch-get-member-account-details-response
-                              #:cancel-membership #:cancel-membership-request
-                              #:cancel-membership-response #:case #:case-arn
+                              #:cancel-membership #:case #:case-arn
                               #:case-attachment-attributes
                               #:case-attachment-status #:case-attachments-list
                               #:case-description #:case-edit-action
                               #:case-edit-item #:case-edit-items
                               #:case-edit-message #:case-id #:case-status
-                              #:case-title #:close-case #:close-case-request
-                              #:close-case-response #:closure-code
-                              #:comment-body #:comment-id #:conflict-exception
-                              #:content-length #:create-case
-                              #:create-case-comment
-                              #:create-case-comment-request
-                              #:create-case-comment-response
-                              #:create-case-request #:create-case-response
-                              #:create-membership #:create-membership-request
-                              #:create-membership-response #:customer-type
+                              #:case-title #:close-case #:closure-code
+                              #:comment-body #:comment-id #:content-length
+                              #:create-case #:create-case-comment
+                              #:create-membership #:customer-type
                               #:email-address #:engagement-type #:file-name
                               #:get-case #:get-case-attachment-download-url
-                              #:get-case-attachment-download-url-request
-                              #:get-case-attachment-download-url-response
-                              #:get-case-attachment-upload-url
-                              #:get-case-attachment-upload-url-request
-                              #:get-case-attachment-upload-url-response
-                              #:get-case-request #:get-case-response
-                              #:get-membership
+                              #:get-case-attachment-upload-url #:get-membership
                               #:get-membership-account-detail-error
                               #:get-membership-account-detail-errors
                               #:get-membership-account-detail-item
-                              #:get-membership-account-detail-items
-                              #:get-membership-request
-                              #:get-membership-response #:ipaddress
+                              #:get-membership-account-detail-items #:ipaddress
                               #:impacted-accounts #:impacted-aws-region
                               #:impacted-aws-region-list
                               #:impacted-services-list #:incident-responder
                               #:incident-responder-name
-                              #:incident-response-team
-                              #:internal-server-exception
-                              #:invalid-token-exception #:job-title
-                              #:list-case-edits #:list-case-edits-request
-                              #:list-case-edits-response #:list-cases
-                              #:list-cases-item #:list-cases-items
-                              #:list-cases-request #:list-cases-response
-                              #:list-comments #:list-comments-item
-                              #:list-comments-items #:list-comments-request
-                              #:list-comments-response #:list-membership-item
-                              #:list-membership-items #:list-memberships
-                              #:list-memberships-request
-                              #:list-memberships-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:membership
+                              #:incident-response-team #:job-title
+                              #:list-case-edits #:list-cases #:list-cases-item
+                              #:list-cases-items #:list-comments
+                              #:list-comments-item #:list-comments-items
+                              #:list-membership-item #:list-membership-items
+                              #:list-memberships #:list-tags-for-resource
+                              #:membership
                               #:membership-account-relationship-status
                               #:membership-account-relationship-type
                               #:membership-arn #:membership-id
@@ -64,30 +37,14 @@
                               #:opt-in-feature #:opt-in-feature-name
                               #:opt-in-features #:pending-action #:person-name
                               #:principal-id #:resolver-type
-                              #:resource-not-found-exception
                               #:security-incident-response
-                              #:security-incident-response-not-active-exception
-                              #:self-managed-case-status
-                              #:service-quota-exceeded-exception #:tag-key
-                              #:tag-keys #:tag-map #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:threat-actor-ip
-                              #:threat-actor-ip-list #:throttling-exception
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-case
-                              #:update-case-comment
-                              #:update-case-comment-request
-                              #:update-case-comment-response
-                              #:update-case-request #:update-case-response
-                              #:update-case-status #:update-case-status-request
-                              #:update-case-status-response #:update-membership
-                              #:update-membership-request
-                              #:update-membership-response
-                              #:update-resolver-type
-                              #:update-resolver-type-request
-                              #:update-resolver-type-response #:url
-                              #:user-agent #:validation-exception
-                              #:validation-exception-field
+                              #:self-managed-case-status #:tag-key #:tag-keys
+                              #:tag-map #:tag-resource #:tag-value
+                              #:threat-actor-ip #:threat-actor-ip-list
+                              #:untag-resource #:update-case
+                              #:update-case-comment #:update-case-status
+                              #:update-membership #:update-resolver-type #:url
+                              #:user-agent #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:watcher
                               #:watchers))

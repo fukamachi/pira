@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/braket (:use)
-                             (:export #:access-denied-exception
-                              #:algorithm-specification #:association
+                             (:export #:algorithm-specification #:association
                               #:association-type #:associations #:braket
                               #:braket-resource-arn #:cancel-job
                               #:cancel-job-request #:cancel-job-response
@@ -8,27 +7,24 @@
                               #:cancel-quantum-task-request
                               #:cancel-quantum-task-response
                               #:cancellation-status #:compression-type
-                              #:conflict-exception #:container-image
-                              #:create-job #:create-job-request
-                              #:create-job-response #:create-quantum-task
+                              #:container-image #:create-job
+                              #:create-job-request #:create-job-response
+                              #:create-quantum-task
                               #:create-quantum-task-request
                               #:create-quantum-task-response #:data-source
-                              #:device-arn #:device-config
-                              #:device-offline-exception #:device-queue-info
+                              #:device-arn #:device-config #:device-queue-info
                               #:device-queue-info-list #:device-resource
-                              #:device-retired-exception #:device-status
-                              #:device-summary #:device-summary-list
-                              #:device-type #:get-device #:get-device-request
-                              #:get-device-response #:get-job #:get-job-request
-                              #:get-job-response #:get-quantum-task
-                              #:get-quantum-task-request
+                              #:device-status #:device-summary
+                              #:device-summary-list #:device-type #:get-device
+                              #:get-device-request #:get-device-response
+                              #:get-job #:get-job-request #:get-job-response
+                              #:get-quantum-task #:get-quantum-task-request
                               #:get-quantum-task-response
                               #:hybrid-job-additional-attribute-name
                               #:hybrid-job-additional-attribute-names-list
                               #:hybrid-job-queue-info #:hyper-parameters
                               #:input-config-list #:input-file-config
-                              #:instance-config #:instance-type
-                              #:internal-service-exception #:job-arn
+                              #:instance-config #:instance-type #:job-arn
                               #:job-checkpoint-config #:job-event-details
                               #:job-event-type #:job-events
                               #:job-output-data-config #:job-primary-status
@@ -43,9 +39,8 @@
                               #:quantum-task-resource #:quantum-task-status
                               #:quantum-task-summary
                               #:quantum-task-summary-list #:queue-name
-                              #:queue-priority #:resource-not-found-exception
-                              #:role-arn #:s3data-source #:s3path
-                              #:script-mode-config #:search-devices
+                              #:queue-priority #:role-arn #:s3data-source
+                              #:s3path #:script-mode-config #:search-devices
                               #:search-devices-filter
                               #:search-devices-filter-list
                               #:search-devices-request
@@ -58,15 +53,13 @@
                               #:search-quantum-tasks-filter-list
                               #:search-quantum-tasks-filter-operator
                               #:search-quantum-tasks-request
-                              #:search-quantum-tasks-response
-                              #:service-quota-exceeded-exception #:string1024
+                              #:search-quantum-tasks-response #:string1024
                               #:string2048 #:string256 #:string256list
                               #:string4096 #:string64 #:tag-keys #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tags-map #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:uri
-                              #:validation-exception))
+                              #:tags-map #:untag-resource
+                              #:untag-resource-request
+                              #:untag-resource-response #:uri))
 (common-lisp:in-package #:pira/braket)
 
 (smithy/sdk/service:define-service braket :shape-name "Braket" :version

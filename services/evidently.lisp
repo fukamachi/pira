@@ -1,14 +1,12 @@
 (uiop/package:define-package #:pira/evidently (:use)
-                             (:export #:access-denied-exception
-                              #:app-config-resource-id #:arn
+                             (:export #:app-config-resource-id #:arn
                               #:batch-evaluate-feature
                               #:batch-evaluate-feature-request
                               #:batch-evaluate-feature-response
                               #:change-direction-enum
                               #:cloud-watch-logs-destination
                               #:cloud-watch-logs-destination-config
-                              #:conflict-exception #:create-experiment
-                              #:create-experiment-request
+                              #:create-experiment #:create-experiment-request
                               #:create-experiment-response #:create-feature
                               #:create-feature-request
                               #:create-feature-response #:create-launch
@@ -65,12 +63,11 @@
                               #:get-project-request #:get-project-response
                               #:get-segment #:get-segment-request
                               #:get-segment-response #:group-name
-                              #:group-to-weight-map #:internal-server-exception
-                              #:json-path #:json-value #:launch #:launch-arn
-                              #:launch-execution #:launch-group
-                              #:launch-group-config #:launch-group-config-list
-                              #:launch-group-list #:launch-name
-                              #:launch-resource #:launch-status
+                              #:group-to-weight-map #:json-path #:json-value
+                              #:launch #:launch-arn #:launch-execution
+                              #:launch-group #:launch-group-config
+                              #:launch-group-config-list #:launch-group-list
+                              #:launch-name #:launch-resource #:launch-status
                               #:launch-stop-desired-state #:launch-type
                               #:launches-list #:list-experiments
                               #:list-experiments-request
@@ -107,12 +104,10 @@
                               #:put-project-events-result-entry
                               #:put-project-events-result-entry-list
                               #:randomization-salt #:ref-resource
-                              #:ref-resource-list
-                              #:resource-not-found-exception #:results-period
-                              #:rule-name #:rule-type #:s3bucket-safe-name
-                              #:s3destination #:s3destination-config
-                              #:s3prefix-safe-name #:scheduled-split
-                              #:scheduled-split-config
+                              #:ref-resource-list #:results-period #:rule-name
+                              #:rule-type #:s3bucket-safe-name #:s3destination
+                              #:s3destination-config #:s3prefix-safe-name
+                              #:scheduled-split #:scheduled-split-config
                               #:scheduled-split-config-list
                               #:scheduled-splits-launch-config
                               #:scheduled-splits-launch-definition
@@ -120,9 +115,7 @@
                               #:segment-list #:segment-name #:segment-override
                               #:segment-overrides-list #:segment-pattern
                               #:segment-ref #:segment-reference-resource-type
-                              #:segment-resource
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception #:split-weight
+                              #:segment-resource #:split-weight
                               #:start-experiment #:start-experiment-request
                               #:start-experiment-response #:start-launch
                               #:start-launch-request #:start-launch-response
@@ -133,8 +126,7 @@
                               #:tag-resource-request #:tag-resource-response
                               #:tag-value #:test-segment-pattern
                               #:test-segment-pattern-request
-                              #:test-segment-pattern-response
-                              #:throttling-exception #:timestamp-list
+                              #:test-segment-pattern-response #:timestamp-list
                               #:treatment #:treatment-config
                               #:treatment-config-list #:treatment-list
                               #:treatment-name #:treatment-name-list
@@ -151,7 +143,6 @@
                               #:update-project-data-delivery-response
                               #:update-project-request
                               #:update-project-response #:uuid
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:variable-value

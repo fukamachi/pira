@@ -1,39 +1,20 @@
 (uiop/package:define-package #:pira/networkmonitor (:use)
-                             (:export #:access-denied-exception
-                              #:address-family #:aggregation-period #:arn
-                              #:conflict-exception #:create-monitor
-                              #:create-monitor-input #:create-monitor-output
+                             (:export #:address-family #:aggregation-period
+                              #:arn #:create-monitor
                               #:create-monitor-probe-input
                               #:create-monitor-probe-input-list #:create-probe
-                              #:create-probe-input #:create-probe-output
-                              #:delete-monitor #:delete-monitor-input
-                              #:delete-monitor-output #:delete-probe
-                              #:delete-probe-input #:delete-probe-output
-                              #:destination #:get-monitor #:get-monitor-input
-                              #:get-monitor-output #:get-probe
-                              #:get-probe-input #:get-probe-output
-                              #:internal-server-exception #:iso8601timestamp
-                              #:list-monitors #:list-monitors-input
-                              #:list-monitors-output #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:max-results
-                              #:monitor-arn #:monitor-list #:monitor-resource
-                              #:monitor-state #:monitor-summary
-                              #:network-monitor #:packet-size
+                              #:delete-monitor #:delete-probe #:destination
+                              #:get-monitor #:get-probe #:iso8601timestamp
+                              #:list-monitors #:list-tags-for-resource
+                              #:max-results #:monitor-arn #:monitor-list
+                              #:monitor-resource #:monitor-state
+                              #:monitor-summary #:network-monitor #:packet-size
                               #:pagination-token #:port #:probe #:probe-id
                               #:probe-input #:probe-list #:probe-resource
                               #:probe-state #:protocol #:resource-name
-                              #:resource-not-found-exception
-                              #:service-quota-exceeded-exception #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:throttling-exception
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-monitor
-                              #:update-monitor-input #:update-monitor-output
-                              #:update-probe #:update-probe-input
-                              #:update-probe-output #:validation-exception
-                              #:vpc-id))
+                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:untag-resource #:update-monitor
+                              #:update-probe #:vpc-id))
 (common-lisp:in-package #:pira/networkmonitor)
 
 (smithy/sdk/service:define-service network-monitor :shape-name "NetworkMonitor"

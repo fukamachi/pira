@@ -5,7 +5,6 @@
                               #:access-control-attribute-value
                               #:access-control-attribute-value-source
                               #:access-control-attribute-value-source-list
-                              #:access-denied-exception
                               #:access-denied-exception-message
                               #:account-assignment
                               #:account-assignment-for-principal
@@ -29,11 +28,7 @@
                               #:application-url #:application-visibility
                               #:assignment-required
                               #:attach-customer-managed-policy-reference-to-permission-set
-                              #:attach-customer-managed-policy-reference-to-permission-set-request
-                              #:attach-customer-managed-policy-reference-to-permission-set-response
                               #:attach-managed-policy-to-permission-set
-                              #:attach-managed-policy-to-permission-set-request
-                              #:attach-managed-policy-to-permission-set-response
                               #:attached-managed-policy
                               #:attached-managed-policy-list
                               #:authentication-method
@@ -43,119 +38,44 @@
                               #:authorization-code-grant
                               #:authorized-token-issuer
                               #:authorized-token-issuers #:claim-attribute-path
-                              #:client-token #:conflict-exception
-                              #:conflict-exception-message
-                              #:create-account-assignment
-                              #:create-account-assignment-request
-                              #:create-account-assignment-response
-                              #:create-application
-                              #:create-application-assignment
-                              #:create-application-assignment-request
-                              #:create-application-assignment-response
-                              #:create-application-request
-                              #:create-application-response #:create-instance
+                              #:client-token #:conflict-exception-message
+                              #:create-account-assignment #:create-application
+                              #:create-application-assignment #:create-instance
                               #:create-instance-access-control-attribute-configuration
-                              #:create-instance-access-control-attribute-configuration-request
-                              #:create-instance-access-control-attribute-configuration-response
-                              #:create-instance-request
-                              #:create-instance-response
                               #:create-permission-set
-                              #:create-permission-set-request
-                              #:create-permission-set-response
                               #:create-trusted-token-issuer
-                              #:create-trusted-token-issuer-request
-                              #:create-trusted-token-issuer-response
                               #:customer-managed-policy-reference
                               #:customer-managed-policy-reference-list #:date
-                              #:delete-account-assignment
-                              #:delete-account-assignment-request
-                              #:delete-account-assignment-response
-                              #:delete-application
+                              #:delete-account-assignment #:delete-application
                               #:delete-application-access-scope
-                              #:delete-application-access-scope-request
                               #:delete-application-assignment
-                              #:delete-application-assignment-request
-                              #:delete-application-assignment-response
                               #:delete-application-authentication-method
-                              #:delete-application-authentication-method-request
                               #:delete-application-grant
-                              #:delete-application-grant-request
-                              #:delete-application-request
-                              #:delete-application-response
                               #:delete-inline-policy-from-permission-set
-                              #:delete-inline-policy-from-permission-set-request
-                              #:delete-inline-policy-from-permission-set-response
                               #:delete-instance
                               #:delete-instance-access-control-attribute-configuration
-                              #:delete-instance-access-control-attribute-configuration-request
-                              #:delete-instance-access-control-attribute-configuration-response
-                              #:delete-instance-request
-                              #:delete-instance-response
                               #:delete-permission-set
-                              #:delete-permission-set-request
-                              #:delete-permission-set-response
                               #:delete-permissions-boundary-from-permission-set
-                              #:delete-permissions-boundary-from-permission-set-request
-                              #:delete-permissions-boundary-from-permission-set-response
                               #:delete-trusted-token-issuer
-                              #:delete-trusted-token-issuer-request
-                              #:delete-trusted-token-issuer-response
                               #:describe-account-assignment-creation-status
-                              #:describe-account-assignment-creation-status-request
-                              #:describe-account-assignment-creation-status-response
                               #:describe-account-assignment-deletion-status
-                              #:describe-account-assignment-deletion-status-request
-                              #:describe-account-assignment-deletion-status-response
                               #:describe-application
                               #:describe-application-assignment
-                              #:describe-application-assignment-request
-                              #:describe-application-assignment-response
                               #:describe-application-provider
-                              #:describe-application-provider-request
-                              #:describe-application-provider-response
-                              #:describe-application-request
-                              #:describe-application-response
                               #:describe-instance
                               #:describe-instance-access-control-attribute-configuration
-                              #:describe-instance-access-control-attribute-configuration-request
-                              #:describe-instance-access-control-attribute-configuration-response
-                              #:describe-instance-request
-                              #:describe-instance-response
                               #:describe-permission-set
                               #:describe-permission-set-provisioning-status
-                              #:describe-permission-set-provisioning-status-request
-                              #:describe-permission-set-provisioning-status-response
-                              #:describe-permission-set-request
-                              #:describe-permission-set-response
-                              #:describe-trusted-token-issuer
-                              #:describe-trusted-token-issuer-request
-                              #:describe-trusted-token-issuer-response
-                              #:description
+                              #:describe-trusted-token-issuer #:description
                               #:detach-customer-managed-policy-reference-from-permission-set
-                              #:detach-customer-managed-policy-reference-from-permission-set-request
-                              #:detach-customer-managed-policy-reference-from-permission-set-response
                               #:detach-managed-policy-from-permission-set
-                              #:detach-managed-policy-from-permission-set-request
-                              #:detach-managed-policy-from-permission-set-response
                               #:display-data #:duration #:federation-protocol
                               #:get-application-access-scope
-                              #:get-application-access-scope-request
-                              #:get-application-access-scope-response
                               #:get-application-assignment-configuration
-                              #:get-application-assignment-configuration-request
-                              #:get-application-assignment-configuration-response
                               #:get-application-authentication-method
-                              #:get-application-authentication-method-request
-                              #:get-application-authentication-method-response
                               #:get-application-grant
-                              #:get-application-grant-request
-                              #:get-application-grant-response
                               #:get-inline-policy-for-permission-set
-                              #:get-inline-policy-for-permission-set-request
-                              #:get-inline-policy-for-permission-set-response
                               #:get-permissions-boundary-for-permission-set
-                              #:get-permissions-boundary-for-permission-set-request
-                              #:get-permissions-boundary-for-permission-set-response
                               #:grant #:grant-item #:grant-type #:grants
                               #:iam-authentication-method #:icon-url #:id
                               #:instance-access-control-attribute-configuration
@@ -163,73 +83,33 @@
                               #:instance-access-control-attribute-configuration-status-reason
                               #:instance-arn #:instance-list
                               #:instance-metadata #:instance-status
-                              #:internal-failure-message
-                              #:internal-server-exception #:jmespath
+                              #:internal-failure-message #:jmespath
                               #:jwks-retrieval-option #:jwt-bearer-grant
                               #:list-account-assignment-creation-status
-                              #:list-account-assignment-creation-status-request
-                              #:list-account-assignment-creation-status-response
                               #:list-account-assignment-deletion-status
-                              #:list-account-assignment-deletion-status-request
-                              #:list-account-assignment-deletion-status-response
                               #:list-account-assignments
                               #:list-account-assignments-filter
                               #:list-account-assignments-for-principal
-                              #:list-account-assignments-for-principal-request
-                              #:list-account-assignments-for-principal-response
-                              #:list-account-assignments-request
-                              #:list-account-assignments-response
                               #:list-accounts-for-provisioned-permission-set
-                              #:list-accounts-for-provisioned-permission-set-request
-                              #:list-accounts-for-provisioned-permission-set-response
                               #:list-application-access-scopes
-                              #:list-application-access-scopes-request
-                              #:list-application-access-scopes-response
                               #:list-application-assignments
                               #:list-application-assignments-filter
                               #:list-application-assignments-for-principal
-                              #:list-application-assignments-for-principal-request
-                              #:list-application-assignments-for-principal-response
-                              #:list-application-assignments-request
-                              #:list-application-assignments-response
                               #:list-application-authentication-methods
-                              #:list-application-authentication-methods-request
-                              #:list-application-authentication-methods-response
                               #:list-application-grants
-                              #:list-application-grants-request
-                              #:list-application-grants-response
-                              #:list-application-providers
-                              #:list-application-providers-request
-                              #:list-application-providers-response
-                              #:list-applications #:list-applications-filter
-                              #:list-applications-request
-                              #:list-applications-response
+                              #:list-application-providers #:list-applications
+                              #:list-applications-filter
                               #:list-customer-managed-policy-references-in-permission-set
-                              #:list-customer-managed-policy-references-in-permission-set-request
-                              #:list-customer-managed-policy-references-in-permission-set-response
-                              #:list-instances #:list-instances-request
-                              #:list-instances-response
+                              #:list-instances
                               #:list-managed-policies-in-permission-set
-                              #:list-managed-policies-in-permission-set-request
-                              #:list-managed-policies-in-permission-set-response
                               #:list-permission-set-provisioning-status
-                              #:list-permission-set-provisioning-status-request
-                              #:list-permission-set-provisioning-status-response
                               #:list-permission-sets
                               #:list-permission-sets-provisioned-to-account
-                              #:list-permission-sets-provisioned-to-account-request
-                              #:list-permission-sets-provisioned-to-account-response
-                              #:list-permission-sets-request
-                              #:list-permission-sets-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-trusted-token-issuers
-                              #:list-trusted-token-issuers-request
-                              #:list-trusted-token-issuers-response
-                              #:managed-policy-arn #:managed-policy-name
-                              #:managed-policy-path #:max-results #:name
-                              #:name-type #:oidc-jwt-configuration
+                              #:list-trusted-token-issuers #:managed-policy-arn
+                              #:managed-policy-name #:managed-policy-path
+                              #:max-results #:name #:name-type
+                              #:oidc-jwt-configuration
                               #:oidc-jwt-update-configuration
                               #:operation-status-filter #:permission-set
                               #:permission-set-arn #:permission-set-description
@@ -241,40 +121,25 @@
                               #:permissions-boundary #:portal-options
                               #:principal-id #:principal-type
                               #:provision-permission-set
-                              #:provision-permission-set-request
-                              #:provision-permission-set-response
                               #:provision-target-type #:provisioning-status
                               #:put-application-access-scope
-                              #:put-application-access-scope-request
                               #:put-application-assignment-configuration
-                              #:put-application-assignment-configuration-request
-                              #:put-application-assignment-configuration-response
                               #:put-application-authentication-method
-                              #:put-application-authentication-method-request
                               #:put-application-grant
-                              #:put-application-grant-request
                               #:put-inline-policy-to-permission-set
-                              #:put-inline-policy-to-permission-set-request
-                              #:put-inline-policy-to-permission-set-response
                               #:put-permissions-boundary-to-permission-set
-                              #:put-permissions-boundary-to-permission-set-request
-                              #:put-permissions-boundary-to-permission-set-response
                               #:reason #:redirect-uris #:refresh-token-grant
-                              #:relay-state #:resource-not-found-exception
-                              #:resource-not-found-message
+                              #:relay-state #:resource-not-found-message
                               #:resource-server-config #:resource-server-scope
                               #:resource-server-scope-details
                               #:resource-server-scopes #:swbexternal-service
                               #:scope #:scope-details #:scope-target
                               #:scope-targets #:scopes
-                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-message
                               #:sign-in-options #:sign-in-origin
                               #:status-values #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:tag-list #:tag-resource #:tag-value
                               #:taggable-resource-arn #:target-id #:target-type
-                              #:throttling-exception
                               #:throttling-exception-message #:token
                               #:token-exchange-grant #:token-issuer-audience
                               #:token-issuer-audiences
@@ -286,23 +151,12 @@
                               #:trusted-token-issuer-type
                               #:trusted-token-issuer-update-configuration
                               #:trusted-token-issuer-url #:uri #:uuid
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-application
+                              #:untag-resource #:update-application
                               #:update-application-portal-options
-                              #:update-application-request
-                              #:update-application-response #:update-instance
+                              #:update-instance
                               #:update-instance-access-control-attribute-configuration
-                              #:update-instance-access-control-attribute-configuration-request
-                              #:update-instance-access-control-attribute-configuration-response
-                              #:update-instance-request
-                              #:update-instance-response
                               #:update-permission-set
-                              #:update-permission-set-request
-                              #:update-permission-set-response
                               #:update-trusted-token-issuer
-                              #:update-trusted-token-issuer-request
-                              #:update-trusted-token-issuer-response
-                              #:validation-exception
                               #:validation-exception-message))
 (common-lisp:in-package #:pira/sso-admin)
 

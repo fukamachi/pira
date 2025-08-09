@@ -1,54 +1,28 @@
 (uiop/package:define-package #:pira/directory-service-data (:use)
-                             (:export #:access-denied-exception
-                              #:access-denied-reason #:add-group-member
-                              #:add-group-member-request
-                              #:add-group-member-result #:attribute-value
-                              #:attributes #:boolean-attribute-value
-                              #:client-token #:conflict-exception
-                              #:create-group #:create-group-request
-                              #:create-group-result #:create-user
-                              #:create-user-request #:create-user-result
-                              #:delete-group #:delete-group-request
-                              #:delete-group-result #:delete-user
-                              #:delete-user-request #:delete-user-result
-                              #:describe-group #:describe-group-request
-                              #:describe-group-result #:describe-user
-                              #:describe-user-request #:describe-user-result
+                             (:export #:access-denied-reason #:add-group-member
+                              #:attribute-value #:attributes
+                              #:boolean-attribute-value #:client-token
+                              #:create-group #:create-user #:delete-group
+                              #:delete-user #:describe-group #:describe-user
                               #:directory-id #:directory-service-data
-                              #:directory-unavailable-exception
                               #:directory-unavailable-reason #:disable-user
-                              #:disable-user-request #:disable-user-result
                               #:distinguished-name #:email-address
                               #:exception-message #:given-name #:group
                               #:group-list #:group-name #:group-scope
                               #:group-summary #:group-summary-list #:group-type
-                              #:internal-server-exception #:ldap-display-name
-                              #:ldap-display-name-list #:list-group-members
-                              #:list-group-members-request
-                              #:list-group-members-result #:list-groups
-                              #:list-groups-for-member
-                              #:list-groups-for-member-request
-                              #:list-groups-for-member-result
-                              #:list-groups-request #:list-groups-result
-                              #:list-users #:list-users-request
-                              #:list-users-result #:max-results #:member
-                              #:member-list #:member-name #:member-type
-                              #:next-token #:number-attribute-value #:realm
-                              #:remove-group-member
-                              #:remove-group-member-request
-                              #:remove-group-member-result
-                              #:resource-not-found-exception #:sid
-                              #:search-groups #:search-groups-request
-                              #:search-groups-result #:search-string
-                              #:search-users #:search-users-request
-                              #:search-users-result #:string-attribute-value
+                              #:ldap-display-name #:ldap-display-name-list
+                              #:list-group-members #:list-groups
+                              #:list-groups-for-member #:list-users
+                              #:max-results #:member #:member-list
+                              #:member-name #:member-type #:next-token
+                              #:number-attribute-value #:realm
+                              #:remove-group-member #:sid #:search-groups
+                              #:search-string #:search-users
+                              #:string-attribute-value
                               #:string-set-attribute-value #:surname
-                              #:throttling-exception #:update-group
-                              #:update-group-request #:update-group-result
-                              #:update-type #:update-user #:update-user-request
-                              #:update-user-result #:user #:user-list
-                              #:user-name #:user-principal-name #:user-summary
-                              #:user-summary-list #:validation-exception
+                              #:update-group #:update-type #:update-user #:user
+                              #:user-list #:user-name #:user-principal-name
+                              #:user-summary #:user-summary-list
                               #:validation-exception-reason))
 (common-lisp:in-package #:pira/directory-service-data)
 

@@ -3,8 +3,6 @@
                               #:asconfig-max-size #:asconfig-min-size
                               #:app-runner #:app-runner-resource-arn
                               #:associate-custom-domain
-                              #:associate-custom-domain-request
-                              #:associate-custom-domain-response
                               #:authentication-configuration
                               #:auto-scaling-configuration
                               #:auto-scaling-configuration-name
@@ -22,62 +20,27 @@
                               #:connection-status #:connection-summary
                               #:connection-summary-list #:cpu
                               #:create-auto-scaling-configuration
-                              #:create-auto-scaling-configuration-request
-                              #:create-auto-scaling-configuration-response
-                              #:create-connection #:create-connection-request
-                              #:create-connection-response
+                              #:create-connection
                               #:create-observability-configuration
-                              #:create-observability-configuration-request
-                              #:create-observability-configuration-response
-                              #:create-service #:create-service-request
-                              #:create-service-response #:create-vpc-connector
-                              #:create-vpc-connector-request
-                              #:create-vpc-connector-response
-                              #:create-vpc-ingress-connection
-                              #:create-vpc-ingress-connection-request
-                              #:create-vpc-ingress-connection-response
-                              #:custom-domain
+                              #:create-service #:create-vpc-connector
+                              #:create-vpc-ingress-connection #:custom-domain
                               #:custom-domain-association-status
                               #:custom-domain-list #:customer-account-id
                               #:delete-auto-scaling-configuration
-                              #:delete-auto-scaling-configuration-request
-                              #:delete-auto-scaling-configuration-response
-                              #:delete-connection #:delete-connection-request
-                              #:delete-connection-response
+                              #:delete-connection
                               #:delete-observability-configuration
-                              #:delete-observability-configuration-request
-                              #:delete-observability-configuration-response
-                              #:delete-service #:delete-service-request
-                              #:delete-service-response #:delete-vpc-connector
-                              #:delete-vpc-connector-request
-                              #:delete-vpc-connector-response
+                              #:delete-service #:delete-vpc-connector
                               #:delete-vpc-ingress-connection
-                              #:delete-vpc-ingress-connection-request
-                              #:delete-vpc-ingress-connection-response
                               #:describe-auto-scaling-configuration
-                              #:describe-auto-scaling-configuration-request
-                              #:describe-auto-scaling-configuration-response
                               #:describe-custom-domains
                               #:describe-custom-domains-max-results
-                              #:describe-custom-domains-request
-                              #:describe-custom-domains-response
                               #:describe-observability-configuration
-                              #:describe-observability-configuration-request
-                              #:describe-observability-configuration-response
-                              #:describe-service #:describe-service-request
-                              #:describe-service-response
-                              #:describe-vpc-connector
-                              #:describe-vpc-connector-request
-                              #:describe-vpc-connector-response
+                              #:describe-service #:describe-vpc-connector
                               #:describe-vpc-ingress-connection
-                              #:describe-vpc-ingress-connection-request
-                              #:describe-vpc-ingress-connection-response
-                              #:disassociate-custom-domain
-                              #:disassociate-custom-domain-request
-                              #:disassociate-custom-domain-response
-                              #:domain-name #:egress-configuration
-                              #:egress-type #:encryption-configuration
-                              #:error-message #:has-associated-service
+                              #:disassociate-custom-domain #:domain-name
+                              #:egress-configuration #:egress-type
+                              #:encryption-configuration #:error-message
+                              #:has-associated-service
                               #:health-check-configuration
                               #:health-check-healthy-threshold
                               #:health-check-interval #:health-check-path
@@ -88,35 +51,16 @@
                               #:ingress-configuration
                               #:ingress-vpc-configuration
                               #:instance-configuration #:integer
-                              #:internal-service-error-exception
-                              #:invalid-request-exception
-                              #:invalid-state-exception #:ip-address-type
-                              #:is-default #:kms-key-arn #:latest
-                              #:list-auto-scaling-configurations
-                              #:list-auto-scaling-configurations-request
-                              #:list-auto-scaling-configurations-response
-                              #:list-connections #:list-connections-request
-                              #:list-connections-response
+                              #:ip-address-type #:is-default #:kms-key-arn
+                              #:latest #:list-auto-scaling-configurations
+                              #:list-connections
                               #:list-observability-configurations
-                              #:list-observability-configurations-request
-                              #:list-observability-configurations-response
                               #:list-operations #:list-operations-max-results
-                              #:list-operations-request
-                              #:list-operations-response #:list-services
+                              #:list-services
                               #:list-services-for-auto-scaling-configuration
-                              #:list-services-for-auto-scaling-configuration-request
-                              #:list-services-for-auto-scaling-configuration-response
-                              #:list-services-request #:list-services-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-vpc-connectors
-                              #:list-vpc-connectors-request
-                              #:list-vpc-connectors-response
+                              #:list-tags-for-resource #:list-vpc-connectors
                               #:list-vpc-ingress-connections
                               #:list-vpc-ingress-connections-filter
-                              #:list-vpc-ingress-connections-request
-                              #:list-vpc-ingress-connections-response
                               #:max-concurrency #:max-results #:max-size
                               #:memory #:min-size #:network-configuration
                               #:next-token #:nullable-boolean
@@ -127,11 +71,8 @@
                               #:observability-configuration-summary-list
                               #:operation-status #:operation-summary
                               #:operation-summary-list #:operation-type
-                              #:pause-service #:pause-service-request
-                              #:pause-service-response #:provider-type
-                              #:resource-not-found-exception #:resume-service
-                              #:resume-service-request
-                              #:resume-service-response #:role-arn #:runtime
+                              #:pause-service #:provider-type #:resume-service
+                              #:role-arn #:runtime
                               #:runtime-environment-secrets
                               #:runtime-environment-secrets-name
                               #:runtime-environment-secrets-value
@@ -141,27 +82,17 @@
                               #:service-arn-list #:service-id
                               #:service-max-results #:service-name
                               #:service-observability-configuration
-                              #:service-quota-exceeded-exception
                               #:service-status #:service-summary
                               #:service-summary-list #:source-code-version
                               #:source-code-version-type #:source-configuration
                               #:source-directory #:start-command
-                              #:start-deployment #:start-deployment-request
-                              #:start-deployment-response #:string
-                              #:string-list #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:timestamp
+                              #:start-deployment #:string #:string-list #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:timestamp
                               #:trace-configuration #:tracing-vendor #:uuid
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:untag-resource
                               #:update-default-auto-scaling-configuration
-                              #:update-default-auto-scaling-configuration-request
-                              #:update-default-auto-scaling-configuration-response
-                              #:update-service #:update-service-request
-                              #:update-service-response
-                              #:update-vpc-ingress-connection
-                              #:update-vpc-ingress-connection-request
-                              #:update-vpc-ingress-connection-response
+                              #:update-service #:update-vpc-ingress-connection
                               #:vpc-connector #:vpc-connector-name
                               #:vpc-connector-status #:vpc-connectors
                               #:vpc-dnstarget #:vpc-dnstarget-list

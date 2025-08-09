@@ -2,85 +2,41 @@
                              (:export #:acmcert-arn #:allow-awsto-retain-logs
                               #:authorization-configuration
                               #:aws-chicago-web-service #:base64encoded
-                              #:boolean #:cancel-job-run
-                              #:cancel-job-run-request
-                              #:cancel-job-run-response #:certificate
+                              #:boolean #:cancel-job-run #:certificate
                               #:certificate-provider-type #:client-token
                               #:cloud-watch-monitoring-configuration
                               #:cluster-id #:configuration #:configuration-list
                               #:configuration-overrides #:container-info
                               #:container-log-rotation-configuration
                               #:container-provider #:container-provider-type
-                              #:create-job-template
-                              #:create-job-template-request
-                              #:create-job-template-response
-                              #:create-managed-endpoint
-                              #:create-managed-endpoint-request
-                              #:create-managed-endpoint-response
+                              #:create-job-template #:create-managed-endpoint
                               #:create-security-configuration
-                              #:create-security-configuration-request
-                              #:create-security-configuration-response
-                              #:create-virtual-cluster
-                              #:create-virtual-cluster-request
-                              #:create-virtual-cluster-response
-                              #:credential-type #:credentials #:date
-                              #:delete-job-template
-                              #:delete-job-template-request
-                              #:delete-job-template-response
+                              #:create-virtual-cluster #:credential-type
+                              #:credentials #:date #:delete-job-template
                               #:delete-managed-endpoint
-                              #:delete-managed-endpoint-request
-                              #:delete-managed-endpoint-response
-                              #:delete-virtual-cluster
-                              #:delete-virtual-cluster-request
-                              #:delete-virtual-cluster-response
-                              #:describe-job-run #:describe-job-run-request
-                              #:describe-job-run-response
+                              #:delete-virtual-cluster #:describe-job-run
                               #:describe-job-template
-                              #:describe-job-template-request
-                              #:describe-job-template-response
                               #:describe-managed-endpoint
-                              #:describe-managed-endpoint-request
-                              #:describe-managed-endpoint-response
                               #:describe-security-configuration
-                              #:describe-security-configuration-request
-                              #:describe-security-configuration-response
-                              #:describe-virtual-cluster
-                              #:describe-virtual-cluster-request
-                              #:describe-virtual-cluster-response
-                              #:eksrequest-throttled-exception #:eks-info
+                              #:describe-virtual-cluster #:eks-info
                               #:encryption-configuration #:endpoint
                               #:endpoint-arn #:endpoint-state #:endpoint-states
                               #:endpoint-type #:endpoint-types #:endpoints
                               #:entry-point-argument #:entry-point-arguments
                               #:entry-point-path #:failure-reason
                               #:get-managed-endpoint-session-credentials
-                              #:get-managed-endpoint-session-credentials-request
-                              #:get-managed-endpoint-session-credentials-response
                               #:iamrole-arn
                               #:in-transit-encryption-configuration
-                              #:internal-server-exception #:java-integer
-                              #:job-arn #:job-driver #:job-run #:job-run-state
-                              #:job-run-states #:job-runs #:job-template
-                              #:job-template-arn #:job-template-data
-                              #:job-templates #:kms-key-arn
+                              #:java-integer #:job-arn #:job-driver #:job-run
+                              #:job-run-state #:job-run-states #:job-runs
+                              #:job-template #:job-template-arn
+                              #:job-template-data #:job-templates #:kms-key-arn
                               #:kubernetes-namespace
                               #:lake-formation-configuration #:list-job-runs
-                              #:list-job-runs-request #:list-job-runs-response
-                              #:list-job-templates #:list-job-templates-request
-                              #:list-job-templates-response
-                              #:list-managed-endpoints
-                              #:list-managed-endpoints-request
-                              #:list-managed-endpoints-response
+                              #:list-job-templates #:list-managed-endpoints
                               #:list-security-configurations
-                              #:list-security-configurations-request
-                              #:list-security-configurations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-virtual-clusters
-                              #:list-virtual-clusters-request
-                              #:list-virtual-clusters-response #:log-context
-                              #:log-group-name #:managed-logs
+                              #:list-tags-for-resource #:list-virtual-clusters
+                              #:log-context #:log-group-name #:managed-logs
                               #:max-files-to-keep #:monitoring-configuration
                               #:next-token
                               #:parametric-cloud-watch-monitoring-configuration
@@ -90,10 +46,8 @@
                               #:parametric-release-label
                               #:parametric-s3monitoring-configuration
                               #:persistent-app-ui #:release-label
-                              #:request-identity-user-arn
-                              #:request-throttled-exception
-                              #:resource-id-string #:resource-name-string
-                              #:resource-not-found-exception
+                              #:request-identity-user-arn #:resource-id-string
+                              #:resource-name-string
                               #:retry-policy-configuration
                               #:retry-policy-execution #:rotation-size
                               #:rsi-arn #:s3monitoring-configuration
@@ -106,20 +60,16 @@
                               #:spark-sql-job-driver #:spark-sql-parameters
                               #:spark-submit-job-driver
                               #:spark-submit-parameters #:start-job-run
-                              #:start-job-run-request #:start-job-run-response
                               #:string1024 #:string128 #:string2048 #:string256
                               #:string-empty256 #:subnet-ids
                               #:tlscertificate-configuration #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:template-parameter
+                              #:tag-map #:tag-resource #:template-parameter
                               #:template-parameter-configuration
                               #:template-parameter-configuration-map
                               #:template-parameter-data-type
                               #:template-parameter-input-map
                               #:template-parameter-name #:token
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:uri-string
-                              #:validation-exception #:virtual-cluster
+                              #:untag-resource #:uri-string #:virtual-cluster
                               #:virtual-cluster-arn #:virtual-cluster-state
                               #:virtual-cluster-states #:virtual-clusters))
 (common-lisp:in-package #:pira/emr-containers)

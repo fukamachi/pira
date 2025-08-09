@@ -1,33 +1,19 @@
 (uiop/package:define-package #:pira/chatbot (:use)
                              (:export #:account-preferences
                               #:amazon-resource-name #:arn
-                              #:associate-to-configuration
-                              #:associate-to-configuration-request
-                              #:associate-to-configuration-result
-                              #:association-list #:association-listing
-                              #:aws-user-identity #:boolean-account-preference
+                              #:associate-to-configuration #:association-list
+                              #:association-listing #:aws-user-identity
+                              #:boolean-account-preference
                               #:chat-configuration-arn
                               #:chime-webhook-configuration
                               #:chime-webhook-configuration-list
                               #:chime-webhook-description #:chime-webhook-url
                               #:client-token #:configuration-name
                               #:configured-team #:configured-teams-list
-                              #:conflict-exception
                               #:create-chime-webhook-configuration
-                              #:create-chime-webhook-configuration-exception
-                              #:create-chime-webhook-configuration-request
-                              #:create-chime-webhook-configuration-result
                               #:create-custom-action
-                              #:create-custom-action-request
-                              #:create-custom-action-result
                               #:create-microsoft-teams-channel-configuration
                               #:create-slack-channel-configuration
-                              #:create-slack-channel-configuration-exception
-                              #:create-slack-channel-configuration-request
-                              #:create-slack-channel-configuration-result
-                              #:create-teams-channel-configuration-exception
-                              #:create-teams-channel-configuration-request
-                              #:create-teams-channel-configuration-result
                               #:custom-action #:custom-action-alias-name
                               #:custom-action-arn #:custom-action-arn-list
                               #:custom-action-attachment
@@ -41,95 +27,29 @@
                               #:custom-action-definition #:custom-action-name
                               #:custom-action-resource #:customer-cw-log-level
                               #:delete-chime-webhook-configuration
-                              #:delete-chime-webhook-configuration-exception
-                              #:delete-chime-webhook-configuration-request
-                              #:delete-chime-webhook-configuration-result
                               #:delete-custom-action
-                              #:delete-custom-action-request
-                              #:delete-custom-action-result
                               #:delete-microsoft-teams-channel-configuration
                               #:delete-microsoft-teams-configured-team
                               #:delete-microsoft-teams-user-identity
-                              #:delete-microsoft-teams-user-identity-exception
-                              #:delete-microsoft-teams-user-identity-request
-                              #:delete-microsoft-teams-user-identity-result
                               #:delete-slack-channel-configuration
-                              #:delete-slack-channel-configuration-exception
-                              #:delete-slack-channel-configuration-request
-                              #:delete-slack-channel-configuration-result
                               #:delete-slack-user-identity
-                              #:delete-slack-user-identity-exception
-                              #:delete-slack-user-identity-request
-                              #:delete-slack-user-identity-result
                               #:delete-slack-workspace-authorization
-                              #:delete-slack-workspace-authorization-fault
-                              #:delete-slack-workspace-authorization-request
-                              #:delete-slack-workspace-authorization-result
-                              #:delete-teams-channel-configuration-exception
-                              #:delete-teams-channel-configuration-request
-                              #:delete-teams-channel-configuration-result
-                              #:delete-teams-configured-team-exception
-                              #:delete-teams-configured-team-request
-                              #:delete-teams-configured-team-result
                               #:describe-chime-webhook-configurations
-                              #:describe-chime-webhook-configurations-exception
-                              #:describe-chime-webhook-configurations-request
-                              #:describe-chime-webhook-configurations-result
                               #:describe-slack-channel-configurations
-                              #:describe-slack-channel-configurations-exception
-                              #:describe-slack-channel-configurations-request
-                              #:describe-slack-channel-configurations-result
                               #:describe-slack-user-identities
-                              #:describe-slack-user-identities-exception
-                              #:describe-slack-user-identities-request
-                              #:describe-slack-user-identities-result
                               #:describe-slack-workspaces
-                              #:describe-slack-workspaces-exception
-                              #:describe-slack-workspaces-request
-                              #:describe-slack-workspaces-result
-                              #:disassociate-from-configuration
-                              #:disassociate-from-configuration-request
-                              #:disassociate-from-configuration-result
-                              #:error-message #:get-account-preferences
-                              #:get-account-preferences-exception
-                              #:get-account-preferences-request
-                              #:get-account-preferences-result
-                              #:get-custom-action #:get-custom-action-request
-                              #:get-custom-action-result
+                              #:disassociate-from-configuration #:error-message
+                              #:get-account-preferences #:get-custom-action
                               #:get-microsoft-teams-channel-configuration
-                              #:get-teams-channel-configuration-exception
-                              #:get-teams-channel-configuration-request
-                              #:get-teams-channel-configuration-result
                               #:guardrail-policy-arn
-                              #:guardrail-policy-arn-list
-                              #:internal-service-error
-                              #:invalid-parameter-exception
-                              #:invalid-request-exception
-                              #:limit-exceeded-exception #:list-associations
-                              #:list-associations-request
-                              #:list-associations-result #:list-custom-actions
-                              #:list-custom-actions-request
-                              #:list-custom-actions-result
+                              #:guardrail-policy-arn-list #:list-associations
+                              #:list-custom-actions
                               #:list-microsoft-teams-channel-configurations
                               #:list-microsoft-teams-configured-teams
-                              #:list-microsoft-teams-configured-teams-exception
-                              #:list-microsoft-teams-configured-teams-request
-                              #:list-microsoft-teams-configured-teams-result
                               #:list-microsoft-teams-user-identities
-                              #:list-microsoft-teams-user-identities-exception
-                              #:list-microsoft-teams-user-identities-request
-                              #:list-microsoft-teams-user-identities-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-teams-channel-configurations-exception
-                              #:list-teams-channel-configurations-request
-                              #:list-teams-channel-configurations-result
-                              #:max-results #:pagination-token
-                              #:resource-identifier
-                              #:resource-not-found-exception #:resource-state
-                              #:service-unavailable-exception
-                              #:slack-channel-configuration
+                              #:list-tags-for-resource #:max-results
+                              #:pagination-token #:resource-identifier
+                              #:resource-state #:slack-channel-configuration
                               #:slack-channel-configuration-list
                               #:slack-channel-display-name #:slack-channel-id
                               #:slack-team-id #:slack-team-name #:slack-user-id
@@ -137,34 +57,16 @@
                               #:slack-user-identity #:slack-workspace
                               #:slack-workspaces-list #:sns-topic-arn-list
                               #:string #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
+                              #:tag-list #:tag-resource #:tag-value #:tags
                               #:team-channel-configurations-list #:team-name
                               #:teams-channel-configuration #:teams-channel-id
                               #:teams-channel-name #:teams-user-identities-list
-                              #:teams-user-identity #:too-many-tags-exception
-                              #:uuid #:unauthorized-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:teams-user-identity #:uuid #:untag-resource
                               #:update-account-preferences
-                              #:update-account-preferences-exception
-                              #:update-account-preferences-request
-                              #:update-account-preferences-result
                               #:update-chime-webhook-configuration
-                              #:update-chime-webhook-configuration-exception
-                              #:update-chime-webhook-configuration-request
-                              #:update-chime-webhook-configuration-result
                               #:update-custom-action
-                              #:update-custom-action-request
-                              #:update-custom-action-result
                               #:update-microsoft-teams-channel-configuration
                               #:update-slack-channel-configuration
-                              #:update-slack-channel-configuration-exception
-                              #:update-slack-channel-configuration-request
-                              #:update-slack-channel-configuration-result
-                              #:update-teams-channel-configuration-exception
-                              #:update-teams-channel-configuration-request
-                              #:update-teams-channel-configuration-result
                               #:wheatley-orchestration-20171011))
 (common-lisp:in-package #:pira/chatbot)
 

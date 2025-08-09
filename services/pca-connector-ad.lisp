@@ -1,8 +1,7 @@
 (uiop/package:define-package #:pira/pca-connector-ad (:use)
                              (:export #:access-control-entry
                               #:access-control-entry-list
-                              #:access-control-entry-summary
-                              #:access-denied-exception #:access-right
+                              #:access-control-entry-summary #:access-right
                               #:access-rights #:application-policies
                               #:application-policy #:application-policy-list
                               #:application-policy-type
@@ -10,34 +9,19 @@
                               #:certificate-validity #:client-compatibility-v2
                               #:client-compatibility-v3
                               #:client-compatibility-v4 #:client-token
-                              #:conflict-exception #:connector #:connector-arn
-                              #:connector-list #:connector-resource
-                              #:connector-status #:connector-status-reason
-                              #:connector-summary #:create-connector
-                              #:create-connector-request
-                              #:create-connector-response
+                              #:connector #:connector-arn #:connector-list
+                              #:connector-resource #:connector-status
+                              #:connector-status-reason #:connector-summary
+                              #:create-connector
                               #:create-directory-registration
-                              #:create-directory-registration-request
-                              #:create-directory-registration-response
-                              #:create-service-principal-name
-                              #:create-service-principal-name-request
-                              #:create-template
+                              #:create-service-principal-name #:create-template
                               #:create-template-group-access-control-entry
-                              #:create-template-group-access-control-entry-request
-                              #:create-template-request
-                              #:create-template-response
                               #:crypto-providers-list
                               #:custom-object-identifier #:delete-connector
-                              #:delete-connector-request
                               #:delete-directory-registration
-                              #:delete-directory-registration-request
-                              #:delete-service-principal-name
-                              #:delete-service-principal-name-request
-                              #:delete-template
+                              #:delete-service-principal-name #:delete-template
                               #:delete-template-group-access-control-entry
-                              #:delete-template-group-access-control-entry-request
-                              #:delete-template-request #:directory-id
-                              #:directory-registration
+                              #:directory-id #:directory-registration
                               #:directory-registration-arn
                               #:directory-registration-list
                               #:directory-registration-resource
@@ -49,70 +33,42 @@
                               #:extensions-v3 #:extensions-v4
                               #:general-flags-v2 #:general-flags-v3
                               #:general-flags-v4 #:get-connector
-                              #:get-connector-request #:get-connector-response
                               #:get-directory-registration
-                              #:get-directory-registration-request
-                              #:get-directory-registration-response
-                              #:get-service-principal-name
-                              #:get-service-principal-name-request
-                              #:get-service-principal-name-response
-                              #:get-template
+                              #:get-service-principal-name #:get-template
                               #:get-template-group-access-control-entry
-                              #:get-template-group-access-control-entry-request
-                              #:get-template-group-access-control-entry-response
-                              #:get-template-request #:get-template-response
                               #:group-security-identifier #:hash-algorithm
-                              #:internal-server-exception #:ip-address-type
-                              #:key-spec #:key-usage #:key-usage-flags
-                              #:key-usage-property #:key-usage-property-flags
+                              #:ip-address-type #:key-spec #:key-usage
+                              #:key-usage-flags #:key-usage-property
+                              #:key-usage-property-flags
                               #:key-usage-property-type #:list-connectors
-                              #:list-connectors-request
-                              #:list-connectors-response
                               #:list-directory-registrations
-                              #:list-directory-registrations-request
-                              #:list-directory-registrations-response
                               #:list-service-principal-names
-                              #:list-service-principal-names-request
-                              #:list-service-principal-names-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-template-group-access-control-entries
-                              #:list-template-group-access-control-entries-request
-                              #:list-template-group-access-control-entries-response
-                              #:list-templates #:list-templates-request
-                              #:list-templates-response #:max-results
-                              #:next-token #:pca-connector-ad
-                              #:private-key-algorithm
+                              #:list-templates #:max-results #:next-token
+                              #:pca-connector-ad #:private-key-algorithm
                               #:private-key-attributes-v2
                               #:private-key-attributes-v3
                               #:private-key-attributes-v4
                               #:private-key-flags-v2 #:private-key-flags-v3
-                              #:private-key-flags-v4
-                              #:resource-not-found-exception
-                              #:security-group-id #:security-group-id-list
-                              #:service-principal-name
+                              #:private-key-flags-v4 #:security-group-id
+                              #:security-group-id-list #:service-principal-name
                               #:service-principal-name-list
                               #:service-principal-name-resource
                               #:service-principal-name-status
                               #:service-principal-name-status-reason
                               #:service-principal-name-summary
-                              #:service-quota-exceeded-exception
                               #:subject-name-flags-v2 #:subject-name-flags-v3
                               #:subject-name-flags-v4 #:tag-key-list
-                              #:tag-resource #:tag-resource-request #:tags
-                              #:template #:template-arn #:template-definition
+                              #:tag-resource #:tags #:template #:template-arn
+                              #:template-definition
                               #:template-group-access-control-entry-resource
                               #:template-list #:template-name
                               #:template-name-list #:template-resource
                               #:template-revision #:template-status
                               #:template-summary #:template-v2 #:template-v3
-                              #:template-v4 #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:update-template
+                              #:template-v4 #:untag-resource #:update-template
                               #:update-template-group-access-control-entry
-                              #:update-template-group-access-control-entry-request
-                              #:update-template-request #:validation-exception
                               #:validation-exception-reason #:validity-period
                               #:validity-period-type #:vpc-information))
 (common-lisp:in-package #:pira/pca-connector-ad)

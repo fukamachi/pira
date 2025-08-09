@@ -8,29 +8,13 @@
                               #:accelerator-total-memory-mi-brequest
                               #:accelerator-type #:accelerator-type-set
                               #:accept-address-transfer
-                              #:accept-address-transfer-request
-                              #:accept-address-transfer-result
                               #:accept-capacity-reservation-billing-ownership
-                              #:accept-capacity-reservation-billing-ownership-request
-                              #:accept-capacity-reservation-billing-ownership-result
                               #:accept-reserved-instances-exchange-quote
-                              #:accept-reserved-instances-exchange-quote-request
-                              #:accept-reserved-instances-exchange-quote-result
                               #:accept-transit-gateway-multicast-domain-associations
-                              #:accept-transit-gateway-multicast-domain-associations-request
-                              #:accept-transit-gateway-multicast-domain-associations-result
                               #:accept-transit-gateway-peering-attachment
-                              #:accept-transit-gateway-peering-attachment-request
-                              #:accept-transit-gateway-peering-attachment-result
                               #:accept-transit-gateway-vpc-attachment
-                              #:accept-transit-gateway-vpc-attachment-request
-                              #:accept-transit-gateway-vpc-attachment-result
                               #:accept-vpc-endpoint-connections
-                              #:accept-vpc-endpoint-connections-request
-                              #:accept-vpc-endpoint-connections-result
                               #:accept-vpc-peering-connection
-                              #:accept-vpc-peering-connection-request
-                              #:accept-vpc-peering-connection-result
                               #:access-scope-analysis-finding
                               #:access-scope-analysis-finding-list
                               #:access-scope-path #:access-scope-path-list
@@ -54,15 +38,9 @@
                               #:address-list #:address-max-results
                               #:address-set #:address-transfer
                               #:address-transfer-list #:address-transfer-status
-                              #:advertise-byoip-cidr
-                              #:advertise-byoip-cidr-request
-                              #:advertise-byoip-cidr-result #:affinity
-                              #:allocate-address #:allocate-address-request
-                              #:allocate-address-result #:allocate-hosts
-                              #:allocate-hosts-request #:allocate-hosts-result
-                              #:allocate-ipam-pool-cidr
-                              #:allocate-ipam-pool-cidr-request
-                              #:allocate-ipam-pool-cidr-result #:allocation-id
+                              #:advertise-byoip-cidr #:affinity
+                              #:allocate-address #:allocate-hosts
+                              #:allocate-ipam-pool-cidr #:allocation-id
                               #:allocation-id-list #:allocation-ids
                               #:allocation-state #:allocation-strategy
                               #:allocation-type
@@ -83,79 +61,34 @@
                               #:analysis-security-group-rule #:analysis-status
                               #:appliance-mode-support-value
                               #:apply-security-groups-to-client-vpn-target-network
-                              #:apply-security-groups-to-client-vpn-target-network-request
-                              #:apply-security-groups-to-client-vpn-target-network-result
                               #:architecture-type #:architecture-type-list
                               #:architecture-type-set #:architecture-values
                               #:arn-list #:as-path #:asn-association
                               #:asn-association-set #:asn-association-state
                               #:asn-authorization-context #:asn-state
                               #:asset-id #:asset-id-list #:assign-ipv6addresses
-                              #:assign-ipv6addresses-request
-                              #:assign-ipv6addresses-result
                               #:assign-private-ip-addresses
-                              #:assign-private-ip-addresses-request
-                              #:assign-private-ip-addresses-result
                               #:assign-private-nat-gateway-address
-                              #:assign-private-nat-gateway-address-request
-                              #:assign-private-nat-gateway-address-result
                               #:assigned-private-ip-address
                               #:assigned-private-ip-address-list
-                              #:associate-address #:associate-address-request
-                              #:associate-address-result
+                              #:associate-address
                               #:associate-capacity-reservation-billing-owner
-                              #:associate-capacity-reservation-billing-owner-request
-                              #:associate-capacity-reservation-billing-owner-result
                               #:associate-client-vpn-target-network
-                              #:associate-client-vpn-target-network-request
-                              #:associate-client-vpn-target-network-result
                               #:associate-dhcp-options
-                              #:associate-dhcp-options-request
                               #:associate-enclave-certificate-iam-role
-                              #:associate-enclave-certificate-iam-role-request
-                              #:associate-enclave-certificate-iam-role-result
                               #:associate-iam-instance-profile
-                              #:associate-iam-instance-profile-request
-                              #:associate-iam-instance-profile-result
                               #:associate-instance-event-window
-                              #:associate-instance-event-window-request
-                              #:associate-instance-event-window-result
                               #:associate-ipam-byoasn
-                              #:associate-ipam-byoasn-request
-                              #:associate-ipam-byoasn-result
                               #:associate-ipam-resource-discovery
-                              #:associate-ipam-resource-discovery-request
-                              #:associate-ipam-resource-discovery-result
                               #:associate-nat-gateway-address
-                              #:associate-nat-gateway-address-request
-                              #:associate-nat-gateway-address-result
-                              #:associate-route-server
-                              #:associate-route-server-request
-                              #:associate-route-server-result
-                              #:associate-route-table
-                              #:associate-route-table-request
-                              #:associate-route-table-result
+                              #:associate-route-server #:associate-route-table
                               #:associate-security-group-vpc
-                              #:associate-security-group-vpc-request
-                              #:associate-security-group-vpc-result
                               #:associate-subnet-cidr-block
-                              #:associate-subnet-cidr-block-request
-                              #:associate-subnet-cidr-block-result
                               #:associate-transit-gateway-multicast-domain
-                              #:associate-transit-gateway-multicast-domain-request
-                              #:associate-transit-gateway-multicast-domain-result
                               #:associate-transit-gateway-policy-table
-                              #:associate-transit-gateway-policy-table-request
-                              #:associate-transit-gateway-policy-table-result
                               #:associate-transit-gateway-route-table
-                              #:associate-transit-gateway-route-table-request
-                              #:associate-transit-gateway-route-table-result
                               #:associate-trunk-interface
-                              #:associate-trunk-interface-request
-                              #:associate-trunk-interface-result
                               #:associate-vpc-cidr-block
-                              #:associate-vpc-cidr-block-request
-                              #:associate-vpc-cidr-block-result
                               #:associated-network-type #:associated-role
                               #:associated-roles-list #:associated-subnet-list
                               #:associated-target-network
@@ -164,19 +97,10 @@
                               #:association-status-code #:athena-integration
                               #:athena-integrations-set
                               #:attach-classic-link-vpc
-                              #:attach-classic-link-vpc-request
-                              #:attach-classic-link-vpc-result
                               #:attach-internet-gateway
-                              #:attach-internet-gateway-request
                               #:attach-network-interface
-                              #:attach-network-interface-request
-                              #:attach-network-interface-result
                               #:attach-verified-access-trust-provider
-                              #:attach-verified-access-trust-provider-request
-                              #:attach-verified-access-trust-provider-result
-                              #:attach-volume #:attach-volume-request
-                              #:attach-vpn-gateway #:attach-vpn-gateway-request
-                              #:attach-vpn-gateway-result
+                              #:attach-volume #:attach-vpn-gateway
                               #:attachment-ena-srd-specification
                               #:attachment-ena-srd-udp-specification
                               #:attachment-status #:attribute-boolean-value
@@ -184,14 +108,8 @@
                               #:attribute-value #:authorization-rule
                               #:authorization-rule-set
                               #:authorize-client-vpn-ingress
-                              #:authorize-client-vpn-ingress-request
-                              #:authorize-client-vpn-ingress-result
                               #:authorize-security-group-egress
-                              #:authorize-security-group-egress-request
-                              #:authorize-security-group-egress-result
                               #:authorize-security-group-ingress
-                              #:authorize-security-group-ingress-request
-                              #:authorize-security-group-ingress-result
                               #:auto-accept-shared-associations-value
                               #:auto-accept-shared-attachments-value
                               #:auto-placement #:auto-recovery-flag
@@ -225,51 +143,32 @@
                               #:boot-mode-type #:boot-mode-type-list
                               #:boot-mode-values #:boxed-double #:boxed-integer
                               #:boxed-long #:bundle-id #:bundle-id-string-list
-                              #:bundle-instance #:bundle-instance-request
-                              #:bundle-instance-result #:bundle-task
+                              #:bundle-instance #:bundle-task
                               #:bundle-task-error #:bundle-task-list
                               #:bundle-task-state #:burstable-performance
                               #:burstable-performance-flag #:byoasn
                               #:byoasn-set #:byoip-cidr #:byoip-cidr-set
                               #:byoip-cidr-state #:caller-role
                               #:cancel-batch-error-code #:cancel-bundle-task
-                              #:cancel-bundle-task-request
-                              #:cancel-bundle-task-result
                               #:cancel-capacity-reservation
                               #:cancel-capacity-reservation-fleet-error
                               #:cancel-capacity-reservation-fleet-error-code
                               #:cancel-capacity-reservation-fleet-error-message
                               #:cancel-capacity-reservation-fleets
-                              #:cancel-capacity-reservation-fleets-request
-                              #:cancel-capacity-reservation-fleets-result
-                              #:cancel-capacity-reservation-request
-                              #:cancel-capacity-reservation-result
-                              #:cancel-conversion-request
                               #:cancel-conversion-task
                               #:cancel-declarative-policies-report
-                              #:cancel-declarative-policies-report-request
-                              #:cancel-declarative-policies-report-result
-                              #:cancel-export-task #:cancel-export-task-request
+                              #:cancel-export-task
                               #:cancel-image-launch-permission
-                              #:cancel-image-launch-permission-request
-                              #:cancel-image-launch-permission-result
-                              #:cancel-import-task #:cancel-import-task-request
-                              #:cancel-import-task-result
+                              #:cancel-import-task
                               #:cancel-reserved-instances-listing
-                              #:cancel-reserved-instances-listing-request
-                              #:cancel-reserved-instances-listing-result
                               #:cancel-spot-fleet-requests
                               #:cancel-spot-fleet-requests-error
                               #:cancel-spot-fleet-requests-error-item
                               #:cancel-spot-fleet-requests-error-set
-                              #:cancel-spot-fleet-requests-request
-                              #:cancel-spot-fleet-requests-response
                               #:cancel-spot-fleet-requests-success-item
                               #:cancel-spot-fleet-requests-success-set
                               #:cancel-spot-instance-request-state
                               #:cancel-spot-instance-requests
-                              #:cancel-spot-instance-requests-request
-                              #:cancel-spot-instance-requests-result
                               #:cancelled-spot-instance-request
                               #:cancelled-spot-instance-request-list
                               #:capacity-allocation #:capacity-allocations
@@ -369,8 +268,6 @@
                               #:coip-pool-id-set #:coip-pool-max-results
                               #:coip-pool-set #:component-account
                               #:component-region #:confirm-product-instance
-                              #:confirm-product-instance-request
-                              #:confirm-product-instance-result
                               #:connection-log-options
                               #:connection-log-response-options
                               #:connection-notification
@@ -388,230 +285,83 @@
                               #:conversion-task-id #:conversion-task-state
                               #:cool-off-period-request-hours
                               #:cool-off-period-response-hours
-                              #:copy-fpga-image #:copy-fpga-image-request
-                              #:copy-fpga-image-result #:copy-image
-                              #:copy-image-request #:copy-image-result
-                              #:copy-snapshot #:copy-snapshot-request
+                              #:copy-fpga-image #:copy-image #:copy-snapshot
                               #:copy-snapshot-request-psu
-                              #:copy-snapshot-result #:copy-tags-from-source
-                              #:core-count #:core-count-list #:core-network-arn
+                              #:copy-tags-from-source #:core-count
+                              #:core-count-list #:core-network-arn
                               #:cpu-manufacturer #:cpu-manufacturer-name
                               #:cpu-manufacturer-set #:cpu-options
                               #:cpu-options-request #:cpu-performance-factor
                               #:cpu-performance-factor-request
                               #:create-capacity-reservation
                               #:create-capacity-reservation-by-splitting
-                              #:create-capacity-reservation-by-splitting-request
-                              #:create-capacity-reservation-by-splitting-result
                               #:create-capacity-reservation-fleet
-                              #:create-capacity-reservation-fleet-request
-                              #:create-capacity-reservation-fleet-result
-                              #:create-capacity-reservation-request
-                              #:create-capacity-reservation-result
                               #:create-carrier-gateway
-                              #:create-carrier-gateway-request
-                              #:create-carrier-gateway-result
                               #:create-client-vpn-endpoint
-                              #:create-client-vpn-endpoint-request
-                              #:create-client-vpn-endpoint-result
-                              #:create-client-vpn-route
-                              #:create-client-vpn-route-request
-                              #:create-client-vpn-route-result
-                              #:create-coip-cidr #:create-coip-cidr-request
-                              #:create-coip-cidr-result #:create-coip-pool
-                              #:create-coip-pool-request
-                              #:create-coip-pool-result
-                              #:create-customer-gateway
-                              #:create-customer-gateway-request
-                              #:create-customer-gateway-result
-                              #:create-default-subnet
-                              #:create-default-subnet-request
-                              #:create-default-subnet-result
-                              #:create-default-vpc #:create-default-vpc-request
-                              #:create-default-vpc-result
+                              #:create-client-vpn-route #:create-coip-cidr
+                              #:create-coip-pool #:create-customer-gateway
+                              #:create-default-subnet #:create-default-vpc
                               #:create-delegate-mac-volume-ownership-task
-                              #:create-delegate-mac-volume-ownership-task-request
-                              #:create-delegate-mac-volume-ownership-task-result
                               #:create-dhcp-options
-                              #:create-dhcp-options-request
-                              #:create-dhcp-options-result
                               #:create-egress-only-internet-gateway
-                              #:create-egress-only-internet-gateway-request
-                              #:create-egress-only-internet-gateway-result
                               #:create-fleet #:create-fleet-error
                               #:create-fleet-errors-set #:create-fleet-instance
-                              #:create-fleet-instances-set
-                              #:create-fleet-request #:create-fleet-result
-                              #:create-flow-logs #:create-flow-logs-request
-                              #:create-flow-logs-result #:create-fpga-image
-                              #:create-fpga-image-request
-                              #:create-fpga-image-result #:create-image
-                              #:create-image-request #:create-image-result
+                              #:create-fleet-instances-set #:create-flow-logs
+                              #:create-fpga-image #:create-image
                               #:create-instance-connect-endpoint
-                              #:create-instance-connect-endpoint-request
-                              #:create-instance-connect-endpoint-result
                               #:create-instance-event-window
-                              #:create-instance-event-window-request
-                              #:create-instance-event-window-result
                               #:create-instance-export-task
-                              #:create-instance-export-task-request
-                              #:create-instance-export-task-result
-                              #:create-internet-gateway
-                              #:create-internet-gateway-request
-                              #:create-internet-gateway-result #:create-ipam
+                              #:create-internet-gateway #:create-ipam
                               #:create-ipam-external-resource-verification-token
-                              #:create-ipam-external-resource-verification-token-request
-                              #:create-ipam-external-resource-verification-token-result
-                              #:create-ipam-pool #:create-ipam-pool-request
-                              #:create-ipam-pool-result #:create-ipam-request
+                              #:create-ipam-pool
                               #:create-ipam-resource-discovery
-                              #:create-ipam-resource-discovery-request
-                              #:create-ipam-resource-discovery-result
-                              #:create-ipam-result #:create-ipam-scope
-                              #:create-ipam-scope-request
-                              #:create-ipam-scope-result #:create-key-pair
-                              #:create-key-pair-request
+                              #:create-ipam-scope #:create-key-pair
                               #:create-launch-template
-                              #:create-launch-template-request
-                              #:create-launch-template-result
                               #:create-launch-template-version
-                              #:create-launch-template-version-request
-                              #:create-launch-template-version-result
                               #:create-local-gateway-route
-                              #:create-local-gateway-route-request
-                              #:create-local-gateway-route-result
                               #:create-local-gateway-route-table
-                              #:create-local-gateway-route-table-request
-                              #:create-local-gateway-route-table-result
                               #:create-local-gateway-route-table-virtual-interface-group-association
-                              #:create-local-gateway-route-table-virtual-interface-group-association-request
-                              #:create-local-gateway-route-table-virtual-interface-group-association-result
                               #:create-local-gateway-route-table-vpc-association
-                              #:create-local-gateway-route-table-vpc-association-request
-                              #:create-local-gateway-route-table-vpc-association-result
                               #:create-local-gateway-virtual-interface
                               #:create-local-gateway-virtual-interface-group
-                              #:create-local-gateway-virtual-interface-group-request
-                              #:create-local-gateway-virtual-interface-group-result
-                              #:create-local-gateway-virtual-interface-request
-                              #:create-local-gateway-virtual-interface-result
                               #:create-mac-system-integrity-protection-modification-task
-                              #:create-mac-system-integrity-protection-modification-task-request
-                              #:create-mac-system-integrity-protection-modification-task-result
-                              #:create-managed-prefix-list
-                              #:create-managed-prefix-list-request
-                              #:create-managed-prefix-list-result
-                              #:create-nat-gateway #:create-nat-gateway-request
-                              #:create-nat-gateway-result #:create-network-acl
-                              #:create-network-acl-entry
-                              #:create-network-acl-entry-request
-                              #:create-network-acl-request
-                              #:create-network-acl-result
+                              #:create-managed-prefix-list #:create-nat-gateway
+                              #:create-network-acl #:create-network-acl-entry
                               #:create-network-insights-access-scope
-                              #:create-network-insights-access-scope-request
-                              #:create-network-insights-access-scope-result
                               #:create-network-insights-path
-                              #:create-network-insights-path-request
-                              #:create-network-insights-path-result
                               #:create-network-interface
                               #:create-network-interface-permission
-                              #:create-network-interface-permission-request
-                              #:create-network-interface-permission-result
-                              #:create-network-interface-request
-                              #:create-network-interface-result
-                              #:create-placement-group
-                              #:create-placement-group-request
-                              #:create-placement-group-result
-                              #:create-public-ipv4pool
-                              #:create-public-ipv4pool-request
-                              #:create-public-ipv4pool-result
+                              #:create-placement-group #:create-public-ipv4pool
                               #:create-replace-root-volume-task
-                              #:create-replace-root-volume-task-request
-                              #:create-replace-root-volume-task-result
                               #:create-reserved-instances-listing
-                              #:create-reserved-instances-listing-request
-                              #:create-reserved-instances-listing-result
-                              #:create-restore-image-task
-                              #:create-restore-image-task-request
-                              #:create-restore-image-task-result #:create-route
-                              #:create-route-request #:create-route-result
+                              #:create-restore-image-task #:create-route
                               #:create-route-server
                               #:create-route-server-endpoint
-                              #:create-route-server-endpoint-request
-                              #:create-route-server-endpoint-result
-                              #:create-route-server-peer
-                              #:create-route-server-peer-request
-                              #:create-route-server-peer-result
-                              #:create-route-server-request
-                              #:create-route-server-result #:create-route-table
-                              #:create-route-table-request
-                              #:create-route-table-result
-                              #:create-security-group
-                              #:create-security-group-request
-                              #:create-security-group-result #:create-snapshot
-                              #:create-snapshot-request #:create-snapshots
-                              #:create-snapshots-request
-                              #:create-snapshots-result
+                              #:create-route-server-peer #:create-route-table
+                              #:create-security-group #:create-snapshot
+                              #:create-snapshots
                               #:create-spot-datafeed-subscription
-                              #:create-spot-datafeed-subscription-request
-                              #:create-spot-datafeed-subscription-result
-                              #:create-store-image-task
-                              #:create-store-image-task-request
-                              #:create-store-image-task-result #:create-subnet
-                              #:create-subnet-cidr-reservation
-                              #:create-subnet-cidr-reservation-request
-                              #:create-subnet-cidr-reservation-result
-                              #:create-subnet-request #:create-subnet-result
-                              #:create-tags #:create-tags-request
+                              #:create-store-image-task #:create-subnet
+                              #:create-subnet-cidr-reservation #:create-tags
                               #:create-traffic-mirror-filter
-                              #:create-traffic-mirror-filter-request
-                              #:create-traffic-mirror-filter-result
                               #:create-traffic-mirror-filter-rule
-                              #:create-traffic-mirror-filter-rule-request
-                              #:create-traffic-mirror-filter-rule-result
                               #:create-traffic-mirror-session
-                              #:create-traffic-mirror-session-request
-                              #:create-traffic-mirror-session-result
                               #:create-traffic-mirror-target
-                              #:create-traffic-mirror-target-request
-                              #:create-traffic-mirror-target-result
                               #:create-transit-gateway
                               #:create-transit-gateway-connect
                               #:create-transit-gateway-connect-peer
-                              #:create-transit-gateway-connect-peer-request
-                              #:create-transit-gateway-connect-peer-result
-                              #:create-transit-gateway-connect-request
                               #:create-transit-gateway-connect-request-options
-                              #:create-transit-gateway-connect-result
                               #:create-transit-gateway-multicast-domain
-                              #:create-transit-gateway-multicast-domain-request
                               #:create-transit-gateway-multicast-domain-request-options
-                              #:create-transit-gateway-multicast-domain-result
                               #:create-transit-gateway-peering-attachment
-                              #:create-transit-gateway-peering-attachment-request
                               #:create-transit-gateway-peering-attachment-request-options
-                              #:create-transit-gateway-peering-attachment-result
                               #:create-transit-gateway-policy-table
-                              #:create-transit-gateway-policy-table-request
-                              #:create-transit-gateway-policy-table-result
                               #:create-transit-gateway-prefix-list-reference
-                              #:create-transit-gateway-prefix-list-reference-request
-                              #:create-transit-gateway-prefix-list-reference-result
-                              #:create-transit-gateway-request
-                              #:create-transit-gateway-result
                               #:create-transit-gateway-route
-                              #:create-transit-gateway-route-request
-                              #:create-transit-gateway-route-result
                               #:create-transit-gateway-route-table
                               #:create-transit-gateway-route-table-announcement
-                              #:create-transit-gateway-route-table-announcement-request
-                              #:create-transit-gateway-route-table-announcement-result
-                              #:create-transit-gateway-route-table-request
-                              #:create-transit-gateway-route-table-result
                               #:create-transit-gateway-vpc-attachment
-                              #:create-transit-gateway-vpc-attachment-request
                               #:create-transit-gateway-vpc-attachment-request-options
-                              #:create-transit-gateway-vpc-attachment-result
                               #:create-verified-access-endpoint
                               #:create-verified-access-endpoint-cidr-options
                               #:create-verified-access-endpoint-eni-options
@@ -619,49 +369,25 @@
                               #:create-verified-access-endpoint-port-range
                               #:create-verified-access-endpoint-port-range-list
                               #:create-verified-access-endpoint-rds-options
-                              #:create-verified-access-endpoint-request
-                              #:create-verified-access-endpoint-result
                               #:create-verified-access-endpoint-subnet-id-list
                               #:create-verified-access-group
-                              #:create-verified-access-group-request
-                              #:create-verified-access-group-result
                               #:create-verified-access-instance
-                              #:create-verified-access-instance-request
-                              #:create-verified-access-instance-result
                               #:create-verified-access-native-application-oidc-options
                               #:create-verified-access-trust-provider
                               #:create-verified-access-trust-provider-device-options
                               #:create-verified-access-trust-provider-oidc-options
-                              #:create-verified-access-trust-provider-request
-                              #:create-verified-access-trust-provider-result
                               #:create-volume #:create-volume-permission
                               #:create-volume-permission-list
                               #:create-volume-permission-modifications
-                              #:create-volume-request #:create-vpc
+                              #:create-vpc
                               #:create-vpc-block-public-access-exclusion
-                              #:create-vpc-block-public-access-exclusion-request
-                              #:create-vpc-block-public-access-exclusion-result
                               #:create-vpc-endpoint
                               #:create-vpc-endpoint-connection-notification
-                              #:create-vpc-endpoint-connection-notification-request
-                              #:create-vpc-endpoint-connection-notification-result
-                              #:create-vpc-endpoint-request
-                              #:create-vpc-endpoint-result
                               #:create-vpc-endpoint-service-configuration
-                              #:create-vpc-endpoint-service-configuration-request
-                              #:create-vpc-endpoint-service-configuration-result
                               #:create-vpc-peering-connection
-                              #:create-vpc-peering-connection-request
-                              #:create-vpc-peering-connection-result
-                              #:create-vpc-request #:create-vpc-result
                               #:create-vpn-connection
-                              #:create-vpn-connection-request
-                              #:create-vpn-connection-result
                               #:create-vpn-connection-route
-                              #:create-vpn-connection-route-request
-                              #:create-vpn-gateway #:create-vpn-gateway-request
-                              #:create-vpn-gateway-result
-                              #:credit-specification
+                              #:create-vpn-gateway #:credit-specification
                               #:credit-specification-request
                               #:currency-code-values #:current-generation-flag
                               #:customer-gateway #:customer-gateway-id
@@ -685,823 +411,332 @@
                               #:default-target-capacity-type
                               #:defaulting-dhcp-options-id
                               #:delete-carrier-gateway
-                              #:delete-carrier-gateway-request
-                              #:delete-carrier-gateway-result
                               #:delete-client-vpn-endpoint
-                              #:delete-client-vpn-endpoint-request
-                              #:delete-client-vpn-endpoint-result
-                              #:delete-client-vpn-route
-                              #:delete-client-vpn-route-request
-                              #:delete-client-vpn-route-result
-                              #:delete-coip-cidr #:delete-coip-cidr-request
-                              #:delete-coip-cidr-result #:delete-coip-pool
-                              #:delete-coip-pool-request
-                              #:delete-coip-pool-result
-                              #:delete-customer-gateway
-                              #:delete-customer-gateway-request
+                              #:delete-client-vpn-route #:delete-coip-cidr
+                              #:delete-coip-pool #:delete-customer-gateway
                               #:delete-dhcp-options
-                              #:delete-dhcp-options-request
                               #:delete-egress-only-internet-gateway
-                              #:delete-egress-only-internet-gateway-request
-                              #:delete-egress-only-internet-gateway-result
                               #:delete-fleet-error #:delete-fleet-error-code
                               #:delete-fleet-error-item
                               #:delete-fleet-error-set
                               #:delete-fleet-success-item
                               #:delete-fleet-success-set #:delete-fleets
-                              #:delete-fleets-request #:delete-fleets-result
-                              #:delete-flow-logs #:delete-flow-logs-request
-                              #:delete-flow-logs-result #:delete-fpga-image
-                              #:delete-fpga-image-request
-                              #:delete-fpga-image-result
+                              #:delete-flow-logs #:delete-fpga-image
                               #:delete-instance-connect-endpoint
-                              #:delete-instance-connect-endpoint-request
-                              #:delete-instance-connect-endpoint-result
                               #:delete-instance-event-window
-                              #:delete-instance-event-window-request
-                              #:delete-instance-event-window-result
-                              #:delete-internet-gateway
-                              #:delete-internet-gateway-request #:delete-ipam
+                              #:delete-internet-gateway #:delete-ipam
                               #:delete-ipam-external-resource-verification-token
-                              #:delete-ipam-external-resource-verification-token-request
-                              #:delete-ipam-external-resource-verification-token-result
-                              #:delete-ipam-pool #:delete-ipam-pool-request
-                              #:delete-ipam-pool-result #:delete-ipam-request
+                              #:delete-ipam-pool
                               #:delete-ipam-resource-discovery
-                              #:delete-ipam-resource-discovery-request
-                              #:delete-ipam-resource-discovery-result
-                              #:delete-ipam-result #:delete-ipam-scope
-                              #:delete-ipam-scope-request
-                              #:delete-ipam-scope-result #:delete-key-pair
-                              #:delete-key-pair-request
-                              #:delete-key-pair-result #:delete-launch-template
-                              #:delete-launch-template-request
-                              #:delete-launch-template-result
+                              #:delete-ipam-scope #:delete-key-pair
+                              #:delete-launch-template
                               #:delete-launch-template-versions
-                              #:delete-launch-template-versions-request
                               #:delete-launch-template-versions-response-error-item
                               #:delete-launch-template-versions-response-error-set
                               #:delete-launch-template-versions-response-success-item
                               #:delete-launch-template-versions-response-success-set
-                              #:delete-launch-template-versions-result
                               #:delete-local-gateway-route
-                              #:delete-local-gateway-route-request
-                              #:delete-local-gateway-route-result
                               #:delete-local-gateway-route-table
-                              #:delete-local-gateway-route-table-request
-                              #:delete-local-gateway-route-table-result
                               #:delete-local-gateway-route-table-virtual-interface-group-association
-                              #:delete-local-gateway-route-table-virtual-interface-group-association-request
-                              #:delete-local-gateway-route-table-virtual-interface-group-association-result
                               #:delete-local-gateway-route-table-vpc-association
-                              #:delete-local-gateway-route-table-vpc-association-request
-                              #:delete-local-gateway-route-table-vpc-association-result
                               #:delete-local-gateway-virtual-interface
                               #:delete-local-gateway-virtual-interface-group
-                              #:delete-local-gateway-virtual-interface-group-request
-                              #:delete-local-gateway-virtual-interface-group-result
-                              #:delete-local-gateway-virtual-interface-request
-                              #:delete-local-gateway-virtual-interface-result
-                              #:delete-managed-prefix-list
-                              #:delete-managed-prefix-list-request
-                              #:delete-managed-prefix-list-result
-                              #:delete-nat-gateway #:delete-nat-gateway-request
-                              #:delete-nat-gateway-result #:delete-network-acl
-                              #:delete-network-acl-entry
-                              #:delete-network-acl-entry-request
-                              #:delete-network-acl-request
+                              #:delete-managed-prefix-list #:delete-nat-gateway
+                              #:delete-network-acl #:delete-network-acl-entry
                               #:delete-network-insights-access-scope
                               #:delete-network-insights-access-scope-analysis
-                              #:delete-network-insights-access-scope-analysis-request
-                              #:delete-network-insights-access-scope-analysis-result
-                              #:delete-network-insights-access-scope-request
-                              #:delete-network-insights-access-scope-result
                               #:delete-network-insights-analysis
-                              #:delete-network-insights-analysis-request
-                              #:delete-network-insights-analysis-result
                               #:delete-network-insights-path
-                              #:delete-network-insights-path-request
-                              #:delete-network-insights-path-result
                               #:delete-network-interface
                               #:delete-network-interface-permission
-                              #:delete-network-interface-permission-request
-                              #:delete-network-interface-permission-result
-                              #:delete-network-interface-request
-                              #:delete-placement-group
-                              #:delete-placement-group-request
-                              #:delete-public-ipv4pool
-                              #:delete-public-ipv4pool-request
-                              #:delete-public-ipv4pool-result
+                              #:delete-placement-group #:delete-public-ipv4pool
                               #:delete-queued-reserved-instances
                               #:delete-queued-reserved-instances-error
                               #:delete-queued-reserved-instances-error-code
                               #:delete-queued-reserved-instances-id-list
-                              #:delete-queued-reserved-instances-request
-                              #:delete-queued-reserved-instances-result
-                              #:delete-route #:delete-route-request
-                              #:delete-route-server
+                              #:delete-route #:delete-route-server
                               #:delete-route-server-endpoint
-                              #:delete-route-server-endpoint-request
-                              #:delete-route-server-endpoint-result
-                              #:delete-route-server-peer
-                              #:delete-route-server-peer-request
-                              #:delete-route-server-peer-result
-                              #:delete-route-server-request
-                              #:delete-route-server-result #:delete-route-table
-                              #:delete-route-table-request
-                              #:delete-security-group
-                              #:delete-security-group-request
-                              #:delete-security-group-result #:delete-snapshot
-                              #:delete-snapshot-request
+                              #:delete-route-server-peer #:delete-route-table
+                              #:delete-security-group #:delete-snapshot
                               #:delete-snapshot-result-set
                               #:delete-snapshot-return-code
                               #:delete-spot-datafeed-subscription
-                              #:delete-spot-datafeed-subscription-request
                               #:delete-subnet #:delete-subnet-cidr-reservation
-                              #:delete-subnet-cidr-reservation-request
-                              #:delete-subnet-cidr-reservation-result
-                              #:delete-subnet-request #:delete-tags
-                              #:delete-tags-request
-                              #:delete-traffic-mirror-filter
-                              #:delete-traffic-mirror-filter-request
-                              #:delete-traffic-mirror-filter-result
+                              #:delete-tags #:delete-traffic-mirror-filter
                               #:delete-traffic-mirror-filter-rule
-                              #:delete-traffic-mirror-filter-rule-request
-                              #:delete-traffic-mirror-filter-rule-result
                               #:delete-traffic-mirror-session
-                              #:delete-traffic-mirror-session-request
-                              #:delete-traffic-mirror-session-result
                               #:delete-traffic-mirror-target
-                              #:delete-traffic-mirror-target-request
-                              #:delete-traffic-mirror-target-result
                               #:delete-transit-gateway
                               #:delete-transit-gateway-connect
                               #:delete-transit-gateway-connect-peer
-                              #:delete-transit-gateway-connect-peer-request
-                              #:delete-transit-gateway-connect-peer-result
-                              #:delete-transit-gateway-connect-request
-                              #:delete-transit-gateway-connect-result
                               #:delete-transit-gateway-multicast-domain
-                              #:delete-transit-gateway-multicast-domain-request
-                              #:delete-transit-gateway-multicast-domain-result
                               #:delete-transit-gateway-peering-attachment
-                              #:delete-transit-gateway-peering-attachment-request
-                              #:delete-transit-gateway-peering-attachment-result
                               #:delete-transit-gateway-policy-table
-                              #:delete-transit-gateway-policy-table-request
-                              #:delete-transit-gateway-policy-table-result
                               #:delete-transit-gateway-prefix-list-reference
-                              #:delete-transit-gateway-prefix-list-reference-request
-                              #:delete-transit-gateway-prefix-list-reference-result
-                              #:delete-transit-gateway-request
-                              #:delete-transit-gateway-result
                               #:delete-transit-gateway-route
-                              #:delete-transit-gateway-route-request
-                              #:delete-transit-gateway-route-result
                               #:delete-transit-gateway-route-table
                               #:delete-transit-gateway-route-table-announcement
-                              #:delete-transit-gateway-route-table-announcement-request
-                              #:delete-transit-gateway-route-table-announcement-result
-                              #:delete-transit-gateway-route-table-request
-                              #:delete-transit-gateway-route-table-result
                               #:delete-transit-gateway-vpc-attachment
-                              #:delete-transit-gateway-vpc-attachment-request
-                              #:delete-transit-gateway-vpc-attachment-result
                               #:delete-verified-access-endpoint
-                              #:delete-verified-access-endpoint-request
-                              #:delete-verified-access-endpoint-result
                               #:delete-verified-access-group
-                              #:delete-verified-access-group-request
-                              #:delete-verified-access-group-result
                               #:delete-verified-access-instance
-                              #:delete-verified-access-instance-request
-                              #:delete-verified-access-instance-result
                               #:delete-verified-access-trust-provider
-                              #:delete-verified-access-trust-provider-request
-                              #:delete-verified-access-trust-provider-result
-                              #:delete-volume #:delete-volume-request
-                              #:delete-vpc
+                              #:delete-volume #:delete-vpc
                               #:delete-vpc-block-public-access-exclusion
-                              #:delete-vpc-block-public-access-exclusion-request
-                              #:delete-vpc-block-public-access-exclusion-result
                               #:delete-vpc-endpoint-connection-notifications
-                              #:delete-vpc-endpoint-connection-notifications-request
-                              #:delete-vpc-endpoint-connection-notifications-result
                               #:delete-vpc-endpoint-service-configurations
-                              #:delete-vpc-endpoint-service-configurations-request
-                              #:delete-vpc-endpoint-service-configurations-result
                               #:delete-vpc-endpoints
-                              #:delete-vpc-endpoints-request
-                              #:delete-vpc-endpoints-result
                               #:delete-vpc-peering-connection
-                              #:delete-vpc-peering-connection-request
-                              #:delete-vpc-peering-connection-result
-                              #:delete-vpc-request #:delete-vpn-connection
-                              #:delete-vpn-connection-request
+                              #:delete-vpn-connection
                               #:delete-vpn-connection-route
-                              #:delete-vpn-connection-route-request
-                              #:delete-vpn-gateway #:delete-vpn-gateway-request
-                              #:deprovision-byoip-cidr
-                              #:deprovision-byoip-cidr-request
-                              #:deprovision-byoip-cidr-result
+                              #:delete-vpn-gateway #:deprovision-byoip-cidr
                               #:deprovision-ipam-byoasn
-                              #:deprovision-ipam-byoasn-request
-                              #:deprovision-ipam-byoasn-result
                               #:deprovision-ipam-pool-cidr
-                              #:deprovision-ipam-pool-cidr-request
-                              #:deprovision-ipam-pool-cidr-result
                               #:deprovision-public-ipv4pool-cidr
-                              #:deprovision-public-ipv4pool-cidr-request
-                              #:deprovision-public-ipv4pool-cidr-result
                               #:deprovisioned-address-set #:deregister-image
-                              #:deregister-image-request
-                              #:deregister-image-result
                               #:deregister-instance-event-notification-attributes
-                              #:deregister-instance-event-notification-attributes-request
-                              #:deregister-instance-event-notification-attributes-result
                               #:deregister-instance-tag-attribute-request
                               #:deregister-transit-gateway-multicast-group-members
-                              #:deregister-transit-gateway-multicast-group-members-request
-                              #:deregister-transit-gateway-multicast-group-members-result
                               #:deregister-transit-gateway-multicast-group-sources
-                              #:deregister-transit-gateway-multicast-group-sources-request
-                              #:deregister-transit-gateway-multicast-group-sources-result
                               #:describe-account-attributes
-                              #:describe-account-attributes-request
-                              #:describe-account-attributes-result
                               #:describe-address-transfers
                               #:describe-address-transfers-max-results
-                              #:describe-address-transfers-request
-                              #:describe-address-transfers-result
                               #:describe-addresses
                               #:describe-addresses-attribute
-                              #:describe-addresses-attribute-request
-                              #:describe-addresses-attribute-result
-                              #:describe-addresses-request
-                              #:describe-addresses-result
                               #:describe-aggregate-id-format
-                              #:describe-aggregate-id-format-request
-                              #:describe-aggregate-id-format-result
                               #:describe-availability-zones
-                              #:describe-availability-zones-request
-                              #:describe-availability-zones-result
                               #:describe-aws-network-performance-metric-subscriptions
-                              #:describe-aws-network-performance-metric-subscriptions-request
-                              #:describe-aws-network-performance-metric-subscriptions-result
-                              #:describe-bundle-tasks
-                              #:describe-bundle-tasks-request
-                              #:describe-bundle-tasks-result
-                              #:describe-byoip-cidrs
+                              #:describe-bundle-tasks #:describe-byoip-cidrs
                               #:describe-byoip-cidrs-max-results
-                              #:describe-byoip-cidrs-request
-                              #:describe-byoip-cidrs-result
                               #:describe-capacity-block-extension-history
-                              #:describe-capacity-block-extension-history-request
-                              #:describe-capacity-block-extension-history-result
                               #:describe-capacity-block-extension-offerings
                               #:describe-capacity-block-extension-offerings-max-results
-                              #:describe-capacity-block-extension-offerings-request
-                              #:describe-capacity-block-extension-offerings-result
                               #:describe-capacity-block-offerings
                               #:describe-capacity-block-offerings-max-results
-                              #:describe-capacity-block-offerings-request
-                              #:describe-capacity-block-offerings-result
                               #:describe-capacity-block-status
                               #:describe-capacity-block-status-max-results
-                              #:describe-capacity-block-status-request
-                              #:describe-capacity-block-status-result
                               #:describe-capacity-blocks
                               #:describe-capacity-blocks-max-results
-                              #:describe-capacity-blocks-request
-                              #:describe-capacity-blocks-result
                               #:describe-capacity-reservation-billing-requests
-                              #:describe-capacity-reservation-billing-requests-request
                               #:describe-capacity-reservation-billing-requests-request-max-results
-                              #:describe-capacity-reservation-billing-requests-result
                               #:describe-capacity-reservation-fleets
                               #:describe-capacity-reservation-fleets-max-results
-                              #:describe-capacity-reservation-fleets-request
-                              #:describe-capacity-reservation-fleets-result
                               #:describe-capacity-reservations
                               #:describe-capacity-reservations-max-results
-                              #:describe-capacity-reservations-request
-                              #:describe-capacity-reservations-result
                               #:describe-carrier-gateways
-                              #:describe-carrier-gateways-request
-                              #:describe-carrier-gateways-result
                               #:describe-classic-link-instances
                               #:describe-classic-link-instances-max-results
-                              #:describe-classic-link-instances-request
-                              #:describe-classic-link-instances-result
                               #:describe-client-vpn-authorization-rules
                               #:describe-client-vpn-authorization-rules-max-results
-                              #:describe-client-vpn-authorization-rules-request
-                              #:describe-client-vpn-authorization-rules-result
                               #:describe-client-vpn-connections
                               #:describe-client-vpn-connections-max-results
-                              #:describe-client-vpn-connections-request
-                              #:describe-client-vpn-connections-result
                               #:describe-client-vpn-endpoint-max-results
                               #:describe-client-vpn-endpoints
-                              #:describe-client-vpn-endpoints-request
-                              #:describe-client-vpn-endpoints-result
                               #:describe-client-vpn-routes
                               #:describe-client-vpn-routes-max-results
-                              #:describe-client-vpn-routes-request
-                              #:describe-client-vpn-routes-result
                               #:describe-client-vpn-target-networks
                               #:describe-client-vpn-target-networks-max-results
-                              #:describe-client-vpn-target-networks-request
-                              #:describe-client-vpn-target-networks-result
                               #:describe-coip-pools
-                              #:describe-coip-pools-request
-                              #:describe-coip-pools-result
                               #:describe-conversion-task-list
                               #:describe-conversion-tasks
-                              #:describe-conversion-tasks-request
-                              #:describe-conversion-tasks-result
                               #:describe-customer-gateways
-                              #:describe-customer-gateways-request
-                              #:describe-customer-gateways-result
                               #:describe-declarative-policies-reports
-                              #:describe-declarative-policies-reports-request
-                              #:describe-declarative-policies-reports-result
                               #:describe-dhcp-options
                               #:describe-dhcp-options-max-results
-                              #:describe-dhcp-options-request
-                              #:describe-dhcp-options-result
                               #:describe-egress-only-internet-gateways
                               #:describe-egress-only-internet-gateways-max-results
-                              #:describe-egress-only-internet-gateways-request
-                              #:describe-egress-only-internet-gateways-result
                               #:describe-elastic-gpus
                               #:describe-elastic-gpus-max-results
-                              #:describe-elastic-gpus-request
-                              #:describe-elastic-gpus-result
                               #:describe-export-image-tasks
                               #:describe-export-image-tasks-max-results
-                              #:describe-export-image-tasks-request
-                              #:describe-export-image-tasks-result
                               #:describe-export-tasks
-                              #:describe-export-tasks-request
-                              #:describe-export-tasks-result
                               #:describe-fast-launch-images
-                              #:describe-fast-launch-images-request
                               #:describe-fast-launch-images-request-max-results
-                              #:describe-fast-launch-images-result
                               #:describe-fast-launch-images-success-item
                               #:describe-fast-launch-images-success-set
                               #:describe-fast-snapshot-restore-success-item
                               #:describe-fast-snapshot-restore-success-set
                               #:describe-fast-snapshot-restores
                               #:describe-fast-snapshot-restores-max-results
-                              #:describe-fast-snapshot-restores-request
-                              #:describe-fast-snapshot-restores-result
                               #:describe-fleet-error #:describe-fleet-history
-                              #:describe-fleet-history-request
-                              #:describe-fleet-history-result
-                              #:describe-fleet-instances
-                              #:describe-fleet-instances-request
-                              #:describe-fleet-instances-result
-                              #:describe-fleets #:describe-fleets-error-set
+                              #:describe-fleet-instances #:describe-fleets
+                              #:describe-fleets-error-set
                               #:describe-fleets-instances
                               #:describe-fleets-instances-set
-                              #:describe-fleets-request
-                              #:describe-fleets-result #:describe-flow-logs
-                              #:describe-flow-logs-request
-                              #:describe-flow-logs-result
+                              #:describe-flow-logs
                               #:describe-fpga-image-attribute
-                              #:describe-fpga-image-attribute-request
-                              #:describe-fpga-image-attribute-result
                               #:describe-fpga-images
                               #:describe-fpga-images-max-results
-                              #:describe-fpga-images-request
-                              #:describe-fpga-images-result
                               #:describe-future-capacity-max-results
                               #:describe-host-reservation-offerings
-                              #:describe-host-reservation-offerings-request
-                              #:describe-host-reservation-offerings-result
                               #:describe-host-reservations
                               #:describe-host-reservations-max-results
-                              #:describe-host-reservations-request
-                              #:describe-host-reservations-result
-                              #:describe-hosts #:describe-hosts-request
-                              #:describe-hosts-result
+                              #:describe-hosts
                               #:describe-iam-instance-profile-associations
                               #:describe-iam-instance-profile-associations-max-results
-                              #:describe-iam-instance-profile-associations-request
-                              #:describe-iam-instance-profile-associations-result
-                              #:describe-id-format #:describe-id-format-request
-                              #:describe-id-format-result
+                              #:describe-id-format
                               #:describe-identity-id-format
-                              #:describe-identity-id-format-request
-                              #:describe-identity-id-format-result
-                              #:describe-image-attribute
-                              #:describe-image-attribute-request
-                              #:describe-images #:describe-images-request
-                              #:describe-images-result
+                              #:describe-image-attribute #:describe-images
                               #:describe-import-image-tasks
-                              #:describe-import-image-tasks-request
-                              #:describe-import-image-tasks-result
                               #:describe-import-snapshot-tasks
-                              #:describe-import-snapshot-tasks-request
-                              #:describe-import-snapshot-tasks-result
                               #:describe-instance-attribute
-                              #:describe-instance-attribute-request
                               #:describe-instance-connect-endpoints
-                              #:describe-instance-connect-endpoints-request
-                              #:describe-instance-connect-endpoints-result
                               #:describe-instance-credit-specifications
                               #:describe-instance-credit-specifications-max-results
-                              #:describe-instance-credit-specifications-request
-                              #:describe-instance-credit-specifications-result
                               #:describe-instance-event-notification-attributes
-                              #:describe-instance-event-notification-attributes-request
-                              #:describe-instance-event-notification-attributes-result
                               #:describe-instance-event-windows
-                              #:describe-instance-event-windows-request
-                              #:describe-instance-event-windows-result
                               #:describe-instance-image-metadata
                               #:describe-instance-image-metadata-max-results
-                              #:describe-instance-image-metadata-request
-                              #:describe-instance-image-metadata-result
                               #:describe-instance-status
-                              #:describe-instance-status-request
-                              #:describe-instance-status-result
                               #:describe-instance-topology
                               #:describe-instance-topology-group-name-set
                               #:describe-instance-topology-instance-id-set
                               #:describe-instance-topology-max-results
-                              #:describe-instance-topology-request
-                              #:describe-instance-topology-result
                               #:describe-instance-type-offerings
-                              #:describe-instance-type-offerings-request
-                              #:describe-instance-type-offerings-result
-                              #:describe-instance-types
-                              #:describe-instance-types-request
-                              #:describe-instance-types-result
-                              #:describe-instances #:describe-instances-request
-                              #:describe-instances-result
+                              #:describe-instance-types #:describe-instances
                               #:describe-internet-gateways
                               #:describe-internet-gateways-max-results
-                              #:describe-internet-gateways-request
-                              #:describe-internet-gateways-result
                               #:describe-ipam-byoasn
                               #:describe-ipam-byoasn-max-results
-                              #:describe-ipam-byoasn-request
-                              #:describe-ipam-byoasn-result
                               #:describe-ipam-external-resource-verification-tokens
-                              #:describe-ipam-external-resource-verification-tokens-request
-                              #:describe-ipam-external-resource-verification-tokens-result
                               #:describe-ipam-pools
-                              #:describe-ipam-pools-request
-                              #:describe-ipam-pools-result
                               #:describe-ipam-resource-discoveries
-                              #:describe-ipam-resource-discoveries-request
-                              #:describe-ipam-resource-discoveries-result
                               #:describe-ipam-resource-discovery-associations
-                              #:describe-ipam-resource-discovery-associations-request
-                              #:describe-ipam-resource-discovery-associations-result
-                              #:describe-ipam-scopes
-                              #:describe-ipam-scopes-request
-                              #:describe-ipam-scopes-result #:describe-ipams
-                              #:describe-ipams-request #:describe-ipams-result
-                              #:describe-ipv6pools #:describe-ipv6pools-request
-                              #:describe-ipv6pools-result #:describe-key-pairs
-                              #:describe-key-pairs-request
-                              #:describe-key-pairs-result
+                              #:describe-ipam-scopes #:describe-ipams
+                              #:describe-ipv6pools #:describe-key-pairs
                               #:describe-launch-template-versions
-                              #:describe-launch-template-versions-request
-                              #:describe-launch-template-versions-result
                               #:describe-launch-templates
                               #:describe-launch-templates-max-results
-                              #:describe-launch-templates-request
-                              #:describe-launch-templates-result
                               #:describe-local-gateway-route-table-virtual-interface-group-associations
-                              #:describe-local-gateway-route-table-virtual-interface-group-associations-request
-                              #:describe-local-gateway-route-table-virtual-interface-group-associations-result
                               #:describe-local-gateway-route-table-vpc-associations
-                              #:describe-local-gateway-route-table-vpc-associations-request
-                              #:describe-local-gateway-route-table-vpc-associations-result
                               #:describe-local-gateway-route-tables
-                              #:describe-local-gateway-route-tables-request
-                              #:describe-local-gateway-route-tables-result
                               #:describe-local-gateway-virtual-interface-groups
-                              #:describe-local-gateway-virtual-interface-groups-request
-                              #:describe-local-gateway-virtual-interface-groups-result
                               #:describe-local-gateway-virtual-interfaces
-                              #:describe-local-gateway-virtual-interfaces-request
-                              #:describe-local-gateway-virtual-interfaces-result
                               #:describe-local-gateways
-                              #:describe-local-gateways-request
-                              #:describe-local-gateways-result
                               #:describe-locked-snapshots
                               #:describe-locked-snapshots-max-results
-                              #:describe-locked-snapshots-request
-                              #:describe-locked-snapshots-result
-                              #:describe-mac-hosts #:describe-mac-hosts-request
+                              #:describe-mac-hosts
                               #:describe-mac-hosts-request-max-results
-                              #:describe-mac-hosts-result
                               #:describe-mac-modification-tasks
                               #:describe-mac-modification-tasks-max-results
-                              #:describe-mac-modification-tasks-request
-                              #:describe-mac-modification-tasks-result
                               #:describe-managed-prefix-lists
-                              #:describe-managed-prefix-lists-request
-                              #:describe-managed-prefix-lists-result
                               #:describe-moving-addresses
                               #:describe-moving-addresses-max-results
-                              #:describe-moving-addresses-request
-                              #:describe-moving-addresses-result
                               #:describe-nat-gateways
                               #:describe-nat-gateways-max-results
-                              #:describe-nat-gateways-request
-                              #:describe-nat-gateways-result
                               #:describe-network-acls
                               #:describe-network-acls-max-results
-                              #:describe-network-acls-request
-                              #:describe-network-acls-result
                               #:describe-network-insights-access-scope-analyses
-                              #:describe-network-insights-access-scope-analyses-request
-                              #:describe-network-insights-access-scope-analyses-result
                               #:describe-network-insights-access-scopes
-                              #:describe-network-insights-access-scopes-request
-                              #:describe-network-insights-access-scopes-result
                               #:describe-network-insights-analyses
-                              #:describe-network-insights-analyses-request
-                              #:describe-network-insights-analyses-result
                               #:describe-network-insights-paths
-                              #:describe-network-insights-paths-request
-                              #:describe-network-insights-paths-result
                               #:describe-network-interface-attribute
-                              #:describe-network-interface-attribute-request
-                              #:describe-network-interface-attribute-result
                               #:describe-network-interface-permissions
                               #:describe-network-interface-permissions-max-results
-                              #:describe-network-interface-permissions-request
-                              #:describe-network-interface-permissions-result
                               #:describe-network-interfaces
                               #:describe-network-interfaces-max-results
-                              #:describe-network-interfaces-request
-                              #:describe-network-interfaces-result
                               #:describe-outpost-lags
-                              #:describe-outpost-lags-request
-                              #:describe-outpost-lags-result
                               #:describe-placement-groups
-                              #:describe-placement-groups-request
-                              #:describe-placement-groups-result
                               #:describe-prefix-lists
-                              #:describe-prefix-lists-request
-                              #:describe-prefix-lists-result
                               #:describe-principal-id-format
                               #:describe-principal-id-format-max-results
-                              #:describe-principal-id-format-request
-                              #:describe-principal-id-format-result
-                              #:describe-public-ipv4pools
-                              #:describe-public-ipv4pools-request
-                              #:describe-public-ipv4pools-result
-                              #:describe-regions #:describe-regions-request
-                              #:describe-regions-result
+                              #:describe-public-ipv4pools #:describe-regions
                               #:describe-replace-root-volume-tasks
                               #:describe-replace-root-volume-tasks-max-results
-                              #:describe-replace-root-volume-tasks-request
-                              #:describe-replace-root-volume-tasks-result
                               #:describe-reserved-instances
                               #:describe-reserved-instances-listings
-                              #:describe-reserved-instances-listings-request
-                              #:describe-reserved-instances-listings-result
                               #:describe-reserved-instances-modifications
-                              #:describe-reserved-instances-modifications-request
-                              #:describe-reserved-instances-modifications-result
                               #:describe-reserved-instances-offerings
-                              #:describe-reserved-instances-offerings-request
-                              #:describe-reserved-instances-offerings-result
-                              #:describe-reserved-instances-request
-                              #:describe-reserved-instances-result
                               #:describe-route-server-endpoints
-                              #:describe-route-server-endpoints-request
-                              #:describe-route-server-endpoints-result
                               #:describe-route-server-peers
-                              #:describe-route-server-peers-request
-                              #:describe-route-server-peers-result
-                              #:describe-route-servers
-                              #:describe-route-servers-request
-                              #:describe-route-servers-result
-                              #:describe-route-tables
+                              #:describe-route-servers #:describe-route-tables
                               #:describe-route-tables-max-results
-                              #:describe-route-tables-request
-                              #:describe-route-tables-result
                               #:describe-scheduled-instance-availability
                               #:describe-scheduled-instance-availability-max-results
-                              #:describe-scheduled-instance-availability-request
-                              #:describe-scheduled-instance-availability-result
                               #:describe-scheduled-instances
-                              #:describe-scheduled-instances-request
-                              #:describe-scheduled-instances-result
                               #:describe-security-group-references
-                              #:describe-security-group-references-request
-                              #:describe-security-group-references-result
                               #:describe-security-group-rules
                               #:describe-security-group-rules-max-results
-                              #:describe-security-group-rules-request
-                              #:describe-security-group-rules-result
                               #:describe-security-group-vpc-associations
                               #:describe-security-group-vpc-associations-max-results
-                              #:describe-security-group-vpc-associations-request
-                              #:describe-security-group-vpc-associations-result
                               #:describe-security-groups
                               #:describe-security-groups-max-results
-                              #:describe-security-groups-request
-                              #:describe-security-groups-result
                               #:describe-service-link-virtual-interfaces
-                              #:describe-service-link-virtual-interfaces-request
-                              #:describe-service-link-virtual-interfaces-result
                               #:describe-snapshot-attribute
-                              #:describe-snapshot-attribute-request
-                              #:describe-snapshot-attribute-result
                               #:describe-snapshot-tier-status
                               #:describe-snapshot-tier-status-max-results
-                              #:describe-snapshot-tier-status-request
-                              #:describe-snapshot-tier-status-result
-                              #:describe-snapshots #:describe-snapshots-request
-                              #:describe-snapshots-result
+                              #:describe-snapshots
                               #:describe-spot-datafeed-subscription
-                              #:describe-spot-datafeed-subscription-request
-                              #:describe-spot-datafeed-subscription-result
                               #:describe-spot-fleet-instances
                               #:describe-spot-fleet-instances-max-results
-                              #:describe-spot-fleet-instances-request
-                              #:describe-spot-fleet-instances-response
                               #:describe-spot-fleet-request-history
                               #:describe-spot-fleet-request-history-max-results
-                              #:describe-spot-fleet-request-history-request
-                              #:describe-spot-fleet-request-history-response
                               #:describe-spot-fleet-requests
-                              #:describe-spot-fleet-requests-request
-                              #:describe-spot-fleet-requests-response
                               #:describe-spot-instance-requests
-                              #:describe-spot-instance-requests-request
-                              #:describe-spot-instance-requests-result
                               #:describe-spot-price-history
-                              #:describe-spot-price-history-request
-                              #:describe-spot-price-history-result
                               #:describe-stale-security-groups
                               #:describe-stale-security-groups-max-results
                               #:describe-stale-security-groups-next-token
-                              #:describe-stale-security-groups-request
-                              #:describe-stale-security-groups-result
                               #:describe-store-image-tasks
-                              #:describe-store-image-tasks-request
                               #:describe-store-image-tasks-request-max-results
-                              #:describe-store-image-tasks-result
                               #:describe-subnets #:describe-subnets-max-results
-                              #:describe-subnets-request
-                              #:describe-subnets-result #:describe-tags
-                              #:describe-tags-request #:describe-tags-result
+                              #:describe-tags
                               #:describe-traffic-mirror-filter-rules
-                              #:describe-traffic-mirror-filter-rules-request
-                              #:describe-traffic-mirror-filter-rules-result
                               #:describe-traffic-mirror-filters
-                              #:describe-traffic-mirror-filters-request
-                              #:describe-traffic-mirror-filters-result
                               #:describe-traffic-mirror-sessions
-                              #:describe-traffic-mirror-sessions-request
-                              #:describe-traffic-mirror-sessions-result
                               #:describe-traffic-mirror-targets
-                              #:describe-traffic-mirror-targets-request
-                              #:describe-traffic-mirror-targets-result
                               #:describe-transit-gateway-attachments
-                              #:describe-transit-gateway-attachments-request
-                              #:describe-transit-gateway-attachments-result
                               #:describe-transit-gateway-connect-peers
-                              #:describe-transit-gateway-connect-peers-request
-                              #:describe-transit-gateway-connect-peers-result
                               #:describe-transit-gateway-connects
-                              #:describe-transit-gateway-connects-request
-                              #:describe-transit-gateway-connects-result
                               #:describe-transit-gateway-multicast-domains
-                              #:describe-transit-gateway-multicast-domains-request
-                              #:describe-transit-gateway-multicast-domains-result
                               #:describe-transit-gateway-peering-attachments
-                              #:describe-transit-gateway-peering-attachments-request
-                              #:describe-transit-gateway-peering-attachments-result
                               #:describe-transit-gateway-policy-tables
-                              #:describe-transit-gateway-policy-tables-request
-                              #:describe-transit-gateway-policy-tables-result
                               #:describe-transit-gateway-route-table-announcements
-                              #:describe-transit-gateway-route-table-announcements-request
-                              #:describe-transit-gateway-route-table-announcements-result
                               #:describe-transit-gateway-route-tables
-                              #:describe-transit-gateway-route-tables-request
-                              #:describe-transit-gateway-route-tables-result
                               #:describe-transit-gateway-vpc-attachments
-                              #:describe-transit-gateway-vpc-attachments-request
-                              #:describe-transit-gateway-vpc-attachments-result
                               #:describe-transit-gateways
-                              #:describe-transit-gateways-request
-                              #:describe-transit-gateways-result
                               #:describe-trunk-interface-associations
                               #:describe-trunk-interface-associations-max-results
-                              #:describe-trunk-interface-associations-request
-                              #:describe-trunk-interface-associations-result
                               #:describe-verified-access-endpoints
                               #:describe-verified-access-endpoints-max-results
-                              #:describe-verified-access-endpoints-request
-                              #:describe-verified-access-endpoints-result
                               #:describe-verified-access-group-max-results
                               #:describe-verified-access-groups
-                              #:describe-verified-access-groups-request
-                              #:describe-verified-access-groups-result
                               #:describe-verified-access-instance-logging-configurations
                               #:describe-verified-access-instance-logging-configurations-max-results
-                              #:describe-verified-access-instance-logging-configurations-request
-                              #:describe-verified-access-instance-logging-configurations-result
                               #:describe-verified-access-instances
                               #:describe-verified-access-instances-max-results
-                              #:describe-verified-access-instances-request
-                              #:describe-verified-access-instances-result
                               #:describe-verified-access-trust-providers
                               #:describe-verified-access-trust-providers-max-results
-                              #:describe-verified-access-trust-providers-request
-                              #:describe-verified-access-trust-providers-result
                               #:describe-volume-attribute
-                              #:describe-volume-attribute-request
-                              #:describe-volume-attribute-result
-                              #:describe-volume-status
-                              #:describe-volume-status-request
-                              #:describe-volume-status-result
-                              #:describe-volumes
+                              #:describe-volume-status #:describe-volumes
                               #:describe-volumes-modifications
-                              #:describe-volumes-modifications-request
-                              #:describe-volumes-modifications-result
-                              #:describe-volumes-request
-                              #:describe-volumes-result
                               #:describe-vpc-attribute
-                              #:describe-vpc-attribute-request
-                              #:describe-vpc-attribute-result
                               #:describe-vpc-block-public-access-exclusions
                               #:describe-vpc-block-public-access-exclusions-max-results
-                              #:describe-vpc-block-public-access-exclusions-request
-                              #:describe-vpc-block-public-access-exclusions-result
                               #:describe-vpc-block-public-access-options
-                              #:describe-vpc-block-public-access-options-request
-                              #:describe-vpc-block-public-access-options-result
                               #:describe-vpc-classic-link
                               #:describe-vpc-classic-link-dns-support
                               #:describe-vpc-classic-link-dns-support-max-results
                               #:describe-vpc-classic-link-dns-support-next-token
-                              #:describe-vpc-classic-link-dns-support-request
-                              #:describe-vpc-classic-link-dns-support-result
-                              #:describe-vpc-classic-link-request
-                              #:describe-vpc-classic-link-result
                               #:describe-vpc-endpoint-associations
-                              #:describe-vpc-endpoint-associations-request
-                              #:describe-vpc-endpoint-associations-result
                               #:describe-vpc-endpoint-connection-notifications
-                              #:describe-vpc-endpoint-connection-notifications-request
-                              #:describe-vpc-endpoint-connection-notifications-result
                               #:describe-vpc-endpoint-connections
-                              #:describe-vpc-endpoint-connections-request
-                              #:describe-vpc-endpoint-connections-result
                               #:describe-vpc-endpoint-service-configurations
-                              #:describe-vpc-endpoint-service-configurations-request
-                              #:describe-vpc-endpoint-service-configurations-result
                               #:describe-vpc-endpoint-service-permissions
-                              #:describe-vpc-endpoint-service-permissions-request
-                              #:describe-vpc-endpoint-service-permissions-result
                               #:describe-vpc-endpoint-services
-                              #:describe-vpc-endpoint-services-request
-                              #:describe-vpc-endpoint-services-result
                               #:describe-vpc-endpoints
-                              #:describe-vpc-endpoints-request
-                              #:describe-vpc-endpoints-result
                               #:describe-vpc-peering-connections
                               #:describe-vpc-peering-connections-max-results
-                              #:describe-vpc-peering-connections-request
-                              #:describe-vpc-peering-connections-result
                               #:describe-vpcs #:describe-vpcs-max-results
-                              #:describe-vpcs-request #:describe-vpcs-result
                               #:describe-vpn-connections
-                              #:describe-vpn-connections-request
-                              #:describe-vpn-connections-result
-                              #:describe-vpn-gateways
-                              #:describe-vpn-gateways-request
-                              #:describe-vpn-gateways-result
-                              #:destination-file-format
+                              #:describe-vpn-gateways #:destination-file-format
                               #:destination-options-request
                               #:destination-options-response
                               #:detach-classic-link-vpc
-                              #:detach-classic-link-vpc-request
-                              #:detach-classic-link-vpc-result
                               #:detach-internet-gateway
-                              #:detach-internet-gateway-request
                               #:detach-network-interface
-                              #:detach-network-interface-request
                               #:detach-verified-access-trust-provider
-                              #:detach-verified-access-trust-provider-request
-                              #:detach-verified-access-trust-provider-result
-                              #:detach-volume #:detach-volume-request
-                              #:detach-vpn-gateway #:detach-vpn-gateway-request
+                              #:detach-volume #:detach-vpn-gateway
                               #:device-options #:device-trust-provider-type
                               #:device-trust-provider-type-list #:device-type
                               #:dhcp-configuration #:dhcp-configuration-list
@@ -1511,20 +746,10 @@
                               #:directory-service-authentication
                               #:directory-service-authentication-request
                               #:disable-address-transfer
-                              #:disable-address-transfer-request
-                              #:disable-address-transfer-result
                               #:disable-allowed-images-settings
-                              #:disable-allowed-images-settings-request
-                              #:disable-allowed-images-settings-result
                               #:disable-aws-network-performance-metric-subscription
-                              #:disable-aws-network-performance-metric-subscription-request
-                              #:disable-aws-network-performance-metric-subscription-result
                               #:disable-ebs-encryption-by-default
-                              #:disable-ebs-encryption-by-default-request
-                              #:disable-ebs-encryption-by-default-result
                               #:disable-fast-launch
-                              #:disable-fast-launch-request
-                              #:disable-fast-launch-result
                               #:disable-fast-snapshot-restore-error-item
                               #:disable-fast-snapshot-restore-error-set
                               #:disable-fast-snapshot-restore-state-error
@@ -1532,96 +757,37 @@
                               #:disable-fast-snapshot-restore-state-error-set
                               #:disable-fast-snapshot-restore-success-item
                               #:disable-fast-snapshot-restore-success-set
-                              #:disable-fast-snapshot-restores
-                              #:disable-fast-snapshot-restores-request
-                              #:disable-fast-snapshot-restores-result
-                              #:disable-image
+                              #:disable-fast-snapshot-restores #:disable-image
                               #:disable-image-block-public-access
-                              #:disable-image-block-public-access-request
-                              #:disable-image-block-public-access-result
                               #:disable-image-deprecation
-                              #:disable-image-deprecation-request
-                              #:disable-image-deprecation-result
                               #:disable-image-deregistration-protection
-                              #:disable-image-deregistration-protection-request
-                              #:disable-image-deregistration-protection-result
-                              #:disable-image-request #:disable-image-result
                               #:disable-ipam-organization-admin-account
-                              #:disable-ipam-organization-admin-account-request
-                              #:disable-ipam-organization-admin-account-result
                               #:disable-route-server-propagation
-                              #:disable-route-server-propagation-request
-                              #:disable-route-server-propagation-result
                               #:disable-serial-console-access
-                              #:disable-serial-console-access-request
-                              #:disable-serial-console-access-result
                               #:disable-snapshot-block-public-access
-                              #:disable-snapshot-block-public-access-request
-                              #:disable-snapshot-block-public-access-result
                               #:disable-transit-gateway-route-table-propagation
-                              #:disable-transit-gateway-route-table-propagation-request
-                              #:disable-transit-gateway-route-table-propagation-result
                               #:disable-vgw-route-propagation
-                              #:disable-vgw-route-propagation-request
                               #:disable-vpc-classic-link
                               #:disable-vpc-classic-link-dns-support
-                              #:disable-vpc-classic-link-dns-support-request
-                              #:disable-vpc-classic-link-dns-support-result
-                              #:disable-vpc-classic-link-request
-                              #:disable-vpc-classic-link-result
                               #:disassociate-address
-                              #:disassociate-address-request
                               #:disassociate-capacity-reservation-billing-owner
-                              #:disassociate-capacity-reservation-billing-owner-request
-                              #:disassociate-capacity-reservation-billing-owner-result
                               #:disassociate-client-vpn-target-network
-                              #:disassociate-client-vpn-target-network-request
-                              #:disassociate-client-vpn-target-network-result
                               #:disassociate-enclave-certificate-iam-role
-                              #:disassociate-enclave-certificate-iam-role-request
-                              #:disassociate-enclave-certificate-iam-role-result
                               #:disassociate-iam-instance-profile
-                              #:disassociate-iam-instance-profile-request
-                              #:disassociate-iam-instance-profile-result
                               #:disassociate-instance-event-window
-                              #:disassociate-instance-event-window-request
-                              #:disassociate-instance-event-window-result
                               #:disassociate-ipam-byoasn
-                              #:disassociate-ipam-byoasn-request
-                              #:disassociate-ipam-byoasn-result
                               #:disassociate-ipam-resource-discovery
-                              #:disassociate-ipam-resource-discovery-request
-                              #:disassociate-ipam-resource-discovery-result
                               #:disassociate-nat-gateway-address
-                              #:disassociate-nat-gateway-address-request
-                              #:disassociate-nat-gateway-address-result
                               #:disassociate-route-server
-                              #:disassociate-route-server-request
-                              #:disassociate-route-server-result
                               #:disassociate-route-table
-                              #:disassociate-route-table-request
                               #:disassociate-security-group-vpc
-                              #:disassociate-security-group-vpc-request
-                              #:disassociate-security-group-vpc-result
                               #:disassociate-security-group-vpc-security-group-id
                               #:disassociate-subnet-cidr-block
-                              #:disassociate-subnet-cidr-block-request
-                              #:disassociate-subnet-cidr-block-result
                               #:disassociate-transit-gateway-multicast-domain
-                              #:disassociate-transit-gateway-multicast-domain-request
-                              #:disassociate-transit-gateway-multicast-domain-result
                               #:disassociate-transit-gateway-policy-table
-                              #:disassociate-transit-gateway-policy-table-request
-                              #:disassociate-transit-gateway-policy-table-result
                               #:disassociate-transit-gateway-route-table
-                              #:disassociate-transit-gateway-route-table-request
-                              #:disassociate-transit-gateway-route-table-result
                               #:disassociate-trunk-interface
-                              #:disassociate-trunk-interface-request
-                              #:disassociate-trunk-interface-result
-                              #:disassociate-vpc-cidr-block
-                              #:disassociate-vpc-cidr-block-request
-                              #:disassociate-vpc-cidr-block-result #:disk-count
+                              #:disassociate-vpc-cidr-block #:disk-count
                               #:disk-image #:disk-image-description
                               #:disk-image-detail #:disk-image-format
                               #:disk-image-list #:disk-image-volume-description
@@ -1671,19 +837,10 @@
                               #:ena-srd-supported #:ena-srd-udp-specification
                               #:ena-srd-udp-specification-request #:ena-support
                               #:enable-address-transfer
-                              #:enable-address-transfer-request
-                              #:enable-address-transfer-result
                               #:enable-allowed-images-settings
-                              #:enable-allowed-images-settings-request
-                              #:enable-allowed-images-settings-result
                               #:enable-aws-network-performance-metric-subscription
-                              #:enable-aws-network-performance-metric-subscription-request
-                              #:enable-aws-network-performance-metric-subscription-result
                               #:enable-ebs-encryption-by-default
-                              #:enable-ebs-encryption-by-default-request
-                              #:enable-ebs-encryption-by-default-result
-                              #:enable-fast-launch #:enable-fast-launch-request
-                              #:enable-fast-launch-result
+                              #:enable-fast-launch
                               #:enable-fast-snapshot-restore-error-item
                               #:enable-fast-snapshot-restore-error-set
                               #:enable-fast-snapshot-restore-state-error
@@ -1691,46 +848,19 @@
                               #:enable-fast-snapshot-restore-state-error-set
                               #:enable-fast-snapshot-restore-success-item
                               #:enable-fast-snapshot-restore-success-set
-                              #:enable-fast-snapshot-restores
-                              #:enable-fast-snapshot-restores-request
-                              #:enable-fast-snapshot-restores-result
-                              #:enable-image #:enable-image-block-public-access
-                              #:enable-image-block-public-access-request
-                              #:enable-image-block-public-access-result
+                              #:enable-fast-snapshot-restores #:enable-image
+                              #:enable-image-block-public-access
                               #:enable-image-deprecation
-                              #:enable-image-deprecation-request
-                              #:enable-image-deprecation-result
                               #:enable-image-deregistration-protection
-                              #:enable-image-deregistration-protection-request
-                              #:enable-image-deregistration-protection-result
-                              #:enable-image-request #:enable-image-result
                               #:enable-ipam-organization-admin-account
-                              #:enable-ipam-organization-admin-account-request
-                              #:enable-ipam-organization-admin-account-result
                               #:enable-reachability-analyzer-organization-sharing
-                              #:enable-reachability-analyzer-organization-sharing-request
-                              #:enable-reachability-analyzer-organization-sharing-result
                               #:enable-route-server-propagation
-                              #:enable-route-server-propagation-request
-                              #:enable-route-server-propagation-result
                               #:enable-serial-console-access
-                              #:enable-serial-console-access-request
-                              #:enable-serial-console-access-result
                               #:enable-snapshot-block-public-access
-                              #:enable-snapshot-block-public-access-request
-                              #:enable-snapshot-block-public-access-result
                               #:enable-transit-gateway-route-table-propagation
-                              #:enable-transit-gateway-route-table-propagation-request
-                              #:enable-transit-gateway-route-table-propagation-result
-                              #:enable-vgw-route-propagation
-                              #:enable-vgw-route-propagation-request
-                              #:enable-volume-io #:enable-volume-iorequest
+                              #:enable-vgw-route-propagation #:enable-volume-io
                               #:enable-vpc-classic-link
                               #:enable-vpc-classic-link-dns-support
-                              #:enable-vpc-classic-link-dns-support-request
-                              #:enable-vpc-classic-link-dns-support-result
-                              #:enable-vpc-classic-link-request
-                              #:enable-vpc-classic-link-result
                               #:enclave-options #:enclave-options-request
                               #:encryption-in-transit-supported #:end-date-type
                               #:endpoint-set #:ephemeral-nvme-support
@@ -1741,13 +871,8 @@
                               #:executable-by-string-list #:explanation
                               #:explanation-list
                               #:export-client-vpn-client-certificate-revocation-list
-                              #:export-client-vpn-client-certificate-revocation-list-request
-                              #:export-client-vpn-client-certificate-revocation-list-result
                               #:export-client-vpn-client-configuration
-                              #:export-client-vpn-client-configuration-request
-                              #:export-client-vpn-client-configuration-result
                               #:export-environment #:export-image
-                              #:export-image-request #:export-image-result
                               #:export-image-task #:export-image-task-id
                               #:export-image-task-id-list
                               #:export-image-task-list #:export-task
@@ -1757,11 +882,7 @@
                               #:export-task-state #:export-to-s3task
                               #:export-to-s3task-specification
                               #:export-transit-gateway-routes
-                              #:export-transit-gateway-routes-request
-                              #:export-transit-gateway-routes-result
                               #:export-verified-access-instance-client-configuration
-                              #:export-verified-access-instance-client-configuration-request
-                              #:export-verified-access-instance-client-configuration-result
                               #:export-vm-task-id
                               #:failed-capacity-reservation-fleet-cancellation-result
                               #:failed-capacity-reservation-fleet-cancellation-result-set
@@ -1823,179 +944,67 @@
                               #:fpga-info #:free-tier-eligible-flag
                               #:gvcdmax-results #:gateway-association-state
                               #:gateway-type #:get-active-vpn-tunnel-status
-                              #:get-active-vpn-tunnel-status-request
-                              #:get-active-vpn-tunnel-status-result
                               #:get-allowed-images-settings
-                              #:get-allowed-images-settings-request
-                              #:get-allowed-images-settings-result
                               #:get-associated-enclave-certificate-iam-roles
-                              #:get-associated-enclave-certificate-iam-roles-request
-                              #:get-associated-enclave-certificate-iam-roles-result
                               #:get-associated-ipv6pool-cidrs
-                              #:get-associated-ipv6pool-cidrs-request
-                              #:get-associated-ipv6pool-cidrs-result
                               #:get-aws-network-performance-data
-                              #:get-aws-network-performance-data-request
-                              #:get-aws-network-performance-data-result
                               #:get-capacity-reservation-usage
-                              #:get-capacity-reservation-usage-request
                               #:get-capacity-reservation-usage-request-max-results
-                              #:get-capacity-reservation-usage-result
-                              #:get-coip-pool-usage
-                              #:get-coip-pool-usage-request
-                              #:get-coip-pool-usage-result #:get-console-output
-                              #:get-console-output-request
-                              #:get-console-output-result
+                              #:get-coip-pool-usage #:get-console-output
                               #:get-console-screenshot
-                              #:get-console-screenshot-request
-                              #:get-console-screenshot-result
                               #:get-declarative-policies-report-summary
-                              #:get-declarative-policies-report-summary-request
-                              #:get-declarative-policies-report-summary-result
                               #:get-default-credit-specification
-                              #:get-default-credit-specification-request
-                              #:get-default-credit-specification-result
                               #:get-ebs-default-kms-key-id
-                              #:get-ebs-default-kms-key-id-request
-                              #:get-ebs-default-kms-key-id-result
                               #:get-ebs-encryption-by-default
-                              #:get-ebs-encryption-by-default-request
-                              #:get-ebs-encryption-by-default-result
                               #:get-flow-logs-integration-template
-                              #:get-flow-logs-integration-template-request
-                              #:get-flow-logs-integration-template-result
                               #:get-groups-for-capacity-reservation
-                              #:get-groups-for-capacity-reservation-request
                               #:get-groups-for-capacity-reservation-request-max-results
-                              #:get-groups-for-capacity-reservation-result
                               #:get-host-reservation-purchase-preview
-                              #:get-host-reservation-purchase-preview-request
-                              #:get-host-reservation-purchase-preview-result
                               #:get-image-block-public-access-state
-                              #:get-image-block-public-access-state-request
-                              #:get-image-block-public-access-state-result
                               #:get-instance-metadata-defaults
-                              #:get-instance-metadata-defaults-request
-                              #:get-instance-metadata-defaults-result
                               #:get-instance-tpm-ek-pub
-                              #:get-instance-tpm-ek-pub-request
-                              #:get-instance-tpm-ek-pub-result
                               #:get-instance-types-from-instance-requirements
-                              #:get-instance-types-from-instance-requirements-request
-                              #:get-instance-types-from-instance-requirements-result
                               #:get-instance-uefi-data
-                              #:get-instance-uefi-data-request
-                              #:get-instance-uefi-data-result
                               #:get-ipam-address-history
-                              #:get-ipam-address-history-request
-                              #:get-ipam-address-history-result
                               #:get-ipam-discovered-accounts
-                              #:get-ipam-discovered-accounts-request
-                              #:get-ipam-discovered-accounts-result
                               #:get-ipam-discovered-public-addresses
-                              #:get-ipam-discovered-public-addresses-request
-                              #:get-ipam-discovered-public-addresses-result
                               #:get-ipam-discovered-resource-cidrs
-                              #:get-ipam-discovered-resource-cidrs-request
-                              #:get-ipam-discovered-resource-cidrs-result
                               #:get-ipam-pool-allocations
                               #:get-ipam-pool-allocations-max-results
-                              #:get-ipam-pool-allocations-request
-                              #:get-ipam-pool-allocations-result
-                              #:get-ipam-pool-cidrs
-                              #:get-ipam-pool-cidrs-request
-                              #:get-ipam-pool-cidrs-result
-                              #:get-ipam-resource-cidrs
-                              #:get-ipam-resource-cidrs-request
-                              #:get-ipam-resource-cidrs-result
+                              #:get-ipam-pool-cidrs #:get-ipam-resource-cidrs
                               #:get-launch-template-data
-                              #:get-launch-template-data-request
-                              #:get-launch-template-data-result
                               #:get-managed-prefix-list-associations
                               #:get-managed-prefix-list-associations-max-results
-                              #:get-managed-prefix-list-associations-request
-                              #:get-managed-prefix-list-associations-result
                               #:get-managed-prefix-list-entries
-                              #:get-managed-prefix-list-entries-request
-                              #:get-managed-prefix-list-entries-result
                               #:get-network-insights-access-scope-analysis-findings
                               #:get-network-insights-access-scope-analysis-findings-max-results
-                              #:get-network-insights-access-scope-analysis-findings-request
-                              #:get-network-insights-access-scope-analysis-findings-result
                               #:get-network-insights-access-scope-content
-                              #:get-network-insights-access-scope-content-request
-                              #:get-network-insights-access-scope-content-result
-                              #:get-password-data #:get-password-data-request
-                              #:get-password-data-result
+                              #:get-password-data
                               #:get-reserved-instances-exchange-quote
-                              #:get-reserved-instances-exchange-quote-request
-                              #:get-reserved-instances-exchange-quote-result
                               #:get-route-server-associations
-                              #:get-route-server-associations-request
-                              #:get-route-server-associations-result
                               #:get-route-server-propagations
-                              #:get-route-server-propagations-request
-                              #:get-route-server-propagations-result
                               #:get-route-server-routing-database
-                              #:get-route-server-routing-database-request
-                              #:get-route-server-routing-database-result
                               #:get-security-groups-for-vpc
-                              #:get-security-groups-for-vpc-request
                               #:get-security-groups-for-vpc-request-max-results
-                              #:get-security-groups-for-vpc-result
                               #:get-serial-console-access-status
-                              #:get-serial-console-access-status-request
-                              #:get-serial-console-access-status-result
                               #:get-snapshot-block-public-access-state
-                              #:get-snapshot-block-public-access-state-request
-                              #:get-snapshot-block-public-access-state-result
                               #:get-spot-placement-scores
-                              #:get-spot-placement-scores-request
-                              #:get-spot-placement-scores-result
                               #:get-subnet-cidr-reservations
                               #:get-subnet-cidr-reservations-max-results
-                              #:get-subnet-cidr-reservations-request
-                              #:get-subnet-cidr-reservations-result
                               #:get-transit-gateway-attachment-propagations
-                              #:get-transit-gateway-attachment-propagations-request
-                              #:get-transit-gateway-attachment-propagations-result
                               #:get-transit-gateway-multicast-domain-associations
-                              #:get-transit-gateway-multicast-domain-associations-request
-                              #:get-transit-gateway-multicast-domain-associations-result
                               #:get-transit-gateway-policy-table-associations
-                              #:get-transit-gateway-policy-table-associations-request
-                              #:get-transit-gateway-policy-table-associations-result
                               #:get-transit-gateway-policy-table-entries
-                              #:get-transit-gateway-policy-table-entries-request
-                              #:get-transit-gateway-policy-table-entries-result
                               #:get-transit-gateway-prefix-list-references
-                              #:get-transit-gateway-prefix-list-references-request
-                              #:get-transit-gateway-prefix-list-references-result
                               #:get-transit-gateway-route-table-associations
-                              #:get-transit-gateway-route-table-associations-request
-                              #:get-transit-gateway-route-table-associations-result
                               #:get-transit-gateway-route-table-propagations
-                              #:get-transit-gateway-route-table-propagations-request
-                              #:get-transit-gateway-route-table-propagations-result
                               #:get-verified-access-endpoint-policy
-                              #:get-verified-access-endpoint-policy-request
-                              #:get-verified-access-endpoint-policy-result
                               #:get-verified-access-endpoint-targets
                               #:get-verified-access-endpoint-targets-max-results
-                              #:get-verified-access-endpoint-targets-request
-                              #:get-verified-access-endpoint-targets-result
                               #:get-verified-access-group-policy
-                              #:get-verified-access-group-policy-request
-                              #:get-verified-access-group-policy-result
                               #:get-vpn-connection-device-sample-configuration
-                              #:get-vpn-connection-device-sample-configuration-request
-                              #:get-vpn-connection-device-sample-configuration-result
                               #:get-vpn-connection-device-types
-                              #:get-vpn-connection-device-types-request
-                              #:get-vpn-connection-device-types-result
                               #:get-vpn-tunnel-replacement-status
-                              #:get-vpn-tunnel-replacement-status-request
-                              #:get-vpn-tunnel-replacement-status-result
                               #:gpu-device-count #:gpu-device-info
                               #:gpu-device-info-list
                               #:gpu-device-manufacturer-name
@@ -2043,31 +1052,23 @@
                               #:image-recycle-bin-info-list #:image-state
                               #:image-type-values #:imds-support-values
                               #:import-client-vpn-client-certificate-revocation-list
-                              #:import-client-vpn-client-certificate-revocation-list-request
-                              #:import-client-vpn-client-certificate-revocation-list-result
                               #:import-image
                               #:import-image-license-configuration-request
                               #:import-image-license-configuration-response
                               #:import-image-license-specification-list-request
                               #:import-image-license-specification-list-response
-                              #:import-image-request #:import-image-result
                               #:import-image-task #:import-image-task-id
                               #:import-image-task-list #:import-instance
                               #:import-instance-launch-specification
-                              #:import-instance-request
-                              #:import-instance-result
                               #:import-instance-task-details
                               #:import-instance-volume-detail-item
                               #:import-instance-volume-detail-set
-                              #:import-key-pair #:import-key-pair-request
-                              #:import-key-pair-result #:import-manifest-url
-                              #:import-snapshot #:import-snapshot-request
-                              #:import-snapshot-result #:import-snapshot-task
+                              #:import-key-pair #:import-manifest-url
+                              #:import-snapshot #:import-snapshot-task
                               #:import-snapshot-task-id
                               #:import-snapshot-task-id-list
                               #:import-snapshot-task-list #:import-task-id
                               #:import-task-id-list #:import-volume
-                              #:import-volume-request #:import-volume-result
                               #:import-volume-task-details
                               #:inference-accelerator-info
                               #:inference-device-count #:inference-device-info
@@ -2357,12 +1358,8 @@
                               #:license-specification-list-request
                               #:list-images-in-recycle-bin
                               #:list-images-in-recycle-bin-max-results
-                              #:list-images-in-recycle-bin-request
-                              #:list-images-in-recycle-bin-result
                               #:list-snapshots-in-recycle-bin
                               #:list-snapshots-in-recycle-bin-max-results
-                              #:list-snapshots-in-recycle-bin-request
-                              #:list-snapshots-in-recycle-bin-result
                               #:listing-state #:listing-status
                               #:load-balancer-arn #:load-balancers-config
                               #:load-permission #:load-permission-list
@@ -2400,7 +1397,6 @@
                               #:local-storage #:local-storage-type
                               #:local-storage-type-set #:location
                               #:location-type #:lock-mode #:lock-snapshot
-                              #:lock-snapshot-request #:lock-snapshot-result
                               #:lock-state #:locked-snapshots-info
                               #:locked-snapshots-info-list
                               #:log-destination-type #:long #:mac-host
@@ -2438,224 +1434,85 @@
                               #:metric-point #:metric-points #:metric-type
                               #:millisecond-date-time
                               #:modify-address-attribute
-                              #:modify-address-attribute-request
-                              #:modify-address-attribute-result
                               #:modify-availability-zone-group
-                              #:modify-availability-zone-group-request
-                              #:modify-availability-zone-group-result
                               #:modify-availability-zone-opt-in-status
                               #:modify-capacity-reservation
                               #:modify-capacity-reservation-fleet
-                              #:modify-capacity-reservation-fleet-request
-                              #:modify-capacity-reservation-fleet-result
-                              #:modify-capacity-reservation-request
-                              #:modify-capacity-reservation-result
                               #:modify-client-vpn-endpoint
-                              #:modify-client-vpn-endpoint-request
-                              #:modify-client-vpn-endpoint-result
                               #:modify-default-credit-specification
-                              #:modify-default-credit-specification-request
-                              #:modify-default-credit-specification-result
-                              #:modify-ebs-default-kms-key-id
-                              #:modify-ebs-default-kms-key-id-request
-                              #:modify-ebs-default-kms-key-id-result
-                              #:modify-fleet #:modify-fleet-request
-                              #:modify-fleet-result
-                              #:modify-fpga-image-attribute
-                              #:modify-fpga-image-attribute-request
-                              #:modify-fpga-image-attribute-result
-                              #:modify-hosts #:modify-hosts-request
-                              #:modify-hosts-result #:modify-id-format
-                              #:modify-id-format-request
-                              #:modify-identity-id-format
-                              #:modify-identity-id-format-request
+                              #:modify-ebs-default-kms-key-id #:modify-fleet
+                              #:modify-fpga-image-attribute #:modify-hosts
+                              #:modify-id-format #:modify-identity-id-format
                               #:modify-image-attribute
-                              #:modify-image-attribute-request
                               #:modify-instance-attribute
-                              #:modify-instance-attribute-request
                               #:modify-instance-capacity-reservation-attributes
-                              #:modify-instance-capacity-reservation-attributes-request
-                              #:modify-instance-capacity-reservation-attributes-result
                               #:modify-instance-cpu-options
-                              #:modify-instance-cpu-options-request
-                              #:modify-instance-cpu-options-result
                               #:modify-instance-credit-specification
-                              #:modify-instance-credit-specification-request
-                              #:modify-instance-credit-specification-result
                               #:modify-instance-event-start-time
-                              #:modify-instance-event-start-time-request
-                              #:modify-instance-event-start-time-result
                               #:modify-instance-event-window
-                              #:modify-instance-event-window-request
-                              #:modify-instance-event-window-result
                               #:modify-instance-maintenance-options
-                              #:modify-instance-maintenance-options-request
-                              #:modify-instance-maintenance-options-result
                               #:modify-instance-metadata-defaults
-                              #:modify-instance-metadata-defaults-request
-                              #:modify-instance-metadata-defaults-result
                               #:modify-instance-metadata-options
-                              #:modify-instance-metadata-options-request
-                              #:modify-instance-metadata-options-result
                               #:modify-instance-network-performance-options
-                              #:modify-instance-network-performance-request
-                              #:modify-instance-network-performance-result
-                              #:modify-instance-placement
-                              #:modify-instance-placement-request
-                              #:modify-instance-placement-result #:modify-ipam
-                              #:modify-ipam-pool #:modify-ipam-pool-request
-                              #:modify-ipam-pool-result #:modify-ipam-request
-                              #:modify-ipam-resource-cidr
-                              #:modify-ipam-resource-cidr-request
-                              #:modify-ipam-resource-cidr-result
+                              #:modify-instance-placement #:modify-ipam
+                              #:modify-ipam-pool #:modify-ipam-resource-cidr
                               #:modify-ipam-resource-discovery
-                              #:modify-ipam-resource-discovery-request
-                              #:modify-ipam-resource-discovery-result
-                              #:modify-ipam-result #:modify-ipam-scope
-                              #:modify-ipam-scope-request
-                              #:modify-ipam-scope-result
-                              #:modify-launch-template
-                              #:modify-launch-template-request
-                              #:modify-launch-template-result
+                              #:modify-ipam-scope #:modify-launch-template
                               #:modify-local-gateway-route
-                              #:modify-local-gateway-route-request
-                              #:modify-local-gateway-route-result
                               #:modify-managed-prefix-list
-                              #:modify-managed-prefix-list-request
-                              #:modify-managed-prefix-list-result
                               #:modify-network-interface-attribute
-                              #:modify-network-interface-attribute-request
                               #:modify-private-dns-name-options
-                              #:modify-private-dns-name-options-request
-                              #:modify-private-dns-name-options-result
                               #:modify-public-ip-dns-name-options
-                              #:modify-public-ip-dns-name-options-request
-                              #:modify-public-ip-dns-name-options-result
-                              #:modify-reserved-instances
-                              #:modify-reserved-instances-request
-                              #:modify-reserved-instances-result
-                              #:modify-route-server
-                              #:modify-route-server-request
-                              #:modify-route-server-result
+                              #:modify-reserved-instances #:modify-route-server
                               #:modify-security-group-rules
-                              #:modify-security-group-rules-request
-                              #:modify-security-group-rules-result
                               #:modify-snapshot-attribute
-                              #:modify-snapshot-attribute-request
                               #:modify-snapshot-tier
-                              #:modify-snapshot-tier-request
-                              #:modify-snapshot-tier-result
                               #:modify-spot-fleet-request
-                              #:modify-spot-fleet-request-request
-                              #:modify-spot-fleet-request-response
                               #:modify-subnet-attribute
-                              #:modify-subnet-attribute-request
                               #:modify-traffic-mirror-filter-network-services
-                              #:modify-traffic-mirror-filter-network-services-request
-                              #:modify-traffic-mirror-filter-network-services-result
                               #:modify-traffic-mirror-filter-rule
-                              #:modify-traffic-mirror-filter-rule-request
-                              #:modify-traffic-mirror-filter-rule-result
                               #:modify-traffic-mirror-session
-                              #:modify-traffic-mirror-session-request
-                              #:modify-traffic-mirror-session-result
                               #:modify-transit-gateway
                               #:modify-transit-gateway-options
                               #:modify-transit-gateway-prefix-list-reference
-                              #:modify-transit-gateway-prefix-list-reference-request
-                              #:modify-transit-gateway-prefix-list-reference-result
-                              #:modify-transit-gateway-request
-                              #:modify-transit-gateway-result
                               #:modify-transit-gateway-vpc-attachment
-                              #:modify-transit-gateway-vpc-attachment-request
                               #:modify-transit-gateway-vpc-attachment-request-options
-                              #:modify-transit-gateway-vpc-attachment-result
                               #:modify-verified-access-endpoint
                               #:modify-verified-access-endpoint-cidr-options
                               #:modify-verified-access-endpoint-eni-options
                               #:modify-verified-access-endpoint-load-balancer-options
                               #:modify-verified-access-endpoint-policy
-                              #:modify-verified-access-endpoint-policy-request
-                              #:modify-verified-access-endpoint-policy-result
                               #:modify-verified-access-endpoint-port-range
                               #:modify-verified-access-endpoint-port-range-list
                               #:modify-verified-access-endpoint-rds-options
-                              #:modify-verified-access-endpoint-request
-                              #:modify-verified-access-endpoint-result
                               #:modify-verified-access-endpoint-subnet-id-list
                               #:modify-verified-access-group
                               #:modify-verified-access-group-policy
-                              #:modify-verified-access-group-policy-request
-                              #:modify-verified-access-group-policy-result
-                              #:modify-verified-access-group-request
-                              #:modify-verified-access-group-result
                               #:modify-verified-access-instance
                               #:modify-verified-access-instance-logging-configuration
-                              #:modify-verified-access-instance-logging-configuration-request
-                              #:modify-verified-access-instance-logging-configuration-result
-                              #:modify-verified-access-instance-request
-                              #:modify-verified-access-instance-result
                               #:modify-verified-access-native-application-oidc-options
                               #:modify-verified-access-trust-provider
                               #:modify-verified-access-trust-provider-device-options
                               #:modify-verified-access-trust-provider-oidc-options
-                              #:modify-verified-access-trust-provider-request
-                              #:modify-verified-access-trust-provider-result
                               #:modify-volume #:modify-volume-attribute
-                              #:modify-volume-attribute-request
-                              #:modify-volume-request #:modify-volume-result
                               #:modify-vpc-attribute
-                              #:modify-vpc-attribute-request
                               #:modify-vpc-block-public-access-exclusion
-                              #:modify-vpc-block-public-access-exclusion-request
-                              #:modify-vpc-block-public-access-exclusion-result
                               #:modify-vpc-block-public-access-options
-                              #:modify-vpc-block-public-access-options-request
-                              #:modify-vpc-block-public-access-options-result
                               #:modify-vpc-endpoint
                               #:modify-vpc-endpoint-connection-notification
-                              #:modify-vpc-endpoint-connection-notification-request
-                              #:modify-vpc-endpoint-connection-notification-result
-                              #:modify-vpc-endpoint-request
-                              #:modify-vpc-endpoint-result
                               #:modify-vpc-endpoint-service-configuration
-                              #:modify-vpc-endpoint-service-configuration-request
-                              #:modify-vpc-endpoint-service-configuration-result
                               #:modify-vpc-endpoint-service-payer-responsibility
-                              #:modify-vpc-endpoint-service-payer-responsibility-request
-                              #:modify-vpc-endpoint-service-payer-responsibility-result
                               #:modify-vpc-endpoint-service-permissions
-                              #:modify-vpc-endpoint-service-permissions-request
-                              #:modify-vpc-endpoint-service-permissions-result
                               #:modify-vpc-peering-connection-options
-                              #:modify-vpc-peering-connection-options-request
-                              #:modify-vpc-peering-connection-options-result
-                              #:modify-vpc-tenancy #:modify-vpc-tenancy-request
-                              #:modify-vpc-tenancy-result
-                              #:modify-vpn-connection
+                              #:modify-vpc-tenancy #:modify-vpn-connection
                               #:modify-vpn-connection-options
-                              #:modify-vpn-connection-options-request
-                              #:modify-vpn-connection-options-result
-                              #:modify-vpn-connection-request
-                              #:modify-vpn-connection-result
                               #:modify-vpn-tunnel-certificate
-                              #:modify-vpn-tunnel-certificate-request
-                              #:modify-vpn-tunnel-certificate-result
                               #:modify-vpn-tunnel-options
-                              #:modify-vpn-tunnel-options-request
-                              #:modify-vpn-tunnel-options-result
                               #:modify-vpn-tunnel-options-specification
-                              #:monitor-instances #:monitor-instances-request
-                              #:monitor-instances-result #:monitoring
+                              #:monitor-instances #:monitoring
                               #:monitoring-state #:move-address-to-vpc
-                              #:move-address-to-vpc-request
-                              #:move-address-to-vpc-result
                               #:move-byoip-cidr-to-ipam
-                              #:move-byoip-cidr-to-ipam-request
-                              #:move-byoip-cidr-to-ipam-result
                               #:move-capacity-reservation-instances
-                              #:move-capacity-reservation-instances-request
-                              #:move-capacity-reservation-instances-result
                               #:move-status #:moving-address-status
                               #:moving-address-status-set
                               #:multicast-support-value #:nat-gateway
@@ -2825,18 +1682,9 @@
                               #:propagating-vgw #:propagating-vgw-list
                               #:protocol #:protocol-int #:protocol-int-list
                               #:protocol-list #:protocol-value
-                              #:provision-byoip-cidr
-                              #:provision-byoip-cidr-request
-                              #:provision-byoip-cidr-result
-                              #:provision-ipam-byoasn
-                              #:provision-ipam-byoasn-request
-                              #:provision-ipam-byoasn-result
+                              #:provision-byoip-cidr #:provision-ipam-byoasn
                               #:provision-ipam-pool-cidr
-                              #:provision-ipam-pool-cidr-request
-                              #:provision-ipam-pool-cidr-result
                               #:provision-public-ipv4pool-cidr
-                              #:provision-public-ipv4pool-cidr-request
-                              #:provision-public-ipv4pool-cidr-result
                               #:provisioned-bandwidth #:ptr-update-status
                               #:public-ip-address #:public-ip-dns-name-options
                               #:public-ip-dns-option #:public-ip-string-list
@@ -2846,67 +1694,32 @@
                               #:public-ipv4pool-range-set #:public-ipv4pool-set
                               #:purchase #:purchase-capacity-block
                               #:purchase-capacity-block-extension
-                              #:purchase-capacity-block-extension-request
-                              #:purchase-capacity-block-extension-result
-                              #:purchase-capacity-block-request
-                              #:purchase-capacity-block-result
-                              #:purchase-host-reservation
-                              #:purchase-host-reservation-request
-                              #:purchase-host-reservation-result
-                              #:purchase-request #:purchase-request-set
+                              #:purchase-host-reservation #:purchase-request
+                              #:purchase-request-set
                               #:purchase-reserved-instances-offering
-                              #:purchase-reserved-instances-offering-request
-                              #:purchase-reserved-instances-offering-result
-                              #:purchase-scheduled-instances
-                              #:purchase-scheduled-instances-request
-                              #:purchase-scheduled-instances-result
-                              #:purchase-set #:purchased-scheduled-instance-set
+                              #:purchase-scheduled-instances #:purchase-set
+                              #:purchased-scheduled-instance-set
                               #:riproduct-description #:ramdisk-id
                               #:rds-db-cluster-arn #:rds-db-instance-arn
                               #:rds-db-proxy-arn #:reason-codes-list
-                              #:reboot-instances #:reboot-instances-request
-                              #:reboot-migration-support #:recurring-charge
-                              #:recurring-charge-frequency
+                              #:reboot-instances #:reboot-migration-support
+                              #:recurring-charge #:recurring-charge-frequency
                               #:recurring-charges-list
                               #:referenced-security-group #:region
                               #:region-list #:region-name-string-list
                               #:region-names #:regional-summary
                               #:regional-summary-list #:register-image
-                              #:register-image-request #:register-image-result
                               #:register-instance-event-notification-attributes
-                              #:register-instance-event-notification-attributes-request
-                              #:register-instance-event-notification-attributes-result
                               #:register-instance-tag-attribute-request
                               #:register-transit-gateway-multicast-group-members
-                              #:register-transit-gateway-multicast-group-members-request
-                              #:register-transit-gateway-multicast-group-members-result
                               #:register-transit-gateway-multicast-group-sources
-                              #:register-transit-gateway-multicast-group-sources-request
-                              #:register-transit-gateway-multicast-group-sources-result
                               #:reject-capacity-reservation-billing-ownership
-                              #:reject-capacity-reservation-billing-ownership-request
-                              #:reject-capacity-reservation-billing-ownership-result
                               #:reject-transit-gateway-multicast-domain-associations
-                              #:reject-transit-gateway-multicast-domain-associations-request
-                              #:reject-transit-gateway-multicast-domain-associations-result
                               #:reject-transit-gateway-peering-attachment
-                              #:reject-transit-gateway-peering-attachment-request
-                              #:reject-transit-gateway-peering-attachment-result
                               #:reject-transit-gateway-vpc-attachment
-                              #:reject-transit-gateway-vpc-attachment-request
-                              #:reject-transit-gateway-vpc-attachment-result
                               #:reject-vpc-endpoint-connections
-                              #:reject-vpc-endpoint-connections-request
-                              #:reject-vpc-endpoint-connections-result
-                              #:reject-vpc-peering-connection
-                              #:reject-vpc-peering-connection-request
-                              #:reject-vpc-peering-connection-result
-                              #:release-address #:release-address-request
-                              #:release-hosts #:release-hosts-request
-                              #:release-hosts-result
-                              #:release-ipam-pool-allocation
-                              #:release-ipam-pool-allocation-request
-                              #:release-ipam-pool-allocation-result
+                              #:reject-vpc-peering-connection #:release-address
+                              #:release-hosts #:release-ipam-pool-allocation
                               #:remove-ipam-operating-region
                               #:remove-ipam-operating-region-set
                               #:remove-ipam-organizational-unit-exclusion
@@ -2914,34 +1727,19 @@
                               #:remove-prefix-list-entries
                               #:remove-prefix-list-entry
                               #:replace-iam-instance-profile-association
-                              #:replace-iam-instance-profile-association-request
-                              #:replace-iam-instance-profile-association-result
                               #:replace-image-criteria-in-allowed-images-settings
-                              #:replace-image-criteria-in-allowed-images-settings-request
-                              #:replace-image-criteria-in-allowed-images-settings-result
                               #:replace-network-acl-association
-                              #:replace-network-acl-association-request
-                              #:replace-network-acl-association-result
                               #:replace-network-acl-entry
-                              #:replace-network-acl-entry-request
                               #:replace-root-volume-task
                               #:replace-root-volume-task-id
                               #:replace-root-volume-task-ids
                               #:replace-root-volume-task-state
                               #:replace-root-volume-tasks #:replace-route
-                              #:replace-route-request
                               #:replace-route-table-association
-                              #:replace-route-table-association-request
-                              #:replace-route-table-association-result
                               #:replace-transit-gateway-route
-                              #:replace-transit-gateway-route-request
-                              #:replace-transit-gateway-route-result
-                              #:replace-vpn-tunnel #:replace-vpn-tunnel-request
-                              #:replace-vpn-tunnel-result
-                              #:replacement-strategy
+                              #:replace-vpn-tunnel #:replacement-strategy
                               #:report-instance-reason-codes
                               #:report-instance-status
-                              #:report-instance-status-request
                               #:report-instance-status-request-description
                               #:report-state #:report-status-type
                               #:request-filter-port-range
@@ -2950,11 +1748,7 @@
                               #:request-ipam-resource-tag
                               #:request-ipam-resource-tag-list
                               #:request-launch-template-data
-                              #:request-spot-fleet #:request-spot-fleet-request
-                              #:request-spot-fleet-response
-                              #:request-spot-instances
-                              #:request-spot-instances-request
-                              #:request-spot-instances-result
+                              #:request-spot-fleet #:request-spot-instances
                               #:request-spot-launch-specification
                               #:request-spot-launch-specification-security-group-id-list
                               #:request-spot-launch-specification-security-group-list
@@ -2987,24 +1781,14 @@
                               #:reserved-instances-offering-id-string-list
                               #:reserved-instances-offering-list
                               #:reserved-intances-ids #:reset-address-attribute
-                              #:reset-address-attribute-request
-                              #:reset-address-attribute-result
                               #:reset-ebs-default-kms-key-id
-                              #:reset-ebs-default-kms-key-id-request
-                              #:reset-ebs-default-kms-key-id-result
                               #:reset-fpga-image-attribute
                               #:reset-fpga-image-attribute-name
-                              #:reset-fpga-image-attribute-request
-                              #:reset-fpga-image-attribute-result
                               #:reset-image-attribute
                               #:reset-image-attribute-name
-                              #:reset-image-attribute-request
                               #:reset-instance-attribute
-                              #:reset-instance-attribute-request
                               #:reset-network-interface-attribute
-                              #:reset-network-interface-attribute-request
-                              #:reset-snapshot-attribute
-                              #:reset-snapshot-attribute-request #:resource-arn
+                              #:reset-snapshot-attribute #:resource-arn
                               #:resource-configuration-arn #:resource-id-list
                               #:resource-list #:resource-statement
                               #:resource-statement-request #:resource-type
@@ -3013,32 +1797,16 @@
                               #:response-launch-template-data
                               #:restorable-by-string-list
                               #:restore-address-to-classic
-                              #:restore-address-to-classic-request
-                              #:restore-address-to-classic-result
                               #:restore-image-from-recycle-bin
-                              #:restore-image-from-recycle-bin-request
-                              #:restore-image-from-recycle-bin-result
                               #:restore-managed-prefix-list-version
-                              #:restore-managed-prefix-list-version-request
-                              #:restore-managed-prefix-list-version-result
                               #:restore-snapshot-from-recycle-bin
-                              #:restore-snapshot-from-recycle-bin-request
-                              #:restore-snapshot-from-recycle-bin-result
                               #:restore-snapshot-tier
-                              #:restore-snapshot-tier-request
                               #:restore-snapshot-tier-request-temporary-restore-days
-                              #:restore-snapshot-tier-result #:result-range
-                              #:retention-period-request-days
+                              #:result-range #:retention-period-request-days
                               #:retention-period-response-days
                               #:revoke-client-vpn-ingress
-                              #:revoke-client-vpn-ingress-request
-                              #:revoke-client-vpn-ingress-result
                               #:revoke-security-group-egress
-                              #:revoke-security-group-egress-request
-                              #:revoke-security-group-egress-result
                               #:revoke-security-group-ingress
-                              #:revoke-security-group-ingress-request
-                              #:revoke-security-group-ingress-result
                               #:revoked-security-group-rule
                               #:revoked-security-group-rule-list #:role-id
                               #:root-device-type #:root-device-type-list
@@ -3089,10 +1857,8 @@
                               #:rule-group-type-pair-list #:rule-option
                               #:rule-option-list #:run-instances
                               #:run-instances-monitoring-enabled
-                              #:run-instances-request #:run-instances-user-data
-                              #:run-scheduled-instances
-                              #:run-scheduled-instances-request
-                              #:run-scheduled-instances-result #:s3object-tag
+                              #:run-instances-user-data
+                              #:run-scheduled-instances #:s3object-tag
                               #:s3object-tag-list #:s3storage
                               #:s3storage-upload-policy-signature #:ssetype
                               #:scheduled-instance
@@ -3117,15 +1883,9 @@
                               #:scheduled-instances-private-ip-address-config
                               #:scheduled-instances-security-group-id-set
                               #:search-local-gateway-routes
-                              #:search-local-gateway-routes-request
-                              #:search-local-gateway-routes-result
                               #:search-transit-gateway-multicast-groups
-                              #:search-transit-gateway-multicast-groups-request
-                              #:search-transit-gateway-multicast-groups-result
-                              #:search-transit-gateway-routes
-                              #:search-transit-gateway-routes-request
-                              #:search-transit-gateway-routes-result
-                              #:security-group #:security-group-for-vpc
+                              #:search-transit-gateway-routes #:security-group
+                              #:security-group-for-vpc
                               #:security-group-for-vpc-list #:security-group-id
                               #:security-group-id-list #:security-group-id-set
                               #:security-group-id-string-list
@@ -3148,7 +1908,6 @@
                               #:security-group-vpc-association-list
                               #:security-group-vpc-association-state
                               #:self-service-portal #:send-diagnostic-interrupt
-                              #:send-diagnostic-interrupt-request
                               #:sensitive-mac-credentials #:sensitive-url
                               #:sensitive-user-data #:service-configuration
                               #:service-configuration-set
@@ -3207,26 +1966,15 @@
                               #:stale-ip-permission-set #:stale-security-group
                               #:stale-security-group-set
                               #:start-declarative-policies-report
-                              #:start-declarative-policies-report-request
-                              #:start-declarative-policies-report-result
-                              #:start-instances #:start-instances-request
-                              #:start-instances-result
+                              #:start-instances
                               #:start-network-insights-access-scope-analysis
-                              #:start-network-insights-access-scope-analysis-request
-                              #:start-network-insights-access-scope-analysis-result
                               #:start-network-insights-analysis
-                              #:start-network-insights-analysis-request
-                              #:start-network-insights-analysis-result
                               #:start-vpc-endpoint-service-private-dns-verification
-                              #:start-vpc-endpoint-service-private-dns-verification-request
-                              #:start-vpc-endpoint-service-private-dns-verification-result
                               #:state #:state-reason
                               #:static-sources-support-value #:statistic-type
                               #:status #:status-name #:status-type
-                              #:stop-instances #:stop-instances-request
-                              #:stop-instances-result #:storage
-                              #:storage-location #:storage-tier
-                              #:store-image-task-result
+                              #:stop-instances #:storage #:storage-location
+                              #:storage-tier #:store-image-task-result
                               #:store-image-task-result-set #:string
                               #:string-list #:string-type #:subnet
                               #:subnet-association #:subnet-association-list
@@ -3269,13 +2017,9 @@
                               #:target-reservation-value-set
                               #:target-storage-tier #:telemetry-status
                               #:tenancy #:terminate-client-vpn-connections
-                              #:terminate-client-vpn-connections-request
-                              #:terminate-client-vpn-connections-result
                               #:terminate-connection-status
                               #:terminate-connection-status-set
-                              #:terminate-instances
-                              #:terminate-instances-request
-                              #:terminate-instances-result #:threads-per-core
+                              #:terminate-instances #:threads-per-core
                               #:threads-per-core-list
                               #:through-resources-statement
                               #:through-resources-statement-list
@@ -3417,18 +2161,10 @@
                               #:trust-provider-type #:tunnel-inside-ip-version
                               #:tunnel-option #:tunnel-options-list
                               #:unassign-ipv6addresses
-                              #:unassign-ipv6addresses-request
-                              #:unassign-ipv6addresses-result
                               #:unassign-private-ip-addresses
-                              #:unassign-private-ip-addresses-request
                               #:unassign-private-nat-gateway-address
-                              #:unassign-private-nat-gateway-address-request
-                              #:unassign-private-nat-gateway-address-result
                               #:unlimited-supported-instance-family
-                              #:unlock-snapshot #:unlock-snapshot-request
-                              #:unlock-snapshot-result #:unmonitor-instances
-                              #:unmonitor-instances-request
-                              #:unmonitor-instances-result
+                              #:unlock-snapshot #:unmonitor-instances
                               #:unsuccessful-instance-credit-specification-error-code
                               #:unsuccessful-instance-credit-specification-item
                               #:unsuccessful-instance-credit-specification-item-error
@@ -3436,11 +2172,7 @@
                               #:unsuccessful-item #:unsuccessful-item-error
                               #:unsuccessful-item-list #:unsuccessful-item-set
                               #:update-security-group-rule-descriptions-egress
-                              #:update-security-group-rule-descriptions-egress-request
-                              #:update-security-group-rule-descriptions-egress-result
                               #:update-security-group-rule-descriptions-ingress
-                              #:update-security-group-rule-descriptions-ingress-request
-                              #:update-security-group-rule-descriptions-ingress-result
                               #:usage-class-type #:usage-class-type-list
                               #:user-bucket #:user-bucket-details #:user-data
                               #:user-group-string-list #:user-id-group-pair
@@ -3588,10 +2320,8 @@
                               #:vpn-tunnel-options-specification
                               #:vpn-tunnel-options-specifications-list
                               #:vpn-tunnel-provisioning-status #:week-day
-                              #:withdraw-byoip-cidr
-                              #:withdraw-byoip-cidr-request
-                              #:withdraw-byoip-cidr-result
-                              #:zone-id-string-list #:zone-name-string-list
+                              #:withdraw-byoip-cidr #:zone-id-string-list
+                              #:zone-name-string-list
                               #:customer-gateway-configuration #:pre-shared-key
                               #:scope #:snapshot-tier-status-set
                               #:total-fpga-memory #:total-gpu-memory

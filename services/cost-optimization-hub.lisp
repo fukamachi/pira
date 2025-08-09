@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/cost-optimization-hub (:use)
-                             (:export #:access-denied-exception
-                              #:account-enrollment-status
+                             (:export #:account-enrollment-status
                               #:account-enrollment-statuses #:account-id
                               #:account-id-list #:action-type
                               #:action-type-list #:allocation-strategy
@@ -26,25 +25,14 @@
                               #:elasti-cache-reserved-instances
                               #:elasti-cache-reserved-instances-configuration
                               #:enrollment-status #:estimated-discounts
-                              #:filter #:get-preferences
-                              #:get-preferences-request
-                              #:get-preferences-response #:get-recommendation
-                              #:get-recommendation-request
-                              #:get-recommendation-response
+                              #:filter #:get-preferences #:get-recommendation
                               #:implementation-effort
                               #:implementation-effort-list
-                              #:instance-configuration
-                              #:internal-server-exception #:lambda-function
+                              #:instance-configuration #:lambda-function
                               #:lambda-function-configuration
                               #:list-enrollment-statuses
-                              #:list-enrollment-statuses-request
-                              #:list-enrollment-statuses-response
                               #:list-recommendation-summaries
-                              #:list-recommendation-summaries-request
-                              #:list-recommendation-summaries-response
-                              #:list-recommendations
-                              #:list-recommendations-request
-                              #:list-recommendations-response #:max-results
+                              #:list-recommendations #:max-results
                               #:member-account-discount-visibility
                               #:memory-db-reserved-instances
                               #:memory-db-reserved-instances-configuration
@@ -69,22 +57,18 @@
                               #:reserved-instances-cost-calculation
                               #:reserved-instances-pricing #:resource-arn-list
                               #:resource-cost-calculation #:resource-details
-                              #:resource-id-list #:resource-not-found-exception
-                              #:resource-pricing #:resource-type
-                              #:resource-type-list #:sage-maker-savings-plans
+                              #:resource-id-list #:resource-pricing
+                              #:resource-type #:resource-type-list
+                              #:sage-maker-savings-plans
                               #:sage-maker-savings-plans-configuration
                               #:savings-estimation-mode
                               #:savings-plans-cost-calculation
                               #:savings-plans-pricing #:source
                               #:storage-configuration #:summary-metrics
                               #:summary-metrics-list #:summary-metrics-result
-                              #:tag #:tag-list #:term #:throttling-exception
-                              #:update-enrollment-status
-                              #:update-enrollment-status-request
-                              #:update-enrollment-status-response
-                              #:update-preferences #:update-preferences-request
-                              #:update-preferences-response #:usage
-                              #:usage-list #:validation-exception
+                              #:tag #:tag-list #:term
+                              #:update-enrollment-status #:update-preferences
+                              #:usage #:usage-list
                               #:validation-exception-detail
                               #:validation-exception-details
                               #:validation-exception-reason))

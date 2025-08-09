@@ -1,13 +1,9 @@
 (uiop/package:define-package #:pira/lambda (:use)
                              (:export #:awsgir-api-service #:account-limit
                               #:account-usage #:action
-                              #:add-layer-version-permission
-                              #:add-layer-version-permission-request
-                              #:add-layer-version-permission-response
-                              #:add-permission #:add-permission-request
-                              #:add-permission-response #:additional-version
-                              #:additional-version-weights #:alias
-                              #:alias-configuration #:alias-list
+                              #:add-layer-version-permission #:add-permission
+                              #:additional-version #:additional-version-weights
+                              #:alias #:alias-configuration #:alias-list
                               #:alias-routing-configuration #:allow-credentials
                               #:allow-methods-list #:allow-origins-list
                               #:allowed-publishers
@@ -19,54 +15,25 @@
                               #:code-signing-config-arn
                               #:code-signing-config-id
                               #:code-signing-config-list
-                              #:code-signing-config-not-found-exception
                               #:code-signing-config-resource
                               #:code-signing-policies #:code-signing-policy
-                              #:code-storage-exceeded-exception
-                              #:code-verification-failed-exception
                               #:collection-name #:compatible-architectures
                               #:compatible-runtimes #:concurrency #:cors
-                              #:create-alias #:create-alias-request
-                              #:create-code-signing-config
-                              #:create-code-signing-config-request
-                              #:create-code-signing-config-response
-                              #:create-event-source-mapping
-                              #:create-event-source-mapping-request
-                              #:create-function #:create-function-request
-                              #:create-function-url-config
-                              #:create-function-url-config-request
-                              #:create-function-url-config-response
-                              #:database-name #:date #:dead-letter-config
-                              #:delete-alias #:delete-alias-request
+                              #:create-alias #:create-code-signing-config
+                              #:create-event-source-mapping #:create-function
+                              #:create-function-url-config #:database-name
+                              #:date #:dead-letter-config #:delete-alias
                               #:delete-code-signing-config
-                              #:delete-code-signing-config-request
-                              #:delete-code-signing-config-response
-                              #:delete-event-source-mapping
-                              #:delete-event-source-mapping-request
-                              #:delete-function
+                              #:delete-event-source-mapping #:delete-function
                               #:delete-function-code-signing-config
-                              #:delete-function-code-signing-config-request
                               #:delete-function-concurrency
-                              #:delete-function-concurrency-request
                               #:delete-function-event-invoke-config
-                              #:delete-function-event-invoke-config-request
-                              #:delete-function-request
                               #:delete-function-url-config
-                              #:delete-function-url-config-request
                               #:delete-layer-version
-                              #:delete-layer-version-request
                               #:delete-provisioned-concurrency-config
-                              #:delete-provisioned-concurrency-config-request
                               #:description #:destination-arn
                               #:destination-config
-                              #:document-dbevent-source-config
-                              #:ec2access-denied-exception
-                              #:ec2throttled-exception
-                              #:ec2unexpected-exception #:efsioexception
-                              #:efsmount-connectivity-exception
-                              #:efsmount-failure-exception
-                              #:efsmount-timeout-exception
-                              #:enilimit-reached-exception #:enabled
+                              #:document-dbevent-source-config #:enabled
                               #:end-point-type #:endpoint #:endpoint-lists
                               #:endpoints #:environment #:environment-error
                               #:environment-response
@@ -99,68 +66,29 @@
                               #:function-url-config-list
                               #:function-url-qualifier #:function-version
                               #:function-version-resource
-                              #:get-account-settings
-                              #:get-account-settings-request
-                              #:get-account-settings-response #:get-alias
-                              #:get-alias-request #:get-code-signing-config
-                              #:get-code-signing-config-request
-                              #:get-code-signing-config-response
-                              #:get-event-source-mapping
-                              #:get-event-source-mapping-request #:get-function
+                              #:get-account-settings #:get-alias
+                              #:get-code-signing-config
+                              #:get-event-source-mapping #:get-function
                               #:get-function-code-signing-config
-                              #:get-function-code-signing-config-request
-                              #:get-function-code-signing-config-response
                               #:get-function-concurrency
-                              #:get-function-concurrency-request
-                              #:get-function-concurrency-response
                               #:get-function-configuration
-                              #:get-function-configuration-request
                               #:get-function-event-invoke-config
-                              #:get-function-event-invoke-config-request
                               #:get-function-recursion-config
-                              #:get-function-recursion-config-request
-                              #:get-function-recursion-config-response
-                              #:get-function-request #:get-function-response
-                              #:get-function-url-config
-                              #:get-function-url-config-request
-                              #:get-function-url-config-response
-                              #:get-layer-version #:get-layer-version-by-arn
-                              #:get-layer-version-by-arn-request
+                              #:get-function-url-config #:get-layer-version
+                              #:get-layer-version-by-arn
                               #:get-layer-version-policy
-                              #:get-layer-version-policy-request
-                              #:get-layer-version-policy-response
-                              #:get-layer-version-request
                               #:get-layer-version-response #:get-policy
-                              #:get-policy-request #:get-policy-response
                               #:get-provisioned-concurrency-config
-                              #:get-provisioned-concurrency-config-request
-                              #:get-provisioned-concurrency-config-response
-                              #:get-runtime-management-config
-                              #:get-runtime-management-config-request
-                              #:get-runtime-management-config-response
-                              #:handler #:header #:headers-list #:http-status
+                              #:get-runtime-management-config #:handler
+                              #:header #:headers-list #:http-status
                               #:image-config #:image-config-error
                               #:image-config-response #:integer
-                              #:invalid-code-signature-exception
-                              #:invalid-parameter-value-exception
-                              #:invalid-request-content-exception
-                              #:invalid-runtime-exception
-                              #:invalid-security-group-idexception
-                              #:invalid-subnet-idexception
-                              #:invalid-zip-file-exception #:invocation-request
-                              #:invocation-response #:invocation-type #:invoke
-                              #:invoke-async #:invoke-async-request
-                              #:invoke-async-response #:invoke-mode
-                              #:invoke-response-stream-update
+                              #:invocation-type #:invoke #:invoke-async
+                              #:invoke-mode #:invoke-response-stream-update
                               #:invoke-with-response-stream
                               #:invoke-with-response-stream-complete-event
-                              #:invoke-with-response-stream-request
-                              #:invoke-with-response-stream-response
                               #:invoke-with-response-stream-response-event
-                              #:kmsaccess-denied-exception
-                              #:kmsdisabled-exception
-                              #:kmsinvalid-state-exception #:kmskey-arn
-                              #:kmsnot-found-exception
+                              #:kmskey-arn
                               #:kafka-schema-registry-access-config
                               #:kafka-schema-registry-access-config-list
                               #:kafka-schema-registry-auth-type
@@ -180,35 +108,14 @@
                               #:layer-versions-list-item #:layers-list
                               #:layers-list-item #:layers-reference-list
                               #:license-info #:list-aliases
-                              #:list-aliases-request #:list-aliases-response
                               #:list-code-signing-configs
-                              #:list-code-signing-configs-request
-                              #:list-code-signing-configs-response
                               #:list-event-source-mappings
-                              #:list-event-source-mappings-request
-                              #:list-event-source-mappings-response
                               #:list-function-event-invoke-configs
-                              #:list-function-event-invoke-configs-request
-                              #:list-function-event-invoke-configs-response
-                              #:list-function-url-configs
-                              #:list-function-url-configs-request
-                              #:list-function-url-configs-response
-                              #:list-functions
+                              #:list-function-url-configs #:list-functions
                               #:list-functions-by-code-signing-config
-                              #:list-functions-by-code-signing-config-request
-                              #:list-functions-by-code-signing-config-response
-                              #:list-functions-request
-                              #:list-functions-response #:list-layer-versions
-                              #:list-layer-versions-request
-                              #:list-layer-versions-response #:list-layers
-                              #:list-layers-request #:list-layers-response
+                              #:list-layer-versions #:list-layers
                               #:list-provisioned-concurrency-configs
-                              #:list-provisioned-concurrency-configs-request
-                              #:list-provisioned-concurrency-configs-response
-                              #:list-tags #:list-tags-request
-                              #:list-tags-response #:list-versions-by-function
-                              #:list-versions-by-function-request
-                              #:list-versions-by-function-response
+                              #:list-tags #:list-versions-by-function
                               #:local-mount-path #:log-format #:log-group
                               #:log-type #:logging-config #:long
                               #:master-region #:max-age
@@ -231,47 +138,24 @@
                               #:nullable-boolean #:on-failure #:on-success
                               #:organization-id #:origin #:package-type
                               #:parallelization-factor #:pattern #:permission
-                              #:policy-length-exceeded-exception
-                              #:positive-integer
-                              #:precondition-failed-exception #:principal
-                              #:principal-org-id
+                              #:positive-integer #:principal #:principal-org-id
                               #:provisioned-concurrency-config
                               #:provisioned-concurrency-config-list
                               #:provisioned-concurrency-config-list-item
-                              #:provisioned-concurrency-config-not-found-exception
                               #:provisioned-concurrency-status-enum
                               #:provisioned-poller-config
-                              #:publish-layer-version
-                              #:publish-layer-version-request
-                              #:publish-layer-version-response
-                              #:publish-version #:publish-version-request
+                              #:publish-layer-version #:publish-version
                               #:put-function-code-signing-config
-                              #:put-function-code-signing-config-request
-                              #:put-function-code-signing-config-response
                               #:put-function-concurrency
-                              #:put-function-concurrency-request
                               #:put-function-event-invoke-config
-                              #:put-function-event-invoke-config-request
                               #:put-function-recursion-config
-                              #:put-function-recursion-config-request
-                              #:put-function-recursion-config-response
                               #:put-provisioned-concurrency-config
-                              #:put-provisioned-concurrency-config-request
-                              #:put-provisioned-concurrency-config-response
-                              #:put-runtime-management-config
-                              #:put-runtime-management-config-request
-                              #:put-runtime-management-config-response
-                              #:qualifier #:queue #:queues
-                              #:recursive-invocation-exception #:recursive-loop
+                              #:put-runtime-management-config #:qualifier
+                              #:queue #:queues #:recursive-loop
                               #:remove-layer-version-permission
-                              #:remove-layer-version-permission-request
-                              #:remove-permission #:remove-permission-request
-                              #:request-too-large-exception
+                              #:remove-permission
                               #:reserved-concurrent-executions #:resource-arn
-                              #:resource-conflict-exception
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:resource-not-ready-exception #:resource-policy
+                              #:resource-policy
                               #:response-streaming-invocation-type #:role-arn
                               #:runtime #:runtime-version-arn
                               #:runtime-version-config #:runtime-version-error
@@ -281,50 +165,33 @@
                               #:schema-registry-uri #:security-group-id
                               #:security-group-ids #:self-managed-event-source
                               #:self-managed-kafka-event-source-config
-                              #:sensitive-string #:service-exception
-                              #:signing-profile-version-arns #:snap-start
-                              #:snap-start-apply-on #:snap-start-exception
-                              #:snap-start-not-ready-exception
+                              #:sensitive-string #:signing-profile-version-arns
+                              #:snap-start #:snap-start-apply-on
                               #:snap-start-optimization-status
                               #:snap-start-response
-                              #:snap-start-timeout-exception
                               #:source-access-configuration
                               #:source-access-configurations
                               #:source-access-type #:source-owner #:state
                               #:state-reason #:state-reason-code #:statement-id
-                              #:string #:string-list
-                              #:subnet-ipaddress-limit-reached-exception
-                              #:subnet-id #:subnet-ids #:system-log-level
-                              #:tag-key #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-value
-                              #:taggable-resource #:tags #:tags-error
-                              #:tags-error-code #:tags-error-message
-                              #:throttle-reason #:timeout #:timestamp
-                              #:too-many-requests-exception #:topic #:topics
-                              #:tracing-config #:tracing-config-response
-                              #:tracing-mode #:tumbling-window-in-seconds #:uri
+                              #:string #:string-list #:subnet-id #:subnet-ids
+                              #:system-log-level #:tag-key #:tag-key-list
+                              #:tag-resource #:tag-value #:taggable-resource
+                              #:tags #:tags-error #:tags-error-code
+                              #:tags-error-message #:throttle-reason #:timeout
+                              #:timestamp #:topic #:topics #:tracing-config
+                              #:tracing-config-response #:tracing-mode
+                              #:tumbling-window-in-seconds #:uri
                               #:unqualified-function-name
                               #:unreserved-concurrent-executions
-                              #:unsupported-media-type-exception
-                              #:untag-resource #:untag-resource-request
-                              #:update-alias #:update-alias-request
+                              #:untag-resource #:update-alias
                               #:update-code-signing-config
-                              #:update-code-signing-config-request
-                              #:update-code-signing-config-response
                               #:update-event-source-mapping
-                              #:update-event-source-mapping-request
                               #:update-function-code
-                              #:update-function-code-request
                               #:update-function-configuration
-                              #:update-function-configuration-request
                               #:update-function-event-invoke-config
-                              #:update-function-event-invoke-config-request
-                              #:update-function-url-config
-                              #:update-function-url-config-request
-                              #:update-function-url-config-response
-                              #:update-runtime-on #:version #:vpc-config
-                              #:vpc-config-response #:vpc-id #:weight
-                              #:working-directory))
+                              #:update-function-url-config #:update-runtime-on
+                              #:version #:vpc-config #:vpc-config-response
+                              #:vpc-id #:weight #:working-directory))
 (common-lisp:in-package #:pira/lambda)
 
 (smithy/sdk/service:define-service awsgir-api-service :shape-name

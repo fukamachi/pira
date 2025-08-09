@@ -1,119 +1,44 @@
 (uiop/package:define-package #:pira/ram (:use)
                              (:export #:accept-resource-share-invitation
-                              #:accept-resource-share-invitation-request
-                              #:accept-resource-share-invitation-response
                               #:amazon-resource-sharing
                               #:associate-resource-share
                               #:associate-resource-share-permission
-                              #:associate-resource-share-permission-request
-                              #:associate-resource-share-permission-response
-                              #:associate-resource-share-request
-                              #:associate-resource-share-response
                               #:associated-permission
                               #:associated-permission-list #:boolean
-                              #:create-permission #:create-permission-request
-                              #:create-permission-response
-                              #:create-permission-version
-                              #:create-permission-version-request
-                              #:create-permission-version-response
-                              #:create-resource-share
-                              #:create-resource-share-request
-                              #:create-resource-share-response #:date-time
-                              #:delete-permission #:delete-permission-request
-                              #:delete-permission-response
-                              #:delete-permission-version
-                              #:delete-permission-version-request
-                              #:delete-permission-version-response
+                              #:create-permission #:create-permission-version
+                              #:create-resource-share #:date-time
+                              #:delete-permission #:delete-permission-version
                               #:delete-resource-share
-                              #:delete-resource-share-request
-                              #:delete-resource-share-response
                               #:disassociate-resource-share
                               #:disassociate-resource-share-permission
-                              #:disassociate-resource-share-permission-request
-                              #:disassociate-resource-share-permission-response
-                              #:disassociate-resource-share-request
-                              #:disassociate-resource-share-response
                               #:enable-sharing-with-aws-organization
-                              #:enable-sharing-with-aws-organization-request
-                              #:enable-sharing-with-aws-organization-response
-                              #:get-permission #:get-permission-request
-                              #:get-permission-response #:get-resource-policies
-                              #:get-resource-policies-request
-                              #:get-resource-policies-response
+                              #:get-permission #:get-resource-policies
                               #:get-resource-share-associations
-                              #:get-resource-share-associations-request
-                              #:get-resource-share-associations-response
                               #:get-resource-share-invitations
-                              #:get-resource-share-invitations-request
-                              #:get-resource-share-invitations-response
-                              #:get-resource-shares
-                              #:get-resource-shares-request
-                              #:get-resource-shares-response
-                              #:idempotent-parameter-mismatch-exception
-                              #:integer #:invalid-client-token-exception
-                              #:invalid-max-results-exception
-                              #:invalid-next-token-exception
-                              #:invalid-parameter-exception
-                              #:invalid-policy-exception
-                              #:invalid-resource-type-exception
-                              #:invalid-state-transition-exception
+                              #:get-resource-shares #:integer
                               #:list-pending-invitation-resources
-                              #:list-pending-invitation-resources-request
-                              #:list-pending-invitation-resources-response
                               #:list-permission-associations
-                              #:list-permission-associations-request
-                              #:list-permission-associations-response
-                              #:list-permission-versions
-                              #:list-permission-versions-request
-                              #:list-permission-versions-response
-                              #:list-permissions #:list-permissions-request
-                              #:list-permissions-response #:list-principals
-                              #:list-principals-request
-                              #:list-principals-response
+                              #:list-permission-versions #:list-permissions
+                              #:list-principals
                               #:list-replace-permission-associations-work
-                              #:list-replace-permission-associations-work-request
-                              #:list-replace-permission-associations-work-response
                               #:list-resource-share-permissions
-                              #:list-resource-share-permissions-request
-                              #:list-resource-share-permissions-response
-                              #:list-resource-types
-                              #:list-resource-types-request
-                              #:list-resource-types-response #:list-resources
-                              #:list-resources-request
-                              #:list-resources-response
-                              #:malformed-arn-exception
-                              #:malformed-policy-template-exception
-                              #:max-results
-                              #:missing-required-parameter-exception
-                              #:operation-not-permitted-exception
-                              #:permission-already-exists-exception
-                              #:permission-arn-list #:permission-feature-set
-                              #:permission-limit-exceeded-exception
-                              #:permission-name #:permission-status
-                              #:permission-type #:permission-type-filter
-                              #:permission-versions-limit-exceeded-exception
-                              #:policy #:policy-list #:principal
-                              #:principal-arn-or-id-list #:principal-list
+                              #:list-resource-types #:list-resources
+                              #:max-results #:permission-arn-list
+                              #:permission-feature-set #:permission-name
+                              #:permission-status #:permission-type
+                              #:permission-type-filter #:policy #:policy-list
+                              #:principal #:principal-arn-or-id-list
+                              #:principal-list
                               #:promote-permission-created-from-policy
-                              #:promote-permission-created-from-policy-request
-                              #:promote-permission-created-from-policy-response
                               #:promote-resource-share-created-from-policy
-                              #:promote-resource-share-created-from-policy-request
-                              #:promote-resource-share-created-from-policy-response
                               #:reject-resource-share-invitation
-                              #:reject-resource-share-invitation-request
-                              #:reject-resource-share-invitation-response
                               #:replace-permission-associations
-                              #:replace-permission-associations-request
-                              #:replace-permission-associations-response
                               #:replace-permission-associations-work
                               #:replace-permission-associations-work-id-list
                               #:replace-permission-associations-work-list
                               #:replace-permission-associations-work-status
-                              #:resource #:resource-arn-list
-                              #:resource-arn-not-found-exception
-                              #:resource-list #:resource-owner
-                              #:resource-region-scope
+                              #:resource #:resource-arn-list #:resource-list
+                              #:resource-owner #:resource-region-scope
                               #:resource-region-scope-filter #:resource-share
                               #:resource-share-arn-list
                               #:resource-share-association
@@ -122,39 +47,22 @@
                               #:resource-share-association-type
                               #:resource-share-feature-set
                               #:resource-share-invitation
-                              #:resource-share-invitation-already-accepted-exception
-                              #:resource-share-invitation-already-rejected-exception
                               #:resource-share-invitation-arn-list
-                              #:resource-share-invitation-arn-not-found-exception
-                              #:resource-share-invitation-expired-exception
                               #:resource-share-invitation-list
                               #:resource-share-invitation-status
-                              #:resource-share-limit-exceeded-exception
                               #:resource-share-list
                               #:resource-share-permission-detail
                               #:resource-share-permission-list
                               #:resource-share-permission-summary
                               #:resource-share-status #:resource-status
-                              #:server-internal-exception
                               #:service-name-and-resource-type
                               #:service-name-and-resource-type-list
-                              #:service-unavailable-exception
                               #:set-default-permission-version
-                              #:set-default-permission-version-request
-                              #:set-default-permission-version-response
                               #:source-arn-or-account-list #:string #:tag
                               #:tag-filter #:tag-filters #:tag-key
-                              #:tag-key-list #:tag-limit-exceeded-exception
-                              #:tag-list #:tag-policy-violation-exception
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:tag-value-list #:throttling-exception
-                              #:unknown-resource-exception
-                              #:unmatched-policy-permission-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-resource-share
-                              #:update-resource-share-request
-                              #:update-resource-share-response))
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:tag-value-list #:untag-resource
+                              #:update-resource-share))
 (common-lisp:in-package #:pira/ram)
 
 (smithy/sdk/service:define-service amazon-resource-sharing :shape-name

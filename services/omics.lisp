@@ -1,11 +1,7 @@
 (uiop/package:define-package #:pira/omics (:use)
                              (:export #:abort-multipart-read-set-upload
-                              #:abort-multipart-read-set-upload-request
-                              #:abort-multipart-read-set-upload-response
                               #:accelerators #:accept-share
-                              #:accept-share-request #:accept-share-response
-                              #:access-denied-exception #:access-log-location
-                              #:activate-read-set-filter
+                              #:access-log-location #:activate-read-set-filter
                               #:activate-read-set-job-item
                               #:activate-read-set-job-list
                               #:activate-read-set-source-item
@@ -24,79 +20,32 @@
                               #:annotation-store-version-items
                               #:annotation-type #:arn #:arn-list
                               #:aws-account-id #:batch-delete-read-set
-                              #:batch-delete-read-set-request
-                              #:batch-delete-read-set-response #:cache-behavior
-                              #:cancel-annotation-import-job
-                              #:cancel-annotation-import-request
-                              #:cancel-annotation-import-response #:cancel-run
-                              #:cancel-run-request #:cancel-variant-import-job
-                              #:cancel-variant-import-request
-                              #:cancel-variant-import-response #:client-token
-                              #:comment-char
+                              #:cache-behavior #:cancel-annotation-import-job
+                              #:cancel-run #:cancel-variant-import-job
+                              #:client-token #:comment-char
                               #:complete-multipart-read-set-upload
-                              #:complete-multipart-read-set-upload-request
-                              #:complete-multipart-read-set-upload-response
                               #:complete-read-set-upload-part-list
                               #:complete-read-set-upload-part-list-item
-                              #:completion-time #:conflict-exception
-                              #:connection-arn #:create-annotation-store
-                              #:create-annotation-store-request
-                              #:create-annotation-store-response
+                              #:completion-time #:connection-arn
+                              #:create-annotation-store
                               #:create-annotation-store-version
-                              #:create-annotation-store-version-request
-                              #:create-annotation-store-version-response
                               #:create-multipart-read-set-upload
-                              #:create-multipart-read-set-upload-request
-                              #:create-multipart-read-set-upload-response
-                              #:create-reference-store
-                              #:create-reference-store-request
-                              #:create-reference-store-response
-                              #:create-run-cache #:create-run-cache-request
-                              #:create-run-cache-response #:create-run-group
-                              #:create-run-group-request
-                              #:create-run-group-response
-                              #:create-sequence-store
-                              #:create-sequence-store-request
-                              #:create-sequence-store-response #:create-share
-                              #:create-share-request #:create-share-response
-                              #:create-variant-store
-                              #:create-variant-store-request
-                              #:create-variant-store-response #:create-workflow
-                              #:create-workflow-request
-                              #:create-workflow-response
-                              #:create-workflow-version
-                              #:create-workflow-version-request
-                              #:create-workflow-version-response
+                              #:create-reference-store #:create-run-cache
+                              #:create-run-group #:create-sequence-store
+                              #:create-share #:create-variant-store
+                              #:create-workflow #:create-workflow-version
                               #:creation-job-id #:creation-time #:creation-type
                               #:definition-repository
                               #:definition-repository-details
                               #:delete-annotation-store
-                              #:delete-annotation-store-request
-                              #:delete-annotation-store-response
                               #:delete-annotation-store-versions
-                              #:delete-annotation-store-versions-request
-                              #:delete-annotation-store-versions-response
-                              #:delete-reference #:delete-reference-request
-                              #:delete-reference-response
-                              #:delete-reference-store
-                              #:delete-reference-store-request
-                              #:delete-reference-store-response #:delete-run
-                              #:delete-run-cache #:delete-run-cache-request
-                              #:delete-run-group #:delete-run-group-request
-                              #:delete-run-request #:delete-s3access-policy
-                              #:delete-s3access-policy-request
-                              #:delete-s3access-policy-response
-                              #:delete-sequence-store
-                              #:delete-sequence-store-request
-                              #:delete-sequence-store-response #:delete-share
-                              #:delete-share-request #:delete-share-response
-                              #:delete-variant-store
-                              #:delete-variant-store-request
-                              #:delete-variant-store-response #:delete-workflow
-                              #:delete-workflow-request
-                              #:delete-workflow-version
-                              #:delete-workflow-version-request #:description
-                              #:etag #:etag-algorithm #:etag-algorithm-family
+                              #:delete-reference #:delete-reference-store
+                              #:delete-run #:delete-run-cache
+                              #:delete-run-group #:delete-s3access-policy
+                              #:delete-sequence-store #:delete-share
+                              #:delete-variant-store #:delete-workflow
+                              #:delete-workflow-version #:description #:etag
+                              #:etag-algorithm #:etag-algorithm-family
                               #:encoding #:encryption-type #:engine-log-stream
                               #:engine-version #:escape-char #:escape-quotes
                               #:exclude-file-pattern-list #:export-job-id
@@ -110,57 +59,18 @@
                               #:format-options #:format-to-header
                               #:format-to-header-key #:full-repository-id
                               #:generated-from #:get-annotation-import-job
-                              #:get-annotation-import-request
-                              #:get-annotation-import-response
                               #:get-annotation-store
-                              #:get-annotation-store-request
-                              #:get-annotation-store-response
-                              #:get-annotation-store-version
-                              #:get-annotation-store-version-request
-                              #:get-annotation-store-version-response
-                              #:get-read-set #:get-read-set-activation-job
-                              #:get-read-set-activation-job-request
-                              #:get-read-set-activation-job-response
+                              #:get-annotation-store-version #:get-read-set
+                              #:get-read-set-activation-job
                               #:get-read-set-export-job
-                              #:get-read-set-export-job-request
-                              #:get-read-set-export-job-response
-                              #:get-read-set-import-job
-                              #:get-read-set-import-job-request
-                              #:get-read-set-import-job-response
-                              #:get-read-set-metadata
-                              #:get-read-set-metadata-request
-                              #:get-read-set-metadata-response
-                              #:get-read-set-request #:get-read-set-response
+                              #:get-read-set-import-job #:get-read-set-metadata
                               #:get-reference #:get-reference-import-job
-                              #:get-reference-import-job-request
-                              #:get-reference-import-job-response
-                              #:get-reference-metadata
-                              #:get-reference-metadata-request
-                              #:get-reference-metadata-response
-                              #:get-reference-request #:get-reference-response
-                              #:get-reference-store
-                              #:get-reference-store-request
-                              #:get-reference-store-response #:get-run
-                              #:get-run-cache #:get-run-cache-request
-                              #:get-run-cache-response #:get-run-group
-                              #:get-run-group-request #:get-run-group-response
-                              #:get-run-request #:get-run-response
-                              #:get-run-task #:get-run-task-request
-                              #:get-run-task-response #:get-s3access-policy
-                              #:get-s3access-policy-request
-                              #:get-s3access-policy-response
-                              #:get-sequence-store #:get-sequence-store-request
-                              #:get-sequence-store-response #:get-share
-                              #:get-share-request #:get-share-response
-                              #:get-variant-import-job
-                              #:get-variant-import-request
-                              #:get-variant-import-response #:get-variant-store
-                              #:get-variant-store-request
-                              #:get-variant-store-response #:get-workflow
-                              #:get-workflow-request #:get-workflow-response
-                              #:get-workflow-version
-                              #:get-workflow-version-request
-                              #:get-workflow-version-response #:header
+                              #:get-reference-metadata #:get-reference-store
+                              #:get-run #:get-run-cache #:get-run-group
+                              #:get-run-task #:get-s3access-policy
+                              #:get-sequence-store #:get-share
+                              #:get-variant-import-job #:get-variant-store
+                              #:get-workflow #:get-workflow-version #:header
                               #:id-list #:import-job-id
                               #:import-read-set-filter
                               #:import-read-set-job-item
@@ -171,83 +81,36 @@
                               #:import-reference-job-item
                               #:import-reference-job-list
                               #:import-reference-source-item
-                              #:import-reference-source-list
-                              #:internal-server-exception #:job-status
+                              #:import-reference-source-list #:job-status
                               #:job-status-message #:job-status-msg #:line-sep
                               #:list-annotation-import-jobs
                               #:list-annotation-import-jobs-filter
-                              #:list-annotation-import-jobs-request
-                              #:list-annotation-import-jobs-response
                               #:list-annotation-store-versions
                               #:list-annotation-store-versions-filter
-                              #:list-annotation-store-versions-request
-                              #:list-annotation-store-versions-response
                               #:list-annotation-stores
                               #:list-annotation-stores-filter
-                              #:list-annotation-stores-request
-                              #:list-annotation-stores-response
                               #:list-multipart-read-set-uploads
-                              #:list-multipart-read-set-uploads-request
-                              #:list-multipart-read-set-uploads-response
                               #:list-read-set-activation-jobs
-                              #:list-read-set-activation-jobs-request
-                              #:list-read-set-activation-jobs-response
                               #:list-read-set-export-jobs
-                              #:list-read-set-export-jobs-request
-                              #:list-read-set-export-jobs-response
                               #:list-read-set-import-jobs
-                              #:list-read-set-import-jobs-request
-                              #:list-read-set-import-jobs-response
-                              #:list-read-set-upload-parts
-                              #:list-read-set-upload-parts-request
-                              #:list-read-set-upload-parts-response
-                              #:list-read-sets #:list-read-sets-request
-                              #:list-read-sets-response
+                              #:list-read-set-upload-parts #:list-read-sets
                               #:list-reference-import-jobs
-                              #:list-reference-import-jobs-request
-                              #:list-reference-import-jobs-response
-                              #:list-reference-stores
-                              #:list-reference-stores-request
-                              #:list-reference-stores-response
-                              #:list-references #:list-references-request
-                              #:list-references-response #:list-run-caches
-                              #:list-run-caches-request
-                              #:list-run-caches-response #:list-run-groups
-                              #:list-run-groups-request
-                              #:list-run-groups-response #:list-run-tasks
-                              #:list-run-tasks-request
-                              #:list-run-tasks-response #:list-runs
-                              #:list-runs-request #:list-runs-response
-                              #:list-sequence-stores
-                              #:list-sequence-stores-request
-                              #:list-sequence-stores-response #:list-shares
-                              #:list-shares-request #:list-shares-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-token
+                              #:list-reference-stores #:list-references
+                              #:list-run-caches #:list-run-groups
+                              #:list-run-tasks #:list-runs
+                              #:list-sequence-stores #:list-shares
+                              #:list-tags-for-resource #:list-token
                               #:list-variant-import-jobs
                               #:list-variant-import-jobs-filter
-                              #:list-variant-import-jobs-request
-                              #:list-variant-import-jobs-response
                               #:list-variant-stores
                               #:list-variant-stores-filter
-                              #:list-variant-stores-request
-                              #:list-variant-stores-response
-                              #:list-workflow-versions
-                              #:list-workflow-versions-request
-                              #:list-workflow-versions-response
-                              #:list-workflows #:list-workflows-request
-                              #:list-workflows-response #:md5
+                              #:list-workflow-versions #:list-workflows #:md5
                               #:multipart-read-set-upload-list
                               #:multipart-read-set-upload-list-item
-                              #:next-token #:not-supported-operation-exception
-                              #:numeric-id-in-arn #:omics
+                              #:next-token #:numeric-id-in-arn #:omics
                               #:parameter-template-path
                               #:propagated-set-level-tags #:put-s3access-policy
-                              #:put-s3access-policy-request
-                              #:put-s3access-policy-response #:quote
-                              #:quote-all #:range
-                              #:range-not-satisfiable-exception #:read-options
+                              #:quote #:quote-all #:range #:read-options
                               #:read-set-activation-job-item-status
                               #:read-set-activation-job-status #:read-set-arn
                               #:read-set-batch-error
@@ -283,17 +146,15 @@
                               #:reference-store-detail-list
                               #:reference-store-filter #:reference-store-id
                               #:reference-store-name #:reference-store-resource
-                              #:reference-streaming-blob
-                              #:request-timeout-exception #:resource-id
-                              #:resource-identifier
-                              #:resource-not-found-exception #:resource-owner
-                              #:role-arn #:run-arn #:run-cache-arn
-                              #:run-cache-id #:run-cache-list
-                              #:run-cache-list-item #:run-cache-request-id
-                              #:run-cache-resource #:run-cache-status
-                              #:run-cache-timestamp #:run-export
-                              #:run-export-list #:run-failure-reason
-                              #:run-group-arn #:run-group-id #:run-group-list
+                              #:reference-streaming-blob #:resource-id
+                              #:resource-identifier #:resource-owner #:role-arn
+                              #:run-arn #:run-cache-arn #:run-cache-id
+                              #:run-cache-list #:run-cache-list-item
+                              #:run-cache-request-id #:run-cache-resource
+                              #:run-cache-status #:run-cache-timestamp
+                              #:run-export #:run-export-list
+                              #:run-failure-reason #:run-group-arn
+                              #:run-group-id #:run-group-list
                               #:run-group-list-item #:run-group-list-token
                               #:run-group-name #:run-group-request-id
                               #:run-group-resource #:run-group-timestamp
@@ -318,76 +179,44 @@
                               #:sequence-store-filter #:sequence-store-id
                               #:sequence-store-name #:sequence-store-resource
                               #:sequence-store-s3access #:sequence-store-status
-                              #:sequence-store-status-message
-                              #:service-quota-exceeded-exception #:share
+                              #:sequence-store-status-message #:share
                               #:share-details #:share-details-list #:share-name
                               #:share-resource-type #:share-status
                               #:source-files #:source-reference
                               #:source-reference-type #:source-reference-value
                               #:sse-config #:start-annotation-import-job
-                              #:start-annotation-import-request
-                              #:start-annotation-import-response
                               #:start-read-set-activation-job
-                              #:start-read-set-activation-job-request
-                              #:start-read-set-activation-job-response
                               #:start-read-set-activation-job-source-item
                               #:start-read-set-activation-job-source-list
                               #:start-read-set-export-job
-                              #:start-read-set-export-job-request
-                              #:start-read-set-export-job-response
                               #:start-read-set-import-job
-                              #:start-read-set-import-job-request
-                              #:start-read-set-import-job-response
                               #:start-read-set-import-job-source-item
                               #:start-read-set-import-job-source-list
                               #:start-reference-import-job
-                              #:start-reference-import-job-request
-                              #:start-reference-import-job-response
                               #:start-reference-import-job-source-item
                               #:start-reference-import-job-source-list
-                              #:start-run #:start-run-request
-                              #:start-run-response #:start-variant-import-job
-                              #:start-variant-import-request
-                              #:start-variant-import-response #:status-list
-                              #:status-message #:storage-type #:store-format
-                              #:store-id #:store-name #:store-options
-                              #:store-status #:store-type #:subject-id
-                              #:tag-arn #:tag-key #:tag-key-list #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:start-run #:start-variant-import-job
+                              #:status-list #:status-message #:storage-type
+                              #:store-format #:store-id #:store-name
+                              #:store-options #:store-status #:store-type
+                              #:subject-id #:tag-arn #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-value
                               #:tagging-resource #:task-failure-reason
                               #:task-id #:task-instance-type #:task-list
                               #:task-list-item #:task-list-token
                               #:task-log-stream #:task-name #:task-resource
                               #:task-status #:task-status-message
-                              #:task-timestamp #:throttling-exception
-                              #:tsv-options #:tsv-store-options
-                              #:tsv-version-options #:type-list
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:task-timestamp #:tsv-options
+                              #:tsv-store-options #:tsv-version-options
+                              #:type-list #:untag-resource
                               #:update-annotation-store
-                              #:update-annotation-store-request
-                              #:update-annotation-store-response
                               #:update-annotation-store-version
-                              #:update-annotation-store-version-request
-                              #:update-annotation-store-version-response
-                              #:update-run-cache #:update-run-cache-request
-                              #:update-run-group #:update-run-group-request
-                              #:update-sequence-store
-                              #:update-sequence-store-request
-                              #:update-sequence-store-response #:update-time
-                              #:update-variant-store
-                              #:update-variant-store-request
-                              #:update-variant-store-response #:update-workflow
-                              #:update-workflow-request
-                              #:update-workflow-version
-                              #:update-workflow-version-request #:upload-id
-                              #:upload-read-set-part
-                              #:upload-read-set-part-request
-                              #:upload-read-set-part-response
-                              #:user-custom-description #:user-custom-name
-                              #:validation-exception
-                              #:variant-import-item-detail
+                              #:update-run-cache #:update-run-group
+                              #:update-sequence-store #:update-time
+                              #:update-variant-store #:update-workflow
+                              #:update-workflow-version #:upload-id
+                              #:upload-read-set-part #:user-custom-description
+                              #:user-custom-name #:variant-import-item-detail
                               #:variant-import-item-details
                               #:variant-import-item-source
                               #:variant-import-item-sources

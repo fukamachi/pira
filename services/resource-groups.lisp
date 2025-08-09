@@ -1,26 +1,15 @@
 (uiop/package:define-package #:pira/resource-groups (:use)
                              (:export #:account-settings #:application-arn
                               #:application-tag #:application-tag-key #:ardi
-                              #:bad-request-exception #:cancel-tag-sync-task
-                              #:cancel-tag-sync-task-input #:create-group
-                              #:create-group-input #:create-group-name
-                              #:create-group-output #:criticality
-                              #:delete-group #:delete-group-input
-                              #:delete-group-output #:description
-                              #:display-name #:error-code #:error-message
-                              #:failed-resource #:failed-resource-list
-                              #:forbidden-exception #:get-account-settings
-                              #:get-account-settings-output #:get-group
-                              #:get-group-configuration
-                              #:get-group-configuration-input
-                              #:get-group-configuration-output
-                              #:get-group-input #:get-group-output
-                              #:get-group-query #:get-group-query-input
-                              #:get-group-query-output #:get-tag-sync-task
-                              #:get-tag-sync-task-input
-                              #:get-tag-sync-task-output #:get-tags
-                              #:get-tags-input #:get-tags-output #:group
-                              #:group-arn #:group-arn-v2 #:group-configuration
+                              #:cancel-tag-sync-task #:create-group
+                              #:create-group-name #:criticality #:delete-group
+                              #:description #:display-name #:error-code
+                              #:error-message #:failed-resource
+                              #:failed-resource-list #:get-account-settings
+                              #:get-group #:get-group-configuration
+                              #:get-group-query #:get-tag-sync-task #:get-tags
+                              #:group #:group-arn #:group-arn-v2
+                              #:group-configuration
                               #:group-configuration-failure-reason
                               #:group-configuration-item
                               #:group-configuration-list
@@ -37,37 +26,24 @@
                               #:group-lifecycle-events-status
                               #:group-lifecycle-events-status-message
                               #:group-list #:group-name #:group-parameter-list
-                              #:group-query #:group-resources
-                              #:group-resources-input #:group-resources-output
-                              #:group-string #:group-string-v2
-                              #:grouping-status #:grouping-statuses-item
-                              #:grouping-statuses-list #:grouping-type
-                              #:internal-server-error-exception
-                              #:list-group-resources
-                              #:list-group-resources-input
+                              #:group-query #:group-resources #:group-string
+                              #:group-string-v2 #:grouping-status
+                              #:grouping-statuses-item #:grouping-statuses-list
+                              #:grouping-type #:list-group-resources
                               #:list-group-resources-item
                               #:list-group-resources-item-list
-                              #:list-group-resources-output
                               #:list-grouping-statuses
                               #:list-grouping-statuses-filter
                               #:list-grouping-statuses-filter-list
                               #:list-grouping-statuses-filter-name
                               #:list-grouping-statuses-filter-value
                               #:list-grouping-statuses-filter-values
-                              #:list-grouping-statuses-input
-                              #:list-grouping-statuses-output #:list-groups
-                              #:list-groups-input #:list-groups-output
-                              #:list-tag-sync-tasks
+                              #:list-groups #:list-tag-sync-tasks
                               #:list-tag-sync-tasks-filter
-                              #:list-tag-sync-tasks-filter-list
-                              #:list-tag-sync-tasks-input
-                              #:list-tag-sync-tasks-output #:max-results
-                              #:method-not-allowed-exception #:next-token
-                              #:not-found-exception #:owner #:pending-resource
+                              #:list-tag-sync-tasks-filter-list #:max-results
+                              #:next-token #:owner #:pending-resource
                               #:pending-resource-list #:put-group-configuration
-                              #:put-group-configuration-input
-                              #:put-group-configuration-output #:query
-                              #:query-error #:query-error-code
+                              #:query #:query-error #:query-error-code
                               #:query-error-list #:query-error-message
                               #:query-type #:resource-arn #:resource-arn-list
                               #:resource-filter #:resource-filter-list
@@ -76,23 +52,13 @@
                               #:resource-identifier-list #:resource-query
                               #:resource-status #:resource-status-value
                               #:resource-type #:role-arn #:search-resources
-                              #:search-resources-input
-                              #:search-resources-output #:start-tag-sync-task
-                              #:start-tag-sync-task-input
-                              #:start-tag-sync-task-output #:tag #:tag-input
-                              #:tag-key #:tag-key-list #:tag-output
-                              #:tag-sync-task-arn #:tag-sync-task-item
-                              #:tag-sync-task-list #:tag-sync-task-status
-                              #:tag-value #:tags #:too-many-requests-exception
-                              #:unauthorized-exception #:ungroup-resources
-                              #:ungroup-resources-input
-                              #:ungroup-resources-output #:untag #:untag-input
-                              #:untag-output #:update-account-settings
-                              #:update-account-settings-input
-                              #:update-account-settings-output #:update-group
-                              #:update-group-input #:update-group-output
-                              #:update-group-query #:update-group-query-input
-                              #:update-group-query-output #:timestamp))
+                              #:start-tag-sync-task #:tag #:tag-key
+                              #:tag-key-list #:tag-sync-task-arn
+                              #:tag-sync-task-item #:tag-sync-task-list
+                              #:tag-sync-task-status #:tag-value #:tags
+                              #:ungroup-resources #:untag
+                              #:update-account-settings #:update-group
+                              #:update-group-query #:timestamp))
 (common-lisp:in-package #:pira/resource-groups)
 
 (smithy/sdk/service:define-service ardi :shape-name "Ardi" :version

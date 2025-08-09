@@ -6,21 +6,13 @@
                               #:dataset-type #:error-message
                               #:filter-attribute-name #:filter-attribute-value
                               #:filter-values #:get-action-recommendations
-                              #:get-action-recommendations-request
-                              #:get-action-recommendations-response
-                              #:get-personalized-ranking
-                              #:get-personalized-ranking-request
-                              #:get-personalized-ranking-response
-                              #:get-recommendations
-                              #:get-recommendations-request
-                              #:get-recommendations-response #:input-list
-                              #:invalid-input-exception #:item-id #:item-list
-                              #:metadata #:metadata-columns #:name
-                              #:num-results #:percent-promoted-items
-                              #:predicted-action #:predicted-item #:promotion
-                              #:promotion-list #:reason #:reason-list
-                              #:recommendation-id
-                              #:resource-not-found-exception #:score #:user-id))
+                              #:get-personalized-ranking #:get-recommendations
+                              #:input-list #:item-id #:item-list #:metadata
+                              #:metadata-columns #:name #:num-results
+                              #:percent-promoted-items #:predicted-action
+                              #:predicted-item #:promotion #:promotion-list
+                              #:reason #:reason-list #:recommendation-id
+                              #:score #:user-id))
 (common-lisp:in-package #:pira/personalize-runtime)
 
 (smithy/sdk/service:define-service amazon-personalize-runtime :shape-name

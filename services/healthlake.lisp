@@ -1,67 +1,33 @@
 (uiop/package:define-package #:pira/healthlake (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-resource-name #:authorization-strategy
-                              #:boolean #:bounded-length-string
-                              #:client-token-string #:cmk-type
-                              #:configuration-metadata #:conflict-exception
-                              #:create-fhirdatastore
-                              #:create-fhirdatastore-request
-                              #:create-fhirdatastore-response #:datastore-arn
+                             (:export #:amazon-resource-name
+                              #:authorization-strategy #:boolean
+                              #:bounded-length-string #:client-token-string
+                              #:cmk-type #:configuration-metadata
+                              #:create-fhirdatastore #:datastore-arn
                               #:datastore-filter #:datastore-id
                               #:datastore-name #:datastore-properties
                               #:datastore-properties-list #:datastore-status
-                              #:delete-fhirdatastore
-                              #:delete-fhirdatastore-request
-                              #:delete-fhirdatastore-response
-                              #:describe-fhirdatastore
-                              #:describe-fhirdatastore-request
-                              #:describe-fhirdatastore-response
+                              #:delete-fhirdatastore #:describe-fhirdatastore
                               #:describe-fhirexport-job
-                              #:describe-fhirexport-job-request
-                              #:describe-fhirexport-job-response
-                              #:describe-fhirimport-job
-                              #:describe-fhirimport-job-request
-                              #:describe-fhirimport-job-response
-                              #:encryption-key-id #:error-category
-                              #:error-cause #:error-message
+                              #:describe-fhirimport-job #:encryption-key-id
+                              #:error-category #:error-cause #:error-message
                               #:export-job-properties
                               #:export-job-properties-list #:fhirversion
                               #:generic-double #:generic-long #:health-lake
                               #:iam-role-arn #:identity-provider-configuration
                               #:import-job-properties
                               #:import-job-properties-list #:input-data-config
-                              #:internal-server-exception #:job-id #:job-name
-                              #:job-progress-report #:job-status
-                              #:kms-encryption-config #:lambda-arn
-                              #:list-fhirdatastores
-                              #:list-fhirdatastores-request
-                              #:list-fhirdatastores-response
-                              #:list-fhirexport-jobs
-                              #:list-fhirexport-jobs-request
-                              #:list-fhirexport-jobs-response
-                              #:list-fhirimport-jobs
-                              #:list-fhirimport-jobs-request
-                              #:list-fhirimport-jobs-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:job-id #:job-name #:job-progress-report
+                              #:job-status #:kms-encryption-config #:lambda-arn
+                              #:list-fhirdatastores #:list-fhirexport-jobs
+                              #:list-fhirimport-jobs #:list-tags-for-resource
                               #:max-results-integer #:message #:next-token
                               #:output-data-config #:preload-data-config
-                              #:preload-data-type
-                              #:resource-not-found-exception #:s3configuration
-                              #:s3uri #:sse-configuration
-                              #:start-fhirexport-job
-                              #:start-fhirexport-job-request
-                              #:start-fhirexport-job-response
-                              #:start-fhirimport-job
-                              #:start-fhirimport-job-request
-                              #:start-fhirimport-job-response #:string #:tag
-                              #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:timestamp
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:validation-exception))
+                              #:preload-data-type #:s3configuration #:s3uri
+                              #:sse-configuration #:start-fhirexport-job
+                              #:start-fhirimport-job #:string #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:timestamp #:untag-resource))
 (common-lisp:in-package #:pira/healthlake)
 
 (smithy/sdk/service:define-service health-lake :shape-name "HealthLake"

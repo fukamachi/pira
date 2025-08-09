@@ -1,102 +1,58 @@
 (uiop/package:define-package #:pira/tnb (:use)
-                             (:export #:access-denied-exception
-                              #:cancel-sol-network-operation
-                              #:cancel-sol-network-operation-input
+                             (:export #:cancel-sol-network-operation
                               #:create-sol-function-package
-                              #:create-sol-function-package-input
-                              #:create-sol-function-package-output
                               #:create-sol-network-instance
-                              #:create-sol-network-instance-input
-                              #:create-sol-network-instance-output
                               #:create-sol-network-package
-                              #:create-sol-network-package-input
-                              #:create-sol-network-package-output
                               #:delete-sol-function-package
-                              #:delete-sol-function-package-input
                               #:delete-sol-network-instance
-                              #:delete-sol-network-instance-input
                               #:delete-sol-network-package
-                              #:delete-sol-network-package-input
                               #:descriptor-content-type #:error-cause
                               #:error-details #:error-info
                               #:function-artifact-meta
                               #:get-sol-function-instance
-                              #:get-sol-function-instance-input
                               #:get-sol-function-instance-metadata
-                              #:get-sol-function-instance-output
                               #:get-sol-function-package
                               #:get-sol-function-package-content
-                              #:get-sol-function-package-content-input
-                              #:get-sol-function-package-content-output
                               #:get-sol-function-package-descriptor
-                              #:get-sol-function-package-descriptor-input
-                              #:get-sol-function-package-descriptor-output
-                              #:get-sol-function-package-input
                               #:get-sol-function-package-metadata
-                              #:get-sol-function-package-output
                               #:get-sol-instantiated-vnf-info
                               #:get-sol-network-instance
-                              #:get-sol-network-instance-input
                               #:get-sol-network-instance-metadata
-                              #:get-sol-network-instance-output
                               #:get-sol-network-operation
-                              #:get-sol-network-operation-input
                               #:get-sol-network-operation-metadata
-                              #:get-sol-network-operation-output
                               #:get-sol-network-operation-task-details
                               #:get-sol-network-operation-tasks-list
                               #:get-sol-network-package
                               #:get-sol-network-package-content
-                              #:get-sol-network-package-content-input
-                              #:get-sol-network-package-content-output
                               #:get-sol-network-package-descriptor
-                              #:get-sol-network-package-descriptor-input
-                              #:get-sol-network-package-descriptor-output
-                              #:get-sol-network-package-input
                               #:get-sol-network-package-metadata
-                              #:get-sol-network-package-output
                               #:get-sol-vnf-info #:get-sol-vnfc-resource-info
                               #:get-sol-vnfc-resource-info-list
                               #:get-sol-vnfc-resource-info-metadata
                               #:instantiate-metadata
                               #:instantiate-sol-network-instance
-                              #:instantiate-sol-network-instance-input
-                              #:instantiate-sol-network-instance-output
-                              #:internal-server-exception #:lcm-operation-info
-                              #:lcm-operation-type
+                              #:lcm-operation-info #:lcm-operation-type
                               #:list-sol-function-instance-info
                               #:list-sol-function-instance-metadata
                               #:list-sol-function-instance-resources
                               #:list-sol-function-instances
-                              #:list-sol-function-instances-input
-                              #:list-sol-function-instances-output
                               #:list-sol-function-package-info
                               #:list-sol-function-package-metadata
                               #:list-sol-function-package-resources
                               #:list-sol-function-packages
-                              #:list-sol-function-packages-input
-                              #:list-sol-function-packages-output
                               #:list-sol-network-instance-info
                               #:list-sol-network-instance-metadata
                               #:list-sol-network-instance-resources
                               #:list-sol-network-instances
-                              #:list-sol-network-instances-input
-                              #:list-sol-network-instances-output
                               #:list-sol-network-operations
                               #:list-sol-network-operations-info
-                              #:list-sol-network-operations-input
                               #:list-sol-network-operations-metadata
-                              #:list-sol-network-operations-output
                               #:list-sol-network-operations-resources
                               #:list-sol-network-package-info
                               #:list-sol-network-package-metadata
                               #:list-sol-network-package-resources
                               #:list-sol-network-packages
-                              #:list-sol-network-packages-input
-                              #:list-sol-network-packages-output
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
                               #:modify-vnf-info-metadata
                               #:network-artifact-meta #:ns-instance-arn
                               #:ns-instance-id #:ns-lcm-op-occ-arn
@@ -108,48 +64,28 @@
                               #:package-content-type #:pagination-token
                               #:problem-details
                               #:put-sol-function-package-content
-                              #:put-sol-function-package-content-input
                               #:put-sol-function-package-content-metadata
-                              #:put-sol-function-package-content-output
                               #:put-sol-network-package-content
-                              #:put-sol-network-package-content-input
                               #:put-sol-network-package-content-metadata
-                              #:put-sol-network-package-content-output
-                              #:resource-not-found-exception #:sensitive-blob
-                              #:service-quota-exceeded-exception #:string-map
-                              #:tnb #:tnbresource-arn #:tag-key #:tag-keys
-                              #:tag-map #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:tag-value #:task-status
-                              #:terminate-sol-network-instance
-                              #:terminate-sol-network-instance-input
-                              #:terminate-sol-network-instance-output
-                              #:throttling-exception #:tosca-override
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-ns-metadata
+                              #:sensitive-blob #:string-map #:tnb
+                              #:tnbresource-arn #:tag-key #:tag-keys #:tag-map
+                              #:tag-resource #:tag-value #:task-status
+                              #:terminate-sol-network-instance #:tosca-override
+                              #:untag-resource #:update-ns-metadata
                               #:update-sol-function-package
-                              #:update-sol-function-package-input
-                              #:update-sol-function-package-output
                               #:update-sol-network-instance
-                              #:update-sol-network-instance-input
-                              #:update-sol-network-instance-output
                               #:update-sol-network-modify
                               #:update-sol-network-package
-                              #:update-sol-network-package-input
-                              #:update-sol-network-package-output
                               #:update-sol-network-service-data
                               #:update-sol-network-type #:usage-state
                               #:validate-sol-function-package-content
-                              #:validate-sol-function-package-content-input
                               #:validate-sol-function-package-content-metadata
-                              #:validate-sol-function-package-content-output
                               #:validate-sol-network-package-content
-                              #:validate-sol-network-package-content-input
                               #:validate-sol-network-package-content-metadata
-                              #:validate-sol-network-package-content-output
-                              #:validation-exception #:vnf-instance-arn
-                              #:vnf-instance-id #:vnf-instantiation-state
-                              #:vnf-operational-state #:vnf-pkg-arn
-                              #:vnf-pkg-id #:vnf-pkg-id-list #:vnfd-id))
+                              #:vnf-instance-arn #:vnf-instance-id
+                              #:vnf-instantiation-state #:vnf-operational-state
+                              #:vnf-pkg-arn #:vnf-pkg-id #:vnf-pkg-id-list
+                              #:vnfd-id))
 (common-lisp:in-package #:pira/tnb)
 
 (smithy/sdk/service:define-service tnb :shape-name "TNB" :version "2008-10-21"

@@ -1,63 +1,39 @@
 (uiop/package:define-package #:pira/connectparticipant (:use)
-                             (:export #:arn #:access-denied-exception
+                             (:export #:arn
                               #:amazon-connect-participant-service-lambda
                               #:artifact-id #:artifact-status
                               #:attachment-id-list #:attachment-item
                               #:attachment-name #:attachment-size-in-bytes
                               #:attachments #:authentication-url #:bool
                               #:cancel-participant-authentication
-                              #:cancel-participant-authentication-request
-                              #:cancel-participant-authentication-response
                               #:chat-content #:chat-content-type #:chat-item-id
                               #:chat-item-type #:client-token
                               #:complete-attachment-upload
-                              #:complete-attachment-upload-request
-                              #:complete-attachment-upload-response
-                              #:conflict-exception #:connection-credentials
-                              #:connection-type #:connection-type-list
-                              #:contact-id #:content-type
-                              #:create-participant-connection
-                              #:create-participant-connection-request
-                              #:create-participant-connection-response
-                              #:describe-view #:describe-view-request
-                              #:describe-view-response #:disconnect-participant
-                              #:disconnect-participant-request
-                              #:disconnect-participant-response #:display-name
-                              #:get-attachment #:get-attachment-request
-                              #:get-attachment-response
-                              #:get-authentication-url
-                              #:get-authentication-url-request
-                              #:get-authentication-url-response
-                              #:get-transcript #:get-transcript-request
-                              #:get-transcript-response #:iso8601datetime
-                              #:instant #:internal-server-exception #:item
-                              #:max-results #:message #:message-metadata
-                              #:most-recent #:next-token
-                              #:non-empty-client-token #:participant-id
-                              #:participant-role #:participant-token
-                              #:pre-signed-attachment-url
+                              #:connection-credentials #:connection-type
+                              #:connection-type-list #:contact-id
+                              #:content-type #:create-participant-connection
+                              #:describe-view #:disconnect-participant
+                              #:display-name #:get-attachment
+                              #:get-authentication-url #:get-transcript
+                              #:iso8601datetime #:instant #:item #:max-results
+                              #:message #:message-metadata #:most-recent
+                              #:next-token #:non-empty-client-token
+                              #:participant-id #:participant-role
+                              #:participant-token #:pre-signed-attachment-url
                               #:pre-signed-connection-url #:reason #:receipt
                               #:receipts #:redirect-uri #:resource-id
-                              #:resource-not-found-exception #:resource-type
-                              #:scan-direction #:send-event
-                              #:send-event-request #:send-event-response
-                              #:send-message #:send-message-request
-                              #:send-message-response
-                              #:service-quota-exceeded-exception #:session-id
-                              #:sort-key #:start-attachment-upload
-                              #:start-attachment-upload-request
-                              #:start-attachment-upload-response
-                              #:start-position #:throttling-exception
+                              #:resource-type #:scan-direction #:send-event
+                              #:send-message #:session-id #:sort-key
+                              #:start-attachment-upload #:start-position
                               #:transcript #:urlexpiry-in-seconds
                               #:upload-metadata
                               #:upload-metadata-signed-headers
                               #:upload-metadata-signed-headers-key
                               #:upload-metadata-signed-headers-value
-                              #:upload-metadata-url #:validation-exception
-                              #:view #:view-action #:view-actions
-                              #:view-content #:view-id #:view-input-schema
-                              #:view-name #:view-template #:view-token
-                              #:view-version #:websocket))
+                              #:upload-metadata-url #:view #:view-action
+                              #:view-actions #:view-content #:view-id
+                              #:view-input-schema #:view-name #:view-template
+                              #:view-token #:view-version #:websocket))
 (common-lisp:in-package #:pira/connectparticipant)
 
 (smithy/sdk/service:define-service amazon-connect-participant-service-lambda

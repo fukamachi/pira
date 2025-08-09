@@ -1,18 +1,8 @@
 (uiop/package:define-package #:pira/eks-auth (:use)
-                             (:export #:access-denied-exception
-                              #:assume-role-for-pod-identity
-                              #:assume-role-for-pod-identity-request
-                              #:assume-role-for-pod-identity-response
+                             (:export #:assume-role-for-pod-identity
                               #:assumed-role-user #:cluster-name #:credentials
-                              #:eksauth-frontend #:expired-token-exception
-                              #:internal-server-exception
-                              #:invalid-parameter-exception
-                              #:invalid-request-exception
-                              #:invalid-token-exception #:jwt-token
-                              #:pod-identity-association
-                              #:resource-not-found-exception
-                              #:service-unavailable-exception #:subject
-                              #:throttling-exception))
+                              #:eksauth-frontend #:jwt-token
+                              #:pod-identity-association #:subject))
 (common-lisp:in-package #:pira/eks-auth)
 
 (smithy/sdk/service:define-service eksauth-frontend :shape-name

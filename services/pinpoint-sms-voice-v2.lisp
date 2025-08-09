@@ -1,16 +1,11 @@
 (uiop/package:define-package #:pira/pinpoint-sms-voice-v2 (:use)
-                             (:export #:access-denied-exception
-                              #:access-denied-exception-reason
+                             (:export #:access-denied-exception-reason
                               #:account-attribute #:account-attribute-list
                               #:account-attribute-name #:account-limit
                               #:account-limit-list #:account-limit-name
                               #:amazon-resource-name
                               #:associate-origination-identity
-                              #:associate-origination-identity-request
-                              #:associate-origination-identity-result
                               #:associate-protect-configuration
-                              #:associate-protect-configuration-request
-                              #:associate-protect-configuration-result
                               #:attachment-body #:attachment-status
                               #:attachment-upload-error-reason #:attachment-url
                               #:client-token #:cloud-watch-logs-destination
@@ -22,188 +17,74 @@
                               #:configuration-set-name
                               #:configuration-set-name-list
                               #:configuration-set-name-or-arn
-                              #:conflict-exception #:conflict-exception-reason
-                              #:context-key #:context-map #:context-value
+                              #:conflict-exception-reason #:context-key
+                              #:context-map #:context-value
                               #:create-configuration-set
-                              #:create-configuration-set-request
-                              #:create-configuration-set-result
-                              #:create-event-destination
-                              #:create-event-destination-request
-                              #:create-event-destination-result
-                              #:create-opt-out-list
-                              #:create-opt-out-list-request
-                              #:create-opt-out-list-result #:create-pool
-                              #:create-pool-request #:create-pool-result
-                              #:create-protect-configuration
-                              #:create-protect-configuration-request
-                              #:create-protect-configuration-result
+                              #:create-event-destination #:create-opt-out-list
+                              #:create-pool #:create-protect-configuration
                               #:create-registration
                               #:create-registration-association
-                              #:create-registration-association-request
-                              #:create-registration-association-result
                               #:create-registration-attachment
-                              #:create-registration-attachment-request
-                              #:create-registration-attachment-result
-                              #:create-registration-request
-                              #:create-registration-result
                               #:create-registration-version
-                              #:create-registration-version-request
-                              #:create-registration-version-result
                               #:create-verified-destination-number
-                              #:create-verified-destination-number-request
-                              #:create-verified-destination-number-result
                               #:delete-account-default-protect-configuration
-                              #:delete-account-default-protect-configuration-request
-                              #:delete-account-default-protect-configuration-result
                               #:delete-configuration-set
-                              #:delete-configuration-set-request
-                              #:delete-configuration-set-result
                               #:delete-default-message-type
-                              #:delete-default-message-type-request
-                              #:delete-default-message-type-result
                               #:delete-default-sender-id
-                              #:delete-default-sender-id-request
-                              #:delete-default-sender-id-result
-                              #:delete-event-destination
-                              #:delete-event-destination-request
-                              #:delete-event-destination-result
-                              #:delete-keyword #:delete-keyword-request
-                              #:delete-keyword-result
+                              #:delete-event-destination #:delete-keyword
                               #:delete-media-message-spend-limit-override
-                              #:delete-media-message-spend-limit-override-request
-                              #:delete-media-message-spend-limit-override-result
-                              #:delete-opt-out-list
-                              #:delete-opt-out-list-request
-                              #:delete-opt-out-list-result
-                              #:delete-opted-out-number
-                              #:delete-opted-out-number-request
-                              #:delete-opted-out-number-result #:delete-pool
-                              #:delete-pool-request #:delete-pool-result
-                              #:delete-protect-configuration
-                              #:delete-protect-configuration-request
-                              #:delete-protect-configuration-result
+                              #:delete-opt-out-list #:delete-opted-out-number
+                              #:delete-pool #:delete-protect-configuration
                               #:delete-protect-configuration-rule-set-number-override
-                              #:delete-protect-configuration-rule-set-number-override-request
-                              #:delete-protect-configuration-rule-set-number-override-result
                               #:delete-registration
                               #:delete-registration-attachment
-                              #:delete-registration-attachment-request
-                              #:delete-registration-attachment-result
                               #:delete-registration-field-value
-                              #:delete-registration-field-value-request
-                              #:delete-registration-field-value-result
-                              #:delete-registration-request
-                              #:delete-registration-result
                               #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-result
                               #:delete-text-message-spend-limit-override
-                              #:delete-text-message-spend-limit-override-request
-                              #:delete-text-message-spend-limit-override-result
                               #:delete-verified-destination-number
-                              #:delete-verified-destination-number-request
-                              #:delete-verified-destination-number-result
                               #:delete-voice-message-spend-limit-override
-                              #:delete-voice-message-spend-limit-override-request
-                              #:delete-voice-message-spend-limit-override-result
                               #:delivery-stream-arn
                               #:describe-account-attributes
-                              #:describe-account-attributes-request
-                              #:describe-account-attributes-result
                               #:describe-account-limits
-                              #:describe-account-limits-request
-                              #:describe-account-limits-result
-                              #:describe-configuration-sets
-                              #:describe-configuration-sets-request
-                              #:describe-configuration-sets-result
-                              #:describe-keywords #:describe-keywords-request
-                              #:describe-keywords-result
+                              #:describe-configuration-sets #:describe-keywords
                               #:describe-opt-out-lists
-                              #:describe-opt-out-lists-request
-                              #:describe-opt-out-lists-result
                               #:describe-opted-out-numbers
-                              #:describe-opted-out-numbers-request
-                              #:describe-opted-out-numbers-result
-                              #:describe-phone-numbers
-                              #:describe-phone-numbers-request
-                              #:describe-phone-numbers-result #:describe-pools
-                              #:describe-pools-request #:describe-pools-result
+                              #:describe-phone-numbers #:describe-pools
                               #:describe-protect-configurations
-                              #:describe-protect-configurations-request
-                              #:describe-protect-configurations-result
                               #:describe-registration-attachments
-                              #:describe-registration-attachments-request
-                              #:describe-registration-attachments-result
                               #:describe-registration-field-definitions
-                              #:describe-registration-field-definitions-request
-                              #:describe-registration-field-definitions-result
                               #:describe-registration-field-values
-                              #:describe-registration-field-values-request
-                              #:describe-registration-field-values-result
                               #:describe-registration-section-definitions
-                              #:describe-registration-section-definitions-request
-                              #:describe-registration-section-definitions-result
                               #:describe-registration-type-definitions
-                              #:describe-registration-type-definitions-request
-                              #:describe-registration-type-definitions-result
                               #:describe-registration-versions
-                              #:describe-registration-versions-request
-                              #:describe-registration-versions-result
-                              #:describe-registrations
-                              #:describe-registrations-request
-                              #:describe-registrations-result
-                              #:describe-sender-ids
-                              #:describe-sender-ids-request
-                              #:describe-sender-ids-result
+                              #:describe-registrations #:describe-sender-ids
                               #:describe-spend-limits
-                              #:describe-spend-limits-request
-                              #:describe-spend-limits-result
                               #:describe-verified-destination-numbers
-                              #:describe-verified-destination-numbers-request
-                              #:describe-verified-destination-numbers-result
                               #:destination-country-parameter-key
                               #:destination-country-parameter-value
                               #:destination-country-parameters
                               #:destination-phone-number-list
                               #:disassociate-origination-identity
-                              #:disassociate-origination-identity-request
-                              #:disassociate-origination-identity-result
                               #:disassociate-protect-configuration
-                              #:disassociate-protect-configuration-request
-                              #:disassociate-protect-configuration-result
                               #:discard-registration-version
-                              #:discard-registration-version-request
-                              #:discard-registration-version-result
                               #:event-destination #:event-destination-list
                               #:event-destination-name #:event-type
                               #:event-type-list #:field-path #:field-path-list
                               #:field-requirement #:field-type #:filter-value
                               #:filter-value-list
                               #:get-protect-configuration-country-rule-set
-                              #:get-protect-configuration-country-rule-set-request
-                              #:get-protect-configuration-country-rule-set-result
-                              #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-result #:iam-role-arn
-                              #:internal-server-exception #:iso-country-code
-                              #:keyword #:keyword-action #:keyword-filter
-                              #:keyword-filter-list #:keyword-filter-name
-                              #:keyword-information #:keyword-information-list
-                              #:keyword-list #:keyword-message
-                              #:kinesis-firehose-destination #:language-code
+                              #:get-resource-policy #:iam-role-arn
+                              #:iso-country-code #:keyword #:keyword-action
+                              #:keyword-filter #:keyword-filter-list
+                              #:keyword-filter-name #:keyword-information
+                              #:keyword-information-list #:keyword-list
+                              #:keyword-message #:kinesis-firehose-destination
+                              #:language-code
                               #:list-pool-origination-identities
-                              #:list-pool-origination-identities-request
-                              #:list-pool-origination-identities-result
                               #:list-protect-configuration-rule-set-number-override-filter
                               #:list-protect-configuration-rule-set-number-overrides
-                              #:list-protect-configuration-rule-set-number-overrides-request
-                              #:list-protect-configuration-rule-set-number-overrides-result
                               #:list-registration-associations
-                              #:list-registration-associations-request
-                              #:list-registration-associations-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-result #:log-group-arn
+                              #:list-tags-for-resource #:log-group-arn
                               #:max-price #:max-results
                               #:media-message-origination-identity
                               #:media-url-list #:media-url-value
@@ -254,22 +135,10 @@
                               #:protect-configuration-rule-set-number-override-filter-name
                               #:protect-configuration-rule-set-number-override-list
                               #:protect-status #:put-keyword
-                              #:put-keyword-request #:put-keyword-result
-                              #:put-message-feedback
-                              #:put-message-feedback-request
-                              #:put-message-feedback-result
-                              #:put-opted-out-number
-                              #:put-opted-out-number-request
-                              #:put-opted-out-number-result
+                              #:put-message-feedback #:put-opted-out-number
                               #:put-protect-configuration-rule-set-number-override
-                              #:put-protect-configuration-rule-set-number-override-request
-                              #:put-protect-configuration-rule-set-number-override-result
                               #:put-registration-field-value
-                              #:put-registration-field-value-request
-                              #:put-registration-field-value-result
                               #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-result
                               #:registration-association-behavior
                               #:registration-association-filter
                               #:registration-association-filter-list
@@ -316,91 +185,45 @@
                               #:registration-version-number-list
                               #:registration-version-status
                               #:registration-version-status-history
-                              #:release-phone-number
-                              #:release-phone-number-request
-                              #:release-phone-number-result #:release-sender-id
-                              #:release-sender-id-request
-                              #:release-sender-id-result #:request-phone-number
-                              #:request-phone-number-request
-                              #:request-phone-number-result #:request-sender-id
-                              #:request-sender-id-request
-                              #:request-sender-id-result
+                              #:release-phone-number #:release-sender-id
+                              #:request-phone-number #:request-sender-id
                               #:requestable-number-type #:resource-id-or-arn
-                              #:resource-not-found-exception #:resource-policy
-                              #:resource-type #:section-path
+                              #:resource-policy #:resource-type #:section-path
                               #:section-path-list #:select-choice
                               #:select-choice-list #:select-option-description
                               #:select-option-descriptions-list
                               #:select-validation
                               #:send-destination-number-verification-code
-                              #:send-destination-number-verification-code-request
-                              #:send-destination-number-verification-code-result
-                              #:send-media-message #:send-media-message-request
-                              #:send-media-message-result #:send-text-message
-                              #:send-text-message-request
-                              #:send-text-message-result #:send-voice-message
-                              #:send-voice-message-request
-                              #:send-voice-message-result #:sender-id
+                              #:send-media-message #:send-text-message
+                              #:send-voice-message #:sender-id
                               #:sender-id-and-country #:sender-id-filter
                               #:sender-id-filter-list #:sender-id-filter-name
                               #:sender-id-information
                               #:sender-id-information-list #:sender-id-list
                               #:sender-id-or-arn
-                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason
                               #:set-account-default-protect-configuration
-                              #:set-account-default-protect-configuration-request
-                              #:set-account-default-protect-configuration-result
                               #:set-default-message-feedback-enabled
-                              #:set-default-message-feedback-enabled-request
-                              #:set-default-message-feedback-enabled-result
                               #:set-default-message-type
-                              #:set-default-message-type-request
-                              #:set-default-message-type-result
                               #:set-default-sender-id
-                              #:set-default-sender-id-request
-                              #:set-default-sender-id-result
                               #:set-media-message-spend-limit-override
-                              #:set-media-message-spend-limit-override-request
-                              #:set-media-message-spend-limit-override-result
                               #:set-text-message-spend-limit-override
-                              #:set-text-message-spend-limit-override-request
-                              #:set-text-message-spend-limit-override-result
                               #:set-voice-message-spend-limit-override
-                              #:set-voice-message-spend-limit-override-request
-                              #:set-voice-message-spend-limit-override-result
                               #:sns-destination #:sns-topic-arn #:spend-limit
                               #:spend-limit-list #:spend-limit-name
                               #:string-list #:string-map
                               #:submit-registration-version
-                              #:submit-registration-version-request
-                              #:submit-registration-version-result
                               #:supported-association
                               #:supported-association-list #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-result
                               #:tag-value #:text-message-body
                               #:text-message-origination-identity
-                              #:text-validation #:text-value
-                              #:throttling-exception #:time-to-live
+                              #:text-validation #:text-value #:time-to-live
                               #:two-way-channel-arn #:untag-resource
-                              #:untag-resource-request #:untag-resource-result
-                              #:update-event-destination
-                              #:update-event-destination-request
-                              #:update-event-destination-result
-                              #:update-phone-number
-                              #:update-phone-number-request
-                              #:update-phone-number-result #:update-pool
-                              #:update-pool-request #:update-pool-result
-                              #:update-protect-configuration
+                              #:update-event-destination #:update-phone-number
+                              #:update-pool #:update-protect-configuration
                               #:update-protect-configuration-country-rule-set
-                              #:update-protect-configuration-country-rule-set-request
-                              #:update-protect-configuration-country-rule-set-result
-                              #:update-protect-configuration-request
-                              #:update-protect-configuration-result
-                              #:update-sender-id #:update-sender-id-request
-                              #:update-sender-id-result #:validation-exception
-                              #:validation-exception-field
+                              #:update-sender-id #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason
                               #:verification-channel #:verification-code
@@ -413,9 +236,7 @@
                               #:verified-destination-number-id-or-arn
                               #:verified-destination-number-information
                               #:verified-destination-number-information-list
-                              #:verify-destination-number
-                              #:verify-destination-number-request
-                              #:verify-destination-number-result #:voice-id
+                              #:verify-destination-number #:voice-id
                               #:voice-message-body
                               #:voice-message-body-text-type
                               #:voice-message-origination-identity))

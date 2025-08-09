@@ -2,48 +2,23 @@
                              (:export #:awshealth-20160804
                               #:account-entity-aggregate
                               #:account-entity-aggregates-list
-                              #:affected-entity
-                              #:concurrent-modification-exception
-                              #:date-time-range
+                              #:affected-entity #:date-time-range
                               #:describe-affected-accounts-for-organization
-                              #:describe-affected-accounts-for-organization-request
-                              #:describe-affected-accounts-for-organization-response
                               #:describe-affected-entities
                               #:describe-affected-entities-for-organization
                               #:describe-affected-entities-for-organization-failed-set
-                              #:describe-affected-entities-for-organization-request
-                              #:describe-affected-entities-for-organization-response
-                              #:describe-affected-entities-request
-                              #:describe-affected-entities-response
                               #:describe-entity-aggregates
                               #:describe-entity-aggregates-for-organization
-                              #:describe-entity-aggregates-for-organization-request
-                              #:describe-entity-aggregates-for-organization-response
-                              #:describe-entity-aggregates-request
-                              #:describe-entity-aggregates-response
                               #:describe-event-aggregates
-                              #:describe-event-aggregates-request
-                              #:describe-event-aggregates-response
                               #:describe-event-details
                               #:describe-event-details-failed-set
                               #:describe-event-details-for-organization
                               #:describe-event-details-for-organization-failed-set
-                              #:describe-event-details-for-organization-request
-                              #:describe-event-details-for-organization-response
                               #:describe-event-details-for-organization-successful-set
-                              #:describe-event-details-request
-                              #:describe-event-details-response
                               #:describe-event-details-successful-set
-                              #:describe-event-types
-                              #:describe-event-types-request
-                              #:describe-event-types-response #:describe-events
+                              #:describe-event-types #:describe-events
                               #:describe-events-for-organization
-                              #:describe-events-for-organization-request
-                              #:describe-events-for-organization-response
-                              #:describe-events-request
-                              #:describe-events-response
                               #:describe-health-service-status-for-organization
-                              #:describe-health-service-status-for-organization-response
                               #:disable-health-service-access-for-organization
                               #:enable-health-service-access-for-organization
                               #:entity-account-filter #:entity-aggregate
@@ -56,7 +31,6 @@
                               #:event-list #:event-type #:event-type2
                               #:event-type-category-list #:event-type-code-list
                               #:event-type-filter #:event-type-list
-                              #:invalid-pagination-token
                               #:organization-account-ids-list
                               #:organization-affected-entities-error-item
                               #:organization-entity-account-filters-list
@@ -69,11 +43,11 @@
                               #:organization-event-details
                               #:organization-event-details-error-item
                               #:organization-event-filter
-                              #:organization-event-list #:unsupported-locale
-                              #:account-id #:affected-accounts-list
-                              #:aggregate-value #:availability-zone
-                              #:availability-zones #:aws-account-ids-list
-                              #:count #:date-time-range-list #:entity-arn
+                              #:organization-event-list #:account-id
+                              #:affected-accounts-list #:aggregate-value
+                              #:availability-zone #:availability-zones
+                              #:aws-account-ids-list #:count
+                              #:date-time-range-list #:entity-arn
                               #:entity-arn-list #:entity-metadata
                               #:entity-metadata-key #:entity-metadata-value
                               #:entity-status-code #:entity-status-code-list

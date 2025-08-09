@@ -2,7 +2,6 @@
                              (:export #:awsaccount-id
                               #:awsmpcommerce-service-v20200301 #:accepted-term
                               #:accepted-term-list #:acceptor
-                              #:access-denied-exception
                               #:agreement-resource-type #:agreement-status
                               #:agreement-type #:agreement-view-summary
                               #:agreement-view-summary-list #:boolean
@@ -12,34 +11,27 @@
                               #:configurable-upfront-rate-card-item
                               #:configurable-upfront-rate-card-list
                               #:constraints #:currency-code
-                              #:describe-agreement #:describe-agreement-input
-                              #:describe-agreement-output #:dimension
-                              #:dimension-list #:document-item #:document-list
+                              #:describe-agreement #:dimension #:dimension-list
+                              #:document-item #:document-list
                               #:estimated-charges #:exception-message #:filter
                               #:filter-list #:filter-name #:filter-value
                               #:filter-value-list #:fixed-upfront-pricing-term
                               #:free-trial-pricing-term #:get-agreement-terms
-                              #:get-agreement-terms-input
-                              #:get-agreement-terms-output #:grant-item
-                              #:grant-list #:internal-server-exception
-                              #:legal-term #:max-results #:next-token
-                              #:offer-id #:payment-schedule-term
+                              #:grant-item #:grant-list #:legal-term
+                              #:max-results #:next-token #:offer-id
+                              #:payment-schedule-term
                               #:positive-integer-with-default-value-one
                               #:proposal-summary #:proposer #:rate-card-item
                               #:rate-card-list #:recurring-payment-term
                               #:renewal-term #:renewal-term-configuration
                               #:request-id #:resource #:resource-id
-                              #:resource-not-found-exception #:resource-type
-                              #:resources #:schedule-item #:schedule-list
-                              #:search-agreements #:search-agreements-input
-                              #:search-agreements-output #:selector #:sort
-                              #:sort-by #:sort-order #:support-term
-                              #:throttling-exception #:timestamp
-                              #:unversioned-term-type
+                              #:resource-type #:resources #:schedule-item
+                              #:schedule-list #:search-agreements #:selector
+                              #:sort #:sort-by #:sort-order #:support-term
+                              #:timestamp #:unversioned-term-type
                               #:usage-based-pricing-term
                               #:usage-based-rate-card-item
                               #:usage-based-rate-card-list
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:validity-term

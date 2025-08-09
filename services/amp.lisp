@@ -1,13 +1,11 @@
 (uiop/package:define-package #:pira/amp (:use)
-                             (:export #:access-denied-exception
-                              #:alert-manager-definition
+                             (:export #:alert-manager-definition
                               #:alert-manager-definition-data
                               #:alert-manager-definition-description
                               #:alert-manager-definition-status
                               #:alert-manager-definition-status-code
                               #:amazon-prometheus-service #:amp-configuration
                               #:cloud-watch-log-destination #:cluster-arn
-                              #:conflict-exception
                               #:create-alert-manager-definition
                               #:create-alert-manager-definition-request
                               #:create-alert-manager-definition-response
@@ -15,13 +13,10 @@
                               #:create-logging-configuration-request
                               #:create-logging-configuration-response
                               #:create-query-logging-configuration
-                              #:create-query-logging-configuration-request
-                              #:create-query-logging-configuration-response
                               #:create-rule-groups-namespace
                               #:create-rule-groups-namespace-request
                               #:create-rule-groups-namespace-response
-                              #:create-scraper #:create-scraper-request
-                              #:create-scraper-response #:create-workspace
+                              #:create-scraper #:create-workspace
                               #:create-workspace-request
                               #:create-workspace-response
                               #:delete-alert-manager-definition
@@ -29,11 +24,9 @@
                               #:delete-logging-configuration
                               #:delete-logging-configuration-request
                               #:delete-query-logging-configuration
-                              #:delete-query-logging-configuration-request
                               #:delete-rule-groups-namespace
                               #:delete-rule-groups-namespace-request
-                              #:delete-scraper #:delete-scraper-request
-                              #:delete-scraper-response #:delete-workspace
+                              #:delete-scraper #:delete-workspace
                               #:delete-workspace-request
                               #:describe-alert-manager-definition
                               #:describe-alert-manager-definition-request
@@ -42,25 +35,17 @@
                               #:describe-logging-configuration-request
                               #:describe-logging-configuration-response
                               #:describe-query-logging-configuration
-                              #:describe-query-logging-configuration-request
-                              #:describe-query-logging-configuration-response
                               #:describe-rule-groups-namespace
                               #:describe-rule-groups-namespace-request
                               #:describe-rule-groups-namespace-response
-                              #:describe-scraper #:describe-scraper-request
-                              #:describe-scraper-response #:describe-workspace
+                              #:describe-scraper #:describe-workspace
                               #:describe-workspace-configuration
-                              #:describe-workspace-configuration-request
-                              #:describe-workspace-configuration-response
                               #:describe-workspace-request
                               #:describe-workspace-response #:destination
                               #:eks-configuration #:filter-key #:filter-value
                               #:filter-values
                               #:get-default-scraper-configuration
-                              #:get-default-scraper-configuration-request
-                              #:get-default-scraper-configuration-response
-                              #:iam-role-arn #:idempotency-token
-                              #:internal-server-exception #:kms-key-arn
+                              #:iam-role-arn #:idempotency-token #:kms-key-arn
                               #:label-name #:label-set #:label-value
                               #:limits-per-label-set
                               #:limits-per-label-set-entry
@@ -68,8 +53,7 @@
                               #:list-rule-groups-namespaces
                               #:list-rule-groups-namespaces-request
                               #:list-rule-groups-namespaces-response
-                              #:list-scrapers #:list-scrapers-request
-                              #:list-scrapers-response #:list-tags-for-resource
+                              #:list-scrapers #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response
                               #:list-workspaces #:list-workspaces-request
@@ -90,7 +74,6 @@
                               #:query-logging-configuration-metadata
                               #:query-logging-configuration-status
                               #:query-logging-configuration-status-code
-                              #:resource-not-found-exception
                               #:role-configuration #:rule-groups-namespace
                               #:rule-groups-namespace-arn
                               #:rule-groups-namespace-data
@@ -105,28 +88,19 @@
                               #:scraper-filters #:scraper-id #:scraper-status
                               #:scraper-status-code #:scraper-summary
                               #:scraper-summary-list #:security-group-id
-                              #:security-group-ids
-                              #:service-quota-exceeded-exception #:source
-                              #:status-reason #:subnet-id #:subnet-ids
-                              #:tag-key #:tag-keys #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception
+                              #:security-group-ids #:source #:status-reason
+                              #:subnet-id #:subnet-ids #:tag-key #:tag-keys
+                              #:tag-map #:tag-resource #:tag-resource-request
+                              #:tag-resource-response #:tag-value
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-logging-configuration
                               #:update-logging-configuration-request
                               #:update-logging-configuration-response
                               #:update-query-logging-configuration
-                              #:update-query-logging-configuration-request
-                              #:update-query-logging-configuration-response
-                              #:update-scraper #:update-scraper-request
-                              #:update-scraper-response
-                              #:update-workspace-alias
+                              #:update-scraper #:update-workspace-alias
                               #:update-workspace-alias-request
-                              #:update-workspace-configuration
-                              #:update-workspace-configuration-request
-                              #:update-workspace-configuration-response #:uri
-                              #:validation-exception
+                              #:update-workspace-configuration #:uri
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:workspace

@@ -1,12 +1,8 @@
 (uiop/package:define-package #:pira/codepipeline (:use)
                              (:export #:awsregion-name #:awssession-credentials
                               #:access-key-id #:account-id #:acknowledge-job
-                              #:acknowledge-job-input #:acknowledge-job-output
-                              #:acknowledge-third-party-job
-                              #:acknowledge-third-party-job-input
-                              #:acknowledge-third-party-job-output
-                              #:action-category #:action-configuration
-                              #:action-configuration-key
+                              #:acknowledge-third-party-job #:action-category
+                              #:action-configuration #:action-configuration-key
                               #:action-configuration-map
                               #:action-configuration-property
                               #:action-configuration-property-list
@@ -18,27 +14,23 @@
                               #:action-execution-detail-list
                               #:action-execution-filter #:action-execution-id
                               #:action-execution-input
-                              #:action-execution-not-found-exception
                               #:action-execution-output
                               #:action-execution-result
                               #:action-execution-status
                               #:action-execution-token #:action-name
-                              #:action-namespace #:action-not-found-exception
-                              #:action-owner #:action-provider
-                              #:action-revision #:action-run-order
-                              #:action-state #:action-state-list
-                              #:action-timeout #:action-type
-                              #:action-type-artifact-details
+                              #:action-namespace #:action-owner
+                              #:action-provider #:action-revision
+                              #:action-run-order #:action-state
+                              #:action-state-list #:action-timeout
+                              #:action-type #:action-type-artifact-details
                               #:action-type-declaration
                               #:action-type-description #:action-type-executor
                               #:action-type-id #:action-type-identifier
-                              #:action-type-list
-                              #:action-type-not-found-exception
-                              #:action-type-owner #:action-type-permissions
+                              #:action-type-list #:action-type-owner
+                              #:action-type-permissions
                               #:action-type-properties #:action-type-property
                               #:action-type-settings #:action-type-urls
                               #:allowed-account #:allowed-accounts
-                              #:approval-already-completed-exception
                               #:approval-result #:approval-status
                               #:approval-summary #:approval-token #:artifact
                               #:artifact-detail #:artifact-detail-list
@@ -52,38 +44,22 @@
                               #:blocker-type #:boolean #:client-id
                               #:client-request-token #:client-token #:code
                               #:code-pipeline-20150709 #:command #:command-list
-                              #:concurrent-modification-exception
-                              #:concurrent-pipeline-executions-limit-exceeded-exception
                               #:condition #:condition-execution
                               #:condition-execution-status #:condition-list
-                              #:condition-not-overridable-exception
                               #:condition-state #:condition-state-list
-                              #:condition-type #:conflict-exception
-                              #:continuation-token #:create-custom-action-type
-                              #:create-custom-action-type-input
-                              #:create-custom-action-type-output
-                              #:create-pipeline #:create-pipeline-input
-                              #:create-pipeline-output #:current-revision
-                              #:delete-custom-action-type
-                              #:delete-custom-action-type-input
-                              #:delete-pipeline #:delete-pipeline-input
-                              #:delete-webhook #:delete-webhook-input
-                              #:delete-webhook-output
+                              #:condition-type #:continuation-token
+                              #:create-custom-action-type #:create-pipeline
+                              #:current-revision #:delete-custom-action-type
+                              #:delete-pipeline #:delete-webhook
                               #:deploy-action-execution-target
                               #:deploy-action-execution-target-list
                               #:deploy-target-event
                               #:deploy-target-event-context
                               #:deploy-target-event-list
                               #:deregister-webhook-with-third-party
-                              #:deregister-webhook-with-third-party-input
-                              #:deregister-webhook-with-third-party-output
                               #:description #:disable-stage-transition
-                              #:disable-stage-transition-input
-                              #:disabled-reason
-                              #:duplicated-stop-request-exception
-                              #:enable-stage-transition
-                              #:enable-stage-transition-input #:enabled
-                              #:encryption-key #:encryption-key-id
+                              #:disabled-reason #:enable-stage-transition
+                              #:enabled #:encryption-key #:encryption-key-id
                               #:encryption-key-type #:environment-variable
                               #:environment-variable-list
                               #:environment-variable-name
@@ -97,18 +73,9 @@
                               #:external-execution-summary #:failure-conditions
                               #:failure-details #:failure-type #:file-path
                               #:file-path-list #:get-action-type
-                              #:get-action-type-input #:get-action-type-output
-                              #:get-job-details #:get-job-details-input
-                              #:get-job-details-output #:get-pipeline
-                              #:get-pipeline-execution
-                              #:get-pipeline-execution-input
-                              #:get-pipeline-execution-output
-                              #:get-pipeline-input #:get-pipeline-output
-                              #:get-pipeline-state #:get-pipeline-state-input
-                              #:get-pipeline-state-output
+                              #:get-job-details #:get-pipeline
+                              #:get-pipeline-execution #:get-pipeline-state
                               #:get-third-party-job-details
-                              #:get-third-party-job-details-input
-                              #:get-third-party-job-details-output
                               #:git-branch-filter-criteria
                               #:git-branch-name-pattern
                               #:git-branch-pattern-list #:git-configuration
@@ -121,78 +88,39 @@
                               #:git-pull-request-filter-list #:git-push-filter
                               #:git-push-filter-list #:git-tag-filter-criteria
                               #:git-tag-name-pattern #:git-tag-pattern-list
-                              #:input-artifact #:input-artifact-list
-                              #:invalid-action-declaration-exception
-                              #:invalid-approval-token-exception
-                              #:invalid-arn-exception
-                              #:invalid-blocker-declaration-exception
-                              #:invalid-client-token-exception
-                              #:invalid-job-exception
-                              #:invalid-job-state-exception
-                              #:invalid-next-token-exception
-                              #:invalid-nonce-exception
-                              #:invalid-stage-declaration-exception
-                              #:invalid-structure-exception
-                              #:invalid-tags-exception
-                              #:invalid-webhook-authentication-parameters-exception
-                              #:invalid-webhook-filter-pattern-exception #:job
+                              #:input-artifact #:input-artifact-list #:job
                               #:job-data #:job-details #:job-id #:job-list
-                              #:job-not-found-exception #:job-status
-                              #:job-timeout #:job-worker-executor-configuration
-                              #:json-path #:lambda-executor-configuration
+                              #:job-status #:job-timeout
+                              #:job-worker-executor-configuration #:json-path
+                              #:lambda-executor-configuration
                               #:lambda-function-arn #:last-changed-at
                               #:last-changed-by #:last-updated-by
                               #:latest-in-pipeline-execution-filter
-                              #:limit-exceeded-exception
-                              #:list-action-executions
-                              #:list-action-executions-input
-                              #:list-action-executions-output
-                              #:list-action-types #:list-action-types-input
-                              #:list-action-types-output
+                              #:list-action-executions #:list-action-types
                               #:list-deploy-action-execution-targets
-                              #:list-deploy-action-execution-targets-input
-                              #:list-deploy-action-execution-targets-output
-                              #:list-pipeline-executions
-                              #:list-pipeline-executions-input
-                              #:list-pipeline-executions-output
-                              #:list-pipelines #:list-pipelines-input
-                              #:list-pipelines-output #:list-rule-executions
-                              #:list-rule-executions-input
-                              #:list-rule-executions-output #:list-rule-types
-                              #:list-rule-types-input #:list-rule-types-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
-                              #:list-webhook-item #:list-webhooks
-                              #:list-webhooks-input #:list-webhooks-output
-                              #:log-stream-arn #:match-equals #:max-batch-size
-                              #:max-pipelines #:max-results
+                              #:list-pipeline-executions #:list-pipelines
+                              #:list-rule-executions #:list-rule-types
+                              #:list-tags-for-resource #:list-webhook-item
+                              #:list-webhooks #:log-stream-arn #:match-equals
+                              #:max-batch-size #:max-pipelines #:max-results
                               #:maximum-action-type-artifact-count
                               #:maximum-artifact-count #:message
                               #:minimum-action-type-artifact-count
                               #:minimum-artifact-count #:next-token #:nonce
-                              #:not-latest-pipeline-execution-exception
                               #:output-artifact #:output-artifact-list
                               #:output-variable #:output-variable-list
                               #:output-variables-key #:output-variables-map
-                              #:output-variables-size-exceeded-exception
                               #:output-variables-value
-                              #:override-stage-condition
-                              #:override-stage-condition-input #:percentage
+                              #:override-stage-condition #:percentage
                               #:pipeline-arn #:pipeline-context
                               #:pipeline-declaration #:pipeline-execution
                               #:pipeline-execution-filter
                               #:pipeline-execution-id
-                              #:pipeline-execution-not-found-exception
-                              #:pipeline-execution-not-stoppable-exception
-                              #:pipeline-execution-outdated-exception
                               #:pipeline-execution-status
                               #:pipeline-execution-status-summary
                               #:pipeline-execution-summary
                               #:pipeline-execution-summary-list #:pipeline-list
                               #:pipeline-metadata #:pipeline-name
-                              #:pipeline-name-in-use-exception
-                              #:pipeline-not-found-exception
                               #:pipeline-rollback-metadata
                               #:pipeline-stage-declaration-list
                               #:pipeline-summary #:pipeline-trigger-declaration
@@ -204,48 +132,27 @@
                               #:pipeline-variable-description
                               #:pipeline-variable-list #:pipeline-variable-name
                               #:pipeline-variable-value #:pipeline-version
-                              #:pipeline-version-not-found-exception
                               #:policy-statements-template #:poll-for-jobs
-                              #:poll-for-jobs-input #:poll-for-jobs-output
                               #:poll-for-third-party-jobs
-                              #:poll-for-third-party-jobs-input
-                              #:poll-for-third-party-jobs-output
                               #:polling-account-list
                               #:polling-service-principal-list
                               #:property-description #:put-action-revision
-                              #:put-action-revision-input
-                              #:put-action-revision-output
-                              #:put-approval-result #:put-approval-result-input
-                              #:put-approval-result-output
-                              #:put-job-failure-result
-                              #:put-job-failure-result-input
+                              #:put-approval-result #:put-job-failure-result
                               #:put-job-success-result
-                              #:put-job-success-result-input
                               #:put-third-party-job-failure-result
-                              #:put-third-party-job-failure-result-input
                               #:put-third-party-job-success-result
-                              #:put-third-party-job-success-result-input
-                              #:put-webhook #:put-webhook-input
-                              #:put-webhook-output #:query-param-map
+                              #:put-webhook #:query-param-map
                               #:register-webhook-with-third-party
-                              #:register-webhook-with-third-party-input
-                              #:register-webhook-with-third-party-output
-                              #:request-failed-exception
                               #:resolved-action-configuration-map
                               #:resolved-pipeline-variable
                               #:resolved-pipeline-variable-list
                               #:resolved-rule-configuration-map #:resource-arn
-                              #:resource-not-found-exception #:result
-                              #:retry-attempt #:retry-configuration
-                              #:retry-stage-execution
-                              #:retry-stage-execution-input
-                              #:retry-stage-execution-output
-                              #:retry-stage-metadata #:retry-trigger #:revision
+                              #:result #:retry-attempt #:retry-configuration
+                              #:retry-stage-execution #:retry-stage-metadata
+                              #:retry-trigger #:revision
                               #:revision-change-identifier #:revision-summary
-                              #:role-arn #:rollback-stage
-                              #:rollback-stage-input #:rollback-stage-output
-                              #:rule-category #:rule-configuration-key
-                              #:rule-configuration-map
+                              #:role-arn #:rollback-stage #:rule-category
+                              #:rule-configuration-key #:rule-configuration-map
                               #:rule-configuration-property
                               #:rule-configuration-property-list
                               #:rule-configuration-property-type
@@ -274,36 +181,24 @@
                               #:stage-conditions-execution #:stage-context
                               #:stage-declaration #:stage-execution
                               #:stage-execution-list #:stage-execution-status
-                              #:stage-name #:stage-not-found-exception
-                              #:stage-not-retryable-exception
-                              #:stage-retry-mode #:stage-state
+                              #:stage-name #:stage-retry-mode #:stage-state
                               #:stage-state-list #:stage-transition-type
-                              #:start-pipeline-execution
-                              #:start-pipeline-execution-input
-                              #:start-pipeline-execution-output
-                              #:start-time-range #:stop-execution-trigger
+                              #:start-pipeline-execution #:start-time-range
+                              #:stop-execution-trigger
                               #:stop-pipeline-execution
-                              #:stop-pipeline-execution-input
-                              #:stop-pipeline-execution-output
                               #:stop-pipeline-execution-reason #:string
                               #:succeeded-in-stage-filter #:success-conditions
                               #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:tag-value #:target-filter
+                              #:tag-resource #:tag-value #:target-filter
                               #:target-filter-list #:target-filter-name
                               #:target-filter-value #:target-filter-value-list
                               #:third-party-job #:third-party-job-data
                               #:third-party-job-details #:third-party-job-id
                               #:third-party-job-list #:time #:timestamp
-                              #:too-many-tags-exception #:transition-state
-                              #:trigger-detail #:trigger-type
-                              #:unable-to-rollback-stage-exception
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-action-type
-                              #:update-action-type-input #:update-pipeline
-                              #:update-pipeline-input #:update-pipeline-output
-                              #:url #:url-template #:validation-exception
-                              #:version #:webhook-arn
+                              #:transition-state #:trigger-detail
+                              #:trigger-type #:untag-resource
+                              #:update-action-type #:update-pipeline #:url
+                              #:url-template #:version #:webhook-arn
                               #:webhook-auth-configuration
                               #:webhook-auth-configuration-allowed-iprange
                               #:webhook-auth-configuration-secret-token
@@ -311,8 +206,7 @@
                               #:webhook-definition #:webhook-error-code
                               #:webhook-error-message #:webhook-filter-rule
                               #:webhook-filters #:webhook-last-triggered
-                              #:webhook-list #:webhook-name
-                              #:webhook-not-found-exception #:webhook-url))
+                              #:webhook-list #:webhook-name #:webhook-url))
 (common-lisp:in-package #:pira/codepipeline)
 
 (smithy/sdk/service:define-service code-pipeline-20150709 :shape-name

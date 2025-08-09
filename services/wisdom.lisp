@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/wisdom (:use)
-                             (:export #:access-denied-exception
-                              #:app-integrations-configuration #:arn
+                             (:export #:app-integrations-configuration #:arn
                               #:assistant #:assistant-association
                               #:assistant-association-data
                               #:assistant-association-input-data
@@ -13,8 +12,8 @@
                               #:assistant-summary #:assistant-type
                               #:association-type #:channel #:channels
                               #:client-token #:configuration
-                              #:conflict-exception #:connect-configuration
-                              #:contact-attribute-key #:contact-attribute-keys
+                              #:connect-configuration #:contact-attribute-key
+                              #:contact-attribute-keys
                               #:contact-attribute-value #:contact-attributes
                               #:content #:content-data #:content-metadata
                               #:content-reference #:content-status
@@ -29,9 +28,7 @@
                               #:create-content-response #:create-knowledge-base
                               #:create-knowledge-base-request
                               #:create-knowledge-base-response
-                              #:create-quick-response
-                              #:create-quick-response-request
-                              #:create-quick-response-response #:create-session
+                              #:create-quick-response #:create-session
                               #:create-session-request
                               #:create-session-response #:delete-assistant
                               #:delete-assistant-association
@@ -41,15 +38,11 @@
                               #:delete-assistant-response #:delete-content
                               #:delete-content-request
                               #:delete-content-response #:delete-import-job
-                              #:delete-import-job-request
-                              #:delete-import-job-response
                               #:delete-knowledge-base
                               #:delete-knowledge-base-request
                               #:delete-knowledge-base-response
-                              #:delete-quick-response
-                              #:delete-quick-response-request
-                              #:delete-quick-response-response #:description
-                              #:document #:document-text #:external-source
+                              #:delete-quick-response #:description #:document
+                              #:document-text #:external-source
                               #:external-source-configuration #:filter
                               #:filter-field #:filter-list #:filter-operator
                               #:generic-arn #:get-assistant
@@ -61,13 +54,9 @@
                               #:get-content-response #:get-content-summary
                               #:get-content-summary-request
                               #:get-content-summary-response #:get-import-job
-                              #:get-import-job-request
-                              #:get-import-job-response #:get-knowledge-base
-                              #:get-knowledge-base-request
+                              #:get-knowledge-base #:get-knowledge-base-request
                               #:get-knowledge-base-response
-                              #:get-quick-response #:get-quick-response-request
-                              #:get-quick-response-response
-                              #:get-recommendations
+                              #:get-quick-response #:get-recommendations
                               #:get-recommendations-request
                               #:get-recommendations-response #:get-session
                               #:get-session-request #:get-session-response
@@ -87,15 +76,10 @@
                               #:list-assistants #:list-assistants-request
                               #:list-assistants-response #:list-contents
                               #:list-contents-request #:list-contents-response
-                              #:list-import-jobs #:list-import-jobs-request
-                              #:list-import-jobs-response
-                              #:list-knowledge-bases
+                              #:list-import-jobs #:list-knowledge-bases
                               #:list-knowledge-bases-request
                               #:list-knowledge-bases-response
-                              #:list-quick-responses
-                              #:list-quick-responses-request
-                              #:list-quick-responses-response
-                              #:list-tags-for-resource
+                              #:list-quick-responses #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response #:max-results
                               #:name #:next-token #:non-empty-string
@@ -105,8 +89,7 @@
                               #:notify-recommendations-received-error-message
                               #:notify-recommendations-received-request
                               #:notify-recommendations-received-response
-                              #:object-fields-list #:order
-                              #:precondition-failed-exception #:priority
+                              #:object-fields-list #:order #:priority
                               #:query-assistant #:query-assistant-request
                               #:query-assistant-response
                               #:query-recommendation-trigger-data
@@ -145,18 +128,13 @@
                               #:remove-knowledge-base-template-uri
                               #:remove-knowledge-base-template-uri-request
                               #:remove-knowledge-base-template-uri-response
-                              #:rendering-configuration
-                              #:request-timeout-exception
-                              #:resource-not-found-exception #:result-data
+                              #:rendering-configuration #:result-data
                               #:search-content #:search-content-request
                               #:search-content-response #:search-expression
-                              #:search-quick-responses
-                              #:search-quick-responses-request
-                              #:search-quick-responses-response
-                              #:search-sessions #:search-sessions-request
+                              #:search-quick-responses #:search-sessions
+                              #:search-sessions-request
                               #:search-sessions-response #:sensitive-string
-                              #:server-side-encryption-configuration
-                              #:service-quota-exceeded-exception #:session
+                              #:server-side-encryption-configuration #:session
                               #:session-data
                               #:session-integration-configuration
                               #:session-summaries #:session-summary
@@ -164,12 +142,10 @@
                               #:start-content-upload
                               #:start-content-upload-request
                               #:start-content-upload-response
-                              #:start-import-job #:start-import-job-request
-                              #:start-import-job-response #:tag-key
-                              #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:time-to-live
-                              #:too-many-tags-exception #:untag-resource
+                              #:start-import-job #:tag-key #:tag-key-list
+                              #:tag-resource #:tag-resource-request
+                              #:tag-resource-response #:tag-value #:tags
+                              #:time-to-live #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-content
                               #:update-content-request
@@ -177,11 +153,8 @@
                               #:update-knowledge-base-template-uri
                               #:update-knowledge-base-template-uri-request
                               #:update-knowledge-base-template-uri-response
-                              #:update-quick-response
-                              #:update-quick-response-request
-                              #:update-quick-response-response #:upload-id
-                              #:uri #:url #:uuid #:uuid-or-arn
-                              #:validation-exception #:wait-time-seconds
+                              #:update-quick-response #:upload-id #:uri #:url
+                              #:uuid #:uuid-or-arn #:wait-time-seconds
                               #:wisdom-service))
 (common-lisp:in-package #:pira/wisdom)
 

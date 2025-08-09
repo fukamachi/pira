@@ -1,21 +1,13 @@
 (uiop/package:define-package #:pira/keyspacesstreams (:use)
-                             (:export #:access-denied-exception #:date
-                              #:get-records #:get-records-input
-                              #:get-records-output #:get-shard-iterator
-                              #:get-shard-iterator-input
-                              #:get-shard-iterator-output #:get-stream
-                              #:get-stream-input #:get-stream-output
-                              #:internal-server-exception #:keyspace-name
-                              #:keyspaces-cell #:keyspaces-cell-list
-                              #:keyspaces-cell-map
+                             (:export #:date #:get-records #:get-shard-iterator
+                              #:get-stream #:keyspace-name #:keyspaces-cell
+                              #:keyspaces-cell-list #:keyspaces-cell-map
                               #:keyspaces-cell-map-definition
                               #:keyspaces-cell-value #:keyspaces-cells
                               #:keyspaces-keys-map #:keyspaces-metadata
                               #:keyspaces-row #:keyspaces-streams
-                              #:keyspaces-udt-map #:list-streams
-                              #:list-streams-input #:list-streams-output
-                              #:origin-type #:record #:record-list
-                              #:resource-not-found-exception #:sequence-number
+                              #:keyspaces-udt-map #:list-streams #:origin-type
+                              #:record #:record-list #:sequence-number
                               #:sequence-number-range #:shard
                               #:shard-description-list #:shard-filter
                               #:shard-filter-type #:shard-id #:shard-id-list
@@ -23,7 +15,6 @@
                               #:shard-iterator-type #:stream #:stream-arn
                               #:stream-arn-token #:stream-list #:stream-status
                               #:stream-view-type #:table-name
-                              #:throttling-exception #:validation-exception
                               #:validation-exception-type))
 (common-lisp:in-package #:pira/keyspacesstreams)
 

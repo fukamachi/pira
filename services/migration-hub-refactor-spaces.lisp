@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/migration-hub-refactor-spaces (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:additional-details #:additional-details-key
+                             (:export #:account-id #:additional-details
+                              #:additional-details-key
                               #:additional-details-value
                               #:api-gateway-endpoint-type #:api-gateway-id
                               #:api-gateway-proxy-config
@@ -9,8 +9,8 @@
                               #:application-name #:application-state
                               #:application-summaries #:application-summary
                               #:boolean #:cidr-block #:cidr-blocks
-                              #:client-token #:conflict-exception
-                              #:create-application #:create-application-request
+                              #:client-token #:create-application
+                              #:create-application-request
                               #:create-application-response
                               #:create-environment #:create-environment-request
                               #:create-environment-response #:create-route
@@ -42,8 +42,7 @@
                               #:get-route-request #:get-route-response
                               #:get-service #:get-service-request
                               #:get-service-response #:http-method
-                              #:http-methods #:internal-server-exception
-                              #:invalid-resource-policy-exception #:lambda-arn
+                              #:http-methods #:lambda-arn
                               #:lambda-endpoint-config #:lambda-endpoint-input
                               #:lambda-endpoint-summary #:list-applications
                               #:list-applications-request
@@ -66,26 +65,23 @@
                               #:put-resource-policy-request
                               #:put-resource-policy-response #:refactor-spaces
                               #:resource-arn #:resource-identifier
-                              #:resource-not-found-exception
                               #:resource-policy-identifier
                               #:retry-after-seconds #:route-activation-state
                               #:route-id #:route-state #:route-summaries
                               #:route-summary #:route-type
                               #:service-endpoint-type #:service-id
-                              #:service-name #:service-quota-exceeded-exception
-                              #:service-state #:service-summaries
-                              #:service-summary #:stage-name #:string
-                              #:tag-keys #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:throttling-exception #:timestamp
+                              #:service-name #:service-state
+                              #:service-summaries #:service-summary
+                              #:stage-name #:string #:tag-keys #:tag-map
+                              #:tag-resource #:tag-resource-request
+                              #:tag-resource-response #:timestamp
                               #:transit-gateway-id #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-route
                               #:update-route-request #:update-route-response
                               #:uri #:uri-path #:uri-path-route-input
                               #:url-endpoint-config #:url-endpoint-input
-                              #:url-endpoint-summary #:validation-exception
-                              #:vpc-id #:vpc-link-id))
+                              #:url-endpoint-summary #:vpc-id #:vpc-link-id))
 (common-lisp:in-package #:pira/migration-hub-refactor-spaces)
 
 (smithy/sdk/service:define-service refactor-spaces :shape-name "RefactorSpaces"

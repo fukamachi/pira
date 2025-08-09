@@ -1,154 +1,64 @@
 (uiop/package:define-package #:pira/sns (:use)
                              (:export #:actions-list #:add-permission
-                              #:add-permission-input #:amazon-resource-name
+                              #:amazon-resource-name
                               #:amazon-simple-notification-service
-                              #:authorization-error-exception
-                              #:batch-entry-ids-not-distinct-exception
-                              #:batch-request-too-long-exception
                               #:batch-result-error-entry
                               #:batch-result-error-entry-list #:binary
                               #:check-if-phone-number-is-opted-out
-                              #:check-if-phone-number-is-opted-out-input
-                              #:check-if-phone-number-is-opted-out-response
-                              #:concurrent-access-exception
                               #:confirm-subscription
-                              #:confirm-subscription-input
-                              #:confirm-subscription-response
-                              #:create-endpoint-response
                               #:create-platform-application
-                              #:create-platform-application-input
-                              #:create-platform-application-response
                               #:create-platform-endpoint
-                              #:create-platform-endpoint-input
-                              #:create-smssandbox-phone-number
-                              #:create-smssandbox-phone-number-input
-                              #:create-smssandbox-phone-number-result
-                              #:create-topic #:create-topic-input
-                              #:create-topic-response #:delegates-list
-                              #:delete-endpoint #:delete-endpoint-input
+                              #:create-smssandbox-phone-number #:create-topic
+                              #:delegates-list #:delete-endpoint
                               #:delete-platform-application
-                              #:delete-platform-application-input
-                              #:delete-smssandbox-phone-number
-                              #:delete-smssandbox-phone-number-input
-                              #:delete-smssandbox-phone-number-result
-                              #:delete-topic #:delete-topic-input
-                              #:empty-batch-request-exception #:endpoint
-                              #:endpoint2 #:endpoint-disabled-exception
-                              #:filter-policy-limit-exceeded-exception
+                              #:delete-smssandbox-phone-number #:delete-topic
+                              #:endpoint #:endpoint2
                               #:get-data-protection-policy
-                              #:get-data-protection-policy-input
-                              #:get-data-protection-policy-response
                               #:get-endpoint-attributes
-                              #:get-endpoint-attributes-input
-                              #:get-endpoint-attributes-response
                               #:get-platform-application-attributes
-                              #:get-platform-application-attributes-input
-                              #:get-platform-application-attributes-response
-                              #:get-smsattributes #:get-smsattributes-input
-                              #:get-smsattributes-response
+                              #:get-smsattributes
                               #:get-smssandbox-account-status
-                              #:get-smssandbox-account-status-input
-                              #:get-smssandbox-account-status-result
                               #:get-subscription-attributes
-                              #:get-subscription-attributes-input
-                              #:get-subscription-attributes-response
-                              #:get-topic-attributes
-                              #:get-topic-attributes-input
-                              #:get-topic-attributes-response
-                              #:internal-error-exception
-                              #:invalid-batch-entry-id-exception
-                              #:invalid-parameter-exception
-                              #:invalid-parameter-value-exception
-                              #:invalid-security-exception
-                              #:invalid-state-exception #:iso2country-code
-                              #:kmsaccess-denied-exception
-                              #:kmsdisabled-exception
-                              #:kmsinvalid-state-exception
-                              #:kmsnot-found-exception #:kmsopt-in-required
-                              #:kmsthrottling-exception #:language-code-string
+                              #:get-topic-attributes #:iso2country-code
+                              #:language-code-string
                               #:list-endpoints-by-platform-application
-                              #:list-endpoints-by-platform-application-input
-                              #:list-endpoints-by-platform-application-response
                               #:list-of-endpoints
                               #:list-of-platform-applications
                               #:list-origination-numbers
-                              #:list-origination-numbers-request
-                              #:list-origination-numbers-result
                               #:list-phone-numbers-opted-out
-                              #:list-phone-numbers-opted-out-input
-                              #:list-phone-numbers-opted-out-response
                               #:list-platform-applications
-                              #:list-platform-applications-input
-                              #:list-platform-applications-response
-                              #:list-smssandbox-phone-numbers
-                              #:list-smssandbox-phone-numbers-input
-                              #:list-smssandbox-phone-numbers-result
-                              #:list-string #:list-subscriptions
+                              #:list-smssandbox-phone-numbers #:list-string
+                              #:list-subscriptions
                               #:list-subscriptions-by-topic
-                              #:list-subscriptions-by-topic-input
-                              #:list-subscriptions-by-topic-response
-                              #:list-subscriptions-input
-                              #:list-subscriptions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-topics
-                              #:list-topics-input #:list-topics-response
+                              #:list-tags-for-resource #:list-topics
                               #:map-string-to-string #:max-items
                               #:max-items-list-origination-numbers
                               #:message-attribute-map #:message-attribute-value
-                              #:not-found-exception #:number-capability
-                              #:number-capability-list #:otpcode
-                              #:opt-in-phone-number #:opt-in-phone-number-input
-                              #:opt-in-phone-number-response
-                              #:opted-out-exception #:phone-number
+                              #:number-capability #:number-capability-list
+                              #:otpcode #:opt-in-phone-number #:phone-number
                               #:phone-number-information
                               #:phone-number-information-list
                               #:phone-number-list #:phone-number-string
-                              #:platform-application
-                              #:platform-application-disabled-exception
-                              #:publish #:publish-batch #:publish-batch-input
+                              #:platform-application #:publish #:publish-batch
                               #:publish-batch-request-entry
                               #:publish-batch-request-entry-list
-                              #:publish-batch-response
                               #:publish-batch-result-entry
-                              #:publish-batch-result-entry-list #:publish-input
-                              #:publish-response #:put-data-protection-policy
-                              #:put-data-protection-policy-input
-                              #:remove-permission #:remove-permission-input
-                              #:replay-limit-exceeded-exception
-                              #:resource-not-found-exception #:route-type
-                              #:smssandbox-phone-number
+                              #:publish-batch-result-entry-list
+                              #:put-data-protection-policy #:remove-permission
+                              #:route-type #:smssandbox-phone-number
                               #:smssandbox-phone-number-list
                               #:smssandbox-phone-number-verification-status
                               #:set-endpoint-attributes
-                              #:set-endpoint-attributes-input
                               #:set-platform-application-attributes
-                              #:set-platform-application-attributes-input
-                              #:set-smsattributes #:set-smsattributes-input
-                              #:set-smsattributes-response
-                              #:set-subscription-attributes
-                              #:set-subscription-attributes-input
-                              #:set-topic-attributes
-                              #:set-topic-attributes-input
-                              #:stale-tag-exception #:string #:subscribe
-                              #:subscribe-input #:subscribe-response
+                              #:set-smsattributes #:set-subscription-attributes
+                              #:set-topic-attributes #:string #:subscribe
                               #:subscription #:subscription-attributes-map
-                              #:subscription-limit-exceeded-exception
                               #:subscriptions-list #:tag #:tag-key
-                              #:tag-key-list #:tag-limit-exceeded-exception
-                              #:tag-list #:tag-policy-exception #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttled-exception #:timestamp
-                              #:too-many-entries-in-batch-request-exception
-                              #:topic #:topic-attributes-map
-                              #:topic-limit-exceeded-exception #:topics-list
-                              #:unsubscribe #:unsubscribe-input
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:user-error-exception
-                              #:validation-exception #:verification-exception
-                              #:verify-smssandbox-phone-number
-                              #:verify-smssandbox-phone-number-input
-                              #:verify-smssandbox-phone-number-result #:account
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:timestamp #:topic
+                              #:topic-attributes-map #:topics-list
+                              #:unsubscribe #:untag-resource
+                              #:verify-smssandbox-phone-number #:account
                               #:action #:attribute-name #:attribute-value
                               #:authenticate-on-unsubscribe #:boolean
                               #:delegate #:label #:message #:message-id

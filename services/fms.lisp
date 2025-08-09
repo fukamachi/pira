@@ -8,20 +8,13 @@
                               #:apps-list #:apps-list-data
                               #:apps-list-data-summary #:apps-lists-data
                               #:associate-admin-account
-                              #:associate-admin-account-request
                               #:associate-third-party-firewall
-                              #:associate-third-party-firewall-request
-                              #:associate-third-party-firewall-response
                               #:aws-ec2instance-violation
                               #:aws-ec2network-interface-violation
                               #:aws-ec2network-interface-violations
                               #:aws-vpcsecurity-group-violation #:base62id
                               #:basic-integer #:batch-associate-resource
-                              #:batch-associate-resource-request
-                              #:batch-associate-resource-response
-                              #:batch-disassociate-resource
-                              #:batch-disassociate-resource-request
-                              #:batch-disassociate-resource-response #:boolean
+                              #:batch-disassociate-resource #:boolean
                               #:boolean-object #:cidr #:compliance-violator
                               #:compliance-violator-metadata
                               #:compliance-violators
@@ -32,22 +25,13 @@
                               #:customer-policy-scope-id-type
                               #:customer-policy-scope-map
                               #:customer-policy-status #:delete-apps-list
-                              #:delete-apps-list-request
                               #:delete-network-acl-entries-action
-                              #:delete-notification-channel
-                              #:delete-notification-channel-request
-                              #:delete-policy #:delete-policy-request
-                              #:delete-protocols-list
-                              #:delete-protocols-list-request
-                              #:delete-resource-set
-                              #:delete-resource-set-request
+                              #:delete-notification-channel #:delete-policy
+                              #:delete-protocols-list #:delete-resource-set
                               #:dependent-service-name #:description
                               #:destination-type #:detailed-info
                               #:disassociate-admin-account
-                              #:disassociate-admin-account-request
                               #:disassociate-third-party-firewall
-                              #:disassociate-third-party-firewall-request
-                              #:disassociate-third-party-firewall-response
                               #:discovered-resource #:discovered-resource-list
                               #:dns-duplicate-rule-group-violation
                               #:dns-rule-group-limit-exceeded-violation
@@ -74,75 +58,30 @@
                               #:firewall-policy-id #:firewall-policy-name
                               #:firewall-subnet-is-out-of-scope-violation
                               #:firewall-subnet-missing-vpcendpoint-violation
-                              #:get-admin-account #:get-admin-account-request
-                              #:get-admin-account-response #:get-admin-scope
-                              #:get-admin-scope-request
-                              #:get-admin-scope-response #:get-apps-list
-                              #:get-apps-list-request #:get-apps-list-response
-                              #:get-compliance-detail
-                              #:get-compliance-detail-request
-                              #:get-compliance-detail-response
-                              #:get-notification-channel
-                              #:get-notification-channel-request
-                              #:get-notification-channel-response #:get-policy
-                              #:get-policy-request #:get-policy-response
-                              #:get-protection-status
-                              #:get-protection-status-request
-                              #:get-protection-status-response
-                              #:get-protocols-list #:get-protocols-list-request
-                              #:get-protocols-list-response #:get-resource-set
-                              #:get-resource-set-request
-                              #:get-resource-set-response
+                              #:get-admin-account #:get-admin-scope
+                              #:get-apps-list #:get-compliance-detail
+                              #:get-notification-channel #:get-policy
+                              #:get-protection-status #:get-protocols-list
+                              #:get-resource-set
                               #:get-third-party-firewall-association-status
-                              #:get-third-party-firewall-association-status-request
-                              #:get-third-party-firewall-association-status-response
-                              #:get-violation-details
-                              #:get-violation-details-request
-                              #:get-violation-details-response #:ipport-number
+                              #:get-violation-details #:ipport-number
                               #:ipport-number-integer #:identifier
                               #:identifier-list #:integer-object
                               #:integer-object-minimum0
-                              #:internal-error-exception
-                              #:invalid-input-exception
                               #:invalid-network-acl-entries-violation
-                              #:invalid-operation-exception
-                              #:invalid-type-exception #:issue-info-map
+                              #:issue-info-map
                               #:length-bounded-non-empty-string
                               #:length-bounded-string
                               #:length-bounded-string-list
-                              #:limit-exceeded-exception
                               #:list-admin-accounts-for-organization
-                              #:list-admin-accounts-for-organization-request
-                              #:list-admin-accounts-for-organization-response
-                              #:list-admins-managing-account
-                              #:list-admins-managing-account-request
-                              #:list-admins-managing-account-response
-                              #:list-apps-lists #:list-apps-lists-request
-                              #:list-apps-lists-response
+                              #:list-admins-managing-account #:list-apps-lists
                               #:list-compliance-status
-                              #:list-compliance-status-request
-                              #:list-compliance-status-response
-                              #:list-discovered-resources
-                              #:list-discovered-resources-request
-                              #:list-discovered-resources-response #:list-id
-                              #:list-member-accounts
-                              #:list-member-accounts-request
-                              #:list-member-accounts-response #:list-policies
-                              #:list-policies-request #:list-policies-response
+                              #:list-discovered-resources #:list-id
+                              #:list-member-accounts #:list-policies
                               #:list-protocols-lists
-                              #:list-protocols-lists-request
-                              #:list-protocols-lists-response
                               #:list-resource-set-resources
-                              #:list-resource-set-resources-request
-                              #:list-resource-set-resources-response
-                              #:list-resource-sets #:list-resource-sets-request
-                              #:list-resource-sets-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-resource-sets #:list-tags-for-resource
                               #:list-third-party-firewall-firewall-policies
-                              #:list-third-party-firewall-firewall-policies-request
-                              #:list-third-party-firewall-firewall-policies-response
                               #:managed-service-data
                               #:marketplace-subscription-onboarding-status
                               #:member-accounts #:name
@@ -190,15 +129,9 @@
                               #:protocols-list-data
                               #:protocols-list-data-summary
                               #:protocols-lists-data #:put-admin-account
-                              #:put-admin-account-request #:put-apps-list
-                              #:put-apps-list-request #:put-apps-list-response
-                              #:put-notification-channel
-                              #:put-notification-channel-request #:put-policy
-                              #:put-policy-request #:put-policy-response
-                              #:put-protocols-list #:put-protocols-list-request
-                              #:put-protocols-list-response #:put-resource-set
-                              #:put-resource-set-request
-                              #:put-resource-set-response #:reference-rule
+                              #:put-apps-list #:put-notification-channel
+                              #:put-policy #:put-protocols-list
+                              #:put-resource-set #:reference-rule
                               #:region-scope #:remediation-action
                               #:remediation-action-description
                               #:remediation-action-type
@@ -207,8 +140,7 @@
                               #:resource #:resource-arn #:resource-arn-list
                               #:resource-count #:resource-description
                               #:resource-id #:resource-id-list #:resource-list
-                              #:resource-name #:resource-not-found-exception
-                              #:resource-set #:resource-set-ids
+                              #:resource-name #:resource-set #:resource-set-ids
                               #:resource-set-status #:resource-set-summary
                               #:resource-set-summary-list #:resource-tag
                               #:resource-tag-key
@@ -231,7 +163,6 @@
                               #:stateless-rule-group-priority
                               #:stream-exception-policy #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:target-type
                               #:target-violation-reason
                               #:target-violation-reasons #:third-party-firewall
@@ -242,8 +173,7 @@
                               #:third-party-firewall-missing-firewall-violation
                               #:third-party-firewall-missing-subnet-violation
                               #:third-party-firewall-policy #:time-stamp
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-token
+                              #:untag-resource #:update-token
                               #:violation-detail #:violation-reason
                               #:violation-target
                               #:web-aclhas-incompatible-configuration-violation

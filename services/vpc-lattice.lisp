@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/vpc-lattice (:use)
-                             (:export #:access-denied-exception
-                              #:access-log-destination-arn
+                             (:export #:access-log-destination-arn
                               #:access-log-subscription
                               #:access-log-subscription-arn
                               #:access-log-subscription-id
@@ -12,24 +11,17 @@
                               #:batch-update-rule #:batch-update-rule-request
                               #:batch-update-rule-response #:boolean
                               #:certificate-arn #:client-token
-                              #:conflict-exception
                               #:create-access-log-subscription
                               #:create-access-log-subscription-request
                               #:create-access-log-subscription-response
                               #:create-listener #:create-listener-request
                               #:create-listener-response
                               #:create-resource-configuration
-                              #:create-resource-configuration-request
-                              #:create-resource-configuration-response
-                              #:create-resource-gateway
-                              #:create-resource-gateway-request
-                              #:create-resource-gateway-response #:create-rule
+                              #:create-resource-gateway #:create-rule
                               #:create-rule-request #:create-rule-response
                               #:create-service #:create-service-network
                               #:create-service-network-request
                               #:create-service-network-resource-association
-                              #:create-service-network-resource-association-request
-                              #:create-service-network-resource-association-response
                               #:create-service-network-response
                               #:create-service-network-service-association
                               #:create-service-network-service-association-request
@@ -49,14 +41,8 @@
                               #:delete-listener-request
                               #:delete-listener-response
                               #:delete-resource-configuration
-                              #:delete-resource-configuration-request
-                              #:delete-resource-configuration-response
                               #:delete-resource-endpoint-association
-                              #:delete-resource-endpoint-association-request
-                              #:delete-resource-endpoint-association-response
                               #:delete-resource-gateway
-                              #:delete-resource-gateway-request
-                              #:delete-resource-gateway-response
                               #:delete-resource-policy
                               #:delete-resource-policy-request
                               #:delete-resource-policy-response #:delete-rule
@@ -64,8 +50,6 @@
                               #:delete-service #:delete-service-network
                               #:delete-service-network-request
                               #:delete-service-network-resource-association
-                              #:delete-service-network-resource-association-request
-                              #:delete-service-network-resource-association-response
                               #:delete-service-network-response
                               #:delete-service-network-service-association
                               #:delete-service-network-service-association-request
@@ -88,20 +72,13 @@
                               #:get-auth-policy-response #:get-listener
                               #:get-listener-request #:get-listener-response
                               #:get-resource-configuration
-                              #:get-resource-configuration-request
-                              #:get-resource-configuration-response
-                              #:get-resource-gateway
-                              #:get-resource-gateway-request
-                              #:get-resource-gateway-response
-                              #:get-resource-policy
+                              #:get-resource-gateway #:get-resource-policy
                               #:get-resource-policy-request
                               #:get-resource-policy-response #:get-rule
                               #:get-rule-request #:get-rule-response
                               #:get-service #:get-service-network
                               #:get-service-network-request
                               #:get-service-network-resource-association
-                              #:get-service-network-resource-association-request
-                              #:get-service-network-resource-association-response
                               #:get-service-network-response
                               #:get-service-network-service-association
                               #:get-service-network-service-association-request
@@ -122,8 +99,7 @@
                               #:health-check-timeout-seconds
                               #:healthy-threshold-count #:http-code-matcher
                               #:http-match #:http-method #:http-status-code
-                              #:internal-server-exception #:ip-address
-                              #:ip-address-type #:ip-resource
+                              #:ip-address #:ip-address-type #:ip-resource
                               #:lambda-event-structure-version
                               #:list-access-log-subscriptions
                               #:list-access-log-subscriptions-request
@@ -131,18 +107,10 @@
                               #:list-listeners #:list-listeners-request
                               #:list-listeners-response
                               #:list-resource-configurations
-                              #:list-resource-configurations-request
-                              #:list-resource-configurations-response
                               #:list-resource-endpoint-associations
-                              #:list-resource-endpoint-associations-request
-                              #:list-resource-endpoint-associations-response
-                              #:list-resource-gateways
-                              #:list-resource-gateways-request
-                              #:list-resource-gateways-response #:list-rules
+                              #:list-resource-gateways #:list-rules
                               #:list-rules-request #:list-rules-response
                               #:list-service-network-resource-associations
-                              #:list-service-network-resource-associations-request
-                              #:list-service-network-resource-associations-response
                               #:list-service-network-service-associations
                               #:list-service-network-service-associations-request
                               #:list-service-network-service-associations-response
@@ -150,8 +118,6 @@
                               #:list-service-network-vpc-associations-request
                               #:list-service-network-vpc-associations-response
                               #:list-service-network-vpc-endpoint-associations
-                              #:list-service-network-vpc-endpoint-associations-request
-                              #:list-service-network-vpc-endpoint-associations-response
                               #:list-service-networks
                               #:list-service-networks-request
                               #:list-service-networks-response #:list-services
@@ -200,12 +166,10 @@
                               #:resource-gateway-list #:resource-gateway-name
                               #:resource-gateway-status
                               #:resource-gateway-summary #:resource-id
-                              #:resource-identifier
-                              #:resource-not-found-exception #:rule
-                              #:rule-action #:rule-arn #:rule-id
-                              #:rule-identifier #:rule-match #:rule-name
-                              #:rule-priority #:rule-summary
-                              #:rule-summary-list #:rule-update
+                              #:resource-identifier #:rule #:rule-action
+                              #:rule-arn #:rule-id #:rule-identifier
+                              #:rule-match #:rule-name #:rule-priority
+                              #:rule-summary #:rule-summary-list #:rule-update
                               #:rule-update-failure #:rule-update-failure-list
                               #:rule-update-list #:rule-update-success
                               #:rule-update-success-list #:security-group-id
@@ -245,7 +209,6 @@
                               #:service-network-vpc-association-status
                               #:service-network-vpc-association-summary
                               #:service-network-vpc-endpoint-association-list
-                              #:service-quota-exceeded-exception
                               #:service-status #:service-summary
                               #:sharing-config #:subnet-id #:subnet-list
                               #:tag-key #:tag-keys #:tag-map #:tag-resource
@@ -260,9 +223,9 @@
                               #:target-group-status #:target-group-summary
                               #:target-group-type #:target-group-weight
                               #:target-list #:target-status #:target-summary
-                              #:target-summary-list #:throttling-exception
-                              #:timestamp #:unhealthy-threshold-count
-                              #:untag-resource #:untag-resource-request
+                              #:target-summary-list #:timestamp
+                              #:unhealthy-threshold-count #:untag-resource
+                              #:untag-resource-request
                               #:untag-resource-response
                               #:update-access-log-subscription
                               #:update-access-log-subscription-request
@@ -270,11 +233,7 @@
                               #:update-listener #:update-listener-request
                               #:update-listener-response
                               #:update-resource-configuration
-                              #:update-resource-configuration-request
-                              #:update-resource-configuration-response
-                              #:update-resource-gateway
-                              #:update-resource-gateway-request
-                              #:update-resource-gateway-response #:update-rule
+                              #:update-resource-gateway #:update-rule
                               #:update-rule-request #:update-rule-response
                               #:update-service #:update-service-network
                               #:update-service-network-request
@@ -286,7 +245,6 @@
                               #:update-service-response #:update-target-group
                               #:update-target-group-request
                               #:update-target-group-response
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vpc-endpoint-id

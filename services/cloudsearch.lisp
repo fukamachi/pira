@@ -5,58 +5,21 @@
                               #:analysis-scheme #:analysis-scheme-language
                               #:analysis-scheme-status
                               #:analysis-scheme-status-list
-                              #:availability-options-status #:base-exception
-                              #:boolean #:build-suggesters
-                              #:build-suggesters-request
-                              #:build-suggesters-response #:create-domain
-                              #:create-domain-request #:create-domain-response
+                              #:availability-options-status #:boolean
+                              #:build-suggesters #:create-domain
                               #:date-array-options #:date-options
-                              #:define-analysis-scheme
-                              #:define-analysis-scheme-request
-                              #:define-analysis-scheme-response
-                              #:define-expression #:define-expression-request
-                              #:define-expression-response #:define-index-field
-                              #:define-index-field-request
-                              #:define-index-field-response #:define-suggester
-                              #:define-suggester-request
-                              #:define-suggester-response
-                              #:delete-analysis-scheme
-                              #:delete-analysis-scheme-request
-                              #:delete-analysis-scheme-response #:delete-domain
-                              #:delete-domain-request #:delete-domain-response
-                              #:delete-expression #:delete-expression-request
-                              #:delete-expression-response #:delete-index-field
-                              #:delete-index-field-request
-                              #:delete-index-field-response #:delete-suggester
-                              #:delete-suggester-request
-                              #:delete-suggester-response
-                              #:describe-analysis-schemes
-                              #:describe-analysis-schemes-request
-                              #:describe-analysis-schemes-response
+                              #:define-analysis-scheme #:define-expression
+                              #:define-index-field #:define-suggester
+                              #:delete-analysis-scheme #:delete-domain
+                              #:delete-expression #:delete-index-field
+                              #:delete-suggester #:describe-analysis-schemes
                               #:describe-availability-options
-                              #:describe-availability-options-request
-                              #:describe-availability-options-response
                               #:describe-domain-endpoint-options
-                              #:describe-domain-endpoint-options-request
-                              #:describe-domain-endpoint-options-response
-                              #:describe-domains #:describe-domains-request
-                              #:describe-domains-response
-                              #:describe-expressions
-                              #:describe-expressions-request
-                              #:describe-expressions-response
+                              #:describe-domains #:describe-expressions
                               #:describe-index-fields
-                              #:describe-index-fields-request
-                              #:describe-index-fields-response
                               #:describe-scaling-parameters
-                              #:describe-scaling-parameters-request
-                              #:describe-scaling-parameters-response
                               #:describe-service-access-policies
-                              #:describe-service-access-policies-request
-                              #:describe-service-access-policies-response
                               #:describe-suggesters
-                              #:describe-suggesters-request
-                              #:describe-suggesters-response
-                              #:disabled-operation-exception
                               #:document-suggester-options
                               #:domain-endpoint-options
                               #:domain-endpoint-options-status #:domain-id
@@ -69,23 +32,16 @@
                               #:expression-status #:expression-status-list
                               #:expression-value #:field-name
                               #:field-name-comma-list #:field-name-list
-                              #:field-value #:index-documents
-                              #:index-documents-request
-                              #:index-documents-response #:index-field
+                              #:field-value #:index-documents #:index-field
                               #:index-field-status #:index-field-status-list
                               #:index-field-type #:instance-count
                               #:int-array-options #:int-options
-                              #:internal-exception #:invalid-type-exception
-                              #:lat-lon-options #:limit-exceeded-exception
-                              #:limits #:list-domain-names
-                              #:list-domain-names-response
+                              #:lat-lon-options #:limits #:list-domain-names
                               #:literal-array-options #:literal-options #:long
                               #:maximum-partition-count
                               #:maximum-replication-count #:multi-az
                               #:option-state #:option-status #:partition-count
                               #:partition-instance-type #:policy-document
-                              #:resource-already-exists-exception
-                              #:resource-not-found-exception
                               #:scaling-parameters #:scaling-parameters-status
                               #:search-instance-type #:service-endpoint
                               #:service-url #:standard-name
@@ -94,18 +50,10 @@
                               #:suggester-status-list #:tlssecurity-policy
                               #:text-array-options #:text-options #:uint-value
                               #:update-availability-options
-                              #:update-availability-options-request
-                              #:update-availability-options-response
                               #:update-domain-endpoint-options
-                              #:update-domain-endpoint-options-request
-                              #:update-domain-endpoint-options-response
                               #:update-scaling-parameters
-                              #:update-scaling-parameters-request
-                              #:update-scaling-parameters-response
                               #:update-service-access-policies
-                              #:update-service-access-policies-request
-                              #:update-service-access-policies-response
-                              #:update-timestamp #:validation-exception #:word))
+                              #:update-timestamp #:word))
 (common-lisp:in-package #:pira/cloudsearch)
 
 (smithy/sdk/service:define-service a9search-cloud-config-service2013

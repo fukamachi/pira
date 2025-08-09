@@ -43,8 +43,8 @@
                               #:delete-ephemeris #:delete-ephemeris-request
                               #:delete-mission-profile
                               #:delete-mission-profile-request
-                              #:demodulation-config #:dependency-exception
-                              #:describe-contact #:describe-contact-request
+                              #:demodulation-config #:describe-contact
+                              #:describe-contact-request
                               #:describe-contact-response #:describe-ephemeris
                               #:describe-ephemeris-request
                               #:describe-ephemeris-response #:destination
@@ -75,10 +75,9 @@
                               #:ground-station-id-list #:ground-station-list
                               #:ground-station-name #:ground-station-resource
                               #:instance-id #:instance-type #:integer-range
-                              #:invalid-parameter-exception #:ip-address-list
-                              #:ip-v4address #:json-string #:key-alias-arn
-                              #:key-alias-name #:key-arn #:kms-key
-                              #:list-configs #:list-configs-request
+                              #:ip-address-list #:ip-v4address #:json-string
+                              #:key-alias-arn #:key-alias-name #:key-arn
+                              #:kms-key #:list-configs #:list-configs-request
                               #:list-configs-response #:list-contacts
                               #:list-contacts-request #:list-contacts-response
                               #:list-dataflow-endpoint-groups
@@ -108,9 +107,7 @@
                               #:ranged-socket-address #:register-agent
                               #:register-agent-request
                               #:register-agent-response #:reserve-contact
-                              #:reserve-contact-request
-                              #:resource-limit-exceeded-exception
-                              #:resource-not-found-exception #:role-arn
+                              #:reserve-contact-request #:role-arn
                               #:s3bucket-name #:s3key-prefix #:s3object
                               #:s3object-key #:s3recording-config
                               #:s3recording-details #:s3version-id #:safe-name

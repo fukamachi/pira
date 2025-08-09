@@ -1,44 +1,25 @@
 (uiop/package:define-package #:pira/codeguru-security (:use)
-                             (:export #:access-denied-exception
-                              #:account-findings-metric #:analysis-type
+                             (:export #:account-findings-metric #:analysis-type
                               #:aws-code-guru-security #:batch-get-findings
                               #:batch-get-findings-error
                               #:batch-get-findings-errors
-                              #:batch-get-findings-request
-                              #:batch-get-findings-response
                               #:categories-with-most-findings
                               #:category-with-finding-num #:client-token
-                              #:code-line #:code-snippet #:conflict-exception
-                              #:create-scan #:create-scan-request
-                              #:create-scan-response #:create-upload-url
-                              #:create-upload-url-request
-                              #:create-upload-url-response #:detector-tags
+                              #:code-line #:code-snippet #:create-scan
+                              #:create-upload-url #:detector-tags
                               #:encryption-config #:error-code #:error-message
                               #:file-path #:finding #:finding-identifier
                               #:finding-identifiers
                               #:finding-metrics-value-per-severity #:findings
                               #:findings-metric-list
-                              #:get-account-configuration
-                              #:get-account-configuration-request
-                              #:get-account-configuration-response
-                              #:get-findings #:get-findings-request
-                              #:get-findings-response #:get-metrics-summary
-                              #:get-metrics-summary-request
-                              #:get-metrics-summary-response #:get-scan
-                              #:get-scan-request #:get-scan-response
-                              #:header-key #:header-value
-                              #:internal-server-exception #:kms-key-arn
-                              #:list-findings-metrics
-                              #:list-findings-metrics-request
-                              #:list-findings-metrics-response #:list-scans
-                              #:list-scans-request #:list-scans-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:metrics-summary #:next-token #:recommendation
-                              #:reference-urls #:related-vulnerabilities
-                              #:remediation #:request-header-map #:resource
-                              #:resource-id #:resource-not-found-exception
+                              #:get-account-configuration #:get-findings
+                              #:get-metrics-summary #:get-scan #:header-key
+                              #:header-value #:kms-key-arn
+                              #:list-findings-metrics #:list-scans
+                              #:list-tags-for-resource #:metrics-summary
+                              #:next-token #:recommendation #:reference-urls
+                              #:related-vulnerabilities #:remediation
+                              #:request-header-map #:resource #:resource-id
                               #:s3url #:scan-name #:scan-name-arn
                               #:scan-name-with-finding-num #:scan-state
                               #:scan-summaries #:scan-summary #:scan-type
@@ -46,14 +27,8 @@
                               #:scans-with-most-open-findings #:severity
                               #:status #:suggested-fix #:suggested-fixes
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-account-configuration
-                              #:update-account-configuration-request
-                              #:update-account-configuration-response #:uuid
-                              #:validation-exception
+                              #:tag-value #:untag-resource
+                              #:update-account-configuration #:uuid
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vulnerability))

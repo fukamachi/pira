@@ -1,16 +1,10 @@
 (uiop/package:define-package #:pira/workspaces-thin-client (:use)
-                             (:export #:access-denied-exception
-                              #:activation-code #:apply-time-of #:arn
-                              #:client-token #:conflict-exception
-                              #:create-environment #:create-environment-request
-                              #:create-environment-response #:day-of-week
+                             (:export #:activation-code #:apply-time-of #:arn
+                              #:client-token #:create-environment #:day-of-week
                               #:day-of-week-list #:delete-device
-                              #:delete-device-request #:delete-device-response
-                              #:delete-environment #:delete-environment-request
-                              #:delete-environment-response #:deregister-device
-                              #:deregister-device-request
-                              #:deregister-device-response #:desktop-endpoint
-                              #:desktop-type #:device #:device-creation-tag-key
+                              #:delete-environment #:deregister-device
+                              #:desktop-endpoint #:desktop-type #:device
+                              #:device-creation-tag-key
                               #:device-creation-tag-value
                               #:device-creation-tags-map #:device-id
                               #:device-list #:device-name
@@ -20,28 +14,14 @@
                               #:environment-name
                               #:environment-software-set-compliance-status
                               #:environment-summary #:exception-message
-                              #:field-name #:get-device #:get-device-request
-                              #:get-device-response #:get-environment
-                              #:get-environment-request
-                              #:get-environment-response #:get-software-set
-                              #:get-software-set-request
-                              #:get-software-set-response #:hour
-                              #:internal-server-exception #:kms-key-arn
-                              #:list-devices #:list-devices-request
-                              #:list-devices-response #:list-environments
-                              #:list-environments-request
-                              #:list-environments-response #:list-software-sets
-                              #:list-software-sets-request
-                              #:list-software-sets-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:field-name #:get-device #:get-environment
+                              #:get-software-set #:hour #:kms-key-arn
+                              #:list-devices #:list-environments
+                              #:list-software-sets #:list-tags-for-resource
                               #:maintenance-window #:maintenance-window-type
                               #:max-results #:minute #:pagination-token
-                              #:quota-code #:resource-id
-                              #:resource-not-found-exception #:resource-type
-                              #:retry-after-seconds #:service-code
-                              #:service-quota-exceeded-exception #:software
+                              #:quota-code #:resource-id #:resource-type
+                              #:retry-after-seconds #:service-code #:software
                               #:software-list #:software-set #:software-set-id
                               #:software-set-id-or-empty-string
                               #:software-set-list #:software-set-summary
@@ -49,19 +29,10 @@
                               #:software-set-update-schedule
                               #:software-set-update-status
                               #:software-set-validation-status #:tag-keys
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tags-map
-                              #:target-device-status #:thin-client
-                              #:throttling-exception #:timestamp
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-device
-                              #:update-device-request #:update-device-response
-                              #:update-environment #:update-environment-request
-                              #:update-environment-response
-                              #:update-software-set
-                              #:update-software-set-request
-                              #:update-software-set-response #:user-id
-                              #:validation-exception
+                              #:tag-resource #:tags-map #:target-device-status
+                              #:thin-client #:timestamp #:untag-resource
+                              #:update-device #:update-environment
+                              #:update-software-set #:user-id
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

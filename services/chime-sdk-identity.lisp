@@ -12,107 +12,47 @@
                               #:app-instance-user-endpoint-type
                               #:app-instance-user-list
                               #:app-instance-user-summary
-                              #:bad-request-exception
                               #:channel-retention-settings #:chime-arn
                               #:chime-identity-service #:client-request-token
-                              #:configuration #:conflict-exception
-                              #:create-app-instance #:create-app-instance-admin
-                              #:create-app-instance-admin-request
-                              #:create-app-instance-admin-response
+                              #:configuration #:create-app-instance
+                              #:create-app-instance-admin
                               #:create-app-instance-bot
-                              #:create-app-instance-bot-request
-                              #:create-app-instance-bot-response
-                              #:create-app-instance-request
-                              #:create-app-instance-response
-                              #:create-app-instance-user
-                              #:create-app-instance-user-request
-                              #:create-app-instance-user-response
-                              #:delete-app-instance #:delete-app-instance-admin
-                              #:delete-app-instance-admin-request
+                              #:create-app-instance-user #:delete-app-instance
+                              #:delete-app-instance-admin
                               #:delete-app-instance-bot
-                              #:delete-app-instance-bot-request
-                              #:delete-app-instance-request
                               #:delete-app-instance-user
-                              #:delete-app-instance-user-request
                               #:deregister-app-instance-user-endpoint
-                              #:deregister-app-instance-user-endpoint-request
                               #:describe-app-instance
                               #:describe-app-instance-admin
-                              #:describe-app-instance-admin-request
-                              #:describe-app-instance-admin-response
                               #:describe-app-instance-bot
-                              #:describe-app-instance-bot-request
-                              #:describe-app-instance-bot-response
-                              #:describe-app-instance-request
-                              #:describe-app-instance-response
                               #:describe-app-instance-user
                               #:describe-app-instance-user-endpoint
-                              #:describe-app-instance-user-endpoint-request
-                              #:describe-app-instance-user-endpoint-response
-                              #:describe-app-instance-user-request
-                              #:describe-app-instance-user-response
                               #:endpoint-attributes #:endpoint-state
                               #:endpoint-status #:endpoint-status-reason
                               #:error-code #:expiration-criterion
                               #:expiration-days #:expiration-settings
-                              #:forbidden-exception
-                              #:get-app-instance-retention-settings
-                              #:get-app-instance-retention-settings-request
-                              #:get-app-instance-retention-settings-response
-                              #:identity #:invoked-by #:lex-bot-alias-arn
+                              #:get-app-instance-retention-settings #:identity
+                              #:invoked-by #:lex-bot-alias-arn
                               #:lex-configuration #:lex-intent-name
                               #:list-app-instance-admins
-                              #:list-app-instance-admins-request
-                              #:list-app-instance-admins-response
                               #:list-app-instance-bots
-                              #:list-app-instance-bots-request
-                              #:list-app-instance-bots-response
                               #:list-app-instance-user-endpoints
-                              #:list-app-instance-user-endpoints-request
-                              #:list-app-instance-user-endpoints-response
-                              #:list-app-instance-users
-                              #:list-app-instance-users-request
-                              #:list-app-instance-users-response
-                              #:list-app-instances #:list-app-instances-request
-                              #:list-app-instances-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:metadata #:next-token #:non-empty-resource-name
+                              #:list-app-instance-users #:list-app-instances
+                              #:list-tags-for-resource #:max-results #:metadata
+                              #:next-token #:non-empty-resource-name
                               #:non-empty-sensitive-string1600
-                              #:not-found-exception
                               #:put-app-instance-retention-settings
-                              #:put-app-instance-retention-settings-request
-                              #:put-app-instance-retention-settings-response
                               #:put-app-instance-user-expiration-settings
-                              #:put-app-instance-user-expiration-settings-request
-                              #:put-app-instance-user-expiration-settings-response
                               #:register-app-instance-user-endpoint
-                              #:register-app-instance-user-endpoint-request
-                              #:register-app-instance-user-endpoint-response
-                              #:resource-limit-exceeded-exception
                               #:resource-name #:responds-to #:retention-days
                               #:sensitive-chime-arn #:sensitive-string1600
-                              #:service-failure-exception
-                              #:service-unavailable-exception
                               #:standard-messages #:string #:string1600
                               #:string64 #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-value #:targeted-messages
-                              #:throttled-client-exception #:timestamp
-                              #:unauthorized-client-exception #:untag-resource
-                              #:untag-resource-request #:update-app-instance
-                              #:update-app-instance-bot
-                              #:update-app-instance-bot-request
-                              #:update-app-instance-bot-response
-                              #:update-app-instance-request
-                              #:update-app-instance-response
+                              #:tag-list #:tag-resource #:tag-value
+                              #:targeted-messages #:timestamp #:untag-resource
+                              #:update-app-instance #:update-app-instance-bot
                               #:update-app-instance-user
-                              #:update-app-instance-user-endpoint
-                              #:update-app-instance-user-endpoint-request
-                              #:update-app-instance-user-endpoint-response
-                              #:update-app-instance-user-request
-                              #:update-app-instance-user-response #:user-id
+                              #:update-app-instance-user-endpoint #:user-id
                               #:user-name))
 (common-lisp:in-package #:pira/chime-sdk-identity)
 

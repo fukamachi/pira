@@ -3,11 +3,8 @@
                               #:action-arn #:action-source #:action-status
                               #:action-summaries #:action-summary
                               #:activation-state #:add-association
-                              #:add-association-request
-                              #:add-association-response
                               #:add-cluster-node-specification
                               #:add-cluster-node-specification-list #:add-tags
-                              #:add-tags-input #:add-tags-output
                               #:additional-code-repository-names-or-urls
                               #:additional-enis
                               #:additional-inference-specification-definition
@@ -48,8 +45,6 @@
                               #:artifact-source-type #:artifact-source-types
                               #:artifact-summaries #:artifact-summary
                               #:assembly-type #:associate-trial-component
-                              #:associate-trial-component-request
-                              #:associate-trial-component-response
                               #:association-edge-type #:association-entity-arn
                               #:association-summaries #:association-summary
                               #:assumable-role-arns
@@ -63,10 +58,8 @@
                               #:athena-query-string
                               #:athena-result-compression-type
                               #:athena-result-format #:athena-work-group
-                              #:attach-cluster-node-volume
-                              #:attach-cluster-node-volume-request
-                              #:attach-cluster-node-volume-response
-                              #:attribute-name #:attribute-names #:auth-mode
+                              #:attach-cluster-node-volume #:attribute-name
+                              #:attribute-names #:auth-mode
                               #:authentication-request-extra-params
                               #:authentication-request-extra-params-key
                               #:authentication-request-extra-params-value
@@ -118,8 +111,6 @@
                               #:batch-add-cluster-nodes-error
                               #:batch-add-cluster-nodes-error-code
                               #:batch-add-cluster-nodes-error-list
-                              #:batch-add-cluster-nodes-request
-                              #:batch-add-cluster-nodes-response
                               #:batch-add-failure-count
                               #:batch-add-increment-count
                               #:batch-data-capture-config
@@ -129,13 +120,9 @@
                               #:batch-delete-cluster-nodes-error
                               #:batch-delete-cluster-nodes-error-code
                               #:batch-delete-cluster-nodes-error-list
-                              #:batch-delete-cluster-nodes-request
-                              #:batch-delete-cluster-nodes-response
                               #:batch-describe-model-package
                               #:batch-describe-model-package-error
                               #:batch-describe-model-package-error-map
-                              #:batch-describe-model-package-input
-                              #:batch-describe-model-package-output
                               #:batch-describe-model-package-summary
                               #:batch-strategy #:batch-transform-input
                               #:best-objective-not-improving #:bias
@@ -277,9 +264,9 @@
                               #:compute-quota-target
                               #:compute-quota-target-team-name
                               #:condition-outcome #:condition-step-metadata
-                              #:config-key #:config-value #:conflict-exception
-                              #:container-argument #:container-arguments
-                              #:container-config #:container-definition
+                              #:config-key #:config-value #:container-argument
+                              #:container-arguments #:container-config
+                              #:container-definition
                               #:container-definition-list
                               #:container-entrypoint
                               #:container-entrypoint-string
@@ -294,177 +281,54 @@
                               #:continuous-parameter-range-specification
                               #:continuous-parameter-ranges
                               #:convergence-detected #:country-code
-                              #:create-action #:create-action-request
-                              #:create-action-response #:create-algorithm
-                              #:create-algorithm-input
-                              #:create-algorithm-output #:create-app
-                              #:create-app-image-config
-                              #:create-app-image-config-request
-                              #:create-app-image-config-response
-                              #:create-app-request #:create-app-response
-                              #:create-artifact #:create-artifact-request
-                              #:create-artifact-response #:create-auto-mljob
-                              #:create-auto-mljob-request
-                              #:create-auto-mljob-response
-                              #:create-auto-mljob-v2
-                              #:create-auto-mljob-v2request
-                              #:create-auto-mljob-v2response #:create-cluster
-                              #:create-cluster-request
-                              #:create-cluster-response
+                              #:create-action #:create-algorithm #:create-app
+                              #:create-app-image-config #:create-artifact
+                              #:create-auto-mljob #:create-auto-mljob-v2
+                              #:create-cluster
                               #:create-cluster-scheduler-config
-                              #:create-cluster-scheduler-config-request
-                              #:create-cluster-scheduler-config-response
-                              #:create-code-repository
-                              #:create-code-repository-input
-                              #:create-code-repository-output
-                              #:create-compilation-job
-                              #:create-compilation-job-request
-                              #:create-compilation-job-response
-                              #:create-compute-quota
-                              #:create-compute-quota-request
-                              #:create-compute-quota-response #:create-context
-                              #:create-context-request
-                              #:create-context-response
+                              #:create-code-repository #:create-compilation-job
+                              #:create-compute-quota #:create-context
                               #:create-data-quality-job-definition
-                              #:create-data-quality-job-definition-request
-                              #:create-data-quality-job-definition-response
-                              #:create-device-fleet
-                              #:create-device-fleet-request #:create-domain
-                              #:create-domain-request #:create-domain-response
+                              #:create-device-fleet #:create-domain
                               #:create-edge-deployment-plan
-                              #:create-edge-deployment-plan-request
-                              #:create-edge-deployment-plan-response
                               #:create-edge-deployment-stage
-                              #:create-edge-deployment-stage-request
-                              #:create-edge-packaging-job
-                              #:create-edge-packaging-job-request
-                              #:create-endpoint #:create-endpoint-config
-                              #:create-endpoint-config-input
-                              #:create-endpoint-config-output
-                              #:create-endpoint-input #:create-endpoint-output
-                              #:create-experiment #:create-experiment-request
-                              #:create-experiment-response
-                              #:create-feature-group
-                              #:create-feature-group-request
-                              #:create-feature-group-response
-                              #:create-flow-definition
-                              #:create-flow-definition-request
-                              #:create-flow-definition-response #:create-hub
-                              #:create-hub-content-presigned-urls
-                              #:create-hub-content-presigned-urls-request
-                              #:create-hub-content-presigned-urls-response
+                              #:create-edge-packaging-job #:create-endpoint
+                              #:create-endpoint-config #:create-experiment
+                              #:create-feature-group #:create-flow-definition
+                              #:create-hub #:create-hub-content-presigned-urls
                               #:create-hub-content-reference
-                              #:create-hub-content-reference-request
-                              #:create-hub-content-reference-response
-                              #:create-hub-request #:create-hub-response
                               #:create-human-task-ui
-                              #:create-human-task-ui-request
-                              #:create-human-task-ui-response
                               #:create-hyper-parameter-tuning-job
-                              #:create-hyper-parameter-tuning-job-request
-                              #:create-hyper-parameter-tuning-job-response
-                              #:create-image #:create-image-request
-                              #:create-image-response #:create-image-version
-                              #:create-image-version-request
-                              #:create-image-version-response
+                              #:create-image #:create-image-version
                               #:create-inference-component
-                              #:create-inference-component-input
-                              #:create-inference-component-output
                               #:create-inference-experiment
-                              #:create-inference-experiment-request
-                              #:create-inference-experiment-response
                               #:create-inference-recommendations-job
-                              #:create-inference-recommendations-job-request
-                              #:create-inference-recommendations-job-response
                               #:create-labeling-job
-                              #:create-labeling-job-request
-                              #:create-labeling-job-response
-                              #:create-mlflow-tracking-server
-                              #:create-mlflow-tracking-server-request
-                              #:create-mlflow-tracking-server-response
-                              #:create-model #:create-model-bias-job-definition
-                              #:create-model-bias-job-definition-request
-                              #:create-model-bias-job-definition-response
+                              #:create-mlflow-tracking-server #:create-model
+                              #:create-model-bias-job-definition
                               #:create-model-card
                               #:create-model-card-export-job
-                              #:create-model-card-export-job-request
-                              #:create-model-card-export-job-response
-                              #:create-model-card-request
-                              #:create-model-card-response
                               #:create-model-explainability-job-definition
-                              #:create-model-explainability-job-definition-request
-                              #:create-model-explainability-job-definition-response
-                              #:create-model-input #:create-model-output
                               #:create-model-package
                               #:create-model-package-group
-                              #:create-model-package-group-input
-                              #:create-model-package-group-output
-                              #:create-model-package-input
-                              #:create-model-package-output
                               #:create-model-quality-job-definition
-                              #:create-model-quality-job-definition-request
-                              #:create-model-quality-job-definition-response
                               #:create-monitoring-schedule
-                              #:create-monitoring-schedule-request
-                              #:create-monitoring-schedule-response
                               #:create-notebook-instance
-                              #:create-notebook-instance-input
                               #:create-notebook-instance-lifecycle-config
-                              #:create-notebook-instance-lifecycle-config-input
-                              #:create-notebook-instance-lifecycle-config-output
-                              #:create-notebook-instance-output
-                              #:create-optimization-job
-                              #:create-optimization-job-request
-                              #:create-optimization-job-response
-                              #:create-partner-app
+                              #:create-optimization-job #:create-partner-app
                               #:create-partner-app-presigned-url
-                              #:create-partner-app-presigned-url-request
-                              #:create-partner-app-presigned-url-response
-                              #:create-partner-app-request
-                              #:create-partner-app-response #:create-pipeline
-                              #:create-pipeline-request
-                              #:create-pipeline-response
-                              #:create-presigned-domain-url
-                              #:create-presigned-domain-url-request
-                              #:create-presigned-domain-url-response
+                              #:create-pipeline #:create-presigned-domain-url
                               #:create-presigned-mlflow-tracking-server-url
-                              #:create-presigned-mlflow-tracking-server-url-request
-                              #:create-presigned-mlflow-tracking-server-url-response
                               #:create-presigned-notebook-instance-url
-                              #:create-presigned-notebook-instance-url-input
-                              #:create-presigned-notebook-instance-url-output
-                              #:create-processing-job
-                              #:create-processing-job-request
-                              #:create-processing-job-response #:create-project
-                              #:create-project-input #:create-project-output
-                              #:create-space #:create-space-request
-                              #:create-space-response
-                              #:create-studio-lifecycle-config
-                              #:create-studio-lifecycle-config-request
-                              #:create-studio-lifecycle-config-response
+                              #:create-processing-job #:create-project
+                              #:create-space #:create-studio-lifecycle-config
                               #:create-template-provider
                               #:create-template-provider-list
-                              #:create-training-job
-                              #:create-training-job-request
-                              #:create-training-job-response
-                              #:create-training-plan
-                              #:create-training-plan-request
-                              #:create-training-plan-response
-                              #:create-transform-job
-                              #:create-transform-job-request
-                              #:create-transform-job-response #:create-trial
-                              #:create-trial-component
-                              #:create-trial-component-request
-                              #:create-trial-component-response
-                              #:create-trial-request #:create-trial-response
-                              #:create-user-profile
-                              #:create-user-profile-request
-                              #:create-user-profile-response #:create-workforce
-                              #:create-workforce-request
-                              #:create-workforce-response #:create-workteam
-                              #:create-workteam-request
-                              #:create-workteam-response #:creation-time
-                              #:cron-schedule-expression
+                              #:create-training-job #:create-training-plan
+                              #:create-transform-job #:create-trial
+                              #:create-trial-component #:create-user-profile
+                              #:create-workforce #:create-workteam
+                              #:creation-time #:cron-schedule-expression
                               #:cross-account-filter-option #:csv-content-type
                               #:csv-content-types #:currency-code
                               #:custom-file-system #:custom-file-system-config
@@ -496,109 +360,42 @@
                               #:default-ebs-storage-settings #:default-gid
                               #:default-space-settings
                               #:default-space-storage-settings #:default-uid
-                              #:delete-action #:delete-action-request
-                              #:delete-action-response #:delete-algorithm
-                              #:delete-algorithm-input #:delete-app
-                              #:delete-app-image-config
-                              #:delete-app-image-config-request
-                              #:delete-app-request #:delete-artifact
-                              #:delete-artifact-request
-                              #:delete-artifact-response #:delete-association
-                              #:delete-association-request
-                              #:delete-association-response #:delete-cluster
-                              #:delete-cluster-request
-                              #:delete-cluster-response
+                              #:delete-action #:delete-algorithm #:delete-app
+                              #:delete-app-image-config #:delete-artifact
+                              #:delete-association #:delete-cluster
                               #:delete-cluster-scheduler-config
-                              #:delete-cluster-scheduler-config-request
-                              #:delete-code-repository
-                              #:delete-code-repository-input
-                              #:delete-compilation-job
-                              #:delete-compilation-job-request
-                              #:delete-compute-quota
-                              #:delete-compute-quota-request #:delete-context
-                              #:delete-context-request
-                              #:delete-context-response
+                              #:delete-code-repository #:delete-compilation-job
+                              #:delete-compute-quota #:delete-context
                               #:delete-data-quality-job-definition
-                              #:delete-data-quality-job-definition-request
-                              #:delete-device-fleet
-                              #:delete-device-fleet-request #:delete-domain
-                              #:delete-domain-request
+                              #:delete-device-fleet #:delete-domain
                               #:delete-edge-deployment-plan
-                              #:delete-edge-deployment-plan-request
-                              #:delete-edge-deployment-stage
-                              #:delete-edge-deployment-stage-request
-                              #:delete-endpoint #:delete-endpoint-config
-                              #:delete-endpoint-config-input
-                              #:delete-endpoint-input #:delete-experiment
-                              #:delete-experiment-request
-                              #:delete-experiment-response
-                              #:delete-feature-group
-                              #:delete-feature-group-request
-                              #:delete-flow-definition
-                              #:delete-flow-definition-request
-                              #:delete-flow-definition-response #:delete-hub
-                              #:delete-hub-content
+                              #:delete-edge-deployment-stage #:delete-endpoint
+                              #:delete-endpoint-config #:delete-experiment
+                              #:delete-feature-group #:delete-flow-definition
+                              #:delete-hub #:delete-hub-content
                               #:delete-hub-content-reference
-                              #:delete-hub-content-reference-request
-                              #:delete-hub-content-request #:delete-hub-request
                               #:delete-human-task-ui
-                              #:delete-human-task-ui-request
-                              #:delete-human-task-ui-response
                               #:delete-hyper-parameter-tuning-job
-                              #:delete-hyper-parameter-tuning-job-request
-                              #:delete-image #:delete-image-request
-                              #:delete-image-response #:delete-image-version
-                              #:delete-image-version-request
-                              #:delete-image-version-response
+                              #:delete-image #:delete-image-version
                               #:delete-inference-component
-                              #:delete-inference-component-input
                               #:delete-inference-experiment
-                              #:delete-inference-experiment-request
-                              #:delete-inference-experiment-response
-                              #:delete-mlflow-tracking-server
-                              #:delete-mlflow-tracking-server-request
-                              #:delete-mlflow-tracking-server-response
-                              #:delete-model #:delete-model-bias-job-definition
-                              #:delete-model-bias-job-definition-request
-                              #:delete-model-card #:delete-model-card-request
+                              #:delete-mlflow-tracking-server #:delete-model
+                              #:delete-model-bias-job-definition
+                              #:delete-model-card
                               #:delete-model-explainability-job-definition
-                              #:delete-model-explainability-job-definition-request
-                              #:delete-model-input #:delete-model-package
+                              #:delete-model-package
                               #:delete-model-package-group
-                              #:delete-model-package-group-input
                               #:delete-model-package-group-policy
-                              #:delete-model-package-group-policy-input
-                              #:delete-model-package-input
                               #:delete-model-quality-job-definition
-                              #:delete-model-quality-job-definition-request
                               #:delete-monitoring-schedule
-                              #:delete-monitoring-schedule-request
                               #:delete-notebook-instance
-                              #:delete-notebook-instance-input
                               #:delete-notebook-instance-lifecycle-config
-                              #:delete-notebook-instance-lifecycle-config-input
-                              #:delete-optimization-job
-                              #:delete-optimization-job-request
-                              #:delete-partner-app #:delete-partner-app-request
-                              #:delete-partner-app-response #:delete-pipeline
-                              #:delete-pipeline-request
-                              #:delete-pipeline-response #:delete-project
-                              #:delete-project-input #:delete-space
-                              #:delete-space-request
-                              #:delete-studio-lifecycle-config
-                              #:delete-studio-lifecycle-config-request
-                              #:delete-tags #:delete-tags-input
-                              #:delete-tags-output #:delete-trial
-                              #:delete-trial-component
-                              #:delete-trial-component-request
-                              #:delete-trial-component-response
-                              #:delete-trial-request #:delete-trial-response
-                              #:delete-user-profile
-                              #:delete-user-profile-request #:delete-workforce
-                              #:delete-workforce-request
-                              #:delete-workforce-response #:delete-workteam
-                              #:delete-workteam-request
-                              #:delete-workteam-response #:dependency-copy-path
+                              #:delete-optimization-job #:delete-partner-app
+                              #:delete-pipeline #:delete-project #:delete-space
+                              #:delete-studio-lifecycle-config #:delete-tags
+                              #:delete-trial #:delete-trial-component
+                              #:delete-user-profile #:delete-workforce
+                              #:delete-workteam #:dependency-copy-path
                               #:dependency-origin-path #:deployed-image
                               #:deployed-images #:deployment-config
                               #:deployment-configuration
@@ -607,196 +404,59 @@
                               #:deployment-stage-status-summaries
                               #:deployment-stage-status-summary
                               #:deployment-stages #:deregister-devices
-                              #:deregister-devices-request
                               #:derived-information #:describe-action
-                              #:describe-action-request
-                              #:describe-action-response #:describe-algorithm
-                              #:describe-algorithm-input
-                              #:describe-algorithm-output #:describe-app
-                              #:describe-app-image-config
-                              #:describe-app-image-config-request
-                              #:describe-app-image-config-response
-                              #:describe-app-request #:describe-app-response
-                              #:describe-artifact #:describe-artifact-request
-                              #:describe-artifact-response
-                              #:describe-auto-mljob
-                              #:describe-auto-mljob-request
-                              #:describe-auto-mljob-response
-                              #:describe-auto-mljob-v2
-                              #:describe-auto-mljob-v2request
-                              #:describe-auto-mljob-v2response
+                              #:describe-algorithm #:describe-app
+                              #:describe-app-image-config #:describe-artifact
+                              #:describe-auto-mljob #:describe-auto-mljob-v2
                               #:describe-cluster #:describe-cluster-event
-                              #:describe-cluster-event-request
-                              #:describe-cluster-event-response
                               #:describe-cluster-node
-                              #:describe-cluster-node-request
-                              #:describe-cluster-node-response
-                              #:describe-cluster-request
-                              #:describe-cluster-response
                               #:describe-cluster-scheduler-config
-                              #:describe-cluster-scheduler-config-request
-                              #:describe-cluster-scheduler-config-response
                               #:describe-code-repository
-                              #:describe-code-repository-input
-                              #:describe-code-repository-output
                               #:describe-compilation-job
-                              #:describe-compilation-job-request
-                              #:describe-compilation-job-response
-                              #:describe-compute-quota
-                              #:describe-compute-quota-request
-                              #:describe-compute-quota-response
-                              #:describe-context #:describe-context-request
-                              #:describe-context-response
+                              #:describe-compute-quota #:describe-context
                               #:describe-data-quality-job-definition
-                              #:describe-data-quality-job-definition-request
-                              #:describe-data-quality-job-definition-response
                               #:describe-device #:describe-device-fleet
-                              #:describe-device-fleet-request
-                              #:describe-device-fleet-response
-                              #:describe-device-request
-                              #:describe-device-response #:describe-domain
-                              #:describe-domain-request
-                              #:describe-domain-response
-                              #:describe-edge-deployment-plan
-                              #:describe-edge-deployment-plan-request
-                              #:describe-edge-deployment-plan-response
-                              #:describe-edge-packaging-job
-                              #:describe-edge-packaging-job-request
-                              #:describe-edge-packaging-job-response
-                              #:describe-endpoint #:describe-endpoint-config
-                              #:describe-endpoint-config-input
-                              #:describe-endpoint-config-output
-                              #:describe-endpoint-input
-                              #:describe-endpoint-output #:describe-experiment
-                              #:describe-experiment-request
-                              #:describe-experiment-response
+                              #:describe-domain #:describe-edge-deployment-plan
+                              #:describe-edge-packaging-job #:describe-endpoint
+                              #:describe-endpoint-config #:describe-experiment
                               #:describe-feature-group
-                              #:describe-feature-group-request
-                              #:describe-feature-group-response
                               #:describe-feature-metadata
-                              #:describe-feature-metadata-request
-                              #:describe-feature-metadata-response
-                              #:describe-flow-definition
-                              #:describe-flow-definition-request
-                              #:describe-flow-definition-response
-                              #:describe-hub #:describe-hub-content
-                              #:describe-hub-content-request
-                              #:describe-hub-content-response
-                              #:describe-hub-request #:describe-hub-response
-                              #:describe-human-task-ui
-                              #:describe-human-task-ui-request
-                              #:describe-human-task-ui-response
+                              #:describe-flow-definition #:describe-hub
+                              #:describe-hub-content #:describe-human-task-ui
                               #:describe-hyper-parameter-tuning-job
-                              #:describe-hyper-parameter-tuning-job-request
-                              #:describe-hyper-parameter-tuning-job-response
-                              #:describe-image #:describe-image-request
-                              #:describe-image-response
-                              #:describe-image-version
-                              #:describe-image-version-request
-                              #:describe-image-version-response
+                              #:describe-image #:describe-image-version
                               #:describe-inference-component
-                              #:describe-inference-component-input
-                              #:describe-inference-component-output
                               #:describe-inference-experiment
-                              #:describe-inference-experiment-request
-                              #:describe-inference-experiment-response
                               #:describe-inference-recommendations-job
-                              #:describe-inference-recommendations-job-request
-                              #:describe-inference-recommendations-job-response
-                              #:describe-labeling-job
-                              #:describe-labeling-job-request
-                              #:describe-labeling-job-response
-                              #:describe-lineage-group
-                              #:describe-lineage-group-request
-                              #:describe-lineage-group-response
+                              #:describe-labeling-job #:describe-lineage-group
                               #:describe-mlflow-tracking-server
-                              #:describe-mlflow-tracking-server-request
-                              #:describe-mlflow-tracking-server-response
                               #:describe-model
                               #:describe-model-bias-job-definition
-                              #:describe-model-bias-job-definition-request
-                              #:describe-model-bias-job-definition-response
                               #:describe-model-card
                               #:describe-model-card-export-job
-                              #:describe-model-card-export-job-request
-                              #:describe-model-card-export-job-response
-                              #:describe-model-card-request
-                              #:describe-model-card-response
                               #:describe-model-explainability-job-definition
-                              #:describe-model-explainability-job-definition-request
-                              #:describe-model-explainability-job-definition-response
-                              #:describe-model-input #:describe-model-output
                               #:describe-model-package
                               #:describe-model-package-group
-                              #:describe-model-package-group-input
-                              #:describe-model-package-group-output
-                              #:describe-model-package-input
-                              #:describe-model-package-output
                               #:describe-model-quality-job-definition
-                              #:describe-model-quality-job-definition-request
-                              #:describe-model-quality-job-definition-response
                               #:describe-monitoring-schedule
-                              #:describe-monitoring-schedule-request
-                              #:describe-monitoring-schedule-response
                               #:describe-notebook-instance
-                              #:describe-notebook-instance-input
                               #:describe-notebook-instance-lifecycle-config
-                              #:describe-notebook-instance-lifecycle-config-input
-                              #:describe-notebook-instance-lifecycle-config-output
-                              #:describe-notebook-instance-output
                               #:describe-optimization-job
-                              #:describe-optimization-job-request
-                              #:describe-optimization-job-response
-                              #:describe-partner-app
-                              #:describe-partner-app-request
-                              #:describe-partner-app-response
-                              #:describe-pipeline
+                              #:describe-partner-app #:describe-pipeline
                               #:describe-pipeline-definition-for-execution
-                              #:describe-pipeline-definition-for-execution-request
-                              #:describe-pipeline-definition-for-execution-response
                               #:describe-pipeline-execution
-                              #:describe-pipeline-execution-request
-                              #:describe-pipeline-execution-response
-                              #:describe-pipeline-request
-                              #:describe-pipeline-response
-                              #:describe-processing-job
-                              #:describe-processing-job-request
-                              #:describe-processing-job-response
-                              #:describe-project #:describe-project-input
-                              #:describe-project-output #:describe-space
-                              #:describe-space-request
-                              #:describe-space-response
+                              #:describe-processing-job #:describe-project
+                              #:describe-space
                               #:describe-studio-lifecycle-config
-                              #:describe-studio-lifecycle-config-request
-                              #:describe-studio-lifecycle-config-response
                               #:describe-subscribed-workteam
-                              #:describe-subscribed-workteam-request
-                              #:describe-subscribed-workteam-response
-                              #:describe-training-job
-                              #:describe-training-job-request
-                              #:describe-training-job-response
-                              #:describe-training-plan
-                              #:describe-training-plan-request
-                              #:describe-training-plan-response
-                              #:describe-transform-job
-                              #:describe-transform-job-request
-                              #:describe-transform-job-response
-                              #:describe-trial #:describe-trial-component
-                              #:describe-trial-component-request
-                              #:describe-trial-component-response
-                              #:describe-trial-request
-                              #:describe-trial-response #:describe-user-profile
-                              #:describe-user-profile-request
-                              #:describe-user-profile-response
-                              #:describe-workforce #:describe-workforce-request
-                              #:describe-workforce-response #:describe-workteam
-                              #:describe-workteam-request
-                              #:describe-workteam-response #:description
+                              #:describe-training-job #:describe-training-plan
+                              #:describe-transform-job #:describe-trial
+                              #:describe-trial-component
+                              #:describe-user-profile #:describe-workforce
+                              #:describe-workteam #:description
                               #:desired-weight-and-capacity
                               #:desired-weight-and-capacity-list
                               #:destination-s3uri #:detach-cluster-node-volume
-                              #:detach-cluster-node-volume-request
-                              #:detach-cluster-node-volume-response
                               #:detailed-algorithm-status
                               #:detailed-model-package-status #:device
                               #:device-arn #:device-deployment-status
@@ -811,21 +471,16 @@
                               #:direct-deploy-settings #:direct-internet-access
                               #:direction #:directory-path #:disable-profiler
                               #:disable-sagemaker-servicecatalog-portfolio
-                              #:disable-sagemaker-servicecatalog-portfolio-input
-                              #:disable-sagemaker-servicecatalog-portfolio-output
                               #:disassociate-additional-code-repositories
                               #:disassociate-default-code-repository
                               #:disassociate-notebook-instance-accelerator-types
                               #:disassociate-notebook-instance-lifecycle-config
-                              #:disassociate-trial-component
-                              #:disassociate-trial-component-request
-                              #:disassociate-trial-component-response
-                              #:docker-settings #:document-schema-version
-                              #:dollars #:domain-arn #:domain-details
-                              #:domain-id #:domain-list #:domain-name
-                              #:domain-security-group-ids #:domain-settings
-                              #:domain-settings-for-update #:domain-status
-                              #:double #:double-parameter-value
+                              #:disassociate-trial-component #:docker-settings
+                              #:document-schema-version #:dollars #:domain-arn
+                              #:domain-details #:domain-id #:domain-list
+                              #:domain-name #:domain-security-group-ids
+                              #:domain-settings #:domain-settings-for-update
+                              #:domain-status #:double #:double-parameter-value
                               #:drift-check-baselines #:drift-check-bias
                               #:drift-check-explainability
                               #:drift-check-model-data-quality
@@ -860,8 +515,6 @@
                               #:enable-capture #:enable-infra-check
                               #:enable-iot-role-alias #:enable-remote-debug
                               #:enable-sagemaker-servicecatalog-portfolio
-                              #:enable-sagemaker-servicecatalog-portfolio-input
-                              #:enable-sagemaker-servicecatalog-portfolio-output
                               #:enable-session-tag-chaining
                               #:enabled-or-disabled #:endpoint #:endpoint-arn
                               #:endpoint-config-arn #:endpoint-config-name
@@ -948,25 +601,12 @@
                               #:generate-candidate-definitions-only
                               #:generative-ai-settings
                               #:get-device-fleet-report
-                              #:get-device-fleet-report-request
-                              #:get-device-fleet-report-response
                               #:get-lineage-group-policy
-                              #:get-lineage-group-policy-request
-                              #:get-lineage-group-policy-response
                               #:get-model-package-group-policy
-                              #:get-model-package-group-policy-input
-                              #:get-model-package-group-policy-output
                               #:get-sagemaker-servicecatalog-portfolio-status
-                              #:get-sagemaker-servicecatalog-portfolio-status-input
-                              #:get-sagemaker-servicecatalog-portfolio-status-output
                               #:get-scaling-configuration-recommendation
-                              #:get-scaling-configuration-recommendation-request
-                              #:get-scaling-configuration-recommendation-response
-                              #:get-search-suggestions
-                              #:get-search-suggestions-request
-                              #:get-search-suggestions-response #:gid
-                              #:git-config #:git-config-for-update
-                              #:git-config-url #:group
+                              #:get-search-suggestions #:gid #:git-config
+                              #:git-config-for-update #:git-config-url #:group
                               #:grouping-attribute-name
                               #:grouping-attribute-names #:groups
                               #:hidden-app-types-list
@@ -1052,8 +692,6 @@
                               #:image-version-number #:image-version-sort-by
                               #:image-version-sort-order #:image-version-status
                               #:image-versions #:images #:import-hub-content
-                              #:import-hub-content-request
-                              #:import-hub-content-response
                               #:in-use-instance-count
                               #:include-node-logical-ids-boolean
                               #:inference-component-arn
@@ -1154,222 +792,75 @@
                               #:lineage-entity-parameters #:lineage-group-arn
                               #:lineage-group-name-or-arn
                               #:lineage-group-summaries #:lineage-group-summary
-                              #:lineage-type #:list-actions
-                              #:list-actions-request #:list-actions-response
-                              #:list-algorithms #:list-algorithms-input
-                              #:list-algorithms-output #:list-aliases
-                              #:list-aliases-request #:list-aliases-response
-                              #:list-app-image-configs
-                              #:list-app-image-configs-request
-                              #:list-app-image-configs-response #:list-apps
-                              #:list-apps-request #:list-apps-response
-                              #:list-artifacts #:list-artifacts-request
-                              #:list-artifacts-response #:list-associations
-                              #:list-associations-request
-                              #:list-associations-response #:list-auto-mljobs
-                              #:list-auto-mljobs-request
-                              #:list-auto-mljobs-response
+                              #:lineage-type #:list-actions #:list-algorithms
+                              #:list-aliases #:list-app-image-configs
+                              #:list-apps #:list-artifacts #:list-associations
+                              #:list-auto-mljobs
                               #:list-candidates-for-auto-mljob
-                              #:list-candidates-for-auto-mljob-request
-                              #:list-candidates-for-auto-mljob-response
-                              #:list-cluster-events
-                              #:list-cluster-events-request
-                              #:list-cluster-events-response
-                              #:list-cluster-nodes #:list-cluster-nodes-request
-                              #:list-cluster-nodes-response
-                              #:list-cluster-scheduler-configs
-                              #:list-cluster-scheduler-configs-request
-                              #:list-cluster-scheduler-configs-response
-                              #:list-clusters #:list-clusters-request
-                              #:list-clusters-response #:list-code-repositories
-                              #:list-code-repositories-input
-                              #:list-code-repositories-output
-                              #:list-compilation-jobs
-                              #:list-compilation-jobs-request
-                              #:list-compilation-jobs-response
+                              #:list-cluster-events #:list-cluster-nodes
+                              #:list-cluster-scheduler-configs #:list-clusters
+                              #:list-code-repositories #:list-compilation-jobs
                               #:list-compilation-jobs-sort-by
-                              #:list-compute-quotas
-                              #:list-compute-quotas-request
-                              #:list-compute-quotas-response #:list-contexts
-                              #:list-contexts-request #:list-contexts-response
+                              #:list-compute-quotas #:list-contexts
                               #:list-data-quality-job-definitions
-                              #:list-data-quality-job-definitions-request
-                              #:list-data-quality-job-definitions-response
-                              #:list-device-fleets #:list-device-fleets-request
-                              #:list-device-fleets-response
-                              #:list-device-fleets-sort-by #:list-devices
-                              #:list-devices-request #:list-devices-response
-                              #:list-domains #:list-domains-request
-                              #:list-domains-response
+                              #:list-device-fleets #:list-device-fleets-sort-by
+                              #:list-devices #:list-domains
                               #:list-edge-deployment-plans
-                              #:list-edge-deployment-plans-request
-                              #:list-edge-deployment-plans-response
                               #:list-edge-deployment-plans-sort-by
                               #:list-edge-packaging-jobs
-                              #:list-edge-packaging-jobs-request
-                              #:list-edge-packaging-jobs-response
                               #:list-edge-packaging-jobs-sort-by
-                              #:list-endpoint-configs
-                              #:list-endpoint-configs-input
-                              #:list-endpoint-configs-output #:list-endpoints
-                              #:list-endpoints-input #:list-endpoints-output
-                              #:list-experiments #:list-experiments-request
-                              #:list-experiments-response #:list-feature-groups
-                              #:list-feature-groups-request
-                              #:list-feature-groups-response
+                              #:list-endpoint-configs #:list-endpoints
+                              #:list-experiments #:list-feature-groups
                               #:list-flow-definitions
-                              #:list-flow-definitions-request
-                              #:list-flow-definitions-response
-                              #:list-hub-content-versions
-                              #:list-hub-content-versions-request
-                              #:list-hub-content-versions-response
-                              #:list-hub-contents #:list-hub-contents-request
-                              #:list-hub-contents-response #:list-hubs
-                              #:list-hubs-request #:list-hubs-response
-                              #:list-human-task-uis
-                              #:list-human-task-uis-request
-                              #:list-human-task-uis-response
+                              #:list-hub-content-versions #:list-hub-contents
+                              #:list-hubs #:list-human-task-uis
                               #:list-hyper-parameter-tuning-jobs
-                              #:list-hyper-parameter-tuning-jobs-request
-                              #:list-hyper-parameter-tuning-jobs-response
-                              #:list-image-versions
-                              #:list-image-versions-request
-                              #:list-image-versions-response #:list-images
-                              #:list-images-request #:list-images-response
+                              #:list-image-versions #:list-images
                               #:list-inference-components
-                              #:list-inference-components-input
-                              #:list-inference-components-output
                               #:list-inference-experiments
-                              #:list-inference-experiments-request
-                              #:list-inference-experiments-response
                               #:list-inference-recommendations-job-steps
-                              #:list-inference-recommendations-job-steps-request
-                              #:list-inference-recommendations-job-steps-response
                               #:list-inference-recommendations-jobs
-                              #:list-inference-recommendations-jobs-request
-                              #:list-inference-recommendations-jobs-response
                               #:list-inference-recommendations-jobs-sort-by
                               #:list-labeling-jobs
                               #:list-labeling-jobs-for-workteam
-                              #:list-labeling-jobs-for-workteam-request
-                              #:list-labeling-jobs-for-workteam-response
                               #:list-labeling-jobs-for-workteam-sort-by-options
-                              #:list-labeling-jobs-request
-                              #:list-labeling-jobs-response
                               #:list-lineage-entity-parameter-key
-                              #:list-lineage-groups
-                              #:list-lineage-groups-request
-                              #:list-lineage-groups-response #:list-max-results
+                              #:list-lineage-groups #:list-max-results
                               #:list-mlflow-tracking-servers
-                              #:list-mlflow-tracking-servers-request
-                              #:list-mlflow-tracking-servers-response
                               #:list-model-bias-job-definitions
-                              #:list-model-bias-job-definitions-request
-                              #:list-model-bias-job-definitions-response
                               #:list-model-card-export-jobs
-                              #:list-model-card-export-jobs-request
-                              #:list-model-card-export-jobs-response
-                              #:list-model-card-versions
-                              #:list-model-card-versions-request
-                              #:list-model-card-versions-response
-                              #:list-model-cards #:list-model-cards-request
-                              #:list-model-cards-response
+                              #:list-model-card-versions #:list-model-cards
                               #:list-model-explainability-job-definitions
-                              #:list-model-explainability-job-definitions-request
-                              #:list-model-explainability-job-definitions-response
-                              #:list-model-metadata
-                              #:list-model-metadata-request
-                              #:list-model-metadata-response
-                              #:list-model-package-groups
-                              #:list-model-package-groups-input
-                              #:list-model-package-groups-output
-                              #:list-model-packages #:list-model-packages-input
-                              #:list-model-packages-output
+                              #:list-model-metadata #:list-model-package-groups
+                              #:list-model-packages
                               #:list-model-quality-job-definitions
-                              #:list-model-quality-job-definitions-request
-                              #:list-model-quality-job-definitions-response
-                              #:list-models #:list-models-input
-                              #:list-models-output
-                              #:list-monitoring-alert-history
-                              #:list-monitoring-alert-history-request
-                              #:list-monitoring-alert-history-response
+                              #:list-models #:list-monitoring-alert-history
                               #:list-monitoring-alerts
-                              #:list-monitoring-alerts-request
-                              #:list-monitoring-alerts-response
                               #:list-monitoring-executions
-                              #:list-monitoring-executions-request
-                              #:list-monitoring-executions-response
                               #:list-monitoring-schedules
-                              #:list-monitoring-schedules-request
-                              #:list-monitoring-schedules-response
                               #:list-notebook-instance-lifecycle-configs
-                              #:list-notebook-instance-lifecycle-configs-input
-                              #:list-notebook-instance-lifecycle-configs-output
                               #:list-notebook-instances
-                              #:list-notebook-instances-input
-                              #:list-notebook-instances-output
                               #:list-optimization-jobs
-                              #:list-optimization-jobs-request
-                              #:list-optimization-jobs-response
                               #:list-optimization-jobs-sort-by
-                              #:list-partner-apps #:list-partner-apps-request
-                              #:list-partner-apps-response
+                              #:list-partner-apps
                               #:list-pipeline-execution-steps
-                              #:list-pipeline-execution-steps-request
-                              #:list-pipeline-execution-steps-response
                               #:list-pipeline-executions
-                              #:list-pipeline-executions-request
-                              #:list-pipeline-executions-response
                               #:list-pipeline-parameters-for-execution
-                              #:list-pipeline-parameters-for-execution-request
-                              #:list-pipeline-parameters-for-execution-response
-                              #:list-pipeline-versions
-                              #:list-pipeline-versions-request
-                              #:list-pipeline-versions-response
-                              #:list-pipelines #:list-pipelines-request
-                              #:list-pipelines-response #:list-processing-jobs
-                              #:list-processing-jobs-request
-                              #:list-processing-jobs-response #:list-projects
-                              #:list-projects-input #:list-projects-output
-                              #:list-resource-catalogs
-                              #:list-resource-catalogs-request
-                              #:list-resource-catalogs-response #:list-spaces
-                              #:list-spaces-request #:list-spaces-response
-                              #:list-stage-devices #:list-stage-devices-request
-                              #:list-stage-devices-response
+                              #:list-pipeline-versions #:list-pipelines
+                              #:list-processing-jobs #:list-projects
+                              #:list-resource-catalogs #:list-spaces
+                              #:list-stage-devices
                               #:list-studio-lifecycle-configs
-                              #:list-studio-lifecycle-configs-request
-                              #:list-studio-lifecycle-configs-response
-                              #:list-subscribed-workteams
-                              #:list-subscribed-workteams-request
-                              #:list-subscribed-workteams-response #:list-tags
-                              #:list-tags-input #:list-tags-max-results
-                              #:list-tags-output #:list-training-jobs
+                              #:list-subscribed-workteams #:list-tags
+                              #:list-tags-max-results #:list-training-jobs
                               #:list-training-jobs-for-hyper-parameter-tuning-job
-                              #:list-training-jobs-for-hyper-parameter-tuning-job-request
-                              #:list-training-jobs-for-hyper-parameter-tuning-job-response
-                              #:list-training-jobs-request
-                              #:list-training-jobs-response
-                              #:list-training-plans
-                              #:list-training-plans-request
-                              #:list-training-plans-response
-                              #:list-transform-jobs
-                              #:list-transform-jobs-request
-                              #:list-transform-jobs-response
+                              #:list-training-plans #:list-transform-jobs
                               #:list-trial-component-key256
-                              #:list-trial-components
-                              #:list-trial-components-request
-                              #:list-trial-components-response #:list-trials
-                              #:list-trials-request #:list-trials-response
-                              #:list-user-profiles #:list-user-profiles-request
-                              #:list-user-profiles-response #:list-workforces
-                              #:list-workforces-request
-                              #:list-workforces-response
+                              #:list-trial-components #:list-trials
+                              #:list-user-profiles #:list-workforces
                               #:list-workforces-sort-by-options
-                              #:list-workteams #:list-workteams-request
-                              #:list-workteams-response
-                              #:list-workteams-sort-by-options #:local-path
-                              #:long #:long-s3uri #:mlframework
+                              #:list-workteams #:list-workteams-sort-by-options
+                              #:local-path #:long #:long-s3uri #:mlframework
                               #:managed-instance-scaling-max-instance-count
                               #:managed-instance-scaling-min-instance-count
                               #:managed-instance-scaling-status
@@ -1716,14 +1207,10 @@
                               #:provisioning-parameter-value
                               #:provisioning-parameters
                               #:public-workforce-task-price
-                              #:put-model-package-group-policy
-                              #:put-model-package-group-policy-input
-                              #:put-model-package-group-policy-output
-                              #:qprofile-arn #:quality-check-step-metadata
-                              #:query-filters #:query-lineage
-                              #:query-lineage-max-depth
+                              #:put-model-package-group-policy #:qprofile-arn
+                              #:quality-check-step-metadata #:query-filters
+                              #:query-lineage #:query-lineage-max-depth
                               #:query-lineage-max-results
-                              #:query-lineage-request #:query-lineage-response
                               #:query-lineage-start-arns #:query-lineage-types
                               #:query-properties #:query-types
                               #:rsession-app-settings
@@ -1772,12 +1259,10 @@
                               #:redshift-result-compression-type
                               #:redshift-result-format #:redshift-user-name
                               #:reference-min-version #:region-name
-                              #:register-devices #:register-devices-request
-                              #:register-model-step-metadata #:relation
-                              #:release-notes #:remote-debug-config
+                              #:register-devices #:register-model-step-metadata
+                              #:relation #:release-notes #:remote-debug-config
                               #:remote-debug-config-for-update
-                              #:render-ui-template #:render-ui-template-request
-                              #:render-ui-template-response #:renderable-task
+                              #:render-ui-template #:renderable-task
                               #:rendering-error #:rendering-error-list
                               #:repository-access-mode #:repository-auth-config
                               #:repository-credentials-provider-arn
@@ -1798,18 +1283,14 @@
                               #:resource-catalog-sort-by
                               #:resource-catalog-sort-order #:resource-config
                               #:resource-config-for-update #:resource-id
-                              #:resource-identifier #:resource-in-use
-                              #:resource-limit-exceeded #:resource-limits
-                              #:resource-not-found #:resource-policy-string
-                              #:resource-property-name
+                              #:resource-identifier #:resource-limits
+                              #:resource-policy-string #:resource-property-name
                               #:resource-retained-billable-time-in-seconds
                               #:resource-sharing-config
                               #:resource-sharing-strategy #:resource-spec
                               #:resource-type #:response-mimetype
                               #:response-mimetypes #:retention-policy
                               #:retention-type #:retry-pipeline-execution
-                              #:retry-pipeline-execution-request
-                              #:retry-pipeline-execution-response
                               #:retry-strategy #:role-arn
                               #:rolling-deployment-policy
                               #:rolling-update-policy #:root-access
@@ -1835,12 +1316,9 @@
                               #:scheduled-update-config #:scheduler-config
                               #:scheduler-resource-status #:scope #:search
                               #:search-expression #:search-expression-list
-                              #:search-record #:search-request
-                              #:search-response #:search-results-list
+                              #:search-record #:search-results-list
                               #:search-sort-order
                               #:search-training-plan-offerings
-                              #:search-training-plan-offerings-request
-                              #:search-training-plan-offerings-response
                               #:secondary-status #:secondary-status-transition
                               #:secondary-status-transitions #:secret-arn
                               #:security-group-id #:security-group-ids #:seed
@@ -1848,11 +1326,7 @@
                               #:selective-execution-config
                               #:selective-execution-result
                               #:send-pipeline-execution-step-failure
-                              #:send-pipeline-execution-step-failure-request
-                              #:send-pipeline-execution-step-failure-response
                               #:send-pipeline-execution-step-success
-                              #:send-pipeline-execution-step-success-request
-                              #:send-pipeline-execution-step-success-response
                               #:serverless-max-concurrency
                               #:serverless-memory-size-in-mb
                               #:serverless-provisioned-concurrency
@@ -1893,59 +1367,29 @@
                               #:spawn-rate #:split-type #:stage-description
                               #:stage-status #:stairs
                               #:start-edge-deployment-stage
-                              #:start-edge-deployment-stage-request
                               #:start-inference-experiment
-                              #:start-inference-experiment-request
-                              #:start-inference-experiment-response
                               #:start-mlflow-tracking-server
-                              #:start-mlflow-tracking-server-request
-                              #:start-mlflow-tracking-server-response
                               #:start-monitoring-schedule
-                              #:start-monitoring-schedule-request
                               #:start-notebook-instance
-                              #:start-notebook-instance-input
-                              #:start-pipeline-execution
-                              #:start-pipeline-execution-request
-                              #:start-pipeline-execution-response
-                              #:start-session #:start-session-request
-                              #:start-session-response #:statistic
-                              #:status-details #:status-message
+                              #:start-pipeline-execution #:start-session
+                              #:statistic #:status-details #:status-message
                               #:step-description #:step-display-name
                               #:step-name #:step-status #:stop-auto-mljob
-                              #:stop-auto-mljob-request #:stop-compilation-job
-                              #:stop-compilation-job-request
+                              #:stop-compilation-job
                               #:stop-edge-deployment-stage
-                              #:stop-edge-deployment-stage-request
                               #:stop-edge-packaging-job
-                              #:stop-edge-packaging-job-request
                               #:stop-hyper-parameter-tuning-job
-                              #:stop-hyper-parameter-tuning-job-request
                               #:stop-inference-experiment
-                              #:stop-inference-experiment-request
-                              #:stop-inference-experiment-response
                               #:stop-inference-recommendations-job
-                              #:stop-inference-recommendations-job-request
-                              #:stop-labeling-job #:stop-labeling-job-request
-                              #:stop-mlflow-tracking-server
-                              #:stop-mlflow-tracking-server-request
-                              #:stop-mlflow-tracking-server-response
+                              #:stop-labeling-job #:stop-mlflow-tracking-server
                               #:stop-monitoring-schedule
-                              #:stop-monitoring-schedule-request
-                              #:stop-notebook-instance
-                              #:stop-notebook-instance-input
-                              #:stop-optimization-job
-                              #:stop-optimization-job-request
-                              #:stop-pipeline-execution
-                              #:stop-pipeline-execution-request
-                              #:stop-pipeline-execution-response
-                              #:stop-processing-job
-                              #:stop-processing-job-request #:stop-training-job
-                              #:stop-training-job-request #:stop-transform-job
-                              #:stop-transform-job-request #:stopping-condition
-                              #:storage-type #:stream-url #:string #:string1024
-                              #:string128 #:string200 #:string2048 #:string256
-                              #:string3072 #:string40 #:string64 #:string8192
-                              #:string-parameter-value
+                              #:stop-notebook-instance #:stop-optimization-job
+                              #:stop-pipeline-execution #:stop-processing-job
+                              #:stop-training-job #:stop-transform-job
+                              #:stopping-condition #:storage-type #:stream-url
+                              #:string #:string1024 #:string128 #:string200
+                              #:string2048 #:string256 #:string3072 #:string40
+                              #:string64 #:string8192 #:string-parameter-value
                               #:studio-lifecycle-config-app-type
                               #:studio-lifecycle-config-arn
                               #:studio-lifecycle-config-content
@@ -2086,119 +1530,44 @@
                               #:unified-studio-environment-id
                               #:unified-studio-project-id
                               #:unified-studio-settings #:update-action
-                              #:update-action-request #:update-action-response
-                              #:update-app-image-config
-                              #:update-app-image-config-request
-                              #:update-app-image-config-response
-                              #:update-artifact #:update-artifact-request
-                              #:update-artifact-response #:update-cluster
-                              #:update-cluster-request
-                              #:update-cluster-response
+                              #:update-app-image-config #:update-artifact
+                              #:update-cluster
                               #:update-cluster-scheduler-config
-                              #:update-cluster-scheduler-config-request
-                              #:update-cluster-scheduler-config-response
                               #:update-cluster-software
                               #:update-cluster-software-instance-group-specification
                               #:update-cluster-software-instance-groups
-                              #:update-cluster-software-request
-                              #:update-cluster-software-response
-                              #:update-code-repository
-                              #:update-code-repository-input
-                              #:update-code-repository-output
-                              #:update-compute-quota
-                              #:update-compute-quota-request
-                              #:update-compute-quota-response #:update-context
-                              #:update-context-request
-                              #:update-context-response #:update-device-fleet
-                              #:update-device-fleet-request #:update-devices
-                              #:update-devices-request #:update-domain
-                              #:update-domain-request #:update-domain-response
-                              #:update-endpoint #:update-endpoint-input
-                              #:update-endpoint-output
+                              #:update-code-repository #:update-compute-quota
+                              #:update-context #:update-device-fleet
+                              #:update-devices #:update-domain
+                              #:update-endpoint
                               #:update-endpoint-weights-and-capacities
-                              #:update-endpoint-weights-and-capacities-input
-                              #:update-endpoint-weights-and-capacities-output
-                              #:update-experiment #:update-experiment-request
-                              #:update-experiment-response
-                              #:update-feature-group
-                              #:update-feature-group-request
-                              #:update-feature-group-response
-                              #:update-feature-metadata
-                              #:update-feature-metadata-request #:update-hub
+                              #:update-experiment #:update-feature-group
+                              #:update-feature-metadata #:update-hub
                               #:update-hub-content
-                              #:update-hub-content-reference
-                              #:update-hub-content-reference-request
-                              #:update-hub-content-reference-response
-                              #:update-hub-content-request
-                              #:update-hub-content-response
-                              #:update-hub-request #:update-hub-response
-                              #:update-image #:update-image-request
-                              #:update-image-response #:update-image-version
-                              #:update-image-version-request
-                              #:update-image-version-response
+                              #:update-hub-content-reference #:update-image
+                              #:update-image-version
                               #:update-inference-component
-                              #:update-inference-component-input
-                              #:update-inference-component-output
                               #:update-inference-component-runtime-config
-                              #:update-inference-component-runtime-config-input
-                              #:update-inference-component-runtime-config-output
                               #:update-inference-experiment
-                              #:update-inference-experiment-request
-                              #:update-inference-experiment-response
                               #:update-mlflow-tracking-server
-                              #:update-mlflow-tracking-server-request
-                              #:update-mlflow-tracking-server-response
-                              #:update-model-card #:update-model-card-request
-                              #:update-model-card-response
-                              #:update-model-package
-                              #:update-model-package-input
-                              #:update-model-package-output
+                              #:update-model-card #:update-model-package
                               #:update-monitoring-alert
-                              #:update-monitoring-alert-request
-                              #:update-monitoring-alert-response
                               #:update-monitoring-schedule
-                              #:update-monitoring-schedule-request
-                              #:update-monitoring-schedule-response
                               #:update-notebook-instance
-                              #:update-notebook-instance-input
                               #:update-notebook-instance-lifecycle-config
-                              #:update-notebook-instance-lifecycle-config-input
-                              #:update-notebook-instance-lifecycle-config-output
-                              #:update-notebook-instance-output
-                              #:update-partner-app #:update-partner-app-request
-                              #:update-partner-app-response #:update-pipeline
+                              #:update-partner-app #:update-pipeline
                               #:update-pipeline-execution
-                              #:update-pipeline-execution-request
-                              #:update-pipeline-execution-response
-                              #:update-pipeline-request
-                              #:update-pipeline-response
-                              #:update-pipeline-version
-                              #:update-pipeline-version-request
-                              #:update-pipeline-version-response
-                              #:update-project #:update-project-input
-                              #:update-project-output #:update-space
-                              #:update-space-request #:update-space-response
-                              #:update-template-provider
+                              #:update-pipeline-version #:update-project
+                              #:update-space #:update-template-provider
                               #:update-template-provider-list
-                              #:update-training-job
-                              #:update-training-job-request
-                              #:update-training-job-response #:update-trial
-                              #:update-trial-component
-                              #:update-trial-component-request
-                              #:update-trial-component-response
-                              #:update-trial-request #:update-trial-response
-                              #:update-user-profile
-                              #:update-user-profile-request
-                              #:update-user-profile-response #:update-workforce
-                              #:update-workforce-request
-                              #:update-workforce-response #:update-workteam
-                              #:update-workteam-request
-                              #:update-workteam-response #:url #:user-context
-                              #:user-profile-arn #:user-profile-details
-                              #:user-profile-list #:user-profile-name
-                              #:user-profile-sort-key #:user-profile-status
-                              #:user-settings #:users-per-step
-                              #:utilization-metric
+                              #:update-training-job #:update-trial
+                              #:update-trial-component #:update-user-profile
+                              #:update-workforce #:update-workteam #:url
+                              #:user-context #:user-profile-arn
+                              #:user-profile-details #:user-profile-list
+                              #:user-profile-name #:user-profile-sort-key
+                              #:user-profile-status #:user-settings
+                              #:users-per-step #:utilization-metric
                               #:utilization-percentage-per-core
                               #:validation-fraction #:variant-name
                               #:variant-property #:variant-property-list

@@ -1,54 +1,22 @@
 (uiop/package:define-package #:pira/machine-learning (:use)
-                             (:export #:add-tags #:add-tags-input
-                              #:add-tags-output #:algorithm
+                             (:export #:add-tags #:algorithm
                               #:amazon-ml-20141212 #:aws-user-arn
                               #:batch-prediction
                               #:batch-prediction-filter-variable
                               #:batch-predictions #:comparator-value
                               #:compute-statistics #:create-batch-prediction
-                              #:create-batch-prediction-input
-                              #:create-batch-prediction-output
                               #:create-data-source-from-rds
-                              #:create-data-source-from-rdsinput
-                              #:create-data-source-from-rdsoutput
                               #:create-data-source-from-redshift
-                              #:create-data-source-from-redshift-input
-                              #:create-data-source-from-redshift-output
-                              #:create-data-source-from-s3
-                              #:create-data-source-from-s3input
-                              #:create-data-source-from-s3output
-                              #:create-evaluation #:create-evaluation-input
-                              #:create-evaluation-output #:create-mlmodel
-                              #:create-mlmodel-input #:create-mlmodel-output
-                              #:create-realtime-endpoint
-                              #:create-realtime-endpoint-input
-                              #:create-realtime-endpoint-output
+                              #:create-data-source-from-s3 #:create-evaluation
+                              #:create-mlmodel #:create-realtime-endpoint
                               #:data-rearrangement #:data-schema #:data-source
                               #:data-source-filter-variable #:data-sources
-                              #:delete-batch-prediction
-                              #:delete-batch-prediction-input
-                              #:delete-batch-prediction-output
-                              #:delete-data-source #:delete-data-source-input
-                              #:delete-data-source-output #:delete-evaluation
-                              #:delete-evaluation-input
-                              #:delete-evaluation-output #:delete-mlmodel
-                              #:delete-mlmodel-input #:delete-mlmodel-output
-                              #:delete-realtime-endpoint
-                              #:delete-realtime-endpoint-input
-                              #:delete-realtime-endpoint-output #:delete-tags
-                              #:delete-tags-input #:delete-tags-output
+                              #:delete-batch-prediction #:delete-data-source
+                              #:delete-evaluation #:delete-mlmodel
+                              #:delete-realtime-endpoint #:delete-tags
                               #:describe-batch-predictions
-                              #:describe-batch-predictions-input
-                              #:describe-batch-predictions-output
-                              #:describe-data-sources
-                              #:describe-data-sources-input
-                              #:describe-data-sources-output
-                              #:describe-evaluations
-                              #:describe-evaluations-input
-                              #:describe-evaluations-output #:describe-mlmodels
-                              #:describe-mlmodels-input
-                              #:describe-mlmodels-output #:describe-tags
-                              #:describe-tags-input #:describe-tags-output
+                              #:describe-data-sources #:describe-evaluations
+                              #:describe-mlmodels #:describe-tags
                               #:details-attributes #:details-map
                               #:details-value #:edppipeline-id
                               #:edpresource-role #:edpsecurity-group-id
@@ -57,30 +25,21 @@
                               #:entity-status #:epoch-time #:error-code
                               #:error-message #:evaluation
                               #:evaluation-filter-variable #:evaluations
-                              #:get-batch-prediction
-                              #:get-batch-prediction-input
-                              #:get-batch-prediction-output #:get-data-source
-                              #:get-data-source-input #:get-data-source-output
-                              #:get-evaluation #:get-evaluation-input
-                              #:get-evaluation-output #:get-mlmodel
-                              #:get-mlmodel-input #:get-mlmodel-output
-                              #:idempotent-parameter-mismatch-exception
-                              #:integer-type #:internal-server-exception
-                              #:invalid-input-exception #:invalid-tag-exception
-                              #:label #:limit-exceeded-exception #:long-type
-                              #:mlmodel #:mlmodel-filter-variable
-                              #:mlmodel-name #:mlmodel-type #:mlmodels
-                              #:message #:page-limit #:performance-metrics
+                              #:get-batch-prediction #:get-data-source
+                              #:get-evaluation #:get-mlmodel #:integer-type
+                              #:label #:long-type #:mlmodel
+                              #:mlmodel-filter-variable #:mlmodel-name
+                              #:mlmodel-type #:mlmodels #:message #:page-limit
+                              #:performance-metrics
                               #:performance-metrics-properties
                               #:performance-metrics-property-key
                               #:performance-metrics-property-value #:predict
-                              #:predict-input #:predict-output #:prediction
-                              #:predictor-not-mounted-exception
-                              #:presigned-s3url #:rdsdata-spec #:rdsdatabase
-                              #:rdsdatabase-credentials #:rdsdatabase-name
-                              #:rdsdatabase-password #:rdsdatabase-username
-                              #:rdsinstance-identifier #:rdsmetadata
-                              #:rdsselect-sql-query #:realtime-endpoint-info
+                              #:prediction #:presigned-s3url #:rdsdata-spec
+                              #:rdsdatabase #:rdsdatabase-credentials
+                              #:rdsdatabase-name #:rdsdatabase-password
+                              #:rdsdatabase-username #:rdsinstance-identifier
+                              #:rdsmetadata #:rdsselect-sql-query
+                              #:realtime-endpoint-info
                               #:realtime-endpoint-status #:recipe #:record
                               #:redshift-cluster-identifier
                               #:redshift-data-spec #:redshift-database
@@ -88,21 +47,14 @@
                               #:redshift-database-name
                               #:redshift-database-password
                               #:redshift-database-username #:redshift-metadata
-                              #:redshift-select-sql-query
-                              #:resource-not-found-exception #:role-arn
+                              #:redshift-select-sql-query #:role-arn
                               #:s3data-spec #:s3url #:score-threshold
                               #:score-value #:score-value-per-label-map
                               #:sort-order #:string-type #:tag #:tag-key
-                              #:tag-key-list #:tag-limit-exceeded-exception
-                              #:tag-list #:tag-value #:taggable-resource-type
-                              #:training-parameters #:update-batch-prediction
-                              #:update-batch-prediction-input
-                              #:update-batch-prediction-output
-                              #:update-data-source #:update-data-source-input
-                              #:update-data-source-output #:update-evaluation
-                              #:update-evaluation-input
-                              #:update-evaluation-output #:update-mlmodel
-                              #:update-mlmodel-input #:update-mlmodel-output
+                              #:tag-key-list #:tag-list #:tag-value
+                              #:taggable-resource-type #:training-parameters
+                              #:update-batch-prediction #:update-data-source
+                              #:update-evaluation #:update-mlmodel
                               #:variable-name #:variable-value #:verbose
                               #:vip-url #:float-label))
 (common-lisp:in-package #:pira/machine-learning)

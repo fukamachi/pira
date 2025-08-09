@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/arc-zonal-shift (:use)
-                             (:export #:access-denied-exception
-                              #:applied-status #:applied-weights #:autoshift
-                              #:autoshift-applied-status
+                             (:export #:applied-status #:applied-weights
+                              #:autoshift #:autoshift-applied-status
                               #:autoshift-execution-status
                               #:autoshift-in-resource
                               #:autoshift-observer-notification
@@ -12,56 +11,28 @@
                               #:availability-zones #:blocked-date
                               #:blocked-dates #:blocked-window
                               #:blocked-windows #:cancel-practice-run
-                              #:cancel-practice-run-request
-                              #:cancel-practice-run-response
-                              #:cancel-zonal-shift #:cancel-zonal-shift-request
-                              #:conflict-exception #:conflict-exception-reason
+                              #:cancel-zonal-shift #:conflict-exception-reason
                               #:control-condition #:control-condition-type
                               #:control-conditions
                               #:create-practice-run-configuration
-                              #:create-practice-run-configuration-request
-                              #:create-practice-run-configuration-response
-                              #:delete-practice-run-configuration
-                              #:delete-practice-run-configuration-request
-                              #:delete-practice-run-configuration-response
-                              #:expires-in #:expiry-time
+                              #:delete-practice-run-configuration #:expires-in
+                              #:expiry-time
                               #:get-autoshift-observer-notification-status
-                              #:get-autoshift-observer-notification-status-request
-                              #:get-autoshift-observer-notification-status-response
-                              #:get-managed-resource
-                              #:get-managed-resource-request
-                              #:get-managed-resource-response
-                              #:internal-server-exception #:list-autoshifts
-                              #:list-autoshifts-request
-                              #:list-autoshifts-response
-                              #:list-managed-resources
-                              #:list-managed-resources-request
-                              #:list-managed-resources-response
-                              #:list-zonal-shifts #:list-zonal-shifts-request
-                              #:list-zonal-shifts-response #:managed-resource
-                              #:managed-resource-summaries
+                              #:get-managed-resource #:list-autoshifts
+                              #:list-managed-resources #:list-zonal-shifts
+                              #:managed-resource #:managed-resource-summaries
                               #:managed-resource-summary #:max-results
                               #:metric-identifier #:perc-data-plane
                               #:practice-run-configuration
                               #:practice-run-configuration-resource
                               #:practice-run-outcome #:resource-arn
                               #:resource-identifier #:resource-name
-                              #:resource-not-found-exception #:shift-type
-                              #:start-practice-run #:start-practice-run-request
-                              #:start-practice-run-response #:start-time
-                              #:start-zonal-shift #:start-zonal-shift-request
-                              #:throttling-exception
+                              #:shift-type #:start-practice-run #:start-time
+                              #:start-zonal-shift
                               #:update-autoshift-observer-notification-status
-                              #:update-autoshift-observer-notification-status-request
-                              #:update-autoshift-observer-notification-status-response
                               #:update-practice-run-configuration
-                              #:update-practice-run-configuration-request
-                              #:update-practice-run-configuration-response
                               #:update-zonal-autoshift-configuration
-                              #:update-zonal-autoshift-configuration-request
-                              #:update-zonal-autoshift-configuration-response
-                              #:update-zonal-shift #:update-zonal-shift-request
-                              #:validation-exception
+                              #:update-zonal-shift
                               #:validation-exception-reason #:weight
                               #:zonal-autoshift-status #:zonal-shift
                               #:zonal-shift-comment #:zonal-shift-id

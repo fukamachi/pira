@@ -4,7 +4,6 @@
                               #:atimodel-performance
                               #:atitraining-metrics-value
                               #:awshawks-nest-service-facade
-                              #:access-denied-exception
                               #:aggregated-log-odds-metric
                               #:aggregated-variables-impact-explanation
                               #:aggregated-variables-importance-metrics
@@ -12,79 +11,31 @@
                               #:async-job-status #:batch-create-variable
                               #:batch-create-variable-error
                               #:batch-create-variable-error-list
-                              #:batch-create-variable-request
-                              #:batch-create-variable-result
                               #:batch-get-variable #:batch-get-variable-error
-                              #:batch-get-variable-error-list
-                              #:batch-get-variable-request
-                              #:batch-get-variable-result #:batch-import
+                              #:batch-get-variable-error-list #:batch-import
                               #:batch-import-list #:batch-prediction
                               #:batch-prediction-list #:boolean
                               #:cancel-batch-import-job
-                              #:cancel-batch-import-job-request
-                              #:cancel-batch-import-job-result
                               #:cancel-batch-prediction-job
-                              #:cancel-batch-prediction-job-request
-                              #:cancel-batch-prediction-job-result
-                              #:conflict-exception #:create-batch-import-job
-                              #:create-batch-import-job-request
-                              #:create-batch-import-job-result
+                              #:create-batch-import-job
                               #:create-batch-prediction-job
-                              #:create-batch-prediction-job-request
-                              #:create-batch-prediction-job-result
-                              #:create-detector-version
-                              #:create-detector-version-request
-                              #:create-detector-version-result #:create-list
-                              #:create-list-request #:create-list-result
-                              #:create-model #:create-model-request
-                              #:create-model-result #:create-model-version
-                              #:create-model-version-request
-                              #:create-model-version-result #:create-rule
-                              #:create-rule-request #:create-rule-result
-                              #:create-variable #:create-variable-request
-                              #:create-variable-result
+                              #:create-detector-version #:create-list
+                              #:create-model #:create-model-version
+                              #:create-rule #:create-variable
                               #:csv-index-to-variable-map #:data-source
                               #:data-type #:data-validation-metrics
                               #:delete-audit-history #:delete-batch-import-job
-                              #:delete-batch-import-job-request
-                              #:delete-batch-import-job-result
-                              #:delete-batch-prediction-job
-                              #:delete-batch-prediction-job-request
-                              #:delete-batch-prediction-job-result
-                              #:delete-detector #:delete-detector-request
-                              #:delete-detector-result
-                              #:delete-detector-version
-                              #:delete-detector-version-request
-                              #:delete-detector-version-result
-                              #:delete-entity-type #:delete-entity-type-request
-                              #:delete-entity-type-result #:delete-event
-                              #:delete-event-request #:delete-event-result
-                              #:delete-event-type #:delete-event-type-request
-                              #:delete-event-type-result
+                              #:delete-batch-prediction-job #:delete-detector
+                              #:delete-detector-version #:delete-entity-type
+                              #:delete-event #:delete-event-type
                               #:delete-events-by-event-type
-                              #:delete-events-by-event-type-request
-                              #:delete-events-by-event-type-result
-                              #:delete-external-model
-                              #:delete-external-model-request
-                              #:delete-external-model-result #:delete-label
-                              #:delete-label-request #:delete-label-result
-                              #:delete-list #:delete-list-request
-                              #:delete-list-result #:delete-model
-                              #:delete-model-request #:delete-model-result
-                              #:delete-model-version
-                              #:delete-model-version-request
-                              #:delete-model-version-result #:delete-outcome
-                              #:delete-outcome-request #:delete-outcome-result
-                              #:delete-rule #:delete-rule-request
-                              #:delete-rule-result #:delete-variable
-                              #:delete-variable-request
-                              #:delete-variable-result #:describe-detector
-                              #:describe-detector-request
-                              #:describe-detector-result
-                              #:describe-model-versions
-                              #:describe-model-versions-request
-                              #:describe-model-versions-result #:detector
-                              #:detector-list #:detector-version-max-results
+                              #:delete-external-model #:delete-label
+                              #:delete-list #:delete-model
+                              #:delete-model-version #:delete-outcome
+                              #:delete-rule #:delete-variable
+                              #:describe-detector #:describe-model-versions
+                              #:detector #:detector-list
+                              #:detector-version-max-results
                               #:detector-version-status
                               #:detector-version-summary
                               #:detector-version-summary-list
@@ -106,55 +57,22 @@
                               #:field-validation-message
                               #:file-validation-message #:filter-condition
                               #:get-batch-import-jobs
-                              #:get-batch-import-jobs-request
-                              #:get-batch-import-jobs-result
                               #:get-batch-prediction-jobs
-                              #:get-batch-prediction-jobs-request
-                              #:get-batch-prediction-jobs-result
                               #:get-delete-events-by-event-type-status
-                              #:get-delete-events-by-event-type-status-request
-                              #:get-delete-events-by-event-type-status-result
-                              #:get-detector-version
-                              #:get-detector-version-request
-                              #:get-detector-version-result #:get-detectors
-                              #:get-detectors-request #:get-detectors-result
-                              #:get-entity-types #:get-entity-types-request
-                              #:get-entity-types-result #:get-event
+                              #:get-detector-version #:get-detectors
+                              #:get-entity-types #:get-event
                               #:get-event-prediction
-                              #:get-event-prediction-metadata
-                              #:get-event-prediction-metadata-request
-                              #:get-event-prediction-metadata-result
-                              #:get-event-prediction-request
-                              #:get-event-prediction-result #:get-event-request
-                              #:get-event-result #:get-event-types
-                              #:get-event-types-request
-                              #:get-event-types-result #:get-external-models
-                              #:get-external-models-request
-                              #:get-external-models-result
-                              #:get-kmsencryption-key
-                              #:get-kmsencryption-key-result #:get-labels
-                              #:get-labels-request #:get-labels-result
-                              #:get-list-elements #:get-list-elements-request
-                              #:get-list-elements-result #:get-lists-metadata
-                              #:get-lists-metadata-request
-                              #:get-lists-metadata-result #:get-model-version
-                              #:get-model-version-request
-                              #:get-model-version-result #:get-models
-                              #:get-models-request #:get-models-result
-                              #:get-outcomes #:get-outcomes-request
-                              #:get-outcomes-result #:get-rules
-                              #:get-rules-request #:get-rules-result
-                              #:get-variables #:get-variables-request
-                              #:get-variables-result
-                              #:ingested-event-statistics
+                              #:get-event-prediction-metadata #:get-event-types
+                              #:get-external-models #:get-kmsencryption-key
+                              #:get-labels #:get-list-elements
+                              #:get-lists-metadata #:get-model-version
+                              #:get-models #:get-outcomes #:get-rules
+                              #:get-variables #:ingested-event-statistics
                               #:ingested-events-detail
                               #:ingested-events-time-window #:integer
-                              #:integer2 #:internal-server-exception
-                              #:json-key-to-variable-map #:kmskey
+                              #:integer2 #:json-key-to-variable-map #:kmskey
                               #:kms-encryption-key-arn #:label #:label-schema
                               #:language #:list-event-predictions
-                              #:list-event-predictions-request
-                              #:list-event-predictions-result
                               #:list-of-aggregated-log-odds-metrics
                               #:list-of-aggregated-variables-impact-explanations
                               #:list-of-evaluated-external-models
@@ -166,8 +84,6 @@
                               #:list-of-model-version-evaluations
                               #:list-of-model-versions #:list-of-rule-results
                               #:list-of-strings #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-result
                               #:list-update-mode #:lists-elements-max-results
                               #:lists-metadata-max-results #:log-odds-metric
                               #:long #:map-of-strings #:metric-data-point
@@ -187,66 +103,29 @@
                               #:ofitraining-metrics-value #:outcome
                               #:outcome-list #:outcomes-max-results
                               #:prediction-explanations #:prediction-time-range
-                              #:put-detector #:put-detector-request
-                              #:put-detector-result #:put-entity-type
-                              #:put-entity-type-request
-                              #:put-entity-type-result #:put-event-type
-                              #:put-event-type-request #:put-event-type-result
-                              #:put-external-model #:put-external-model-request
-                              #:put-external-model-result
-                              #:put-kmsencryption-key
-                              #:put-kmsencryption-key-request
-                              #:put-kmsencryption-key-result #:put-label
-                              #:put-label-request #:put-label-result
-                              #:put-outcome #:put-outcome-request
-                              #:put-outcome-result
-                              #:resource-not-found-exception
-                              #:resource-unavailable-exception #:rule
-                              #:rule-detail #:rule-detail-list
-                              #:rule-execution-mode #:rule-list #:rule-result
-                              #:rules-max-results #:send-event
-                              #:send-event-request #:send-event-result
-                              #:tfimetric-data-point
+                              #:put-detector #:put-entity-type #:put-event-type
+                              #:put-external-model #:put-kmsencryption-key
+                              #:put-label #:put-outcome #:rule #:rule-detail
+                              #:rule-detail-list #:rule-execution-mode
+                              #:rule-list #:rule-result #:rules-max-results
+                              #:send-event #:tfimetric-data-point
                               #:tfimetric-data-points-list
                               #:tfimodel-performance
                               #:tfitraining-metrics-value #:tag #:tag-resource
-                              #:tag-resource-request #:tag-resource-result
-                              #:tags-max-results #:throttling-exception
-                              #:training-data-schema
+                              #:tags-max-results #:training-data-schema
                               #:training-data-source-enum #:training-metrics
                               #:training-metrics-v2 #:training-result
                               #:training-result-v2 #:uncertainty-range
                               #:unlabeled-events-treatment #:untag-resource
-                              #:untag-resource-request #:untag-resource-result
                               #:update-detector-version
                               #:update-detector-version-metadata
-                              #:update-detector-version-metadata-request
-                              #:update-detector-version-metadata-result
-                              #:update-detector-version-request
-                              #:update-detector-version-result
                               #:update-detector-version-status
-                              #:update-detector-version-status-request
-                              #:update-detector-version-status-result
-                              #:update-event-label #:update-event-label-request
-                              #:update-event-label-result #:update-list
-                              #:update-list-request #:update-list-result
-                              #:update-model #:update-model-request
-                              #:update-model-result #:update-model-version
-                              #:update-model-version-request
-                              #:update-model-version-result
+                              #:update-event-label #:update-list #:update-model
+                              #:update-model-version
                               #:update-model-version-status
-                              #:update-model-version-status-request
-                              #:update-model-version-status-result
-                              #:update-rule-metadata
-                              #:update-rule-metadata-request
-                              #:update-rule-metadata-result
-                              #:update-rule-version
-                              #:update-rule-version-request
-                              #:update-rule-version-result #:update-variable
-                              #:update-variable-request
-                              #:update-variable-result #:use-event-variables
-                              #:validation-exception #:variable
-                              #:variable-entry #:variable-entry-list
+                              #:update-rule-metadata #:update-rule-version
+                              #:update-variable #:use-event-variables
+                              #:variable #:variable-entry #:variable-entry-list
                               #:variable-impact-explanation
                               #:variable-importance-metrics #:variable-list
                               #:variables-max-results #:attribute-key

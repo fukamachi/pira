@@ -3,439 +3,183 @@
                               #:access-advisor-usage-granularity-type
                               #:access-detail #:access-details #:access-key
                               #:access-key-last-used #:access-key-metadata
-                              #:account-not-management-or-delegated-administrator-exception
                               #:action-name-list-type #:action-name-type
                               #:add-client-idto-open-idconnect-provider
-                              #:add-client-idto-open-idconnect-provider-request
                               #:add-role-to-instance-profile
-                              #:add-role-to-instance-profile-request
-                              #:add-user-to-group #:add-user-to-group-request
-                              #:arn-list-type #:attach-group-policy
-                              #:attach-group-policy-request
-                              #:attach-role-policy #:attach-role-policy-request
-                              #:attach-user-policy #:attach-user-policy-request
+                              #:add-user-to-group #:arn-list-type
+                              #:attach-group-policy #:attach-role-policy
+                              #:attach-user-policy
                               #:attached-permissions-boundary #:attached-policy
-                              #:bootstrap-datum
-                              #:caller-is-not-management-account-exception
-                              #:certification-key-type #:certification-map-type
+                              #:bootstrap-datum #:certification-key-type
+                              #:certification-map-type
                               #:certification-value-type #:change-password
-                              #:change-password-request #:column-number
-                              #:concurrent-modification-exception
-                              #:concurrent-modification-message #:context-entry
-                              #:context-entry-list-type #:context-key-name-type
+                              #:column-number #:concurrent-modification-message
+                              #:context-entry #:context-entry-list-type
+                              #:context-key-name-type
                               #:context-key-names-result-list-type
                               #:context-key-type-enum
                               #:context-key-value-list-type
                               #:context-key-value-type #:create-access-key
-                              #:create-access-key-request
-                              #:create-access-key-response
-                              #:create-account-alias
-                              #:create-account-alias-request #:create-group
-                              #:create-group-request #:create-group-response
-                              #:create-instance-profile
-                              #:create-instance-profile-request
-                              #:create-instance-profile-response
-                              #:create-login-profile
-                              #:create-login-profile-request
-                              #:create-login-profile-response
-                              #:create-open-idconnect-provider
-                              #:create-open-idconnect-provider-request
-                              #:create-open-idconnect-provider-response
-                              #:create-policy #:create-policy-request
-                              #:create-policy-response #:create-policy-version
-                              #:create-policy-version-request
-                              #:create-policy-version-response #:create-role
-                              #:create-role-request #:create-role-response
+                              #:create-account-alias #:create-group
+                              #:create-instance-profile #:create-login-profile
+                              #:create-open-idconnect-provider #:create-policy
+                              #:create-policy-version #:create-role
                               #:create-samlprovider
-                              #:create-samlprovider-request
-                              #:create-samlprovider-response
                               #:create-service-linked-role
-                              #:create-service-linked-role-request
-                              #:create-service-linked-role-response
                               #:create-service-specific-credential
-                              #:create-service-specific-credential-request
-                              #:create-service-specific-credential-response
-                              #:create-user #:create-user-request
-                              #:create-user-response #:create-virtual-mfadevice
-                              #:create-virtual-mfadevice-request
-                              #:create-virtual-mfadevice-response
-                              #:credential-report-expired-exception
-                              #:credential-report-not-present-exception
-                              #:credential-report-not-ready-exception
-                              #:deactivate-mfadevice
-                              #:deactivate-mfadevice-request
-                              #:delete-access-key #:delete-access-key-request
+                              #:create-user #:create-virtual-mfadevice
+                              #:deactivate-mfadevice #:delete-access-key
                               #:delete-account-alias
-                              #:delete-account-alias-request
-                              #:delete-account-password-policy
-                              #:delete-conflict-exception #:delete-group
-                              #:delete-group-policy
-                              #:delete-group-policy-request
-                              #:delete-group-request #:delete-instance-profile
-                              #:delete-instance-profile-request
+                              #:delete-account-password-policy #:delete-group
+                              #:delete-group-policy #:delete-instance-profile
                               #:delete-login-profile
-                              #:delete-login-profile-request
-                              #:delete-open-idconnect-provider
-                              #:delete-open-idconnect-provider-request
-                              #:delete-policy #:delete-policy-request
-                              #:delete-policy-version
-                              #:delete-policy-version-request #:delete-role
+                              #:delete-open-idconnect-provider #:delete-policy
+                              #:delete-policy-version #:delete-role
                               #:delete-role-permissions-boundary
-                              #:delete-role-permissions-boundary-request
-                              #:delete-role-policy #:delete-role-policy-request
-                              #:delete-role-request #:delete-samlprovider
-                              #:delete-samlprovider-request
+                              #:delete-role-policy #:delete-samlprovider
                               #:delete-sshpublic-key
-                              #:delete-sshpublic-key-request
                               #:delete-server-certificate
-                              #:delete-server-certificate-request
                               #:delete-service-linked-role
-                              #:delete-service-linked-role-request
-                              #:delete-service-linked-role-response
                               #:delete-service-specific-credential
-                              #:delete-service-specific-credential-request
-                              #:delete-signing-certificate
-                              #:delete-signing-certificate-request
-                              #:delete-user #:delete-user-permissions-boundary
-                              #:delete-user-permissions-boundary-request
-                              #:delete-user-policy #:delete-user-policy-request
-                              #:delete-user-request #:delete-virtual-mfadevice
-                              #:delete-virtual-mfadevice-request
+                              #:delete-signing-certificate #:delete-user
+                              #:delete-user-permissions-boundary
+                              #:delete-user-policy #:delete-virtual-mfadevice
                               #:deletion-task-failure-reason-type
                               #:deletion-task-id-type
                               #:deletion-task-status-type #:detach-group-policy
-                              #:detach-group-policy-request
-                              #:detach-role-policy #:detach-role-policy-request
-                              #:detach-user-policy #:detach-user-policy-request
+                              #:detach-role-policy #:detach-user-policy
                               #:disable-organizations-root-credentials-management
-                              #:disable-organizations-root-credentials-management-request
-                              #:disable-organizations-root-credentials-management-response
                               #:disable-organizations-root-sessions
-                              #:disable-organizations-root-sessions-request
-                              #:disable-organizations-root-sessions-response
-                              #:duplicate-certificate-exception
-                              #:duplicate-sshpublic-key-exception
-                              #:enable-mfadevice #:enable-mfadevice-request
+                              #:enable-mfadevice
                               #:enable-organizations-root-credentials-management
-                              #:enable-organizations-root-credentials-management-request
-                              #:enable-organizations-root-credentials-management-response
                               #:enable-organizations-root-sessions
-                              #:enable-organizations-root-sessions-request
-                              #:enable-organizations-root-sessions-response
-                              #:entity-already-exists-exception
-                              #:entity-details #:entity-info
-                              #:entity-temporarily-unmodifiable-exception
-                              #:entity-type #:error-details
-                              #:eval-decision-details-type
+                              #:entity-details #:entity-info #:entity-type
+                              #:error-details #:eval-decision-details-type
                               #:eval-decision-source-type #:evaluation-result
                               #:evaluation-results-list-type
                               #:exception-message #:feature-type
                               #:features-list-type #:generate-credential-report
-                              #:generate-credential-report-response
                               #:generate-organizations-access-report
-                              #:generate-organizations-access-report-request
-                              #:generate-organizations-access-report-response
                               #:generate-service-last-accessed-details
-                              #:generate-service-last-accessed-details-request
-                              #:generate-service-last-accessed-details-response
                               #:get-access-key-last-used
-                              #:get-access-key-last-used-request
-                              #:get-access-key-last-used-response
                               #:get-account-authorization-details
-                              #:get-account-authorization-details-request
-                              #:get-account-authorization-details-response
                               #:get-account-password-policy
-                              #:get-account-password-policy-response
                               #:get-account-summary
-                              #:get-account-summary-response
                               #:get-context-keys-for-custom-policy
-                              #:get-context-keys-for-custom-policy-request
                               #:get-context-keys-for-policy-response
                               #:get-context-keys-for-principal-policy
-                              #:get-context-keys-for-principal-policy-request
-                              #:get-credential-report
-                              #:get-credential-report-response #:get-group
-                              #:get-group-policy #:get-group-policy-request
-                              #:get-group-policy-response #:get-group-request
-                              #:get-group-response #:get-instance-profile
-                              #:get-instance-profile-request
-                              #:get-instance-profile-response
-                              #:get-login-profile #:get-login-profile-request
-                              #:get-login-profile-response #:get-mfadevice
-                              #:get-mfadevice-request #:get-mfadevice-response
+                              #:get-credential-report #:get-group
+                              #:get-group-policy #:get-instance-profile
+                              #:get-login-profile #:get-mfadevice
                               #:get-open-idconnect-provider
-                              #:get-open-idconnect-provider-request
-                              #:get-open-idconnect-provider-response
-                              #:get-organizations-access-report
-                              #:get-organizations-access-report-request
-                              #:get-organizations-access-report-response
-                              #:get-policy #:get-policy-request
-                              #:get-policy-response #:get-policy-version
-                              #:get-policy-version-request
-                              #:get-policy-version-response #:get-role
-                              #:get-role-policy #:get-role-policy-request
-                              #:get-role-policy-response #:get-role-request
-                              #:get-role-response #:get-samlprovider
-                              #:get-samlprovider-request
-                              #:get-samlprovider-response #:get-sshpublic-key
-                              #:get-sshpublic-key-request
-                              #:get-sshpublic-key-response
+                              #:get-organizations-access-report #:get-policy
+                              #:get-policy-version #:get-role #:get-role-policy
+                              #:get-samlprovider #:get-sshpublic-key
                               #:get-server-certificate
-                              #:get-server-certificate-request
-                              #:get-server-certificate-response
                               #:get-service-last-accessed-details
-                              #:get-service-last-accessed-details-request
-                              #:get-service-last-accessed-details-response
                               #:get-service-last-accessed-details-with-entities
-                              #:get-service-last-accessed-details-with-entities-request
-                              #:get-service-last-accessed-details-with-entities-response
                               #:get-service-linked-role-deletion-status
-                              #:get-service-linked-role-deletion-status-request
-                              #:get-service-linked-role-deletion-status-response
-                              #:get-user #:get-user-policy
-                              #:get-user-policy-request
-                              #:get-user-policy-response #:get-user-request
-                              #:get-user-response #:group #:group-detail
-                              #:instance-profile
-                              #:invalid-authentication-code-exception
-                              #:invalid-certificate-exception
-                              #:invalid-input-exception
-                              #:invalid-public-key-exception
-                              #:invalid-user-type-exception
-                              #:key-pair-mismatch-exception
-                              #:limit-exceeded-exception #:line-number
-                              #:list-access-keys #:list-access-keys-request
-                              #:list-access-keys-response
-                              #:list-account-aliases
-                              #:list-account-aliases-request
-                              #:list-account-aliases-response
+                              #:get-user #:get-user-policy #:group
+                              #:group-detail #:instance-profile #:line-number
+                              #:list-access-keys #:list-account-aliases
                               #:list-attached-group-policies
-                              #:list-attached-group-policies-request
-                              #:list-attached-group-policies-response
                               #:list-attached-role-policies
-                              #:list-attached-role-policies-request
-                              #:list-attached-role-policies-response
                               #:list-attached-user-policies
-                              #:list-attached-user-policies-request
-                              #:list-attached-user-policies-response
-                              #:list-entities-for-policy
-                              #:list-entities-for-policy-request
-                              #:list-entities-for-policy-response
-                              #:list-group-policies
-                              #:list-group-policies-request
-                              #:list-group-policies-response #:list-groups
-                              #:list-groups-for-user
-                              #:list-groups-for-user-request
-                              #:list-groups-for-user-response
-                              #:list-groups-request #:list-groups-response
+                              #:list-entities-for-policy #:list-group-policies
+                              #:list-groups #:list-groups-for-user
                               #:list-instance-profile-tags
-                              #:list-instance-profile-tags-request
-                              #:list-instance-profile-tags-response
                               #:list-instance-profiles
                               #:list-instance-profiles-for-role
-                              #:list-instance-profiles-for-role-request
-                              #:list-instance-profiles-for-role-response
-                              #:list-instance-profiles-request
-                              #:list-instance-profiles-response
-                              #:list-mfadevice-tags
-                              #:list-mfadevice-tags-request
-                              #:list-mfadevice-tags-response #:list-mfadevices
-                              #:list-mfadevices-request
-                              #:list-mfadevices-response
+                              #:list-mfadevice-tags #:list-mfadevices
                               #:list-open-idconnect-provider-tags
-                              #:list-open-idconnect-provider-tags-request
-                              #:list-open-idconnect-provider-tags-response
                               #:list-open-idconnect-providers
-                              #:list-open-idconnect-providers-request
-                              #:list-open-idconnect-providers-response
-                              #:list-organizations-features
-                              #:list-organizations-features-request
-                              #:list-organizations-features-response
-                              #:list-policies
+                              #:list-organizations-features #:list-policies
                               #:list-policies-granting-service-access
                               #:list-policies-granting-service-access-entry
-                              #:list-policies-granting-service-access-request
-                              #:list-policies-granting-service-access-response
-                              #:list-policies-request #:list-policies-response
-                              #:list-policy-tags #:list-policy-tags-request
-                              #:list-policy-tags-response
-                              #:list-policy-versions
-                              #:list-policy-versions-request
-                              #:list-policy-versions-response
-                              #:list-role-policies #:list-role-policies-request
-                              #:list-role-policies-response #:list-role-tags
-                              #:list-role-tags-request
-                              #:list-role-tags-response #:list-roles
-                              #:list-roles-request #:list-roles-response
-                              #:list-samlprovider-tags
-                              #:list-samlprovider-tags-request
-                              #:list-samlprovider-tags-response
-                              #:list-samlproviders #:list-samlproviders-request
-                              #:list-samlproviders-response
-                              #:list-sshpublic-keys
-                              #:list-sshpublic-keys-request
-                              #:list-sshpublic-keys-response
+                              #:list-policy-tags #:list-policy-versions
+                              #:list-role-policies #:list-role-tags
+                              #:list-roles #:list-samlprovider-tags
+                              #:list-samlproviders #:list-sshpublic-keys
                               #:list-server-certificate-tags
-                              #:list-server-certificate-tags-request
-                              #:list-server-certificate-tags-response
                               #:list-server-certificates
-                              #:list-server-certificates-request
-                              #:list-server-certificates-response
                               #:list-service-specific-credentials
-                              #:list-service-specific-credentials-request
-                              #:list-service-specific-credentials-response
-                              #:list-signing-certificates
-                              #:list-signing-certificates-request
-                              #:list-signing-certificates-response
-                              #:list-user-policies #:list-user-policies-request
-                              #:list-user-policies-response #:list-user-tags
-                              #:list-user-tags-request
-                              #:list-user-tags-response #:list-users
-                              #:list-users-request #:list-users-response
-                              #:list-virtual-mfadevices
-                              #:list-virtual-mfadevices-request
-                              #:list-virtual-mfadevices-response
-                              #:login-profile #:mfadevice
-                              #:malformed-certificate-exception
-                              #:malformed-policy-document-exception
-                              #:managed-policy-detail
+                              #:list-signing-certificates #:list-user-policies
+                              #:list-user-tags #:list-users
+                              #:list-virtual-mfadevices #:login-profile
+                              #:mfadevice #:managed-policy-detail
                               #:managed-policy-detail-list-type
-                              #:no-such-entity-exception
                               #:open-idconnect-provider-list-entry
                               #:open-idconnect-provider-list-type
                               #:open-idconnect-provider-url-type
-                              #:open-id-idp-communication-error-exception
                               #:organization-id-type
-                              #:organization-not-found-exception
-                              #:organization-not-in-all-features-mode-exception
                               #:organizations-decision-detail #:password-policy
-                              #:password-policy-violation-exception
                               #:permissions-boundary-attachment-type
                               #:permissions-boundary-decision-detail #:policy
                               #:policy-detail #:policy-evaluation-decision-type
-                              #:policy-evaluation-exception
                               #:policy-granting-service-access #:policy-group
                               #:policy-group-list-type #:policy-identifier-type
-                              #:policy-not-attachable-exception #:policy-role
-                              #:policy-role-list-type #:policy-source-type
-                              #:policy-usage-type #:policy-user
-                              #:policy-user-list-type #:policy-version
-                              #:position #:put-group-policy
-                              #:put-group-policy-request
-                              #:put-role-permissions-boundary
-                              #:put-role-permissions-boundary-request
-                              #:put-role-policy #:put-role-policy-request
-                              #:put-user-permissions-boundary
-                              #:put-user-permissions-boundary-request
-                              #:put-user-policy #:put-user-policy-request
+                              #:policy-role #:policy-role-list-type
+                              #:policy-source-type #:policy-usage-type
+                              #:policy-user #:policy-user-list-type
+                              #:policy-version #:position #:put-group-policy
+                              #:put-role-permissions-boundary #:put-role-policy
+                              #:put-user-permissions-boundary #:put-user-policy
                               #:reason-type #:region-name-type
                               #:remove-client-idfrom-open-idconnect-provider
-                              #:remove-client-idfrom-open-idconnect-provider-request
                               #:remove-role-from-instance-profile
-                              #:remove-role-from-instance-profile-request
-                              #:remove-user-from-group
-                              #:remove-user-from-group-request
-                              #:report-content-type #:report-format-type
-                              #:report-generation-limit-exceeded-exception
+                              #:remove-user-from-group #:report-content-type
+                              #:report-format-type
                               #:report-state-description-type
                               #:report-state-type
                               #:reset-service-specific-credential
-                              #:reset-service-specific-credential-request
-                              #:reset-service-specific-credential-response
                               #:resource-handling-option-type
                               #:resource-name-list-type #:resource-name-type
                               #:resource-specific-result
                               #:resource-specific-result-list-type
-                              #:resync-mfadevice #:resync-mfadevice-request
-                              #:role #:role-detail #:role-last-used
-                              #:role-usage-list-type #:role-usage-type
-                              #:samlmetadata-document-type #:samlprivate-key
-                              #:samlprovider-list-entry
+                              #:resync-mfadevice #:role #:role-detail
+                              #:role-last-used #:role-usage-list-type
+                              #:role-usage-type #:samlmetadata-document-type
+                              #:samlprivate-key #:samlprovider-list-entry
                               #:samlprovider-list-type #:samlprovider-name-type
                               #:sshpublic-key #:sshpublic-key-list-type
                               #:sshpublic-key-metadata #:server-certificate
                               #:server-certificate-metadata
-                              #:service-access-not-enabled-exception
-                              #:service-failure-exception
                               #:service-last-accessed
-                              #:service-not-supported-exception
                               #:service-specific-credential
                               #:service-specific-credential-metadata
                               #:service-specific-credentials-list-type
                               #:services-last-accessed
                               #:set-default-policy-version
-                              #:set-default-policy-version-request
                               #:set-security-token-service-preferences
-                              #:set-security-token-service-preferences-request
                               #:signing-certificate #:simulate-custom-policy
-                              #:simulate-custom-policy-request
                               #:simulate-policy-response
                               #:simulate-principal-policy
-                              #:simulate-principal-policy-request
                               #:simulation-policy-list-type #:statement
                               #:statement-list-type #:tag
-                              #:tag-instance-profile
-                              #:tag-instance-profile-request #:tag-mfadevice
-                              #:tag-mfadevice-request
-                              #:tag-open-idconnect-provider
-                              #:tag-open-idconnect-provider-request
-                              #:tag-policy #:tag-policy-request #:tag-role
-                              #:tag-role-request #:tag-samlprovider
-                              #:tag-samlprovider-request
-                              #:tag-server-certificate
-                              #:tag-server-certificate-request #:tag-user
-                              #:tag-user-request #:tracked-action-last-accessed
+                              #:tag-instance-profile #:tag-mfadevice
+                              #:tag-open-idconnect-provider #:tag-policy
+                              #:tag-role #:tag-samlprovider
+                              #:tag-server-certificate #:tag-user
+                              #:tracked-action-last-accessed
                               #:tracked-actions-last-accessed
-                              #:unmodifiable-entity-exception
-                              #:unrecognized-public-key-encoding-exception
-                              #:untag-instance-profile
-                              #:untag-instance-profile-request
-                              #:untag-mfadevice #:untag-mfadevice-request
-                              #:untag-open-idconnect-provider
-                              #:untag-open-idconnect-provider-request
-                              #:untag-policy #:untag-policy-request
-                              #:untag-role #:untag-role-request
-                              #:untag-samlprovider #:untag-samlprovider-request
-                              #:untag-server-certificate
-                              #:untag-server-certificate-request #:untag-user
-                              #:untag-user-request #:update-access-key
-                              #:update-access-key-request
+                              #:untag-instance-profile #:untag-mfadevice
+                              #:untag-open-idconnect-provider #:untag-policy
+                              #:untag-role #:untag-samlprovider
+                              #:untag-server-certificate #:untag-user
+                              #:update-access-key
                               #:update-account-password-policy
-                              #:update-account-password-policy-request
-                              #:update-assume-role-policy
-                              #:update-assume-role-policy-request
-                              #:update-group #:update-group-request
+                              #:update-assume-role-policy #:update-group
                               #:update-login-profile
-                              #:update-login-profile-request
                               #:update-open-idconnect-provider-thumbprint
-                              #:update-open-idconnect-provider-thumbprint-request
                               #:update-role #:update-role-description
-                              #:update-role-description-request
-                              #:update-role-description-response
-                              #:update-role-request #:update-role-response
-                              #:update-samlprovider
-                              #:update-samlprovider-request
-                              #:update-samlprovider-response
-                              #:update-sshpublic-key
-                              #:update-sshpublic-key-request
+                              #:update-samlprovider #:update-sshpublic-key
                               #:update-server-certificate
-                              #:update-server-certificate-request
                               #:update-service-specific-credential
-                              #:update-service-specific-credential-request
-                              #:update-signing-certificate
-                              #:update-signing-certificate-request
-                              #:update-user #:update-user-request
+                              #:update-signing-certificate #:update-user
                               #:upload-sshpublic-key
-                              #:upload-sshpublic-key-request
-                              #:upload-sshpublic-key-response
                               #:upload-server-certificate
-                              #:upload-server-certificate-request
-                              #:upload-server-certificate-response
-                              #:upload-signing-certificate
-                              #:upload-signing-certificate-request
-                              #:upload-signing-certificate-response #:user
-                              #:user-detail #:virtual-mfadevice
-                              #:access-key-id-type
+                              #:upload-signing-certificate #:user #:user-detail
+                              #:virtual-mfadevice #:access-key-id-type
                               #:access-key-metadata-list-type
                               #:access-key-secret-type
                               #:account-alias-list-type #:account-alias-type

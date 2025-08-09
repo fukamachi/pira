@@ -4,13 +4,11 @@
                               #:agapreferred-protocol-for-directory
                               #:agapreferred-protocol-for-work-space #:arn
                               #:accept-account-link-invitation
-                              #:accept-account-link-invitation-request
-                              #:accept-account-link-invitation-result
-                              #:access-denied-exception #:access-endpoint
-                              #:access-endpoint-config #:access-endpoint-list
-                              #:access-endpoint-type #:access-property-value
-                              #:account-link #:account-link-list
-                              #:account-link-status-enum #:account-modification
+                              #:access-endpoint #:access-endpoint-config
+                              #:access-endpoint-list #:access-endpoint-type
+                              #:access-property-value #:account-link
+                              #:account-link-list #:account-link-status-enum
+                              #:account-modification
                               #:account-modification-list
                               #:active-directory-config #:active-user-sessions
                               #:actual-user-sessions #:add-in-name #:add-in-url
@@ -20,26 +18,17 @@
                               #:application-associated-resource-type
                               #:application-associated-resource-type-list
                               #:application-list
-                              #:application-not-supported-exception
                               #:application-resource-association
                               #:application-resource-association-list
                               #:application-settings-request
                               #:application-settings-response
                               #:application-settings-status-enum
                               #:associate-connection-alias
-                              #:associate-connection-alias-request
-                              #:associate-connection-alias-result
                               #:associate-ip-groups
-                              #:associate-ip-groups-request
-                              #:associate-ip-groups-result
                               #:associate-workspace-application
-                              #:associate-workspace-application-request
-                              #:associate-workspace-application-result
                               #:association-error-code #:association-state
                               #:association-state-reason #:association-status
                               #:authentication-type #:authorize-ip-rules
-                              #:authorize-ip-rules-request
-                              #:authorize-ip-rules-result
                               #:available-user-sessions #:aws-account
                               #:boolean-object
                               #:bundle-associated-resource-type
@@ -57,8 +46,7 @@
                               #:client-properties-list
                               #:client-properties-result #:client-token
                               #:client-url #:compute #:compute-list
-                              #:compute-not-compatible-exception #:compute-type
-                              #:computer-name #:conflict-exception
+                              #:compute-type #:computer-name
                               #:connect-client-add-in
                               #:connect-client-add-in-list #:connection-alias
                               #:connection-alias-association
@@ -70,37 +58,14 @@
                               #:connection-alias-state #:connection-identifier
                               #:connection-state #:connection-string
                               #:copy-workspace-image
-                              #:copy-workspace-image-request
-                              #:copy-workspace-image-result
                               #:create-account-link-invitation
-                              #:create-account-link-invitation-request
-                              #:create-account-link-invitation-result
                               #:create-connect-client-add-in
-                              #:create-connect-client-add-in-request
-                              #:create-connect-client-add-in-result
-                              #:create-connection-alias
-                              #:create-connection-alias-request
-                              #:create-connection-alias-result
-                              #:create-ip-group #:create-ip-group-request
-                              #:create-ip-group-result
-                              #:create-standby-workspaces
-                              #:create-standby-workspaces-request
-                              #:create-standby-workspaces-result #:create-tags
-                              #:create-tags-request #:create-tags-result
+                              #:create-connection-alias #:create-ip-group
+                              #:create-standby-workspaces #:create-tags
                               #:create-updated-workspace-image
-                              #:create-updated-workspace-image-request
-                              #:create-updated-workspace-image-result
                               #:create-workspace-bundle
-                              #:create-workspace-bundle-request
-                              #:create-workspace-bundle-result
-                              #:create-workspace-image
-                              #:create-workspace-image-request
-                              #:create-workspace-image-result
-                              #:create-workspaces #:create-workspaces-pool
-                              #:create-workspaces-pool-request
-                              #:create-workspaces-pool-result
-                              #:create-workspaces-request
-                              #:create-workspaces-result #:data-replication
+                              #:create-workspace-image #:create-workspaces
+                              #:create-workspaces-pool #:data-replication
                               #:data-replication-settings
                               #:dedicated-tenancy-account-type
                               #:dedicated-tenancy-cidr-range-list
@@ -117,120 +82,51 @@
                               #:deletable-saml-properties-list
                               #:deletable-saml-property
                               #:delete-account-link-invitation
-                              #:delete-account-link-invitation-request
-                              #:delete-account-link-invitation-result
                               #:delete-client-branding
-                              #:delete-client-branding-request
-                              #:delete-client-branding-result
                               #:delete-connect-client-add-in
-                              #:delete-connect-client-add-in-request
-                              #:delete-connect-client-add-in-result
-                              #:delete-connection-alias
-                              #:delete-connection-alias-request
-                              #:delete-connection-alias-result
-                              #:delete-ip-group #:delete-ip-group-request
-                              #:delete-ip-group-result #:delete-tags
-                              #:delete-tags-request #:delete-tags-result
-                              #:delete-workspace-bundle
-                              #:delete-workspace-bundle-request
-                              #:delete-workspace-bundle-result
+                              #:delete-connection-alias #:delete-ip-group
+                              #:delete-tags #:delete-workspace-bundle
                               #:delete-workspace-image
-                              #:delete-workspace-image-request
-                              #:delete-workspace-image-result
                               #:deploy-workspace-applications
-                              #:deploy-workspace-applications-request
-                              #:deploy-workspace-applications-result
                               #:deregister-workspace-directory
-                              #:deregister-workspace-directory-request
-                              #:deregister-workspace-directory-result
                               #:describe-account
                               #:describe-account-modifications
-                              #:describe-account-modifications-request
-                              #:describe-account-modifications-result
-                              #:describe-account-request
-                              #:describe-account-result
                               #:describe-application-associations
-                              #:describe-application-associations-request
-                              #:describe-application-associations-result
                               #:describe-applications
-                              #:describe-applications-request
-                              #:describe-applications-result
                               #:describe-bundle-associations
-                              #:describe-bundle-associations-request
-                              #:describe-bundle-associations-result
                               #:describe-client-branding
-                              #:describe-client-branding-request
-                              #:describe-client-branding-result
                               #:describe-client-properties
-                              #:describe-client-properties-request
-                              #:describe-client-properties-result
                               #:describe-connect-client-add-ins
-                              #:describe-connect-client-add-ins-request
-                              #:describe-connect-client-add-ins-result
                               #:describe-connection-alias-permissions
-                              #:describe-connection-alias-permissions-request
-                              #:describe-connection-alias-permissions-result
                               #:describe-connection-aliases
-                              #:describe-connection-aliases-request
-                              #:describe-connection-aliases-result
                               #:describe-image-associations
-                              #:describe-image-associations-request
-                              #:describe-image-associations-result
-                              #:describe-ip-groups #:describe-ip-groups-request
-                              #:describe-ip-groups-result #:describe-tags
-                              #:describe-tags-request #:describe-tags-result
+                              #:describe-ip-groups #:describe-tags
                               #:describe-workspace-associations
-                              #:describe-workspace-associations-request
-                              #:describe-workspace-associations-result
                               #:describe-workspace-bundles
-                              #:describe-workspace-bundles-request
-                              #:describe-workspace-bundles-result
                               #:describe-workspace-directories
                               #:describe-workspace-directories-filter
                               #:describe-workspace-directories-filter-list
                               #:describe-workspace-directories-filter-name
                               #:describe-workspace-directories-filter-value
                               #:describe-workspace-directories-filter-values
-                              #:describe-workspace-directories-request
-                              #:describe-workspace-directories-result
                               #:describe-workspace-image-permissions
-                              #:describe-workspace-image-permissions-request
-                              #:describe-workspace-image-permissions-result
                               #:describe-workspace-images
-                              #:describe-workspace-images-request
-                              #:describe-workspace-images-result
                               #:describe-workspace-snapshots
-                              #:describe-workspace-snapshots-request
-                              #:describe-workspace-snapshots-result
                               #:describe-workspaces
                               #:describe-workspaces-connection-status
-                              #:describe-workspaces-connection-status-request
-                              #:describe-workspaces-connection-status-result
                               #:describe-workspaces-pool-sessions
-                              #:describe-workspaces-pool-sessions-request
-                              #:describe-workspaces-pool-sessions-result
                               #:describe-workspaces-pools
                               #:describe-workspaces-pools-filter
                               #:describe-workspaces-pools-filter-name
                               #:describe-workspaces-pools-filter-operator
                               #:describe-workspaces-pools-filter-value
                               #:describe-workspaces-pools-filter-values
-                              #:describe-workspaces-pools-filters
-                              #:describe-workspaces-pools-request
-                              #:describe-workspaces-pools-result
-                              #:describe-workspaces-request
-                              #:describe-workspaces-result #:description
+                              #:describe-workspaces-pools-filters #:description
                               #:desired-user-sessions #:directory-id
                               #:directory-id-list #:directory-list
                               #:directory-name #:disassociate-connection-alias
-                              #:disassociate-connection-alias-request
-                              #:disassociate-connection-alias-result
                               #:disassociate-ip-groups
-                              #:disassociate-ip-groups-request
-                              #:disassociate-ip-groups-result
                               #:disassociate-workspace-application
-                              #:disassociate-workspace-application-request
-                              #:disassociate-workspace-application-result
                               #:disconnect-timeout-in-seconds
                               #:dns-ip-addresses #:domain-name #:ec2image-id
                               #:endpoint-encryption-mode #:error-details
@@ -246,8 +142,7 @@
                               #:failed-stop-workspace-requests
                               #:failed-terminate-workspace-requests
                               #:failed-workspace-change-request
-                              #:get-account-link #:get-account-link-request
-                              #:get-account-link-result
+                              #:get-account-link
                               #:global-accelerator-for-directory
                               #:global-accelerator-for-work-space #:idcconfig
                               #:idle-disconnect-timeout-in-seconds
@@ -256,19 +151,9 @@
                               #:image-permission #:image-permissions
                               #:image-resource-association
                               #:image-resource-association-list #:image-type
-                              #:import-client-branding
-                              #:import-client-branding-request
-                              #:import-client-branding-result
-                              #:import-workspace-image
-                              #:import-workspace-image-request
-                              #:import-workspace-image-result
-                              #:incompatible-applications-exception
-                              #:internal-server-exception
+                              #:import-client-branding #:import-workspace-image
                               #:internet-fallback-protocol
-                              #:internet-fallback-protocol-list
-                              #:invalid-parameter-combination-exception
-                              #:invalid-parameter-values-exception
-                              #:invalid-resource-state-exception #:ios2xlogo
+                              #:internet-fallback-protocol-list #:ios2xlogo
                               #:ios3xlogo #:ios-client-branding-attributes
                               #:ios-import-client-branding-attributes
                               #:ios-logo #:ip-address #:ip-group-desc
@@ -276,91 +161,46 @@
                               #:ip-revoked-rule-list #:ip-rule #:ip-rule-desc
                               #:ip-rule-item #:ip-rule-list #:limit #:limit50
                               #:link-id #:link-status-filter-list
-                              #:list-account-links #:list-account-links-request
-                              #:list-account-links-result
+                              #:list-account-links
                               #:list-available-management-cidr-ranges
-                              #:list-available-management-cidr-ranges-request
-                              #:list-available-management-cidr-ranges-result
                               #:log-upload-enum #:login-message
                               #:management-cidr-range-constraint
                               #:management-cidr-range-max-results
                               #:max-user-duration-in-seconds #:maximum-length
                               #:microsoft-entra-config
                               #:microsoft-entra-config-tenant-id
-                              #:migrate-workspace #:migrate-workspace-request
-                              #:migrate-workspace-result
-                              #:modification-resource-enum #:modification-state
-                              #:modification-state-enum
+                              #:migrate-workspace #:modification-resource-enum
+                              #:modification-state #:modification-state-enum
                               #:modification-state-list #:modify-account
-                              #:modify-account-request #:modify-account-result
                               #:modify-certificate-based-auth-properties
-                              #:modify-certificate-based-auth-properties-request
-                              #:modify-certificate-based-auth-properties-result
                               #:modify-client-properties
-                              #:modify-client-properties-request
-                              #:modify-client-properties-result
                               #:modify-endpoint-encryption-mode
-                              #:modify-endpoint-encryption-mode-request
-                              #:modify-endpoint-encryption-mode-response
                               #:modify-saml-properties
-                              #:modify-saml-properties-request
-                              #:modify-saml-properties-result
                               #:modify-selfservice-permissions
-                              #:modify-selfservice-permissions-request
-                              #:modify-selfservice-permissions-result
                               #:modify-streaming-properties
-                              #:modify-streaming-properties-request
-                              #:modify-streaming-properties-result
                               #:modify-workspace-access-properties
-                              #:modify-workspace-access-properties-request
-                              #:modify-workspace-access-properties-result
                               #:modify-workspace-creation-properties
-                              #:modify-workspace-creation-properties-request
-                              #:modify-workspace-creation-properties-result
                               #:modify-workspace-properties
-                              #:modify-workspace-properties-request
-                              #:modify-workspace-properties-result
                               #:modify-workspace-state
-                              #:modify-workspace-state-request
-                              #:modify-workspace-state-result
                               #:network-access-configuration #:non-empty-string
                               #:operating-system #:operating-system-name
                               #:operating-system-name-list
-                              #:operating-system-not-compatible-exception
-                              #:operating-system-type
-                              #:operation-in-progress-exception
-                              #:operation-not-supported-exception
-                              #:pagination-token
+                              #:operating-system-type #:pagination-token
                               #:pending-create-standby-workspaces-request
                               #:pending-create-standby-workspaces-request-list
                               #:pools-running-mode #:protocol #:protocol-list
                               #:reboot-request #:reboot-workspace-requests
-                              #:reboot-workspaces #:reboot-workspaces-request
-                              #:reboot-workspaces-result #:rebuild-request
+                              #:reboot-workspaces #:rebuild-request
                               #:rebuild-workspace-requests #:rebuild-workspaces
-                              #:rebuild-workspaces-request
-                              #:rebuild-workspaces-result #:reconnect-enum
-                              #:region #:register-workspace-directory
-                              #:register-workspace-directory-request
-                              #:register-workspace-directory-result
+                              #:reconnect-enum #:region
+                              #:register-workspace-directory
                               #:registration-code
                               #:reject-account-link-invitation
-                              #:reject-account-link-invitation-request
-                              #:reject-account-link-invitation-result
                               #:related-workspace-properties
-                              #:related-workspaces
-                              #:resource-already-exists-exception
-                              #:resource-associated-exception
-                              #:resource-creation-failed-exception
-                              #:resource-id-list #:resource-in-use-exception
-                              #:resource-limit-exceeded-exception
-                              #:resource-not-found-exception
-                              #:resource-unavailable-exception
-                              #:restore-workspace #:restore-workspace-request
-                              #:restore-workspace-result #:revoke-ip-rules
-                              #:revoke-ip-rules-request
-                              #:revoke-ip-rules-result #:root-storage
-                              #:root-volume-size-gib #:running-mode
+                              #:related-workspaces #:resource-id-list
+                              #:restore-workspace #:revoke-ip-rules
+                              #:root-storage #:root-volume-size-gib
+                              #:running-mode
                               #:running-mode-auto-stop-timeout-in-minutes
                               #:s3bucket-name #:saml-properties
                               #:saml-status-enum #:saml-user-access-url
@@ -375,16 +215,9 @@
                               #:standby-workspaces-properties-list
                               #:start-request #:start-workspace-requests
                               #:start-workspaces #:start-workspaces-pool
-                              #:start-workspaces-pool-request
-                              #:start-workspaces-pool-result
-                              #:start-workspaces-request
-                              #:start-workspaces-result #:stop-request
-                              #:stop-workspace-requests #:stop-workspaces
-                              #:stop-workspaces-pool
-                              #:stop-workspaces-pool-request
-                              #:stop-workspaces-pool-result
-                              #:stop-workspaces-request
-                              #:stop-workspaces-result #:storage-connector
+                              #:stop-request #:stop-workspace-requests
+                              #:stop-workspaces #:stop-workspaces-pool
+                              #:storage-connector
                               #:storage-connector-status-enum
                               #:storage-connector-type-enum
                               #:storage-connectors
@@ -396,41 +229,20 @@
                               #:terminate-workspace-requests
                               #:terminate-workspaces
                               #:terminate-workspaces-pool
-                              #:terminate-workspaces-pool-request
-                              #:terminate-workspaces-pool-result
                               #:terminate-workspaces-pool-session
-                              #:terminate-workspaces-pool-session-request
-                              #:terminate-workspaces-pool-session-result
-                              #:terminate-workspaces-request
-                              #:terminate-workspaces-result #:timeout-settings
-                              #:timestamp
-                              #:unsupported-network-configuration-exception
-                              #:unsupported-workspace-configuration-exception
+                              #:timeout-settings #:timestamp
                               #:update-connect-client-add-in
-                              #:update-connect-client-add-in-request
-                              #:update-connect-client-add-in-result
                               #:update-connection-alias-permission
-                              #:update-connection-alias-permission-request
-                              #:update-connection-alias-permission-result
                               #:update-description #:update-result
                               #:update-rules-of-ip-group
-                              #:update-rules-of-ip-group-request
-                              #:update-rules-of-ip-group-result
                               #:update-workspace-bundle
-                              #:update-workspace-bundle-request
-                              #:update-workspace-bundle-result
                               #:update-workspace-image-permission
-                              #:update-workspace-image-permission-request
-                              #:update-workspace-image-permission-result
-                              #:update-workspaces-pool
-                              #:update-workspaces-pool-request
-                              #:update-workspaces-pool-result
-                              #:user-identity-type #:user-name #:user-setting
+                              #:update-workspaces-pool #:user-identity-type
+                              #:user-name #:user-setting
                               #:user-setting-action-enum
                               #:user-setting-permission-enum #:user-settings
                               #:user-storage #:user-volume-size-gib
-                              #:validation-exception #:volume-encryption-key
-                              #:work-space-application
+                              #:volume-encryption-key #:work-space-application
                               #:work-space-application-deployment
                               #:work-space-application-id
                               #:work-space-application-id-list
@@ -466,7 +278,6 @@
                               #:workspace-resource-association
                               #:workspace-resource-association-list
                               #:workspace-state #:workspace-type
-                              #:workspaces-default-role-not-found-exception
                               #:workspaces-ip-group #:workspaces-ip-groups-list
                               #:workspaces-pool #:workspaces-pool-error
                               #:workspaces-pool-error-code

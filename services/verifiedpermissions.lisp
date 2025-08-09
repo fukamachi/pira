@@ -1,28 +1,23 @@
 (uiop/package:define-package #:pira/verifiedpermissions (:use)
-                             (:export #:access-denied-exception #:action-id
-                              #:action-identifier #:action-identifier-list
-                              #:action-type #:amazon-resource-name
-                              #:attribute-value #:audience #:audiences
-                              #:batch-get-policy #:batch-get-policy-error-code
+                             (:export #:action-id #:action-identifier
+                              #:action-identifier-list #:action-type
+                              #:amazon-resource-name #:attribute-value
+                              #:audience #:audiences #:batch-get-policy
+                              #:batch-get-policy-error-code
                               #:batch-get-policy-error-item
                               #:batch-get-policy-error-list
-                              #:batch-get-policy-input
                               #:batch-get-policy-input-item
                               #:batch-get-policy-input-list
-                              #:batch-get-policy-output
                               #:batch-get-policy-output-item
                               #:batch-get-policy-output-list
-                              #:batch-is-authorized #:batch-is-authorized-input
+                              #:batch-is-authorized
                               #:batch-is-authorized-input-item
                               #:batch-is-authorized-input-list
-                              #:batch-is-authorized-output
                               #:batch-is-authorized-output-item
                               #:batch-is-authorized-output-list
                               #:batch-is-authorized-with-token
-                              #:batch-is-authorized-with-token-input
                               #:batch-is-authorized-with-token-input-item
                               #:batch-is-authorized-with-token-input-list
-                              #:batch-is-authorized-with-token-output
                               #:batch-is-authorized-with-token-output-item
                               #:batch-is-authorized-with-token-output-list
                               #:boolean-attribute #:cedar-json #:cedar-version
@@ -34,26 +29,12 @@
                               #:cognito-user-pool-configuration-detail
                               #:cognito-user-pool-configuration-item
                               #:configuration #:configuration-detail
-                              #:configuration-item #:conflict-exception
-                              #:context-definition #:context-map
-                              #:create-identity-source
-                              #:create-identity-source-input
-                              #:create-identity-source-output #:create-policy
-                              #:create-policy-input #:create-policy-output
-                              #:create-policy-store #:create-policy-store-input
-                              #:create-policy-store-output
-                              #:create-policy-template
-                              #:create-policy-template-input
-                              #:create-policy-template-output #:decimal
-                              #:decision #:delete-identity-source
-                              #:delete-identity-source-input
-                              #:delete-identity-source-output #:delete-policy
-                              #:delete-policy-input #:delete-policy-output
-                              #:delete-policy-store #:delete-policy-store-input
-                              #:delete-policy-store-output
-                              #:delete-policy-template
-                              #:delete-policy-template-input
-                              #:delete-policy-template-output
+                              #:configuration-item #:context-definition
+                              #:context-map #:create-identity-source
+                              #:create-policy #:create-policy-store
+                              #:create-policy-template #:decimal #:decision
+                              #:delete-identity-source #:delete-policy
+                              #:delete-policy-store #:delete-policy-template
                               #:deletion-protection #:determining-policy-item
                               #:determining-policy-list #:discovery-url
                               #:entities-definition #:entity-attributes
@@ -61,41 +42,23 @@
                               #:entity-identifier #:entity-item #:entity-list
                               #:entity-reference #:entity-type
                               #:evaluation-error-item #:evaluation-error-list
-                              #:get-identity-source #:get-identity-source-input
-                              #:get-identity-source-output #:get-policy
-                              #:get-policy-input #:get-policy-output
-                              #:get-policy-store #:get-policy-store-input
-                              #:get-policy-store-output #:get-policy-template
-                              #:get-policy-template-input
-                              #:get-policy-template-output #:get-schema
-                              #:get-schema-input #:get-schema-output
-                              #:group-entity-type #:idempotency-token
-                              #:identity-source #:identity-source-details
+                              #:get-identity-source #:get-policy
+                              #:get-policy-store #:get-policy-template
+                              #:get-schema #:group-entity-type
+                              #:idempotency-token #:identity-source
+                              #:identity-source-details
                               #:identity-source-filter
                               #:identity-source-filters #:identity-source-id
                               #:identity-source-item
                               #:identity-source-item-details #:identity-sources
-                              #:internal-server-exception
-                              #:invalid-state-exception #:ip-addr
-                              #:is-authorized #:is-authorized-input
-                              #:is-authorized-output #:is-authorized-with-token
-                              #:is-authorized-with-token-input
-                              #:is-authorized-with-token-output #:issuer
+                              #:ip-addr #:is-authorized
+                              #:is-authorized-with-token #:issuer
                               #:list-identity-sources
-                              #:list-identity-sources-input
                               #:list-identity-sources-max-results
-                              #:list-identity-sources-output #:list-policies
-                              #:list-policies-input #:list-policies-output
-                              #:list-policy-stores #:list-policy-stores-input
-                              #:list-policy-stores-output
-                              #:list-policy-templates
-                              #:list-policy-templates-input
-                              #:list-policy-templates-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:long-attribute
-                              #:max-results #:namespace #:namespace-list
-                              #:next-token
+                              #:list-policies #:list-policy-stores
+                              #:list-policy-templates #:list-tags-for-resource
+                              #:long-attribute #:max-results #:namespace
+                              #:namespace-list #:next-token
                               #:open-id-connect-access-token-configuration
                               #:open-id-connect-access-token-configuration-detail
                               #:open-id-connect-access-token-configuration-item
@@ -122,43 +85,29 @@
                               #:policy-template-id #:policy-template-item
                               #:policy-templates-list #:policy-type
                               #:principal-entity-type #:put-schema
-                              #:put-schema-input #:put-schema-output
                               #:record-attribute #:resource-arn
                               #:resource-conflict #:resource-conflict-list
-                              #:resource-not-found-exception #:resource-type
-                              #:schema-definition #:schema-json
-                              #:service-quota-exceeded-exception
+                              #:resource-type #:schema-definition #:schema-json
                               #:set-attribute #:static-policy-definition
                               #:static-policy-definition-detail
                               #:static-policy-definition-item
                               #:static-policy-description #:string-attribute
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
                               #:tag-value #:template-linked-policy-definition
                               #:template-linked-policy-definition-detail
                               #:template-linked-policy-definition-item
-                              #:throttling-exception #:timestamp-format #:token
-                              #:too-many-tags-exception #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
+                              #:timestamp-format #:token #:untag-resource
                               #:update-cognito-group-configuration
                               #:update-cognito-user-pool-configuration
                               #:update-configuration #:update-identity-source
-                              #:update-identity-source-input
-                              #:update-identity-source-output
                               #:update-open-id-connect-access-token-configuration
                               #:update-open-id-connect-configuration
                               #:update-open-id-connect-group-configuration
                               #:update-open-id-connect-identity-token-configuration
                               #:update-open-id-connect-token-selection
                               #:update-policy #:update-policy-definition
-                              #:update-policy-input #:update-policy-output
-                              #:update-policy-store #:update-policy-store-input
-                              #:update-policy-store-output
-                              #:update-policy-template
-                              #:update-policy-template-input
-                              #:update-policy-template-output
+                              #:update-policy-store #:update-policy-template
                               #:update-static-policy-definition #:user-pool-arn
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-mode #:validation-settings

@@ -1,26 +1,14 @@
 (uiop/package:define-package #:pira/marketplace-deployment (:use)
                              (:export #:awsmpdeployment-parameters-service
-                              #:access-denied-exception #:catalog
-                              #:client-token #:conflict-exception
-                              #:deployment-parameter
+                              #:catalog #:client-token #:deployment-parameter
                               #:deployment-parameter-input
                               #:deployment-parameter-name
                               #:deployment-parameter-resource-identifier
-                              #:internal-server-exception
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:put-deployment-parameter
-                              #:put-deployment-parameter-request
-                              #:put-deployment-parameter-response
-                              #:resource-arn #:resource-id
-                              #:resource-not-found-exception #:secret-string
-                              #:service-quota-exceeded-exception #:string-list
-                              #:tag-key #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
-                              #:tags-map #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:validation-exception))
+                              #:put-deployment-parameter #:resource-arn
+                              #:resource-id #:secret-string #:string-list
+                              #:tag-key #:tag-resource #:tag-value #:tags
+                              #:tags-map #:untag-resource))
 (common-lisp:in-package #:pira/marketplace-deployment)
 
 (smithy/sdk/service:define-service awsmpdeployment-parameters-service

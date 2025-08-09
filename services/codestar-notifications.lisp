@@ -1,67 +1,39 @@
 (uiop/package:define-package #:pira/codestar-notifications (:use)
-                             (:export #:access-denied-exception
-                              #:client-request-token
+                             (:export #:client-request-token
                               #:code-star-notifications-20191015
-                              #:concurrent-modification-exception
-                              #:configuration-exception
-                              #:create-notification-rule
-                              #:create-notification-rule-request
-                              #:create-notification-rule-result
-                              #:created-timestamp #:delete-notification-rule
-                              #:delete-notification-rule-request
-                              #:delete-notification-rule-result #:delete-target
-                              #:delete-target-request #:delete-target-result
-                              #:describe-notification-rule
-                              #:describe-notification-rule-request
-                              #:describe-notification-rule-result #:detail-type
+                              #:create-notification-rule #:created-timestamp
+                              #:delete-notification-rule #:delete-target
+                              #:describe-notification-rule #:detail-type
                               #:event-type-batch #:event-type-id
                               #:event-type-ids #:event-type-name
                               #:event-type-summary #:force-unsubscribe-all
-                              #:invalid-next-token-exception
-                              #:last-modified-timestamp
-                              #:limit-exceeded-exception #:list-event-types
+                              #:last-modified-timestamp #:list-event-types
                               #:list-event-types-filter
                               #:list-event-types-filter-name
                               #:list-event-types-filter-value
                               #:list-event-types-filters
-                              #:list-event-types-request
-                              #:list-event-types-result
                               #:list-notification-rules
                               #:list-notification-rules-filter
                               #:list-notification-rules-filter-name
                               #:list-notification-rules-filter-value
                               #:list-notification-rules-filters
-                              #:list-notification-rules-request
-                              #:list-notification-rules-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-result #:list-targets
+                              #:list-tags-for-resource #:list-targets
                               #:list-targets-filter #:list-targets-filter-name
                               #:list-targets-filter-value
-                              #:list-targets-filters #:list-targets-request
-                              #:list-targets-result #:max-results #:message
+                              #:list-targets-filters #:max-results #:message
                               #:next-token #:notification-rule-arn
                               #:notification-rule-batch
                               #:notification-rule-created-by
                               #:notification-rule-id #:notification-rule-name
                               #:notification-rule-resource
                               #:notification-rule-status
-                              #:notification-rule-summary
-                              #:resource-already-exists-exception
-                              #:resource-not-found-exception #:resource-type
-                              #:service-name #:subscribe #:subscribe-request
-                              #:subscribe-result #:tag-key #:tag-keys
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-result #:tag-value #:tags #:target
+                              #:notification-rule-summary #:resource-type
+                              #:service-name #:subscribe #:tag-key #:tag-keys
+                              #:tag-resource #:tag-value #:tags #:target
                               #:target-address #:target-status #:target-summary
                               #:target-type #:targets #:targets-batch
-                              #:unsubscribe #:unsubscribe-request
-                              #:unsubscribe-result #:untag-resource
-                              #:untag-resource-request #:untag-resource-result
-                              #:update-notification-rule
-                              #:update-notification-rule-request
-                              #:update-notification-rule-result
-                              #:validation-exception))
+                              #:unsubscribe #:untag-resource
+                              #:update-notification-rule))
 (common-lisp:in-package #:pira/codestar-notifications)
 
 (smithy/sdk/service:define-service code-star-notifications-20191015 :shape-name

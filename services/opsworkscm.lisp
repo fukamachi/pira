@@ -1,68 +1,34 @@
 (uiop/package:define-package #:pira/opsworkscm (:use)
                              (:export #:awsops-works-cmresource-arn
                               #:account-attribute #:account-attributes
-                              #:associate-node #:associate-node-request
-                              #:associate-node-response #:attribute-name
+                              #:associate-node #:attribute-name
                               #:attribute-value #:backup #:backup-id
                               #:backup-retention-count-definition
                               #:backup-status #:backup-type #:backups #:boolean
-                              #:create-backup #:create-backup-request
-                              #:create-backup-response #:create-server
-                              #:create-server-request #:create-server-response
+                              #:create-backup #:create-server
                               #:custom-certificate #:custom-domain
                               #:custom-private-key #:delete-backup
-                              #:delete-backup-request #:delete-backup-response
-                              #:delete-server #:delete-server-request
-                              #:delete-server-response
-                              #:describe-account-attributes
-                              #:describe-account-attributes-request
-                              #:describe-account-attributes-response
-                              #:describe-backups #:describe-backups-request
-                              #:describe-backups-response #:describe-events
-                              #:describe-events-request
-                              #:describe-events-response
+                              #:delete-server #:describe-account-attributes
+                              #:describe-backups #:describe-events
                               #:describe-node-association-status
-                              #:describe-node-association-status-request
-                              #:describe-node-association-status-response
-                              #:describe-servers #:describe-servers-request
-                              #:describe-servers-response #:disassociate-node
-                              #:disassociate-node-request
-                              #:disassociate-node-response #:engine-attribute
-                              #:engine-attribute-name #:engine-attribute-value
-                              #:engine-attributes
+                              #:describe-servers #:disassociate-node
+                              #:engine-attribute #:engine-attribute-name
+                              #:engine-attribute-value #:engine-attributes
                               #:export-server-engine-attribute
-                              #:export-server-engine-attribute-request
-                              #:export-server-engine-attribute-response
-                              #:instance-profile-arn #:integer
-                              #:invalid-next-token-exception
-                              #:invalid-state-exception #:key-pair
-                              #:limit-exceeded-exception
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:maintenance-status #:max-results #:next-token
+                              #:instance-profile-arn #:integer #:key-pair
+                              #:list-tags-for-resource #:maintenance-status
+                              #:max-results #:next-token
                               #:node-association-status
                               #:node-association-status-token #:node-name
-                              #:ops-works-cm-v2016-11-01
-                              #:resource-already-exists-exception
-                              #:resource-not-found-exception #:restore-server
-                              #:restore-server-request
-                              #:restore-server-response #:server #:server-event
-                              #:server-events #:server-name #:server-status
-                              #:servers #:service-role-arn #:start-maintenance
-                              #:start-maintenance-request
-                              #:start-maintenance-response #:string #:strings
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:ops-works-cm-v2016-11-01 #:restore-server
+                              #:server #:server-event #:server-events
+                              #:server-name #:server-status #:servers
+                              #:service-role-arn #:start-maintenance #:string
+                              #:strings #:tag #:tag-key #:tag-key-list
+                              #:tag-list #:tag-resource #:tag-value
                               #:time-window-definition #:timestamp
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-server
-                              #:update-server-engine-attributes
-                              #:update-server-engine-attributes-request
-                              #:update-server-engine-attributes-response
-                              #:update-server-request #:update-server-response
-                              #:validation-exception))
+                              #:untag-resource #:update-server
+                              #:update-server-engine-attributes))
 (common-lisp:in-package #:pira/opsworkscm)
 
 (smithy/sdk/service:define-service ops-works-cm-v2016-11-01 :shape-name

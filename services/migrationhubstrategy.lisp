@@ -1,8 +1,8 @@
 (uiop/package:define-package #:pira/migrationhubstrategy (:use)
                              (:export
                               #:awsmigration-hub-strategy-recommendation
-                              #:access-denied-exception #:analysis-status-union
-                              #:analysis-type #:analyzable-server-summary
+                              #:analysis-status-union #:analysis-type
+                              #:analyzable-server-summary
                               #:analyzable-server-summary-list
                               #:analyzer-name-union #:antipattern-report-result
                               #:antipattern-report-result-list
@@ -30,12 +30,11 @@
                               #:binary-analyzer-name #:boolean #:business-goals
                               #:business-goals-integer #:collector
                               #:collector-health #:collectors #:condition
-                              #:configuration-summary #:conflict-exception
-                              #:data-collection-details #:data-source-type
-                              #:database-config-detail
+                              #:configuration-summary #:data-collection-details
+                              #:data-source-type #:database-config-detail
                               #:database-management-preference
                               #:database-migration-preference
-                              #:database-preferences #:dependency-exception
+                              #:database-preferences
                               #:get-application-component-details
                               #:get-application-component-details-request
                               #:get-application-component-details-response
@@ -74,10 +73,7 @@
                               #:import-file-task-information
                               #:import-file-task-status #:inclusion-status
                               #:integer #:interface-name
-                              #:internal-server-exception
                               #:list-analyzable-servers
-                              #:list-analyzable-servers-request
-                              #:list-analyzable-servers-response
                               #:list-antipattern-severity-summary
                               #:list-application-component-status-summary
                               #:list-application-component-summary
@@ -112,10 +108,8 @@
                               #:recommendation-report-time-stamp
                               #:recommendation-set #:recommendation-task-id
                               #:remote-source-code-analysis-server-info
-                              #:resource-id #:resource-name
-                              #:resource-not-found-exception
-                              #:resource-sub-type #:result #:result-list
-                              #:run-time-analyzer-name
+                              #:resource-id #:resource-name #:resource-sub-type
+                              #:result #:result-list #:run-time-analyzer-name
                               #:run-time-assessment-status
                               #:runtime-analysis-status #:s3bucket #:s3key
                               #:s3keys #:s3object #:secrets-manager-key
@@ -127,12 +121,9 @@
                               #:server-error-category #:server-id
                               #:server-os-type #:server-status-summary
                               #:server-strategies #:server-strategy
-                              #:server-summary
-                              #:service-linked-role-lock-client-exception
-                              #:service-quota-exceeded-exception #:severity
-                              #:sort-order #:source-code
-                              #:source-code-analyzer-name #:source-code-list
-                              #:source-code-repositories
+                              #:server-summary #:severity #:sort-order
+                              #:source-code #:source-code-analyzer-name
+                              #:source-code-list #:source-code-repositories
                               #:source-code-repository #:source-version
                               #:src-code-or-db-analysis-status
                               #:start-assessment #:start-assessment-request
@@ -150,8 +141,7 @@
                               #:strategy-summary #:string #:system-info
                               #:target-database-engine
                               #:target-database-engines #:target-destination
-                              #:throttling-exception #:time-stamp
-                              #:tranformation-tool-description
+                              #:time-stamp #:tranformation-tool-description
                               #:tranformation-tool-installation-link
                               #:transformation-tool #:transformation-tool-name
                               #:update-application-component-config
@@ -160,7 +150,6 @@
                               #:update-server-config
                               #:update-server-config-request
                               #:update-server-config-response
-                              #:validation-exception
                               #:vcenter-based-remote-info
                               #:vcenter-based-remote-info-list
                               #:version-control #:version-control-info

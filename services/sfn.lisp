@@ -1,79 +1,44 @@
 (uiop/package:define-package #:pira/sfn (:use)
                              (:export #:awsstep-functions
-                              #:activity-already-exists
-                              #:activity-does-not-exist
-                              #:activity-failed-event-details
-                              #:activity-limit-exceeded #:activity-list
+                              #:activity-failed-event-details #:activity-list
                               #:activity-list-item
                               #:activity-schedule-failed-event-details
                               #:activity-scheduled-event-details
                               #:activity-started-event-details
                               #:activity-succeeded-event-details
                               #:activity-timed-out-event-details
-                              #:activity-worker-limit-exceeded
                               #:alias-description #:arn #:assigned-variables
                               #:assigned-variables-details #:billed-duration
                               #:billed-memory-used #:billing-details
                               #:character-restricted-name #:client-token
                               #:cloud-watch-events-execution-data-details
-                              #:cloud-watch-logs-log-group #:conflict-exception
+                              #:cloud-watch-logs-log-group
                               #:connector-parameters #:create-activity
-                              #:create-activity-input #:create-activity-output
                               #:create-state-machine
-                              #:create-state-machine-alias
-                              #:create-state-machine-alias-input
-                              #:create-state-machine-alias-output
-                              #:create-state-machine-input
-                              #:create-state-machine-output #:definition
-                              #:delete-activity #:delete-activity-input
-                              #:delete-activity-output #:delete-state-machine
+                              #:create-state-machine-alias #:definition
+                              #:delete-activity #:delete-state-machine
                               #:delete-state-machine-alias
-                              #:delete-state-machine-alias-input
-                              #:delete-state-machine-alias-output
-                              #:delete-state-machine-input
-                              #:delete-state-machine-output
                               #:delete-state-machine-version
-                              #:delete-state-machine-version-input
-                              #:delete-state-machine-version-output
-                              #:describe-activity #:describe-activity-input
-                              #:describe-activity-output #:describe-execution
-                              #:describe-execution-input
-                              #:describe-execution-output #:describe-map-run
-                              #:describe-map-run-input
-                              #:describe-map-run-output
-                              #:describe-state-machine
+                              #:describe-activity #:describe-execution
+                              #:describe-map-run #:describe-state-machine
                               #:describe-state-machine-alias
-                              #:describe-state-machine-alias-input
-                              #:describe-state-machine-alias-output
-                              #:describe-state-machine-for-execution
-                              #:describe-state-machine-for-execution-input
-                              #:describe-state-machine-for-execution-output
-                              #:describe-state-machine-input
-                              #:describe-state-machine-output #:enabled
+                              #:describe-state-machine-for-execution #:enabled
                               #:encryption-configuration #:encryption-type
                               #:error-message #:evaluation-failed-event-details
                               #:evaluation-failure-location #:event-id
                               #:execution-aborted-event-details
-                              #:execution-already-exists
-                              #:execution-does-not-exist
-                              #:execution-failed-event-details
-                              #:execution-limit-exceeded #:execution-list
-                              #:execution-list-item #:execution-not-redrivable
-                              #:execution-redrive-filter
+                              #:execution-failed-event-details #:execution-list
+                              #:execution-list-item #:execution-redrive-filter
                               #:execution-redrive-status
                               #:execution-redriven-event-details
                               #:execution-started-event-details
                               #:execution-status
                               #:execution-succeeded-event-details
                               #:execution-timed-out-event-details
-                              #:get-activity-task #:get-activity-task-input
-                              #:get-activity-task-output
-                              #:get-execution-history
-                              #:get-execution-history-input
-                              #:get-execution-history-output #:httpbody
-                              #:httpheaders #:httpmethod #:httpprotocol
-                              #:httpstatus-code #:httpstatus-message
-                              #:history-event
+                              #:get-activity-task #:get-execution-history
+                              #:httpbody #:httpheaders #:httpmethod
+                              #:httpprotocol #:httpstatus-code
+                              #:httpstatus-message #:history-event
                               #:history-event-execution-data-details
                               #:history-event-list #:history-event-type
                               #:identity #:include-execution-data
@@ -81,41 +46,22 @@
                               #:included-data #:inspection-data
                               #:inspection-data-request
                               #:inspection-data-response #:inspection-level
-                              #:invalid-arn #:invalid-definition
-                              #:invalid-encryption-configuration
-                              #:invalid-execution-input
-                              #:invalid-logging-configuration #:invalid-name
-                              #:invalid-output #:invalid-token
-                              #:invalid-tracing-configuration
-                              #:kms-access-denied-exception
-                              #:kms-data-key-reuse-period-seconds
-                              #:kms-invalid-state-exception #:kms-key-id
-                              #:kms-key-state #:kms-throttling-exception
+                              #:kms-data-key-reuse-period-seconds #:kms-key-id
+                              #:kms-key-state
                               #:lambda-function-failed-event-details
                               #:lambda-function-schedule-failed-event-details
                               #:lambda-function-scheduled-event-details
                               #:lambda-function-start-failed-event-details
                               #:lambda-function-succeeded-event-details
                               #:lambda-function-timed-out-event-details
-                              #:list-activities #:list-activities-input
-                              #:list-activities-output #:list-executions
-                              #:list-executions-input #:list-executions-output
+                              #:list-activities #:list-executions
                               #:list-executions-page-token #:list-map-runs
-                              #:list-map-runs-input #:list-map-runs-output
                               #:list-state-machine-aliases
-                              #:list-state-machine-aliases-input
-                              #:list-state-machine-aliases-output
                               #:list-state-machine-versions
-                              #:list-state-machine-versions-input
-                              #:list-state-machine-versions-output
-                              #:list-state-machines #:list-state-machines-input
-                              #:list-state-machines-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:log-destination
-                              #:log-destination-list #:log-level
-                              #:logging-configuration #:long-arn #:long-object
-                              #:map-iteration-event-details
+                              #:list-state-machines #:list-tags-for-resource
+                              #:log-destination #:log-destination-list
+                              #:log-level #:logging-configuration #:long-arn
+                              #:long-object #:map-iteration-event-details
                               #:map-run-execution-counts
                               #:map-run-failed-event-details
                               #:map-run-item-counts #:map-run-label
@@ -123,86 +69,54 @@
                               #:map-run-redriven-event-details
                               #:map-run-started-event-details #:map-run-status
                               #:map-state-started-event-details
-                              #:max-concurrency #:missing-required-parameter
-                              #:name #:page-size #:page-token #:publish
-                              #:publish-state-machine-version
-                              #:publish-state-machine-version-input
-                              #:publish-state-machine-version-output
+                              #:max-concurrency #:name #:page-size #:page-token
+                              #:publish #:publish-state-machine-version
                               #:redrive-count #:redrive-execution
-                              #:redrive-execution-input
-                              #:redrive-execution-output #:resource-not-found
                               #:reveal-secrets #:reverse-order #:revision-id
                               #:routing-configuration-list
                               #:routing-configuration-list-item
-                              #:send-task-failure #:send-task-failure-input
-                              #:send-task-failure-output #:send-task-heartbeat
-                              #:send-task-heartbeat-input
-                              #:send-task-heartbeat-output #:send-task-success
-                              #:send-task-success-input
-                              #:send-task-success-output #:sensitive-cause
+                              #:send-task-failure #:send-task-heartbeat
+                              #:send-task-success #:sensitive-cause
                               #:sensitive-data #:sensitive-data-job-input
-                              #:sensitive-error
-                              #:service-quota-exceeded-exception
-                              #:start-execution #:start-execution-input
-                              #:start-execution-output #:start-sync-execution
-                              #:start-sync-execution-input
-                              #:start-sync-execution-output
+                              #:sensitive-error #:start-execution
+                              #:start-sync-execution
                               #:state-entered-event-details
                               #:state-exited-event-details
                               #:state-machine-alias-list
                               #:state-machine-alias-list-item
-                              #:state-machine-already-exists
-                              #:state-machine-deleting
-                              #:state-machine-does-not-exist
-                              #:state-machine-limit-exceeded
                               #:state-machine-list #:state-machine-list-item
                               #:state-machine-status #:state-machine-type
-                              #:state-machine-type-not-supported
                               #:state-machine-version-list
                               #:state-machine-version-list-item #:state-name
-                              #:stop-execution #:stop-execution-input
-                              #:stop-execution-output #:sync-execution-status
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:tag-value
-                              #:task-credentials #:task-does-not-exist
+                              #:stop-execution #:sync-execution-status #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:task-credentials
                               #:task-failed-event-details
                               #:task-scheduled-event-details
                               #:task-start-failed-event-details
                               #:task-started-event-details
                               #:task-submit-failed-event-details
                               #:task-submitted-event-details
-                              #:task-succeeded-event-details #:task-timed-out
+                              #:task-succeeded-event-details
                               #:task-timed-out-event-details #:task-token
                               #:test-execution-status #:test-state
-                              #:test-state-input #:test-state-output
                               #:timeout-in-seconds #:timestamp
                               #:tolerated-failure-count
-                              #:tolerated-failure-percentage #:too-many-tags
-                              #:trace-header #:tracing-configuration #:url
-                              #:unsigned-integer #:unsigned-long
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-map-run
-                              #:update-map-run-input #:update-map-run-output
+                              #:tolerated-failure-percentage #:trace-header
+                              #:tracing-configuration #:url #:unsigned-integer
+                              #:unsigned-long #:untag-resource #:update-map-run
                               #:update-state-machine
                               #:update-state-machine-alias
-                              #:update-state-machine-alias-input
-                              #:update-state-machine-alias-output
-                              #:update-state-machine-input
-                              #:update-state-machine-output
                               #:validate-state-machine-definition
                               #:validate-state-machine-definition-code
                               #:validate-state-machine-definition-diagnostic
                               #:validate-state-machine-definition-diagnostic-list
-                              #:validate-state-machine-definition-input
                               #:validate-state-machine-definition-location
                               #:validate-state-machine-definition-max-result
                               #:validate-state-machine-definition-message
-                              #:validate-state-machine-definition-output
                               #:validate-state-machine-definition-result-code
                               #:validate-state-machine-definition-severity
                               #:validate-state-machine-definition-truncated
-                              #:validation-exception
                               #:validation-exception-reason #:variable-name
                               #:variable-name-list #:variable-references
                               #:variable-value #:version-description

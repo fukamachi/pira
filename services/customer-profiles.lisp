@@ -1,9 +1,6 @@
 (uiop/package:define-package #:pira/customer-profiles (:use)
-                             (:export #:access-denied-exception
-                              #:add-profile-key #:add-profile-key-request
-                              #:add-profile-key-response
-                              #:additional-search-key #:address
-                              #:address-dimension #:address-list
+                             (:export #:add-profile-key #:additional-search-key
+                              #:address #:address-dimension #:address-list
                               #:appflow-integration
                               #:appflow-integration-workflow-attributes
                               #:appflow-integration-workflow-metrics
@@ -15,18 +12,14 @@
                               #:attribute-source-id-map
                               #:attribute-types-selector #:attribute-value-item
                               #:attribute-value-item-list #:attributes
-                              #:auto-merging #:bad-request-exception #:batch
+                              #:auto-merging #:batch
                               #:batch-get-calculated-attribute-for-profile
                               #:batch-get-calculated-attribute-for-profile-error
                               #:batch-get-calculated-attribute-for-profile-error-list
                               #:batch-get-calculated-attribute-for-profile-id-list
-                              #:batch-get-calculated-attribute-for-profile-request
-                              #:batch-get-calculated-attribute-for-profile-response
                               #:batch-get-profile #:batch-get-profile-error
                               #:batch-get-profile-error-list
-                              #:batch-get-profile-id-list
-                              #:batch-get-profile-request
-                              #:batch-get-profile-response #:batches
+                              #:batch-get-profile-id-list #:batches
                               #:bucket-name #:bucket-prefix
                               #:calculated-attribute-definitions-list
                               #:calculated-attribute-dimension
@@ -40,72 +33,25 @@
                               #:connector-profile-name #:consolidation
                               #:contact-preference #:contact-type
                               #:create-calculated-attribute-definition
-                              #:create-calculated-attribute-definition-request
-                              #:create-calculated-attribute-definition-response
                               #:create-domain #:create-domain-layout
-                              #:create-domain-layout-request
-                              #:create-domain-layout-response
-                              #:create-domain-request #:create-domain-response
-                              #:create-event-stream
-                              #:create-event-stream-request
-                              #:create-event-stream-response
-                              #:create-event-trigger
-                              #:create-event-trigger-request
-                              #:create-event-trigger-response
-                              #:create-integration-workflow
-                              #:create-integration-workflow-request
-                              #:create-integration-workflow-response
-                              #:create-profile #:create-profile-request
-                              #:create-profile-response
+                              #:create-event-stream #:create-event-trigger
+                              #:create-integration-workflow #:create-profile
                               #:create-segment-definition
-                              #:create-segment-definition-request
-                              #:create-segment-definition-response
                               #:create-segment-estimate
-                              #:create-segment-estimate-request
-                              #:create-segment-estimate-response
-                              #:create-segment-snapshot
-                              #:create-segment-snapshot-request
-                              #:create-segment-snapshot-response
-                              #:create-upload-job #:create-upload-job-request
-                              #:create-upload-job-response #:custom-attributes
-                              #:customer-profiles-20200815 #:data-format
-                              #:data-pull-mode #:date #:date-dimension
-                              #:date-dimension-type #:date-values
-                              #:datetime-type-field-name
+                              #:create-segment-snapshot #:create-upload-job
+                              #:custom-attributes #:customer-profiles-20200815
+                              #:data-format #:data-pull-mode #:date
+                              #:date-dimension #:date-dimension-type
+                              #:date-values #:datetime-type-field-name
                               #:delete-calculated-attribute-definition
-                              #:delete-calculated-attribute-definition-request
-                              #:delete-calculated-attribute-definition-response
                               #:delete-domain #:delete-domain-layout
-                              #:delete-domain-layout-request
-                              #:delete-domain-layout-response
-                              #:delete-domain-request #:delete-domain-response
-                              #:delete-event-stream
-                              #:delete-event-stream-request
-                              #:delete-event-stream-response
-                              #:delete-event-trigger
-                              #:delete-event-trigger-request
-                              #:delete-event-trigger-response
-                              #:delete-integration #:delete-integration-request
-                              #:delete-integration-response #:delete-profile
-                              #:delete-profile-key #:delete-profile-key-request
-                              #:delete-profile-key-response
-                              #:delete-profile-object
-                              #:delete-profile-object-request
-                              #:delete-profile-object-response
+                              #:delete-event-stream #:delete-event-trigger
+                              #:delete-integration #:delete-profile
+                              #:delete-profile-key #:delete-profile-object
                               #:delete-profile-object-type
-                              #:delete-profile-object-type-request
-                              #:delete-profile-object-type-response
-                              #:delete-profile-request
-                              #:delete-profile-response
-                              #:delete-segment-definition
-                              #:delete-segment-definition-request
-                              #:delete-segment-definition-response
-                              #:delete-workflow #:delete-workflow-request
-                              #:delete-workflow-response #:destination-field
-                              #:destination-summary
+                              #:delete-segment-definition #:delete-workflow
+                              #:destination-field #:destination-summary
                               #:detect-profile-object-type
-                              #:detect-profile-object-type-request
-                              #:detect-profile-object-type-response
                               #:detected-profile-object-type
                               #:detected-profile-object-types #:dimension
                               #:dimension-list #:domain-list #:domain-stats
@@ -136,125 +82,52 @@
                               #:flow-definition #:flow-description #:flow-name
                               #:found-by-key-value #:gender
                               #:get-auto-merging-preview
-                              #:get-auto-merging-preview-request
-                              #:get-auto-merging-preview-response
                               #:get-calculated-attribute-definition
-                              #:get-calculated-attribute-definition-request
-                              #:get-calculated-attribute-definition-response
                               #:get-calculated-attribute-for-profile
-                              #:get-calculated-attribute-for-profile-request
-                              #:get-calculated-attribute-for-profile-response
                               #:get-domain #:get-domain-layout
-                              #:get-domain-layout-request
-                              #:get-domain-layout-response #:get-domain-request
-                              #:get-domain-response #:get-event-stream
-                              #:get-event-stream-request
-                              #:get-event-stream-response #:get-event-trigger
-                              #:get-event-trigger-request
-                              #:get-event-trigger-response
-                              #:get-identity-resolution-job
-                              #:get-identity-resolution-job-request
-                              #:get-identity-resolution-job-response
-                              #:get-integration #:get-integration-request
-                              #:get-integration-response #:get-matches
-                              #:get-matches-request #:get-matches-response
-                              #:get-profile-object-type
-                              #:get-profile-object-type-request
-                              #:get-profile-object-type-response
+                              #:get-event-stream #:get-event-trigger
+                              #:get-identity-resolution-job #:get-integration
+                              #:get-matches #:get-profile-object-type
                               #:get-profile-object-type-template
-                              #:get-profile-object-type-template-request
-                              #:get-profile-object-type-template-response
-                              #:get-segment-definition
-                              #:get-segment-definition-request
-                              #:get-segment-definition-response
-                              #:get-segment-estimate
-                              #:get-segment-estimate-request
-                              #:get-segment-estimate-response
+                              #:get-segment-definition #:get-segment-estimate
                               #:get-segment-membership
                               #:get-segment-membership-message
-                              #:get-segment-membership-request
-                              #:get-segment-membership-response
                               #:get-segment-membership-status
-                              #:get-segment-snapshot
-                              #:get-segment-snapshot-request
-                              #:get-segment-snapshot-response
-                              #:get-similar-profiles
-                              #:get-similar-profiles-request
-                              #:get-similar-profiles-response #:get-upload-job
-                              #:get-upload-job-path
-                              #:get-upload-job-path-request
-                              #:get-upload-job-path-response
-                              #:get-upload-job-request
-                              #:get-upload-job-response #:get-workflow
-                              #:get-workflow-request #:get-workflow-response
-                              #:get-workflow-steps #:get-workflow-steps-request
-                              #:get-workflow-steps-response #:group
+                              #:get-segment-snapshot #:get-similar-profiles
+                              #:get-upload-job #:get-upload-job-path
+                              #:get-workflow #:get-workflow-steps #:group
                               #:group-list #:identity-resolution-job
                               #:identity-resolution-job-status
                               #:identity-resolution-jobs-list #:include
                               #:include-options #:incremental-pull-config
                               #:integration-config #:integration-list
-                              #:internal-server-exception #:job-schedule
-                              #:job-schedule-day-of-the-week
+                              #:job-schedule #:job-schedule-day-of-the-week
                               #:job-schedule-time #:job-stats #:key-map
                               #:kms-arn #:layout-item #:layout-list
                               #:layout-type #:list-account-integrations
-                              #:list-account-integrations-request
-                              #:list-account-integrations-response
                               #:list-calculated-attribute-definition-item
                               #:list-calculated-attribute-definitions
-                              #:list-calculated-attribute-definitions-request
-                              #:list-calculated-attribute-definitions-response
                               #:list-calculated-attribute-for-profile-item
                               #:list-calculated-attributes-for-profile
-                              #:list-calculated-attributes-for-profile-request
-                              #:list-calculated-attributes-for-profile-response
                               #:list-domain-item #:list-domain-layouts
-                              #:list-domain-layouts-request
-                              #:list-domain-layouts-response #:list-domains
-                              #:list-domains-request #:list-domains-response
-                              #:list-event-streams #:list-event-streams-request
-                              #:list-event-streams-response
+                              #:list-domains #:list-event-streams
                               #:list-event-triggers
-                              #:list-event-triggers-request
-                              #:list-event-triggers-response
                               #:list-identity-resolution-jobs
-                              #:list-identity-resolution-jobs-request
-                              #:list-identity-resolution-jobs-response
                               #:list-integration-item #:list-integrations
-                              #:list-integrations-request
-                              #:list-integrations-response
                               #:list-object-type-attribute-item
                               #:list-object-type-attributes
                               #:list-object-type-attributes-list
-                              #:list-object-type-attributes-request
-                              #:list-object-type-attributes-response
                               #:list-profile-attribute-values
                               #:list-profile-object-type-item
                               #:list-profile-object-type-template-item
                               #:list-profile-object-type-templates
-                              #:list-profile-object-type-templates-request
-                              #:list-profile-object-type-templates-response
                               #:list-profile-object-types
-                              #:list-profile-object-types-request
-                              #:list-profile-object-types-response
                               #:list-profile-objects
                               #:list-profile-objects-item
-                              #:list-profile-objects-request
-                              #:list-profile-objects-response
                               #:list-rule-based-matches
-                              #:list-rule-based-matches-request
-                              #:list-rule-based-matches-response
                               #:list-segment-definitions
-                              #:list-segment-definitions-request
-                              #:list-segment-definitions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-upload-jobs #:list-upload-jobs-request
-                              #:list-upload-jobs-response #:list-workflows
-                              #:list-workflows-item #:list-workflows-request
-                              #:list-workflows-response
+                              #:list-tags-for-resource #:list-upload-jobs
+                              #:list-workflows #:list-workflows-item
                               #:marketo-connector-operator
                               #:marketo-source-properties #:match-id-list
                               #:match-item #:match-type #:matches-list
@@ -264,9 +137,7 @@
                               #:matching-rules
                               #:max-allowed-rule-level-for-matching
                               #:max-allowed-rule-level-for-merging
-                              #:max-size500 #:merge-profiles
-                              #:merge-profiles-request
-                              #:merge-profiles-response #:object
+                              #:max-size500 #:merge-profiles #:object
                               #:object-attribute #:object-attributes
                               #:object-count #:object-filter
                               #:object-type-field #:object-type-key
@@ -274,28 +145,20 @@
                               #:objects #:operator #:operator-properties-keys
                               #:party-type #:period #:period-unit #:periods
                               #:phone-number-list #:phone-preference-list
-                              #:profile #:profile-attribute-values-request
-                              #:profile-attribute-values-response
-                              #:profile-attributes #:profile-dimension
-                              #:profile-id #:profile-id-list
-                              #:profile-id-to-be-merged-list #:profile-ids
-                              #:profile-list #:profile-object-list
-                              #:profile-object-type-list
+                              #:profile #:profile-attributes
+                              #:profile-dimension #:profile-id
+                              #:profile-id-list #:profile-id-to-be-merged-list
+                              #:profile-ids #:profile-list
+                              #:profile-object-list #:profile-object-type-list
                               #:profile-object-type-template-list
                               #:profile-query-failures #:profile-query-result
                               #:profile-type #:profile-type-dimension
                               #:profile-type-dimension-type
                               #:profile-type-values #:profiles #:property
-                              #:put-integration #:put-integration-request
-                              #:put-integration-response #:put-profile-object
-                              #:put-profile-object-request
-                              #:put-profile-object-response
-                              #:put-profile-object-type
-                              #:put-profile-object-type-request
-                              #:put-profile-object-type-response #:query-result
-                              #:range #:range-override #:range-unit #:readiness
-                              #:readiness-status #:resource-not-found-exception
-                              #:results-summary #:role-arn
+                              #:put-integration #:put-profile-object
+                              #:put-profile-object-type #:query-result #:range
+                              #:range-override #:range-unit #:readiness
+                              #:readiness-status #:results-summary #:role-arn
                               #:rule-based-matching-request
                               #:rule-based-matching-response
                               #:rule-based-matching-status #:rule-level
@@ -305,8 +168,6 @@
                               #:salesforce-source-properties
                               #:schedule-expression #:schedule-offset
                               #:scheduled-trigger-properties #:search-profiles
-                              #:search-profiles-request
-                              #:search-profiles-response
                               #:segment-definition-arn
                               #:segment-definition-item
                               #:segment-definitions-list #:segment-group
@@ -319,36 +180,21 @@
                               #:source-flow-config #:source-segment
                               #:source-segment-list #:standard-identifier
                               #:standard-identifier-list #:start
-                              #:start-upload-job #:start-upload-job-request
-                              #:start-upload-job-response #:statistic #:status
+                              #:start-upload-job #:statistic #:status
                               #:status-code #:status-reason #:stop-upload-job
-                              #:stop-upload-job-request
-                              #:stop-upload-job-response
                               #:string-dimension-type #:tag-arn #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:task #:task-properties-map
-                              #:task-type #:tasks #:threshold
-                              #:throttling-exception #:timezone
+                              #:task-type #:tasks #:threshold #:timezone
                               #:trigger-config #:trigger-properties
                               #:trigger-type #:type #:unit #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-address
-                              #:update-attributes
+                              #:update-address #:update-attributes
                               #:update-calculated-attribute-definition
-                              #:update-calculated-attribute-definition-request
-                              #:update-calculated-attribute-definition-response
                               #:update-domain #:update-domain-layout
-                              #:update-domain-layout-request
-                              #:update-domain-layout-response
-                              #:update-domain-request #:update-domain-response
-                              #:update-event-trigger
-                              #:update-event-trigger-request
-                              #:update-event-trigger-response #:update-profile
-                              #:update-profile-request
-                              #:update-profile-response #:upload-job-item
-                              #:upload-job-status #:upload-jobs-list #:value
-                              #:value-list #:value-range #:value-range-end
+                              #:update-event-trigger #:update-profile
+                              #:upload-job-item #:upload-job-status
+                              #:upload-jobs-list #:value #:value-list
+                              #:value-range #:value-range-end
                               #:value-range-start #:values
                               #:workflow-attributes #:workflow-list
                               #:workflow-metrics #:workflow-step-item

@@ -1,58 +1,26 @@
 (uiop/package:define-package #:pira/cloudhsm (:use)
                              (:export #:az #:azlist #:add-tags-to-resource
-                              #:add-tags-to-resource-request
-                              #:add-tags-to-resource-response #:boolean
-                              #:certificate #:certificate-fingerprint
+                              #:boolean #:certificate #:certificate-fingerprint
                               #:client-arn #:client-label #:client-list
                               #:client-token #:client-version
                               #:cloud-hsm-frontend-service
-                              #:cloud-hsm-internal-exception
-                              #:cloud-hsm-object-state
-                              #:cloud-hsm-service-exception #:create-hapg
-                              #:create-hapg-request #:create-hapg-response
-                              #:create-hsm #:create-hsm-request
-                              #:create-hsm-response #:create-luna-client
-                              #:create-luna-client-request
-                              #:create-luna-client-response #:delete-hapg
-                              #:delete-hapg-request #:delete-hapg-response
-                              #:delete-hsm #:delete-hsm-request
-                              #:delete-hsm-response #:delete-luna-client
-                              #:delete-luna-client-request
-                              #:delete-luna-client-response #:describe-hapg
-                              #:describe-hapg-request #:describe-hapg-response
-                              #:describe-hsm #:describe-hsm-request
-                              #:describe-hsm-response #:describe-luna-client
-                              #:describe-luna-client-request
-                              #:describe-luna-client-response #:eni-id
-                              #:external-id #:get-config #:get-config-request
-                              #:get-config-response #:hapg-arn #:hapg-list
+                              #:cloud-hsm-object-state #:create-hapg
+                              #:create-hsm #:create-luna-client #:delete-hapg
+                              #:delete-hsm #:delete-luna-client #:describe-hapg
+                              #:describe-hsm #:describe-luna-client #:eni-id
+                              #:external-id #:get-config #:hapg-arn #:hapg-list
                               #:hsm-arn #:hsm-list #:hsm-serial-number
-                              #:hsm-status #:iam-role-arn
-                              #:invalid-request-exception #:ip-address #:label
-                              #:list-available-zones
-                              #:list-available-zones-request
-                              #:list-available-zones-response #:list-hapgs
-                              #:list-hapgs-request #:list-hapgs-response
-                              #:list-hsms #:list-hsms-request
-                              #:list-hsms-response #:list-luna-clients
-                              #:list-luna-clients-request
-                              #:list-luna-clients-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:modify-hapg
-                              #:modify-hapg-request #:modify-hapg-response
-                              #:modify-hsm #:modify-hsm-request
-                              #:modify-hsm-response #:modify-luna-client
-                              #:modify-luna-client-request
-                              #:modify-luna-client-response #:pagination-token
-                              #:partition-arn #:partition-list
-                              #:partition-serial #:partition-serial-list
-                              #:remove-tags-from-resource
-                              #:remove-tags-from-resource-request
-                              #:remove-tags-from-resource-response #:ssh-key
-                              #:string #:subnet-id #:subscription-type #:tag
-                              #:tag-key #:tag-key-list #:tag-list #:tag-value
-                              #:timestamp #:vpc-id))
+                              #:hsm-status #:iam-role-arn #:ip-address #:label
+                              #:list-available-zones #:list-hapgs #:list-hsms
+                              #:list-luna-clients #:list-tags-for-resource
+                              #:modify-hapg #:modify-hsm #:modify-luna-client
+                              #:pagination-token #:partition-arn
+                              #:partition-list #:partition-serial
+                              #:partition-serial-list
+                              #:remove-tags-from-resource #:ssh-key #:string
+                              #:subnet-id #:subscription-type #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-value #:timestamp
+                              #:vpc-id))
 (common-lisp:in-package #:pira/cloudhsm)
 
 (smithy/sdk/service:define-service cloud-hsm-frontend-service :shape-name

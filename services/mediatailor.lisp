@@ -10,9 +10,9 @@
                               #:alert #:alert-category #:alternate-media
                               #:audience-media #:audiences
                               #:avail-matching-criteria #:avail-suppression
-                              #:bad-request-exception #:bumper
-                              #:cdn-configuration #:channel #:channel-policy
-                              #:channel-resource #:channel-state #:clip-range
+                              #:bumper #:cdn-configuration #:channel
+                              #:channel-policy #:channel-resource
+                              #:channel-state #:clip-range
                               #:configuration-aliases-request
                               #:configuration-aliases-response
                               #:configure-logs-for-channel

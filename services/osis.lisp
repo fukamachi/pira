@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/osis (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-open-search-ingestion-service
+                             (:export #:amazon-open-search-ingestion-service
                               #:blueprint-format #:boolean #:buffer-options
                               #:change-progress-stage
                               #:change-progress-stage-list
@@ -8,36 +7,18 @@
                               #:change-progress-status
                               #:change-progress-status-list
                               #:change-progress-statuses #:cidr-block
-                              #:cloud-watch-log-destination
-                              #:conflict-exception #:create-pipeline
-                              #:create-pipeline-request
-                              #:create-pipeline-response #:delete-pipeline
-                              #:delete-pipeline-request
-                              #:delete-pipeline-response
-                              #:disabled-operation-exception
-                              #:encryption-at-rest-options #:error-message
-                              #:get-pipeline #:get-pipeline-blueprint
-                              #:get-pipeline-blueprint-request
-                              #:get-pipeline-blueprint-response
+                              #:cloud-watch-log-destination #:create-pipeline
+                              #:delete-pipeline #:encryption-at-rest-options
+                              #:error-message #:get-pipeline
+                              #:get-pipeline-blueprint
                               #:get-pipeline-change-progress
-                              #:get-pipeline-change-progress-request
-                              #:get-pipeline-change-progress-response
-                              #:get-pipeline-request #:get-pipeline-response
                               #:ingest-endpoint-urls-list #:integer
-                              #:internal-exception
-                              #:invalid-pagination-token-exception
-                              #:kms-key-arn #:limit-exceeded-exception
-                              #:list-pipeline-blueprints
-                              #:list-pipeline-blueprints-request
-                              #:list-pipeline-blueprints-response
-                              #:list-pipelines #:list-pipelines-request
-                              #:list-pipelines-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:log-group
-                              #:log-publishing-options #:max-results
-                              #:next-token #:pipeline #:pipeline-arn
-                              #:pipeline-blueprint #:pipeline-blueprint-summary
+                              #:kms-key-arn #:list-pipeline-blueprints
+                              #:list-pipelines #:list-tags-for-resource
+                              #:log-group #:log-publishing-options
+                              #:max-results #:next-token #:pipeline
+                              #:pipeline-arn #:pipeline-blueprint
+                              #:pipeline-blueprint-summary
                               #:pipeline-blueprints-summary-list
                               #:pipeline-configuration-body
                               #:pipeline-destination
@@ -45,25 +26,14 @@
                               #:pipeline-role-arn #:pipeline-status
                               #:pipeline-status-reason #:pipeline-summary
                               #:pipeline-summary-list #:pipeline-units
-                              #:resource-already-exists-exception
-                              #:resource-not-found-exception
                               #:security-group-id #:security-group-ids
                               #:service-vpc-endpoint
                               #:service-vpc-endpoints-list #:start-pipeline
-                              #:start-pipeline-request
-                              #:start-pipeline-response #:stop-pipeline
-                              #:stop-pipeline-request #:stop-pipeline-response
-                              #:string #:string-list #:subnet-id #:subnet-ids
-                              #:tag #:tag-key #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:timestamp #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-pipeline
-                              #:update-pipeline-request
-                              #:update-pipeline-response #:validate-pipeline
-                              #:validate-pipeline-request
-                              #:validate-pipeline-response
-                              #:validation-exception #:validation-message
+                              #:stop-pipeline #:string #:string-list
+                              #:subnet-id #:subnet-ids #:tag #:tag-key
+                              #:tag-list #:tag-resource #:tag-value #:timestamp
+                              #:untag-resource #:update-pipeline
+                              #:validate-pipeline #:validation-message
                               #:validation-message-list
                               #:vpc-attachment-options #:vpc-endpoint
                               #:vpc-endpoint-management

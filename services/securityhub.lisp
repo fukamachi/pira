@@ -1,10 +1,6 @@
 (uiop/package:define-package #:pira/securityhub (:use)
                              (:export #:accept-administrator-invitation
-                              #:accept-administrator-invitation-request
-                              #:accept-administrator-invitation-response
-                              #:accept-invitation #:accept-invitation-request
-                              #:accept-invitation-response
-                              #:access-denied-exception #:account-details
+                              #:accept-invitation #:account-details
                               #:account-details-list #:account-id
                               #:account-id-list #:action #:action-list
                               #:action-local-ip-details
@@ -679,49 +675,25 @@
                               #:aws-wafv2web-acl-details
                               #:aws-xray-encryption-config-details
                               #:batch-delete-automation-rules
-                              #:batch-delete-automation-rules-request
-                              #:batch-delete-automation-rules-response
                               #:batch-disable-standards
-                              #:batch-disable-standards-request
-                              #:batch-disable-standards-response
                               #:batch-enable-standards
-                              #:batch-enable-standards-request
-                              #:batch-enable-standards-response
                               #:batch-get-automation-rules
-                              #:batch-get-automation-rules-request
-                              #:batch-get-automation-rules-response
                               #:batch-get-configuration-policy-associations
-                              #:batch-get-configuration-policy-associations-request
-                              #:batch-get-configuration-policy-associations-response
                               #:batch-get-security-controls
-                              #:batch-get-security-controls-request
-                              #:batch-get-security-controls-response
                               #:batch-get-standards-control-associations
-                              #:batch-get-standards-control-associations-request
-                              #:batch-get-standards-control-associations-response
                               #:batch-import-findings
-                              #:batch-import-findings-request
                               #:batch-import-findings-request-finding-list
-                              #:batch-import-findings-response
                               #:batch-update-automation-rules
-                              #:batch-update-automation-rules-request
-                              #:batch-update-automation-rules-response
                               #:batch-update-findings
-                              #:batch-update-findings-request
-                              #:batch-update-findings-response
                               #:batch-update-findings-unprocessed-finding
                               #:batch-update-findings-unprocessed-findings-list
                               #:batch-update-findings-v2
                               #:batch-update-findings-v2processed-finding
                               #:batch-update-findings-v2processed-findings-list
-                              #:batch-update-findings-v2request
-                              #:batch-update-findings-v2response
                               #:batch-update-findings-v2unprocessed-finding
                               #:batch-update-findings-v2unprocessed-finding-error-code
                               #:batch-update-findings-v2unprocessed-findings-list
                               #:batch-update-standards-control-associations
-                              #:batch-update-standards-control-associations-request
-                              #:batch-update-standards-control-associations-response
                               #:boolean #:boolean-configuration-options
                               #:boolean-filter #:boolean-filter-list
                               #:category-list #:cell #:cells
@@ -742,41 +714,18 @@
                               #:configuration-policy-associations-list
                               #:configuration-policy-summary
                               #:configuration-policy-summary-list
-                              #:conflict-exception #:connection-direction
-                              #:connector-auth-status #:connector-provider-name
-                              #:connector-registrations-v2
-                              #:connector-registrations-v2request
-                              #:connector-registrations-v2response
-                              #:connector-status #:connector-summary
-                              #:connector-summary-list #:container-details
-                              #:control-finding-generator #:control-status
-                              #:country #:create-action-target
-                              #:create-action-target-request
-                              #:create-action-target-response
-                              #:create-aggregator-v2
-                              #:create-aggregator-v2request
-                              #:create-aggregator-v2response
-                              #:create-automation-rule
-                              #:create-automation-rule-request
-                              #:create-automation-rule-response
+                              #:connection-direction #:connector-auth-status
+                              #:connector-provider-name
+                              #:connector-registrations-v2 #:connector-status
+                              #:connector-summary #:connector-summary-list
+                              #:container-details #:control-finding-generator
+                              #:control-status #:country #:create-action-target
+                              #:create-aggregator-v2 #:create-automation-rule
                               #:create-automation-rule-v2
-                              #:create-automation-rule-v2request
-                              #:create-automation-rule-v2response
                               #:create-configuration-policy
-                              #:create-configuration-policy-request
-                              #:create-configuration-policy-response
-                              #:create-connector-v2
-                              #:create-connector-v2request
-                              #:create-connector-v2response
-                              #:create-finding-aggregator
-                              #:create-finding-aggregator-request
-                              #:create-finding-aggregator-response
-                              #:create-insight #:create-insight-request
-                              #:create-insight-response #:create-members
-                              #:create-members-request
-                              #:create-members-response #:create-ticket-v2
-                              #:create-ticket-v2request
-                              #:create-ticket-v2response #:criteria
+                              #:create-connector-v2 #:create-finding-aggregator
+                              #:create-insight #:create-members
+                              #:create-ticket-v2 #:criteria
                               #:cross-account-max-results
                               #:custom-data-identifiers-detections
                               #:custom-data-identifiers-detections-list
@@ -784,90 +733,29 @@
                               #:customizable-properties #:cvss #:cvss-list
                               #:data-classification-details #:date-filter
                               #:date-filter-list #:date-range #:date-range-unit
-                              #:decline-invitations
-                              #:decline-invitations-request
-                              #:decline-invitations-response
-                              #:delete-action-target
-                              #:delete-action-target-request
-                              #:delete-action-target-response
+                              #:decline-invitations #:delete-action-target
                               #:delete-aggregator-v2
-                              #:delete-aggregator-v2request
-                              #:delete-aggregator-v2response
                               #:delete-automation-rule-v2
-                              #:delete-automation-rule-v2request
-                              #:delete-automation-rule-v2response
                               #:delete-configuration-policy
-                              #:delete-configuration-policy-request
-                              #:delete-configuration-policy-response
-                              #:delete-connector-v2
-                              #:delete-connector-v2request
-                              #:delete-connector-v2response
-                              #:delete-finding-aggregator
-                              #:delete-finding-aggregator-request
-                              #:delete-finding-aggregator-response
-                              #:delete-insight #:delete-insight-request
-                              #:delete-insight-response #:delete-invitations
-                              #:delete-invitations-request
-                              #:delete-invitations-response #:delete-members
-                              #:delete-members-request
-                              #:delete-members-response
-                              #:describe-action-targets
-                              #:describe-action-targets-request
-                              #:describe-action-targets-response #:describe-hub
-                              #:describe-hub-request #:describe-hub-response
+                              #:delete-connector-v2 #:delete-finding-aggregator
+                              #:delete-insight #:delete-invitations
+                              #:delete-members #:describe-action-targets
+                              #:describe-hub
                               #:describe-organization-configuration
-                              #:describe-organization-configuration-request
-                              #:describe-organization-configuration-response
-                              #:describe-products #:describe-products-request
-                              #:describe-products-response
-                              #:describe-products-v2
-                              #:describe-products-v2request
-                              #:describe-products-v2response
-                              #:describe-security-hub-v2
-                              #:describe-security-hub-v2request
-                              #:describe-security-hub-v2response
-                              #:describe-standards
-                              #:describe-standards-controls
-                              #:describe-standards-controls-request
-                              #:describe-standards-controls-response
-                              #:describe-standards-request
-                              #:describe-standards-response #:detection
+                              #:describe-products #:describe-products-v2
+                              #:describe-security-hub-v2 #:describe-standards
+                              #:describe-standards-controls #:detection
                               #:disable-import-findings-for-product
-                              #:disable-import-findings-for-product-request
-                              #:disable-import-findings-for-product-response
                               #:disable-organization-admin-account
-                              #:disable-organization-admin-account-request
-                              #:disable-organization-admin-account-response
-                              #:disable-security-hub
-                              #:disable-security-hub-request
-                              #:disable-security-hub-response
-                              #:disable-security-hub-v2
-                              #:disable-security-hub-v2request
-                              #:disable-security-hub-v2response
+                              #:disable-security-hub #:disable-security-hub-v2
                               #:disabled-security-control-identifier-list
                               #:disassociate-from-administrator-account
-                              #:disassociate-from-administrator-account-request
-                              #:disassociate-from-administrator-account-response
                               #:disassociate-from-master-account
-                              #:disassociate-from-master-account-request
-                              #:disassociate-from-master-account-response
-                              #:disassociate-members
-                              #:disassociate-members-request
-                              #:disassociate-members-response
-                              #:dns-request-action #:double
-                              #:double-configuration-options
+                              #:disassociate-members #:dns-request-action
+                              #:double #:double-configuration-options
                               #:enable-import-findings-for-product
-                              #:enable-import-findings-for-product-request
-                              #:enable-import-findings-for-product-response
                               #:enable-organization-admin-account
-                              #:enable-organization-admin-account-request
-                              #:enable-organization-admin-account-response
-                              #:enable-security-hub
-                              #:enable-security-hub-request
-                              #:enable-security-hub-response
-                              #:enable-security-hub-v2
-                              #:enable-security-hub-v2request
-                              #:enable-security-hub-v2response
+                              #:enable-security-hub #:enable-security-hub-v2
                               #:enabled-security-control-identifier-list
                               #:enabled-standard-identifier-list
                               #:enum-configuration-options
@@ -891,55 +779,18 @@
                               #:firewall-policy-stateless-rule-group-references-details
                               #:firewall-policy-stateless-rule-group-references-list
                               #:generator-details #:geo-location
-                              #:get-administrator-account
-                              #:get-administrator-account-request
-                              #:get-administrator-account-response
-                              #:get-aggregator-v2 #:get-aggregator-v2request
-                              #:get-aggregator-v2response
+                              #:get-administrator-account #:get-aggregator-v2
                               #:get-automation-rule-v2
-                              #:get-automation-rule-v2request
-                              #:get-automation-rule-v2response
                               #:get-configuration-policy
                               #:get-configuration-policy-association
-                              #:get-configuration-policy-association-request
-                              #:get-configuration-policy-association-response
-                              #:get-configuration-policy-request
-                              #:get-configuration-policy-response
-                              #:get-connector-v2 #:get-connector-v2request
-                              #:get-connector-v2response
-                              #:get-enabled-standards
-                              #:get-enabled-standards-request
-                              #:get-enabled-standards-response
-                              #:get-finding-aggregator
-                              #:get-finding-aggregator-request
-                              #:get-finding-aggregator-response
-                              #:get-finding-history
-                              #:get-finding-history-request
-                              #:get-finding-history-response
-                              #:get-finding-statistics-v2
-                              #:get-finding-statistics-v2request
-                              #:get-finding-statistics-v2response
-                              #:get-findings #:get-findings-request
-                              #:get-findings-response #:get-findings-v2
-                              #:get-findings-v2request
-                              #:get-findings-v2response #:get-insight-results
-                              #:get-insight-results-request
-                              #:get-insight-results-response #:get-insights
-                              #:get-insights-request #:get-insights-response
-                              #:get-invitations-count
-                              #:get-invitations-count-request
-                              #:get-invitations-count-response
-                              #:get-master-account #:get-master-account-request
-                              #:get-master-account-response #:get-members
-                              #:get-members-request #:get-members-response
-                              #:get-resources-statistics-v2
-                              #:get-resources-statistics-v2request
-                              #:get-resources-statistics-v2response
-                              #:get-resources-v2 #:get-resources-v2request
-                              #:get-resources-v2response
+                              #:get-connector-v2 #:get-enabled-standards
+                              #:get-finding-aggregator #:get-finding-history
+                              #:get-finding-statistics-v2 #:get-findings
+                              #:get-findings-v2 #:get-insight-results
+                              #:get-insights #:get-invitations-count
+                              #:get-master-account #:get-members
+                              #:get-resources-statistics-v2 #:get-resources-v2
                               #:get-security-control-definition
-                              #:get-security-control-definition-request
-                              #:get-security-control-definition-response
                               #:group-by-field #:group-by-result
                               #:group-by-results #:group-by-rule
                               #:group-by-rules #:group-by-value
@@ -954,63 +805,31 @@
                               #:integer-list-configuration-options
                               #:integration-type #:integration-type-list
                               #:integration-v2type #:integration-v2type-list
-                              #:internal-exception #:internal-server-exception
-                              #:invalid-access-exception
-                              #:invalid-input-exception #:invitation
-                              #:invitation-list #:invite-members
-                              #:invite-members-request
-                              #:invite-members-response #:ip-filter
-                              #:ip-filter-list #:ip-organization-details
+                              #:invitation #:invitation-list #:invite-members
+                              #:ip-filter #:ip-filter-list
+                              #:ip-organization-details
                               #:ipv6cidr-block-association
                               #:ipv6cidr-block-association-list
                               #:jira-cloud-detail
                               #:jira-cloud-provider-configuration
                               #:jira-cloud-update-configuration
                               #:keyword-filter #:keyword-filter-list
-                              #:limit-exceeded-exception #:list-aggregators-v2
-                              #:list-aggregators-v2request
-                              #:list-aggregators-v2response
-                              #:list-automation-rules
-                              #:list-automation-rules-request
-                              #:list-automation-rules-response
+                              #:list-aggregators-v2 #:list-automation-rules
                               #:list-automation-rules-v2
-                              #:list-automation-rules-v2request
-                              #:list-automation-rules-v2response
                               #:list-configuration-policies
-                              #:list-configuration-policies-request
-                              #:list-configuration-policies-response
                               #:list-configuration-policy-associations
-                              #:list-configuration-policy-associations-request
-                              #:list-configuration-policy-associations-response
-                              #:list-connectors-v2 #:list-connectors-v2request
-                              #:list-connectors-v2response
+                              #:list-connectors-v2
                               #:list-enabled-products-for-import
-                              #:list-enabled-products-for-import-request
-                              #:list-enabled-products-for-import-response
-                              #:list-finding-aggregators
-                              #:list-finding-aggregators-request
-                              #:list-finding-aggregators-response
-                              #:list-invitations #:list-invitations-request
-                              #:list-invitations-response #:list-members
-                              #:list-members-request #:list-members-response
-                              #:list-organization-admin-accounts
-                              #:list-organization-admin-accounts-request
-                              #:list-organization-admin-accounts-response
+                              #:list-finding-aggregators #:list-invitations
+                              #:list-members #:list-organization-admin-accounts
                               #:list-security-control-definitions
-                              #:list-security-control-definitions-request
-                              #:list-security-control-definitions-response
                               #:list-standards-control-associations
-                              #:list-standards-control-associations-request
-                              #:list-standards-control-associations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:load-balancer-state #:long #:malware
-                              #:malware-list #:malware-state #:malware-type
-                              #:map-filter #:map-filter-comparison
-                              #:map-filter-list #:max-results
-                              #:max-statistic-results #:member #:member-list
-                              #:metadata-uid-list #:network
+                              #:list-tags-for-resource #:load-balancer-state
+                              #:long #:malware #:malware-list #:malware-state
+                              #:malware-type #:map-filter
+                              #:map-filter-comparison #:map-filter-list
+                              #:max-results #:max-statistic-results #:member
+                              #:member-list #:metadata-uid-list #:network
                               #:network-autonomous-system #:network-connection
                               #:network-connection-action #:network-direction
                               #:network-endpoint #:network-endpoints-list
@@ -1056,16 +875,14 @@
                               #:related-finding-list
                               #:related-requirements-list #:remediation
                               #:resource #:resource-arn #:resource-category
-                              #:resource-config #:resource-conflict-exception
-                              #:resource-details #:resource-findings-summary
+                              #:resource-config #:resource-details
+                              #:resource-findings-summary
                               #:resource-findings-summary-list
                               #:resource-group-by-field
                               #:resource-group-by-rule
-                              #:resource-group-by-rules
-                              #:resource-in-use-exception #:resource-list
-                              #:resource-not-found-exception #:resource-result
-                              #:resource-severity-breakdown #:resource-tag
-                              #:resource-tag-list #:resources
+                              #:resource-group-by-rules #:resource-list
+                              #:resource-result #:resource-severity-breakdown
+                              #:resource-tag #:resource-tag-list #:resources
                               #:resources-composite-filter
                               #:resources-composite-filter-list
                               #:resources-date-field #:resources-date-filter
@@ -1154,11 +971,7 @@
                               #:standards-subscription-requests
                               #:standards-subscriptions
                               #:start-configuration-policy-association
-                              #:start-configuration-policy-association-request
-                              #:start-configuration-policy-association-response
                               #:start-configuration-policy-disassociation
-                              #:start-configuration-policy-disassociation-request
-                              #:start-configuration-policy-disassociation-response
                               #:stateless-custom-action-definition
                               #:stateless-custom-publish-metric-action
                               #:stateless-custom-publish-metric-action-dimension
@@ -1169,13 +982,12 @@
                               #:string-filter-comparison #:string-filter-list
                               #:string-list #:string-list-configuration-options
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:target #:target-type #:threat
                               #:threat-intel-indicator
                               #:threat-intel-indicator-category
                               #:threat-intel-indicator-list
                               #:threat-intel-indicator-type #:threat-list
-                              #:throttling-exception #:timestamp #:type-list
+                              #:timestamp #:type-list
                               #:unprocessed-automation-rule
                               #:unprocessed-automation-rules-list
                               #:unprocessed-configuration-policy-association
@@ -1187,45 +999,19 @@
                               #:unprocessed-standards-control-association-update
                               #:unprocessed-standards-control-association-updates
                               #:unprocessed-standards-control-associations
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-action-target
-                              #:update-action-target-request
-                              #:update-action-target-response
+                              #:untag-resource #:update-action-target
                               #:update-aggregator-v2
-                              #:update-aggregator-v2request
-                              #:update-aggregator-v2response
                               #:update-automation-rule-v2
-                              #:update-automation-rule-v2request
-                              #:update-automation-rule-v2response
                               #:update-automation-rules-request-item
                               #:update-automation-rules-request-items-list
                               #:update-configuration-policy
-                              #:update-configuration-policy-request
-                              #:update-configuration-policy-response
-                              #:update-connector-v2
-                              #:update-connector-v2request
-                              #:update-connector-v2response
-                              #:update-finding-aggregator
-                              #:update-finding-aggregator-request
-                              #:update-finding-aggregator-response
-                              #:update-findings #:update-findings-request
-                              #:update-findings-response #:update-insight
-                              #:update-insight-request
-                              #:update-insight-response
+                              #:update-connector-v2 #:update-finding-aggregator
+                              #:update-findings #:update-insight
                               #:update-organization-configuration
-                              #:update-organization-configuration-request
-                              #:update-organization-configuration-response
                               #:update-security-control
-                              #:update-security-control-request
-                              #:update-security-control-response
                               #:update-security-hub-configuration
-                              #:update-security-hub-configuration-request
-                              #:update-security-hub-configuration-response
-                              #:update-standards-control
-                              #:update-standards-control-request
-                              #:update-standards-control-response
-                              #:update-status #:user-account
-                              #:validation-exception #:verification-state
+                              #:update-standards-control #:update-status
+                              #:user-account #:verification-state
                               #:volume-mount #:volume-mount-list
                               #:vpc-info-cidr-block-set-details
                               #:vpc-info-cidr-block-set-list

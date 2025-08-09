@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/appintegrations (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-app-integration-service
+                             (:export #:amazon-app-integration-service
                               #:application-approved-origins
                               #:application-association-summary
                               #:application-associations-list
@@ -11,31 +10,17 @@
                               #:arn #:arn-or-uuid #:boolean
                               #:client-association-metadata #:client-id
                               #:contact-handling #:contact-handling-scope
-                              #:create-application #:create-application-request
-                              #:create-application-response
-                              #:create-data-integration
+                              #:create-application #:create-data-integration
                               #:create-data-integration-association
-                              #:create-data-integration-association-request
-                              #:create-data-integration-association-response
-                              #:create-data-integration-request
-                              #:create-data-integration-response
                               #:create-event-integration
-                              #:create-event-integration-request
-                              #:create-event-integration-response
                               #:data-integration-association-summary
                               #:data-integration-associations-list
                               #:data-integration-summary
                               #:data-integrations-list #:delete-application
-                              #:delete-application-request
-                              #:delete-application-response
                               #:delete-data-integration
-                              #:delete-data-integration-request
-                              #:delete-data-integration-response
-                              #:delete-event-integration
-                              #:delete-event-integration-request
-                              #:delete-event-integration-response #:description
-                              #:destination-uri #:duplicate-resource-exception
-                              #:event-bridge-bus #:event-bridge-rule-name
+                              #:delete-event-integration #:description
+                              #:destination-uri #:event-bridge-bus
+                              #:event-bridge-rule-name
                               #:event-definition-schema #:event-filter
                               #:event-integration
                               #:event-integration-association
@@ -45,64 +30,29 @@
                               #:execution-status #:external-url-config #:fields
                               #:fields-list #:fields-map #:file-configuration
                               #:folder-list #:get-application
-                              #:get-application-request
-                              #:get-application-response #:get-data-integration
-                              #:get-data-integration-request
-                              #:get-data-integration-response
-                              #:get-event-integration
-                              #:get-event-integration-request
-                              #:get-event-integration-response
+                              #:get-data-integration #:get-event-integration
                               #:idempotency-token #:identifier #:iframe-config
                               #:iframe-permission #:iframe-permission-list
-                              #:initialization-timeout #:internal-service-error
-                              #:invalid-request-exception
-                              #:last-execution-status
+                              #:initialization-timeout #:last-execution-status
                               #:list-application-associations
-                              #:list-application-associations-request
-                              #:list-application-associations-response
-                              #:list-applications #:list-applications-request
-                              #:list-applications-response
+                              #:list-applications
                               #:list-data-integration-associations
-                              #:list-data-integration-associations-request
-                              #:list-data-integration-associations-response
                               #:list-data-integrations
-                              #:list-data-integrations-request
-                              #:list-data-integrations-response
                               #:list-event-integration-associations
-                              #:list-event-integration-associations-request
-                              #:list-event-integration-associations-response
                               #:list-event-integrations
-                              #:list-event-integrations-request
-                              #:list-event-integrations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:message #:name #:next-token
-                              #:non-blank-long-string #:non-blank-string
-                              #:object #:object-configuration
-                              #:on-demand-configuration #:permission
-                              #:permission-list #:publication
-                              #:publication-list #:resource-not-found-exception
-                              #:resource-quota-exceeded-exception
-                              #:schedule-configuration #:source #:source-uri
-                              #:subscription #:subscription-list #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception #:timestamp
-                              #:url #:uuid #:unsupported-operation-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-application
-                              #:update-application-request
-                              #:update-application-response
-                              #:update-data-integration
+                              #:list-tags-for-resource #:max-results #:message
+                              #:name #:next-token #:non-blank-long-string
+                              #:non-blank-string #:object
+                              #:object-configuration #:on-demand-configuration
+                              #:permission #:permission-list #:publication
+                              #:publication-list #:schedule-configuration
+                              #:source #:source-uri #:subscription
+                              #:subscription-list #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-value #:timestamp
+                              #:url #:uuid #:untag-resource
+                              #:update-application #:update-data-integration
                               #:update-data-integration-association
-                              #:update-data-integration-association-request
-                              #:update-data-integration-association-response
-                              #:update-data-integration-request
-                              #:update-data-integration-response
-                              #:update-event-integration
-                              #:update-event-integration-request
-                              #:update-event-integration-response))
+                              #:update-event-integration))
 (common-lisp:in-package #:pira/appintegrations)
 
 (smithy/sdk/service:define-service amazon-app-integration-service :shape-name

@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/rds-data (:use)
-                             (:export #:access-denied-exception #:arn
-                              #:array-of-array #:array-value #:array-value-list
-                              #:bad-request-exception #:batch-execute-statement
+                             (:export #:arn #:array-of-array #:array-value
+                              #:array-value-list #:batch-execute-statement
                               #:batch-execute-statement-request
                               #:batch-execute-statement-response
                               #:begin-transaction #:begin-transaction-request
@@ -10,40 +9,26 @@
                               #:boxed-float #:boxed-integer #:boxed-long
                               #:column-metadata #:commit-transaction
                               #:commit-transaction-request
-                              #:commit-transaction-response
-                              #:database-error-exception
-                              #:database-not-found-exception
-                              #:database-resuming-exception
-                              #:database-unavailable-exception #:db-name
+                              #:commit-transaction-response #:db-name
                               #:decimal-return-type #:double-array
                               #:error-message #:execute-sql
                               #:execute-sql-request #:execute-sql-response
                               #:execute-statement #:execute-statement-request
                               #:execute-statement-response #:field #:field-list
-                              #:forbidden-exception #:formatted-sql-records
-                              #:http-endpoint-not-enabled-exception #:id
-                              #:integer #:internal-server-error-exception
-                              #:invalid-resource-state-exception
-                              #:invalid-secret-exception #:long #:long-array
-                              #:long-return-type #:metadata
-                              #:not-found-exception #:parameter-name
-                              #:rds-data-service #:record #:records
-                              #:records-format-type #:records-updated
+                              #:formatted-sql-records #:id #:integer #:long
+                              #:long-array #:long-return-type #:metadata
+                              #:parameter-name #:rds-data-service #:record
+                              #:records #:records-format-type #:records-updated
                               #:result-frame #:result-set-metadata
                               #:result-set-options #:rollback-transaction
                               #:rollback-transaction-request
                               #:rollback-transaction-response #:row
-                              #:secrets-error-exception
-                              #:service-unavailable-error #:sql-parameter
-                              #:sql-parameter-sets #:sql-parameters-list
-                              #:sql-records #:sql-statement
-                              #:sql-statement-result #:sql-statement-results
-                              #:statement-timeout-exception #:string
-                              #:string-array #:struct-value
-                              #:transaction-not-found-exception
-                              #:transaction-status #:type-hint
-                              #:unsupported-result-exception #:update-result
-                              #:update-results #:value))
+                              #:sql-parameter #:sql-parameter-sets
+                              #:sql-parameters-list #:sql-records
+                              #:sql-statement #:sql-statement-result
+                              #:sql-statement-results #:string #:string-array
+                              #:struct-value #:transaction-status #:type-hint
+                              #:update-result #:update-results #:value))
 (common-lisp:in-package #:pira/rds-data)
 
 (smithy/sdk/service:define-service rds-data-service :shape-name

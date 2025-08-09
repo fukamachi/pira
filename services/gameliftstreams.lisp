@@ -1,76 +1,40 @@
 (uiop/package:define-package #:pira/gameliftstreams (:use)
-                             (:export #:access-denied-exception
-                              #:add-stream-group-locations
-                              #:add-stream-group-locations-input
-                              #:add-stream-group-locations-output
+                             (:export #:add-stream-group-locations
                               #:always-on-capacity #:application-log-output-uri
                               #:application-resource #:application-source-uri
                               #:application-status #:application-status-reason
                               #:application-summary #:application-summary-list
                               #:arn #:arn-list #:associate-applications
-                              #:associate-applications-input
-                              #:associate-applications-output #:capacity-value
-                              #:client-token #:conflict-exception
+                              #:capacity-value #:client-token
                               #:connection-timeout-seconds #:create-application
-                              #:create-application-input
-                              #:create-application-output #:create-stream-group
-                              #:create-stream-group-input
-                              #:create-stream-group-output
+                              #:create-stream-group
                               #:create-stream-session-connection
-                              #:create-stream-session-connection-input
-                              #:create-stream-session-connection-output
                               #:default-application #:delete-application
-                              #:delete-application-input #:delete-stream-group
-                              #:delete-stream-group-input #:description
+                              #:delete-stream-group #:description
                               #:disassociate-applications
-                              #:disassociate-applications-input
-                              #:disassociate-applications-output
                               #:environment-variables #:executable-path
                               #:export-files-metadata #:export-files-reason
                               #:export-files-status
-                              #:export-stream-session-files
-                              #:export-stream-session-files-input
-                              #:export-stream-session-files-output
-                              #:file-location-uri #:file-path #:file-paths
-                              #:game-launch-arg-list #:game-lift-streams
-                              #:get-application #:get-application-input
-                              #:get-application-output #:get-stream-group
-                              #:get-stream-group-input
-                              #:get-stream-group-output #:get-stream-session
-                              #:get-stream-session-input
-                              #:get-stream-session-output #:id #:identifier
-                              #:identifiers #:internal-server-exception
-                              #:list-applications #:list-applications-input
-                              #:list-applications-output #:list-stream-groups
-                              #:list-stream-groups-input
-                              #:list-stream-groups-output
-                              #:list-stream-sessions
+                              #:export-stream-session-files #:file-location-uri
+                              #:file-path #:file-paths #:game-launch-arg-list
+                              #:game-lift-streams #:get-application
+                              #:get-stream-group #:get-stream-session #:id
+                              #:identifier #:identifiers #:list-applications
+                              #:list-stream-groups #:list-stream-sessions
                               #:list-stream-sessions-by-account
-                              #:list-stream-sessions-by-account-input
-                              #:list-stream-sessions-by-account-output
-                              #:list-stream-sessions-input
-                              #:list-stream-sessions-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:location-configuration
+                              #:list-tags-for-resource #:location-configuration
                               #:location-configurations #:location-list
                               #:location-name #:location-state
                               #:location-states #:locations-list #:max-results
                               #:next-token #:on-demand-capacity #:output-uri
                               #:protocol #:remove-stream-group-locations
-                              #:remove-stream-group-locations-input
                               #:replication-status #:replication-status-type
-                              #:replication-statuses
-                              #:resource-not-found-exception
-                              #:runtime-environment #:runtime-environment-type
+                              #:replication-statuses #:runtime-environment
+                              #:runtime-environment-type
                               #:runtime-environment-version
-                              #:service-quota-exceeded-exception
                               #:session-length-seconds #:signal-request
                               #:signal-response #:start-stream-session
-                              #:start-stream-session-input
-                              #:start-stream-session-output #:stream-class
-                              #:stream-group-location-status
+                              #:stream-class #:stream-group-location-status
                               #:stream-group-resource #:stream-group-status
                               #:stream-group-status-reason
                               #:stream-group-summary
@@ -79,18 +43,10 @@
                               #:stream-session-status-reason
                               #:stream-session-summary
                               #:stream-session-summary-list #:tag-key
-                              #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:terminate-stream-session
-                              #:terminate-stream-session-input
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-application
-                              #:update-application-input
-                              #:update-application-output #:update-stream-group
-                              #:update-stream-group-input
-                              #:update-stream-group-output #:user-id
-                              #:validation-exception #:web-sdk-protocol-url))
+                              #:tag-key-list #:tag-resource #:tag-value #:tags
+                              #:terminate-stream-session #:untag-resource
+                              #:update-application #:update-stream-group
+                              #:user-id #:web-sdk-protocol-url))
 (common-lisp:in-package #:pira/gameliftstreams)
 
 (smithy/sdk/service:define-service game-lift-streams :shape-name

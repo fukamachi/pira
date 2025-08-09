@@ -1,15 +1,7 @@
 (uiop/package:define-package #:pira/directory-service (:use)
-                             (:export #:adassessment-limit-exceeded-exception
-                              #:accept-shared-directory
-                              #:accept-shared-directory-request
-                              #:accept-shared-directory-result
-                              #:access-denied-exception #:access-url
-                              #:add-ip-routes #:add-ip-routes-request
-                              #:add-ip-routes-result #:add-region
-                              #:add-region-request #:add-region-result
-                              #:add-tags-to-resource
-                              #:add-tags-to-resource-request
-                              #:add-tags-to-resource-result #:added-date-time
+                             (:export #:accept-shared-directory #:access-url
+                              #:add-ip-routes #:add-region
+                              #:add-tags-to-resource #:added-date-time
                               #:additional-regions #:alias-name #:assessment
                               #:assessment-configuration #:assessment-id
                               #:assessment-instance-id
@@ -28,17 +20,11 @@
                               #:assessment-validations #:assessment-version
                               #:assessments #:attribute #:attribute-name
                               #:attribute-value #:attributes
-                              #:authentication-failed-exception
                               #:availability-zone #:availability-zones
-                              #:cancel-schema-extension
-                              #:cancel-schema-extension-request
-                              #:cancel-schema-extension-result #:certificate
-                              #:certificate-already-exists-exception
+                              #:cancel-schema-extension #:certificate
                               #:certificate-cn #:certificate-data
-                              #:certificate-does-not-exist-exception
                               #:certificate-expiry-date-time #:certificate-id
-                              #:certificate-in-use-exception #:certificate-info
-                              #:certificate-limit-exceeded-exception
+                              #:certificate-info
                               #:certificate-registered-date-time
                               #:certificate-state #:certificate-state-reason
                               #:certificate-type #:certificates-info #:cidr-ip
@@ -46,105 +32,39 @@
                               #:client-authentication-settings-info
                               #:client-authentication-status
                               #:client-authentication-type
-                              #:client-cert-auth-settings #:client-exception
+                              #:client-cert-auth-settings
                               #:cloud-only-directories-limit-reached #:computer
                               #:computer-name #:computer-password
                               #:conditional-forwarder #:conditional-forwarders
-                              #:connect-directory #:connect-directory-request
-                              #:connect-directory-result #:connect-password
+                              #:connect-directory #:connect-password
                               #:connected-directories-limit-reached
-                              #:create-alias #:create-alias-request
-                              #:create-alias-result #:create-computer
-                              #:create-computer-request
-                              #:create-computer-result
-                              #:create-conditional-forwarder
-                              #:create-conditional-forwarder-request
-                              #:create-conditional-forwarder-result
-                              #:create-directory #:create-directory-request
-                              #:create-directory-result #:create-hybrid-ad
-                              #:create-hybrid-adrequest
-                              #:create-hybrid-adresult
-                              #:create-log-subscription
-                              #:create-log-subscription-request
-                              #:create-log-subscription-result
-                              #:create-microsoft-ad
-                              #:create-microsoft-adrequest
-                              #:create-microsoft-adresult #:create-snapshot
+                              #:create-alias #:create-computer
+                              #:create-conditional-forwarder #:create-directory
+                              #:create-hybrid-ad #:create-log-subscription
+                              #:create-microsoft-ad #:create-snapshot
                               #:create-snapshot-before-schema-extension
-                              #:create-snapshot-before-update
-                              #:create-snapshot-request
-                              #:create-snapshot-result #:create-trust
-                              #:create-trust-request #:create-trust-result
+                              #:create-snapshot-before-update #:create-trust
                               #:created-date-time #:customer-dns-ips
                               #:customer-id #:customer-user-name
                               #:data-access-status #:delete-adassessment
-                              #:delete-adassessment-request
-                              #:delete-adassessment-result
                               #:delete-associated-conditional-forwarder
-                              #:delete-conditional-forwarder
-                              #:delete-conditional-forwarder-request
-                              #:delete-conditional-forwarder-result
-                              #:delete-directory #:delete-directory-request
-                              #:delete-directory-result
-                              #:delete-log-subscription
-                              #:delete-log-subscription-request
-                              #:delete-log-subscription-result
-                              #:delete-snapshot #:delete-snapshot-request
-                              #:delete-snapshot-result #:delete-trust
-                              #:delete-trust-request #:delete-trust-result
-                              #:deregister-certificate
-                              #:deregister-certificate-request
-                              #:deregister-certificate-result
-                              #:deregister-event-topic
-                              #:deregister-event-topic-request
-                              #:deregister-event-topic-result
-                              #:describe-adassessment
-                              #:describe-adassessment-request
-                              #:describe-adassessment-result
+                              #:delete-conditional-forwarder #:delete-directory
+                              #:delete-log-subscription #:delete-snapshot
+                              #:delete-trust #:deregister-certificate
+                              #:deregister-event-topic #:describe-adassessment
                               #:describe-certificate
-                              #:describe-certificate-request
-                              #:describe-certificate-result
                               #:describe-client-authentication-settings
-                              #:describe-client-authentication-settings-request
-                              #:describe-client-authentication-settings-result
                               #:describe-conditional-forwarders
-                              #:describe-conditional-forwarders-request
-                              #:describe-conditional-forwarders-result
                               #:describe-directories
-                              #:describe-directories-request
-                              #:describe-directories-result
                               #:describe-directory-data-access
-                              #:describe-directory-data-access-request
-                              #:describe-directory-data-access-result
                               #:describe-domain-controllers
-                              #:describe-domain-controllers-request
-                              #:describe-domain-controllers-result
                               #:describe-event-topics
-                              #:describe-event-topics-request
-                              #:describe-event-topics-result
                               #:describe-hybrid-adupdate
-                              #:describe-hybrid-adupdate-request
-                              #:describe-hybrid-adupdate-result
-                              #:describe-ldapssettings
-                              #:describe-ldapssettings-request
-                              #:describe-ldapssettings-result
-                              #:describe-regions #:describe-regions-request
-                              #:describe-regions-result #:describe-settings
-                              #:describe-settings-request
-                              #:describe-settings-result
-                              #:describe-shared-directories
-                              #:describe-shared-directories-request
-                              #:describe-shared-directories-result
-                              #:describe-snapshots #:describe-snapshots-request
-                              #:describe-snapshots-result #:describe-trusts
-                              #:describe-trusts-request
-                              #:describe-trusts-result
-                              #:describe-update-directory
-                              #:describe-update-directory-request
-                              #:describe-update-directory-result #:description
+                              #:describe-ldapssettings #:describe-regions
+                              #:describe-settings #:describe-shared-directories
+                              #:describe-snapshots #:describe-trusts
+                              #:describe-update-directory #:description
                               #:desired-number-of-domain-controllers
-                              #:directory-already-in-region-exception
-                              #:directory-already-shared-exception
                               #:directory-configuration-setting-allowed-values
                               #:directory-configuration-setting-data-type
                               #:directory-configuration-setting-last-requested-date-time
@@ -158,191 +78,98 @@
                               #:directory-connect-settings
                               #:directory-connect-settings-description
                               #:directory-description #:directory-descriptions
-                              #:directory-does-not-exist-exception
                               #:directory-edition #:directory-id
-                              #:directory-ids
-                              #:directory-in-desired-state-exception
-                              #:directory-limit-exceeded-exception
-                              #:directory-limits #:directory-name
-                              #:directory-not-shared-exception
-                              #:directory-service-20150416
+                              #:directory-ids #:directory-limits
+                              #:directory-name #:directory-service-20150416
                               #:directory-short-name #:directory-size
                               #:directory-stage #:directory-type
-                              #:directory-unavailable-exception
                               #:directory-vpc-settings
                               #:directory-vpc-settings-description
                               #:disable-client-authentication
-                              #:disable-client-authentication-request
-                              #:disable-client-authentication-result
-                              #:disable-directory-data-access
-                              #:disable-directory-data-access-request
-                              #:disable-directory-data-access-result
-                              #:disable-ldaps #:disable-ldapsrequest
-                              #:disable-ldapsresult #:disable-radius
-                              #:disable-radius-request #:disable-radius-result
-                              #:disable-sso #:disable-sso-request
-                              #:disable-sso-result #:dns-ip-addrs
+                              #:disable-directory-data-access #:disable-ldaps
+                              #:disable-radius #:disable-sso #:dns-ip-addrs
                               #:domain-controller #:domain-controller-id
                               #:domain-controller-ids
-                              #:domain-controller-limit-exceeded-exception
                               #:domain-controller-status
                               #:domain-controller-status-reason
                               #:domain-controllers
                               #:enable-client-authentication
-                              #:enable-client-authentication-request
-                              #:enable-client-authentication-result
-                              #:enable-directory-data-access
-                              #:enable-directory-data-access-request
-                              #:enable-directory-data-access-result
-                              #:enable-ldaps #:enable-ldapsrequest
-                              #:enable-ldapsresult #:enable-radius
-                              #:enable-radius-request #:enable-radius-result
-                              #:enable-sso #:enable-sso-request
-                              #:enable-sso-result #:end-date-time
-                              #:entity-already-exists-exception
-                              #:entity-does-not-exist-exception #:event-topic
-                              #:event-topics #:exception-message
-                              #:get-directory-limits
-                              #:get-directory-limits-request
-                              #:get-directory-limits-result
-                              #:get-snapshot-limits
-                              #:get-snapshot-limits-request
-                              #:get-snapshot-limits-result
+                              #:enable-directory-data-access #:enable-ldaps
+                              #:enable-radius #:enable-sso #:end-date-time
+                              #:event-topic #:event-topics #:exception-message
+                              #:get-directory-limits #:get-snapshot-limits
                               #:hybrid-administrator-account-update
                               #:hybrid-customer-instances-settings
                               #:hybrid-settings-description
                               #:hybrid-update-activities
                               #:hybrid-update-info-entries
                               #:hybrid-update-info-entry #:hybrid-update-type
-                              #:hybrid-update-value
-                              #:incompatible-settings-exception #:initiated-by
-                              #:insufficient-permissions-exception
-                              #:invalid-certificate-exception
-                              #:invalid-client-auth-status-exception
-                              #:invalid-ldapsstatus-exception
-                              #:invalid-next-token-exception
-                              #:invalid-parameter-exception
-                              #:invalid-password-exception
-                              #:invalid-target-exception #:ip-addr #:ip-addrs
-                              #:ip-route #:ip-route-info
-                              #:ip-route-limit-exceeded-exception
+                              #:hybrid-update-value #:initiated-by #:ip-addr
+                              #:ip-addrs #:ip-route #:ip-route-info
                               #:ip-route-status-msg #:ip-route-status-reason
                               #:ip-routes #:ip-routes-info #:ldapssetting-info
                               #:ldapssettings-info #:ldapsstatus
                               #:ldapsstatus-reason #:ldapstype
                               #:last-update-date-time #:last-updated-date-time
                               #:launch-time #:ldif-content #:limit
-                              #:list-adassessments #:list-adassessments-request
-                              #:list-adassessments-result #:list-certificates
-                              #:list-certificates-request
-                              #:list-certificates-result #:list-ip-routes
-                              #:list-ip-routes-request #:list-ip-routes-result
-                              #:list-log-subscriptions
-                              #:list-log-subscriptions-request
-                              #:list-log-subscriptions-result
-                              #:list-schema-extensions
-                              #:list-schema-extensions-request
-                              #:list-schema-extensions-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-result #:log-group-name
-                              #:log-subscription #:log-subscriptions
+                              #:list-adassessments #:list-certificates
+                              #:list-ip-routes #:list-log-subscriptions
+                              #:list-schema-extensions #:list-tags-for-resource
+                              #:log-group-name #:log-subscription
+                              #:log-subscriptions
                               #:manual-snapshots-limit-reached #:next-token
-                              #:no-available-certificate-exception #:notes
-                              #:ocspurl #:osupdate-settings #:osversion
+                              #:notes #:ocspurl #:osupdate-settings #:osversion
                               #:organizational-unit-dn
-                              #:organizations-exception
                               #:owner-directory-description #:page-limit
                               #:password #:port-number
                               #:radius-authentication-protocol
                               #:radius-display-label #:radius-retries
                               #:radius-settings #:radius-shared-secret
                               #:radius-status #:radius-timeout
-                              #:region-description
-                              #:region-limit-exceeded-exception #:region-name
-                              #:region-type #:regions-description
-                              #:regions-info #:register-certificate
-                              #:register-certificate-request
-                              #:register-certificate-result
-                              #:register-event-topic
-                              #:register-event-topic-request
-                              #:register-event-topic-result
-                              #:reject-shared-directory
-                              #:reject-shared-directory-request
-                              #:reject-shared-directory-result
-                              #:remote-domain-name #:remote-domain-names
-                              #:remove-ip-routes #:remove-ip-routes-request
-                              #:remove-ip-routes-result #:remove-region
-                              #:remove-region-request #:remove-region-result
-                              #:remove-tags-from-resource
-                              #:remove-tags-from-resource-request
-                              #:remove-tags-from-resource-result
+                              #:region-description #:region-name #:region-type
+                              #:regions-description #:regions-info
+                              #:register-certificate #:register-event-topic
+                              #:reject-shared-directory #:remote-domain-name
+                              #:remote-domain-names #:remove-ip-routes
+                              #:remove-region #:remove-tags-from-resource
                               #:replication-scope #:request-id
-                              #:reset-user-password
-                              #:reset-user-password-request
-                              #:reset-user-password-result #:resource-id
-                              #:restore-from-snapshot
-                              #:restore-from-snapshot-request
-                              #:restore-from-snapshot-result #:sid
+                              #:reset-user-password #:resource-id
+                              #:restore-from-snapshot #:sid
                               #:schema-extension-id #:schema-extension-info
                               #:schema-extension-status
                               #:schema-extension-status-reason
                               #:schema-extensions-info #:secret-arn
                               #:security-group-id #:security-group-ids
-                              #:selective-auth #:server #:servers
-                              #:service-exception #:setting #:setting-entries
-                              #:setting-entry #:settings #:share-directory
-                              #:share-directory-request
-                              #:share-directory-result
-                              #:share-limit-exceeded-exception #:share-method
-                              #:share-status #:share-target
-                              #:shared-directories #:shared-directory
-                              #:snapshot #:snapshot-id #:snapshot-ids
-                              #:snapshot-limit-exceeded-exception
-                              #:snapshot-limits #:snapshot-name
+                              #:selective-auth #:server #:servers #:setting
+                              #:setting-entries #:setting-entry #:settings
+                              #:share-directory #:share-method #:share-status
+                              #:share-target #:shared-directories
+                              #:shared-directory #:snapshot #:snapshot-id
+                              #:snapshot-ids #:snapshot-limits #:snapshot-name
                               #:snapshot-status #:snapshot-type #:snapshots
                               #:sso-enabled #:stage-reason #:start-adassessment
-                              #:start-adassessment-request
-                              #:start-adassessment-result #:start-date-time
-                              #:start-schema-extension
-                              #:start-schema-extension-request
-                              #:start-schema-extension-result #:start-time
-                              #:state-last-updated-date-time #:subnet-id
-                              #:subnet-ids #:subscription-created-date-time
-                              #:tag #:tag-key #:tag-keys
-                              #:tag-limit-exceeded-exception #:tag-value #:tags
-                              #:target-id #:target-type #:topic-arn
-                              #:topic-name #:topic-names #:topic-status #:trust
+                              #:start-date-time #:start-schema-extension
+                              #:start-time #:state-last-updated-date-time
+                              #:subnet-id #:subnet-ids
+                              #:subscription-created-date-time #:tag #:tag-key
+                              #:tag-keys #:tag-value #:tags #:target-id
+                              #:target-type #:topic-arn #:topic-name
+                              #:topic-names #:topic-status #:trust
                               #:trust-direction #:trust-id #:trust-ids
                               #:trust-password #:trust-state
                               #:trust-state-reason #:trust-type #:trusts
-                              #:unshare-directory #:unshare-directory-request
-                              #:unshare-directory-result #:unshare-target
-                              #:unsupported-operation-exception
-                              #:unsupported-settings-exception
+                              #:unshare-directory #:unshare-target
                               #:update-activities
                               #:update-conditional-forwarder
-                              #:update-conditional-forwarder-request
-                              #:update-conditional-forwarder-result
-                              #:update-directory-setup
-                              #:update-directory-setup-request
-                              #:update-directory-setup-result
-                              #:update-hybrid-ad #:update-hybrid-adrequest
-                              #:update-hybrid-adresult #:update-info-entry
+                              #:update-directory-setup #:update-hybrid-ad
+                              #:update-info-entry
                               #:update-number-of-domain-controllers
-                              #:update-number-of-domain-controllers-request
-                              #:update-number-of-domain-controllers-result
-                              #:update-radius #:update-radius-request
-                              #:update-radius-result
+                              #:update-radius
                               #:update-security-group-for-directory-controllers
-                              #:update-settings #:update-settings-request
-                              #:update-settings-result #:update-status
+                              #:update-settings #:update-status
                               #:update-status-reason #:update-trust
-                              #:update-trust-request #:update-trust-result
                               #:update-type #:update-value #:use-same-username
-                              #:user-does-not-exist-exception #:user-name
-                              #:user-password #:verify-trust
-                              #:verify-trust-request #:verify-trust-result
+                              #:user-name #:user-password #:verify-trust
                               #:vpc-id))
 (common-lisp:in-package #:pira/directory-service)
 

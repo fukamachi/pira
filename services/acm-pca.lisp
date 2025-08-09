@@ -14,18 +14,11 @@
                               #:certificate-authority-usage-mode
                               #:certificate-body #:certificate-body-blob
                               #:certificate-chain #:certificate-chain-blob
-                              #:certificate-mismatch-exception
                               #:certificate-policy-list #:cname-string
-                              #:concurrent-modification-exception
                               #:country-code-string
                               #:create-certificate-authority
                               #:create-certificate-authority-audit-report
-                              #:create-certificate-authority-audit-report-request
-                              #:create-certificate-authority-audit-report-response
-                              #:create-certificate-authority-request
-                              #:create-certificate-authority-response
-                              #:create-permission #:create-permission-request
-                              #:crl-configuration
+                              #:create-permission #:crl-configuration
                               #:crl-distribution-point-extension-configuration
                               #:crl-path-string #:crl-type #:csr-blob
                               #:csr-body #:csr-extensions #:custom-attribute
@@ -33,78 +26,39 @@
                               #:custom-extension-list
                               #:custom-object-identifier
                               #:delete-certificate-authority
-                              #:delete-certificate-authority-request
-                              #:delete-permission #:delete-permission-request
-                              #:delete-policy #:delete-policy-request
+                              #:delete-permission #:delete-policy
                               #:describe-certificate-authority
                               #:describe-certificate-authority-audit-report
-                              #:describe-certificate-authority-audit-report-request
-                              #:describe-certificate-authority-audit-report-response
-                              #:describe-certificate-authority-request
-                              #:describe-certificate-authority-response
                               #:edi-party-name #:extended-key-usage
                               #:extended-key-usage-list
                               #:extended-key-usage-type #:extensions
                               #:failure-reason #:general-name
                               #:general-name-list #:get-certificate
                               #:get-certificate-authority-certificate
-                              #:get-certificate-authority-certificate-request
-                              #:get-certificate-authority-certificate-response
-                              #:get-certificate-authority-csr
-                              #:get-certificate-authority-csr-request
-                              #:get-certificate-authority-csr-response
-                              #:get-certificate-request
-                              #:get-certificate-response #:get-policy
-                              #:get-policy-request #:get-policy-response
+                              #:get-certificate-authority-csr #:get-policy
                               #:idempotency-token
                               #:import-certificate-authority-certificate
-                              #:import-certificate-authority-certificate-request
-                              #:integer1to5000 #:invalid-args-exception
-                              #:invalid-arn-exception
-                              #:invalid-next-token-exception
-                              #:invalid-policy-exception
-                              #:invalid-request-exception
-                              #:invalid-state-exception #:invalid-tag-exception
-                              #:issue-certificate #:issue-certificate-request
-                              #:issue-certificate-response #:key-algorithm
-                              #:key-storage-security-standard #:key-usage
-                              #:limit-exceeded-exception
-                              #:list-certificate-authorities
-                              #:list-certificate-authorities-request
-                              #:list-certificate-authorities-response
-                              #:list-permissions #:list-permissions-request
-                              #:list-permissions-response #:list-tags
-                              #:list-tags-request #:list-tags-response
-                              #:lockout-prevented-exception
-                              #:malformed-csrexception
-                              #:malformed-certificate-exception #:max-results
+                              #:integer1to5000 #:issue-certificate
+                              #:key-algorithm #:key-storage-security-standard
+                              #:key-usage #:list-certificate-authorities
+                              #:list-permissions #:list-tags #:max-results
                               #:next-token #:ocsp-configuration #:other-name
                               #:permanent-deletion-time-in-days #:permission
-                              #:permission-already-exists-exception
                               #:permission-list #:policy-information
                               #:policy-qualifier-id #:policy-qualifier-info
                               #:policy-qualifier-info-list #:positive-long
-                              #:principal #:put-policy #:put-policy-request
-                              #:qualifier #:request-already-processed-exception
-                              #:request-failed-exception
-                              #:request-in-progress-exception
-                              #:resource-not-found-exception #:resource-owner
-                              #:restore-certificate-authority
-                              #:restore-certificate-authority-request
+                              #:principal #:put-policy #:qualifier
+                              #:resource-owner #:restore-certificate-authority
                               #:revocation-configuration #:revocation-reason
-                              #:revoke-certificate #:revoke-certificate-request
-                              #:s3bucket-name #:s3bucket-name3to255 #:s3key
-                              #:s3object-acl #:signing-algorithm #:string
-                              #:string128 #:string16 #:string1to256 #:string253
-                              #:string256 #:string3 #:string39 #:string40
-                              #:string5 #:string64 #:tstamp #:tag
-                              #:tag-certificate-authority
-                              #:tag-certificate-authority-request #:tag-key
-                              #:tag-list #:tag-value #:too-many-tags-exception
-                              #:untag-certificate-authority
-                              #:untag-certificate-authority-request
-                              #:update-certificate-authority
-                              #:update-certificate-authority-request #:validity
+                              #:revoke-certificate #:s3bucket-name
+                              #:s3bucket-name3to255 #:s3key #:s3object-acl
+                              #:signing-algorithm #:string #:string128
+                              #:string16 #:string1to256 #:string253 #:string256
+                              #:string3 #:string39 #:string40 #:string5
+                              #:string64 #:tstamp #:tag
+                              #:tag-certificate-authority #:tag-key #:tag-list
+                              #:tag-value #:untag-certificate-authority
+                              #:update-certificate-authority #:validity
                               #:validity-period-type))
 (common-lisp:in-package #:pira/acm-pca)
 

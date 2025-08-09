@@ -5,8 +5,7 @@
                               #:access-control-configuration-summary
                               #:access-control-configuration-summary-list
                               #:access-control-list-configuration
-                              #:access-denied-exception #:acl-configuration
-                              #:additional-result-attribute
+                              #:acl-configuration #:additional-result-attribute
                               #:additional-result-attribute-list
                               #:additional-result-attribute-value
                               #:additional-result-attribute-value-type
@@ -14,12 +13,8 @@
                               #:amazon-resource-name
                               #:associate-entities-to-experience
                               #:associate-entities-to-experience-failed-entity-list
-                              #:associate-entities-to-experience-request
-                              #:associate-entities-to-experience-response
                               #:associate-entity-list
                               #:associate-personas-to-entities
-                              #:associate-personas-to-entities-request
-                              #:associate-personas-to-entities-response
                               #:attribute-filter #:attribute-filter-list
                               #:attribute-suggestions-describe-config
                               #:attribute-suggestions-get-config
@@ -29,35 +24,26 @@
                               #:basic-authentication-configuration
                               #:basic-authentication-configuration-list
                               #:batch-delete-document
-                              #:batch-delete-document-request
-                              #:batch-delete-document-response
                               #:batch-delete-document-response-failed-document
                               #:batch-delete-document-response-failed-documents
                               #:batch-delete-featured-results-set
                               #:batch-delete-featured-results-set-error
                               #:batch-delete-featured-results-set-errors
-                              #:batch-delete-featured-results-set-request
-                              #:batch-delete-featured-results-set-response
                               #:batch-get-document-status
-                              #:batch-get-document-status-request
-                              #:batch-get-document-status-response
                               #:batch-get-document-status-response-error
                               #:batch-get-document-status-response-errors
-                              #:batch-put-document #:batch-put-document-request
-                              #:batch-put-document-response
+                              #:batch-put-document
                               #:batch-put-document-response-failed-document
                               #:batch-put-document-response-failed-documents
                               #:blob #:boolean #:box-configuration
                               #:capacity-units-configuration
                               #:change-detecting-columns #:claim-regex
-                              #:clear-query-suggestions
-                              #:clear-query-suggestions-request
-                              #:click-feedback #:click-feedback-list
-                              #:client-token-name #:collapse-configuration
+                              #:clear-query-suggestions #:click-feedback
+                              #:click-feedback-list #:client-token-name
+                              #:collapse-configuration
                               #:collapsed-result-detail #:column-configuration
                               #:column-name #:condition-operator
-                              #:conflict-exception #:conflicting-item
-                              #:conflicting-items
+                              #:conflicting-item #:conflicting-items
                               #:confluence-attachment-configuration
                               #:confluence-attachment-field-mappings-list
                               #:confluence-attachment-field-name
@@ -83,23 +69,11 @@
                               #:content-type #:correction #:correction-list
                               #:crawl-depth
                               #:create-access-control-configuration
-                              #:create-access-control-configuration-request
-                              #:create-access-control-configuration-response
-                              #:create-data-source #:create-data-source-request
-                              #:create-data-source-response #:create-experience
-                              #:create-experience-request
-                              #:create-experience-response #:create-faq
-                              #:create-faq-request #:create-faq-response
-                              #:create-featured-results-set
-                              #:create-featured-results-set-request
-                              #:create-featured-results-set-response
-                              #:create-index #:create-index-request
-                              #:create-index-response
+                              #:create-data-source #:create-experience
+                              #:create-faq #:create-featured-results-set
+                              #:create-index
                               #:create-query-suggestions-block-list
-                              #:create-query-suggestions-block-list-request
-                              #:create-query-suggestions-block-list-response
-                              #:create-thesaurus #:create-thesaurus-request
-                              #:create-thesaurus-response
+                              #:create-thesaurus
                               #:custom-document-enrichment-configuration
                               #:data-source-configuration
                               #:data-source-date-field-format
@@ -123,51 +97,22 @@
                               #:database-configuration #:database-engine-type
                               #:database-host #:database-name #:database-port
                               #:delete-access-control-configuration
-                              #:delete-access-control-configuration-request
-                              #:delete-access-control-configuration-response
-                              #:delete-data-source #:delete-data-source-request
-                              #:delete-experience #:delete-experience-request
-                              #:delete-experience-response #:delete-faq
-                              #:delete-faq-request #:delete-index
-                              #:delete-index-request #:delete-principal-mapping
-                              #:delete-principal-mapping-request
+                              #:delete-data-source #:delete-experience
+                              #:delete-faq #:delete-index
+                              #:delete-principal-mapping
                               #:delete-query-suggestions-block-list
-                              #:delete-query-suggestions-block-list-request
-                              #:delete-thesaurus #:delete-thesaurus-request
+                              #:delete-thesaurus
                               #:describe-access-control-configuration
-                              #:describe-access-control-configuration-request
-                              #:describe-access-control-configuration-response
-                              #:describe-data-source
-                              #:describe-data-source-request
-                              #:describe-data-source-response
-                              #:describe-experience
-                              #:describe-experience-request
-                              #:describe-experience-response #:describe-faq
-                              #:describe-faq-request #:describe-faq-response
-                              #:describe-featured-results-set
-                              #:describe-featured-results-set-request
-                              #:describe-featured-results-set-response
-                              #:describe-index #:describe-index-request
-                              #:describe-index-response
-                              #:describe-principal-mapping
-                              #:describe-principal-mapping-request
-                              #:describe-principal-mapping-response
+                              #:describe-data-source #:describe-experience
+                              #:describe-faq #:describe-featured-results-set
+                              #:describe-index #:describe-principal-mapping
                               #:describe-query-suggestions-block-list
-                              #:describe-query-suggestions-block-list-request
-                              #:describe-query-suggestions-block-list-response
                               #:describe-query-suggestions-config
-                              #:describe-query-suggestions-config-request
-                              #:describe-query-suggestions-config-response
-                              #:describe-thesaurus #:describe-thesaurus-request
-                              #:describe-thesaurus-response #:description
+                              #:describe-thesaurus #:description
                               #:disassociate-entities-from-experience
-                              #:disassociate-entities-from-experience-request
-                              #:disassociate-entities-from-experience-response
                               #:disassociate-entity-list
-                              #:disassociate-personas-from-entities
-                              #:disassociate-personas-from-entities-request
-                              #:disassociate-personas-from-entities-response
-                              #:document #:document-attribute
+                              #:disassociate-personas-from-entities #:document
+                              #:document-attribute
                               #:document-attribute-condition
                               #:document-attribute-key
                               #:document-attribute-key-list
@@ -217,7 +162,6 @@
                               #:featured-document-missing-list
                               #:featured-document-with-metadata
                               #:featured-document-with-metadata-list
-                              #:featured-results-conflict-exception
                               #:featured-results-item
                               #:featured-results-item-list
                               #:featured-results-set
@@ -231,10 +175,7 @@
                               #:feedback-token #:file-system-id #:folder-id
                               #:folder-id-list #:fsx-configuration
                               #:fsx-file-system-type #:get-query-suggestions
-                              #:get-query-suggestions-request
-                              #:get-query-suggestions-response #:get-snapshots
-                              #:get-snapshots-request #:get-snapshots-response
-                              #:git-hub-configuration
+                              #:get-snapshots #:git-hub-configuration
                               #:git-hub-document-crawl-properties
                               #:google-drive-configuration
                               #:group-attribute-field #:group-id
@@ -254,46 +195,22 @@
                               #:indexed-text-documents-count
                               #:inline-custom-document-enrichment-configuration
                               #:inline-custom-document-enrichment-configuration-list
-                              #:integer #:internal-server-exception #:interval
-                              #:invalid-request-exception #:issue-sub-entity
+                              #:integer #:interval #:issue-sub-entity
                               #:issue-sub-entity-filter #:issue-type #:issuer
                               #:jira-account-url #:jira-configuration
                               #:jira-status #:json-token-type-configuration
                               #:jwt-token-type-configuration #:key-location
                               #:kms-key-id #:lambda-arn #:language-code
                               #:list-access-control-configurations
-                              #:list-access-control-configurations-request
-                              #:list-access-control-configurations-response
-                              #:list-data-source-sync-jobs
-                              #:list-data-source-sync-jobs-request
-                              #:list-data-source-sync-jobs-response
-                              #:list-data-sources #:list-data-sources-request
-                              #:list-data-sources-response
-                              #:list-entity-personas
-                              #:list-entity-personas-request
-                              #:list-entity-personas-response
-                              #:list-experience-entities
-                              #:list-experience-entities-request
-                              #:list-experience-entities-response
-                              #:list-experiences #:list-experiences-request
-                              #:list-experiences-response #:list-faqs
-                              #:list-faqs-request #:list-faqs-response
+                              #:list-data-source-sync-jobs #:list-data-sources
+                              #:list-entity-personas #:list-experience-entities
+                              #:list-experiences #:list-faqs
                               #:list-featured-results-sets
-                              #:list-featured-results-sets-request
-                              #:list-featured-results-sets-response
                               #:list-groups-older-than-ordering-id
-                              #:list-groups-older-than-ordering-id-request
-                              #:list-groups-older-than-ordering-id-response
-                              #:list-indices #:list-indices-request
-                              #:list-indices-response #:list-of-group-summaries
+                              #:list-indices #:list-of-group-summaries
                               #:list-query-suggestions-block-lists
-                              #:list-query-suggestions-block-lists-request
-                              #:list-query-suggestions-block-lists-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-thesauri
-                              #:list-thesauri-request #:list-thesauri-response
-                              #:long #:look-back-period
+                              #:list-tags-for-resource #:list-thesauri #:long
+                              #:look-back-period
                               #:max-content-size-per-page-in-mega-bytes
                               #:max-links-per-page
                               #:max-results-integer-for-list-access-control-configurations-request
@@ -324,11 +241,9 @@
                               #:principal-ordering-id #:principal-type
                               #:private-channel-filter #:project
                               #:proxy-configuration #:public-channel-filter
-                              #:put-principal-mapping
-                              #:put-principal-mapping-request #:query
+                              #:put-principal-mapping #:query
                               #:query-capacity-unit #:query-id
                               #:query-identifiers-enclosing-option
-                              #:query-request #:query-result
                               #:query-result-format #:query-result-item
                               #:query-result-item-list #:query-result-type
                               #:query-suggestions-block-list-id
@@ -341,13 +256,8 @@
                               #:quip-configuration #:read-access-type
                               #:relevance #:relevance-feedback
                               #:relevance-feedback-list #:relevance-type
-                              #:repository-name #:repository-names
-                              #:resource-already-exist-exception
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:resource-unavailable-exception #:result-id
-                              #:retrieve #:retrieve-request #:retrieve-result
-                              #:retrieve-result-item
+                              #:repository-name #:repository-names #:result-id
+                              #:retrieve #:retrieve-result-item
                               #:retrieve-result-item-list #:role-arn
                               #:s3bucket-name #:s3data-source-configuration
                               #:s3object-key #:s3path #:saa-sconfiguration
@@ -377,7 +287,6 @@
                               #:service-now-knowledge-article-configuration
                               #:service-now-knowledge-article-filter-query
                               #:service-now-service-catalog-configuration
-                              #:service-quota-exceeded-exception
                               #:share-point-configuration
                               #:share-point-online-authentication-type
                               #:share-point-url-list #:share-point-version
@@ -393,15 +302,12 @@
                               #:spell-corrected-query-list
                               #:spell-correction-configuration
                               #:sql-configuration #:start-data-source-sync-job
-                              #:start-data-source-sync-job-request
-                              #:start-data-source-sync-job-response #:status
-                              #:stop-data-source-sync-job
-                              #:stop-data-source-sync-job-request
+                              #:status #:stop-data-source-sync-job
                               #:storage-capacity-unit #:string #:string-list
-                              #:submit-feedback #:submit-feedback-request
-                              #:subnet-id #:subnet-id-list #:suggestable-config
-                              #:suggestable-config-list #:suggested-query-text
-                              #:suggestion #:suggestion-highlight
+                              #:submit-feedback #:subnet-id #:subnet-id-list
+                              #:suggestable-config #:suggestable-config-list
+                              #:suggested-query-text #:suggestion
+                              #:suggestion-highlight
                               #:suggestion-highlight-list #:suggestion-list
                               #:suggestion-query-text
                               #:suggestion-text-with-highlights
@@ -409,44 +315,31 @@
                               #:suggestion-value #:table-cell #:table-cell-list
                               #:table-excerpt #:table-name #:table-row
                               #:table-row-list #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:team-id
+                              #:tag-list #:tag-resource #:tag-value #:team-id
                               #:template #:template-configuration
                               #:tenant-domain #:text-document-statistics
                               #:text-with-highlights #:thesaurus-id
                               #:thesaurus-name #:thesaurus-status
                               #:thesaurus-summary #:thesaurus-summary-items
-                              #:throttling-exception #:time-range #:timestamp
-                              #:title #:token
+                              #:time-range #:timestamp #:title #:token
                               #:top-document-attribute-value-count-pairs-size
-                              #:type #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:type #:untag-resource
                               #:update-access-control-configuration
-                              #:update-access-control-configuration-request
-                              #:update-access-control-configuration-response
-                              #:update-data-source #:update-data-source-request
-                              #:update-experience #:update-experience-request
-                              #:update-featured-results-set
-                              #:update-featured-results-set-request
-                              #:update-featured-results-set-response
-                              #:update-index #:update-index-request
+                              #:update-data-source #:update-experience
+                              #:update-featured-results-set #:update-index
                               #:update-query-suggestions-block-list
-                              #:update-query-suggestions-block-list-request
                               #:update-query-suggestions-config
-                              #:update-query-suggestions-config-request
-                              #:update-thesaurus #:update-thesaurus-request
-                              #:url #:urls #:user-account #:user-context
-                              #:user-context-policy
+                              #:update-thesaurus #:url #:urls #:user-account
+                              #:user-context #:user-context-policy
                               #:user-group-resolution-configuration
                               #:user-group-resolution-mode #:user-id
                               #:user-identity-configuration
                               #:user-name-attribute-field
                               #:user-token-configuration
                               #:user-token-configuration-list
-                              #:validation-exception #:value-importance-map
-                              #:value-importance-map-key #:visitor-id
-                              #:vpc-security-group-id #:warning #:warning-code
-                              #:warning-list #:warning-message
+                              #:value-importance-map #:value-importance-map-key
+                              #:visitor-id #:vpc-security-group-id #:warning
+                              #:warning-code #:warning-list #:warning-message
                               #:web-crawler-configuration #:web-crawler-mode
                               #:work-docs-configuration))
 (common-lisp:in-package #:pira/kendra)

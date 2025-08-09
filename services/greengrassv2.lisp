@@ -1,26 +1,17 @@
 (uiop/package:define-package #:pira/greengrassv2 (:use)
-                             (:export #:access-denied-exception
+                             (:export
                               #:associate-client-device-with-core-device-entry
                               #:associate-client-device-with-core-device-entry-list
                               #:associate-client-device-with-core-device-error-entry
                               #:associate-client-device-with-core-device-error-list
                               #:associate-service-role-to-account
-                              #:associate-service-role-to-account-request
-                              #:associate-service-role-to-account-response
                               #:associated-client-device
                               #:associated-client-device-list
                               #:batch-associate-client-device-with-core-device
-                              #:batch-associate-client-device-with-core-device-request
-                              #:batch-associate-client-device-with-core-device-response
                               #:batch-disassociate-client-device-from-core-device
-                              #:batch-disassociate-client-device-from-core-device-request
-                              #:batch-disassociate-client-device-from-core-device-response
-                              #:cpu #:cancel-deployment
-                              #:cancel-deployment-request
-                              #:cancel-deployment-response
-                              #:client-token-string #:cloud-component-state
-                              #:cloud-component-status #:component
-                              #:component-arn #:component-candidate
+                              #:cpu #:cancel-deployment #:client-token-string
+                              #:cloud-component-state #:cloud-component-status
+                              #:component #:component-arn #:component-candidate
                               #:component-candidate-list
                               #:component-configuration-path
                               #:component-configuration-path-list
@@ -38,22 +29,15 @@
                               #:component-version-list-item
                               #:component-version-requirement-map
                               #:component-version-string
-                              #:component-visibility-scope #:conflict-exception
-                              #:connectivity-info #:core-device
-                              #:core-device-architecture-string
+                              #:component-visibility-scope #:connectivity-info
+                              #:core-device #:core-device-architecture-string
                               #:core-device-platform-string
                               #:core-device-runtime-string #:core-device-status
                               #:core-device-thing-name #:core-devices-list
-                              #:create-component-version
-                              #:create-component-version-request
-                              #:create-component-version-response
-                              #:create-deployment #:create-deployment-request
-                              #:create-deployment-response
+                              #:create-component-version #:create-deployment
                               #:default-max-results #:delete-component
-                              #:delete-component-request #:delete-core-device
-                              #:delete-core-device-request #:delete-deployment
-                              #:delete-deployment-request #:deployment
-                              #:deployment-component-update-policy
+                              #:delete-core-device #:delete-deployment
+                              #:deployment #:deployment-component-update-policy
                               #:deployment-component-update-policy-action
                               #:deployment-configuration-validation-policy
                               #:deployment-failure-handling-policy
@@ -62,16 +46,12 @@
                               #:deployment-list #:deployment-name
                               #:deployment-name-string #:deployment-policies
                               #:deployment-status #:describe-component
-                              #:describe-component-request
-                              #:describe-component-response #:description
-                              #:description-string
+                              #:description #:description-string
                               #:disassociate-client-device-from-core-device-entry
                               #:disassociate-client-device-from-core-device-entry-list
                               #:disassociate-client-device-from-core-device-error-entry
                               #:disassociate-client-device-from-core-device-error-list
                               #:disassociate-service-role-from-account
-                              #:disassociate-service-role-from-account-request
-                              #:disassociate-service-role-from-account-response
                               #:effective-deployment
                               #:effective-deployment-error-code
                               #:effective-deployment-error-stack
@@ -81,29 +61,17 @@
                               #:effective-deployment-status-details
                               #:effective-deployments-list #:file-system-path
                               #:ggcversion #:generic-v2arn #:get-component
-                              #:get-component-request #:get-component-response
                               #:get-component-version-artifact
-                              #:get-component-version-artifact-request
-                              #:get-component-version-artifact-response
-                              #:get-connectivity-info
-                              #:get-connectivity-info-request
-                              #:get-connectivity-info-response
-                              #:get-core-device #:get-core-device-request
-                              #:get-core-device-response #:get-deployment
-                              #:get-deployment-request
-                              #:get-deployment-response
-                              #:get-service-role-for-account
-                              #:get-service-role-for-account-request
-                              #:get-service-role-for-account-response
+                              #:get-connectivity-info #:get-core-device
+                              #:get-deployment #:get-service-role-for-account
                               #:greengrass-v2 #:installed-component
                               #:installed-component-lifecycle-state
                               #:installed-component-lifecycle-status-code
                               #:installed-component-lifecycle-status-code-list
                               #:installed-component-list
                               #:installed-component-topology-filter
-                              #:internal-server-exception #:io-tjob-arn
-                              #:io-tjob-abort-action #:io-tjob-abort-config
-                              #:io-tjob-abort-criteria
+                              #:io-tjob-arn #:io-tjob-abort-action
+                              #:io-tjob-abort-config #:io-tjob-abort-criteria
                               #:io-tjob-abort-criteria-list
                               #:io-tjob-abort-threshold-percentage
                               #:io-tjob-execution-failure-type
@@ -133,51 +101,25 @@
                               #:lambda-volume-list #:lambda-volume-mount
                               #:lifecycle-state-details
                               #:list-client-devices-associated-with-core-device
-                              #:list-client-devices-associated-with-core-device-request
-                              #:list-client-devices-associated-with-core-device-response
-                              #:list-component-versions
-                              #:list-component-versions-request
-                              #:list-component-versions-response
-                              #:list-components #:list-components-request
-                              #:list-components-response #:list-core-devices
-                              #:list-core-devices-request
-                              #:list-core-devices-response #:list-deployments
-                              #:list-deployments-request
-                              #:list-deployments-response
+                              #:list-component-versions #:list-components
+                              #:list-core-devices #:list-deployments
                               #:list-effective-deployments
-                              #:list-effective-deployments-request
-                              #:list-effective-deployments-response
                               #:list-installed-components
-                              #:list-installed-components-request
-                              #:list-installed-components-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:memory
+                              #:list-tags-for-resource #:memory
                               #:next-token-string #:non-empty-string
                               #:nullable-string #:optional-boolean
                               #:optional-integer #:platform-attributes-map
                               #:port-number-int #:publisher-string #:reason
                               #:recipe-blob #:recipe-output-format
-                              #:request-already-in-progress-exception
                               #:resolve-component-candidates
-                              #:resolve-component-candidates-request
-                              #:resolve-component-candidates-response
                               #:resolved-component-version
                               #:resolved-component-versions-list
-                              #:resource-not-found-exception
-                              #:retry-after-seconds #:s3endpoint-type
-                              #:service-quota-exceeded-exception #:string
+                              #:retry-after-seconds #:s3endpoint-type #:string
                               #:string-map #:system-resource-limits #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:target-arn #:thing-group-arn
-                              #:throttling-exception #:timestamp #:topic-string
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:timestamp #:topic-string #:untag-resource
                               #:update-connectivity-info
-                              #:update-connectivity-info-request
-                              #:update-connectivity-info-response
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vendor-guidance

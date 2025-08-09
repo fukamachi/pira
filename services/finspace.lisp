@@ -1,7 +1,7 @@
 (uiop/package:define-package #:pira/finspace (:use)
                              (:export #:awshabanero-management-service
-                              #:access-denied-exception #:attached-cluster-list
-                              #:attribute-map #:auto-scaling-configuration
+                              #:attached-cluster-list #:attribute-map
+                              #:auto-scaling-configuration
                               #:auto-scaling-metric
                               #:auto-scaling-metric-target
                               #:availability-zone-id #:availability-zone-ids
@@ -9,54 +9,19 @@
                               #:change-request #:change-requests #:change-type
                               #:changeset-id #:changeset-status #:client-token
                               #:client-token-string #:cluster-node-count
-                              #:code-configuration #:conflict-exception
-                              #:cooldown-time #:cpu-count #:create-environment
-                              #:create-environment-request
-                              #:create-environment-response
-                              #:create-kx-changeset
-                              #:create-kx-changeset-request
-                              #:create-kx-changeset-response
-                              #:create-kx-cluster #:create-kx-cluster-request
-                              #:create-kx-cluster-response #:create-kx-database
-                              #:create-kx-database-request
-                              #:create-kx-database-response
-                              #:create-kx-dataview #:create-kx-dataview-request
-                              #:create-kx-dataview-response
-                              #:create-kx-environment
-                              #:create-kx-environment-request
-                              #:create-kx-environment-response
-                              #:create-kx-scaling-group
-                              #:create-kx-scaling-group-request
-                              #:create-kx-scaling-group-response
-                              #:create-kx-user #:create-kx-user-request
-                              #:create-kx-user-response #:create-kx-volume
-                              #:create-kx-volume-request
-                              #:create-kx-volume-response
-                              #:custom-dnsconfiguration #:custom-dnsserver
-                              #:data-bundle-arn #:data-bundle-arns
-                              #:database-arn #:database-name #:db-path
-                              #:db-paths #:delete-environment
-                              #:delete-environment-request
-                              #:delete-environment-response #:delete-kx-cluster
-                              #:delete-kx-cluster-node
-                              #:delete-kx-cluster-node-request
-                              #:delete-kx-cluster-node-response
-                              #:delete-kx-cluster-request
-                              #:delete-kx-cluster-response #:delete-kx-database
-                              #:delete-kx-database-request
-                              #:delete-kx-database-response
-                              #:delete-kx-dataview #:delete-kx-dataview-request
-                              #:delete-kx-dataview-response
-                              #:delete-kx-environment
-                              #:delete-kx-environment-request
-                              #:delete-kx-environment-response
-                              #:delete-kx-scaling-group
-                              #:delete-kx-scaling-group-request
-                              #:delete-kx-scaling-group-response
-                              #:delete-kx-user #:delete-kx-user-request
-                              #:delete-kx-user-response #:delete-kx-volume
-                              #:delete-kx-volume-request
-                              #:delete-kx-volume-response #:description
+                              #:code-configuration #:cooldown-time #:cpu-count
+                              #:create-environment #:create-kx-changeset
+                              #:create-kx-cluster #:create-kx-database
+                              #:create-kx-dataview #:create-kx-environment
+                              #:create-kx-scaling-group #:create-kx-user
+                              #:create-kx-volume #:custom-dnsconfiguration
+                              #:custom-dnsserver #:data-bundle-arn
+                              #:data-bundle-arns #:database-arn #:database-name
+                              #:db-path #:db-paths #:delete-environment
+                              #:delete-kx-cluster #:delete-kx-cluster-node
+                              #:delete-kx-database #:delete-kx-dataview
+                              #:delete-kx-environment #:delete-kx-scaling-group
+                              #:delete-kx-user #:delete-kx-volume #:description
                               #:email-id #:environment #:environment-arn
                               #:environment-error-message #:environment-id
                               #:environment-list #:environment-name
@@ -67,31 +32,13 @@
                               #:federation-parameters
                               #:federation-provider-name
                               #:fin-space-taggable-arn #:get-environment
-                              #:get-environment-request
-                              #:get-environment-response #:get-kx-changeset
-                              #:get-kx-changeset-request
-                              #:get-kx-changeset-response #:get-kx-cluster
-                              #:get-kx-cluster-request
-                              #:get-kx-cluster-response
-                              #:get-kx-connection-string
-                              #:get-kx-connection-string-request
-                              #:get-kx-connection-string-response
-                              #:get-kx-database #:get-kx-database-request
-                              #:get-kx-database-response #:get-kx-dataview
-                              #:get-kx-dataview-request
-                              #:get-kx-dataview-response #:get-kx-environment
-                              #:get-kx-environment-request
-                              #:get-kx-environment-response
-                              #:get-kx-scaling-group
-                              #:get-kx-scaling-group-request
-                              #:get-kx-scaling-group-response #:get-kx-user
-                              #:get-kx-user-request #:get-kx-user-response
-                              #:get-kx-volume #:get-kx-volume-request
-                              #:get-kx-volume-response #:ipaddress-type
-                              #:icmp-type-code #:icmp-type-or-code #:id-type
-                              #:initialization-script-file-path
-                              #:internal-server-exception
-                              #:invalid-request-exception #:kms-key-arn
+                              #:get-kx-changeset #:get-kx-cluster
+                              #:get-kx-connection-string #:get-kx-database
+                              #:get-kx-dataview #:get-kx-environment
+                              #:get-kx-scaling-group #:get-kx-user
+                              #:get-kx-volume #:ipaddress-type #:icmp-type-code
+                              #:icmp-type-or-code #:id-type
+                              #:initialization-script-file-path #:kms-key-arn
                               #:kms-key-id #:kx-attached-cluster
                               #:kx-attached-clusters #:kx-az-mode
                               #:kx-cache-storage-configuration
@@ -137,84 +84,42 @@
                               #:kx-user-list #:kx-user-name-string #:kx-volume
                               #:kx-volume-arn #:kx-volume-name
                               #:kx-volume-status #:kx-volume-status-reason
-                              #:kx-volume-type #:kx-volumes
-                              #:limit-exceeded-exception #:list-environments
-                              #:list-environments-request
-                              #:list-environments-response #:list-kx-changesets
-                              #:list-kx-changesets-request
-                              #:list-kx-changesets-response
-                              #:list-kx-cluster-nodes
-                              #:list-kx-cluster-nodes-request
-                              #:list-kx-cluster-nodes-response
-                              #:list-kx-clusters #:list-kx-clusters-request
-                              #:list-kx-clusters-response #:list-kx-databases
-                              #:list-kx-databases-request
-                              #:list-kx-databases-response #:list-kx-dataviews
-                              #:list-kx-dataviews-request
-                              #:list-kx-dataviews-response
-                              #:list-kx-environments
-                              #:list-kx-environments-request
-                              #:list-kx-environments-response
-                              #:list-kx-scaling-groups
-                              #:list-kx-scaling-groups-request
-                              #:list-kx-scaling-groups-response #:list-kx-users
-                              #:list-kx-users-request #:list-kx-users-response
-                              #:list-kx-volumes #:list-kx-volumes-request
-                              #:list-kx-volumes-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:memory-mib #:name-string
+                              #:kx-volume-type #:kx-volumes #:list-environments
+                              #:list-kx-changesets #:list-kx-cluster-nodes
+                              #:list-kx-clusters #:list-kx-databases
+                              #:list-kx-dataviews #:list-kx-environments
+                              #:list-kx-scaling-groups #:list-kx-users
+                              #:list-kx-volumes #:list-tags-for-resource
+                              #:max-results #:memory-mib #:name-string
                               #:network-aclconfiguration #:network-aclentry
                               #:node-count #:node-type #:pagination-token
                               #:port #:port-range #:protocol #:release-label
-                              #:resource-already-exists-exception
-                              #:resource-not-found-exception #:result-limit
-                              #:role-arn #:rule-action #:rule-number #:s3bucket
-                              #:s3key #:s3object-version #:s3path
+                              #:result-limit #:role-arn #:rule-action
+                              #:rule-number #:s3bucket #:s3key
+                              #:s3object-version #:s3path
                               #:saml-metadata-document #:security-group-id-list
                               #:security-group-id-string
                               #:segment-configuration-db-path-list
-                              #:service-quota-exceeded-exception
                               #:signed-kx-connection-string #:sms-domain-url
                               #:subnet-id-list #:subnet-id-string
                               #:superuser-parameters #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception
+                              #:tag-map #:tag-resource #:tag-value
                               #:tickerplant-log-configuration
                               #:tickerplant-log-volumes #:timestamp
                               #:transit-gateway-configuration
                               #:transit-gateway-id #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-environment
-                              #:update-environment-request
-                              #:update-environment-response
+                              #:update-environment
                               #:update-kx-cluster-code-configuration
-                              #:update-kx-cluster-code-configuration-request
-                              #:update-kx-cluster-code-configuration-response
                               #:update-kx-cluster-databases
-                              #:update-kx-cluster-databases-request
-                              #:update-kx-cluster-databases-response
-                              #:update-kx-database #:update-kx-database-request
-                              #:update-kx-database-response
-                              #:update-kx-dataview #:update-kx-dataview-request
-                              #:update-kx-dataview-response
+                              #:update-kx-database #:update-kx-dataview
                               #:update-kx-environment
-                              #:update-kx-environment-network
-                              #:update-kx-environment-network-request
-                              #:update-kx-environment-network-response
-                              #:update-kx-environment-request
-                              #:update-kx-environment-response #:update-kx-user
-                              #:update-kx-user-request
-                              #:update-kx-user-response #:update-kx-volume
-                              #:update-kx-volume-request
-                              #:update-kx-volume-response #:valid-cidrblock
+                              #:update-kx-environment-network #:update-kx-user
+                              #:update-kx-volume #:valid-cidrblock
                               #:valid-cidrspace #:valid-hostname
-                              #:valid-ipaddress #:validation-exception
-                              #:version-id #:volume #:volume-name #:volume-type
-                              #:volumes #:vpc-configuration #:vpc-id-string
-                              #:arn #:boolean-value #:dns-status #:num-bytes
+                              #:valid-ipaddress #:version-id #:volume
+                              #:volume-name #:volume-type #:volumes
+                              #:vpc-configuration #:vpc-id-string #:arn
+                              #:boolean-value #:dns-status #:num-bytes
                               #:num-changesets #:num-files
                               #:string-value-length1to255 #:tgw-status #:url
                               #:urn))

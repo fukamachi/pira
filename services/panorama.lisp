@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/panorama (:use)
-                             (:export #:access-denied-exception
-                              #:alternate-software-metadata
+                             (:export #:alternate-software-metadata
                               #:alternate-softwares #:application-instance
                               #:application-instance-arn
                               #:application-instance-health-status
@@ -10,7 +9,6 @@
                               #:application-instance-status-description
                               #:application-instances #:boolean #:bucket
                               #:bucket-name #:certificates #:client-token
-                              #:conflict-exception
                               #:conflict-exception-error-argument
                               #:conflict-exception-error-argument-list
                               #:connection-type #:create-application-instance
@@ -68,9 +66,9 @@
                               #:device-status #:device-type #:dns #:dns-list
                               #:ethernet-payload #:ethernet-status #:hw-address
                               #:image-version #:input-port-list
-                              #:internal-server-exception #:iot-thing-name
-                              #:ip-address #:ip-address-or-server-name #:job
-                              #:job-id #:job-list #:job-resource-tags
+                              #:iot-thing-name #:ip-address
+                              #:ip-address-or-server-name #:job #:job-id
+                              #:job-list #:job-resource-tags
                               #:job-resource-type #:job-tags-list #:job-type
                               #:last-updated-time #:latest-alternate-software
                               #:latest-device-job #:latest-software
@@ -150,10 +148,8 @@
                               #:remove-application-instance-response
                               #:reported-runtime-context-state
                               #:reported-runtime-context-states #:resource-arn
-                              #:resource-not-found-exception
                               #:retry-after-seconds #:runtime-context-name
                               #:runtime-role-arn #:s3location
-                              #:service-quota-exceeded-exception
                               #:signal-application-instance-node-instances
                               #:signal-application-instance-node-instances-request
                               #:signal-application-instance-node-instances-response
@@ -169,7 +165,7 @@
                               #:update-device-metadata
                               #:update-device-metadata-request
                               #:update-device-metadata-response
-                              #:update-progress #:validation-exception
+                              #:update-progress
                               #:validation-exception-error-argument
                               #:validation-exception-error-argument-list
                               #:validation-exception-field

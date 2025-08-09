@@ -1,73 +1,35 @@
 (uiop/package:define-package #:pira/qldb (:use)
                              (:export #:amazon-qldb #:arn #:boolean
-                              #:cancel-journal-kinesis-stream
-                              #:cancel-journal-kinesis-stream-request
-                              #:cancel-journal-kinesis-stream-response
-                              #:create-ledger #:create-ledger-request
-                              #:create-ledger-response #:delete-ledger
-                              #:delete-ledger-request #:deletion-protection
+                              #:cancel-journal-kinesis-stream #:create-ledger
+                              #:delete-ledger #:deletion-protection
                               #:describe-journal-kinesis-stream
-                              #:describe-journal-kinesis-stream-request
-                              #:describe-journal-kinesis-stream-response
-                              #:describe-journal-s3export
-                              #:describe-journal-s3export-request
-                              #:describe-journal-s3export-response
-                              #:describe-ledger #:describe-ledger-request
-                              #:describe-ledger-response #:digest
-                              #:encryption-status #:error-cause #:error-message
-                              #:export-journal-to-s3
-                              #:export-journal-to-s3request
-                              #:export-journal-to-s3response #:export-status
-                              #:get-block #:get-block-request
-                              #:get-block-response #:get-digest
-                              #:get-digest-request #:get-digest-response
-                              #:get-revision #:get-revision-request
-                              #:get-revision-response
-                              #:invalid-parameter-exception #:ion-text
+                              #:describe-journal-s3export #:describe-ledger
+                              #:digest #:encryption-status #:error-cause
+                              #:error-message #:export-journal-to-s3
+                              #:export-status #:get-block #:get-digest
+                              #:get-revision #:ion-text
                               #:journal-kinesis-stream-description
                               #:journal-kinesis-stream-description-list
                               #:journal-s3export-description
                               #:journal-s3export-list #:kinesis-configuration
                               #:kms-key #:ledger-encryption-description
                               #:ledger-list #:ledger-name #:ledger-state
-                              #:ledger-summary #:limit-exceeded-exception
+                              #:ledger-summary
                               #:list-journal-kinesis-streams-for-ledger
-                              #:list-journal-kinesis-streams-for-ledger-request
-                              #:list-journal-kinesis-streams-for-ledger-response
                               #:list-journal-s3exports
                               #:list-journal-s3exports-for-ledger
-                              #:list-journal-s3exports-for-ledger-request
-                              #:list-journal-s3exports-for-ledger-response
-                              #:list-journal-s3exports-request
-                              #:list-journal-s3exports-response #:list-ledgers
-                              #:list-ledgers-request #:list-ledgers-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:next-token #:output-format #:parameter-name
-                              #:permissions-mode
-                              #:resource-already-exists-exception
-                              #:resource-in-use-exception #:resource-name
-                              #:resource-not-found-exception
-                              #:resource-precondition-not-met-exception
-                              #:resource-type #:s3bucket
+                              #:list-ledgers #:list-tags-for-resource
+                              #:max-results #:next-token #:output-format
+                              #:parameter-name #:permissions-mode
+                              #:resource-name #:resource-type #:s3bucket
                               #:s3encryption-configuration
                               #:s3export-configuration
                               #:s3object-encryption-type #:s3prefix
-                              #:stream-journal-to-kinesis
-                              #:stream-journal-to-kinesis-request
-                              #:stream-journal-to-kinesis-response
-                              #:stream-name #:stream-status #:tag-key
-                              #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:timestamp #:unique-id
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-ledger
-                              #:update-ledger-permissions-mode
-                              #:update-ledger-permissions-mode-request
-                              #:update-ledger-permissions-mode-response
-                              #:update-ledger-request #:update-ledger-response
-                              #:value-holder))
+                              #:stream-journal-to-kinesis #:stream-name
+                              #:stream-status #:tag-key #:tag-key-list
+                              #:tag-resource #:tag-value #:tags #:timestamp
+                              #:unique-id #:untag-resource #:update-ledger
+                              #:update-ledger-permissions-mode #:value-holder))
 (common-lisp:in-package #:pira/qldb)
 
 (smithy/sdk/service:define-service amazon-qldb :shape-name "AmazonQLDB"

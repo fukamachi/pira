@@ -3,7 +3,7 @@
                               #:access-control-allow-methods-list
                               #:access-control-allow-origins-list
                               #:access-control-expose-headers-list
-                              #:access-denied #:active-trusted-key-groups
+                              #:active-trusted-key-groups
                               #:active-trusted-signers #:alias-icprecordal
                               #:alias-icprecordals #:alias-list #:aliases
                               #:allowed-methods #:anycast-ip-list
@@ -11,37 +11,25 @@
                               #:anycast-ip-list-name
                               #:anycast-ip-list-summaries
                               #:anycast-ip-list-summary #:anycast-ips
-                              #:associate-alias #:associate-alias-request
+                              #:associate-alias
                               #:associate-distribution-tenant-web-acl
-                              #:associate-distribution-tenant-web-aclrequest
-                              #:associate-distribution-tenant-web-aclresult
                               #:associate-distribution-web-acl
-                              #:associate-distribution-web-aclrequest
-                              #:associate-distribution-web-aclresult
-                              #:aws-account-number-list #:batch-too-large
-                              #:cnamealready-exists #:cache-behavior
+                              #:aws-account-number-list #:cache-behavior
                               #:cache-behavior-list #:cache-behaviors
-                              #:cache-policy #:cache-policy-already-exists
-                              #:cache-policy-config
+                              #:cache-policy #:cache-policy-config
                               #:cache-policy-cookie-behavior
                               #:cache-policy-cookies-config
                               #:cache-policy-header-behavior
-                              #:cache-policy-headers-config
-                              #:cache-policy-in-use #:cache-policy-list
+                              #:cache-policy-headers-config #:cache-policy-list
                               #:cache-policy-query-string-behavior
                               #:cache-policy-query-strings-config
                               #:cache-policy-summary
                               #:cache-policy-summary-list #:cache-policy-type
-                              #:cached-methods
-                              #:cannot-change-immutable-public-key-fields
-                              #:cannot-delete-entity-while-in-use
-                              #:cannot-update-entity-while-in-use #:certificate
+                              #:cached-methods #:certificate
                               #:certificate-source
                               #:certificate-transparency-logging-preference
                               #:cloud-front-origin-access-identity
-                              #:cloud-front-origin-access-identity-already-exists
                               #:cloud-front-origin-access-identity-config
-                              #:cloud-front-origin-access-identity-in-use
                               #:cloud-front-origin-access-identity-list
                               #:cloud-front-origin-access-identity-summary
                               #:cloud-front-origin-access-identity-summary-list
@@ -56,9 +44,7 @@
                               #:content-type-profile-list
                               #:content-type-profiles
                               #:continuous-deployment-policy
-                              #:continuous-deployment-policy-already-exists
                               #:continuous-deployment-policy-config
-                              #:continuous-deployment-policy-in-use
                               #:continuous-deployment-policy-list
                               #:continuous-deployment-policy-summary
                               #:continuous-deployment-policy-summary-list
@@ -67,136 +53,56 @@
                               #:continuous-deployment-single-weight-config
                               #:cookie-name-list #:cookie-names
                               #:cookie-preference #:copy-distribution
-                              #:copy-distribution-request
-                              #:copy-distribution-result
-                              #:create-anycast-ip-list
-                              #:create-anycast-ip-list-request
-                              #:create-anycast-ip-list-result
-                              #:create-cache-policy
-                              #:create-cache-policy-request
-                              #:create-cache-policy-result
+                              #:create-anycast-ip-list #:create-cache-policy
                               #:create-cloud-front-origin-access-identity
-                              #:create-cloud-front-origin-access-identity-request
-                              #:create-cloud-front-origin-access-identity-result
                               #:create-connection-group
-                              #:create-connection-group-request
-                              #:create-connection-group-result
                               #:create-continuous-deployment-policy
-                              #:create-continuous-deployment-policy-request
-                              #:create-continuous-deployment-policy-result
                               #:create-distribution
-                              #:create-distribution-request
-                              #:create-distribution-result
                               #:create-distribution-tenant
-                              #:create-distribution-tenant-request
-                              #:create-distribution-tenant-result
                               #:create-distribution-with-tags
-                              #:create-distribution-with-tags-request
-                              #:create-distribution-with-tags-result
                               #:create-field-level-encryption-config
-                              #:create-field-level-encryption-config-request
-                              #:create-field-level-encryption-config-result
                               #:create-field-level-encryption-profile
-                              #:create-field-level-encryption-profile-request
-                              #:create-field-level-encryption-profile-result
-                              #:create-function #:create-function-request
-                              #:create-function-result #:create-invalidation
+                              #:create-function #:create-invalidation
                               #:create-invalidation-for-distribution-tenant
-                              #:create-invalidation-for-distribution-tenant-request
-                              #:create-invalidation-for-distribution-tenant-result
-                              #:create-invalidation-request
-                              #:create-invalidation-result #:create-key-group
-                              #:create-key-group-request
-                              #:create-key-group-result
-                              #:create-key-value-store
-                              #:create-key-value-store-request
-                              #:create-key-value-store-result
+                              #:create-key-group #:create-key-value-store
                               #:create-monitoring-subscription
-                              #:create-monitoring-subscription-request
-                              #:create-monitoring-subscription-result
                               #:create-origin-access-control
-                              #:create-origin-access-control-request
-                              #:create-origin-access-control-result
                               #:create-origin-request-policy
-                              #:create-origin-request-policy-request
-                              #:create-origin-request-policy-result
-                              #:create-public-key #:create-public-key-request
-                              #:create-public-key-result
-                              #:create-realtime-log-config
-                              #:create-realtime-log-config-request
-                              #:create-realtime-log-config-result
+                              #:create-public-key #:create-realtime-log-config
                               #:create-response-headers-policy
-                              #:create-response-headers-policy-request
-                              #:create-response-headers-policy-result
                               #:create-streaming-distribution
-                              #:create-streaming-distribution-request
-                              #:create-streaming-distribution-result
                               #:create-streaming-distribution-with-tags
-                              #:create-streaming-distribution-with-tags-request
-                              #:create-streaming-distribution-with-tags-result
-                              #:create-vpc-origin #:create-vpc-origin-request
-                              #:create-vpc-origin-result
-                              #:custom-error-response
+                              #:create-vpc-origin #:custom-error-response
                               #:custom-error-response-list
                               #:custom-error-responses #:custom-headers
                               #:custom-origin-config
                               #:customization-action-type #:customizations
                               #:default-cache-behavior #:delete-anycast-ip-list
-                              #:delete-anycast-ip-list-request
                               #:delete-cache-policy
-                              #:delete-cache-policy-request
                               #:delete-cloud-front-origin-access-identity
-                              #:delete-cloud-front-origin-access-identity-request
                               #:delete-connection-group
-                              #:delete-connection-group-request
                               #:delete-continuous-deployment-policy
-                              #:delete-continuous-deployment-policy-request
                               #:delete-distribution
-                              #:delete-distribution-request
                               #:delete-distribution-tenant
-                              #:delete-distribution-tenant-request
                               #:delete-field-level-encryption-config
-                              #:delete-field-level-encryption-config-request
                               #:delete-field-level-encryption-profile
-                              #:delete-field-level-encryption-profile-request
-                              #:delete-function #:delete-function-request
-                              #:delete-key-group #:delete-key-group-request
+                              #:delete-function #:delete-key-group
                               #:delete-key-value-store
-                              #:delete-key-value-store-request
                               #:delete-monitoring-subscription
-                              #:delete-monitoring-subscription-request
-                              #:delete-monitoring-subscription-result
                               #:delete-origin-access-control
-                              #:delete-origin-access-control-request
                               #:delete-origin-request-policy
-                              #:delete-origin-request-policy-request
-                              #:delete-public-key #:delete-public-key-request
-                              #:delete-realtime-log-config
-                              #:delete-realtime-log-config-request
+                              #:delete-public-key #:delete-realtime-log-config
                               #:delete-response-headers-policy
-                              #:delete-response-headers-policy-request
                               #:delete-streaming-distribution
-                              #:delete-streaming-distribution-request
-                              #:delete-vpc-origin #:delete-vpc-origin-request
-                              #:delete-vpc-origin-result #:describe-function
-                              #:describe-function-request
-                              #:describe-function-result
+                              #:delete-vpc-origin #:describe-function
                               #:describe-key-value-store
-                              #:describe-key-value-store-request
-                              #:describe-key-value-store-result
                               #:disassociate-distribution-tenant-web-acl
-                              #:disassociate-distribution-tenant-web-aclrequest
-                              #:disassociate-distribution-tenant-web-aclresult
                               #:disassociate-distribution-web-acl
-                              #:disassociate-distribution-web-aclrequest
-                              #:disassociate-distribution-web-aclresult
-                              #:distribution #:distribution-already-exists
-                              #:distribution-config
+                              #:distribution #:distribution-config
                               #:distribution-config-with-tags
                               #:distribution-id-list
                               #:distribution-id-list-summary
-                              #:distribution-list #:distribution-not-disabled
-                              #:distribution-resource-id
+                              #:distribution-list #:distribution-resource-id
                               #:distribution-resource-type
                               #:distribution-summary
                               #:distribution-summary-list #:distribution-tenant
@@ -210,20 +116,13 @@
                               #:domain-result-list #:domain-status
                               #:encryption-entities #:encryption-entity
                               #:encryption-entity-list #:end-point
-                              #:end-point-list #:entity-already-exists
-                              #:entity-limit-exceeded #:entity-not-found
-                              #:entity-size-limit-exceeded #:event-type
+                              #:end-point-list #:event-type
                               #:field-level-encryption
                               #:field-level-encryption-config
-                              #:field-level-encryption-config-already-exists
-                              #:field-level-encryption-config-in-use
                               #:field-level-encryption-list
                               #:field-level-encryption-profile
-                              #:field-level-encryption-profile-already-exists
                               #:field-level-encryption-profile-config
-                              #:field-level-encryption-profile-in-use
                               #:field-level-encryption-profile-list
-                              #:field-level-encryption-profile-size-exceeded
                               #:field-level-encryption-profile-summary
                               #:field-level-encryption-profile-summary-list
                               #:field-level-encryption-summary
@@ -231,149 +130,53 @@
                               #:field-list #:field-pattern-list
                               #:field-patterns #:format #:forwarded-values
                               #:frame-options-list #:function-arn
-                              #:function-already-exists #:function-association
+                              #:function-association
                               #:function-association-list
                               #:function-associations #:function-blob
                               #:function-config #:function-event-object
-                              #:function-execution-log-list #:function-in-use
-                              #:function-list #:function-metadata
-                              #:function-name #:function-runtime
-                              #:function-size-limit-exceeded #:function-stage
+                              #:function-execution-log-list #:function-list
+                              #:function-metadata #:function-name
+                              #:function-runtime #:function-stage
                               #:function-summary #:function-summary-list
                               #:geo-restriction #:geo-restriction-customization
                               #:geo-restriction-type #:get-anycast-ip-list
-                              #:get-anycast-ip-list-request
-                              #:get-anycast-ip-list-result #:get-cache-policy
-                              #:get-cache-policy-config
-                              #:get-cache-policy-config-request
-                              #:get-cache-policy-config-result
-                              #:get-cache-policy-request
-                              #:get-cache-policy-result
+                              #:get-cache-policy #:get-cache-policy-config
                               #:get-cloud-front-origin-access-identity
                               #:get-cloud-front-origin-access-identity-config
-                              #:get-cloud-front-origin-access-identity-config-request
-                              #:get-cloud-front-origin-access-identity-config-result
-                              #:get-cloud-front-origin-access-identity-request
-                              #:get-cloud-front-origin-access-identity-result
                               #:get-connection-group
                               #:get-connection-group-by-routing-endpoint
-                              #:get-connection-group-by-routing-endpoint-request
-                              #:get-connection-group-by-routing-endpoint-result
-                              #:get-connection-group-request
-                              #:get-connection-group-result
                               #:get-continuous-deployment-policy
                               #:get-continuous-deployment-policy-config
-                              #:get-continuous-deployment-policy-config-request
-                              #:get-continuous-deployment-policy-config-result
-                              #:get-continuous-deployment-policy-request
-                              #:get-continuous-deployment-policy-result
                               #:get-distribution #:get-distribution-config
-                              #:get-distribution-config-request
-                              #:get-distribution-config-result
-                              #:get-distribution-request
-                              #:get-distribution-result
                               #:get-distribution-tenant
                               #:get-distribution-tenant-by-domain
-                              #:get-distribution-tenant-by-domain-request
-                              #:get-distribution-tenant-by-domain-result
-                              #:get-distribution-tenant-request
-                              #:get-distribution-tenant-result
                               #:get-field-level-encryption
                               #:get-field-level-encryption-config
-                              #:get-field-level-encryption-config-request
-                              #:get-field-level-encryption-config-result
                               #:get-field-level-encryption-profile
                               #:get-field-level-encryption-profile-config
-                              #:get-field-level-encryption-profile-config-request
-                              #:get-field-level-encryption-profile-config-result
-                              #:get-field-level-encryption-profile-request
-                              #:get-field-level-encryption-profile-result
-                              #:get-field-level-encryption-request
-                              #:get-field-level-encryption-result
-                              #:get-function #:get-function-request
-                              #:get-function-result #:get-invalidation
+                              #:get-function #:get-invalidation
                               #:get-invalidation-for-distribution-tenant
-                              #:get-invalidation-for-distribution-tenant-request
-                              #:get-invalidation-for-distribution-tenant-result
-                              #:get-invalidation-request
-                              #:get-invalidation-result #:get-key-group
-                              #:get-key-group-config
-                              #:get-key-group-config-request
-                              #:get-key-group-config-result
-                              #:get-key-group-request #:get-key-group-result
+                              #:get-key-group #:get-key-group-config
                               #:get-managed-certificate-details
-                              #:get-managed-certificate-details-request
-                              #:get-managed-certificate-details-result
                               #:get-monitoring-subscription
-                              #:get-monitoring-subscription-request
-                              #:get-monitoring-subscription-result
                               #:get-origin-access-control
                               #:get-origin-access-control-config
-                              #:get-origin-access-control-config-request
-                              #:get-origin-access-control-config-result
-                              #:get-origin-access-control-request
-                              #:get-origin-access-control-result
                               #:get-origin-request-policy
                               #:get-origin-request-policy-config
-                              #:get-origin-request-policy-config-request
-                              #:get-origin-request-policy-config-result
-                              #:get-origin-request-policy-request
-                              #:get-origin-request-policy-result
                               #:get-public-key #:get-public-key-config
-                              #:get-public-key-config-request
-                              #:get-public-key-config-result
-                              #:get-public-key-request #:get-public-key-result
                               #:get-realtime-log-config
-                              #:get-realtime-log-config-request
-                              #:get-realtime-log-config-result
                               #:get-response-headers-policy
                               #:get-response-headers-policy-config
-                              #:get-response-headers-policy-config-request
-                              #:get-response-headers-policy-config-result
-                              #:get-response-headers-policy-request
-                              #:get-response-headers-policy-result
                               #:get-streaming-distribution
                               #:get-streaming-distribution-config
-                              #:get-streaming-distribution-config-request
-                              #:get-streaming-distribution-config-result
-                              #:get-streaming-distribution-request
-                              #:get-streaming-distribution-result
-                              #:get-vpc-origin #:get-vpc-origin-request
-                              #:get-vpc-origin-result #:grpc-config
-                              #:header-list #:headers #:http-version
-                              #:icprecordal-status #:illegal-delete
-                              #:illegal-field-level-encryption-config-association-with-cache-behavior
-                              #:illegal-origin-access-configuration
-                              #:illegal-update #:import-source
-                              #:import-source-type #:inconsistent-quantities
-                              #:invalid-argument #:invalid-association
-                              #:invalid-default-root-object
-                              #:invalid-domain-name-for-origin-access-control
-                              #:invalid-error-code #:invalid-forward-cookies
-                              #:invalid-function-association
-                              #:invalid-geo-restriction-parameter
-                              #:invalid-headers-for-s3origin
-                              #:invalid-if-match-version
-                              #:invalid-lambda-function-association
-                              #:invalid-location-code
-                              #:invalid-minimum-protocol-version
-                              #:invalid-origin #:invalid-origin-access-control
-                              #:invalid-origin-access-identity
-                              #:invalid-origin-keepalive-timeout
-                              #:invalid-origin-read-timeout
-                              #:invalid-protocol-settings
-                              #:invalid-query-string-parameters
-                              #:invalid-relative-path
-                              #:invalid-required-protocol
-                              #:invalid-response-code #:invalid-ttlorder
-                              #:invalid-tagging #:invalid-viewer-certificate
-                              #:invalid-web-aclid #:invalidation
-                              #:invalidation-batch #:invalidation-list
-                              #:invalidation-summary
+                              #:get-vpc-origin #:grpc-config #:header-list
+                              #:headers #:http-version #:icprecordal-status
+                              #:import-source #:import-source-type
+                              #:invalidation #:invalidation-batch
+                              #:invalidation-list #:invalidation-summary
                               #:invalidation-summary-list #:item-selection
                               #:kgkey-pair-ids #:kgkey-pair-ids-list
-                              #:key-group #:key-group-already-exists
-                              #:key-group-config #:key-group-list
+                              #:key-group #:key-group-config #:key-group-list
                               #:key-group-summary #:key-group-summary-list
                               #:key-pair-id-list #:key-pair-ids
                               #:key-value-store #:key-value-store-arn
@@ -387,126 +190,43 @@
                               #:lambda-function-association
                               #:lambda-function-association-list
                               #:lambda-function-associations
-                              #:list-anycast-ip-lists
-                              #:list-anycast-ip-lists-request
-                              #:list-anycast-ip-lists-result
-                              #:list-cache-policies
-                              #:list-cache-policies-request
-                              #:list-cache-policies-result
+                              #:list-anycast-ip-lists #:list-cache-policies
                               #:list-cloud-front-origin-access-identities
-                              #:list-cloud-front-origin-access-identities-request
-                              #:list-cloud-front-origin-access-identities-result
                               #:list-conflicting-aliases
-                              #:list-conflicting-aliases-request
-                              #:list-conflicting-aliases-result
                               #:list-connection-groups
-                              #:list-connection-groups-request
-                              #:list-connection-groups-result
                               #:list-continuous-deployment-policies
-                              #:list-continuous-deployment-policies-request
-                              #:list-continuous-deployment-policies-result
                               #:list-distribution-tenants
                               #:list-distribution-tenants-by-customization
-                              #:list-distribution-tenants-by-customization-request
-                              #:list-distribution-tenants-by-customization-result
-                              #:list-distribution-tenants-request
-                              #:list-distribution-tenants-result
                               #:list-distributions
                               #:list-distributions-by-anycast-ip-list-id
-                              #:list-distributions-by-anycast-ip-list-id-request
-                              #:list-distributions-by-anycast-ip-list-id-result
                               #:list-distributions-by-cache-policy-id
-                              #:list-distributions-by-cache-policy-id-request
-                              #:list-distributions-by-cache-policy-id-result
                               #:list-distributions-by-connection-mode
-                              #:list-distributions-by-connection-mode-request
-                              #:list-distributions-by-connection-mode-result
                               #:list-distributions-by-key-group
-                              #:list-distributions-by-key-group-request
-                              #:list-distributions-by-key-group-result
                               #:list-distributions-by-origin-request-policy-id
-                              #:list-distributions-by-origin-request-policy-id-request
-                              #:list-distributions-by-origin-request-policy-id-result
                               #:list-distributions-by-realtime-log-config
-                              #:list-distributions-by-realtime-log-config-request
-                              #:list-distributions-by-realtime-log-config-result
                               #:list-distributions-by-response-headers-policy-id
-                              #:list-distributions-by-response-headers-policy-id-request
-                              #:list-distributions-by-response-headers-policy-id-result
                               #:list-distributions-by-vpc-origin-id
-                              #:list-distributions-by-vpc-origin-id-request
-                              #:list-distributions-by-vpc-origin-id-result
                               #:list-distributions-by-web-aclid
-                              #:list-distributions-by-web-aclid-request
-                              #:list-distributions-by-web-aclid-result
-                              #:list-distributions-request
-                              #:list-distributions-result
                               #:list-domain-conflicts
-                              #:list-domain-conflicts-request
-                              #:list-domain-conflicts-result
                               #:list-field-level-encryption-configs
-                              #:list-field-level-encryption-configs-request
-                              #:list-field-level-encryption-configs-result
                               #:list-field-level-encryption-profiles
-                              #:list-field-level-encryption-profiles-request
-                              #:list-field-level-encryption-profiles-result
-                              #:list-functions #:list-functions-request
-                              #:list-functions-result #:list-invalidations
+                              #:list-functions #:list-invalidations
                               #:list-invalidations-for-distribution-tenant
-                              #:list-invalidations-for-distribution-tenant-request
-                              #:list-invalidations-for-distribution-tenant-result
-                              #:list-invalidations-request
-                              #:list-invalidations-result #:list-key-groups
-                              #:list-key-groups-request
-                              #:list-key-groups-result #:list-key-value-stores
-                              #:list-key-value-stores-request
-                              #:list-key-value-stores-result
+                              #:list-key-groups #:list-key-value-stores
                               #:list-origin-access-controls
-                              #:list-origin-access-controls-request
-                              #:list-origin-access-controls-result
-                              #:list-origin-request-policies
-                              #:list-origin-request-policies-request
-                              #:list-origin-request-policies-result
-                              #:list-public-keys #:list-public-keys-request
-                              #:list-public-keys-result
+                              #:list-origin-request-policies #:list-public-keys
                               #:list-realtime-log-configs
-                              #:list-realtime-log-configs-request
-                              #:list-realtime-log-configs-result
                               #:list-response-headers-policies
-                              #:list-response-headers-policies-request
-                              #:list-response-headers-policies-result
                               #:list-streaming-distributions
-                              #:list-streaming-distributions-request
-                              #:list-streaming-distributions-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-result
-                              #:list-vpc-origins #:list-vpc-origins-request
-                              #:list-vpc-origins-result #:location-list
-                              #:logging-config #:managed-certificate-details
+                              #:list-tags-for-resource #:list-vpc-origins
+                              #:location-list #:logging-config
+                              #:managed-certificate-details
                               #:managed-certificate-request
                               #:managed-certificate-status #:method
                               #:methods-list #:minimum-protocol-version
-                              #:missing-body #:monitoring-subscription
-                              #:monitoring-subscription-already-exists
-                              #:no-such-cache-policy
-                              #:no-such-cloud-front-origin-access-identity
-                              #:no-such-continuous-deployment-policy
-                              #:no-such-distribution
-                              #:no-such-field-level-encryption-config
-                              #:no-such-field-level-encryption-profile
-                              #:no-such-function-exists #:no-such-invalidation
-                              #:no-such-monitoring-subscription
-                              #:no-such-origin #:no-such-origin-access-control
-                              #:no-such-origin-request-policy
-                              #:no-such-public-key
-                              #:no-such-realtime-log-config #:no-such-resource
-                              #:no-such-response-headers-policy
-                              #:no-such-streaming-distribution #:origin
+                              #:monitoring-subscription #:origin
                               #:origin-access-control
-                              #:origin-access-control-already-exists
                               #:origin-access-control-config
-                              #:origin-access-control-in-use
                               #:origin-access-control-list
                               #:origin-access-control-origin-types
                               #:origin-access-control-signing-behaviors
@@ -521,13 +241,11 @@
                               #:origin-group-selection-criteria #:origin-groups
                               #:origin-list #:origin-protocol-policy
                               #:origin-request-policy
-                              #:origin-request-policy-already-exists
                               #:origin-request-policy-config
                               #:origin-request-policy-cookie-behavior
                               #:origin-request-policy-cookies-config
                               #:origin-request-policy-header-behavior
                               #:origin-request-policy-headers-config
-                              #:origin-request-policy-in-use
                               #:origin-request-policy-list
                               #:origin-request-policy-query-string-behavior
                               #:origin-request-policy-query-strings-config
@@ -540,37 +258,26 @@
                               #:parameter-definitions #:parameter-name
                               #:parameter-value #:parameters
                               #:parameters-in-cache-key-and-forwarded-to-origin
-                              #:path-list #:paths #:precondition-failed
-                              #:price-class #:public-key
-                              #:public-key-already-exists #:public-key-config
-                              #:public-key-id-list #:public-key-in-use
+                              #:path-list #:paths #:price-class #:public-key
+                              #:public-key-config #:public-key-id-list
                               #:public-key-list #:public-key-summary
                               #:public-key-summary-list #:publish-function
-                              #:publish-function-request
-                              #:publish-function-result #:query-arg-profile
-                              #:query-arg-profile-config
-                              #:query-arg-profile-empty
+                              #:query-arg-profile #:query-arg-profile-config
                               #:query-arg-profile-list #:query-arg-profiles
                               #:query-string-cache-keys
                               #:query-string-cache-keys-list
                               #:query-string-names #:query-string-names-list
-                              #:realtime-log-config
-                              #:realtime-log-config-already-exists
-                              #:realtime-log-config-in-use
-                              #:realtime-log-config-list
-                              #:realtime-log-config-owner-mismatch
+                              #:realtime-log-config #:realtime-log-config-list
                               #:realtime-log-configs
                               #:realtime-metrics-subscription-config
                               #:realtime-metrics-subscription-status
                               #:referrer-policy-list #:resource-arn
-                              #:resource-in-use #:resource-not-disabled
                               #:response-headers-policy
                               #:response-headers-policy-access-control-allow-headers
                               #:response-headers-policy-access-control-allow-methods
                               #:response-headers-policy-access-control-allow-methods-values
                               #:response-headers-policy-access-control-allow-origins
                               #:response-headers-policy-access-control-expose-headers
-                              #:response-headers-policy-already-exists
                               #:response-headers-policy-config
                               #:response-headers-policy-content-security-policy
                               #:response-headers-policy-content-type-options
@@ -579,7 +286,6 @@
                               #:response-headers-policy-custom-header-list
                               #:response-headers-policy-custom-headers-config
                               #:response-headers-policy-frame-options
-                              #:response-headers-policy-in-use
                               #:response-headers-policy-list
                               #:response-headers-policy-referrer-policy
                               #:response-headers-policy-remove-header
@@ -599,144 +305,46 @@
                               #:signer-list #:ssl-protocol #:ssl-protocols-list
                               #:staging-distribution-dns-name-list
                               #:staging-distribution-dns-names
-                              #:staging-distribution-in-use #:status-code-list
-                              #:status-codes #:streaming-distribution
-                              #:streaming-distribution-already-exists
+                              #:status-code-list #:status-codes
+                              #:streaming-distribution
                               #:streaming-distribution-config
                               #:streaming-distribution-config-with-tags
                               #:streaming-distribution-list
-                              #:streaming-distribution-not-disabled
                               #:streaming-distribution-summary
                               #:streaming-distribution-summary-list
                               #:streaming-logging-config #:string-schema-config
                               #:tag #:tag-key #:tag-key-list #:tag-keys
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-value #:tags #:tenant-config
-                              #:test-function #:test-function-failed
-                              #:test-function-request #:test-function-result
-                              #:test-result
-                              #:too-long-cspin-response-headers-policy
-                              #:too-many-cache-behaviors
-                              #:too-many-cache-policies #:too-many-certificates
-                              #:too-many-cloud-front-origin-access-identities
-                              #:too-many-continuous-deployment-policies
-                              #:too-many-cookie-names-in-white-list
-                              #:too-many-cookies-in-cache-policy
-                              #:too-many-cookies-in-origin-request-policy
-                              #:too-many-custom-headers-in-response-headers-policy
-                              #:too-many-distribution-cnames
-                              #:too-many-distributions
-                              #:too-many-distributions-associated-to-cache-policy
-                              #:too-many-distributions-associated-to-field-level-encryption-config
-                              #:too-many-distributions-associated-to-key-group
-                              #:too-many-distributions-associated-to-origin-access-control
-                              #:too-many-distributions-associated-to-origin-request-policy
-                              #:too-many-distributions-associated-to-response-headers-policy
-                              #:too-many-distributions-with-function-associations
-                              #:too-many-distributions-with-lambda-associations
-                              #:too-many-distributions-with-single-function-arn
-                              #:too-many-field-level-encryption-configs
-                              #:too-many-field-level-encryption-content-type-profiles
-                              #:too-many-field-level-encryption-encryption-entities
-                              #:too-many-field-level-encryption-field-patterns
-                              #:too-many-field-level-encryption-profiles
-                              #:too-many-field-level-encryption-query-arg-profiles
-                              #:too-many-function-associations
-                              #:too-many-functions
-                              #:too-many-headers-in-cache-policy
-                              #:too-many-headers-in-forwarded-values
-                              #:too-many-headers-in-origin-request-policy
-                              #:too-many-invalidations-in-progress
-                              #:too-many-key-groups
-                              #:too-many-key-groups-associated-to-distribution
-                              #:too-many-lambda-function-associations
-                              #:too-many-origin-access-controls
-                              #:too-many-origin-custom-headers
-                              #:too-many-origin-groups-per-distribution
-                              #:too-many-origin-request-policies
-                              #:too-many-origins #:too-many-public-keys
-                              #:too-many-public-keys-in-key-group
-                              #:too-many-query-string-parameters
-                              #:too-many-query-strings-in-cache-policy
-                              #:too-many-query-strings-in-origin-request-policy
-                              #:too-many-realtime-log-configs
-                              #:too-many-remove-headers-in-response-headers-policy
-                              #:too-many-response-headers-policies
-                              #:too-many-streaming-distribution-cnames
-                              #:too-many-streaming-distributions
-                              #:too-many-trusted-signers #:traffic-config
-                              #:trusted-key-group-does-not-exist
-                              #:trusted-key-group-id-list #:trusted-key-groups
-                              #:trusted-signer-does-not-exist #:trusted-signers
-                              #:unsupported-operation #:untag-resource
-                              #:untag-resource-request #:update-cache-policy
-                              #:update-cache-policy-request
-                              #:update-cache-policy-result
+                              #:tag-list #:tag-resource #:tag-value #:tags
+                              #:tenant-config #:test-function #:test-result
+                              #:traffic-config #:trusted-key-group-id-list
+                              #:trusted-key-groups #:trusted-signers
+                              #:untag-resource #:update-cache-policy
                               #:update-cloud-front-origin-access-identity
-                              #:update-cloud-front-origin-access-identity-request
-                              #:update-cloud-front-origin-access-identity-result
                               #:update-connection-group
-                              #:update-connection-group-request
-                              #:update-connection-group-result
                               #:update-continuous-deployment-policy
-                              #:update-continuous-deployment-policy-request
-                              #:update-continuous-deployment-policy-result
                               #:update-distribution
-                              #:update-distribution-request
-                              #:update-distribution-result
                               #:update-distribution-tenant
-                              #:update-distribution-tenant-request
-                              #:update-distribution-tenant-result
                               #:update-distribution-with-staging-config
-                              #:update-distribution-with-staging-config-request
-                              #:update-distribution-with-staging-config-result
                               #:update-domain-association
-                              #:update-domain-association-request
-                              #:update-domain-association-result
                               #:update-field-level-encryption-config
-                              #:update-field-level-encryption-config-request
-                              #:update-field-level-encryption-config-result
                               #:update-field-level-encryption-profile
-                              #:update-field-level-encryption-profile-request
-                              #:update-field-level-encryption-profile-result
-                              #:update-function #:update-function-request
-                              #:update-function-result #:update-key-group
-                              #:update-key-group-request
-                              #:update-key-group-result
+                              #:update-function #:update-key-group
                               #:update-key-value-store
-                              #:update-key-value-store-request
-                              #:update-key-value-store-result
                               #:update-origin-access-control
-                              #:update-origin-access-control-request
-                              #:update-origin-access-control-result
                               #:update-origin-request-policy
-                              #:update-origin-request-policy-request
-                              #:update-origin-request-policy-result
-                              #:update-public-key #:update-public-key-request
-                              #:update-public-key-result
-                              #:update-realtime-log-config
-                              #:update-realtime-log-config-request
-                              #:update-realtime-log-config-result
+                              #:update-public-key #:update-realtime-log-config
                               #:update-response-headers-policy
-                              #:update-response-headers-policy-request
-                              #:update-response-headers-policy-result
                               #:update-streaming-distribution
-                              #:update-streaming-distribution-request
-                              #:update-streaming-distribution-result
-                              #:update-vpc-origin #:update-vpc-origin-request
-                              #:update-vpc-origin-result
-                              #:validation-token-detail
+                              #:update-vpc-origin #:validation-token-detail
                               #:validation-token-detail-list
                               #:validation-token-host
-                              #:verify-dns-configuration
-                              #:verify-dns-configuration-request
-                              #:verify-dns-configuration-result
-                              #:viewer-certificate #:viewer-protocol-policy
-                              #:vpc-origin #:vpc-origin-config
-                              #:vpc-origin-endpoint-config #:vpc-origin-list
-                              #:vpc-origin-summary #:vpc-origin-summary-list
-                              #:web-acl-customization #:alias-string #:boolean
-                              #:distribution-id-string #:float #:integer
+                              #:verify-dns-configuration #:viewer-certificate
+                              #:viewer-protocol-policy #:vpc-origin
+                              #:vpc-origin-config #:vpc-origin-endpoint-config
+                              #:vpc-origin-list #:vpc-origin-summary
+                              #:vpc-origin-summary-list #:web-acl-customization
+                              #:alias-string #:boolean #:distribution-id-string
+                              #:float #:integer
                               #:list-conflicting-aliases-max-items-integer
                               #:long #:sensitive-string-type #:string
                               #:timestamp))

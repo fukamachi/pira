@@ -1,9 +1,8 @@
 (uiop/package:define-package #:pira/cloudwatch-logs (:use)
-                             (:export #:access-denied-exception #:access-policy
-                              #:account-id #:account-ids #:account-policies
-                              #:account-policy #:account-policy-document
-                              #:add-key-entries #:add-key-entry #:add-key-value
-                              #:add-keys
+                             (:export #:access-policy #:account-id
+                              #:account-ids #:account-policies #:account-policy
+                              #:account-policy-document #:add-key-entries
+                              #:add-key-entry #:add-key-value #:add-keys
                               #:allowed-action-for-allow-vended-logs-delivery-for-resource
                               #:allowed-field-delimiters #:allowed-fields
                               #:amazon-resource-name #:anomalies #:anomaly
@@ -11,61 +10,30 @@
                               #:anomaly-detector-status #:anomaly-detectors
                               #:anomaly-id #:anomaly-visibility-time
                               #:apply-on-transformed-logs #:arn
-                              #:associate-kms-key #:associate-kms-key-request
-                              #:baseline #:boolean #:csv #:cancel-export-task
-                              #:cancel-export-task-request #:client-token
+                              #:associate-kms-key #:baseline #:boolean #:csv
+                              #:cancel-export-task #:client-token
                               #:collection-retention-days #:column #:columns
                               #:configuration-template
                               #:configuration-template-delivery-config-values
-                              #:configuration-templates #:conflict-exception
-                              #:copy-value #:copy-value-entries
-                              #:copy-value-entry #:count #:create-delivery
-                              #:create-delivery-request
-                              #:create-delivery-response #:create-export-task
-                              #:create-export-task-request
-                              #:create-export-task-response
-                              #:create-log-anomaly-detector
-                              #:create-log-anomaly-detector-request
-                              #:create-log-anomaly-detector-response
-                              #:create-log-group #:create-log-group-request
-                              #:create-log-stream #:create-log-stream-request
-                              #:dashboard-viewer-principals #:data
-                              #:data-already-accepted-exception
-                              #:data-protection-policy-document
+                              #:configuration-templates #:copy-value
+                              #:copy-value-entries #:copy-value-entry #:count
+                              #:create-delivery #:create-export-task
+                              #:create-log-anomaly-detector #:create-log-group
+                              #:create-log-stream #:dashboard-viewer-principals
+                              #:data #:data-protection-policy-document
                               #:data-protection-status #:date-time-converter
                               #:days #:default-value #:delete-account-policy
-                              #:delete-account-policy-request
-                              #:delete-data-protection-policy
-                              #:delete-data-protection-policy-request
-                              #:delete-delivery #:delete-delivery-destination
+                              #:delete-data-protection-policy #:delete-delivery
+                              #:delete-delivery-destination
                               #:delete-delivery-destination-policy
-                              #:delete-delivery-destination-policy-request
-                              #:delete-delivery-destination-request
-                              #:delete-delivery-request
-                              #:delete-delivery-source
-                              #:delete-delivery-source-request
-                              #:delete-destination #:delete-destination-request
-                              #:delete-index-policy
-                              #:delete-index-policy-request
-                              #:delete-index-policy-response
-                              #:delete-integration #:delete-integration-request
-                              #:delete-integration-response #:delete-keys
-                              #:delete-log-anomaly-detector
-                              #:delete-log-anomaly-detector-request
-                              #:delete-log-group #:delete-log-group-request
-                              #:delete-log-stream #:delete-log-stream-request
-                              #:delete-metric-filter
-                              #:delete-metric-filter-request
-                              #:delete-query-definition
-                              #:delete-query-definition-request
-                              #:delete-query-definition-response
+                              #:delete-delivery-source #:delete-destination
+                              #:delete-index-policy #:delete-integration
+                              #:delete-keys #:delete-log-anomaly-detector
+                              #:delete-log-group #:delete-log-stream
+                              #:delete-metric-filter #:delete-query-definition
                               #:delete-resource-policy
-                              #:delete-resource-policy-request
                               #:delete-retention-policy
-                              #:delete-retention-policy-request
-                              #:delete-subscription-filter
-                              #:delete-subscription-filter-request
-                              #:delete-transformer #:delete-transformer-request
+                              #:delete-subscription-filter #:delete-transformer
                               #:delete-with-keys #:delimiter #:deliveries
                               #:delivery #:delivery-destination
                               #:delivery-destination-configuration
@@ -77,64 +45,29 @@
                               #:delivery-source #:delivery-source-name
                               #:delivery-sources #:delivery-suffix-path
                               #:descending #:describe-account-policies
-                              #:describe-account-policies-request
-                              #:describe-account-policies-response
                               #:describe-configuration-templates
-                              #:describe-configuration-templates-request
-                              #:describe-configuration-templates-response
                               #:describe-deliveries
-                              #:describe-deliveries-request
-                              #:describe-deliveries-response
                               #:describe-delivery-destinations
-                              #:describe-delivery-destinations-request
-                              #:describe-delivery-destinations-response
                               #:describe-delivery-sources
-                              #:describe-delivery-sources-request
-                              #:describe-delivery-sources-response
-                              #:describe-destinations
-                              #:describe-destinations-request
-                              #:describe-destinations-response
-                              #:describe-export-tasks
-                              #:describe-export-tasks-request
-                              #:describe-export-tasks-response
+                              #:describe-destinations #:describe-export-tasks
                               #:describe-field-indexes
                               #:describe-field-indexes-log-group-identifiers
-                              #:describe-field-indexes-request
-                              #:describe-field-indexes-response
                               #:describe-index-policies
                               #:describe-index-policies-log-group-identifiers
-                              #:describe-index-policies-request
-                              #:describe-index-policies-response
                               #:describe-limit #:describe-log-groups
                               #:describe-log-groups-log-group-identifiers
-                              #:describe-log-groups-request
-                              #:describe-log-groups-response
-                              #:describe-log-streams
-                              #:describe-log-streams-request
-                              #:describe-log-streams-response
-                              #:describe-metric-filters
-                              #:describe-metric-filters-request
-                              #:describe-metric-filters-response
+                              #:describe-log-streams #:describe-metric-filters
                               #:describe-queries #:describe-queries-max-results
-                              #:describe-queries-request
-                              #:describe-queries-response
                               #:describe-query-definitions
-                              #:describe-query-definitions-request
-                              #:describe-query-definitions-response
                               #:describe-resource-policies
-                              #:describe-resource-policies-request
-                              #:describe-resource-policies-response
-                              #:describe-subscription-filters
-                              #:describe-subscription-filters-request
-                              #:describe-subscription-filters-response
-                              #:description #:destination #:destination-arn
+                              #:describe-subscription-filters #:description
+                              #:destination #:destination-arn
                               #:destination-field #:destination-name
                               #:destinations #:detector-kms-key-arn
                               #:detector-name #:dimensions #:dimensions-key
                               #:dimensions-value #:disassociate-kms-key
-                              #:disassociate-kms-key-request #:distribution
-                              #:dynamic-token-position #:encryption-key
-                              #:entity #:entity-attributes
+                              #:distribution #:dynamic-token-position
+                              #:encryption-key #:entity #:entity-attributes
                               #:entity-attributes-key #:entity-attributes-value
                               #:entity-key-attributes
                               #:entity-key-attributes-key
@@ -152,44 +85,21 @@
                               #:extracted-values #:field #:field-delimiter
                               #:field-header #:field-index #:field-index-name
                               #:field-indexes #:fields-data #:filter-count
-                              #:filter-log-events #:filter-log-events-request
-                              #:filter-log-events-response #:filter-name
+                              #:filter-log-events #:filter-name
                               #:filter-pattern #:filtered-log-event
                               #:filtered-log-events #:flatten
                               #:flattened-element #:force #:force-update
                               #:from-key #:get-data-protection-policy
-                              #:get-data-protection-policy-request
-                              #:get-data-protection-policy-response
                               #:get-delivery #:get-delivery-destination
                               #:get-delivery-destination-policy
-                              #:get-delivery-destination-policy-request
-                              #:get-delivery-destination-policy-response
-                              #:get-delivery-destination-request
-                              #:get-delivery-destination-response
-                              #:get-delivery-request #:get-delivery-response
-                              #:get-delivery-source
-                              #:get-delivery-source-request
-                              #:get-delivery-source-response #:get-integration
-                              #:get-integration-request
-                              #:get-integration-response
-                              #:get-log-anomaly-detector
-                              #:get-log-anomaly-detector-request
-                              #:get-log-anomaly-detector-response
-                              #:get-log-events #:get-log-events-request
-                              #:get-log-events-response #:get-log-group-fields
-                              #:get-log-group-fields-request
-                              #:get-log-group-fields-response #:get-log-object
-                              #:get-log-object-request
-                              #:get-log-object-response
+                              #:get-delivery-source #:get-integration
+                              #:get-log-anomaly-detector #:get-log-events
+                              #:get-log-group-fields #:get-log-object
                               #:get-log-object-response-stream #:get-log-record
-                              #:get-log-record-request
-                              #:get-log-record-response #:get-query-results
-                              #:get-query-results-request
-                              #:get-query-results-response #:get-transformer
-                              #:get-transformer-request
-                              #:get-transformer-response #:grok #:grok-match
-                              #:histogram #:include-linked-accounts
-                              #:index-policies #:index-policy #:index-source
+                              #:get-query-results #:get-transformer #:grok
+                              #:grok-match #:histogram
+                              #:include-linked-accounts #:index-policies
+                              #:index-policy #:index-source
                               #:inferred-token-name #:inherited-properties
                               #:inherited-property #:input-log-event
                               #:input-log-events #:input-log-stream-names
@@ -197,35 +107,16 @@
                               #:integration-name #:integration-name-prefix
                               #:integration-status #:integration-status-message
                               #:integration-summaries #:integration-summary
-                              #:integration-type #:interleaved
-                              #:internal-streaming-exception
-                              #:invalid-operation-exception
-                              #:invalid-parameter-exception
-                              #:invalid-sequence-token-exception #:is-sampled
+                              #:integration-type #:interleaved #:is-sampled
                               #:key #:key-prefix #:key-value-delimiter
-                              #:kms-key-id #:limit-exceeded-exception
-                              #:list-anomalies #:list-anomalies-limit
-                              #:list-anomalies-request
-                              #:list-anomalies-response #:list-integrations
-                              #:list-integrations-request
-                              #:list-integrations-response #:list-limit
-                              #:list-log-anomaly-detectors
+                              #:kms-key-id #:list-anomalies
+                              #:list-anomalies-limit #:list-integrations
+                              #:list-limit #:list-log-anomaly-detectors
                               #:list-log-anomaly-detectors-limit
-                              #:list-log-anomaly-detectors-request
-                              #:list-log-anomaly-detectors-response
                               #:list-log-groups #:list-log-groups-for-query
                               #:list-log-groups-for-query-max-results
-                              #:list-log-groups-for-query-request
-                              #:list-log-groups-for-query-response
-                              #:list-log-groups-request
-                              #:list-log-groups-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-tags-log-group
-                              #:list-tags-log-group-request
-                              #:list-tags-log-group-response #:list-to-map
-                              #:live-tail-session-log-event
+                              #:list-tags-for-resource #:list-tags-log-group
+                              #:list-to-map #:live-tail-session-log-event
                               #:live-tail-session-metadata
                               #:live-tail-session-results
                               #:live-tail-session-start
@@ -243,9 +134,8 @@
                               #:log-stream-searched-completely #:log-streams
                               #:log-type #:log-types #:logs-20140328
                               #:lower-case-string #:lower-case-string-with-keys
-                              #:malformed-query-exception #:match-pattern
-                              #:match-patterns #:message #:metric-filter
-                              #:metric-filter-match-record
+                              #:match-pattern #:match-patterns #:message
+                              #:metric-filter #:metric-filter-match-record
                               #:metric-filter-matches #:metric-filters
                               #:metric-name #:metric-namespace
                               #:metric-transformation #:metric-transformations
@@ -269,8 +159,7 @@
                               #:open-search-resource-status
                               #:open-search-resource-status-type
                               #:open-search-workspace
-                              #:open-search-workspace-id
-                              #:operation-aborted-exception #:order-by
+                              #:open-search-workspace-id #:order-by
                               #:output-format #:output-formats
                               #:output-log-event #:output-log-events
                               #:overwrite-if-exists #:parse-cloudfront
@@ -281,42 +170,15 @@
                               #:pattern-tokens #:percentage #:policy
                               #:policy-document #:policy-name #:policy-scope
                               #:policy-type #:priority #:processor #:processors
-                              #:put-account-policy #:put-account-policy-request
-                              #:put-account-policy-response
-                              #:put-data-protection-policy
-                              #:put-data-protection-policy-request
-                              #:put-data-protection-policy-response
+                              #:put-account-policy #:put-data-protection-policy
                               #:put-delivery-destination
                               #:put-delivery-destination-policy
-                              #:put-delivery-destination-policy-request
-                              #:put-delivery-destination-policy-response
-                              #:put-delivery-destination-request
-                              #:put-delivery-destination-response
-                              #:put-delivery-source
-                              #:put-delivery-source-request
-                              #:put-delivery-source-response #:put-destination
-                              #:put-destination-policy
-                              #:put-destination-policy-request
-                              #:put-destination-request
-                              #:put-destination-response #:put-index-policy
-                              #:put-index-policy-request
-                              #:put-index-policy-response #:put-integration
-                              #:put-integration-request
-                              #:put-integration-response #:put-log-events
-                              #:put-log-events-request
-                              #:put-log-events-response #:put-metric-filter
-                              #:put-metric-filter-request
-                              #:put-query-definition
-                              #:put-query-definition-request
-                              #:put-query-definition-response
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response
-                              #:put-retention-policy
-                              #:put-retention-policy-request
-                              #:put-subscription-filter
-                              #:put-subscription-filter-request
-                              #:put-transformer #:put-transformer-request
+                              #:put-delivery-source #:put-destination
+                              #:put-destination-policy #:put-index-policy
+                              #:put-integration #:put-log-events
+                              #:put-metric-filter #:put-query-definition
+                              #:put-resource-policy #:put-retention-policy
+                              #:put-subscription-filter #:put-transformer
                               #:query-char-offset #:query-compile-error
                               #:query-compile-error-location #:query-definition
                               #:query-definition-list #:query-definition-name
@@ -328,65 +190,41 @@
                               #:rejected-entity-info #:rejected-log-events-info
                               #:rename-key-entries #:rename-key-entry
                               #:rename-keys #:rename-to #:request-id
-                              #:resource-already-exists-exception
                               #:resource-arns #:resource-config
-                              #:resource-identifier
-                              #:resource-not-found-exception
-                              #:resource-policies #:resource-policy
-                              #:resource-type #:resource-types #:result-field
-                              #:result-rows #:role-arn
-                              #:s3delivery-configuration #:scope
+                              #:resource-identifier #:resource-policies
+                              #:resource-policy #:resource-type
+                              #:resource-types #:result-field #:result-rows
+                              #:role-arn #:s3delivery-configuration #:scope
                               #:searched-log-stream #:searched-log-streams
                               #:selection-criteria #:sequence-token #:service
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception #:session-id
-                              #:session-streaming-exception
-                              #:session-timeout-exception #:source
-                              #:source-timezone #:split-string
-                              #:split-string-delimiter #:split-string-entries
-                              #:split-string-entry #:standard-unit
-                              #:start-from-head #:start-live-tail
+                              #:session-id #:source #:source-timezone
+                              #:split-string #:split-string-delimiter
+                              #:split-string-entries #:split-string-entry
+                              #:standard-unit #:start-from-head
+                              #:start-live-tail
                               #:start-live-tail-log-group-identifiers
-                              #:start-live-tail-request
-                              #:start-live-tail-response
                               #:start-live-tail-response-stream #:start-query
-                              #:start-query-request #:start-query-response
-                              #:state #:stats-value #:stop-query
-                              #:stop-query-request #:stop-query-response
-                              #:stored-bytes #:subscription-filter
-                              #:subscription-filters #:substitute-string
-                              #:substitute-string-entries
+                              #:state #:stats-value #:stop-query #:stored-bytes
+                              #:subscription-filter #:subscription-filters
+                              #:substitute-string #:substitute-string-entries
                               #:substitute-string-entry #:success
                               #:suppression-period #:suppression-state
                               #:suppression-type #:suppression-unit #:tag-key
                               #:tag-key-list #:tag-list #:tag-log-group
-                              #:tag-log-group-request #:tag-resource
-                              #:tag-resource-request #:tag-value #:tags
-                              #:target #:target-arn #:target-format
-                              #:target-timezone #:test-event-messages
-                              #:test-metric-filter #:test-metric-filter-request
-                              #:test-metric-filter-response #:test-transformer
-                              #:test-transformer-request
-                              #:test-transformer-response
-                              #:throttling-exception #:time #:timestamp
-                              #:to-key #:token #:token-string #:token-value
-                              #:too-many-tags-exception
+                              #:tag-resource #:tag-value #:tags #:target
+                              #:target-arn #:target-format #:target-timezone
+                              #:test-event-messages #:test-metric-filter
+                              #:test-transformer #:time #:timestamp #:to-key
+                              #:token #:token-string #:token-value
                               #:transformed-event-message
                               #:transformed-log-record #:transformed-logs
                               #:trim-string #:trim-string-with-keys #:type
                               #:type-converter #:type-converter-entries
-                              #:type-converter-entry #:unmask
-                              #:unrecognized-client-exception #:untag-log-group
-                              #:untag-log-group-request #:untag-resource
-                              #:untag-resource-request #:update-anomaly
-                              #:update-anomaly-request
+                              #:type-converter-entry #:unmask #:untag-log-group
+                              #:untag-resource #:update-anomaly
                               #:update-delivery-configuration
-                              #:update-delivery-configuration-request
-                              #:update-delivery-configuration-response
-                              #:update-log-anomaly-detector
-                              #:update-log-anomaly-detector-request
-                              #:upper-case-string #:upper-case-string-with-keys
-                              #:validation-exception #:value #:value-key
+                              #:update-log-anomaly-detector #:upper-case-string
+                              #:upper-case-string-with-keys #:value #:value-key
                               #:with-key))
 (common-lisp:in-package #:pira/cloudwatch-logs)
 

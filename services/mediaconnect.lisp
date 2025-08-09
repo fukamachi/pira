@@ -3,70 +3,29 @@
                               #:add-bridge-network-output-request
                               #:add-bridge-network-source-request
                               #:add-bridge-output-request #:add-bridge-outputs
-                              #:add-bridge-outputs-request
-                              #:add-bridge-outputs-response
                               #:add-bridge-source-request #:add-bridge-sources
-                              #:add-bridge-sources-request
-                              #:add-bridge-sources-response
                               #:add-egress-gateway-bridge-request
-                              #:add-flow-media-streams
-                              #:add-flow-media-streams-request
-                              #:add-flow-media-streams-response
-                              #:add-flow-outputs #:add-flow-outputs420exception
-                              #:add-flow-outputs-request
-                              #:add-flow-outputs-response #:add-flow-sources
-                              #:add-flow-sources-request
-                              #:add-flow-sources-response
-                              #:add-flow-vpc-interfaces
-                              #:add-flow-vpc-interfaces-request
-                              #:add-flow-vpc-interfaces-response
+                              #:add-flow-media-streams #:add-flow-outputs
+                              #:add-flow-sources #:add-flow-vpc-interfaces
                               #:add-ingress-gateway-bridge-request
                               #:add-maintenance #:add-media-stream-request
                               #:add-output-request #:algorithm
-                              #:audio-monitoring-setting
-                              #:bad-request-exception #:black-frames #:bridge
-                              #:bridge-arn #:bridge-flow-output
+                              #:audio-monitoring-setting #:black-frames
+                              #:bridge #:bridge-arn #:bridge-flow-output
                               #:bridge-flow-source #:bridge-network-output
                               #:bridge-network-source #:bridge-output
                               #:bridge-placement #:bridge-resource
                               #:bridge-source #:bridge-state #:colorimetry
-                              #:conflict-exception #:connection-status
+                              #:connection-status
                               #:content-quality-analysis-state #:create-bridge
-                              #:create-bridge420exception
-                              #:create-bridge-request #:create-bridge-response
-                              #:create-flow #:create-flow420exception
-                              #:create-flow-request #:create-flow-response
-                              #:create-gateway #:create-gateway420exception
-                              #:create-gateway-request
-                              #:create-gateway-response #:delete-bridge
-                              #:delete-bridge-request #:delete-bridge-response
-                              #:delete-flow #:delete-flow-request
-                              #:delete-flow-response #:delete-gateway
-                              #:delete-gateway-request
-                              #:delete-gateway-response
-                              #:deregister-gateway-instance
-                              #:deregister-gateway-instance-request
-                              #:deregister-gateway-instance-response
-                              #:describe-bridge #:describe-bridge-request
-                              #:describe-bridge-response #:describe-flow
-                              #:describe-flow-request #:describe-flow-response
-                              #:describe-flow-source-metadata
-                              #:describe-flow-source-metadata-request
-                              #:describe-flow-source-metadata-response
+                              #:create-flow #:create-gateway #:delete-bridge
+                              #:delete-flow #:delete-gateway
+                              #:deregister-gateway-instance #:describe-bridge
+                              #:describe-flow #:describe-flow-source-metadata
                               #:describe-flow-source-thumbnail
-                              #:describe-flow-source-thumbnail-request
-                              #:describe-flow-source-thumbnail-response
                               #:describe-gateway #:describe-gateway-instance
-                              #:describe-gateway-instance-request
-                              #:describe-gateway-instance-response
-                              #:describe-gateway-request
-                              #:describe-gateway-response #:describe-offering
-                              #:describe-offering-request
-                              #:describe-offering-response
-                              #:describe-reservation
-                              #:describe-reservation-request
-                              #:describe-reservation-response #:desired-state
-                              #:destination-configuration
+                              #:describe-offering #:describe-reservation
+                              #:desired-state #:destination-configuration
                               #:destination-configuration-request
                               #:duration-units #:egress-gateway-bridge
                               #:encoder-profile #:encoding-name
@@ -75,37 +34,20 @@
                               #:entitlement #:entitlement-status
                               #:failover-config #:failover-mode #:flow
                               #:flow-arn #:flow-resource #:flow-size #:fmtp
-                              #:fmtp-request #:forbidden-exception
-                              #:frame-resolution #:frozen-frames #:gateway
-                              #:gateway-arn #:gateway-bridge-source
+                              #:fmtp-request #:frame-resolution #:frozen-frames
+                              #:gateway #:gateway-arn #:gateway-bridge-source
                               #:gateway-instance #:gateway-instance-arn
                               #:gateway-instance-resource #:gateway-network
                               #:gateway-resource #:gateway-state
                               #:grant-entitlement-request
                               #:grant-flow-entitlements
-                              #:grant-flow-entitlements420exception
-                              #:grant-flow-entitlements-request
-                              #:grant-flow-entitlements-response
                               #:ingress-gateway-bridge #:input-configuration
                               #:input-configuration-request #:instance-state
-                              #:interface #:interface-request
-                              #:internal-server-error-exception #:key-type
-                              #:list-bridges #:list-bridges-request
-                              #:list-bridges-response #:list-entitlements
-                              #:list-entitlements-request
-                              #:list-entitlements-response #:list-flows
-                              #:list-flows-request #:list-flows-response
-                              #:list-gateway-instances
-                              #:list-gateway-instances-request
-                              #:list-gateway-instances-response #:list-gateways
-                              #:list-gateways-request #:list-gateways-response
-                              #:list-offerings #:list-offerings-request
-                              #:list-offerings-response #:list-reservations
-                              #:list-reservations-request
-                              #:list-reservations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:listed-bridge
+                              #:interface #:interface-request #:key-type
+                              #:list-bridges #:list-entitlements #:list-flows
+                              #:list-gateway-instances #:list-gateways
+                              #:list-offerings #:list-reservations
+                              #:list-tags-for-resource #:listed-bridge
                               #:listed-entitlement #:listed-flow
                               #:listed-gateway #:listed-gateway-instance
                               #:maintenance #:maintenance-day #:max-results
@@ -119,77 +61,37 @@
                               #:media-stream-type #:message-detail #:messages
                               #:monitoring-config #:multicast-source-settings
                               #:ndi-config #:ndi-discovery-server-config
-                              #:ndi-state #:network-interface-type
-                              #:not-found-exception #:offering #:offering-arn
-                              #:offering-resource #:output #:output-status
-                              #:price-units #:protocol #:purchase-offering
-                              #:purchase-offering-request
-                              #:purchase-offering-response #:range
-                              #:remove-bridge-output
-                              #:remove-bridge-output-request
-                              #:remove-bridge-output-response
-                              #:remove-bridge-source
-                              #:remove-bridge-source-request
-                              #:remove-bridge-source-response
-                              #:remove-flow-media-stream
-                              #:remove-flow-media-stream-request
-                              #:remove-flow-media-stream-response
-                              #:remove-flow-output #:remove-flow-output-request
-                              #:remove-flow-output-response
-                              #:remove-flow-source #:remove-flow-source-request
-                              #:remove-flow-source-response
-                              #:remove-flow-vpc-interface
-                              #:remove-flow-vpc-interface-request
-                              #:remove-flow-vpc-interface-response
+                              #:ndi-state #:network-interface-type #:offering
+                              #:offering-arn #:offering-resource #:output
+                              #:output-status #:price-units #:protocol
+                              #:purchase-offering #:range
+                              #:remove-bridge-output #:remove-bridge-source
+                              #:remove-flow-media-stream #:remove-flow-output
+                              #:remove-flow-source #:remove-flow-vpc-interface
                               #:reservation #:reservation-arn
                               #:reservation-resource #:reservation-state
                               #:resource-specification #:resource-type
-                              #:revoke-flow-entitlement
-                              #:revoke-flow-entitlement-request
-                              #:revoke-flow-entitlement-response #:scan-mode
-                              #:service-unavailable-exception
+                              #:revoke-flow-entitlement #:scan-mode
                               #:set-gateway-bridge-source-request
                               #:set-source-request #:silent-audio #:source
                               #:source-priority #:source-type #:start-flow
-                              #:start-flow-request #:start-flow-response
-                              #:state #:status #:stop-flow #:stop-flow-request
-                              #:stop-flow-response #:tag-resource
-                              #:tag-resource-request #:tcs #:thumbnail-details
-                              #:thumbnail-state #:too-many-requests-exception
-                              #:transport #:transport-media-info
-                              #:transport-stream #:transport-stream-program
-                              #:untag-resource #:untag-resource-request
+                              #:state #:status #:stop-flow #:tag-resource #:tcs
+                              #:thumbnail-details #:thumbnail-state #:transport
+                              #:transport-media-info #:transport-stream
+                              #:transport-stream-program #:untag-resource
                               #:update-bridge
                               #:update-bridge-flow-source-request
                               #:update-bridge-network-output-request
                               #:update-bridge-network-source-request
-                              #:update-bridge-output
-                              #:update-bridge-output-request
-                              #:update-bridge-output-response
-                              #:update-bridge-request #:update-bridge-response
-                              #:update-bridge-source
-                              #:update-bridge-source-request
-                              #:update-bridge-source-response
+                              #:update-bridge-output #:update-bridge-source
                               #:update-bridge-state
-                              #:update-bridge-state-request
-                              #:update-bridge-state-response
                               #:update-egress-gateway-bridge-request
                               #:update-encryption #:update-failover-config
                               #:update-flow #:update-flow-entitlement
-                              #:update-flow-entitlement-request
-                              #:update-flow-entitlement-response
-                              #:update-flow-media-stream
-                              #:update-flow-media-stream-request
-                              #:update-flow-media-stream-response
-                              #:update-flow-output #:update-flow-output-request
-                              #:update-flow-output-response
-                              #:update-flow-request #:update-flow-response
-                              #:update-flow-source #:update-flow-source-request
-                              #:update-flow-source-response
+                              #:update-flow-media-stream #:update-flow-output
+                              #:update-flow-source
                               #:update-gateway-bridge-source-request
                               #:update-gateway-instance
-                              #:update-gateway-instance-request
-                              #:update-gateway-instance-response
                               #:update-ingress-gateway-bridge-request
                               #:update-maintenance #:video-monitoring-setting
                               #:vpc-interface #:vpc-interface-attachment

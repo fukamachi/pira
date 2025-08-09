@@ -1,29 +1,20 @@
 (uiop/package:define-package #:pira/application-signals (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:amazon-resource-name #:application-signals
-                              #:attainment #:attainment-goal #:attribute-map
+                             (:export #:account-id #:amazon-resource-name
+                              #:application-signals #:attainment
+                              #:attainment-goal #:attribute-map
                               #:attribute-maps #:attributes #:aws-account-id
                               #:batch-get-service-level-objective-budget-report
-                              #:batch-get-service-level-objective-budget-report-input
-                              #:batch-get-service-level-objective-budget-report-output
                               #:batch-update-exclusion-windows
                               #:batch-update-exclusion-windows-error
                               #:batch-update-exclusion-windows-errors
-                              #:batch-update-exclusion-windows-input
-                              #:batch-update-exclusion-windows-output
                               #:budget-requests-remaining
                               #:budget-seconds-remaining
                               #:burn-rate-configuration
                               #:burn-rate-configurations
                               #:burn-rate-look-back-window-minutes
                               #:calendar-interval #:calendar-interval-duration
-                              #:conflict-exception
                               #:create-service-level-objective
-                              #:create-service-level-objective-input
-                              #:create-service-level-objective-output
                               #:delete-service-level-objective
-                              #:delete-service-level-objective-input
-                              #:delete-service-level-objective-output
                               #:dependency-config #:dimension #:dimension-name
                               #:dimension-value #:dimensions #:duration-unit
                               #:evaluation-type #:exclusion-duration
@@ -32,41 +23,26 @@
                               #:exclusion-window-error-message
                               #:exclusion-windows #:expression
                               #:fault-description #:get-service
-                              #:get-service-input #:get-service-level-objective
-                              #:get-service-level-objective-input
-                              #:get-service-level-objective-output
-                              #:get-service-output #:goal #:interval
+                              #:get-service-level-objective #:goal #:interval
                               #:key-attribute-name #:key-attribute-value
                               #:list-service-dependencies
-                              #:list-service-dependencies-input
                               #:list-service-dependencies-max-results
-                              #:list-service-dependencies-output
                               #:list-service-dependents
-                              #:list-service-dependents-input
                               #:list-service-dependents-max-results
-                              #:list-service-dependents-output
                               #:list-service-level-objective-exclusion-windows
-                              #:list-service-level-objective-exclusion-windows-input
                               #:list-service-level-objective-exclusion-windows-max-results
-                              #:list-service-level-objective-exclusion-windows-output
                               #:list-service-level-objectives
-                              #:list-service-level-objectives-input
                               #:list-service-level-objectives-max-results
-                              #:list-service-level-objectives-output
                               #:list-service-operation-max-results
-                              #:list-service-operations
-                              #:list-service-operations-input
-                              #:list-service-operations-output #:list-services
-                              #:list-services-input #:list-services-max-results
-                              #:list-services-output #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:log-group-references #:metric
-                              #:metric-data-queries #:metric-data-query
-                              #:metric-expression #:metric-id #:metric-label
-                              #:metric-name #:metric-reference
-                              #:metric-references #:metric-source-type
-                              #:metric-source-types #:metric-stat #:metric-type
+                              #:list-service-operations #:list-services
+                              #:list-services-max-results
+                              #:list-tags-for-resource #:log-group-references
+                              #:metric #:metric-data-queries
+                              #:metric-data-query #:metric-expression
+                              #:metric-id #:metric-label #:metric-name
+                              #:metric-reference #:metric-references
+                              #:metric-source-type #:metric-source-types
+                              #:metric-stat #:metric-type
                               #:monitored-request-count-metric-data-queries
                               #:namespace #:next-token #:operation-name
                               #:period #:recurrence-rule
@@ -74,13 +50,12 @@
                               #:request-based-service-level-indicator-config
                               #:request-based-service-level-indicator-metric
                               #:request-based-service-level-indicator-metric-config
-                              #:resource-id #:resource-not-found-exception
-                              #:resource-type #:return-data #:rolling-interval
-                              #:rolling-interval-duration #:sliperiod-seconds
-                              #:service #:service-dependencies
-                              #:service-dependency #:service-dependent
-                              #:service-dependents #:service-error-message
-                              #:service-level-indicator
+                              #:resource-id #:resource-type #:return-data
+                              #:rolling-interval #:rolling-interval-duration
+                              #:sliperiod-seconds #:service
+                              #:service-dependencies #:service-dependency
+                              #:service-dependent #:service-dependents
+                              #:service-error-message #:service-level-indicator
                               #:service-level-indicator-comparison-operator
                               #:service-level-indicator-config
                               #:service-level-indicator-metric
@@ -105,21 +80,12 @@
                               #:service-level-objective-summaries
                               #:service-level-objective-summary
                               #:service-operation #:service-operations
-                              #:service-quota-exceeded-exception
                               #:service-summaries #:service-summary
-                              #:standard-unit #:start-discovery
-                              #:start-discovery-input #:start-discovery-output
-                              #:stat #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:total-budget-requests
-                              #:total-budget-seconds #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-service-level-objective
-                              #:update-service-level-objective-input
-                              #:update-service-level-objective-output
-                              #:validation-exception
+                              #:standard-unit #:start-discovery #:stat #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value
+                              #:total-budget-requests #:total-budget-seconds
+                              #:untag-resource #:update-service-level-objective
                               #:validation-exception-message
                               #:warning-threshold #:window))
 (common-lisp:in-package #:pira/application-signals)

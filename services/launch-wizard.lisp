@@ -1,9 +1,6 @@
 (uiop/package:define-package #:pira/launch-wizard (:use)
                              (:export #:allowed-values #:create-deployment
-                              #:create-deployment-input
-                              #:create-deployment-output #:delete-deployment
-                              #:delete-deployment-input
-                              #:delete-deployment-output #:deployment
+                              #:delete-deployment #:deployment
                               #:deployment-conditional-field #:deployment-data
                               #:deployment-data-summary
                               #:deployment-data-summary-list #:deployment-event
@@ -17,39 +14,19 @@
                               #:deployment-specifications-data
                               #:deployment-specifications-field
                               #:deployment-status #:event-id #:event-status
-                              #:get-deployment #:get-deployment-input
-                              #:get-deployment-output #:get-workload
-                              #:get-workload-deployment-pattern
-                              #:get-workload-deployment-pattern-input
-                              #:get-workload-deployment-pattern-output
-                              #:get-workload-input #:get-workload-output
-                              #:internal-server-exception #:key-string
+                              #:get-deployment #:get-workload
+                              #:get-workload-deployment-pattern #:key-string
                               #:launch-wizard #:list-deployment-events
-                              #:list-deployment-events-input
-                              #:list-deployment-events-output
-                              #:list-deployments #:list-deployments-input
-                              #:list-deployments-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
+                              #:list-deployments #:list-tags-for-resource
                               #:list-workload-deployment-patterns
-                              #:list-workload-deployment-patterns-input
-                              #:list-workload-deployment-patterns-output
-                              #:list-workloads #:list-workloads-input
-                              #:list-workloads-output
-                              #:max-deployment-event-results
+                              #:list-workloads #:max-deployment-event-results
                               #:max-deployment-results
                               #:max-workload-deployment-pattern-results
                               #:max-workload-results #:next-token
-                              #:resource-limit-exception
-                              #:resource-not-found-exception #:settings-set
-                              #:settings-set-name
+                              #:settings-set #:settings-set-name
                               #:specifications-conditional-data #:tag-key
-                              #:tag-key-list #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:tags #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:validation-exception #:value-string #:workload
+                              #:tag-key-list #:tag-resource #:tag-value #:tags
+                              #:untag-resource #:value-string #:workload
                               #:workload-data #:workload-data-summary
                               #:workload-data-summary-list
                               #:workload-deployment-pattern

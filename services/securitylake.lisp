@@ -1,33 +1,18 @@
 (uiop/package:define-package #:pira/securitylake (:use)
-                             (:export #:access-denied-exception #:access-type
-                              #:access-type-list #:account-list
-                              #:amazon-resource-name #:aws-account-id
-                              #:aws-identity #:aws-log-source-configuration
+                             (:export #:access-type #:access-type-list
+                              #:account-list #:amazon-resource-name
+                              #:aws-account-id #:aws-identity
+                              #:aws-log-source-configuration
                               #:aws-log-source-configuration-list
                               #:aws-log-source-name #:aws-log-source-resource
                               #:aws-log-source-resource-list
                               #:aws-log-source-version #:aws-principal
-                              #:bad-request-exception #:conflict-exception
                               #:create-aws-log-source
-                              #:create-aws-log-source-request
-                              #:create-aws-log-source-response
-                              #:create-custom-log-source
-                              #:create-custom-log-source-request
-                              #:create-custom-log-source-response
-                              #:create-data-lake
+                              #:create-custom-log-source #:create-data-lake
                               #:create-data-lake-exception-subscription
-                              #:create-data-lake-exception-subscription-request
-                              #:create-data-lake-exception-subscription-response
                               #:create-data-lake-organization-configuration
-                              #:create-data-lake-organization-configuration-request
-                              #:create-data-lake-organization-configuration-response
-                              #:create-data-lake-request
-                              #:create-data-lake-response #:create-subscriber
+                              #:create-subscriber
                               #:create-subscriber-notification
-                              #:create-subscriber-notification-request
-                              #:create-subscriber-notification-response
-                              #:create-subscriber-request
-                              #:create-subscriber-response
                               #:custom-log-source-attributes
                               #:custom-log-source-configuration
                               #:custom-log-source-crawler-configuration
@@ -53,63 +38,26 @@
                               #:data-lake-storage-class
                               #:data-lake-update-exception
                               #:data-lake-update-status #:delete-aws-log-source
-                              #:delete-aws-log-source-request
-                              #:delete-aws-log-source-response
-                              #:delete-custom-log-source
-                              #:delete-custom-log-source-request
-                              #:delete-custom-log-source-response
-                              #:delete-data-lake
+                              #:delete-custom-log-source #:delete-data-lake
                               #:delete-data-lake-exception-subscription
-                              #:delete-data-lake-exception-subscription-request
-                              #:delete-data-lake-exception-subscription-response
                               #:delete-data-lake-organization-configuration
-                              #:delete-data-lake-organization-configuration-request
-                              #:delete-data-lake-organization-configuration-response
-                              #:delete-data-lake-request
-                              #:delete-data-lake-response #:delete-subscriber
+                              #:delete-subscriber
                               #:delete-subscriber-notification
-                              #:delete-subscriber-notification-request
-                              #:delete-subscriber-notification-response
-                              #:delete-subscriber-request
-                              #:delete-subscriber-response
                               #:deregister-data-lake-delegated-administrator
-                              #:deregister-data-lake-delegated-administrator-request
-                              #:deregister-data-lake-delegated-administrator-response
                               #:description-string #:external-id
                               #:get-data-lake-exception-subscription
-                              #:get-data-lake-exception-subscription-request
-                              #:get-data-lake-exception-subscription-response
                               #:get-data-lake-organization-configuration
-                              #:get-data-lake-organization-configuration-request
-                              #:get-data-lake-organization-configuration-response
-                              #:get-data-lake-sources
-                              #:get-data-lake-sources-request
-                              #:get-data-lake-sources-response #:get-subscriber
-                              #:get-subscriber-request
-                              #:get-subscriber-response #:http-method
-                              #:https-notification-configuration
-                              #:internal-server-exception
-                              #:list-data-lake-exceptions
-                              #:list-data-lake-exceptions-request
-                              #:list-data-lake-exceptions-response
-                              #:list-data-lakes #:list-data-lakes-request
-                              #:list-data-lakes-response #:list-log-sources
-                              #:list-log-sources-request
-                              #:list-log-sources-response #:list-subscribers
-                              #:list-subscribers-request
-                              #:list-subscribers-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:log-source
+                              #:get-data-lake-sources #:get-subscriber
+                              #:http-method #:https-notification-configuration
+                              #:list-data-lake-exceptions #:list-data-lakes
+                              #:list-log-sources #:list-subscribers
+                              #:list-tags-for-resource #:log-source
                               #:log-source-list #:log-source-resource
                               #:log-source-resource-list #:max-results
                               #:next-token #:notification-configuration
                               #:ocsf-event-class #:ocsf-event-class-list
                               #:region #:region-list
                               #:register-data-lake-delegated-administrator
-                              #:register-data-lake-delegated-administrator-request
-                              #:register-data-lake-delegated-administrator-response
-                              #:resource-not-found-exception
                               #:resource-share-arn #:resource-share-name
                               #:role-arn #:s3bucket-arn #:s3uri #:safe-string
                               #:security-lake #:source-collection-status
@@ -117,21 +65,11 @@
                               #:subscriber-resource #:subscriber-resource-list
                               #:subscriber-status #:subscription-protocol #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:uuid #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-data-lake
+                              #:tag-resource #:tag-value #:uuid
+                              #:untag-resource #:update-data-lake
                               #:update-data-lake-exception-subscription
-                              #:update-data-lake-exception-subscription-request
-                              #:update-data-lake-exception-subscription-response
-                              #:update-data-lake-request
-                              #:update-data-lake-response #:update-subscriber
-                              #:update-subscriber-notification
-                              #:update-subscriber-notification-request
-                              #:update-subscriber-notification-response
-                              #:update-subscriber-request
-                              #:update-subscriber-response))
+                              #:update-subscriber
+                              #:update-subscriber-notification))
 (common-lisp:in-package #:pira/securitylake)
 
 (smithy/sdk/service:define-service security-lake :shape-name "SecurityLake"

@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/cleanroomsml (:use)
-                             (:export #:awsstark-control-service
-                              #:access-denied-exception #:account-id
+                             (:export #:awsstark-control-service #:account-id
                               #:account-id-list #:algorithm-image
                               #:analysis-template-arn #:audience-destination
                               #:audience-export-job #:audience-export-job-arn
@@ -21,8 +20,6 @@
                               #:audience-size-type #:audience-size-value
                               #:cancel-trained-model
                               #:cancel-trained-model-inference-job
-                              #:cancel-trained-model-inference-job-request
-                              #:cancel-trained-model-request
                               #:collaboration-configured-model-algorithm-association-list
                               #:collaboration-configured-model-algorithm-association-summary
                               #:collaboration-mlinput-channel-summary
@@ -51,97 +48,42 @@
                               #:configured-model-algorithm-association-summary
                               #:configured-model-algorithm-list
                               #:configured-model-algorithm-summary
-                              #:conflict-exception #:container-argument
-                              #:container-arguments #:container-config
-                              #:container-entrypoint
+                              #:container-argument #:container-arguments
+                              #:container-config #:container-entrypoint
                               #:container-entrypoint-string
                               #:create-audience-model
-                              #:create-audience-model-request
-                              #:create-audience-model-response
                               #:create-configured-audience-model
-                              #:create-configured-audience-model-request
-                              #:create-configured-audience-model-response
                               #:create-configured-model-algorithm
                               #:create-configured-model-algorithm-association
-                              #:create-configured-model-algorithm-association-request
-                              #:create-configured-model-algorithm-association-response
-                              #:create-configured-model-algorithm-request
-                              #:create-configured-model-algorithm-response
-                              #:create-mlinput-channel
-                              #:create-mlinput-channel-request
-                              #:create-mlinput-channel-response
-                              #:create-trained-model
-                              #:create-trained-model-request
-                              #:create-trained-model-response
-                              #:create-training-dataset
-                              #:create-training-dataset-request
-                              #:create-training-dataset-response #:data-source
-                              #:dataset #:dataset-input-config #:dataset-list
+                              #:create-mlinput-channel #:create-trained-model
+                              #:create-training-dataset #:data-source #:dataset
+                              #:dataset-input-config #:dataset-list
                               #:dataset-schema-list #:dataset-type
                               #:delete-audience-generation-job
-                              #:delete-audience-generation-job-request
                               #:delete-audience-model
-                              #:delete-audience-model-request
                               #:delete-configured-audience-model
                               #:delete-configured-audience-model-policy
-                              #:delete-configured-audience-model-policy-request
-                              #:delete-configured-audience-model-request
                               #:delete-configured-model-algorithm
                               #:delete-configured-model-algorithm-association
-                              #:delete-configured-model-algorithm-association-request
-                              #:delete-configured-model-algorithm-request
                               #:delete-mlconfiguration
-                              #:delete-mlconfiguration-request
                               #:delete-mlinput-channel-data
-                              #:delete-mlinput-channel-data-request
                               #:delete-trained-model-output
-                              #:delete-trained-model-output-request
-                              #:delete-training-dataset
-                              #:delete-training-dataset-request #:destination
+                              #:delete-training-dataset #:destination
                               #:environment #:get-audience-generation-job
-                              #:get-audience-generation-job-request
-                              #:get-audience-generation-job-response
-                              #:get-audience-model #:get-audience-model-request
-                              #:get-audience-model-response
+                              #:get-audience-model
                               #:get-collaboration-configured-model-algorithm-association
-                              #:get-collaboration-configured-model-algorithm-association-request
-                              #:get-collaboration-configured-model-algorithm-association-response
                               #:get-collaboration-mlinput-channel
-                              #:get-collaboration-mlinput-channel-request
-                              #:get-collaboration-mlinput-channel-response
                               #:get-collaboration-trained-model
-                              #:get-collaboration-trained-model-request
-                              #:get-collaboration-trained-model-response
                               #:get-configured-audience-model
                               #:get-configured-audience-model-policy
-                              #:get-configured-audience-model-policy-request
-                              #:get-configured-audience-model-policy-response
-                              #:get-configured-audience-model-request
-                              #:get-configured-audience-model-response
                               #:get-configured-model-algorithm
                               #:get-configured-model-algorithm-association
-                              #:get-configured-model-algorithm-association-request
-                              #:get-configured-model-algorithm-association-response
-                              #:get-configured-model-algorithm-request
-                              #:get-configured-model-algorithm-response
-                              #:get-mlconfiguration
-                              #:get-mlconfiguration-request
-                              #:get-mlconfiguration-response
-                              #:get-mlinput-channel
-                              #:get-mlinput-channel-request
-                              #:get-mlinput-channel-response
+                              #:get-mlconfiguration #:get-mlinput-channel
                               #:get-trained-model
                               #:get-trained-model-inference-job
-                              #:get-trained-model-inference-job-request
-                              #:get-trained-model-inference-job-response
-                              #:get-trained-model-request
-                              #:get-trained-model-response
-                              #:get-training-dataset
-                              #:get-training-dataset-request
-                              #:get-training-dataset-response
-                              #:glue-data-source #:glue-database-name
-                              #:glue-table-name #:hash #:hyper-parameters
-                              #:iam-role-arn
+                              #:get-training-dataset #:glue-data-source
+                              #:glue-database-name #:glue-table-name #:hash
+                              #:hyper-parameters #:iam-role-arn
                               #:incremental-training-data-channel
                               #:incremental-training-data-channel-output
                               #:incremental-training-data-channels
@@ -155,58 +97,21 @@
                               #:inference-receiver-members
                               #:inference-resource-config #:input-channel
                               #:input-channel-data-source #:instance-type
-                              #:internal-service-exception #:kms-key-arn
-                              #:list-audience-export-jobs
-                              #:list-audience-export-jobs-request
-                              #:list-audience-export-jobs-response
+                              #:kms-key-arn #:list-audience-export-jobs
                               #:list-audience-generation-jobs
-                              #:list-audience-generation-jobs-request
-                              #:list-audience-generation-jobs-response
                               #:list-audience-models
-                              #:list-audience-models-request
-                              #:list-audience-models-response
                               #:list-collaboration-configured-model-algorithm-associations
-                              #:list-collaboration-configured-model-algorithm-associations-request
-                              #:list-collaboration-configured-model-algorithm-associations-response
                               #:list-collaboration-mlinput-channels
-                              #:list-collaboration-mlinput-channels-request
-                              #:list-collaboration-mlinput-channels-response
                               #:list-collaboration-trained-model-export-jobs
-                              #:list-collaboration-trained-model-export-jobs-request
-                              #:list-collaboration-trained-model-export-jobs-response
                               #:list-collaboration-trained-model-inference-jobs
-                              #:list-collaboration-trained-model-inference-jobs-request
-                              #:list-collaboration-trained-model-inference-jobs-response
                               #:list-collaboration-trained-models
-                              #:list-collaboration-trained-models-request
-                              #:list-collaboration-trained-models-response
                               #:list-configured-audience-models
-                              #:list-configured-audience-models-request
-                              #:list-configured-audience-models-response
                               #:list-configured-model-algorithm-associations
-                              #:list-configured-model-algorithm-associations-request
-                              #:list-configured-model-algorithm-associations-response
                               #:list-configured-model-algorithms
-                              #:list-configured-model-algorithms-request
-                              #:list-configured-model-algorithms-response
-                              #:list-mlinput-channels
-                              #:list-mlinput-channels-request
-                              #:list-mlinput-channels-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-mlinput-channels #:list-tags-for-resource
                               #:list-trained-model-inference-jobs
-                              #:list-trained-model-inference-jobs-request
-                              #:list-trained-model-inference-jobs-response
                               #:list-trained-model-versions
-                              #:list-trained-model-versions-request
-                              #:list-trained-model-versions-response
-                              #:list-trained-models
-                              #:list-trained-models-request
-                              #:list-trained-models-response
-                              #:list-training-datasets
-                              #:list-training-datasets-request
-                              #:list-training-datasets-response
+                              #:list-trained-models #:list-training-datasets
                               #:logs-configuration-policy
                               #:logs-configuration-policy-list #:logs-status
                               #:mlconfiguration #:mlinput-channel
@@ -229,32 +134,19 @@
                               #:protected-query-input-parameters
                               #:protected-query-sqlparameters
                               #:put-configured-audience-model-policy
-                              #:put-configured-audience-model-policy-request
-                              #:put-configured-audience-model-policy-response
-                              #:put-mlconfiguration
-                              #:put-mlconfiguration-request #:relevance-metric
+                              #:put-mlconfiguration #:relevance-metric
                               #:relevance-metrics #:resource-config
-                              #:resource-description
-                              #:resource-not-found-exception #:resource-policy
+                              #:resource-description #:resource-policy
                               #:result-format #:s3config-map
                               #:s3data-distribution-type #:s3path
-                              #:service-quota-exceeded-exception
                               #:shared-audience-metrics
                               #:start-audience-export-job
-                              #:start-audience-export-job-request
                               #:start-audience-generation-job
-                              #:start-audience-generation-job-request
-                              #:start-audience-generation-job-response
                               #:start-trained-model-export-job
-                              #:start-trained-model-export-job-request
                               #:start-trained-model-inference-job
-                              #:start-trained-model-inference-job-request
-                              #:start-trained-model-inference-job-response
                               #:status-details #:stopping-condition #:tag-key
                               #:tag-keys #:tag-map #:tag-on-create-policy
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:taggable-arn #:throttling-exception
+                              #:tag-resource #:tag-value #:taggable-arn
                               #:trained-model #:trained-model-arn
                               #:trained-model-artifact-max-size
                               #:trained-model-artifact-max-size-unit-type
@@ -286,12 +178,8 @@
                               #:training-dataset #:training-dataset-arn
                               #:training-dataset-list #:training-dataset-status
                               #:training-dataset-summary #:training-input-mode
-                              #:uuid #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:uuid #:untag-resource
                               #:update-configured-audience-model
-                              #:update-configured-audience-model-request
-                              #:update-configured-audience-model-response
-                              #:validation-exception
                               #:worker-compute-configuration
                               #:worker-compute-type))
 (common-lisp:in-package #:pira/cleanroomsml)

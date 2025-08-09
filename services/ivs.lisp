@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/ivs (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-interactive-video-service
+                             (:export #:amazon-interactive-video-service
                               #:audio-configuration #:audio-configuration-list
                               #:batch-error #:batch-errors #:batch-get-channel
                               #:batch-get-channel-request
@@ -18,16 +17,13 @@
                               #:boolean #:channel #:channel-arn
                               #:channel-arn-list #:channel-latency-mode
                               #:channel-list #:channel-name
-                              #:channel-not-broadcasting
                               #:channel-playback-restriction-policy-arn
                               #:channel-recording-configuration-arn
                               #:channel-summary #:channel-type #:channels
-                              #:conflict-exception #:container-format
-                              #:create-channel #:create-channel-request
+                              #:container-format #:create-channel
+                              #:create-channel-request
                               #:create-channel-response
                               #:create-playback-restriction-policy
-                              #:create-playback-restriction-policy-request
-                              #:create-playback-restriction-policy-response
                               #:create-recording-configuration
                               #:create-recording-configuration-request
                               #:create-recording-configuration-response
@@ -38,7 +34,6 @@
                               #:delete-playback-key-pair-request
                               #:delete-playback-key-pair-response
                               #:delete-playback-restriction-policy
-                              #:delete-playback-restriction-policy-request
                               #:delete-recording-configuration
                               #:delete-recording-configuration-request
                               #:delete-stream-key #:delete-stream-key-request
@@ -48,8 +43,6 @@
                               #:get-playback-key-pair-request
                               #:get-playback-key-pair-response
                               #:get-playback-restriction-policy
-                              #:get-playback-restriction-policy-request
-                              #:get-playback-restriction-policy-response
                               #:get-recording-configuration
                               #:get-recording-configuration-request
                               #:get-recording-configuration-response
@@ -64,15 +57,13 @@
                               #:import-playback-key-pair-response
                               #:ingest-configuration #:ingest-configurations
                               #:ingest-endpoint #:insecure-ingest #:integer
-                              #:internal-server-exception #:is-authorized
-                              #:is-multitrack-input-enabled #:list-channels
-                              #:list-channels-request #:list-channels-response
+                              #:is-authorized #:is-multitrack-input-enabled
+                              #:list-channels #:list-channels-request
+                              #:list-channels-response
                               #:list-playback-key-pairs
                               #:list-playback-key-pairs-request
                               #:list-playback-key-pairs-response
                               #:list-playback-restriction-policies
-                              #:list-playback-restriction-policies-request
-                              #:list-playback-restriction-policies-response
                               #:list-recording-configurations
                               #:list-recording-configurations-request
                               #:list-recording-configurations-response
@@ -93,8 +84,7 @@
                               #:multitrack-input-configuration
                               #:multitrack-maximum-resolution
                               #:multitrack-policy #:pagination-token
-                              #:pending-verification #:playback-key-pair
-                              #:playback-key-pair-arn
+                              #:playback-key-pair #:playback-key-pair-arn
                               #:playback-key-pair-fingerprint
                               #:playback-key-pair-list #:playback-key-pair-name
                               #:playback-key-pair-summary
@@ -122,10 +112,8 @@
                               #:rendition-configuration-rendition
                               #:rendition-configuration-rendition-list
                               #:rendition-configuration-rendition-selection
-                              #:resource-arn #:resource-not-found-exception
-                              #:s3destination-bucket-name
-                              #:s3destination-configuration
-                              #:service-quota-exceeded-exception #:srt
+                              #:resource-arn #:s3destination-bucket-name
+                              #:s3destination-configuration #:srt
                               #:srt-endpoint #:srt-passphrase
                               #:start-viewer-session-revocation
                               #:start-viewer-session-revocation-request
@@ -140,11 +128,11 @@
                               #:stream-session #:stream-session-list
                               #:stream-session-summary #:stream-start-time
                               #:stream-state #:stream-summary
-                              #:stream-unavailable #:stream-viewer-count
-                              #:string #:tag-key #:tag-key-list #:tag-resource
+                              #:stream-viewer-count #:string #:tag-key
+                              #:tag-key-list #:tag-resource
                               #:tag-resource-request #:tag-resource-response
                               #:tag-value #:tags #:target-interval-seconds
-                              #:throttling-exception #:thumbnail-configuration
+                              #:thumbnail-configuration
                               #:thumbnail-configuration-resolution
                               #:thumbnail-configuration-storage
                               #:thumbnail-configuration-storage-list #:time
@@ -154,11 +142,8 @@
                               #:update-channel-request
                               #:update-channel-response
                               #:update-playback-restriction-policy
-                              #:update-playback-restriction-policy-request
-                              #:update-playback-restriction-policy-response
-                              #:validation-exception #:video-configuration
-                              #:video-configuration-list #:viewer-id
-                              #:viewer-session-version #:error-code
+                              #:video-configuration #:video-configuration-list
+                              #:viewer-id #:viewer-session-version #:error-code
                               #:error-message))
 (common-lisp:in-package #:pira/ivs)
 

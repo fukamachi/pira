@@ -1,40 +1,19 @@
 (uiop/package:define-package #:pira/notificationscontacts (:use)
-                             (:export #:access-denied-exception
-                              #:activate-email-contact
-                              #:activate-email-contact-request
-                              #:activate-email-contact-response
-                              #:conflict-exception #:create-email-contact
-                              #:create-email-contact-request
-                              #:create-email-contact-response #:creation-time
-                              #:delete-email-contact
-                              #:delete-email-contact-request
-                              #:delete-email-contact-response #:email-contact
+                             (:export #:activate-email-contact
+                              #:create-email-contact #:creation-time
+                              #:delete-email-contact #:email-contact
                               #:email-contact-address #:email-contact-arn
                               #:email-contact-name #:email-contact-resource
                               #:email-contact-status #:email-contacts
                               #:error-message #:get-email-contact
-                              #:get-email-contact-request
-                              #:get-email-contact-response
-                              #:internal-server-exception #:list-email-contacts
-                              #:list-email-contacts-request
-                              #:list-email-contacts-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-email-contacts #:list-tags-for-resource
                               #:notifications-contacts #:quota-code
-                              #:resource-id #:resource-not-found-exception
-                              #:resource-type #:send-activation-code
-                              #:send-activation-code-request
-                              #:send-activation-code-response
+                              #:resource-id #:resource-type
+                              #:send-activation-code
                               #:sensitive-email-contact-address #:service-code
-                              #:service-quota-exceeded-exception #:tag-key
-                              #:tag-keys #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception #:token
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-time
-                              #:validation-exception
-                              #:validation-exception-field
+                              #:tag-key #:tag-keys #:tag-map #:tag-resource
+                              #:tag-value #:token #:untag-resource
+                              #:update-time #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))
 (common-lisp:in-package #:pira/notificationscontacts)

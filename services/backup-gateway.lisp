@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/backup-gateway (:use)
-                             (:export #:access-denied-exception
-                              #:activation-key #:associate-gateway-to-server
+                             (:export #:activation-key
+                              #:associate-gateway-to-server
                               #:associate-gateway-to-server-input
                               #:associate-gateway-to-server-output
                               #:average-upload-rate-limit
@@ -8,12 +8,11 @@
                               #:bandwidth-rate-limit-interval
                               #:bandwidth-rate-limit-intervals
                               #:bandwidth-rate-limit-schedule-resource
-                              #:conflict-exception #:create-gateway
-                              #:create-gateway-input #:create-gateway-output
-                              #:day-of-month #:day-of-week #:days-of-week
-                              #:delete-gateway #:delete-gateway-input
-                              #:delete-gateway-output #:delete-hypervisor
-                              #:delete-hypervisor-input
+                              #:create-gateway #:create-gateway-input
+                              #:create-gateway-output #:day-of-month
+                              #:day-of-week #:days-of-week #:delete-gateway
+                              #:delete-gateway-input #:delete-gateway-output
+                              #:delete-hypervisor #:delete-hypervisor-input
                               #:delete-hypervisor-output
                               #:disassociate-gateway-from-server
                               #:disassociate-gateway-from-server-input
@@ -38,10 +37,9 @@
                               #:import-hypervisor-configuration
                               #:import-hypervisor-configuration-input
                               #:import-hypervisor-configuration-output
-                              #:internal-server-exception #:kms-key-arn
-                              #:list-gateways #:list-gateways-input
-                              #:list-gateways-output #:list-hypervisors
-                              #:list-hypervisors-input
+                              #:kms-key-arn #:list-gateways
+                              #:list-gateways-input #:list-gateways-output
+                              #:list-hypervisors #:list-hypervisors-input
                               #:list-hypervisors-output
                               #:list-tags-for-resource
                               #:list-tags-for-resource-input
@@ -60,8 +58,7 @@
                               #:put-maintenance-start-time
                               #:put-maintenance-start-time-input
                               #:put-maintenance-start-time-output
-                              #:resource-arn #:resource-not-found-exception
-                              #:server-arn
+                              #:resource-arn #:server-arn
                               #:start-virtual-machines-metadata-sync
                               #:start-virtual-machines-metadata-sync-input
                               #:start-virtual-machines-metadata-sync-output
@@ -70,9 +67,9 @@
                               #:tag-resource-output #:tag-value #:tags
                               #:test-hypervisor-configuration
                               #:test-hypervisor-configuration-input
-                              #:test-hypervisor-configuration-output
-                              #:throttling-exception #:time #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
+                              #:test-hypervisor-configuration-output #:time
+                              #:untag-resource #:untag-resource-input
+                              #:untag-resource-output
                               #:update-gateway-information
                               #:update-gateway-information-input
                               #:update-gateway-information-output
@@ -81,8 +78,7 @@
                               #:update-gateway-software-now-output
                               #:update-hypervisor #:update-hypervisor-input
                               #:update-hypervisor-output #:username
-                              #:validation-exception #:virtual-machine
-                              #:virtual-machine-details
+                              #:virtual-machine #:virtual-machine-details
                               #:virtual-machine-resource #:virtual-machines
                               #:vmware-category #:vmware-tag #:vmware-tag-name
                               #:vmware-tags #:vmware-to-aws-tag-mapping

@@ -1,61 +1,36 @@
 (uiop/package:define-package #:pira/backupsearch (:use)
-                             (:export #:access-denied-exception
-                              #:backup-creation-time-filter
-                              #:conflict-exception #:cryo-backup-search-service
+                             (:export #:backup-creation-time-filter
+                              #:cryo-backup-search-service
                               #:current-search-progress #:ebsitem-filter
                               #:ebsitem-filters #:ebsresult-item
                               #:encryption-key-arn #:export-job-arn
                               #:export-job-status #:export-job-summaries
                               #:export-job-summary #:export-specification
                               #:file-path #:generic-id #:get-search-job
-                              #:get-search-job-input #:get-search-job-output
-                              #:get-search-result-export-job
-                              #:get-search-result-export-job-input
-                              #:get-search-result-export-job-output
-                              #:iam-role-arn #:internal-server-exception
+                              #:get-search-result-export-job #:iam-role-arn
                               #:item-filters #:list-search-job-backups
-                              #:list-search-job-backups-input
-                              #:list-search-job-backups-output
-                              #:list-search-job-results
-                              #:list-search-job-results-input
-                              #:list-search-job-results-output
-                              #:list-search-jobs #:list-search-jobs-input
-                              #:list-search-jobs-output
+                              #:list-search-job-results #:list-search-jobs
                               #:list-search-result-export-jobs
-                              #:list-search-result-export-jobs-input
-                              #:list-search-result-export-jobs-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:long-condition #:long-condition-list
-                              #:long-condition-operator #:object-key
-                              #:recovery-point #:recovery-point-arn-list
-                              #:resource-arn-list
-                              #:resource-not-found-exception #:resource-type
-                              #:resource-type-list #:result-item #:results
-                              #:s3export-specification #:s3item-filter
-                              #:s3item-filters #:s3result-item #:search-job
-                              #:search-job-arn #:search-job-backups-result
+                              #:list-tags-for-resource #:long-condition
+                              #:long-condition-list #:long-condition-operator
+                              #:object-key #:recovery-point
+                              #:recovery-point-arn-list #:resource-arn-list
+                              #:resource-type #:resource-type-list
+                              #:result-item #:results #:s3export-specification
+                              #:s3item-filter #:s3item-filters #:s3result-item
+                              #:search-job #:search-job-arn
+                              #:search-job-backups-result
                               #:search-job-backups-results #:search-job-state
                               #:search-job-summary #:search-jobs
                               #:search-result-export-job #:search-scope
-                              #:search-scope-summary
-                              #:service-quota-exceeded-exception
-                              #:start-search-job #:start-search-job-input
-                              #:start-search-job-output
+                              #:search-scope-summary #:start-search-job
                               #:start-search-result-export-job
-                              #:start-search-result-export-job-input
-                              #:start-search-result-export-job-output
-                              #:stop-search-job #:stop-search-job-input
-                              #:stop-search-job-output #:string-condition
+                              #:stop-search-job #:string-condition
                               #:string-condition-list
                               #:string-condition-operator #:tag-keys #:tag-map
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:throttling-exception
-                              #:time-condition #:time-condition-list
-                              #:time-condition-operator #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:validation-exception))
+                              #:tag-resource #:time-condition
+                              #:time-condition-list #:time-condition-operator
+                              #:untag-resource))
 (common-lisp:in-package #:pira/backupsearch)
 
 (smithy/sdk/service:define-service cryo-backup-search-service :shape-name

@@ -1,13 +1,7 @@
 (uiop/package:define-package #:pira/kinesis-video-webrtc-storage (:use)
                              (:export #:awsacuity-routing-service-lambda
-                              #:access-denied-exception #:channel-arn
-                              #:client-id #:client-limit-exceeded-exception
-                              #:invalid-argument-exception
-                              #:join-storage-session
-                              #:join-storage-session-as-viewer
-                              #:join-storage-session-as-viewer-input
-                              #:join-storage-session-input
-                              #:resource-not-found-exception))
+                              #:channel-arn #:client-id #:join-storage-session
+                              #:join-storage-session-as-viewer))
 (common-lisp:in-package #:pira/kinesis-video-webrtc-storage)
 
 (smithy/sdk/service:define-service awsacuity-routing-service-lambda :shape-name

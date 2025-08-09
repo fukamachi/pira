@@ -1,95 +1,36 @@
 (uiop/package:define-package #:pira/route53-recovery-readiness (:use)
-                             (:export #:access-denied-exception #:cell-output
-                              #:conflict-exception #:create-cell
-                              #:create-cell-request #:create-cell-response
+                             (:export #:cell-output #:create-cell
                               #:create-cross-account-authorization
-                              #:create-cross-account-authorization-request
-                              #:create-cross-account-authorization-response
-                              #:create-readiness-check
-                              #:create-readiness-check-request
-                              #:create-readiness-check-response
-                              #:create-recovery-group
-                              #:create-recovery-group-request
-                              #:create-recovery-group-response
+                              #:create-readiness-check #:create-recovery-group
                               #:create-resource-set
-                              #:create-resource-set-request
-                              #:create-resource-set-response
                               #:cross-account-authorization
                               #:dnstarget-resource #:delete-cell
-                              #:delete-cell-request
                               #:delete-cross-account-authorization
-                              #:delete-cross-account-authorization-request
-                              #:delete-cross-account-authorization-response
-                              #:delete-readiness-check
-                              #:delete-readiness-check-request
-                              #:delete-recovery-group
-                              #:delete-recovery-group-request
+                              #:delete-readiness-check #:delete-recovery-group
                               #:delete-resource-set
-                              #:delete-resource-set-request
-                              #:get-architecture-recommendations
-                              #:get-architecture-recommendations-request
-                              #:get-architecture-recommendations-response
-                              #:get-cell #:get-cell-readiness-summary
-                              #:get-cell-readiness-summary-request
-                              #:get-cell-readiness-summary-response
-                              #:get-cell-request #:get-cell-response
+                              #:get-architecture-recommendations #:get-cell
+                              #:get-cell-readiness-summary
                               #:get-readiness-check
-                              #:get-readiness-check-request
                               #:get-readiness-check-resource-status
-                              #:get-readiness-check-resource-status-request
-                              #:get-readiness-check-resource-status-response
-                              #:get-readiness-check-response
-                              #:get-readiness-check-status
-                              #:get-readiness-check-status-request
-                              #:get-readiness-check-status-response
-                              #:get-recovery-group
+                              #:get-readiness-check-status #:get-recovery-group
                               #:get-recovery-group-readiness-summary
-                              #:get-recovery-group-readiness-summary-request
-                              #:get-recovery-group-readiness-summary-response
-                              #:get-recovery-group-request
-                              #:get-recovery-group-response #:get-resource-set
-                              #:get-resource-set-request
-                              #:get-resource-set-response
-                              #:internal-server-exception
-                              #:last-audit-timestamp #:list-cells
-                              #:list-cells-request #:list-cells-response
-                              #:list-cross-account-authorizations
-                              #:list-cross-account-authorizations-request
-                              #:list-cross-account-authorizations-response
-                              #:list-readiness-checks
-                              #:list-readiness-checks-request
-                              #:list-readiness-checks-response
-                              #:list-recovery-groups
-                              #:list-recovery-groups-request
-                              #:list-recovery-groups-response
-                              #:list-resource-sets #:list-resource-sets-request
-                              #:list-resource-sets-response #:list-rules
-                              #:list-rules-output #:list-rules-request
-                              #:list-rules-response #:list-tags-for-resources
-                              #:list-tags-for-resources-request
-                              #:list-tags-for-resources-response #:max-results
-                              #:message #:nlbresource #:r53resource-record
-                              #:readiness #:readiness-check-output
+                              #:get-resource-set #:last-audit-timestamp
+                              #:list-cells #:list-cross-account-authorizations
+                              #:list-readiness-checks #:list-recovery-groups
+                              #:list-resource-sets #:list-rules
+                              #:list-rules-output #:list-tags-for-resources
+                              #:max-results #:message #:nlbresource
+                              #:r53resource-record #:readiness
+                              #:readiness-check-output
                               #:readiness-check-summary
                               #:readiness-check-timestamp #:recommendation
                               #:recovery-group-output #:resource
-                              #:resource-not-found-exception #:resource-result
-                              #:resource-set-output #:route53recovery-readiness
-                              #:rule-result #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tags #:target-resource #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:update-cell #:update-cell-request
-                              #:update-cell-response #:update-readiness-check
-                              #:update-readiness-check-request
-                              #:update-readiness-check-response
-                              #:update-recovery-group
-                              #:update-recovery-group-request
-                              #:update-recovery-group-response
-                              #:update-resource-set
-                              #:update-resource-set-request
-                              #:update-resource-set-response
-                              #:validation-exception #:list-of-cell-output
+                              #:resource-result #:resource-set-output
+                              #:route53recovery-readiness #:rule-result
+                              #:tag-resource #:tags #:target-resource
+                              #:untag-resource #:update-cell
+                              #:update-readiness-check #:update-recovery-group
+                              #:update-resource-set #:list-of-cell-output
                               #:list-of-cross-account-authorization
                               #:list-of-list-rules-output #:list-of-message
                               #:list-of-readiness-check-output

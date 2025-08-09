@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/compute-optimizer (:use)
-                             (:export #:access-denied-exception
-                              #:account-enrollment-status
+                             (:export #:account-enrollment-status
                               #:account-enrollment-statuses #:account-id
                               #:account-ids #:allocated-storage
                               #:allocation-strategy #:asg-type
@@ -33,11 +32,7 @@
                               #:dbcluster-identifier #:dbinstance-class
                               #:dbstorage-configuration
                               #:delete-recommendation-preferences
-                              #:delete-recommendation-preferences-request
-                              #:delete-recommendation-preferences-response
                               #:describe-recommendation-export-jobs
-                              #:describe-recommendation-export-jobs-request
-                              #:describe-recommendation-export-jobs-response
                               #:desired-capacity #:destination-bucket
                               #:destination-key #:destination-key-prefix
                               #:dimension
@@ -82,30 +77,14 @@
                               #:enrollment-filters #:error-message
                               #:estimated-monthly-savings
                               #:export-auto-scaling-group-recommendations
-                              #:export-auto-scaling-group-recommendations-request
-                              #:export-auto-scaling-group-recommendations-response
                               #:export-destination
                               #:export-ebsvolume-recommendations
-                              #:export-ebsvolume-recommendations-request
-                              #:export-ebsvolume-recommendations-response
                               #:export-ec2instance-recommendations
-                              #:export-ec2instance-recommendations-request
-                              #:export-ec2instance-recommendations-response
                               #:export-ecsservice-recommendations
-                              #:export-ecsservice-recommendations-request
-                              #:export-ecsservice-recommendations-response
                               #:export-idle-recommendations
-                              #:export-idle-recommendations-request
-                              #:export-idle-recommendations-response
                               #:export-lambda-function-recommendations
-                              #:export-lambda-function-recommendations-request
-                              #:export-lambda-function-recommendations-response
                               #:export-license-recommendations
-                              #:export-license-recommendations-request
-                              #:export-license-recommendations-response
                               #:export-rdsdatabase-recommendations
-                              #:export-rdsdatabase-recommendations-request
-                              #:export-rdsdatabase-recommendations-response
                               #:exportable-auto-scaling-group-field
                               #:exportable-auto-scaling-group-fields
                               #:exportable-ecsservice-field
@@ -130,57 +109,25 @@
                               #:finding #:finding-reason-code #:function-arn
                               #:function-arns #:function-version
                               #:get-auto-scaling-group-recommendations
-                              #:get-auto-scaling-group-recommendations-request
-                              #:get-auto-scaling-group-recommendations-response
                               #:get-ebsvolume-recommendations
-                              #:get-ebsvolume-recommendations-request
-                              #:get-ebsvolume-recommendations-response
                               #:get-ec2instance-recommendations
-                              #:get-ec2instance-recommendations-request
-                              #:get-ec2instance-recommendations-response
                               #:get-ec2recommendation-projected-metrics
-                              #:get-ec2recommendation-projected-metrics-request
-                              #:get-ec2recommendation-projected-metrics-response
                               #:get-ecsservice-recommendation-projected-metrics
-                              #:get-ecsservice-recommendation-projected-metrics-request
-                              #:get-ecsservice-recommendation-projected-metrics-response
                               #:get-ecsservice-recommendations
-                              #:get-ecsservice-recommendations-request
-                              #:get-ecsservice-recommendations-response
                               #:get-effective-recommendation-preferences
-                              #:get-effective-recommendation-preferences-request
-                              #:get-effective-recommendation-preferences-response
                               #:get-enrollment-status
-                              #:get-enrollment-status-request
-                              #:get-enrollment-status-response
                               #:get-enrollment-statuses-for-organization
-                              #:get-enrollment-statuses-for-organization-request
-                              #:get-enrollment-statuses-for-organization-response
                               #:get-idle-recommendations
-                              #:get-idle-recommendations-request
-                              #:get-idle-recommendations-response
                               #:get-lambda-function-recommendations
-                              #:get-lambda-function-recommendations-request
-                              #:get-lambda-function-recommendations-response
                               #:get-license-recommendations
-                              #:get-license-recommendations-request
-                              #:get-license-recommendations-response
                               #:get-rdsdatabase-recommendation-projected-metrics
-                              #:get-rdsdatabase-recommendation-projected-metrics-request
-                              #:get-rdsdatabase-recommendation-projected-metrics-response
                               #:get-rdsdatabase-recommendations
-                              #:get-rdsdatabase-recommendations-request
-                              #:get-rdsdatabase-recommendations-response
                               #:get-recommendation-error
                               #:get-recommendation-errors
                               #:get-recommendation-preferences
-                              #:get-recommendation-preferences-request
-                              #:get-recommendation-preferences-response
-                              #:get-recommendation-summaries
-                              #:get-recommendation-summaries-request
-                              #:get-recommendation-summaries-response #:gpu
-                              #:gpu-count #:gpu-info #:gpu-memory-size-in-mi-b
-                              #:gpus #:high #:identifier #:idle
+                              #:get-recommendation-summaries #:gpu #:gpu-count
+                              #:gpu-info #:gpu-memory-size-in-mi-b #:gpus
+                              #:high #:identifier #:idle
                               #:idle-estimated-monthly-savings #:idle-finding
                               #:idle-finding-description #:idle-max-results
                               #:idle-metric-name #:idle-recommendation
@@ -212,9 +159,7 @@
                               #:instance-savings-estimation-mode
                               #:instance-savings-estimation-mode-source
                               #:instance-savings-opportunity-after-discounts
-                              #:instance-state #:instance-type
-                              #:internal-server-exception
-                              #:invalid-parameter-value-exception #:job-filter
+                              #:instance-state #:instance-type #:job-filter
                               #:job-filter-name #:job-filters #:job-id
                               #:job-ids #:job-status
                               #:lambda-effective-recommendation-preferences
@@ -251,7 +196,6 @@
                               #:license-recommendation-option
                               #:license-recommendation-options
                               #:license-recommendations #:license-version
-                              #:limit-exceeded-exception
                               #:look-back-period-in-days
                               #:look-back-period-preference #:low
                               #:lower-bound-value #:max-results #:max-size
@@ -262,7 +206,6 @@
                               #:metric-source-provider #:metric-statistic
                               #:metric-value #:metric-values #:metrics-source
                               #:migration-effort #:min-size
-                              #:missing-authentication-token
                               #:mixed-instance-type #:mixed-instance-types
                               #:next-token #:nullable-cpu
                               #:nullable-estimated-instance-hour-reduction-percentage
@@ -272,17 +215,15 @@
                               #:nullable-storage-throughput #:number-of-cores
                               #:number-of-invocations
                               #:number-of-member-accounts-opted-in
-                              #:operating-system #:opt-in-required-exception
-                              #:order #:order-by #:performance-risk #:period
-                              #:platform-difference #:platform-differences
-                              #:preferred-resource #:preferred-resource-name
+                              #:operating-system #:order #:order-by
+                              #:performance-risk #:period #:platform-difference
+                              #:platform-differences #:preferred-resource
+                              #:preferred-resource-name
                               #:preferred-resource-value
                               #:preferred-resource-values #:preferred-resources
                               #:projected-metric #:projected-metrics
                               #:projected-utilization-metrics #:promotion-tier
                               #:put-recommendation-preferences
-                              #:put-recommendation-preferences-request
-                              #:put-recommendation-preferences-response
                               #:rdscurrent-instance-performance-risk
                               #:rdsdbinstance-recommendation-option
                               #:rdsdbinstance-recommendation-options
@@ -335,23 +276,19 @@
                               #:recommended-option-projected-metric
                               #:recommended-option-projected-metrics
                               #:resource-arn #:resource-arns #:resource-id
-                              #:resource-not-found-exception #:resource-type
-                              #:root-volume #:s3destination
+                              #:resource-type #:root-volume #:s3destination
                               #:s3destination-config #:savings-estimation-mode
                               #:savings-opportunity
                               #:savings-opportunity-percentage #:scope
                               #:scope-name #:scope-value #:service-arn
-                              #:service-arns #:service-configuration
-                              #:service-unavailable-exception #:status
+                              #:service-arns #:service-configuration #:status
                               #:status-reason #:storage-type #:summaries
                               #:summary #:summary-value #:tag #:tag-key
                               #:tag-value #:tags #:task-definition-arn
-                              #:throttling-exception #:timestamp #:timestamps
-                              #:update-enrollment-status
-                              #:update-enrollment-status-request
-                              #:update-enrollment-status-response
-                              #:upper-bound-value #:utilization-metric
-                              #:utilization-metrics #:utilization-preference
+                              #:timestamp #:timestamps
+                              #:update-enrollment-status #:upper-bound-value
+                              #:utilization-metric #:utilization-metrics
+                              #:utilization-preference
                               #:utilization-preferences #:value #:very-low
                               #:volume-arn #:volume-arns #:volume-baseline-iops
                               #:volume-baseline-throughput #:volume-burst-iops

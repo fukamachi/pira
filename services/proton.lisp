@@ -2,9 +2,8 @@
                              (:export #:accept-environment-account-connection
                               #:accept-environment-account-connection-input
                               #:accept-environment-account-connection-output
-                              #:access-denied-exception #:account-settings
-                              #:account-settings-resource #:arn
-                              #:aws-account-id #:aws-proton20200720
+                              #:account-settings #:account-settings-resource
+                              #:arn #:aws-account-id #:aws-proton20200720
                               #:blocker-status #:blocker-type
                               #:cancel-component-deployment
                               #:cancel-component-deployment-input
@@ -29,8 +28,8 @@
                               #:component-provisioned-resource-resource
                               #:component-resource #:component-state
                               #:component-summary #:component-summary-list
-                              #:conflict-exception #:counts-summary
-                              #:create-component #:create-component-input
+                              #:counts-summary #:create-component
+                              #:create-component-input
                               #:create-component-output #:create-environment
                               #:create-environment-account-connection
                               #:create-environment-account-connection-input
@@ -63,8 +62,7 @@
                               #:create-template-sync-config-output
                               #:delete-component #:delete-component-input
                               #:delete-component-output #:delete-deployment
-                              #:delete-deployment-input
-                              #:delete-deployment-output #:delete-environment
+                              #:delete-environment
                               #:delete-environment-account-connection
                               #:delete-environment-account-connection-input
                               #:delete-environment-account-connection-output
@@ -127,8 +125,7 @@
                               #:get-account-settings-input
                               #:get-account-settings-output #:get-component
                               #:get-component-input #:get-component-output
-                              #:get-deployment #:get-deployment-input
-                              #:get-deployment-output #:get-environment
+                              #:get-deployment #:get-environment
                               #:get-environment-account-connection
                               #:get-environment-account-connection-input
                               #:get-environment-account-connection-output
@@ -172,8 +169,8 @@
                               #:get-template-sync-status
                               #:get-template-sync-status-input
                               #:get-template-sync-status-output
-                              #:git-branch-name #:internal-server-exception
-                              #:latest-sync-blockers #:list-component-outputs
+                              #:git-branch-name #:latest-sync-blockers
+                              #:list-component-outputs
                               #:list-component-outputs-input
                               #:list-component-outputs-output
                               #:list-component-provisioned-resources
@@ -181,8 +178,6 @@
                               #:list-component-provisioned-resources-output
                               #:list-components #:list-components-input
                               #:list-components-output #:list-deployments
-                              #:list-deployments-input
-                              #:list-deployments-output
                               #:list-environment-account-connections
                               #:list-environment-account-connections-input
                               #:list-environment-account-connections-output
@@ -261,14 +256,12 @@
                               #:repository-sync-status
                               #:resource-counts-summary
                               #:resource-deployment-status #:resource-name
-                              #:resource-name-or-empty
-                              #:resource-not-found-exception
-                              #:resource-sync-attempt #:resource-sync-event
-                              #:resource-sync-events #:resource-sync-status
-                              #:revision #:role-arn #:role-arn-or-empty-string
-                              #:s3bucket #:s3key #:s3object-source #:sha
-                              #:service #:service-arn #:service-instance
-                              #:service-instance-arn
+                              #:resource-name-or-empty #:resource-sync-attempt
+                              #:resource-sync-event #:resource-sync-events
+                              #:resource-sync-status #:revision #:role-arn
+                              #:role-arn-or-empty-string #:s3bucket #:s3key
+                              #:s3object-source #:sha #:service #:service-arn
+                              #:service-instance #:service-instance-arn
                               #:service-instance-output-resource
                               #:service-instance-provisioned-resource-resource
                               #:service-instance-resource
@@ -279,10 +272,9 @@
                               #:service-pipeline-output-resource
                               #:service-pipeline-provisioned-resource-resource
                               #:service-pipeline-resource
-                              #:service-pipeline-state
-                              #:service-quota-exceeded-exception
-                              #:service-resource #:service-status
-                              #:service-summary #:service-summary-list
+                              #:service-pipeline-state #:service-resource
+                              #:service-status #:service-summary
+                              #:service-summary-list
                               #:service-sync-blocker-resource
                               #:service-sync-blocker-summary
                               #:service-sync-config
@@ -310,9 +302,9 @@
                               #:template-sync-config-resource #:template-type
                               #:template-version-part
                               #:template-version-source-input
-                              #:template-version-status #:throttling-exception
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-account-settings
+                              #:template-version-status #:untag-resource
+                              #:untag-resource-input #:untag-resource-output
+                              #:update-account-settings
                               #:update-account-settings-input
                               #:update-account-settings-output
                               #:update-component #:update-component-input
@@ -349,8 +341,7 @@
                               #:update-service-template-version-output
                               #:update-template-sync-config
                               #:update-template-sync-config-input
-                              #:update-template-sync-config-output
-                              #:validation-exception))
+                              #:update-template-sync-config-output))
 (common-lisp:in-package #:pira/proton)
 
 (smithy/sdk/service:define-service aws-proton20200720 :shape-name

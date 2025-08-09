@@ -1,36 +1,19 @@
 (uiop/package:define-package #:pira/savingsplans (:use)
                              (:export #:awssavings-plan #:amount #:client-token
-                              #:create-savings-plan
-                              #:create-savings-plan-request
-                              #:create-savings-plan-response #:currency-code
+                              #:create-savings-plan #:currency-code
                               #:currency-list #:date-time
                               #:delete-queued-savings-plan
-                              #:delete-queued-savings-plan-request
-                              #:delete-queued-savings-plan-response
                               #:describe-savings-plan-rates
-                              #:describe-savings-plan-rates-request
-                              #:describe-savings-plan-rates-response
                               #:describe-savings-plans
                               #:describe-savings-plans-offering-rates
-                              #:describe-savings-plans-offering-rates-request
-                              #:describe-savings-plans-offering-rates-response
                               #:describe-savings-plans-offerings
-                              #:describe-savings-plans-offerings-request
-                              #:describe-savings-plans-offerings-response
-                              #:describe-savings-plans-request
-                              #:describe-savings-plans-response
                               #:durations-list #:ec2instance-family
-                              #:filter-values-list #:internal-server-exception
+                              #:filter-values-list
                               #:json-safe-filter-value-string #:list-of-strings
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:list-tags-for-resource #:max-results
                               #:page-size #:pagination-token
                               #:parent-savings-plan-offering #:region
-                              #:resource-not-found-exception
-                              #:return-savings-plan
-                              #:return-savings-plan-request
-                              #:return-savings-plan-response #:savings-plan
+                              #:return-savings-plan #:savings-plan
                               #:savings-plan-arn #:savings-plan-arn-list
                               #:savings-plan-description
                               #:savings-plan-descriptions-list
@@ -80,13 +63,10 @@
                               #:savings-plan-usage-type
                               #:savings-plan-usage-type-list
                               #:savings-plans-duration
-                              #:savings-plans-filter-name
-                              #:service-quota-exceeded-exception #:string
-                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
+                              #:savings-plans-filter-name #:string #:tag-key
+                              #:tag-key-list #:tag-map #:tag-resource
                               #:tag-value #:term-duration-in-seconds #:uuid
-                              #:uuids #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:validation-exception))
+                              #:uuids #:untag-resource))
 (common-lisp:in-package #:pira/savingsplans)
 
 (smithy/sdk/service:define-service awssavings-plan :shape-name "AWSSavingsPlan"

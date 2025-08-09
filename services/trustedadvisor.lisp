@@ -1,37 +1,18 @@
 (uiop/package:define-package #:pira/trustedadvisor (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:account-recommendation-arn
+                             (:export #:account-id #:account-recommendation-arn
                               #:account-recommendation-identifier
                               #:account-recommendation-lifecycle-summary
                               #:account-recommendation-lifecycle-summary-list
                               #:batch-update-recommendation-resource-exclusion
-                              #:batch-update-recommendation-resource-exclusion-request
-                              #:batch-update-recommendation-resource-exclusion-response
                               #:check-arn #:check-identifier #:check-summary
-                              #:check-summary-list #:conflict-exception
-                              #:exclusion-status
+                              #:check-summary-list #:exclusion-status
                               #:get-organization-recommendation
-                              #:get-organization-recommendation-request
-                              #:get-organization-recommendation-response
-                              #:get-recommendation #:get-recommendation-request
-                              #:get-recommendation-response
-                              #:internal-server-exception #:list-checks
-                              #:list-checks-request #:list-checks-response
+                              #:get-recommendation #:list-checks
                               #:list-organization-recommendation-accounts
-                              #:list-organization-recommendation-accounts-request
-                              #:list-organization-recommendation-accounts-response
                               #:list-organization-recommendation-resources
-                              #:list-organization-recommendation-resources-request
-                              #:list-organization-recommendation-resources-response
                               #:list-organization-recommendations
-                              #:list-organization-recommendations-request
-                              #:list-organization-recommendations-response
                               #:list-recommendation-resources
-                              #:list-recommendation-resources-request
-                              #:list-recommendation-resources-response
                               #:list-recommendations
-                              #:list-recommendations-request
-                              #:list-recommendations-response
                               #:organization-recommendation
                               #:organization-recommendation-arn
                               #:organization-recommendation-identifier
@@ -58,19 +39,14 @@
                               #:recommendation-summary
                               #:recommendation-summary-list
                               #:recommendation-type
-                              #:recommendation-update-reason
-                              #:resource-not-found-exception #:resource-status
-                              #:string-map #:throttling-exception
-                              #:trusted-advisor
+                              #:recommendation-update-reason #:resource-status
+                              #:string-map #:trusted-advisor
                               #:update-organization-recommendation-lifecycle
-                              #:update-organization-recommendation-lifecycle-request
                               #:update-recommendation-lifecycle
-                              #:update-recommendation-lifecycle-request
                               #:update-recommendation-lifecycle-stage
                               #:update-recommendation-lifecycle-stage-reason-code
                               #:update-recommendation-resource-exclusion-error
-                              #:update-recommendation-resource-exclusion-error-list
-                              #:validation-exception))
+                              #:update-recommendation-resource-exclusion-error-list))
 (common-lisp:in-package #:pira/trustedadvisor)
 
 (smithy/sdk/service:define-service trusted-advisor :shape-name "TrustedAdvisor"

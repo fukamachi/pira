@@ -3,7 +3,6 @@
                               #:abort-config-criteria-list
                               #:abort-criteria-action
                               #:abort-criteria-failure-type
-                              #:access-denied-exception
                               #:account-association-arn
                               #:account-association-description
                               #:account-association-error-message
@@ -41,8 +40,7 @@
                               #:configuration-error #:configuration-error-code
                               #:configuration-error-message
                               #:configuration-state #:configuration-status
-                              #:conflict-exception #:connectivity-status
-                              #:connectivity-timestamp
+                              #:connectivity-status #:connectivity-timestamp
                               #:connector-association-id
                               #:connector-destination-description
                               #:connector-destination-id
@@ -58,37 +56,15 @@
                               #:connector-item #:connector-list
                               #:connector-policy-id
                               #:create-account-association
-                              #:create-account-association-request
-                              #:create-account-association-response
                               #:create-cloud-connector
-                              #:create-cloud-connector-request
-                              #:create-cloud-connector-response
                               #:create-connector-destination
-                              #:create-connector-destination-request
-                              #:create-connector-destination-response
-                              #:create-credential-locker
-                              #:create-credential-locker-request
-                              #:create-credential-locker-response
-                              #:create-destination #:create-destination-request
-                              #:create-destination-response
+                              #:create-credential-locker #:create-destination
                               #:create-event-log-configuration
-                              #:create-event-log-configuration-request
-                              #:create-event-log-configuration-response
                               #:create-managed-thing
-                              #:create-managed-thing-request
-                              #:create-managed-thing-response
                               #:create-notification-configuration
-                              #:create-notification-configuration-request
-                              #:create-notification-configuration-response
                               #:create-ota-task #:create-ota-task-configuration
-                              #:create-ota-task-configuration-request
-                              #:create-ota-task-configuration-response
-                              #:create-ota-task-request
-                              #:create-ota-task-response
-                              #:create-provisioning-profile
-                              #:create-provisioning-profile-request
-                              #:create-provisioning-profile-response
-                              #:created-at #:credential-locker-arn
+                              #:create-provisioning-profile #:created-at
+                              #:credential-locker-arn
                               #:credential-locker-created-at
                               #:credential-locker-id
                               #:credential-locker-list-definition
@@ -99,31 +75,19 @@
                               #:custom-protocol-detail-key
                               #:custom-protocol-detail-value
                               #:delete-account-association
-                              #:delete-account-association-request
                               #:delete-cloud-connector
-                              #:delete-cloud-connector-request
                               #:delete-connector-destination
-                              #:delete-connector-destination-request
-                              #:delete-credential-locker
-                              #:delete-credential-locker-request
-                              #:delete-destination #:delete-destination-request
+                              #:delete-credential-locker #:delete-destination
                               #:delete-event-log-configuration
-                              #:delete-event-log-configuration-request
                               #:delete-local-store-after-upload
                               #:delete-managed-thing
-                              #:delete-managed-thing-request
                               #:delete-notification-configuration
-                              #:delete-notification-configuration-request
                               #:delete-ota-task #:delete-ota-task-configuration
-                              #:delete-ota-task-configuration-request
-                              #:delete-ota-task-request
                               #:delete-provisioning-profile
-                              #:delete-provisioning-profile-request
                               #:delivery-destination-arn
                               #:delivery-destination-role-arn
                               #:delivery-destination-type
                               #:deregister-account-association
-                              #:deregister-account-association-request
                               #:destination-created-at
                               #:destination-description
                               #:destination-list-definition #:destination-name
@@ -154,129 +118,45 @@
                               #:event-log-configuration-summary #:event-name
                               #:event-type #:execution-number
                               #:exponential-rollout-rate #:extrinsic-schema-id
-                              #:get-account-association
-                              #:get-account-association-request
-                              #:get-account-association-response
-                              #:get-cloud-connector
-                              #:get-cloud-connector-request
-                              #:get-cloud-connector-response
+                              #:get-account-association #:get-cloud-connector
                               #:get-connector-destination
-                              #:get-connector-destination-request
-                              #:get-connector-destination-response
-                              #:get-credential-locker
-                              #:get-credential-locker-request
-                              #:get-credential-locker-response
-                              #:get-custom-endpoint
-                              #:get-custom-endpoint-request
-                              #:get-custom-endpoint-response
+                              #:get-credential-locker #:get-custom-endpoint
                               #:get-default-encryption-configuration
-                              #:get-default-encryption-configuration-request
-                              #:get-default-encryption-configuration-response
-                              #:get-destination #:get-destination-request
-                              #:get-destination-response #:get-device-discovery
-                              #:get-device-discovery-request
-                              #:get-device-discovery-response
+                              #:get-destination #:get-device-discovery
                               #:get-event-log-configuration
-                              #:get-event-log-configuration-request
-                              #:get-event-log-configuration-response
-                              #:get-hub-configuration
-                              #:get-hub-configuration-request
-                              #:get-hub-configuration-response
-                              #:get-managed-thing
+                              #:get-hub-configuration #:get-managed-thing
                               #:get-managed-thing-capabilities
-                              #:get-managed-thing-capabilities-request
-                              #:get-managed-thing-capabilities-response
                               #:get-managed-thing-connectivity-data
-                              #:get-managed-thing-connectivity-data-request
-                              #:get-managed-thing-connectivity-data-response
                               #:get-managed-thing-meta-data
-                              #:get-managed-thing-meta-data-request
-                              #:get-managed-thing-meta-data-response
-                              #:get-managed-thing-request
-                              #:get-managed-thing-response
                               #:get-managed-thing-state
-                              #:get-managed-thing-state-request
-                              #:get-managed-thing-state-response
-                              #:get-notification-configuration
-                              #:get-notification-configuration-request
-                              #:get-notification-configuration-response
-                              #:get-ota-task #:get-ota-task-configuration
-                              #:get-ota-task-configuration-request
-                              #:get-ota-task-configuration-response
-                              #:get-ota-task-request #:get-ota-task-response
+                              #:get-notification-configuration #:get-ota-task
+                              #:get-ota-task-configuration
                               #:get-provisioning-profile
-                              #:get-provisioning-profile-request
-                              #:get-provisioning-profile-response
                               #:get-runtime-log-configuration
-                              #:get-runtime-log-configuration-request
-                              #:get-runtime-log-configuration-response
-                              #:get-schema-version #:get-schema-version-request
-                              #:get-schema-version-response
-                              #:hub-configuration-resource
+                              #:get-schema-version #:hub-configuration-resource
                               #:hub-configuration-updated-at #:hub-network-mode
                               #:hub-token-timer-expiry-setting-in-seconds
                               #:in-progress-timeout-in-minutes
-                              #:increment-factor #:internal-failure-exception
-                              #:internal-server-exception
-                              #:international-article-number
-                              #:invalid-request-exception
+                              #:increment-factor #:international-article-number
                               #:io-tmanaged-integrations-resource-arn
                               #:iot-managed-integrations #:kms-key-arn
                               #:kms-key-association-resource #:lambda-arn
                               #:lambda-config #:last-updated-at
-                              #:limit-exceeded-exception
                               #:list-account-associations
-                              #:list-account-associations-request
-                              #:list-account-associations-response
                               #:list-cloud-connectors
-                              #:list-cloud-connectors-request
-                              #:list-cloud-connectors-response
                               #:list-connector-destinations
-                              #:list-connector-destinations-request
-                              #:list-connector-destinations-response
-                              #:list-credential-lockers
-                              #:list-credential-lockers-request
-                              #:list-credential-lockers-response
-                              #:list-destinations #:list-destinations-request
-                              #:list-destinations-response
+                              #:list-credential-lockers #:list-destinations
                               #:list-device-discoveries
-                              #:list-device-discoveries-request
-                              #:list-device-discoveries-response
                               #:list-discovered-devices
-                              #:list-discovered-devices-request
-                              #:list-discovered-devices-response
                               #:list-event-log-configurations
-                              #:list-event-log-configurations-request
-                              #:list-event-log-configurations-response
                               #:list-managed-thing-account-associations
-                              #:list-managed-thing-account-associations-request
-                              #:list-managed-thing-account-associations-response
                               #:list-managed-thing-schemas
-                              #:list-managed-thing-schemas-request
-                              #:list-managed-thing-schemas-response
                               #:list-managed-things
-                              #:list-managed-things-request
-                              #:list-managed-things-response
                               #:list-notification-configurations
-                              #:list-notification-configurations-request
-                              #:list-notification-configurations-response
                               #:list-ota-task-configurations
-                              #:list-ota-task-configurations-request
-                              #:list-ota-task-configurations-response
-                              #:list-ota-task-executions
-                              #:list-ota-task-executions-request
-                              #:list-ota-task-executions-response
-                              #:list-ota-tasks #:list-ota-tasks-request
-                              #:list-ota-tasks-response
+                              #:list-ota-task-executions #:list-ota-tasks
                               #:list-provisioning-profiles
-                              #:list-provisioning-profiles-request
-                              #:list-provisioning-profiles-response
-                              #:list-schema-versions
-                              #:list-schema-versions-request
-                              #:list-schema-versions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-schema-versions #:list-tags-for-resource
                               #:local-store-file-rotation-max-bytes
                               #:local-store-file-rotation-max-files
                               #:local-store-location #:log-configuration-id
@@ -354,22 +234,11 @@
                               #:provisioning-status #:provisioning-type
                               #:push-config
                               #:put-default-encryption-configuration
-                              #:put-default-encryption-configuration-request
-                              #:put-default-encryption-configuration-response
                               #:put-hub-configuration
-                              #:put-hub-configuration-request
-                              #:put-hub-configuration-response
-                              #:put-runtime-log-configuration
-                              #:put-runtime-log-configuration-request
-                              #:queued-at #:register-account-association
-                              #:register-account-association-request
-                              #:register-account-association-response
+                              #:put-runtime-log-configuration #:queued-at
+                              #:register-account-association
                               #:register-custom-endpoint
-                              #:register-custom-endpoint-request
-                              #:register-custom-endpoint-response
-                              #:reset-runtime-log-configuration
-                              #:reset-runtime-log-configuration-request
-                              #:resource-not-found-exception #:retry-attempt
+                              #:reset-runtime-log-configuration #:retry-attempt
                               #:retry-config-criteria
                               #:retry-config-criteria-list
                               #:retry-criteria-failure-type #:role
@@ -390,51 +259,28 @@
                               #:secrets-manager #:secrets-manager-arn
                               #:secrets-manager-version-id
                               #:send-connector-event
-                              #:send-connector-event-request
-                              #:send-connector-event-response
-                              #:send-managed-thing-command
-                              #:send-managed-thing-command-request
-                              #:send-managed-thing-command-response
-                              #:serial-number
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception #:setup-at
-                              #:smart-home-resource-id
+                              #:send-managed-thing-command #:serial-number
+                              #:setup-at #:smart-home-resource-id
                               #:smart-home-resource-type #:spec-version
                               #:start-account-association-refresh
-                              #:start-account-association-refresh-request
-                              #:start-account-association-refresh-response
-                              #:start-device-discovery
-                              #:start-device-discovery-request
-                              #:start-device-discovery-response #:start-time
+                              #:start-device-discovery #:start-time
                               #:started-at #:state-capabilities
                               #:state-capability #:state-endpoint
                               #:state-endpoints #:tag-key #:tag-key-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags-map
-                              #:target #:task-processing-details
-                              #:third-party-user-id #:threshold-percentage
-                              #:throttling-exception
+                              #:tag-resource #:tag-value #:tags-map #:target
+                              #:task-processing-details #:third-party-user-id
+                              #:threshold-percentage
                               #:token-endpoint-authentication-scheme
-                              #:token-url #:trace-id #:unauthorized-exception
-                              #:universal-product-code #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-account-association
-                              #:update-account-association-request
+                              #:token-url #:trace-id #:universal-product-code
+                              #:untag-resource #:update-account-association
                               #:update-cloud-connector
-                              #:update-cloud-connector-request
                               #:update-connector-destination
-                              #:update-connector-destination-request
-                              #:update-destination #:update-destination-request
+                              #:update-destination
                               #:update-event-log-configuration
-                              #:update-event-log-configuration-request
                               #:update-managed-thing
-                              #:update-managed-thing-request
                               #:update-notification-configuration
-                              #:update-notification-configuration-request
-                              #:update-ota-task #:update-ota-task-request
-                              #:updated-at #:upload-log #:upload-period-minutes
-                              #:validation-exception #:validation-schema))
+                              #:update-ota-task #:updated-at #:upload-log
+                              #:upload-period-minutes #:validation-schema))
 (common-lisp:in-package #:pira/iot-managed-integrations)
 
 (smithy/sdk/service:define-service iot-managed-integrations :shape-name

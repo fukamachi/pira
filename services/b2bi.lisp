@@ -1,62 +1,33 @@
 (uiop/package:define-package #:pira/b2bi (:use)
-                             (:export #:access-denied-exception
-                              #:advanced-options #:amazon-resource-name #:b2bi
-                              #:bucket-name #:business-name #:capability
+                             (:export #:advanced-options #:amazon-resource-name
+                              #:b2bi #:bucket-name #:business-name #:capability
                               #:capability-configuration #:capability-direction
                               #:capability-id #:capability-list
                               #:capability-name #:capability-options
                               #:capability-summary #:capability-type
-                              #:conflict-exception #:conversion-source
-                              #:conversion-source-format #:conversion-target
-                              #:conversion-target-format
+                              #:conversion-source #:conversion-source-format
+                              #:conversion-target #:conversion-target-format
                               #:conversion-target-format-details
-                              #:create-capability #:create-capability-request
-                              #:create-capability-response #:create-partnership
-                              #:create-partnership-request
-                              #:create-partnership-response #:create-profile
-                              #:create-profile-request
-                              #:create-profile-response
+                              #:create-capability #:create-partnership
+                              #:create-profile
                               #:create-starter-mapping-template
-                              #:create-starter-mapping-template-request
-                              #:create-starter-mapping-template-response
-                              #:create-transformer #:create-transformer-request
-                              #:create-transformer-response #:created-date
-                              #:delete-capability #:delete-capability-request
-                              #:delete-partnership #:delete-partnership-request
-                              #:delete-profile #:delete-profile-request
-                              #:delete-transformer #:delete-transformer-request
+                              #:create-transformer #:created-date
+                              #:delete-capability #:delete-partnership
+                              #:delete-profile #:delete-transformer
                               #:edi-configuration #:edi-type #:email
                               #:error-message #:file-format #:file-location
                               #:format-options #:from-format #:generate-mapping
                               #:generate-mapping-input-file-content
                               #:generate-mapping-output-file-content
-                              #:generate-mapping-request
-                              #:generate-mapping-response #:get-capability
-                              #:get-capability-request
-                              #:get-capability-response #:get-partnership
-                              #:get-partnership-request
-                              #:get-partnership-response #:get-profile
-                              #:get-profile-request #:get-profile-response
+                              #:get-capability #:get-partnership #:get-profile
                               #:get-transformer #:get-transformer-job
-                              #:get-transformer-job-request
-                              #:get-transformer-job-response
-                              #:get-transformer-request
-                              #:get-transformer-response #:inbound-edi-options
-                              #:input-conversion #:input-file-source
-                              #:instructions-documents
-                              #:internal-server-exception #:key-list
-                              #:line-length #:line-terminator
-                              #:list-capabilities #:list-capabilities-request
-                              #:list-capabilities-response #:list-partnerships
-                              #:list-partnerships-request
-                              #:list-partnerships-response #:list-profiles
-                              #:list-profiles-request #:list-profiles-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-transformers #:list-transformers-request
-                              #:list-transformers-response #:log-group-name
-                              #:logging #:mapping #:mapping-template
+                              #:inbound-edi-options #:input-conversion
+                              #:input-file-source #:instructions-documents
+                              #:key-list #:line-length #:line-terminator
+                              #:list-capabilities #:list-partnerships
+                              #:list-profiles #:list-tags-for-resource
+                              #:list-transformers #:log-group-name #:logging
+                              #:mapping #:mapping-template
                               #:mapping-template-language #:mapping-type
                               #:max-results #:modified-date
                               #:outbound-edi-options #:output-conversion
@@ -66,43 +37,26 @@
                               #:partnership-id #:partnership-list
                               #:partnership-summary #:phone #:profile
                               #:profile-id #:profile-list #:profile-name
-                              #:profile-summary #:resource-arn
-                              #:resource-not-found-exception #:s3key
+                              #:profile-summary #:resource-arn #:s3key
                               #:s3location #:s3location-list
                               #:sample-document-keys #:sample-documents
-                              #:service-quota-exceeded-exception
                               #:start-transformer-job
-                              #:start-transformer-job-request
-                              #:start-transformer-job-response
                               #:starting-functional-group-control-number
                               #:starting-interchange-control-number
                               #:starting-transaction-set-control-number #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request #:tag-value
-                              #:template-details #:test-conversion
-                              #:test-conversion-request
-                              #:test-conversion-response #:test-mapping
-                              #:test-mapping-input-file-content
-                              #:test-mapping-request #:test-mapping-response
-                              #:test-parsing #:test-parsing-request
-                              #:test-parsing-response #:throttling-exception
+                              #:tag-resource #:tag-value #:template-details
+                              #:test-conversion #:test-mapping
+                              #:test-mapping-input-file-content #:test-parsing
                               #:to-format #:trading-partner-id #:transformer
                               #:transformer-id #:transformer-job-id
                               #:transformer-job-status #:transformer-list
                               #:transformer-name #:transformer-status
                               #:transformer-summary #:untag-resource
-                              #:untag-resource-request #:update-capability
-                              #:update-capability-request
-                              #:update-capability-response #:update-partnership
-                              #:update-partnership-request
-                              #:update-partnership-response #:update-profile
-                              #:update-profile-request
-                              #:update-profile-response #:update-transformer
-                              #:update-transformer-request
-                              #:update-transformer-response
-                              #:validation-exception #:validation-messages
-                              #:wrap-format #:wrap-options
-                              #:x12acknowledgment-options
+                              #:update-capability #:update-partnership
+                              #:update-profile #:update-transformer
+                              #:validation-messages #:wrap-format
+                              #:wrap-options #:x12acknowledgment-options
                               #:x12acknowledgment-requested-code
                               #:x12advanced-options
                               #:x12application-receiver-code

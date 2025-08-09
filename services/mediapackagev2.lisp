@@ -1,37 +1,26 @@
 (uiop/package:define-package #:pira/mediapackagev2 (:use)
-                             (:export #:access-denied-exception
-                              #:ad-marker-dash #:ad-marker-hls
-                              #:cancel-harvest-job #:cancel-harvest-job-request
-                              #:cancel-harvest-job-response
-                              #:cdn-auth-configuration
+                             (:export #:ad-marker-dash #:ad-marker-hls
+                              #:cancel-harvest-job #:cdn-auth-configuration
                               #:cdn-identifier-secret-arn
                               #:cdn-identifier-secret-arns
                               #:channel-group-list-configuration
                               #:channel-group-resource #:channel-groups-list
                               #:channel-list #:channel-list-configuration
                               #:channel-policy-resource #:channel-resource
-                              #:cmaf-encryption-method #:conflict-exception
+                              #:cmaf-encryption-method
                               #:conflict-exception-type #:container-type
                               #:create-channel #:create-channel-group
-                              #:create-channel-group-request
-                              #:create-channel-group-response
-                              #:create-channel-request
-                              #:create-channel-response
                               #:create-dash-manifest-configuration
                               #:create-dash-manifests #:create-harvest-job
-                              #:create-harvest-job-request
-                              #:create-harvest-job-response
                               #:create-hls-manifest-configuration
                               #:create-hls-manifests
                               #:create-low-latency-hls-manifest-configuration
                               #:create-low-latency-hls-manifests
                               #:create-mss-manifest-configuration
                               #:create-mss-manifests #:create-origin-endpoint
-                              #:create-origin-endpoint-request
-                              #:create-origin-endpoint-response #:dash-base-url
-                              #:dash-base-urls #:dash-compactness
-                              #:dash-drm-signaling #:dash-dvb-error-metrics
-                              #:dash-dvb-font-download
+                              #:dash-base-url #:dash-base-urls
+                              #:dash-compactness #:dash-drm-signaling
+                              #:dash-dvb-error-metrics #:dash-dvb-font-download
                               #:dash-dvb-metrics-reporting #:dash-dvb-settings
                               #:dash-period-trigger #:dash-period-triggers
                               #:dash-profile #:dash-profiles
@@ -41,19 +30,8 @@
                               #:dash-ttml-configuration #:dash-ttml-profile
                               #:dash-utc-timing #:dash-utc-timing-mode
                               #:delete-channel #:delete-channel-group
-                              #:delete-channel-group-request
-                              #:delete-channel-group-response
-                              #:delete-channel-policy
-                              #:delete-channel-policy-request
-                              #:delete-channel-policy-response
-                              #:delete-channel-request
-                              #:delete-channel-response
-                              #:delete-origin-endpoint
-                              #:delete-origin-endpoint-policy
-                              #:delete-origin-endpoint-policy-request
-                              #:delete-origin-endpoint-policy-response
-                              #:delete-origin-endpoint-request
-                              #:delete-origin-endpoint-response #:destination
+                              #:delete-channel-policy #:delete-origin-endpoint
+                              #:delete-origin-endpoint-policy #:destination
                               #:drm-system #:drm-systems #:encryption
                               #:encryption-contract-configuration
                               #:encryption-method #:endpoint-error-condition
@@ -61,26 +39,16 @@
                               #:filter-configuration
                               #:force-endpoint-error-configuration
                               #:get-channel #:get-channel-group
-                              #:get-channel-group-request
-                              #:get-channel-group-response #:get-channel-policy
-                              #:get-channel-policy-request
-                              #:get-channel-policy-response
-                              #:get-channel-request #:get-channel-response
+                              #:get-channel-policy
                               #:get-dash-manifest-configuration
                               #:get-dash-manifests #:get-harvest-job
-                              #:get-harvest-job-request
-                              #:get-harvest-job-response
                               #:get-hls-manifest-configuration
                               #:get-hls-manifests
                               #:get-low-latency-hls-manifest-configuration
                               #:get-low-latency-hls-manifests
                               #:get-mss-manifest-configuration
                               #:get-mss-manifests #:get-origin-endpoint
-                              #:get-origin-endpoint-policy
-                              #:get-origin-endpoint-policy-request
-                              #:get-origin-endpoint-policy-response
-                              #:get-origin-endpoint-request
-                              #:get-origin-endpoint-response #:harvest-job
+                              #:get-origin-endpoint-policy #:harvest-job
                               #:harvest-job-resource #:harvest-job-status
                               #:harvest-jobs-list #:harvested-dash-manifest
                               #:harvested-dash-manifests-list
@@ -93,27 +61,18 @@
                               #:idempotency-token #:ingest-endpoint
                               #:ingest-endpoint-list
                               #:input-switch-configuration #:input-type
-                              #:internal-server-exception
                               #:ism-encryption-method #:list-channel-groups
-                              #:list-channel-groups-request
-                              #:list-channel-groups-response #:list-channels
-                              #:list-channels-request #:list-channels-response
+                              #:list-channels
                               #:list-dash-manifest-configuration
                               #:list-dash-manifests #:list-harvest-jobs
-                              #:list-harvest-jobs-request
-                              #:list-harvest-jobs-response
                               #:list-hls-manifest-configuration
                               #:list-hls-manifests
                               #:list-low-latency-hls-manifest-configuration
                               #:list-low-latency-hls-manifests
                               #:list-mss-manifest-configuration
                               #:list-mss-manifests #:list-origin-endpoints
-                              #:list-origin-endpoints-request
-                              #:list-origin-endpoints-response
                               #:list-resource-max-results
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:manifest-name
+                              #:list-tags-for-resource #:manifest-name
                               #:mss-manifest-layout
                               #:origin-endpoint-list-configuration
                               #:origin-endpoint-policy-resource
@@ -121,38 +80,19 @@
                               #:origin-endpoints-list
                               #:output-header-configuration #:policy-text
                               #:preset-speke20audio #:preset-speke20video
-                              #:put-channel-policy #:put-channel-policy-request
-                              #:put-channel-policy-response
-                              #:put-origin-endpoint-policy
-                              #:put-origin-endpoint-policy-request
-                              #:put-origin-endpoint-policy-response
+                              #:put-channel-policy #:put-origin-endpoint-policy
                               #:reset-channel-state
-                              #:reset-channel-state-request
-                              #:reset-channel-state-response
                               #:reset-origin-endpoint-state
-                              #:reset-origin-endpoint-state-request
-                              #:reset-origin-endpoint-state-response
                               #:resource-description #:resource-name
-                              #:resource-not-found-exception
                               #:resource-type-not-found #:s3bucket-name
                               #:s3destination-config #:s3destination-path
                               #:scte #:scte-dash #:scte-filter
                               #:scte-filter-list #:scte-hls #:segment
-                              #:service-quota-exceeded-exception
                               #:speke-key-provider #:start-tag #:tag-arn
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-value
-                              #:throttling-exception #:ts-encryption-method
-                              #:untag-resource #:untag-resource-request
-                              #:update-channel #:update-channel-group
-                              #:update-channel-group-request
-                              #:update-channel-group-response
-                              #:update-channel-request
-                              #:update-channel-response
-                              #:update-origin-endpoint
-                              #:update-origin-endpoint-request
-                              #:update-origin-endpoint-response
-                              #:validation-exception
+                              #:tag-value #:ts-encryption-method
+                              #:untag-resource #:update-channel
+                              #:update-channel-group #:update-origin-endpoint
                               #:validation-exception-type #:mediapackagev2))
 (common-lisp:in-package #:pira/mediapackagev2)
 

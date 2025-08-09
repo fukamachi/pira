@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/mwaa (:use)
-                             (:export #:access-denied-exception
-                              #:airflow-configuration-options
+                             (:export #:airflow-configuration-options
                               #:airflow-identity #:airflow-version
                               #:amazon-mwaa #:celery-executor-queue
                               #:cloud-watch-log-group-arn #:config-key
@@ -20,11 +19,8 @@
                               #:environment-status #:error-code #:error-message
                               #:get-environment #:get-environment-input
                               #:get-environment-output #:hostname
-                              #:iam-identity #:iam-role-arn
-                              #:internal-server-exception #:invoke-rest-api
-                              #:invoke-rest-api-request
-                              #:invoke-rest-api-response #:kms-key
-                              #:last-update #:list-environments
+                              #:iam-identity #:iam-role-arn #:invoke-rest-api
+                              #:kms-key #:last-update #:list-environments
                               #:list-environments-input
                               #:list-environments-output
                               #:list-tags-for-resource
@@ -39,10 +35,8 @@
                               #:network-configuration #:next-token
                               #:publish-metrics #:publish-metrics-input
                               #:publish-metrics-output #:relative-path
-                              #:resource-not-found-exception
-                              #:rest-api-client-exception #:rest-api-method
-                              #:rest-api-path #:rest-api-request-body
-                              #:rest-api-response #:rest-api-server-exception
+                              #:rest-api-method #:rest-api-path
+                              #:rest-api-request-body #:rest-api-response
                               #:s3bucket-arn #:s3object-version #:schedulers
                               #:security-group-id #:security-group-list
                               #:statistic-set #:subnet-id #:subnet-list
@@ -55,7 +49,6 @@
                               #:update-environment-output #:update-error
                               #:update-network-configuration-input
                               #:update-source #:update-status
-                              #:validation-exception
                               #:vpc-endpoint-service-name
                               #:webserver-access-mode #:webserver-url
                               #:weekly-maintenance-window-start

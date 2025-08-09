@@ -8,63 +8,32 @@
                               #:comprehend-medical-async-job-properties-list
                               #:comprehend-medical-20181030
                               #:describe-entities-detection-v2job
-                              #:describe-entities-detection-v2job-request
-                              #:describe-entities-detection-v2job-response
                               #:describe-icd10cminference-job
-                              #:describe-icd10cminference-job-request
-                              #:describe-icd10cminference-job-response
                               #:describe-phidetection-job
-                              #:describe-phidetection-job-request
-                              #:describe-phidetection-job-response
                               #:describe-rx-norm-inference-job
-                              #:describe-rx-norm-inference-job-request
-                              #:describe-rx-norm-inference-job-response
                               #:describe-snomedctinference-job
-                              #:describe-snomedctinference-job-request
-                              #:describe-snomedctinference-job-response
-                              #:detect-entities #:detect-entities-request
-                              #:detect-entities-response #:detect-entities-v2
-                              #:detect-entities-v2request
-                              #:detect-entities-v2response #:detect-phi
-                              #:detect-phirequest #:detect-phiresponse #:entity
-                              #:entity-list #:entity-sub-type #:entity-type
-                              #:float #:icd10cmattribute
-                              #:icd10cmattribute-list #:icd10cmattribute-type
-                              #:icd10cmconcept #:icd10cmconcept-list
-                              #:icd10cmentity #:icd10cmentity-category
-                              #:icd10cmentity-list #:icd10cmentity-type
-                              #:icd10cmrelationship-type #:icd10cmtrait
-                              #:icd10cmtrait-list #:icd10cmtrait-name
-                              #:iam-role-arn #:infer-icd10cm
-                              #:infer-icd10cmrequest #:infer-icd10cmresponse
-                              #:infer-rx-norm #:infer-rx-norm-request
-                              #:infer-rx-norm-response #:infer-snomedct
-                              #:infer-snomedctrequest #:infer-snomedctresponse
-                              #:input-data-config #:integer
-                              #:internal-server-exception
-                              #:invalid-encoding-exception
-                              #:invalid-request-exception #:job-id #:job-name
+                              #:detect-entities #:detect-entities-v2
+                              #:detect-phi #:entity #:entity-list
+                              #:entity-sub-type #:entity-type #:float
+                              #:icd10cmattribute #:icd10cmattribute-list
+                              #:icd10cmattribute-type #:icd10cmconcept
+                              #:icd10cmconcept-list #:icd10cmentity
+                              #:icd10cmentity-category #:icd10cmentity-list
+                              #:icd10cmentity-type #:icd10cmrelationship-type
+                              #:icd10cmtrait #:icd10cmtrait-list
+                              #:icd10cmtrait-name #:iam-role-arn
+                              #:infer-icd10cm #:infer-rx-norm #:infer-snomedct
+                              #:input-data-config #:integer #:job-id #:job-name
                               #:job-status #:kmskey #:language-code
                               #:list-entities-detection-v2jobs
-                              #:list-entities-detection-v2jobs-request
-                              #:list-entities-detection-v2jobs-response
                               #:list-icd10cminference-jobs
-                              #:list-icd10cminference-jobs-request
-                              #:list-icd10cminference-jobs-response
                               #:list-phidetection-jobs
-                              #:list-phidetection-jobs-request
-                              #:list-phidetection-jobs-response
                               #:list-rx-norm-inference-jobs
-                              #:list-rx-norm-inference-jobs-request
-                              #:list-rx-norm-inference-jobs-response
                               #:list-snomedctinference-jobs
-                              #:list-snomedctinference-jobs-request
-                              #:list-snomedctinference-jobs-response
                               #:manifest-file-path #:max-results-integer
                               #:model-version
                               #:ontology-linking-bounded-length-string
                               #:output-data-config #:relationship-type
-                              #:resource-not-found-exception
                               #:rx-norm-attribute #:rx-norm-attribute-list
                               #:rx-norm-attribute-type #:rx-norm-concept
                               #:rx-norm-concept-list #:rx-norm-entity
@@ -79,41 +48,18 @@
                               #:snomedctentity-type #:snomedctrelationship-type
                               #:snomedcttrait #:snomedcttrait-list
                               #:snomedcttrait-name
-                              #:service-unavailable-exception
                               #:start-entities-detection-v2job
-                              #:start-entities-detection-v2job-request
-                              #:start-entities-detection-v2job-response
                               #:start-icd10cminference-job
-                              #:start-icd10cminference-job-request
-                              #:start-icd10cminference-job-response
                               #:start-phidetection-job
-                              #:start-phidetection-job-request
-                              #:start-phidetection-job-response
                               #:start-rx-norm-inference-job
-                              #:start-rx-norm-inference-job-request
-                              #:start-rx-norm-inference-job-response
                               #:start-snomedctinference-job
-                              #:start-snomedctinference-job-request
-                              #:start-snomedctinference-job-response
                               #:stop-entities-detection-v2job
-                              #:stop-entities-detection-v2job-request
-                              #:stop-entities-detection-v2job-response
                               #:stop-icd10cminference-job
-                              #:stop-icd10cminference-job-request
-                              #:stop-icd10cminference-job-response
                               #:stop-phidetection-job
-                              #:stop-phidetection-job-request
-                              #:stop-phidetection-job-response
                               #:stop-rx-norm-inference-job
-                              #:stop-rx-norm-inference-job-request
-                              #:stop-rx-norm-inference-job-response
-                              #:stop-snomedctinference-job
-                              #:stop-snomedctinference-job-request
-                              #:stop-snomedctinference-job-response #:string
-                              #:text-size-limit-exceeded-exception #:timestamp
-                              #:too-many-requests-exception #:trait
-                              #:trait-list #:unmapped-attribute
-                              #:unmapped-attribute-list #:validation-exception))
+                              #:stop-snomedctinference-job #:string #:timestamp
+                              #:trait #:trait-list #:unmapped-attribute
+                              #:unmapped-attribute-list))
 (common-lisp:in-package #:pira/comprehendmedical)
 
 (smithy/sdk/service:define-service comprehend-medical-20181030 :shape-name

@@ -1,20 +1,10 @@
 (uiop/package:define-package #:pira/shield (:use)
                              (:export #:awsshield-20160616
-                              #:access-denied-exception
-                              #:access-denied-for-dependency-exception
                               #:application-layer-automatic-response-configuration
                               #:application-layer-automatic-response-status
-                              #:associate-drtlog-bucket
-                              #:associate-drtlog-bucket-request
-                              #:associate-drtlog-bucket-response
-                              #:associate-drtrole #:associate-drtrole-request
-                              #:associate-drtrole-response
+                              #:associate-drtlog-bucket #:associate-drtrole
                               #:associate-health-check
-                              #:associate-health-check-request
-                              #:associate-health-check-response
                               #:associate-proactive-engagement-details
-                              #:associate-proactive-engagement-details-request
-                              #:associate-proactive-engagement-details-response
                               #:attack-detail #:attack-id #:attack-layer
                               #:attack-properties #:attack-property
                               #:attack-property-identifier
@@ -26,93 +16,33 @@
                               #:attack-volume-statistics #:auto-renew
                               #:block-action #:contact-notes #:contributor
                               #:count-action #:create-protection
-                              #:create-protection-group
-                              #:create-protection-group-request
-                              #:create-protection-group-response
-                              #:create-protection-request
-                              #:create-protection-response
-                              #:create-subscription
-                              #:create-subscription-request
-                              #:create-subscription-response
+                              #:create-protection-group #:create-subscription
                               #:delete-protection #:delete-protection-group
-                              #:delete-protection-group-request
-                              #:delete-protection-group-response
-                              #:delete-protection-request
-                              #:delete-protection-response
-                              #:delete-subscription
-                              #:delete-subscription-request
-                              #:delete-subscription-response #:describe-attack
-                              #:describe-attack-request
-                              #:describe-attack-response
-                              #:describe-attack-statistics
-                              #:describe-attack-statistics-request
-                              #:describe-attack-statistics-response
-                              #:describe-drtaccess #:describe-drtaccess-request
-                              #:describe-drtaccess-response
+                              #:delete-subscription #:describe-attack
+                              #:describe-attack-statistics #:describe-drtaccess
                               #:describe-emergency-contact-settings
-                              #:describe-emergency-contact-settings-request
-                              #:describe-emergency-contact-settings-response
                               #:describe-protection #:describe-protection-group
-                              #:describe-protection-group-request
-                              #:describe-protection-group-response
-                              #:describe-protection-request
-                              #:describe-protection-response
                               #:describe-subscription
-                              #:describe-subscription-request
-                              #:describe-subscription-response
                               #:disable-application-layer-automatic-response
-                              #:disable-application-layer-automatic-response-request
-                              #:disable-application-layer-automatic-response-response
                               #:disable-proactive-engagement
-                              #:disable-proactive-engagement-request
-                              #:disable-proactive-engagement-response
                               #:disassociate-drtlog-bucket
-                              #:disassociate-drtlog-bucket-request
-                              #:disassociate-drtlog-bucket-response
                               #:disassociate-drtrole
-                              #:disassociate-drtrole-request
-                              #:disassociate-drtrole-response
-                              #:disassociate-health-check
-                              #:disassociate-health-check-request
-                              #:disassociate-health-check-response #:double
+                              #:disassociate-health-check #:double
                               #:duration-in-seconds #:email-address
                               #:emergency-contact #:emergency-contact-list
                               #:enable-application-layer-automatic-response
-                              #:enable-application-layer-automatic-response-request
-                              #:enable-application-layer-automatic-response-response
                               #:enable-proactive-engagement
-                              #:enable-proactive-engagement-request
-                              #:enable-proactive-engagement-response
-                              #:get-subscription-state
-                              #:get-subscription-state-request
-                              #:get-subscription-state-response
-                              #:health-check-arn #:health-check-id
-                              #:health-check-ids #:inclusion-protection-filters
+                              #:get-subscription-state #:health-check-arn
+                              #:health-check-id #:health-check-ids
+                              #:inclusion-protection-filters
                               #:inclusion-protection-group-filters #:integer
-                              #:internal-error-exception
-                              #:invalid-operation-exception
-                              #:invalid-pagination-token-exception
-                              #:invalid-parameter-exception
-                              #:invalid-resource-exception #:limit
-                              #:limit-number #:limit-type #:limits
-                              #:limits-exceeded-exception #:list-attacks
-                              #:list-attacks-request #:list-attacks-response
-                              #:list-protection-groups
-                              #:list-protection-groups-request
-                              #:list-protection-groups-response
-                              #:list-protections #:list-protections-request
-                              #:list-protections-response
+                              #:limit #:limit-number #:limit-type #:limits
+                              #:list-attacks #:list-protection-groups
+                              #:list-protections
                               #:list-resources-in-protection-group
-                              #:list-resources-in-protection-group-request
-                              #:list-resources-in-protection-group-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:locked-subscription-exception #:log-bucket
+                              #:list-tags-for-resource #:log-bucket
                               #:log-bucket-list #:long #:max-results
-                              #:mitigation #:mitigation-list
-                              #:no-associated-role-exception
-                              #:optimistic-lock-exception #:phone-number
+                              #:mitigation #:mitigation-list #:phone-number
                               #:proactive-engagement-status
                               #:protected-resource-type
                               #:protected-resource-type-filters #:protection
@@ -129,34 +59,22 @@
                               #:protection-groups #:protection-id
                               #:protection-limits #:protection-name
                               #:protection-name-filters #:protections
-                              #:resource-already-exists-exception
                               #:resource-arn #:resource-arn-filter-list
                               #:resource-arn-filters #:resource-arn-list
-                              #:resource-not-found-exception #:response-action
-                              #:role-arn #:string #:sub-resource-summary
+                              #:response-action #:role-arn #:string
+                              #:sub-resource-summary
                               #:sub-resource-summary-list #:sub-resource-type
                               #:subscription #:subscription-limits
                               #:subscription-state #:summarized-attack-vector
                               #:summarized-attack-vector-list
                               #:summarized-counter #:summarized-counter-list
                               #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:time-range
+                              #:tag-resource #:tag-value #:time-range
                               #:timestamp #:token #:top-contributors #:unit
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:untag-resource
                               #:update-application-layer-automatic-response
-                              #:update-application-layer-automatic-response-request
-                              #:update-application-layer-automatic-response-response
                               #:update-emergency-contact-settings
-                              #:update-emergency-contact-settings-request
-                              #:update-emergency-contact-settings-response
-                              #:update-protection-group
-                              #:update-protection-group-request
-                              #:update-protection-group-response
-                              #:update-subscription
-                              #:update-subscription-request
-                              #:update-subscription-response
+                              #:update-protection-group #:update-subscription
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:error-message))

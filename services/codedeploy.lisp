@@ -1,335 +1,141 @@
 (uiop/package:define-package #:pira/codedeploy (:use)
                              (:export #:add-tags-to-on-premises-instances
-                              #:add-tags-to-on-premises-instances-input
                               #:additional-deployment-status-info #:alarm
                               #:alarm-configuration #:alarm-list #:alarm-name
-                              #:alarms-limit-exceeded-exception
-                              #:app-spec-content
-                              #:application-already-exists-exception
-                              #:application-does-not-exist-exception
-                              #:application-id #:application-info
-                              #:application-limit-exceeded-exception
-                              #:application-name
-                              #:application-name-required-exception
+                              #:app-spec-content #:application-id
+                              #:application-info #:application-name
                               #:application-revision-sort-by
                               #:applications-info-list #:applications-list
-                              #:arn #:arn-not-supported-exception
-                              #:auto-rollback-configuration
+                              #:arn #:auto-rollback-configuration
                               #:auto-rollback-event #:auto-rollback-events-list
                               #:auto-scaling-group #:auto-scaling-group-hook
                               #:auto-scaling-group-list
                               #:auto-scaling-group-name
                               #:auto-scaling-group-name-list
                               #:batch-get-application-revisions
-                              #:batch-get-application-revisions-input
-                              #:batch-get-application-revisions-output
                               #:batch-get-applications
-                              #:batch-get-applications-input
-                              #:batch-get-applications-output
                               #:batch-get-deployment-groups
-                              #:batch-get-deployment-groups-input
-                              #:batch-get-deployment-groups-output
                               #:batch-get-deployment-instances
-                              #:batch-get-deployment-instances-input
-                              #:batch-get-deployment-instances-output
                               #:batch-get-deployment-targets
-                              #:batch-get-deployment-targets-input
-                              #:batch-get-deployment-targets-output
                               #:batch-get-deployments
-                              #:batch-get-deployments-input
-                              #:batch-get-deployments-output
                               #:batch-get-on-premises-instances
-                              #:batch-get-on-premises-instances-input
-                              #:batch-get-on-premises-instances-output
-                              #:batch-limit-exceeded-exception
                               #:blue-green-deployment-configuration
                               #:blue-instance-termination-option #:boolean
-                              #:bucket-name-filter-required-exception
                               #:bundle-type #:cloud-formation-resource-type
                               #:cloud-formation-target #:code-deploy-20141006
                               #:commit-id #:compute-platform
-                              #:continue-deployment #:continue-deployment-input
-                              #:create-application #:create-application-input
-                              #:create-application-output #:create-deployment
-                              #:create-deployment-config
-                              #:create-deployment-config-input
-                              #:create-deployment-config-output
-                              #:create-deployment-group
-                              #:create-deployment-group-input
-                              #:create-deployment-group-output
-                              #:create-deployment-input
-                              #:create-deployment-output #:delete-application
-                              #:delete-application-input
+                              #:continue-deployment #:create-application
+                              #:create-deployment #:create-deployment-config
+                              #:create-deployment-group #:delete-application
                               #:delete-deployment-config
-                              #:delete-deployment-config-input
                               #:delete-deployment-group
-                              #:delete-deployment-group-input
-                              #:delete-deployment-group-output
                               #:delete-git-hub-account-token
-                              #:delete-git-hub-account-token-input
-                              #:delete-git-hub-account-token-output
                               #:delete-resources-by-external-id
-                              #:delete-resources-by-external-id-input
-                              #:delete-resources-by-external-id-output
-                              #:deployment-already-completed-exception
-                              #:deployment-config-already-exists-exception
-                              #:deployment-config-does-not-exist-exception
-                              #:deployment-config-id
-                              #:deployment-config-in-use-exception
-                              #:deployment-config-info
-                              #:deployment-config-limit-exceeded-exception
+                              #:deployment-config-id #:deployment-config-info
                               #:deployment-config-name
-                              #:deployment-config-name-required-exception
                               #:deployment-configs-list #:deployment-creator
-                              #:deployment-does-not-exist-exception
-                              #:deployment-group-already-exists-exception
-                              #:deployment-group-does-not-exist-exception
                               #:deployment-group-id #:deployment-group-info
                               #:deployment-group-info-list
-                              #:deployment-group-limit-exceeded-exception
-                              #:deployment-group-name
-                              #:deployment-group-name-required-exception
-                              #:deployment-groups-list #:deployment-id
-                              #:deployment-id-required-exception
-                              #:deployment-info
-                              #:deployment-is-not-in-ready-state-exception
-                              #:deployment-limit-exceeded-exception
-                              #:deployment-not-started-exception
+                              #:deployment-group-name #:deployment-groups-list
+                              #:deployment-id #:deployment-info
                               #:deployment-option #:deployment-overview
                               #:deployment-ready-action
                               #:deployment-ready-option #:deployment-status
                               #:deployment-status-list
                               #:deployment-status-message-list
                               #:deployment-style #:deployment-target
-                              #:deployment-target-does-not-exist-exception
-                              #:deployment-target-id-required-exception
-                              #:deployment-target-list
-                              #:deployment-target-list-size-exceeded-exception
-                              #:deployment-target-type #:deployment-type
-                              #:deployment-wait-type #:deployments-info-list
-                              #:deployments-list
-                              #:deregister-on-premises-instance
-                              #:deregister-on-premises-instance-input
-                              #:description #:description-too-long-exception
+                              #:deployment-target-list #:deployment-target-type
+                              #:deployment-type #:deployment-wait-type
+                              #:deployments-info-list #:deployments-list
+                              #:deregister-on-premises-instance #:description
                               #:diagnostics #:duration #:ec2tag-filter
                               #:ec2tag-filter-list #:ec2tag-filter-type
                               #:ec2tag-set #:ec2tag-set-list #:ecscluster-name
-                              #:ecsservice #:ecsservice-list
-                              #:ecsservice-mapping-limit-exceeded-exception
-                              #:ecsservice-name #:ecstarget #:ecstask-set
-                              #:ecstask-set-count #:ecstask-set-identifier
-                              #:ecstask-set-list #:ecstask-set-status #:elbinfo
-                              #:elbinfo-list #:elbname #:etag #:error-code
-                              #:error-information #:error-message #:external-id
+                              #:ecsservice #:ecsservice-list #:ecsservice-name
+                              #:ecstarget #:ecstask-set #:ecstask-set-count
+                              #:ecstask-set-identifier #:ecstask-set-list
+                              #:ecstask-set-status #:elbinfo #:elbinfo-list
+                              #:elbname #:etag #:error-code #:error-information
+                              #:error-message #:external-id
                               #:file-exists-behavior #:filter-value
                               #:filter-value-list #:generic-revision-info
-                              #:get-application #:get-application-input
-                              #:get-application-output
-                              #:get-application-revision
-                              #:get-application-revision-input
-                              #:get-application-revision-output
+                              #:get-application #:get-application-revision
                               #:get-deployment #:get-deployment-config
-                              #:get-deployment-config-input
-                              #:get-deployment-config-output
-                              #:get-deployment-group
-                              #:get-deployment-group-input
-                              #:get-deployment-group-output
-                              #:get-deployment-input #:get-deployment-instance
-                              #:get-deployment-instance-input
-                              #:get-deployment-instance-output
-                              #:get-deployment-output #:get-deployment-target
-                              #:get-deployment-target-input
-                              #:get-deployment-target-output
+                              #:get-deployment-group #:get-deployment-instance
+                              #:get-deployment-target
                               #:get-on-premises-instance
-                              #:get-on-premises-instance-input
-                              #:get-on-premises-instance-output
-                              #:git-hub-account-token-does-not-exist-exception
                               #:git-hub-account-token-name
                               #:git-hub-account-token-name-list
-                              #:git-hub-account-token-name-required-exception
                               #:git-hub-location
                               #:green-fleet-provisioning-action
                               #:green-fleet-provisioning-option
-                              #:iam-arn-required-exception #:iam-session-arn
-                              #:iam-session-arn-already-registered-exception
-                              #:iam-user-arn
-                              #:iam-user-arn-already-registered-exception
-                              #:iam-user-arn-required-exception
+                              #:iam-session-arn #:iam-user-arn
                               #:instance-action #:instance-arn #:instance-count
-                              #:instance-does-not-exist-exception #:instance-id
-                              #:instance-id-required-exception #:instance-info
-                              #:instance-info-list
-                              #:instance-limit-exceeded-exception
-                              #:instance-name
-                              #:instance-name-already-registered-exception
-                              #:instance-name-list
-                              #:instance-name-required-exception
-                              #:instance-not-registered-exception
-                              #:instance-status #:instance-status-list
-                              #:instance-summary #:instance-summary-list
-                              #:instance-target #:instance-type
-                              #:instance-type-list #:instances-list
-                              #:invalid-alarm-config-exception
-                              #:invalid-application-name-exception
-                              #:invalid-arn-exception
-                              #:invalid-auto-rollback-config-exception
-                              #:invalid-auto-scaling-group-exception
-                              #:invalid-blue-green-deployment-configuration-exception
-                              #:invalid-bucket-name-filter-exception
-                              #:invalid-compute-platform-exception
-                              #:invalid-deployed-state-filter-exception
-                              #:invalid-deployment-config-name-exception
-                              #:invalid-deployment-group-name-exception
-                              #:invalid-deployment-id-exception
-                              #:invalid-deployment-instance-type-exception
-                              #:invalid-deployment-status-exception
-                              #:invalid-deployment-style-exception
-                              #:invalid-deployment-target-id-exception
-                              #:invalid-deployment-wait-type-exception
-                              #:invalid-ec2tag-combination-exception
-                              #:invalid-ec2tag-exception
-                              #:invalid-ecsservice-exception
-                              #:invalid-external-id-exception
-                              #:invalid-file-exists-behavior-exception
-                              #:invalid-git-hub-account-token-exception
-                              #:invalid-git-hub-account-token-name-exception
-                              #:invalid-iam-session-arn-exception
-                              #:invalid-iam-user-arn-exception
-                              #:invalid-ignore-application-stop-failures-value-exception
-                              #:invalid-input-exception
-                              #:invalid-instance-name-exception
-                              #:invalid-instance-status-exception
-                              #:invalid-instance-type-exception
-                              #:invalid-key-prefix-filter-exception
-                              #:invalid-lifecycle-event-hook-execution-id-exception
-                              #:invalid-lifecycle-event-hook-execution-status-exception
-                              #:invalid-load-balancer-info-exception
-                              #:invalid-minimum-healthy-host-value-exception
-                              #:invalid-next-token-exception
-                              #:invalid-on-premises-tag-combination-exception
-                              #:invalid-operation-exception
-                              #:invalid-registration-status-exception
-                              #:invalid-revision-exception
-                              #:invalid-role-exception
-                              #:invalid-sort-by-exception
-                              #:invalid-sort-order-exception
-                              #:invalid-tag-exception
-                              #:invalid-tag-filter-exception
-                              #:invalid-tags-to-add-exception
-                              #:invalid-target-filter-name-exception
-                              #:invalid-target-group-pair-exception
-                              #:invalid-target-instances-exception
-                              #:invalid-time-range-exception
-                              #:invalid-traffic-routing-configuration-exception
-                              #:invalid-trigger-config-exception
-                              #:invalid-update-outdated-instances-only-value-exception
-                              #:invalid-zonal-deployment-configuration-exception
-                              #:key #:lambda-function-alias
+                              #:instance-id #:instance-info
+                              #:instance-info-list #:instance-name
+                              #:instance-name-list #:instance-status
+                              #:instance-status-list #:instance-summary
+                              #:instance-summary-list #:instance-target
+                              #:instance-type #:instance-type-list
+                              #:instances-list #:key #:lambda-function-alias
                               #:lambda-function-info #:lambda-function-name
                               #:lambda-target #:last-deployment-info
                               #:lifecycle-error-code #:lifecycle-event
-                              #:lifecycle-event-already-completed-exception
                               #:lifecycle-event-hook-execution-id
                               #:lifecycle-event-list #:lifecycle-event-name
-                              #:lifecycle-event-status
-                              #:lifecycle-hook-limit-exceeded-exception
-                              #:lifecycle-message #:list-application-revisions
-                              #:list-application-revisions-input
-                              #:list-application-revisions-output
-                              #:list-applications #:list-applications-input
-                              #:list-applications-output
+                              #:lifecycle-event-status #:lifecycle-message
+                              #:list-application-revisions #:list-applications
                               #:list-deployment-configs
-                              #:list-deployment-configs-input
-                              #:list-deployment-configs-output
                               #:list-deployment-groups
-                              #:list-deployment-groups-input
-                              #:list-deployment-groups-output
                               #:list-deployment-instances
-                              #:list-deployment-instances-input
-                              #:list-deployment-instances-output
-                              #:list-deployment-targets
-                              #:list-deployment-targets-input
-                              #:list-deployment-targets-output
-                              #:list-deployments #:list-deployments-input
-                              #:list-deployments-output
+                              #:list-deployment-targets #:list-deployments
                               #:list-git-hub-account-token-names
-                              #:list-git-hub-account-token-names-input
-                              #:list-git-hub-account-token-names-output
                               #:list-on-premises-instances
-                              #:list-on-premises-instances-input
-                              #:list-on-premises-instances-output
                               #:list-state-filter-action
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:listener-arn
+                              #:list-tags-for-resource #:listener-arn
                               #:listener-arn-list #:load-balancer-info
                               #:log-tail #:message #:minimum-healthy-hosts
                               #:minimum-healthy-hosts-per-zone
                               #:minimum-healthy-hosts-per-zone-type
                               #:minimum-healthy-hosts-per-zone-value
                               #:minimum-healthy-hosts-type
-                              #:minimum-healthy-hosts-value
-                              #:multiple-iam-arns-provided-exception
-                              #:next-token #:nullable-boolean
-                              #:on-premises-tag-set #:on-premises-tag-set-list
-                              #:operation-not-supported-exception
+                              #:minimum-healthy-hosts-value #:next-token
+                              #:nullable-boolean #:on-premises-tag-set
+                              #:on-premises-tag-set-list
                               #:outdated-instances-strategy #:percentage
                               #:put-lifecycle-event-hook-execution-status
-                              #:put-lifecycle-event-hook-execution-status-input
-                              #:put-lifecycle-event-hook-execution-status-output
                               #:raw-string #:raw-string-content
                               #:raw-string-sha256
                               #:register-application-revision
-                              #:register-application-revision-input
                               #:register-on-premises-instance
-                              #:register-on-premises-instance-input
                               #:registration-status #:related-deployments
                               #:remove-tags-from-on-premises-instances
-                              #:remove-tags-from-on-premises-instances-input
-                              #:repository #:resource-arn-required-exception
-                              #:resource-validation-exception
-                              #:revision-does-not-exist-exception
-                              #:revision-info #:revision-info-list
+                              #:repository #:revision-info #:revision-info-list
                               #:revision-location #:revision-location-list
-                              #:revision-location-type
-                              #:revision-required-exception #:role
-                              #:role-required-exception #:rollback-info
+                              #:revision-location-type #:role #:rollback-info
                               #:s3bucket #:s3key #:s3location #:script-name
                               #:skip-wait-time-for-instance-termination
-                              #:skip-wait-time-for-instance-termination-input
-                              #:sort-order #:stop-deployment
-                              #:stop-deployment-input #:stop-deployment-output
-                              #:stop-status #:tag #:tag-filter
-                              #:tag-filter-list #:tag-filter-type
-                              #:tag-key-list #:tag-limit-exceeded-exception
-                              #:tag-list #:tag-required-exception
-                              #:tag-resource #:tag-resource-input
-                              #:tag-resource-output
-                              #:tag-set-list-limit-exceeded-exception
-                              #:target-arn #:target-filter-name
+                              #:sort-order #:stop-deployment #:stop-status
+                              #:tag #:tag-filter #:tag-filter-list
+                              #:tag-filter-type #:tag-key-list #:tag-list
+                              #:tag-resource #:target-arn #:target-filter-name
                               #:target-filters #:target-group-info
                               #:target-group-info-list #:target-group-name
                               #:target-group-pair-info
                               #:target-group-pair-info-list #:target-id
                               #:target-id-list #:target-instances
-                              #:target-label #:target-status
-                              #:throttling-exception #:time #:time-based-canary
-                              #:time-based-linear #:time-range #:timestamp
-                              #:traffic-route #:traffic-routing-config
-                              #:traffic-routing-type #:traffic-weight
-                              #:trigger-config #:trigger-config-list
-                              #:trigger-event-type #:trigger-event-type-list
-                              #:trigger-name #:trigger-target-arn
-                              #:trigger-targets-limit-exceeded-exception
-                              #:unsupported-action-for-deployment-type-exception
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-application
-                              #:update-application-input
-                              #:update-deployment-group
-                              #:update-deployment-group-input
-                              #:update-deployment-group-output #:value
-                              #:version #:version-id #:wait-time-in-mins
-                              #:wait-time-in-seconds #:zonal-config))
+                              #:target-label #:target-status #:time
+                              #:time-based-canary #:time-based-linear
+                              #:time-range #:timestamp #:traffic-route
+                              #:traffic-routing-config #:traffic-routing-type
+                              #:traffic-weight #:trigger-config
+                              #:trigger-config-list #:trigger-event-type
+                              #:trigger-event-type-list #:trigger-name
+                              #:trigger-target-arn #:untag-resource
+                              #:update-application #:update-deployment-group
+                              #:value #:version #:version-id
+                              #:wait-time-in-mins #:wait-time-in-seconds
+                              #:zonal-config))
 (common-lisp:in-package #:pira/codedeploy)
 
 (smithy/sdk/service:define-service code-deploy-20141006 :shape-name

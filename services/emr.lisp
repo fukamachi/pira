@@ -1,13 +1,7 @@
 (uiop/package:define-package #:pira/emr (:use)
                              (:export #:action-on-failure #:add-instance-fleet
-                              #:add-instance-fleet-input
-                              #:add-instance-fleet-output #:add-instance-groups
-                              #:add-instance-groups-input
-                              #:add-instance-groups-output #:add-job-flow-steps
-                              #:add-job-flow-steps-input
-                              #:add-job-flow-steps-output #:add-tags
-                              #:add-tags-input #:add-tags-output
-                              #:adjustment-type #:application
+                              #:add-instance-groups #:add-job-flow-steps
+                              #:add-tags #:adjustment-type #:application
                               #:application-list #:arn-type #:auth-mode
                               #:auto-scaling-policy
                               #:auto-scaling-policy-description
@@ -24,7 +18,6 @@
                               #:bootstrap-action-detail
                               #:bootstrap-action-detail-list #:cancel-steps
                               #:cancel-steps-info #:cancel-steps-info-list
-                              #:cancel-steps-input #:cancel-steps-output
                               #:cancel-steps-request-status
                               #:cloud-watch-alarm-definition #:cluster
                               #:cluster-id #:cluster-state
@@ -36,42 +29,16 @@
                               #:comparison-operator #:compute-limits
                               #:compute-limits-unit-type #:configuration
                               #:configuration-list #:create-persistent-app-ui
-                              #:create-persistent-app-uiinput
-                              #:create-persistent-app-uioutput
-                              #:create-security-configuration
-                              #:create-security-configuration-input
-                              #:create-security-configuration-output
-                              #:create-studio #:create-studio-input
-                              #:create-studio-output
-                              #:create-studio-session-mapping
-                              #:create-studio-session-mapping-input
-                              #:credentials #:date
-                              #:delete-security-configuration
-                              #:delete-security-configuration-input
-                              #:delete-security-configuration-output
-                              #:delete-studio #:delete-studio-input
-                              #:delete-studio-session-mapping
-                              #:delete-studio-session-mapping-input
-                              #:describe-cluster #:describe-cluster-input
-                              #:describe-cluster-output #:describe-job-flows
-                              #:describe-job-flows-input
-                              #:describe-job-flows-output
+                              #:create-security-configuration #:create-studio
+                              #:create-studio-session-mapping #:credentials
+                              #:date #:delete-security-configuration
+                              #:delete-studio #:delete-studio-session-mapping
+                              #:describe-cluster #:describe-job-flows
                               #:describe-notebook-execution
-                              #:describe-notebook-execution-input
-                              #:describe-notebook-execution-output
                               #:describe-persistent-app-ui
-                              #:describe-persistent-app-uiinput
-                              #:describe-persistent-app-uioutput
                               #:describe-release-label
-                              #:describe-release-label-input
-                              #:describe-release-label-output
-                              #:describe-security-configuration
-                              #:describe-security-configuration-input
-                              #:describe-security-configuration-output
-                              #:describe-step #:describe-step-input
-                              #:describe-step-output #:describe-studio
-                              #:describe-studio-input #:describe-studio-output
-                              #:ec2instance-ids-list
+                              #:describe-security-configuration #:describe-step
+                              #:describe-studio #:ec2instance-ids-list
                               #:ec2instance-ids-to-terminate-list
                               #:emrcontainers-config #:ebs-block-device
                               #:ebs-block-device-config
@@ -84,26 +51,12 @@
                               #:error-message #:execution-engine-config
                               #:execution-engine-type #:failure-details #:float
                               #:get-auto-termination-policy
-                              #:get-auto-termination-policy-input
-                              #:get-auto-termination-policy-output
                               #:get-block-public-access-configuration
-                              #:get-block-public-access-configuration-input
-                              #:get-block-public-access-configuration-output
                               #:get-cluster-session-credentials
-                              #:get-cluster-session-credentials-input
-                              #:get-cluster-session-credentials-output
                               #:get-managed-scaling-policy
-                              #:get-managed-scaling-policy-input
-                              #:get-managed-scaling-policy-output
                               #:get-on-cluster-app-uipresigned-url
-                              #:get-on-cluster-app-uipresigned-urlinput
-                              #:get-on-cluster-app-uipresigned-urloutput
                               #:get-persistent-app-uipresigned-url
-                              #:get-persistent-app-uipresigned-urlinput
-                              #:get-persistent-app-uipresigned-urloutput
                               #:get-studio-session-mapping
-                              #:get-studio-session-mapping-input
-                              #:get-studio-session-mapping-output
                               #:hadoop-jar-step-config #:hadoop-step-config
                               #:iamrole-arn #:idc-user-assignment
                               #:identity-type #:instance
@@ -141,52 +94,24 @@
                               #:instance-type-config-list
                               #:instance-type-specification
                               #:instance-type-specification-list #:integer
-                              #:internal-server-error
-                              #:internal-server-exception
-                              #:invalid-request-exception #:job-flow-detail
-                              #:job-flow-detail-list #:job-flow-execution-state
+                              #:job-flow-detail #:job-flow-detail-list
+                              #:job-flow-execution-state
                               #:job-flow-execution-state-list
                               #:job-flow-execution-status-detail
                               #:job-flow-instances-config
                               #:job-flow-instances-detail #:kerberos-attributes
                               #:key-value #:key-value-list
-                              #:list-bootstrap-actions
-                              #:list-bootstrap-actions-input
-                              #:list-bootstrap-actions-output #:list-clusters
-                              #:list-clusters-input #:list-clusters-output
-                              #:list-instance-fleets
-                              #:list-instance-fleets-input
-                              #:list-instance-fleets-output
-                              #:list-instance-groups
-                              #:list-instance-groups-input
-                              #:list-instance-groups-output #:list-instances
-                              #:list-instances-input #:list-instances-output
-                              #:list-notebook-executions
-                              #:list-notebook-executions-input
-                              #:list-notebook-executions-output
-                              #:list-release-labels #:list-release-labels-input
-                              #:list-release-labels-output
-                              #:list-security-configurations
-                              #:list-security-configurations-input
-                              #:list-security-configurations-output
-                              #:list-steps #:list-steps-input
-                              #:list-steps-output
-                              #:list-studio-session-mappings
-                              #:list-studio-session-mappings-input
-                              #:list-studio-session-mappings-output
-                              #:list-studios #:list-studios-input
-                              #:list-studios-output
-                              #:list-supported-instance-types
-                              #:list-supported-instance-types-input
-                              #:list-supported-instance-types-output #:long
+                              #:list-bootstrap-actions #:list-clusters
+                              #:list-instance-fleets #:list-instance-groups
+                              #:list-instances #:list-notebook-executions
+                              #:list-release-labels
+                              #:list-security-configurations #:list-steps
+                              #:list-studio-session-mappings #:list-studios
+                              #:list-supported-instance-types #:long
                               #:managed-scaling-policy #:marker #:market-type
                               #:max-results-number #:metric-dimension
                               #:metric-dimension-list #:modify-cluster
-                              #:modify-cluster-input #:modify-cluster-output
-                              #:modify-instance-fleet
-                              #:modify-instance-fleet-input
-                              #:modify-instance-groups
-                              #:modify-instance-groups-input
+                              #:modify-instance-fleet #:modify-instance-groups
                               #:new-supported-products-list
                               #:non-negative-double #:notebook-execution
                               #:notebook-execution-status
@@ -211,31 +136,15 @@
                               #:placement-group-strategy #:placement-type
                               #:port #:port-range #:port-ranges #:profiler-type
                               #:put-auto-scaling-policy
-                              #:put-auto-scaling-policy-input
-                              #:put-auto-scaling-policy-output
                               #:put-auto-termination-policy
-                              #:put-auto-termination-policy-input
-                              #:put-auto-termination-policy-output
                               #:put-block-public-access-configuration
-                              #:put-block-public-access-configuration-input
-                              #:put-block-public-access-configuration-output
                               #:put-managed-scaling-policy
-                              #:put-managed-scaling-policy-input
-                              #:put-managed-scaling-policy-output
                               #:reconfiguration-type #:release-label-filter
                               #:remove-auto-scaling-policy
-                              #:remove-auto-scaling-policy-input
-                              #:remove-auto-scaling-policy-output
                               #:remove-auto-termination-policy
-                              #:remove-auto-termination-policy-input
-                              #:remove-auto-termination-policy-output
-                              #:remove-managed-scaling-policy
-                              #:remove-managed-scaling-policy-input
-                              #:remove-managed-scaling-policy-output
-                              #:remove-tags #:remove-tags-input
-                              #:remove-tags-output #:repo-upgrade-on-boot
-                              #:resource-id #:run-job-flow #:run-job-flow-input
-                              #:run-job-flow-output #:scale-down-behavior
+                              #:remove-managed-scaling-policy #:remove-tags
+                              #:repo-upgrade-on-boot #:resource-id
+                              #:run-job-flow #:scale-down-behavior
                               #:scaling-action #:scaling-constraints
                               #:scaling-rule #:scaling-rule-list
                               #:scaling-strategy #:scaling-trigger
@@ -246,13 +155,9 @@
                               #:session-mapping-summary
                               #:session-mapping-summary-list
                               #:set-keep-job-flow-alive-when-no-steps
-                              #:set-keep-job-flow-alive-when-no-steps-input
                               #:set-termination-protection
-                              #:set-termination-protection-input
                               #:set-unhealthy-node-replacement
-                              #:set-unhealthy-node-replacement-input
-                              #:set-visible-to-all-users
-                              #:set-visible-to-all-users-input #:shrink-policy
+                              #:set-visible-to-all-users #:shrink-policy
                               #:simple-scaling-policy-configuration
                               #:simplified-application
                               #:simplified-application-list
@@ -260,10 +165,8 @@
                               #:spot-provisioning-specification
                               #:spot-provisioning-timeout-action
                               #:spot-resizing-specification
-                              #:start-notebook-execution
-                              #:start-notebook-execution-input
-                              #:start-notebook-execution-output #:statistic
-                              #:step #:step-cancellation-option #:step-config
+                              #:start-notebook-execution #:statistic #:step
+                              #:step-cancellation-option #:step-config
                               #:step-config-list #:step-detail
                               #:step-detail-list #:step-execution-state
                               #:step-execution-status-detail #:step-id
@@ -272,18 +175,14 @@
                               #:step-state-change-reason-code #:step-state-list
                               #:step-status #:step-summary #:step-summary-list
                               #:step-timeline #:stop-notebook-execution
-                              #:stop-notebook-execution-input #:string
-                              #:string-list #:string-map #:studio
+                              #:string #:string-list #:string-map #:studio
                               #:studio-summary #:studio-summary-list
                               #:subnet-id-list #:supported-instance-type
                               #:supported-instance-types-list
                               #:supported-product-config
                               #:supported-products-list #:tag #:tag-list
-                              #:terminate-job-flows #:terminate-job-flows-input
-                              #:throughput-val #:unit #:update-studio
-                              #:update-studio-input
-                              #:update-studio-session-mapping
-                              #:update-studio-session-mapping-input
+                              #:terminate-job-flows #:throughput-val #:unit
+                              #:update-studio #:update-studio-session-mapping
                               #:uri-string #:username-password
                               #:utilization-performance-index-integer
                               #:volume-specification #:whole-number

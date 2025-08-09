@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/snow-device-management (:use)
-                             (:export #:access-denied-exception
-                              #:attachment-status #:cancel-task
+                             (:export #:attachment-status #:cancel-task
                               #:cancel-task-input #:cancel-task-output
                               #:capacity #:capacity-list #:command
                               #:cpu-options #:create-task #:create-task-input
@@ -21,10 +20,8 @@
                               #:instance-block-device-mapping-list
                               #:instance-ids-list #:instance-state
                               #:instance-state-name #:instance-summary
-                              #:instance-summary-list
-                              #:internal-server-exception
-                              #:ip-address-assignment #:job-id
-                              #:list-device-resources
+                              #:instance-summary-list #:ip-address-assignment
+                              #:job-id #:list-device-resources
                               #:list-device-resources-input
                               #:list-device-resources-output #:list-devices
                               #:list-devices-input #:list-devices-output
@@ -38,19 +35,16 @@
                               #:physical-connector-type
                               #:physical-network-interface
                               #:physical-network-interface-list #:reboot
-                              #:resource-not-found-exception #:resource-summary
-                              #:resource-summary-list
+                              #:resource-summary #:resource-summary-list
                               #:security-group-identifier
                               #:security-group-identifier-list
-                              #:service-quota-exceeded-exception
                               #:snow-device-management #:software-information
                               #:tag-keys #:tag-map #:tag-resource
                               #:tag-resource-input #:target-list #:task
                               #:task-description-string #:task-id #:task-state
-                              #:task-summary #:task-summary-list
-                              #:throttling-exception #:unlock #:unlock-state
-                              #:untag-resource #:untag-resource-input
-                              #:validation-exception))
+                              #:task-summary #:task-summary-list #:unlock
+                              #:unlock-state #:untag-resource
+                              #:untag-resource-input))
 (common-lisp:in-package #:pira/snow-device-management)
 
 (smithy/sdk/service:define-service snow-device-management :shape-name

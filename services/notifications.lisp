@@ -1,107 +1,48 @@
 (uiop/package:define-package #:pira/notifications (:use)
-                             (:export #:access-denied-exception #:access-status
-                              #:account-contact-type #:account-id
-                              #:aggregated-notification-regions
+                             (:export #:access-status #:account-contact-type
+                              #:account-id #:aggregated-notification-regions
                               #:aggregation-detail #:aggregation-duration
                               #:aggregation-event-type #:aggregation-key
                               #:aggregation-keys #:aggregation-summary #:arn
-                              #:associate-channel #:associate-channel-request
-                              #:associate-channel-response
+                              #:associate-channel
                               #:associate-managed-notification-account-contact
-                              #:associate-managed-notification-account-contact-request
-                              #:associate-managed-notification-account-contact-response
                               #:associate-managed-notification-additional-channel
-                              #:associate-managed-notification-additional-channel-request
-                              #:associate-managed-notification-additional-channel-response
                               #:channel #:channel-arn
                               #:channel-association-override-option
                               #:channel-identifier #:channel-type #:channels
-                              #:conflict-exception #:create-event-rule
-                              #:create-event-rule-request
-                              #:create-event-rule-response
+                              #:create-event-rule
                               #:create-notification-configuration
-                              #:create-notification-configuration-request
-                              #:create-notification-configuration-response
                               #:creation-time #:delete-event-rule
-                              #:delete-event-rule-request
-                              #:delete-event-rule-response
                               #:delete-notification-configuration
-                              #:delete-notification-configuration-request
-                              #:delete-notification-configuration-response
-                              #:deregister-notification-hub
-                              #:deregister-notification-hub-request
-                              #:deregister-notification-hub-response
-                              #:dimension #:dimensions
+                              #:deregister-notification-hub #:dimension
+                              #:dimensions
                               #:disable-notifications-access-for-organization
-                              #:disable-notifications-access-for-organization-request
-                              #:disable-notifications-access-for-organization-response
                               #:disassociate-channel
-                              #:disassociate-channel-request
-                              #:disassociate-channel-response
                               #:disassociate-managed-notification-account-contact
-                              #:disassociate-managed-notification-account-contact-request
-                              #:disassociate-managed-notification-account-contact-response
                               #:disassociate-managed-notification-additional-channel
-                              #:disassociate-managed-notification-additional-channel-request
-                              #:disassociate-managed-notification-additional-channel-response
                               #:enable-notifications-access-for-organization
-                              #:enable-notifications-access-for-organization-request
-                              #:enable-notifications-access-for-organization-response
                               #:error-message #:event-rule #:event-rule-arn
                               #:event-rule-event-pattern #:event-rule-status
                               #:event-rule-status-reason
                               #:event-rule-status-summary
                               #:event-rule-structure #:event-rules
                               #:event-status #:event-type #:get-event-rule
-                              #:get-event-rule-request
-                              #:get-event-rule-response
                               #:get-managed-notification-child-event
-                              #:get-managed-notification-child-event-request
-                              #:get-managed-notification-child-event-response
                               #:get-managed-notification-configuration
-                              #:get-managed-notification-configuration-request
-                              #:get-managed-notification-configuration-response
                               #:get-managed-notification-event
-                              #:get-managed-notification-event-request
-                              #:get-managed-notification-event-response
                               #:get-notification-configuration
-                              #:get-notification-configuration-request
-                              #:get-notification-configuration-response
                               #:get-notification-event
-                              #:get-notification-event-request
-                              #:get-notification-event-response
                               #:get-notifications-access-for-organization
-                              #:get-notifications-access-for-organization-request
-                              #:get-notifications-access-for-organization-response
-                              #:internal-server-exception
                               #:last-activation-time #:list-channels
-                              #:list-channels-request #:list-channels-response
-                              #:list-event-rules #:list-event-rules-request
-                              #:list-event-rules-response
+                              #:list-event-rules
                               #:list-managed-notification-channel-associations
-                              #:list-managed-notification-channel-associations-request
-                              #:list-managed-notification-channel-associations-response
                               #:list-managed-notification-child-events
-                              #:list-managed-notification-child-events-request
-                              #:list-managed-notification-child-events-response
                               #:list-managed-notification-configurations
-                              #:list-managed-notification-configurations-request
-                              #:list-managed-notification-configurations-response
                               #:list-managed-notification-events
-                              #:list-managed-notification-events-request
-                              #:list-managed-notification-events-response
                               #:list-notification-configurations
-                              #:list-notification-configurations-request
-                              #:list-notification-configurations-response
                               #:list-notification-events
-                              #:list-notification-events-request
-                              #:list-notification-events-response
-                              #:list-notification-hubs
-                              #:list-notification-hubs-request
-                              #:list-notification-hubs-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:locale-code
+                              #:list-notification-hubs #:list-tags-for-resource
+                              #:locale-code
                               #:managed-notification-account-contact-association
                               #:managed-notification-additional-channel-association
                               #:managed-notification-channel-association-summary
@@ -150,14 +91,10 @@
                               #:notifications-access-for-organization
                               #:organization-access #:organizational-unit-id
                               #:quota-code #:region #:regions
-                              #:register-notification-hub
-                              #:register-notification-hub-request
-                              #:register-notification-hub-response #:resource
-                              #:resource-id #:resource-not-found-exception
-                              #:resource-type #:resources
+                              #:register-notification-hub #:resource
+                              #:resource-id #:resource-type #:resources
                               #:sample-aggregation-dimension-values
-                              #:schema-version #:service-code
-                              #:service-quota-exceeded-exception #:source
+                              #:schema-version #:service-code #:source
                               #:source-event-metadata
                               #:source-event-metadata-summary
                               #:status-summary-by-region
@@ -165,20 +102,12 @@
                               #:summarization-dimension-details
                               #:summarization-dimension-overview
                               #:summarization-dimension-overviews #:tag-key
-                              #:tag-keys #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:text-by-locale
-                              #:text-part-id #:text-part-reference
-                              #:text-part-type #:text-part-value #:text-parts
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-event-rule
-                              #:update-event-rule-request
-                              #:update-event-rule-response
-                              #:update-notification-configuration
-                              #:update-notification-configuration-request
-                              #:update-notification-configuration-response
-                              #:url #:validation-exception
+                              #:tag-keys #:tag-map #:tag-resource #:tag-value
+                              #:tags #:text-by-locale #:text-part-id
+                              #:text-part-reference #:text-part-type
+                              #:text-part-value #:text-parts #:untag-resource
+                              #:update-event-rule
+                              #:update-notification-configuration #:url
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

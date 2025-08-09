@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/freetier (:use)
-                             (:export #:awsfree-tier-service
-                              #:access-denied-exception #:account-id
+                             (:export #:awsfree-tier-service #:account-id
                               #:account-plan-status #:account-plan-type
                               #:activities #:activity-id #:activity-reward
                               #:activity-status #:activity-summary
@@ -9,24 +8,11 @@
                               #:filter-activity-statuses #:free-tier-usage
                               #:free-tier-usages #:generic-double
                               #:generic-string #:get-account-activity
-                              #:get-account-activity-request
-                              #:get-account-activity-response
-                              #:get-account-plan-state
-                              #:get-account-plan-state-request
-                              #:get-account-plan-state-response
-                              #:get-free-tier-usage
-                              #:get-free-tier-usage-request
-                              #:get-free-tier-usage-response
-                              #:internal-server-exception #:language-code
-                              #:list-account-activities
-                              #:list-account-activities-request
-                              #:list-account-activities-response #:match-option
-                              #:match-options #:max-results #:monetary-amount
-                              #:next-page-token #:resource-not-found-exception
-                              #:throttling-exception #:upgrade-account-plan
-                              #:upgrade-account-plan-request
-                              #:upgrade-account-plan-response
-                              #:validation-exception #:value #:values))
+                              #:get-account-plan-state #:get-free-tier-usage
+                              #:language-code #:list-account-activities
+                              #:match-option #:match-options #:max-results
+                              #:monetary-amount #:next-page-token
+                              #:upgrade-account-plan #:value #:values))
 (common-lisp:in-package #:pira/freetier)
 
 (smithy/sdk/service:define-service awsfree-tier-service :shape-name

@@ -1,217 +1,89 @@
 (uiop/package:define-package #:pira/organizations (:use)
-                             (:export #:awsorganizations-not-in-use-exception
-                              #:awsorganizations-v20161128 #:accept-handshake
-                              #:accept-handshake-request
-                              #:accept-handshake-response
-                              #:access-denied-exception
-                              #:access-denied-for-dependency-exception
+                             (:export #:awsorganizations-v20161128
+                              #:accept-handshake
                               #:access-denied-for-dependency-exception-reason
-                              #:account #:account-already-closed-exception
-                              #:account-already-registered-exception
-                              #:account-arn #:account-id
+                              #:account #:account-arn #:account-id
                               #:account-joined-method #:account-name
-                              #:account-not-found-exception
-                              #:account-not-registered-exception
-                              #:account-owner-not-verified-exception
                               #:account-status #:accounts #:action-type
-                              #:already-in-organization-exception
-                              #:attach-policy #:attach-policy-request
-                              #:aws-managed-policy #:cancel-handshake
-                              #:cancel-handshake-request
-                              #:cancel-handshake-response #:child #:child-id
-                              #:child-not-found-exception #:child-type
-                              #:children #:close-account
-                              #:close-account-request
-                              #:concurrent-modification-exception
-                              #:conflict-exception
-                              #:constraint-violation-exception
+                              #:attach-policy #:aws-managed-policy
+                              #:cancel-handshake #:child #:child-id
+                              #:child-type #:children #:close-account
                               #:constraint-violation-exception-reason
                               #:create-account #:create-account-failure-reason
-                              #:create-account-name #:create-account-request
-                              #:create-account-request-id
-                              #:create-account-response #:create-account-state
-                              #:create-account-states #:create-account-status
-                              #:create-account-status-not-found-exception
-                              #:create-account-statuses
-                              #:create-gov-cloud-account
-                              #:create-gov-cloud-account-request
-                              #:create-gov-cloud-account-response
-                              #:create-organization
-                              #:create-organization-request
-                              #:create-organization-response
-                              #:create-organizational-unit
-                              #:create-organizational-unit-request
-                              #:create-organizational-unit-response
-                              #:create-policy #:create-policy-request
-                              #:create-policy-response #:decline-handshake
-                              #:decline-handshake-request
-                              #:decline-handshake-response
-                              #:delegated-administrator
+                              #:create-account-name #:create-account-request-id
+                              #:create-account-state #:create-account-states
+                              #:create-account-status #:create-account-statuses
+                              #:create-gov-cloud-account #:create-organization
+                              #:create-organizational-unit #:create-policy
+                              #:decline-handshake #:delegated-administrator
                               #:delegated-administrators #:delegated-service
                               #:delegated-services #:delete-organization
-                              #:delete-organizational-unit
-                              #:delete-organizational-unit-request
-                              #:delete-policy #:delete-policy-request
+                              #:delete-organizational-unit #:delete-policy
                               #:delete-resource-policy
                               #:deregister-delegated-administrator
-                              #:deregister-delegated-administrator-request
-                              #:describe-account #:describe-account-request
-                              #:describe-account-response
+                              #:describe-account
                               #:describe-create-account-status
-                              #:describe-create-account-status-request
-                              #:describe-create-account-status-response
-                              #:describe-effective-policy
-                              #:describe-effective-policy-request
-                              #:describe-effective-policy-response
-                              #:describe-handshake #:describe-handshake-request
-                              #:describe-handshake-response
+                              #:describe-effective-policy #:describe-handshake
                               #:describe-organization
-                              #:describe-organization-response
-                              #:describe-organizational-unit
-                              #:describe-organizational-unit-request
-                              #:describe-organizational-unit-response
-                              #:describe-policy #:describe-policy-request
-                              #:describe-policy-response
-                              #:describe-resource-policy
-                              #:describe-resource-policy-response
-                              #:destination-parent-not-found-exception
-                              #:detach-policy #:detach-policy-request
-                              #:disable-awsservice-access
-                              #:disable-awsservice-access-request
-                              #:disable-policy-type
-                              #:disable-policy-type-request
-                              #:disable-policy-type-response
-                              #:duplicate-account-exception
-                              #:duplicate-handshake-exception
-                              #:duplicate-organizational-unit-exception
-                              #:duplicate-policy-attachment-exception
-                              #:duplicate-policy-exception #:effective-policy
-                              #:effective-policy-not-found-exception
-                              #:effective-policy-type #:email
-                              #:enable-awsservice-access
-                              #:enable-awsservice-access-request
-                              #:enable-all-features
-                              #:enable-all-features-request
-                              #:enable-all-features-response
-                              #:enable-policy-type #:enable-policy-type-request
-                              #:enable-policy-type-response
+                              #:describe-organizational-unit #:describe-policy
+                              #:describe-resource-policy #:detach-policy
+                              #:disable-awsservice-access #:disable-policy-type
+                              #:effective-policy #:effective-policy-type
+                              #:email #:enable-awsservice-access
+                              #:enable-all-features #:enable-policy-type
                               #:enabled-service-principal
                               #:enabled-service-principals #:exception-message
-                              #:exception-type
-                              #:finalizing-organization-exception #:generic-arn
-                              #:handshake
-                              #:handshake-already-in-state-exception
+                              #:exception-type #:generic-arn #:handshake
                               #:handshake-arn
-                              #:handshake-constraint-violation-exception
                               #:handshake-constraint-violation-exception-reason
                               #:handshake-filter #:handshake-id
-                              #:handshake-not-found-exception #:handshake-notes
-                              #:handshake-parties #:handshake-party
-                              #:handshake-party-id #:handshake-party-type
-                              #:handshake-resource #:handshake-resource-type
+                              #:handshake-notes #:handshake-parties
+                              #:handshake-party #:handshake-party-id
+                              #:handshake-party-type #:handshake-resource
+                              #:handshake-resource-type
                               #:handshake-resource-value #:handshake-resources
                               #:handshake-state #:handshakes
                               #:iamuser-access-to-billing
-                              #:invalid-handshake-transition-exception
-                              #:invalid-input-exception
                               #:invalid-input-exception-reason
                               #:invite-account-to-organization
-                              #:invite-account-to-organization-request
-                              #:invite-account-to-organization-response
                               #:leave-organization
                               #:list-awsservice-access-for-organization
-                              #:list-awsservice-access-for-organization-request
-                              #:list-awsservice-access-for-organization-response
                               #:list-accounts #:list-accounts-for-parent
-                              #:list-accounts-for-parent-request
-                              #:list-accounts-for-parent-response
-                              #:list-accounts-request #:list-accounts-response
-                              #:list-children #:list-children-request
-                              #:list-children-response
-                              #:list-create-account-status
-                              #:list-create-account-status-request
-                              #:list-create-account-status-response
+                              #:list-children #:list-create-account-status
                               #:list-delegated-administrators
-                              #:list-delegated-administrators-request
-                              #:list-delegated-administrators-response
                               #:list-delegated-services-for-account
-                              #:list-delegated-services-for-account-request
-                              #:list-delegated-services-for-account-response
                               #:list-handshakes-for-account
-                              #:list-handshakes-for-account-request
-                              #:list-handshakes-for-account-response
                               #:list-handshakes-for-organization
-                              #:list-handshakes-for-organization-request
-                              #:list-handshakes-for-organization-response
                               #:list-organizational-units-for-parent
-                              #:list-organizational-units-for-parent-request
-                              #:list-organizational-units-for-parent-response
-                              #:list-parents #:list-parents-request
-                              #:list-parents-response #:list-policies
-                              #:list-policies-for-target
-                              #:list-policies-for-target-request
-                              #:list-policies-for-target-response
-                              #:list-policies-request #:list-policies-response
-                              #:list-roots #:list-roots-request
-                              #:list-roots-response #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-targets-for-policy
-                              #:list-targets-for-policy-request
-                              #:list-targets-for-policy-response
-                              #:malformed-policy-document-exception
-                              #:master-cannot-leave-organization-exception
-                              #:max-results #:move-account
-                              #:move-account-request #:next-token
-                              #:organization #:organization-arn
-                              #:organization-feature-set #:organization-id
-                              #:organization-not-empty-exception
-                              #:organizational-unit #:organizational-unit-arn
+                              #:list-parents #:list-policies
+                              #:list-policies-for-target #:list-roots
+                              #:list-tags-for-resource
+                              #:list-targets-for-policy #:max-results
+                              #:move-account #:next-token #:organization
+                              #:organization-arn #:organization-feature-set
+                              #:organization-id #:organizational-unit
+                              #:organizational-unit-arn
                               #:organizational-unit-id
-                              #:organizational-unit-name
-                              #:organizational-unit-not-empty-exception
-                              #:organizational-unit-not-found-exception
-                              #:organizational-units #:parent #:parent-id
-                              #:parent-not-found-exception #:parent-type
-                              #:parents #:policies #:policy #:policy-arn
-                              #:policy-changes-in-progress-exception
-                              #:policy-content #:policy-description #:policy-id
-                              #:policy-in-use-exception #:policy-name
-                              #:policy-not-attached-exception
-                              #:policy-not-found-exception #:policy-summary
-                              #:policy-target-id #:policy-target-summary
-                              #:policy-targets #:policy-type
-                              #:policy-type-already-enabled-exception
-                              #:policy-type-not-available-for-organization-exception
-                              #:policy-type-not-enabled-exception
-                              #:policy-type-status #:policy-type-summary
-                              #:policy-types #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response
+                              #:organizational-unit-name #:organizational-units
+                              #:parent #:parent-id #:parent-type #:parents
+                              #:policies #:policy #:policy-arn #:policy-content
+                              #:policy-description #:policy-id #:policy-name
+                              #:policy-summary #:policy-target-id
+                              #:policy-target-summary #:policy-targets
+                              #:policy-type #:policy-type-status
+                              #:policy-type-summary #:policy-types
+                              #:put-resource-policy
                               #:register-delegated-administrator
-                              #:register-delegated-administrator-request
                               #:remove-account-from-organization
-                              #:remove-account-from-organization-request
                               #:resource-policy #:resource-policy-arn
                               #:resource-policy-content #:resource-policy-id
-                              #:resource-policy-not-found-exception
                               #:resource-policy-summary #:role-name #:root
-                              #:root-arn #:root-id #:root-name
-                              #:root-not-found-exception #:roots
-                              #:service-exception #:service-principal
-                              #:source-parent-not-found-exception #:tag
-                              #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-value
-                              #:taggable-resource-id #:tags #:target-name
-                              #:target-not-found-exception #:target-type
-                              #:timestamp #:too-many-requests-exception
-                              #:unsupported-apiendpoint-exception
-                              #:untag-resource #:untag-resource-request
-                              #:update-organizational-unit
-                              #:update-organizational-unit-request
-                              #:update-organizational-unit-response
-                              #:update-policy #:update-policy-request
-                              #:update-policy-response))
+                              #:root-arn #:root-id #:root-name #:roots
+                              #:service-principal #:tag #:tag-key #:tag-keys
+                              #:tag-resource #:tag-value #:taggable-resource-id
+                              #:tags #:target-name #:target-type #:timestamp
+                              #:untag-resource #:update-organizational-unit
+                              #:update-policy))
 (common-lisp:in-package #:pira/organizations)
 
 (smithy/sdk/service:define-service awsorganizations-v20161128 :shape-name

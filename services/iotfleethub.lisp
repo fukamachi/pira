@@ -1,31 +1,14 @@
 (uiop/package:define-package #:pira/iotfleethub (:use)
                              (:export #:awsio-tfleet-hub #:application-state
                               #:application-summaries #:application-summary
-                              #:arn #:client-request-token #:conflict-exception
-                              #:create-application #:create-application-request
-                              #:create-application-response
-                              #:delete-application #:delete-application-request
-                              #:delete-application-response
-                              #:describe-application
-                              #:describe-application-request
-                              #:describe-application-response #:description
-                              #:error-message #:id #:internal-failure-exception
-                              #:invalid-request-exception
-                              #:limit-exceeded-exception #:list-applications
-                              #:list-applications-request
-                              #:list-applications-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:name
-                              #:next-token #:resource-arn
-                              #:resource-not-found-exception #:sso-client-id
-                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception #:timestamp
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-application
-                              #:update-application-request
-                              #:update-application-response #:url))
+                              #:arn #:client-request-token #:create-application
+                              #:delete-application #:describe-application
+                              #:description #:error-message #:id
+                              #:list-applications #:list-tags-for-resource
+                              #:name #:next-token #:resource-arn
+                              #:sso-client-id #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-value #:timestamp
+                              #:untag-resource #:update-application #:url))
 (common-lisp:in-package #:pira/iotfleethub)
 
 (smithy/sdk/service:define-service awsio-tfleet-hub :shape-name

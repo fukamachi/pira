@@ -1,5 +1,5 @@
 (uiop/package:define-package #:pira/bedrock-data-automation (:use)
-                             (:export #:access-denied-exception
+                             (:export
                               #:amazon-bedrock-keystone-build-time-service
                               #:audio-extraction-category
                               #:audio-extraction-category-type
@@ -16,15 +16,8 @@
                               #:blueprint-schema #:blueprint-stage
                               #:blueprint-stage-filter #:blueprint-summary
                               #:blueprint-version #:blueprints #:client-token
-                              #:conflict-exception #:create-blueprint
-                              #:create-blueprint-request
-                              #:create-blueprint-response
-                              #:create-blueprint-version
-                              #:create-blueprint-version-request
-                              #:create-blueprint-version-response
+                              #:create-blueprint #:create-blueprint-version
                               #:create-data-automation-project
-                              #:create-data-automation-project-request
-                              #:create-data-automation-project-response
                               #:custom-output-configuration
                               #:data-automation-project
                               #:data-automation-project-arn
@@ -38,11 +31,7 @@
                               #:data-automation-project-summaries
                               #:data-automation-project-summary
                               #:date-timestamp #:delete-blueprint
-                              #:delete-blueprint-request
-                              #:delete-blueprint-response
                               #:delete-data-automation-project
-                              #:delete-data-automation-project-request
-                              #:delete-data-automation-project-response
                               #:desired-modality #:document-bounding-box
                               #:document-extraction-granularity
                               #:document-extraction-granularity-type
@@ -59,10 +48,7 @@
                               #:encryption-configuration
                               #:encryption-context-key
                               #:encryption-context-value #:get-blueprint
-                              #:get-blueprint-request #:get-blueprint-response
                               #:get-data-automation-project
-                              #:get-data-automation-project-request
-                              #:get-data-automation-project-response
                               #:image-bounding-box #:image-extraction-category
                               #:image-extraction-category-type
                               #:image-extraction-category-types
@@ -72,35 +58,19 @@
                               #:image-standard-generative-field-type
                               #:image-standard-generative-field-types
                               #:image-standard-output-configuration
-                              #:internal-server-exception
                               #:kms-encryption-context #:kms-key-id
-                              #:list-blueprints #:list-blueprints-request
-                              #:list-blueprints-response
-                              #:list-data-automation-projects
-                              #:list-data-automation-projects-request
-                              #:list-data-automation-projects-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:list-blueprints #:list-data-automation-projects
+                              #:list-tags-for-resource #:max-results
                               #:modality-processing-configuration
                               #:modality-routing-configuration #:next-token
                               #:non-blank-string #:override-configuration
-                              #:resource-not-found-exception #:resource-owner
-                              #:service-quota-exceeded-exception
-                              #:splitter-configuration
+                              #:resource-owner #:splitter-configuration
                               #:standard-output-configuration #:state #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:taggable-resource-arn #:throttling-exception
-                              #:type #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-blueprint
-                              #:update-blueprint-request
-                              #:update-blueprint-response
+                              #:tag-resource #:tag-value
+                              #:taggable-resource-arn #:type #:untag-resource
+                              #:update-blueprint
                               #:update-data-automation-project
-                              #:update-data-automation-project-request
-                              #:update-data-automation-project-response
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:video-bounding-box #:video-extraction-category

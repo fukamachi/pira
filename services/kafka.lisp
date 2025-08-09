@@ -1,12 +1,7 @@
 (uiop/package:define-package #:pira/kafka (:use)
                              (:export #:amazon-msk-cluster
-                              #:bad-request-exception
                               #:batch-associate-scram-secret
-                              #:batch-associate-scram-secret-request
-                              #:batch-associate-scram-secret-response
                               #:batch-disassociate-scram-secret
-                              #:batch-disassociate-scram-secret-request
-                              #:batch-disassociate-scram-secret-response
                               #:broker-azdistribution
                               #:broker-count-update-info
                               #:broker-ebsvolume-info #:broker-logs
@@ -23,120 +18,45 @@
                               #:cluster-type #:compatible-kafka-version
                               #:configuration #:configuration-info
                               #:configuration-revision #:configuration-state
-                              #:conflict-exception #:connectivity-info
-                              #:consumer-group-replication
+                              #:connectivity-info #:consumer-group-replication
                               #:consumer-group-replication-update
                               #:controller-node-info #:create-cluster
-                              #:create-cluster-request
-                              #:create-cluster-response #:create-cluster-v2
-                              #:create-cluster-v2request
-                              #:create-cluster-v2response
-                              #:create-configuration
-                              #:create-configuration-request
-                              #:create-configuration-response
-                              #:create-replicator #:create-replicator-request
-                              #:create-replicator-response
-                              #:create-vpc-connection
-                              #:create-vpc-connection-request
-                              #:create-vpc-connection-response
+                              #:create-cluster-v2 #:create-configuration
+                              #:create-replicator #:create-vpc-connection
                               #:customer-action-status #:delete-cluster
-                              #:delete-cluster-policy
-                              #:delete-cluster-policy-request
-                              #:delete-cluster-policy-response
-                              #:delete-cluster-request
-                              #:delete-cluster-response #:delete-configuration
-                              #:delete-configuration-request
-                              #:delete-configuration-response
-                              #:delete-replicator #:delete-replicator-request
-                              #:delete-replicator-response
-                              #:delete-vpc-connection
-                              #:delete-vpc-connection-request
-                              #:delete-vpc-connection-response
+                              #:delete-cluster-policy #:delete-configuration
+                              #:delete-replicator #:delete-vpc-connection
                               #:describe-cluster #:describe-cluster-operation
-                              #:describe-cluster-operation-request
-                              #:describe-cluster-operation-response
                               #:describe-cluster-operation-v2
-                              #:describe-cluster-operation-v2request
-                              #:describe-cluster-operation-v2response
-                              #:describe-cluster-request
-                              #:describe-cluster-response #:describe-cluster-v2
-                              #:describe-cluster-v2request
-                              #:describe-cluster-v2response
-                              #:describe-configuration
-                              #:describe-configuration-request
-                              #:describe-configuration-response
+                              #:describe-cluster-v2 #:describe-configuration
                               #:describe-configuration-revision
-                              #:describe-configuration-revision-request
-                              #:describe-configuration-revision-response
-                              #:describe-replicator
-                              #:describe-replicator-request
-                              #:describe-replicator-response
-                              #:describe-vpc-connection
-                              #:describe-vpc-connection-request
-                              #:describe-vpc-connection-response
+                              #:describe-replicator #:describe-vpc-connection
                               #:ebsstorage-info #:encryption-at-rest
                               #:encryption-in-transit #:encryption-info
                               #:enhanced-monitoring #:error-info #:firehose
-                              #:forbidden-exception #:get-bootstrap-brokers
-                              #:get-bootstrap-brokers-request
-                              #:get-bootstrap-brokers-response
-                              #:get-cluster-policy #:get-cluster-policy-request
-                              #:get-cluster-policy-response
-                              #:get-compatible-kafka-versions
-                              #:get-compatible-kafka-versions-request
-                              #:get-compatible-kafka-versions-response #:iam
-                              #:internal-server-error-exception #:jmx-exporter
-                              #:jmx-exporter-info #:kafka #:kafka-cluster
-                              #:kafka-cluster-client-vpc-config
+                              #:get-bootstrap-brokers #:get-cluster-policy
+                              #:get-compatible-kafka-versions #:iam
+                              #:jmx-exporter #:jmx-exporter-info #:kafka
+                              #:kafka-cluster #:kafka-cluster-client-vpc-config
                               #:kafka-cluster-description
                               #:kafka-cluster-summary #:kafka-version
                               #:kafka-version-status
                               #:list-client-vpc-connections
-                              #:list-client-vpc-connections-request
-                              #:list-client-vpc-connections-response
                               #:list-cluster-operations
-                              #:list-cluster-operations-request
-                              #:list-cluster-operations-response
-                              #:list-cluster-operations-v2
-                              #:list-cluster-operations-v2request
-                              #:list-cluster-operations-v2response
-                              #:list-clusters #:list-clusters-request
-                              #:list-clusters-response #:list-clusters-v2
-                              #:list-clusters-v2request
-                              #:list-clusters-v2response
-                              #:list-configuration-revisions
-                              #:list-configuration-revisions-request
-                              #:list-configuration-revisions-response
-                              #:list-configurations
-                              #:list-configurations-request
-                              #:list-configurations-response
-                              #:list-kafka-versions
-                              #:list-kafka-versions-request
-                              #:list-kafka-versions-response #:list-nodes
-                              #:list-nodes-request #:list-nodes-response
-                              #:list-replicators #:list-replicators-request
-                              #:list-replicators-response #:list-scram-secrets
-                              #:list-scram-secrets-request
-                              #:list-scram-secrets-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-vpc-connections
-                              #:list-vpc-connections-request
-                              #:list-vpc-connections-response #:logging-info
+                              #:list-cluster-operations-v2 #:list-clusters
+                              #:list-clusters-v2 #:list-configuration-revisions
+                              #:list-configurations #:list-kafka-versions
+                              #:list-nodes #:list-replicators
+                              #:list-scram-secrets #:list-tags-for-resource
+                              #:list-vpc-connections #:logging-info
                               #:max-results #:mutable-cluster-info
                               #:node-exporter #:node-exporter-info #:node-info
-                              #:node-type #:not-found-exception
-                              #:open-monitoring #:open-monitoring-info
-                              #:prometheus #:prometheus-info #:provisioned
+                              #:node-type #:open-monitoring
+                              #:open-monitoring-info #:prometheus
+                              #:prometheus-info #:provisioned
                               #:provisioned-request #:provisioned-throughput
                               #:public-access #:put-cluster-policy
-                              #:put-cluster-policy-request
-                              #:put-cluster-policy-response #:reboot-broker
-                              #:reboot-broker-request #:reboot-broker-response
-                              #:reject-client-vpc-connection
-                              #:reject-client-vpc-connection-request
-                              #:reject-client-vpc-connection-response
+                              #:reboot-broker #:reject-client-vpc-connection
                               #:replication-info #:replication-info-description
                               #:replication-info-summary
                               #:replication-starting-position
@@ -148,43 +68,18 @@
                               #:sasl #:scram #:serverless
                               #:serverless-client-authentication
                               #:serverless-request #:serverless-sasl
-                              #:service-unavailable-exception #:state-info
-                              #:storage-info #:storage-mode #:tag-resource
-                              #:tag-resource-request #:target-compression-type
-                              #:tls #:too-many-requests-exception
+                              #:state-info #:storage-info #:storage-mode
+                              #:tag-resource #:target-compression-type #:tls
                               #:topic-replication #:topic-replication-update
-                              #:unauthenticated #:unauthorized-exception
-                              #:unprocessed-scram-secret #:untag-resource
-                              #:untag-resource-request #:update-broker-count
-                              #:update-broker-count-request
-                              #:update-broker-count-response
-                              #:update-broker-storage
-                              #:update-broker-storage-request
-                              #:update-broker-storage-response
-                              #:update-broker-type #:update-broker-type-request
-                              #:update-broker-type-response
+                              #:unauthenticated #:unprocessed-scram-secret
+                              #:untag-resource #:update-broker-count
+                              #:update-broker-storage #:update-broker-type
                               #:update-cluster-configuration
-                              #:update-cluster-configuration-request
-                              #:update-cluster-configuration-response
                               #:update-cluster-kafka-version
-                              #:update-cluster-kafka-version-request
-                              #:update-cluster-kafka-version-response
-                              #:update-configuration
-                              #:update-configuration-request
-                              #:update-configuration-response
-                              #:update-connectivity
-                              #:update-connectivity-request
-                              #:update-connectivity-response
-                              #:update-monitoring #:update-monitoring-request
-                              #:update-monitoring-response
-                              #:update-replication-info
-                              #:update-replication-info-request
-                              #:update-replication-info-response
-                              #:update-security #:update-security-request
-                              #:update-security-response #:update-storage
-                              #:update-storage-request
-                              #:update-storage-response #:user-identity
-                              #:user-identity-type #:vpc-config
+                              #:update-configuration #:update-connectivity
+                              #:update-monitoring #:update-replication-info
+                              #:update-security #:update-storage
+                              #:user-identity #:user-identity-type #:vpc-config
                               #:vpc-connection #:vpc-connection-info
                               #:vpc-connection-info-serverless
                               #:vpc-connection-state #:vpc-connectivity

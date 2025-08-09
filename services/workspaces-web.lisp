@@ -1,32 +1,15 @@
 (uiop/package:define-package #:pira/workspaces-web (:use)
                              (:export #:arn #:awsermine-control-plane-service
-                              #:access-denied-exception #:arn-list
-                              #:associate-browser-settings
-                              #:associate-browser-settings-request
-                              #:associate-browser-settings-response
+                              #:arn-list #:associate-browser-settings
                               #:associate-data-protection-settings
-                              #:associate-data-protection-settings-request
-                              #:associate-data-protection-settings-response
                               #:associate-ip-access-settings
-                              #:associate-ip-access-settings-request
-                              #:associate-ip-access-settings-response
                               #:associate-network-settings
-                              #:associate-network-settings-request
-                              #:associate-network-settings-response
                               #:associate-session-logger
-                              #:associate-session-logger-request
-                              #:associate-session-logger-response
                               #:associate-trust-store
-                              #:associate-trust-store-request
-                              #:associate-trust-store-response
                               #:associate-user-access-logging-settings
-                              #:associate-user-access-logging-settings-request
-                              #:associate-user-access-logging-settings-response
-                              #:associate-user-settings
-                              #:associate-user-settings-request
-                              #:associate-user-settings-response
-                              #:authentication-type #:browser-policy
-                              #:browser-settings #:browser-settings-list
+                              #:associate-user-settings #:authentication-type
+                              #:browser-policy #:browser-settings
+                              #:browser-settings-list
                               #:browser-settings-resource
                               #:browser-settings-summary #:browser-type
                               #:built-in-pattern-id #:certificate
@@ -35,132 +18,53 @@
                               #:certificate-summary-list
                               #:certificate-thumbprint
                               #:certificate-thumbprint-list #:client-token
-                              #:confidence-level #:conflict-exception
-                              #:cookie-domain #:cookie-name #:cookie-path
-                              #:cookie-specification #:cookie-specifications
+                              #:confidence-level #:cookie-domain #:cookie-name
+                              #:cookie-path #:cookie-specification
+                              #:cookie-specifications
                               #:cookie-synchronization-configuration
                               #:create-browser-settings
-                              #:create-browser-settings-request
-                              #:create-browser-settings-response
                               #:create-data-protection-settings
-                              #:create-data-protection-settings-request
-                              #:create-data-protection-settings-response
                               #:create-identity-provider
-                              #:create-identity-provider-request
-                              #:create-identity-provider-response
                               #:create-ip-access-settings
-                              #:create-ip-access-settings-request
-                              #:create-ip-access-settings-response
-                              #:create-network-settings
-                              #:create-network-settings-request
-                              #:create-network-settings-response
-                              #:create-portal #:create-portal-request
-                              #:create-portal-response #:create-session-logger
-                              #:create-session-logger-request
-                              #:create-session-logger-response
-                              #:create-trust-store #:create-trust-store-request
-                              #:create-trust-store-response
+                              #:create-network-settings #:create-portal
+                              #:create-session-logger #:create-trust-store
                               #:create-user-access-logging-settings
-                              #:create-user-access-logging-settings-request
-                              #:create-user-access-logging-settings-response
-                              #:create-user-settings
-                              #:create-user-settings-request
-                              #:create-user-settings-response #:custom-pattern
+                              #:create-user-settings #:custom-pattern
                               #:data-protection-settings
                               #:data-protection-settings-list
                               #:data-protection-settings-resource
                               #:data-protection-settings-summary
                               #:delete-browser-settings
-                              #:delete-browser-settings-request
-                              #:delete-browser-settings-response
                               #:delete-data-protection-settings
-                              #:delete-data-protection-settings-request
-                              #:delete-data-protection-settings-response
                               #:delete-identity-provider
-                              #:delete-identity-provider-request
-                              #:delete-identity-provider-response
                               #:delete-ip-access-settings
-                              #:delete-ip-access-settings-request
-                              #:delete-ip-access-settings-response
-                              #:delete-network-settings
-                              #:delete-network-settings-request
-                              #:delete-network-settings-response
-                              #:delete-portal #:delete-portal-request
-                              #:delete-portal-response #:delete-session-logger
-                              #:delete-session-logger-request
-                              #:delete-session-logger-response
-                              #:delete-trust-store #:delete-trust-store-request
-                              #:delete-trust-store-response
+                              #:delete-network-settings #:delete-portal
+                              #:delete-session-logger #:delete-trust-store
                               #:delete-user-access-logging-settings
-                              #:delete-user-access-logging-settings-request
-                              #:delete-user-access-logging-settings-response
-                              #:delete-user-settings
-                              #:delete-user-settings-request
-                              #:delete-user-settings-response #:description
+                              #:delete-user-settings #:description
                               #:description-safe
                               #:disassociate-browser-settings
-                              #:disassociate-browser-settings-request
-                              #:disassociate-browser-settings-response
                               #:disassociate-data-protection-settings
-                              #:disassociate-data-protection-settings-request
-                              #:disassociate-data-protection-settings-response
                               #:disassociate-ip-access-settings
-                              #:disassociate-ip-access-settings-request
-                              #:disassociate-ip-access-settings-response
                               #:disassociate-network-settings
-                              #:disassociate-network-settings-request
-                              #:disassociate-network-settings-response
                               #:disassociate-session-logger
-                              #:disassociate-session-logger-request
-                              #:disassociate-session-logger-response
                               #:disassociate-trust-store
-                              #:disassociate-trust-store-request
-                              #:disassociate-trust-store-response
                               #:disassociate-user-access-logging-settings
-                              #:disassociate-user-access-logging-settings-request
-                              #:disassociate-user-access-logging-settings-response
                               #:disassociate-user-settings
-                              #:disassociate-user-settings-request
-                              #:disassociate-user-settings-response
                               #:disconnect-timeout-in-minutes #:display-name
                               #:display-name-safe #:enabled-type
                               #:encryption-context-map #:event #:event-filter
                               #:events #:exception-message #:expire-session
-                              #:expire-session-request
-                              #:expire-session-response #:field-name
-                              #:folder-structure #:get-browser-settings
-                              #:get-browser-settings-request
-                              #:get-browser-settings-response
+                              #:field-name #:folder-structure
+                              #:get-browser-settings
                               #:get-data-protection-settings
-                              #:get-data-protection-settings-request
-                              #:get-data-protection-settings-response
-                              #:get-identity-provider
-                              #:get-identity-provider-request
-                              #:get-identity-provider-response
-                              #:get-ip-access-settings
-                              #:get-ip-access-settings-request
-                              #:get-ip-access-settings-response
-                              #:get-network-settings
-                              #:get-network-settings-request
-                              #:get-network-settings-response #:get-portal
-                              #:get-portal-request #:get-portal-response
+                              #:get-identity-provider #:get-ip-access-settings
+                              #:get-network-settings #:get-portal
                               #:get-portal-service-provider-metadata
-                              #:get-portal-service-provider-metadata-request
-                              #:get-portal-service-provider-metadata-response
                               #:get-session #:get-session-logger
-                              #:get-session-logger-request
-                              #:get-session-logger-response
-                              #:get-session-request #:get-session-response
                               #:get-trust-store #:get-trust-store-certificate
-                              #:get-trust-store-certificate-request
-                              #:get-trust-store-certificate-response
-                              #:get-trust-store-request
-                              #:get-trust-store-response
                               #:get-user-access-logging-settings
-                              #:get-user-access-logging-settings-request
-                              #:get-user-access-logging-settings-response
-                              #:get-user-settings #:get-user-settings-request
-                              #:get-user-settings-response
+                              #:get-user-settings
                               #:global-inline-redaction-urls
                               #:hidden-toolbar-item-list #:identity-provider
                               #:identity-provider-details
@@ -173,45 +77,22 @@
                               #:inline-redaction-pattern
                               #:inline-redaction-patterns
                               #:inline-redaction-url #:inline-redaction-urls
-                              #:instance-type #:internal-server-exception
-                              #:ip-access-settings #:ip-access-settings-list
+                              #:instance-type #:ip-access-settings
+                              #:ip-access-settings-list
                               #:ip-access-settings-resource
                               #:ip-access-settings-summary #:ip-address
                               #:ip-address-list #:ip-range #:ip-rule
                               #:ip-rule-list #:kinesis-stream-arn
                               #:list-browser-settings
-                              #:list-browser-settings-request
-                              #:list-browser-settings-response
                               #:list-data-protection-settings
-                              #:list-data-protection-settings-request
-                              #:list-data-protection-settings-response
                               #:list-identity-providers
-                              #:list-identity-providers-request
-                              #:list-identity-providers-response
-                              #:list-ip-access-settings
-                              #:list-ip-access-settings-request
-                              #:list-ip-access-settings-response
-                              #:list-network-settings
-                              #:list-network-settings-request
-                              #:list-network-settings-response #:list-portals
-                              #:list-portals-request #:list-portals-response
-                              #:list-session-loggers
-                              #:list-session-loggers-request
-                              #:list-session-loggers-response #:list-sessions
-                              #:list-sessions-request #:list-sessions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-ip-access-settings #:list-network-settings
+                              #:list-portals #:list-session-loggers
+                              #:list-sessions #:list-tags-for-resource
                               #:list-trust-store-certificates
-                              #:list-trust-store-certificates-request
-                              #:list-trust-store-certificates-response
-                              #:list-trust-stores #:list-trust-stores-request
-                              #:list-trust-stores-response
+                              #:list-trust-stores
                               #:list-user-access-logging-settings
-                              #:list-user-access-logging-settings-request
-                              #:list-user-access-logging-settings-response
-                              #:list-user-settings #:list-user-settings-request
-                              #:list-user-settings-response #:log-configuration
+                              #:list-user-settings #:log-configuration
                               #:log-file-format #:max-concurrent-sessions
                               #:max-display-resolution #:max-results
                               #:network-settings #:network-settings-list
@@ -223,13 +104,11 @@
                               #:redaction-place-holder
                               #:redaction-place-holder-text
                               #:redaction-place-holder-type #:regex
-                              #:renderer-type #:resource-id
-                              #:resource-not-found-exception #:resource-type
+                              #:renderer-type #:resource-id #:resource-type
                               #:retry-after-seconds #:s3bucket #:s3bucket-owner
                               #:s3key-prefix #:s3log-configuration
                               #:saml-metadata #:security-group-id
-                              #:security-group-id-list #:service-code
-                              #:service-quota-exceeded-exception #:session
+                              #:security-group-id-list #:service-code #:session
                               #:session-id #:session-logger
                               #:session-logger-list #:session-logger-resource
                               #:session-logger-summary #:session-sort-by
@@ -238,50 +117,26 @@
                               #:string-type #:subnet-id #:subnet-id-list
                               #:subresource-arn #:tag #:tag-exception-message
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:timestamp
-                              #:too-many-tags-exception #:toolbar-configuration
-                              #:toolbar-item #:toolbar-type #:trust-store
+                              #:tag-resource #:tag-value #:timestamp
+                              #:toolbar-configuration #:toolbar-item
+                              #:toolbar-type #:trust-store
                               #:trust-store-resource #:trust-store-summary
                               #:trust-store-summary-list #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
                               #:update-browser-settings
-                              #:update-browser-settings-request
-                              #:update-browser-settings-response
                               #:update-data-protection-settings
-                              #:update-data-protection-settings-request
-                              #:update-data-protection-settings-response
                               #:update-identity-provider
-                              #:update-identity-provider-request
-                              #:update-identity-provider-response
                               #:update-ip-access-settings
-                              #:update-ip-access-settings-request
-                              #:update-ip-access-settings-response
-                              #:update-network-settings
-                              #:update-network-settings-request
-                              #:update-network-settings-response
-                              #:update-portal #:update-portal-request
-                              #:update-portal-response #:update-session-logger
-                              #:update-session-logger-request
-                              #:update-session-logger-response
-                              #:update-trust-store #:update-trust-store-request
-                              #:update-trust-store-response
+                              #:update-network-settings #:update-portal
+                              #:update-session-logger #:update-trust-store
                               #:update-user-access-logging-settings
-                              #:update-user-access-logging-settings-request
-                              #:update-user-access-logging-settings-response
                               #:update-user-settings
-                              #:update-user-settings-request
-                              #:update-user-settings-response
                               #:user-access-logging-settings
                               #:user-access-logging-settings-list
                               #:user-access-logging-settings-resource
                               #:user-access-logging-settings-summary
                               #:user-settings #:user-settings-list
                               #:user-settings-resource #:user-settings-summary
-                              #:username #:validation-exception
-                              #:validation-exception-field
+                              #:username #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:visual-mode
                               #:vpc-id #:key-arn))

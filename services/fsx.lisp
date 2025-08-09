@@ -1,10 +1,8 @@
 (uiop/package:define-package #:pira/fsx (:use)
                              (:export #:awsaccount-id
                               #:awssimba-apiservice-v20180301
-                              #:access-point-already-owned-by-you
                               #:access-point-policy
                               #:active-directory-backup-attributes
-                              #:active-directory-error
                               #:active-directory-error-type
                               #:active-directory-fully-qualified-name
                               #:admin-password #:administrative-action
@@ -16,85 +14,52 @@
                               #:alias-lifecycle #:aliases #:alternate-dnsname
                               #:alternate-dnsnames #:archive-path
                               #:associate-file-system-aliases
-                              #:associate-file-system-aliases-request
-                              #:associate-file-system-aliases-response
                               #:auto-export-policy #:auto-import-policy
                               #:auto-import-policy-type #:autocommit-period
                               #:autocommit-period-type
                               #:autocommit-period-value
                               #:automatic-backup-retention-days #:backup
-                              #:backup-being-copied #:backup-failure-details
-                              #:backup-id #:backup-ids #:backup-in-progress
-                              #:backup-lifecycle #:backup-not-found
-                              #:backup-restoring #:backup-type #:backups
-                              #:bad-request #:batch-import-meta-data-on-create
+                              #:backup-failure-details #:backup-id #:backup-ids
+                              #:backup-lifecycle #:backup-type #:backups
+                              #:batch-import-meta-data-on-create
                               #:cancel-data-repository-task
-                              #:cancel-data-repository-task-request
-                              #:cancel-data-repository-task-response
                               #:capacity-to-release #:client-request-token
                               #:completion-report #:cooling-period
-                              #:copy-backup #:copy-backup-request
-                              #:copy-backup-response
-                              #:copy-snapshot-and-update-volume
-                              #:copy-snapshot-and-update-volume-request
-                              #:copy-snapshot-and-update-volume-response
+                              #:copy-backup #:copy-snapshot-and-update-volume
                               #:copy-tags-to-data-repository-associations
                               #:create-aggregate-configuration
                               #:create-and-attach-s3access-point
                               #:create-and-attach-s3access-point-open-zfsconfiguration
-                              #:create-and-attach-s3access-point-request
-                              #:create-and-attach-s3access-point-response
                               #:create-and-attach-s3access-point-s3configuration
-                              #:create-backup #:create-backup-request
-                              #:create-backup-response
+                              #:create-backup
                               #:create-data-repository-association
-                              #:create-data-repository-association-request
-                              #:create-data-repository-association-response
-                              #:create-data-repository-task
-                              #:create-data-repository-task-request
-                              #:create-data-repository-task-response
-                              #:create-file-cache
+                              #:create-data-repository-task #:create-file-cache
                               #:create-file-cache-data-repository-associations
                               #:create-file-cache-lustre-configuration
-                              #:create-file-cache-request
-                              #:create-file-cache-response #:create-file-system
+                              #:create-file-system
                               #:create-file-system-from-backup
-                              #:create-file-system-from-backup-request
-                              #:create-file-system-from-backup-response
                               #:create-file-system-lustre-configuration
                               #:create-file-system-lustre-metadata-configuration
                               #:create-file-system-ontap-configuration
                               #:create-file-system-open-zfsconfiguration
-                              #:create-file-system-request
-                              #:create-file-system-response
                               #:create-file-system-windows-configuration
                               #:create-ontap-volume-configuration
                               #:create-open-zfsorigin-snapshot-configuration
                               #:create-open-zfsvolume-configuration
                               #:create-snaplock-configuration #:create-snapshot
-                              #:create-snapshot-request
-                              #:create-snapshot-response
                               #:create-storage-virtual-machine
-                              #:create-storage-virtual-machine-request
-                              #:create-storage-virtual-machine-response
                               #:create-svm-active-directory-configuration
                               #:create-volume #:create-volume-from-backup
-                              #:create-volume-from-backup-request
-                              #:create-volume-from-backup-response
-                              #:create-volume-request #:create-volume-response
                               #:creation-time #:dnsname #:daily-time
                               #:data-compression-type
                               #:data-repository-association
                               #:data-repository-association-id
                               #:data-repository-association-ids
-                              #:data-repository-association-not-found
                               #:data-repository-associations
                               #:data-repository-configuration
                               #:data-repository-failure-details
                               #:data-repository-lifecycle
                               #:data-repository-task
-                              #:data-repository-task-ended
-                              #:data-repository-task-executing
                               #:data-repository-task-failure-details
                               #:data-repository-task-filter
                               #:data-repository-task-filter-name
@@ -102,79 +67,42 @@
                               #:data-repository-task-filter-values
                               #:data-repository-task-filters
                               #:data-repository-task-lifecycle
-                              #:data-repository-task-not-found
                               #:data-repository-task-path
                               #:data-repository-task-paths
                               #:data-repository-task-status
                               #:data-repository-task-type
                               #:data-repository-tasks #:delete-backup
-                              #:delete-backup-request #:delete-backup-response
                               #:delete-data-in-file-system
                               #:delete-data-repository-association
-                              #:delete-data-repository-association-request
-                              #:delete-data-repository-association-response
-                              #:delete-file-cache #:delete-file-cache-request
-                              #:delete-file-cache-response #:delete-file-system
+                              #:delete-file-cache #:delete-file-system
                               #:delete-file-system-lustre-configuration
                               #:delete-file-system-lustre-response
                               #:delete-file-system-open-zfsconfiguration
                               #:delete-file-system-open-zfsoption
                               #:delete-file-system-open-zfsoptions
                               #:delete-file-system-open-zfsresponse
-                              #:delete-file-system-request
-                              #:delete-file-system-response
                               #:delete-file-system-windows-configuration
                               #:delete-file-system-windows-response
                               #:delete-open-zfsvolume-option
                               #:delete-open-zfsvolume-options #:delete-snapshot
-                              #:delete-snapshot-request
-                              #:delete-snapshot-response
-                              #:delete-storage-virtual-machine
-                              #:delete-storage-virtual-machine-request
-                              #:delete-storage-virtual-machine-response
-                              #:delete-volume
+                              #:delete-storage-virtual-machine #:delete-volume
                               #:delete-volume-ontap-configuration
                               #:delete-volume-ontap-response
                               #:delete-volume-open-zfsconfiguration
-                              #:delete-volume-request #:delete-volume-response
-                              #:describe-backups #:describe-backups-request
-                              #:describe-backups-response
+                              #:describe-backups
                               #:describe-data-repository-associations
-                              #:describe-data-repository-associations-request
-                              #:describe-data-repository-associations-response
                               #:describe-data-repository-tasks
-                              #:describe-data-repository-tasks-request
-                              #:describe-data-repository-tasks-response
                               #:describe-file-caches
-                              #:describe-file-caches-request
-                              #:describe-file-caches-response
                               #:describe-file-system-aliases
-                              #:describe-file-system-aliases-request
-                              #:describe-file-system-aliases-response
                               #:describe-file-systems
-                              #:describe-file-systems-request
-                              #:describe-file-systems-response
                               #:describe-s3access-point-attachments
-                              #:describe-s3access-point-attachments-request
-                              #:describe-s3access-point-attachments-response
                               #:describe-shared-vpc-configuration
-                              #:describe-shared-vpc-configuration-request
-                              #:describe-shared-vpc-configuration-response
-                              #:describe-snapshots #:describe-snapshots-request
-                              #:describe-snapshots-response
+                              #:describe-snapshots
                               #:describe-storage-virtual-machines
-                              #:describe-storage-virtual-machines-request
-                              #:describe-storage-virtual-machines-response
-                              #:describe-volumes #:describe-volumes-request
-                              #:describe-volumes-response
-                              #:detach-and-delete-s3access-point
-                              #:detach-and-delete-s3access-point-request
-                              #:detach-and-delete-s3access-point-response
-                              #:directory-id #:directory-password
-                              #:directory-user-name
+                              #:describe-volumes
+                              #:detach-and-delete-s3access-point #:directory-id
+                              #:directory-password #:directory-user-name
                               #:disassociate-file-system-aliases
-                              #:disassociate-file-system-aliases-request
-                              #:disassociate-file-system-aliases-response
                               #:disk-iops-configuration
                               #:disk-iops-configuration-mode #:dns-ips
                               #:drive-cache-type #:duration-since-last-access
@@ -187,8 +115,7 @@
                               #:file-cache-lustre-configuration
                               #:file-cache-lustre-deployment-type
                               #:file-cache-lustre-metadata-configuration
-                              #:file-cache-nfsconfiguration
-                              #:file-cache-not-found #:file-cache-type
+                              #:file-cache-nfsconfiguration #:file-cache-type
                               #:file-caches #:file-system
                               #:file-system-administrators-group-name
                               #:file-system-endpoint #:file-system-endpoints
@@ -198,31 +125,18 @@
                               #:file-system-lustre-metadata-configuration
                               #:file-system-maintenance-operation
                               #:file-system-maintenance-operations
-                              #:file-system-not-found
                               #:file-system-secondary-gids #:file-system-type
                               #:file-system-type-version #:file-system-uid
                               #:file-systems #:filter #:filter-name
                               #:filter-value #:filter-values #:filters #:flag
                               #:flex-cache-endpoint-type #:general-arn
                               #:hapairs #:include-shared
-                              #:incompatible-parameter-error
-                              #:incompatible-region-for-multi-az
                               #:input-ontap-volume-type #:integer-no-max
                               #:integer-no-max-from-negative-one
-                              #:integer-record-size-ki-b
-                              #:internal-server-error #:invalid-access-point
-                              #:invalid-data-repository-type
-                              #:invalid-destination-kms-key
-                              #:invalid-export-path #:invalid-import-path
-                              #:invalid-network-settings
-                              #:invalid-per-unit-storage-throughput
-                              #:invalid-region #:invalid-request
-                              #:invalid-source-kms-key #:iops #:ip-address
+                              #:integer-record-size-ki-b #:iops #:ip-address
                               #:ip-address-range #:junction-path #:kms-key-id
                               #:last-updated-time #:lifecycle-transition-reason
                               #:limited-max-results #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:lustre-access-audit-log-level
                               #:lustre-deployment-type
                               #:lustre-file-system-configuration
@@ -237,14 +151,10 @@
                               #:megabytes #:megabytes-per-second
                               #:metadata-configuration-mode #:metadata-iops
                               #:metadata-storage-capacity
-                              #:missing-file-cache-configuration
-                              #:missing-file-system-configuration
-                              #:missing-volume-configuration
                               #:nfsdata-repository-configuration #:namespace
                               #:net-bios-alias #:network-interface-id
                               #:network-interface-ids #:next-token
-                              #:nfs-version #:not-service-resource-error
-                              #:ontap-deployment-type
+                              #:nfs-version #:ontap-deployment-type
                               #:ontap-endpoint-ip-addresses
                               #:ontap-file-system-configuration
                               #:ontap-volume-configuration #:ontap-volume-type
@@ -273,28 +183,20 @@
                               #:privileged-delete #:progress-percent
                               #:read-only #:region #:release-configuration
                               #:release-file-system-nfs-v3locks
-                              #:release-file-system-nfs-v3locks-request
-                              #:release-file-system-nfs-v3locks-response
                               #:released-capacity #:remaining-transfer-bytes
                               #:report-format #:report-scope
                               #:repository-dns-ips #:request-time
-                              #:resource-arn
-                              #:resource-does-not-support-tagging
-                              #:resource-not-found #:resource-type
+                              #:resource-arn #:resource-type
                               #:restore-open-zfsvolume-option
                               #:restore-open-zfsvolume-options
-                              #:restore-volume-from-snapshot
-                              #:restore-volume-from-snapshot-request
-                              #:restore-volume-from-snapshot-response
-                              #:retention-period #:retention-period-type
-                              #:retention-period-value #:route-table-id
-                              #:route-table-ids #:s3access-point
-                              #:s3access-point-alias
+                              #:restore-volume-from-snapshot #:retention-period
+                              #:retention-period-type #:retention-period-value
+                              #:route-table-id #:route-table-ids
+                              #:s3access-point #:s3access-point-alias
                               #:s3access-point-attachment
                               #:s3access-point-attachment-lifecycle
                               #:s3access-point-attachment-name
                               #:s3access-point-attachment-names
-                              #:s3access-point-attachment-not-found
                               #:s3access-point-attachment-type
                               #:s3access-point-attachments
                               #:s3access-point-attachments-filter
@@ -310,21 +212,18 @@
                               #:self-managed-active-directory-attributes
                               #:self-managed-active-directory-configuration
                               #:self-managed-active-directory-configuration-updates
-                              #:service-limit #:service-limit-exceeded
-                              #:size-in-bytes #:snaplock-configuration
+                              #:service-limit #:size-in-bytes
+                              #:snaplock-configuration
                               #:snaplock-retention-period #:snaplock-type
                               #:snapshot #:snapshot-filter
                               #:snapshot-filter-name #:snapshot-filter-value
                               #:snapshot-filter-values #:snapshot-filters
                               #:snapshot-id #:snapshot-ids #:snapshot-lifecycle
-                              #:snapshot-name #:snapshot-not-found
-                              #:snapshot-policy #:snapshots #:source-backup-id
-                              #:source-backup-unavailable
-                              #:start-misconfigured-state-recovery
-                              #:start-misconfigured-state-recovery-request
-                              #:start-misconfigured-state-recovery-response
-                              #:start-time #:status #:storage-capacity
-                              #:storage-type #:storage-virtual-machine
+                              #:snapshot-name #:snapshot-policy #:snapshots
+                              #:source-backup-id
+                              #:start-misconfigured-state-recovery #:start-time
+                              #:status #:storage-capacity #:storage-type
+                              #:storage-virtual-machine
                               #:storage-virtual-machine-filter
                               #:storage-virtual-machine-filter-name
                               #:storage-virtual-machine-filter-value
@@ -334,7 +233,6 @@
                               #:storage-virtual-machine-ids
                               #:storage-virtual-machine-lifecycle
                               #:storage-virtual-machine-name
-                              #:storage-virtual-machine-not-found
                               #:storage-virtual-machine-root-volume-security-style
                               #:storage-virtual-machine-subtype
                               #:storage-virtual-machines
@@ -342,52 +240,35 @@
                               #:succeeded-count
                               #:svm-active-directory-configuration
                               #:svm-endpoint #:svm-endpoints #:tag #:tag-key
-                              #:tag-keys #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
+                              #:tag-keys #:tag-resource #:tag-value #:tags
                               #:task-id #:task-ids #:throughput-capacity-mbps
                               #:throughput-capacity-per-hapair #:tiering-policy
-                              #:tiering-policy-name #:too-many-access-points
-                              #:total-constituents #:total-count
-                              #:total-transfer-bytes #:uuid #:unit
-                              #:unsupported-operation #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:tiering-policy-name #:total-constituents
+                              #:total-count #:total-transfer-bytes #:uuid
+                              #:unit #:untag-resource
                               #:update-data-repository-association
-                              #:update-data-repository-association-request
-                              #:update-data-repository-association-response
                               #:update-file-cache
                               #:update-file-cache-lustre-configuration
-                              #:update-file-cache-request
-                              #:update-file-cache-response #:update-file-system
+                              #:update-file-system
                               #:update-file-system-lustre-configuration
                               #:update-file-system-lustre-metadata-configuration
                               #:update-file-system-ontap-configuration
                               #:update-file-system-open-zfsconfiguration
-                              #:update-file-system-request
-                              #:update-file-system-response
                               #:update-file-system-windows-configuration
                               #:update-ontap-volume-configuration
                               #:update-open-zfsvolume-configuration
                               #:update-open-zfsvolume-option
                               #:update-open-zfsvolume-options
                               #:update-shared-vpc-configuration
-                              #:update-shared-vpc-configuration-request
-                              #:update-shared-vpc-configuration-response
                               #:update-snaplock-configuration #:update-snapshot
-                              #:update-snapshot-request
-                              #:update-snapshot-response
                               #:update-storage-virtual-machine
-                              #:update-storage-virtual-machine-request
-                              #:update-storage-virtual-machine-response
                               #:update-svm-active-directory-configuration
-                              #:update-volume #:update-volume-request
-                              #:update-volume-response #:value #:verbose-flag
-                              #:volume #:volume-capacity
-                              #:volume-capacity-bytes #:volume-filter
-                              #:volume-filter-name #:volume-filter-value
-                              #:volume-filter-values #:volume-filters
-                              #:volume-id #:volume-ids #:volume-lifecycle
-                              #:volume-name #:volume-not-found #:volume-path
+                              #:update-volume #:value #:verbose-flag #:volume
+                              #:volume-capacity #:volume-capacity-bytes
+                              #:volume-filter #:volume-filter-name
+                              #:volume-filter-value #:volume-filter-values
+                              #:volume-filters #:volume-id #:volume-ids
+                              #:volume-lifecycle #:volume-name #:volume-path
                               #:volume-style #:volume-type #:volumes #:vpc-id
                               #:weekly-time #:windows-access-audit-log-level
                               #:windows-audit-log-configuration

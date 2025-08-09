@@ -1,25 +1,18 @@
 (uiop/package:define-package #:pira/taxsettings (:use)
-                             (:export #:access-denied-exception
-                              #:account-details #:account-details-list
+                             (:export #:account-details #:account-details-list
                               #:account-id #:account-ids #:account-meta-data
                               #:account-name #:additional-info-request
                               #:additional-info-response #:address
                               #:address-line1 #:address-line2 #:address-line3
                               #:address-role-map #:address-role-type
-                              #:attachment-upload-exception #:authorities
-                              #:authority #:batch-delete-tax-registration
+                              #:authorities #:authority
+                              #:batch-delete-tax-registration
                               #:batch-delete-tax-registration-error
                               #:batch-delete-tax-registration-errors
-                              #:batch-delete-tax-registration-request
-                              #:batch-delete-tax-registration-response
                               #:batch-get-tax-exemptions
-                              #:batch-get-tax-exemptions-request
-                              #:batch-get-tax-exemptions-response
                               #:batch-put-tax-registration
                               #:batch-put-tax-registration-error
-                              #:batch-put-tax-registration-errors
-                              #:batch-put-tax-registration-request
-                              #:batch-put-tax-registration-response #:boolean
+                              #:batch-put-tax-registration-errors #:boolean
                               #:brazil-additional-info
                               #:business-registration-number
                               #:business-representative-name
@@ -27,20 +20,14 @@
                               #:canada-provincial-sales-tax-id-string
                               #:canada-quebec-sales-tax-number-string
                               #:canada-retail-sales-tax-number-string
-                              #:case-creation-limit-exceeded-exception
                               #:ccm-code #:certified-email-id #:cig-number
-                              #:city #:conflict-exception
-                              #:contracting-authority-code #:country-code
-                              #:cup-number #:date-of-birth #:date-string
-                              #:decision-number
+                              #:city #:contracting-authority-code
+                              #:country-code #:cup-number #:date-of-birth
+                              #:date-string #:decision-number
                               #:delete-supplemental-tax-registration
-                              #:delete-supplemental-tax-registration-request
-                              #:delete-supplemental-tax-registration-response
-                              #:delete-tax-registration
-                              #:delete-tax-registration-request
-                              #:delete-tax-registration-response
-                              #:destination-file-path #:destination-s3location
-                              #:display-name #:district #:egypt-additional-info
+                              #:delete-tax-registration #:destination-file-path
+                              #:destination-s3location #:display-name
+                              #:district #:egypt-additional-info
                               #:electronic-transaction-code-number
                               #:enterprise-identification-number
                               #:entity-exemption-account-status #:error-code
@@ -48,25 +35,15 @@
                               #:exemption-certificate #:exemption-document-name
                               #:exemption-file-blob #:field-name #:file-blob
                               #:generic-string #:georgia-additional-info
-                              #:get-tax-exemption-types
-                              #:get-tax-exemption-types-request
-                              #:get-tax-exemption-types-response
-                              #:get-tax-inheritance
-                              #:get-tax-inheritance-request
-                              #:get-tax-inheritance-response
+                              #:get-tax-exemption-types #:get-tax-inheritance
                               #:get-tax-registration
                               #:get-tax-registration-document
-                              #:get-tax-registration-document-request
-                              #:get-tax-registration-document-response
-                              #:get-tax-registration-request
-                              #:get-tax-registration-response
                               #:greece-additional-info #:heritage-status
                               #:india-additional-info
                               #:individual-registration-number
                               #:indonesia-additional-info
                               #:indonesia-tax-registration-number-type
                               #:industries #:inheritance-obtained-reason
-                              #:internal-server-exception
                               #:israel-additional-info #:israel-customer-type
                               #:israel-dealer-type #:italy-additional-info
                               #:item-of-business #:jurisdiction
@@ -74,14 +51,7 @@
                               #:legal-name #:legal-nature-code
                               #:line-of-business
                               #:list-supplemental-tax-registrations
-                              #:list-supplemental-tax-registrations-request
-                              #:list-supplemental-tax-registrations-response
-                              #:list-tax-exemptions
-                              #:list-tax-exemptions-request
-                              #:list-tax-exemptions-response
-                              #:list-tax-registrations
-                              #:list-tax-registrations-request
-                              #:list-tax-registrations-response
+                              #:list-tax-exemptions #:list-tax-registrations
                               #:malaysia-additional-info
                               #:malaysia-service-tax-code
                               #:malaysia-service-tax-codes-list #:max-results
@@ -90,18 +60,9 @@
                               #:poland-additional-info #:postal-code
                               #:ppn-exception-designation-code
                               #:put-supplemental-tax-registration
-                              #:put-supplemental-tax-registration-request
-                              #:put-supplemental-tax-registration-response
-                              #:put-tax-exemption #:put-tax-exemption-request
-                              #:put-tax-exemption-response
-                              #:put-tax-inheritance
-                              #:put-tax-inheritance-request
-                              #:put-tax-inheritance-response
-                              #:put-tax-registration
-                              #:put-tax-registration-request
-                              #:put-tax-registration-response #:registration-id
+                              #:put-tax-exemption #:put-tax-inheritance
+                              #:put-tax-registration #:registration-id
                               #:registration-type #:registry-commercial-code
-                              #:resource-not-found-exception
                               #:romania-additional-info #:s3bucket-name #:s3key
                               #:s3prefix #:saudi-arabia-additional-info
                               #:saudi-arabia-tax-registration-number-type
@@ -133,7 +94,6 @@
                               #:unique-identification-number #:url
                               #:uzbekistan-additional-info
                               #:uzbekistan-tax-registration-number-type
-                              #:validation-exception
                               #:validation-exception-error-code
                               #:validation-exception-field
                               #:validation-exception-field-list

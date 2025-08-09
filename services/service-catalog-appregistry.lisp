@@ -7,10 +7,7 @@
                               #:application-tag-definition
                               #:application-tag-result #:application-tag-status
                               #:arn #:associate-attribute-group
-                              #:associate-attribute-group-request
-                              #:associate-attribute-group-response
-                              #:associate-resource #:associate-resource-request
-                              #:associate-resource-response #:association-count
+                              #:associate-resource #:association-count
                               #:association-option #:attribute-group
                               #:attribute-group-arn #:attribute-group-details
                               #:attribute-group-details-list
@@ -18,77 +15,33 @@
                               #:attribute-group-specifier
                               #:attribute-group-summaries
                               #:attribute-group-summary #:attributes
-                              #:client-token #:conflict-exception
-                              #:create-application #:create-application-request
-                              #:create-application-response
-                              #:create-attribute-group
-                              #:create-attribute-group-request
-                              #:create-attribute-group-response #:created-by
-                              #:delete-application #:delete-application-request
-                              #:delete-application-response
-                              #:delete-attribute-group
-                              #:delete-attribute-group-request
-                              #:delete-attribute-group-response #:description
-                              #:disassociate-attribute-group
-                              #:disassociate-attribute-group-request
-                              #:disassociate-attribute-group-response
-                              #:disassociate-resource
-                              #:disassociate-resource-request
-                              #:disassociate-resource-response
-                              #:get-application #:get-application-request
-                              #:get-application-response
+                              #:client-token #:create-application
+                              #:create-attribute-group #:created-by
+                              #:delete-application #:delete-attribute-group
+                              #:description #:disassociate-attribute-group
+                              #:disassociate-resource #:get-application
                               #:get-associated-resource
                               #:get-associated-resource-filter
-                              #:get-associated-resource-request
-                              #:get-associated-resource-response
-                              #:get-attribute-group
-                              #:get-attribute-group-request
-                              #:get-attribute-group-response
-                              #:get-configuration #:get-configuration-response
-                              #:integrations #:internal-server-exception
-                              #:list-applications #:list-applications-request
-                              #:list-applications-response
+                              #:get-attribute-group #:get-configuration
+                              #:integrations #:list-applications
                               #:list-associated-attribute-groups
-                              #:list-associated-attribute-groups-request
-                              #:list-associated-attribute-groups-response
                               #:list-associated-resources
-                              #:list-associated-resources-request
-                              #:list-associated-resources-response
                               #:list-attribute-groups
                               #:list-attribute-groups-for-application
-                              #:list-attribute-groups-for-application-request
-                              #:list-attribute-groups-for-application-response
-                              #:list-attribute-groups-request
-                              #:list-attribute-groups-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:name #:next-token #:options #:put-configuration
-                              #:put-configuration-request #:resource
-                              #:resource-details #:resource-group
+                              #:list-tags-for-resource #:max-results #:name
+                              #:next-token #:options #:put-configuration
+                              #:resource #:resource-details #:resource-group
                               #:resource-group-state #:resource-info
                               #:resource-integrations #:resource-item-status
-                              #:resource-item-type
-                              #:resource-not-found-exception
-                              #:resource-specifier #:resource-type #:resources
-                              #:resources-list #:resources-list-item
-                              #:resources-list-item-error-message
-                              #:service-quota-exceeded-exception #:string
-                              #:sync-action #:sync-resource
-                              #:sync-resource-request #:sync-resource-response
-                              #:tag-key #:tag-key-config #:tag-keys
+                              #:resource-item-type #:resource-specifier
+                              #:resource-type #:resources #:resources-list
+                              #:resources-list-item
+                              #:resources-list-item-error-message #:string
+                              #:sync-action #:sync-resource #:tag-key
+                              #:tag-key-config #:tag-keys
                               #:tag-query-configuration #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:throttling-exception
-                              #:timestamp #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-application
-                              #:update-application-request
-                              #:update-application-response
-                              #:update-attribute-group
-                              #:update-attribute-group-request
-                              #:update-attribute-group-response
-                              #:validation-exception))
+                              #:tag-value #:tags #:timestamp #:untag-resource
+                              #:update-application #:update-attribute-group))
 (common-lisp:in-package #:pira/service-catalog-appregistry)
 
 (smithy/sdk/service:define-service aws242app-registry :shape-name

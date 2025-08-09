@@ -1,18 +1,10 @@
 (uiop/package:define-package #:pira/kinesis-video-signaling (:use)
                              (:export #:awsacuity-signaling-service #:answer
-                              #:client-id #:client-limit-exceeded-exception
-                              #:error-message #:get-ice-server-config
-                              #:get-ice-server-config-request
-                              #:get-ice-server-config-response #:ice-server
-                              #:ice-server-list #:invalid-argument-exception
-                              #:invalid-client-exception #:message-payload
-                              #:not-authorized-exception #:password
-                              #:resource-arn #:resource-not-found-exception
-                              #:send-alexa-offer-to-master
-                              #:send-alexa-offer-to-master-request
-                              #:send-alexa-offer-to-master-response #:service
-                              #:session-expired-exception #:ttl #:uri #:uris
-                              #:username))
+                              #:client-id #:error-message
+                              #:get-ice-server-config #:ice-server
+                              #:ice-server-list #:message-payload #:password
+                              #:resource-arn #:send-alexa-offer-to-master
+                              #:service #:ttl #:uri #:uris #:username))
 (common-lisp:in-package #:pira/kinesis-video-signaling)
 
 (smithy/sdk/service:define-service awsacuity-signaling-service :shape-name

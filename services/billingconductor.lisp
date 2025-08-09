@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/billingconductor (:use)
                              (:export #:awsbilling-conductor #:awscost
-                              #:access-denied-exception
                               #:account-associations-list
                               #:account-associations-list-element
                               #:account-email #:account-grouping #:account-id
@@ -35,7 +34,7 @@
                               #:billing-group-status-list
                               #:billing-group-status-reason #:billing-period
                               #:billing-period-range #:client-token
-                              #:computation-preference #:conflict-exception
+                              #:computation-preference
                               #:conflict-exception-reason
                               #:create-billing-group
                               #:create-billing-group-input
@@ -91,11 +90,9 @@
                               #:disassociate-resources-response-list
                               #:free-tier-config
                               #:get-billing-group-cost-report
-                              #:get-billing-group-cost-report-input
-                              #:get-billing-group-cost-report-output
                               #:group-by-attribute-name
                               #:group-by-attributes-list #:instant
-                              #:internal-server-exception #:line-item-filter
+                              #:line-item-filter
                               #:line-item-filter-attribute-name
                               #:line-item-filter-value
                               #:line-item-filter-values-list
@@ -167,12 +164,10 @@
                               #:pricing-rule-description #:pricing-rule-list
                               #:pricing-rule-list-element #:pricing-rule-name
                               #:pricing-rule-scope #:pricing-rule-type
-                              #:proforma-cost #:resource-not-found-exception
-                              #:retry-after-seconds #:service
-                              #:service-limit-exceeded-exception #:string
-                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception #:tiering
+                              #:proforma-cost #:retry-after-seconds #:service
+                              #:string #:tag-key #:tag-key-list #:tag-map
+                              #:tag-resource #:tag-resource-request
+                              #:tag-resource-response #:tag-value #:tiering
                               #:tiering-activated #:token #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-billing-group
@@ -191,7 +186,6 @@
                               #:update-pricing-rule #:update-pricing-rule-input
                               #:update-pricing-rule-output
                               #:update-tiering-input #:usage-type
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

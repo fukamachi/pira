@@ -1,28 +1,17 @@
 (uiop/package:define-package #:pira/ssm-guiconnect (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:bucket-name #:client-token #:conflict-exception
+                             (:export #:account-id #:bucket-name #:client-token
                               #:connection #:connection-access #:connection-arn
                               #:connection-preferences
                               #:connection-recording-preferences
                               #:connection-token #:connections-collection
                               #:delete-connection-recording-preferences
-                              #:delete-connection-recording-preferences-request
-                              #:delete-connection-recording-preferences-response
                               #:error-message
                               #:get-connection-recording-preferences
-                              #:get-connection-recording-preferences-response
-                              #:internal-server-exception
                               #:modify-connection-preferences
                               #:modify-recording-preferences
                               #:recording-destinations #:recording-preferences
-                              #:resource-not-found-exception #:s3bucket
-                              #:s3buckets #:ssmgui-connect
-                              #:service-quota-exceeded-exception
-                              #:throttling-exception
-                              #:update-connection-recording-preferences
-                              #:update-connection-recording-preferences-request
-                              #:update-connection-recording-preferences-response
-                              #:validation-exception))
+                              #:s3bucket #:s3buckets #:ssmgui-connect
+                              #:update-connection-recording-preferences))
 (common-lisp:in-package #:pira/ssm-guiconnect)
 
 (smithy/sdk/service:define-service ssmgui-connect :shape-name "SSMGuiConnect"

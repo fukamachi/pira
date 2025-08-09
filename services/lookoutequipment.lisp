@@ -1,26 +1,13 @@
 (uiop/package:define-package #:pira/lookoutequipment (:use)
                              (:export #:awslookout-equipment-frontend-service
-                              #:access-denied-exception #:amazon-resource-arn
-                              #:auto-promotion-result
+                              #:amazon-resource-arn #:auto-promotion-result
                               #:auto-promotion-result-reason #:boolean
                               #:bounded-length-string #:categorical-values
                               #:comments #:component-name
-                              #:component-timestamp-delimiter
-                              #:conflict-exception #:count-percent
-                              #:create-dataset #:create-dataset-request
-                              #:create-dataset-response
-                              #:create-inference-scheduler
-                              #:create-inference-scheduler-request
-                              #:create-inference-scheduler-response
+                              #:component-timestamp-delimiter #:count-percent
+                              #:create-dataset #:create-inference-scheduler
                               #:create-label #:create-label-group
-                              #:create-label-group-request
-                              #:create-label-group-response
-                              #:create-label-request #:create-label-response
-                              #:create-model #:create-model-request
-                              #:create-model-response
-                              #:create-retraining-scheduler
-                              #:create-retraining-scheduler-request
-                              #:create-retraining-scheduler-response
+                              #:create-model #:create-retraining-scheduler
                               #:data-delay-offset-in-minutes
                               #:data-ingestion-job-summaries
                               #:data-ingestion-job-summary
@@ -30,48 +17,21 @@
                               #:dataset-identifier #:dataset-name
                               #:dataset-schema #:dataset-status
                               #:dataset-summaries #:dataset-summary
-                              #:delete-dataset #:delete-dataset-request
-                              #:delete-inference-scheduler
-                              #:delete-inference-scheduler-request
+                              #:delete-dataset #:delete-inference-scheduler
                               #:delete-label #:delete-label-group
-                              #:delete-label-group-request
-                              #:delete-label-request #:delete-model
-                              #:delete-model-request #:delete-resource-policy
-                              #:delete-resource-policy-request
+                              #:delete-model #:delete-resource-policy
                               #:delete-retraining-scheduler
-                              #:delete-retraining-scheduler-request
-                              #:describe-data-ingestion-job
-                              #:describe-data-ingestion-job-request
-                              #:describe-data-ingestion-job-response
-                              #:describe-dataset #:describe-dataset-request
-                              #:describe-dataset-response
-                              #:describe-inference-scheduler
-                              #:describe-inference-scheduler-request
-                              #:describe-inference-scheduler-response
-                              #:describe-label #:describe-label-group
-                              #:describe-label-group-request
-                              #:describe-label-group-response
-                              #:describe-label-request
-                              #:describe-label-response #:describe-model
-                              #:describe-model-request
-                              #:describe-model-response
+                              #:describe-data-ingestion-job #:describe-dataset
+                              #:describe-inference-scheduler #:describe-label
+                              #:describe-label-group #:describe-model
                               #:describe-model-version
-                              #:describe-model-version-request
-                              #:describe-model-version-response
                               #:describe-resource-policy
-                              #:describe-resource-policy-request
-                              #:describe-resource-policy-response
                               #:describe-retraining-scheduler
-                              #:describe-retraining-scheduler-request
-                              #:describe-retraining-scheduler-response
                               #:duplicate-timestamps #:equipment
                               #:event-duration-in-seconds #:fault-code
                               #:fault-codes #:file-name-timestamp-format
                               #:float #:iam-role-arn #:idempotence-token
-                              #:import-dataset #:import-dataset-request
-                              #:import-dataset-response #:import-model-version
-                              #:import-model-version-request
-                              #:import-model-version-response
+                              #:import-dataset #:import-model-version
                               #:inference-data-import-strategy
                               #:inference-event-summaries
                               #:inference-event-summary
@@ -94,44 +54,22 @@
                               #:ingestion-job-id #:ingestion-job-status
                               #:ingestion-s3input-configuration
                               #:inline-data-schema #:insufficient-sensor-data
-                              #:integer #:internal-server-exception
-                              #:invalid-sensor-data #:key-pattern #:kms-key-arn
-                              #:label-group-arn #:label-group-name
-                              #:label-group-summaries #:label-group-summary
-                              #:label-id #:label-rating #:label-summaries
-                              #:label-summary #:labels-input-configuration
+                              #:integer #:invalid-sensor-data #:key-pattern
+                              #:kms-key-arn #:label-group-arn
+                              #:label-group-name #:label-group-summaries
+                              #:label-group-summary #:label-id #:label-rating
+                              #:label-summaries #:label-summary
+                              #:labels-input-configuration
                               #:labels-s3input-configuration
                               #:large-timestamp-gaps #:latest-inference-result
-                              #:list-data-ingestion-jobs
-                              #:list-data-ingestion-jobs-request
-                              #:list-data-ingestion-jobs-response
-                              #:list-datasets #:list-datasets-request
-                              #:list-datasets-response #:list-inference-events
-                              #:list-inference-events-request
-                              #:list-inference-events-response
+                              #:list-data-ingestion-jobs #:list-datasets
+                              #:list-inference-events
                               #:list-inference-executions
-                              #:list-inference-executions-request
-                              #:list-inference-executions-response
-                              #:list-inference-schedulers
-                              #:list-inference-schedulers-request
-                              #:list-inference-schedulers-response
-                              #:list-label-groups #:list-label-groups-request
-                              #:list-label-groups-response #:list-labels
-                              #:list-labels-request #:list-labels-response
-                              #:list-model-versions
-                              #:list-model-versions-request
-                              #:list-model-versions-response #:list-models
-                              #:list-models-request #:list-models-response
+                              #:list-inference-schedulers #:list-label-groups
+                              #:list-labels #:list-model-versions #:list-models
                               #:list-of-discarded-files
                               #:list-retraining-schedulers
-                              #:list-retraining-schedulers-request
-                              #:list-retraining-schedulers-response
-                              #:list-sensor-statistics
-                              #:list-sensor-statistics-request
-                              #:list-sensor-statistics-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-sensor-statistics #:list-tags-for-resource
                               #:lookback-window #:max-results
                               #:missing-complete-sensor-data
                               #:missing-sensor-data #:model-arn
@@ -146,10 +84,7 @@
                               #:monotonicity #:multiple-operating-modes
                               #:name-or-arn #:next-token #:off-condition
                               #:policy #:policy-revision-id
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:resource-arn
-                              #:resource-not-found-exception
+                              #:put-resource-policy #:resource-arn
                               #:retraining-frequency
                               #:retraining-scheduler-status
                               #:retraining-scheduler-summaries
@@ -158,42 +93,21 @@
                               #:sensor-statistics-summaries
                               #:sensor-statistics-summary
                               #:sensors-with-short-date-range
-                              #:service-quota-exceeded-exception
                               #:start-data-ingestion-job
-                              #:start-data-ingestion-job-request
-                              #:start-data-ingestion-job-response
                               #:start-inference-scheduler
-                              #:start-inference-scheduler-request
-                              #:start-inference-scheduler-response
                               #:start-retraining-scheduler
-                              #:start-retraining-scheduler-request
-                              #:start-retraining-scheduler-response
                               #:statistical-issue-status
                               #:stop-inference-scheduler
-                              #:stop-inference-scheduler-request
-                              #:stop-inference-scheduler-response
                               #:stop-retraining-scheduler
-                              #:stop-retraining-scheduler-request
-                              #:stop-retraining-scheduler-response
                               #:synthesized-json-inline-data-schema
                               #:synthesized-json-model-metrics #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:target-sampling-rate
-                              #:throttling-exception #:time-zone-offset
-                              #:timestamp #:unsupported-timestamps
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:time-zone-offset #:timestamp
+                              #:unsupported-timestamps #:untag-resource
                               #:update-active-model-version
-                              #:update-active-model-version-request
-                              #:update-active-model-version-response
-                              #:update-inference-scheduler
-                              #:update-inference-scheduler-request
-                              #:update-label-group #:update-label-group-request
-                              #:update-model #:update-model-request
-                              #:update-retraining-scheduler
-                              #:update-retraining-scheduler-request
-                              #:validation-exception))
+                              #:update-inference-scheduler #:update-label-group
+                              #:update-model #:update-retraining-scheduler))
 (common-lisp:in-package #:pira/lookoutequipment)
 
 (smithy/sdk/service:define-service awslookout-equipment-frontend-service

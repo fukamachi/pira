@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/support-app (:use)
-                             (:export #:access-denied-exception #:account-type
-                              #:conflict-exception
+                             (:export #:account-type
                               #:create-slack-channel-configuration
                               #:create-slack-channel-configuration-request
                               #:create-slack-channel-configuration-result
@@ -15,7 +14,6 @@
                               #:delete-slack-workspace-configuration-result
                               #:get-account-alias #:get-account-alias-request
                               #:get-account-alias-result
-                              #:internal-server-exception
                               #:list-slack-channel-configurations
                               #:list-slack-channel-configurations-request
                               #:list-slack-channel-configurations-result
@@ -28,8 +26,6 @@
                               #:register-slack-workspace-for-organization
                               #:register-slack-workspace-for-organization-request
                               #:register-slack-workspace-for-organization-result
-                              #:resource-not-found-exception
-                              #:service-quota-exceeded-exception
                               #:slack-channel-configuration
                               #:slack-workspace-configuration
                               #:slack-workspace-configuration-list
@@ -37,11 +33,10 @@
                               #:update-slack-channel-configuration
                               #:update-slack-channel-configuration-request
                               #:update-slack-channel-configuration-result
-                              #:validation-exception #:aws-account-alias
-                              #:boolean-value #:channel-id #:channel-name
-                              #:error-message #:pagination-token #:role-arn
-                              #:slack-channel-configuration-list #:team-id
-                              #:team-name))
+                              #:aws-account-alias #:boolean-value #:channel-id
+                              #:channel-name #:error-message #:pagination-token
+                              #:role-arn #:slack-channel-configuration-list
+                              #:team-id #:team-name))
 (common-lisp:in-package #:pira/support-app)
 
 (smithy/sdk/service:define-service support-app :shape-name "SupportApp"

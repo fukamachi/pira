@@ -1,112 +1,46 @@
 (uiop/package:define-package #:pira/robomaker (:use)
                              (:export #:architecture #:arn #:arns
                               #:batch-delete-worlds
-                              #:batch-delete-worlds-request
-                              #:batch-delete-worlds-response
-                              #:batch-describe-simulation-job
-                              #:batch-describe-simulation-job-request
-                              #:batch-describe-simulation-job-response
-                              #:batch-policy #:batch-timeout-in-seconds
-                              #:boolean #:boxed-boolean #:cancel-deployment-job
-                              #:cancel-deployment-job-request
-                              #:cancel-deployment-job-response
+                              #:batch-describe-simulation-job #:batch-policy
+                              #:batch-timeout-in-seconds #:boolean
+                              #:boxed-boolean #:cancel-deployment-job
                               #:cancel-simulation-job
                               #:cancel-simulation-job-batch
-                              #:cancel-simulation-job-batch-request
-                              #:cancel-simulation-job-batch-response
-                              #:cancel-simulation-job-request
-                              #:cancel-simulation-job-response
                               #:cancel-world-export-job
-                              #:cancel-world-export-job-request
-                              #:cancel-world-export-job-response
                               #:cancel-world-generation-job
-                              #:cancel-world-generation-job-request
-                              #:cancel-world-generation-job-response
                               #:client-request-token #:command #:command-list
                               #:compute #:compute-response #:compute-type
-                              #:concurrent-deployment-exception
-                              #:create-deployment-job
-                              #:create-deployment-job-request
-                              #:create-deployment-job-response #:create-fleet
-                              #:create-fleet-request #:create-fleet-response
+                              #:create-deployment-job #:create-fleet
                               #:create-robot #:create-robot-application
-                              #:create-robot-application-request
-                              #:create-robot-application-response
                               #:create-robot-application-version
-                              #:create-robot-application-version-request
-                              #:create-robot-application-version-response
-                              #:create-robot-request #:create-robot-response
                               #:create-simulation-application
-                              #:create-simulation-application-request
-                              #:create-simulation-application-response
                               #:create-simulation-application-version
-                              #:create-simulation-application-version-request
-                              #:create-simulation-application-version-response
                               #:create-simulation-job
-                              #:create-simulation-job-request
                               #:create-simulation-job-requests
-                              #:create-simulation-job-response
                               #:create-world-export-job
-                              #:create-world-export-job-request
-                              #:create-world-export-job-response
                               #:create-world-generation-job
-                              #:create-world-generation-job-request
-                              #:create-world-generation-job-response
-                              #:create-world-template
-                              #:create-world-template-request
-                              #:create-world-template-response #:created-at
+                              #:create-world-template #:created-at
                               #:data-source #:data-source-config
                               #:data-source-configs #:data-source-names
                               #:data-source-type #:data-sources #:delete-fleet
-                              #:delete-fleet-request #:delete-fleet-response
                               #:delete-robot #:delete-robot-application
-                              #:delete-robot-application-request
-                              #:delete-robot-application-response
-                              #:delete-robot-request #:delete-robot-response
                               #:delete-simulation-application
-                              #:delete-simulation-application-request
-                              #:delete-simulation-application-response
                               #:delete-world-template
-                              #:delete-world-template-request
-                              #:delete-world-template-response
                               #:deployment-application-config
                               #:deployment-application-configs
                               #:deployment-config #:deployment-job
                               #:deployment-job-error-code #:deployment-jobs
                               #:deployment-launch-config #:deployment-status
                               #:deployment-timeout #:deployment-version
-                              #:deregister-robot #:deregister-robot-request
-                              #:deregister-robot-response
-                              #:describe-deployment-job
-                              #:describe-deployment-job-request
-                              #:describe-deployment-job-response
-                              #:describe-fleet #:describe-fleet-request
-                              #:describe-fleet-response #:describe-robot
+                              #:deregister-robot #:describe-deployment-job
+                              #:describe-fleet #:describe-robot
                               #:describe-robot-application
-                              #:describe-robot-application-request
-                              #:describe-robot-application-response
-                              #:describe-robot-request
-                              #:describe-robot-response
                               #:describe-simulation-application
-                              #:describe-simulation-application-request
-                              #:describe-simulation-application-response
                               #:describe-simulation-job
-                              #:describe-simulation-job-batch
-                              #:describe-simulation-job-batch-request
-                              #:describe-simulation-job-batch-response
-                              #:describe-simulation-job-request
-                              #:describe-simulation-job-response
-                              #:describe-world #:describe-world-export-job
-                              #:describe-world-export-job-request
-                              #:describe-world-export-job-response
+                              #:describe-simulation-job-batch #:describe-world
+                              #:describe-world-export-job
                               #:describe-world-generation-job
-                              #:describe-world-generation-job-request
-                              #:describe-world-generation-job-response
-                              #:describe-world-request
-                              #:describe-world-response
-                              #:describe-world-template
-                              #:describe-world-template-request
-                              #:describe-world-template-response #:environment
+                              #:describe-world-template #:environment
                               #:environment-variable-key
                               #:environment-variable-map
                               #:environment-variable-value #:exit-behavior
@@ -118,45 +52,17 @@
                               #:finished-worlds-summary #:fleet #:fleets
                               #:floorplan-count #:gpuunit #:generic-integer
                               #:generic-string #:get-world-template-body
-                              #:get-world-template-body-request
-                              #:get-world-template-body-response #:iam-role
-                              #:id #:idempotent-parameter-mismatch-exception
-                              #:image-digest #:integer
-                              #:interior-count-per-floorplan
-                              #:internal-server-exception
-                              #:invalid-parameter-exception #:job-duration
+                              #:iam-role #:id #:image-digest #:integer
+                              #:interior-count-per-floorplan #:job-duration
                               #:json #:last-started-at #:last-updated-at
-                              #:launch-config #:limit-exceeded-exception
-                              #:list-deployment-jobs
-                              #:list-deployment-jobs-request
-                              #:list-deployment-jobs-response #:list-fleets
-                              #:list-fleets-request #:list-fleets-response
-                              #:list-robot-applications
-                              #:list-robot-applications-request
-                              #:list-robot-applications-response #:list-robots
-                              #:list-robots-request #:list-robots-response
-                              #:list-simulation-applications
-                              #:list-simulation-applications-request
-                              #:list-simulation-applications-response
+                              #:launch-config #:list-deployment-jobs
+                              #:list-fleets #:list-robot-applications
+                              #:list-robots #:list-simulation-applications
                               #:list-simulation-job-batches
-                              #:list-simulation-job-batches-request
-                              #:list-simulation-job-batches-response
-                              #:list-simulation-jobs
-                              #:list-simulation-jobs-request
-                              #:list-simulation-jobs-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-simulation-jobs #:list-tags-for-resource
                               #:list-world-export-jobs
-                              #:list-world-export-jobs-request
-                              #:list-world-export-jobs-response
                               #:list-world-generation-jobs
-                              #:list-world-generation-jobs-request
-                              #:list-world-generation-jobs-response
-                              #:list-world-templates
-                              #:list-world-templates-request
-                              #:list-world-templates-response #:list-worlds
-                              #:list-worlds-request #:list-worlds-response
+                              #:list-world-templates #:list-worlds
                               #:logging-config #:max-concurrency #:max-results
                               #:name #:network-interface #:non-empty-string
                               #:non-system-port #:output-location
@@ -164,16 +70,10 @@
                               #:percentage #:port #:port-forwarding-config
                               #:port-mapping #:port-mapping-list
                               #:progress-detail #:register-robot
-                              #:register-robot-request
-                              #:register-robot-response #:rendering-engine
-                              #:rendering-engine-type
+                              #:rendering-engine #:rendering-engine-type
                               #:rendering-engine-version-type #:repository-url
-                              #:resource-already-exists-exception
-                              #:resource-not-found-exception
-                              #:restart-simulation-job
-                              #:restart-simulation-job-request
-                              #:restart-simulation-job-response #:revision-id
-                              #:robot #:robot-application-config
+                              #:restart-simulation-job #:revision-id #:robot
+                              #:robot-application-config
                               #:robot-application-configs
                               #:robot-application-names
                               #:robot-application-summaries
@@ -186,7 +86,6 @@
                               #:s3etags #:s3key #:s3key-or-prefix
                               #:s3key-output #:s3key-outputs
                               #:s3keys-or-prefixes #:s3object #:security-groups
-                              #:service-unavailable-exception
                               #:simulation-application-config
                               #:simulation-application-configs
                               #:simulation-application-names
@@ -205,32 +104,17 @@
                               #:simulation-software-suite-version-type
                               #:simulation-time-millis #:simulation-unit
                               #:source #:source-config #:source-configs
-                              #:sources #:start-simulation-job-batch
-                              #:start-simulation-job-batch-request
-                              #:start-simulation-job-batch-response #:subnets
-                              #:sync-deployment-job
-                              #:sync-deployment-job-request
-                              #:sync-deployment-job-response #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:template-location #:template-name
-                              #:template-summaries #:template-summary
-                              #:throttling-exception #:tool #:tools
-                              #:unrestricted-command #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:sources #:start-simulation-job-batch #:subnets
+                              #:sync-deployment-job #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-value
+                              #:template-location #:template-name
+                              #:template-summaries #:template-summary #:tool
+                              #:tools #:unrestricted-command #:untag-resource
                               #:update-robot-application
-                              #:update-robot-application-request
-                              #:update-robot-application-response
                               #:update-simulation-application
-                              #:update-simulation-application-request
-                              #:update-simulation-application-response
-                              #:update-world-template
-                              #:update-world-template-request
-                              #:update-world-template-response
-                              #:upload-behavior #:upload-configuration
-                              #:upload-configurations #:vpcconfig
-                              #:vpcconfig-response #:version
+                              #:update-world-template #:upload-behavior
+                              #:upload-configuration #:upload-configurations
+                              #:vpcconfig #:vpcconfig-response #:version
                               #:version-qualifier #:world-config
                               #:world-configs #:world-count
                               #:world-export-job-error-code

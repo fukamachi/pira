@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/iottwinmaker (:use)
                              (:export #:awsio-ttwin-maker
-                              #:access-denied-exception
                               #:batch-put-property-error
                               #:batch-put-property-error-entry
                               #:batch-put-property-values
@@ -8,8 +7,6 @@
                               #:batch-put-property-values-response #:boolean
                               #:bundle-information #:bundle-name
                               #:cancel-metadata-transfer-job
-                              #:cancel-metadata-transfer-job-request
-                              #:cancel-metadata-transfer-job-response
                               #:column-description #:column-descriptions
                               #:column-name #:column-type #:component-path
                               #:component-property-group-request
@@ -34,19 +31,13 @@
                               #:composite-component-update-request
                               #:composite-component-updates-map-request
                               #:composite-components-map-request
-                              #:configuration #:conflict-exception
-                              #:connector-failure-exception
-                              #:connector-timeout-exception
-                              #:create-component-type
+                              #:configuration #:create-component-type
                               #:create-component-type-request
                               #:create-component-type-response #:create-entity
                               #:create-entity-request #:create-entity-response
-                              #:create-metadata-transfer-job
-                              #:create-metadata-transfer-job-request
-                              #:create-metadata-transfer-job-response
-                              #:create-scene #:create-scene-request
-                              #:create-scene-response #:create-sync-job
-                              #:create-sync-job-request
+                              #:create-metadata-transfer-job #:create-scene
+                              #:create-scene-request #:create-scene-response
+                              #:create-sync-job #:create-sync-job-request
                               #:create-sync-job-response #:create-workspace
                               #:create-workspace-request
                               #:create-workspace-response #:data-connector
@@ -78,10 +69,8 @@
                               #:get-component-type #:get-component-type-request
                               #:get-component-type-response #:get-entity
                               #:get-entity-request #:get-entity-response
-                              #:get-metadata-transfer-job
-                              #:get-metadata-transfer-job-request
-                              #:get-metadata-transfer-job-response
-                              #:get-pricing-plan #:get-pricing-plan-request
+                              #:get-metadata-transfer-job #:get-pricing-plan
+                              #:get-pricing-plan-request
                               #:get-pricing-plan-response #:get-property-value
                               #:get-property-value-history
                               #:get-property-value-history-request
@@ -93,7 +82,6 @@
                               #:get-sync-job-response #:get-workspace
                               #:get-workspace-request #:get-workspace-response
                               #:group-type #:id #:id-or-arn #:integer
-                              #:internal-server-exception
                               #:interpolation-parameters #:interpolation-type
                               #:interval-in-seconds
                               #:iot-site-wise-source-configuration
@@ -109,17 +97,13 @@
                               #:list-component-types-filters
                               #:list-component-types-request
                               #:list-component-types-response #:list-components
-                              #:list-components-request
-                              #:list-components-response #:list-entities
-                              #:list-entities-filter #:list-entities-filters
-                              #:list-entities-request #:list-entities-response
+                              #:list-entities #:list-entities-filter
+                              #:list-entities-filters #:list-entities-request
+                              #:list-entities-response
                               #:list-metadata-transfer-jobs
                               #:list-metadata-transfer-jobs-filter
                               #:list-metadata-transfer-jobs-filters
-                              #:list-metadata-transfer-jobs-request
-                              #:list-metadata-transfer-jobs-response
-                              #:list-properties #:list-properties-request
-                              #:list-properties-response #:list-scenes
+                              #:list-properties #:list-scenes
                               #:list-scenes-request #:list-scenes-response
                               #:list-sync-jobs #:list-sync-jobs-request
                               #:list-sync-jobs-response #:list-sync-resources
@@ -160,35 +144,30 @@
                               #:property-value-history #:property-value-list
                               #:property-values #:query-result-value
                               #:query-service-max-results #:query-statement
-                              #:query-timeout-exception #:relationship
-                              #:relationship-value #:required-properties
-                              #:resource-not-found-exception #:role-arn #:row
-                              #:row-data #:rows #:s3destination-configuration
+                              #:relationship #:relationship-value
+                              #:required-properties #:role-arn #:row #:row-data
+                              #:rows #:s3destination-configuration
                               #:s3destination-location #:s3location
                               #:s3source-configuration #:s3source-location
                               #:s3url #:scene-capabilities #:scene-capability
                               #:scene-error #:scene-error-code
                               #:scene-metadata-map #:scene-metadata-value
                               #:scene-summaries #:scene-summary #:scope
-                              #:selected-property-list
-                              #:service-quota-exceeded-exception
-                              #:site-wise-external-id #:source-configuration
-                              #:source-configurations #:source-type #:state
-                              #:status #:string #:sync-job-state
-                              #:sync-job-status #:sync-job-summaries
-                              #:sync-job-summary #:sync-resource-filter
-                              #:sync-resource-filters #:sync-resource-state
-                              #:sync-resource-status #:sync-resource-summaries
-                              #:sync-resource-summary #:sync-resource-type
-                              #:sync-source #:tabular-conditions
-                              #:tabular-property-value
+                              #:selected-property-list #:site-wise-external-id
+                              #:source-configuration #:source-configurations
+                              #:source-type #:state #:status #:string
+                              #:sync-job-state #:sync-job-status
+                              #:sync-job-summaries #:sync-job-summary
+                              #:sync-resource-filter #:sync-resource-filters
+                              #:sync-resource-state #:sync-resource-status
+                              #:sync-resource-summaries #:sync-resource-summary
+                              #:sync-resource-type #:sync-source
+                              #:tabular-conditions #:tabular-property-value
                               #:tabular-property-values #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception #:time
-                              #:timestamp #:too-many-tags-exception
-                              #:twin-maker-arn #:type #:untag-resource
-                              #:untag-resource-request
+                              #:tag-value #:time #:timestamp #:twin-maker-arn
+                              #:type #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:update-component-type
                               #:update-component-type-request
                               #:update-component-type-response #:update-entity
@@ -199,10 +178,9 @@
                               #:update-scene #:update-scene-request
                               #:update-scene-response #:update-workspace
                               #:update-workspace-request
-                              #:update-workspace-response #:uuid
-                              #:validation-exception #:value #:values
-                              #:workspace-delete-message #:workspace-summaries
-                              #:workspace-summary))
+                              #:update-workspace-response #:uuid #:value
+                              #:values #:workspace-delete-message
+                              #:workspace-summaries #:workspace-summary))
 (common-lisp:in-package #:pira/iottwinmaker)
 
 (smithy/sdk/service:define-service awsio-ttwin-maker :shape-name

@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/inspector2 (:use)
-                             (:export #:access-denied-exception #:account
-                              #:account-aggregation
+                             (:export #:account #:account-aggregation
                               #:account-aggregation-response #:account-id
                               #:account-id-filter-list #:account-id-set
                               #:account-list #:account-sort-by #:account-state
@@ -29,37 +28,23 @@
                               #:aws-eks-workload-info
                               #:aws-eks-workload-info-list
                               #:aws-lambda-function-details
-                              #:bad-request-exception
                               #:batch-associate-code-security-scan-configuration
-                              #:batch-associate-code-security-scan-configuration-request
-                              #:batch-associate-code-security-scan-configuration-response
                               #:batch-disassociate-code-security-scan-configuration
-                              #:batch-disassociate-code-security-scan-configuration-request
-                              #:batch-disassociate-code-security-scan-configuration-response
                               #:batch-get-account-status
                               #:batch-get-account-status-request
                               #:batch-get-account-status-response
                               #:batch-get-code-snippet
-                              #:batch-get-code-snippet-request
-                              #:batch-get-code-snippet-response
                               #:batch-get-finding-details
-                              #:batch-get-finding-details-request
-                              #:batch-get-finding-details-response
                               #:batch-get-free-trial-info
                               #:batch-get-free-trial-info-request
                               #:batch-get-free-trial-info-response
                               #:batch-get-member-ec2deep-inspection-status
-                              #:batch-get-member-ec2deep-inspection-status-request
-                              #:batch-get-member-ec2deep-inspection-status-response
                               #:batch-update-member-ec2deep-inspection-status
-                              #:batch-update-member-ec2deep-inspection-status-request
-                              #:batch-update-member-ec2deep-inspection-status-response
                               #:benchmark-profile #:benchmark-version
                               #:cancel-findings-report
                               #:cancel-findings-report-request
                               #:cancel-findings-report-response
-                              #:cancel-sbom-export #:cancel-sbom-export-request
-                              #:cancel-sbom-export-response #:check-count
+                              #:cancel-sbom-export #:check-count
                               #:check-id-filter-list #:cis-account-id-list
                               #:cis-check-aggregation
                               #:cis-check-aggregation-list #:cis-date-filter
@@ -141,7 +126,6 @@
                               #:code-vulnerability-details #:commit-id
                               #:component #:component-arn #:component-type
                               #:compute-platform #:configuration-level
-                              #:conflict-exception
                               #:continuous-integration-scan-configuration
                               #:continuous-integration-scan-event
                               #:continuous-integration-scan-supported-events
@@ -159,26 +143,19 @@
                               #:coverage-string-input #:covered-resource
                               #:covered-resources
                               #:create-cis-scan-configuration
-                              #:create-cis-scan-configuration-request
-                              #:create-cis-scan-configuration-response
                               #:create-cis-targets
                               #:create-code-security-integration
-                              #:create-code-security-integration-request
-                              #:create-code-security-integration-response
                               #:create-code-security-scan-configuration
-                              #:create-code-security-scan-configuration-request
-                              #:create-code-security-scan-configuration-response
                               #:create-filter #:create-filter-request
                               #:create-filter-response #:create-findings-report
                               #:create-findings-report-request
                               #:create-findings-report-response
                               #:create-git-lab-self-managed-integration-detail
                               #:create-integration-detail #:create-sbom-export
-                              #:create-sbom-export-request
-                              #:create-sbom-export-response #:currency #:cvss2
-                              #:cvss2base-score #:cvss2scoring-vector #:cvss3
-                              #:cvss3base-score #:cvss3scoring-vector
-                              #:cvss-score #:cvss-score-adjustment
+                              #:currency #:cvss2 #:cvss2base-score
+                              #:cvss2scoring-vector #:cvss3 #:cvss3base-score
+                              #:cvss3scoring-vector #:cvss-score
+                              #:cvss-score-adjustment
                               #:cvss-score-adjustment-list #:cvss-score-details
                               #:cvss-score-list #:cwe #:cwe-list #:cwes
                               #:daily-schedule #:date-filter #:date-filter-list
@@ -187,14 +164,8 @@
                               #:delegated-admin-account-list
                               #:delegated-admin-status
                               #:delete-cis-scan-configuration
-                              #:delete-cis-scan-configuration-request
-                              #:delete-cis-scan-configuration-response
                               #:delete-code-security-integration
-                              #:delete-code-security-integration-request
-                              #:delete-code-security-integration-response
                               #:delete-code-security-scan-configuration
-                              #:delete-code-security-scan-configuration-request
-                              #:delete-code-security-scan-configuration-response
                               #:delete-filter #:delete-filter-request
                               #:delete-filter-response
                               #:describe-organization-configuration
@@ -263,52 +234,35 @@
                               #:free-trial-info-list #:free-trial-status
                               #:free-trial-type #:frequency-expression
                               #:function-name #:get-cis-scan-report
-                              #:get-cis-scan-report-request
-                              #:get-cis-scan-report-response
                               #:get-cis-scan-result-details
                               #:get-cis-scan-result-details-max-results
-                              #:get-cis-scan-result-details-request
-                              #:get-cis-scan-result-details-response
                               #:get-clusters-for-image
                               #:get-clusters-for-image-next-token
-                              #:get-clusters-for-image-request
-                              #:get-clusters-for-image-response
                               #:get-code-security-integration
-                              #:get-code-security-integration-request
-                              #:get-code-security-integration-response
                               #:get-code-security-scan
                               #:get-code-security-scan-configuration
-                              #:get-code-security-scan-configuration-request
-                              #:get-code-security-scan-configuration-response
-                              #:get-code-security-scan-request
-                              #:get-code-security-scan-response
                               #:get-configuration #:get-configuration-request
                               #:get-configuration-response
                               #:get-delegated-admin-account
                               #:get-delegated-admin-account-request
                               #:get-delegated-admin-account-response
                               #:get-ec2deep-inspection-configuration
-                              #:get-ec2deep-inspection-configuration-request
-                              #:get-ec2deep-inspection-configuration-response
-                              #:get-encryption-key #:get-encryption-key-request
-                              #:get-encryption-key-response
-                              #:get-findings-report-status
+                              #:get-encryption-key #:get-findings-report-status
                               #:get-findings-report-status-request
                               #:get-findings-report-status-response
                               #:get-member #:get-member-request
                               #:get-member-response #:get-sbom-export
-                              #:get-sbom-export-request
-                              #:get-sbom-export-response #:git-hub-auth-code
-                              #:git-hub-installation-id #:git-lab-access-token
-                              #:git-lab-auth-code #:group-key #:image-hash
+                              #:git-hub-auth-code #:git-hub-installation-id
+                              #:git-lab-access-token #:git-lab-auth-code
+                              #:group-key #:image-hash
                               #:image-layer-aggregation
                               #:image-layer-aggregation-response
                               #:image-layer-sort-by #:image-tag-list
                               #:inspector2 #:inspector-score-details
                               #:instance-url #:integration-name
                               #:integration-status #:integration-summaries
-                              #:integration-type #:internal-server-exception
-                              #:ip-v4address #:ip-v4address-list #:ip-v6address
+                              #:integration-type #:ip-v4address
+                              #:ip-v4address-list #:ip-v6address
                               #:ip-v6address-list #:kms-key-arn
                               #:lambda-function-aggregation
                               #:lambda-function-aggregation-response
@@ -326,29 +280,15 @@
                               #:list-cis-scan-configurations
                               #:list-cis-scan-configurations-filter-criteria
                               #:list-cis-scan-configurations-max-results
-                              #:list-cis-scan-configurations-request
-                              #:list-cis-scan-configurations-response
                               #:list-cis-scan-results-aggregated-by-checks
-                              #:list-cis-scan-results-aggregated-by-checks-request
-                              #:list-cis-scan-results-aggregated-by-checks-response
                               #:list-cis-scan-results-aggregated-by-target-resource
-                              #:list-cis-scan-results-aggregated-by-target-resource-request
-                              #:list-cis-scan-results-aggregated-by-target-resource-response
                               #:list-cis-scans #:list-cis-scans-detail-level
                               #:list-cis-scans-filter-criteria
                               #:list-cis-scans-max-results
-                              #:list-cis-scans-request
-                              #:list-cis-scans-response
                               #:list-cis-scans-sort-by
                               #:list-code-security-integrations
-                              #:list-code-security-integrations-request
-                              #:list-code-security-integrations-response
                               #:list-code-security-scan-configuration-associations
-                              #:list-code-security-scan-configuration-associations-request
-                              #:list-code-security-scan-configuration-associations-response
                               #:list-code-security-scan-configurations
-                              #:list-code-security-scan-configurations-request
-                              #:list-code-security-scan-configurations-response
                               #:list-coverage #:list-coverage-max-results
                               #:list-coverage-request #:list-coverage-response
                               #:list-coverage-statistics
@@ -419,13 +359,11 @@
                               #:repository-aggregation
                               #:repository-aggregation-response
                               #:repository-sort-by #:reset-encryption-key
-                              #:reset-encryption-key-request
-                              #:reset-encryption-key-response #:resource
-                              #:resource-details #:resource-filter-criteria
-                              #:resource-id #:resource-id-filter-list
-                              #:resource-list #:resource-map-comparison
-                              #:resource-map-filter #:resource-map-filter-list
-                              #:resource-not-found-exception
+                              #:resource #:resource-details
+                              #:resource-filter-criteria #:resource-id
+                              #:resource-id-filter-list #:resource-list
+                              #:resource-map-comparison #:resource-map-filter
+                              #:resource-map-filter-list
                               #:resource-scan-metadata #:resource-scan-type
                               #:resource-state #:resource-status
                               #:resource-string-comparison
@@ -441,29 +379,16 @@
                               #:scan-status-reason #:scan-type #:schedule
                               #:scope-settings #:search-vulnerabilities
                               #:search-vulnerabilities-filter-criteria
-                              #:search-vulnerabilities-request
-                              #:search-vulnerabilities-response
                               #:security-group-id #:security-group-id-list
                               #:send-cis-session-health
-                              #:send-cis-session-health-request
-                              #:send-cis-session-health-response
-                              #:send-cis-session-telemetry
-                              #:send-cis-session-telemetry-request
-                              #:send-cis-session-telemetry-response #:service
-                              #:service-quota-exceeded-exception #:severity
+                              #:send-cis-session-telemetry #:service #:severity
                               #:severity-counts #:sort-criteria #:sort-field
                               #:sort-order #:source-layer-hash
                               #:start-cis-session #:start-cis-session-message
-                              #:start-cis-session-request
-                              #:start-cis-session-response
-                              #:start-code-security-scan
-                              #:start-code-security-scan-request
-                              #:start-code-security-scan-response #:state
-                              #:status #:status-counts #:step #:step-list
+                              #:start-code-security-scan #:state #:status
+                              #:status-counts #:step #:step-list
                               #:stop-cis-message-progress #:stop-cis-session
                               #:stop-cis-session-message
-                              #:stop-cis-session-request
-                              #:stop-cis-session-response
                               #:stop-cis-session-status #:string-comparison
                               #:string-filter #:string-filter-list
                               #:string-input #:string-list #:subnet-id
@@ -479,46 +404,33 @@
                               #:target-resource-tags-value
                               #:target-status-filter-list
                               #:target-status-reason-filter-list #:targets
-                              #:throttling-exception #:time #:time-of-day
-                              #:timezone #:title-aggregation
-                              #:title-aggregation-response #:title-filter-list
-                              #:title-sort-by #:tool #:tools #:ttp #:ttps
-                              #:uuid #:untag-resource #:untag-resource-request
+                              #:time #:time-of-day #:timezone
+                              #:title-aggregation #:title-aggregation-response
+                              #:title-filter-list #:title-sort-by #:tool
+                              #:tools #:ttp #:ttps #:uuid #:untag-resource
+                              #:untag-resource-request
                               #:untag-resource-response
                               #:update-cis-scan-configuration
-                              #:update-cis-scan-configuration-request
-                              #:update-cis-scan-configuration-response
                               #:update-cis-targets
                               #:update-code-security-integration
-                              #:update-code-security-integration-request
-                              #:update-code-security-integration-response
                               #:update-code-security-scan-configuration
-                              #:update-code-security-scan-configuration-request
-                              #:update-code-security-scan-configuration-response
                               #:update-configuration
                               #:update-configuration-request
                               #:update-configuration-response
                               #:update-ec2deep-inspection-configuration
-                              #:update-ec2deep-inspection-configuration-request
-                              #:update-ec2deep-inspection-configuration-response
-                              #:update-encryption-key
-                              #:update-encryption-key-request
-                              #:update-encryption-key-response #:update-filter
+                              #:update-encryption-key #:update-filter
                               #:update-filter-request #:update-filter-response
                               #:update-git-hub-integration-detail
                               #:update-git-lab-self-managed-integration-detail
                               #:update-integration-details
                               #:update-org-ec2deep-inspection-configuration
-                              #:update-org-ec2deep-inspection-configuration-request
-                              #:update-org-ec2deep-inspection-configuration-response
                               #:update-organization-configuration
                               #:update-organization-configuration-request
                               #:update-organization-configuration-response
                               #:usage #:usage-account-id
                               #:usage-account-id-list #:usage-list
                               #:usage-total #:usage-total-list #:usage-type
-                              #:usage-value #:validation-exception
-                              #:validation-exception-field
+                              #:usage-value #:validation-exception-field
                               #:validation-exception-fields
                               #:validation-exception-reason #:vendor
                               #:vendor-created-at #:vendor-severity

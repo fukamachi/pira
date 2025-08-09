@@ -1,14 +1,12 @@
 (uiop/package:define-package #:pira/elastic-transcoder (:use)
                              (:export #:access-control #:access-controls
-                              #:access-denied-exception #:artwork #:artworks
-                              #:ascending #:aspect-ratio #:audio-bit-depth
-                              #:audio-bit-order #:audio-bit-rate
-                              #:audio-channels #:audio-codec
+                              #:artwork #:artworks #:ascending #:aspect-ratio
+                              #:audio-bit-depth #:audio-bit-order
+                              #:audio-bit-rate #:audio-channels #:audio-codec
                               #:audio-codec-options #:audio-codec-profile
                               #:audio-packing-mode #:audio-parameters
                               #:audio-sample-rate #:audio-signed
                               #:base64encoded-string #:bucket-name #:cancel-job
-                              #:cancel-job-request #:cancel-job-response
                               #:caption-format #:caption-format-format
                               #:caption-format-pattern #:caption-formats
                               #:caption-merge-policy #:caption-source
@@ -16,14 +14,8 @@
                               #:codec-option #:codec-options #:composition
                               #:create-job #:create-job-output
                               #:create-job-outputs #:create-job-playlist
-                              #:create-job-playlists #:create-job-request
-                              #:create-job-response #:create-pipeline
-                              #:create-pipeline-request
-                              #:create-pipeline-response #:create-preset
-                              #:create-preset-request #:create-preset-response
-                              #:delete-pipeline #:delete-pipeline-request
-                              #:delete-pipeline-response #:delete-preset
-                              #:delete-preset-request #:delete-preset-response
+                              #:create-job-playlists #:create-pipeline
+                              #:create-preset #:delete-pipeline #:delete-preset
                               #:description #:detected-properties #:digits
                               #:digits-or-auto #:encryption #:encryption-mode
                               #:ets-customer-service #:exception-message
@@ -31,25 +23,16 @@
                               #:float-string #:frame-rate #:grantee
                               #:grantee-type #:hls-content-protection
                               #:hls-content-protection-method
-                              #:horizontal-align #:id
-                              #:incompatible-version-exception #:input-captions
-                              #:interlaced #:internal-service-exception #:job
-                              #:job-album-art #:job-container #:job-input
-                              #:job-inputs #:job-output #:job-outputs
-                              #:job-status #:job-watermark #:job-watermarks
-                              #:jobs #:jpg-or-png #:key #:key-arn #:key-id-guid
+                              #:horizontal-align #:id #:input-captions
+                              #:interlaced #:job #:job-album-art
+                              #:job-container #:job-input #:job-inputs
+                              #:job-output #:job-outputs #:job-status
+                              #:job-watermark #:job-watermarks #:jobs
+                              #:jpg-or-png #:key #:key-arn #:key-id-guid
                               #:key-storage-policy #:keyframes-max-dist
-                              #:limit-exceeded-exception
-                              #:list-jobs-by-pipeline
-                              #:list-jobs-by-pipeline-request
-                              #:list-jobs-by-pipeline-response
-                              #:list-jobs-by-status
-                              #:list-jobs-by-status-request
-                              #:list-jobs-by-status-response #:list-pipelines
-                              #:list-pipelines-request
-                              #:list-pipelines-response #:list-presets
-                              #:list-presets-request #:list-presets-response
-                              #:long-key #:max-frame-rate #:merge-policy #:name
+                              #:list-jobs-by-pipeline #:list-jobs-by-status
+                              #:list-pipelines #:list-presets #:long-key
+                              #:max-frame-rate #:merge-policy #:name
                               #:non-empty-base64encoded-string #:notifications
                               #:nullable-integer #:nullable-long
                               #:one-to512string #:opacity #:output-keys
@@ -61,31 +44,18 @@
                               #:preset-container #:preset-type
                               #:preset-watermark #:preset-watermark-id
                               #:preset-watermarks #:presets #:read-job
-                              #:read-job-request #:read-job-response
-                              #:read-pipeline #:read-pipeline-request
-                              #:read-pipeline-response #:read-preset
-                              #:read-preset-request #:read-preset-response
-                              #:resolution #:resource-in-use-exception
-                              #:resource-not-found-exception #:role #:rotate
-                              #:sizing-policy #:sns-topic #:sns-topics
+                              #:read-pipeline #:read-preset #:resolution #:role
+                              #:rotate #:sizing-policy #:sns-topic #:sns-topics
                               #:storage-class #:string #:success #:target
-                              #:test-role #:test-role-request
-                              #:test-role-response #:thumbnail-pattern
+                              #:test-role #:thumbnail-pattern
                               #:thumbnail-resolution #:thumbnails #:time
                               #:time-offset #:time-span #:timing
                               #:update-pipeline #:update-pipeline-notifications
-                              #:update-pipeline-notifications-request
-                              #:update-pipeline-notifications-response
-                              #:update-pipeline-request
-                              #:update-pipeline-response
-                              #:update-pipeline-status
-                              #:update-pipeline-status-request
-                              #:update-pipeline-status-response #:user-metadata
-                              #:validation-exception #:vertical-align
-                              #:video-bit-rate #:video-codec #:video-parameters
-                              #:warning #:warnings #:watermark-key
-                              #:watermark-sizing-policy #:zero-to255string
-                              #:zero-to512string))
+                              #:update-pipeline-status #:user-metadata
+                              #:vertical-align #:video-bit-rate #:video-codec
+                              #:video-parameters #:warning #:warnings
+                              #:watermark-key #:watermark-sizing-policy
+                              #:zero-to255string #:zero-to512string))
 (common-lisp:in-package #:pira/elastic-transcoder)
 
 (smithy/sdk/service:define-service ets-customer-service :shape-name

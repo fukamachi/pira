@@ -33,39 +33,24 @@
                               #:continue-as-new-workflow-execution-failed-cause
                               #:continue-as-new-workflow-execution-failed-event-attributes
                               #:count #:count-closed-workflow-executions
-                              #:count-closed-workflow-executions-input
                               #:count-open-workflow-executions
-                              #:count-open-workflow-executions-input
                               #:count-pending-activity-tasks
-                              #:count-pending-activity-tasks-input
-                              #:count-pending-decision-tasks
-                              #:count-pending-decision-tasks-input #:data
-                              #:decision #:decision-list #:decision-task
+                              #:count-pending-decision-tasks #:data #:decision
+                              #:decision-list #:decision-task
                               #:decision-task-completed-event-attributes
                               #:decision-task-scheduled-event-attributes
                               #:decision-task-started-event-attributes
                               #:decision-task-timed-out-event-attributes
                               #:decision-task-timeout-type #:decision-type
-                              #:default-undefined-fault #:delete-activity-type
-                              #:delete-activity-type-input
-                              #:delete-workflow-type
-                              #:delete-workflow-type-input
-                              #:deprecate-activity-type
-                              #:deprecate-activity-type-input
-                              #:deprecate-domain #:deprecate-domain-input
+                              #:delete-activity-type #:delete-workflow-type
+                              #:deprecate-activity-type #:deprecate-domain
                               #:deprecate-workflow-type
-                              #:deprecate-workflow-type-input
-                              #:describe-activity-type
-                              #:describe-activity-type-input #:describe-domain
-                              #:describe-domain-input
+                              #:describe-activity-type #:describe-domain
                               #:describe-workflow-execution
-                              #:describe-workflow-execution-input
-                              #:describe-workflow-type
-                              #:describe-workflow-type-input #:description
-                              #:domain-already-exists-fault
-                              #:domain-configuration #:domain-deprecated-fault
-                              #:domain-detail #:domain-info #:domain-info-list
-                              #:domain-infos #:domain-name #:duration-in-days
+                              #:describe-workflow-type #:description
+                              #:domain-configuration #:domain-detail
+                              #:domain-info #:domain-info-list #:domain-infos
+                              #:domain-name #:duration-in-days
                               #:duration-in-seconds
                               #:duration-in-seconds-optional #:error-message
                               #:event-id #:event-type #:execution-status
@@ -77,43 +62,28 @@
                               #:fail-workflow-execution-failed-event-attributes
                               #:failure-reason #:function-id #:function-input
                               #:function-name #:get-workflow-execution-history
-                              #:get-workflow-execution-history-input #:history
-                              #:history-event #:history-event-list #:identity
+                              #:history #:history-event #:history-event-list
+                              #:identity
                               #:lambda-function-completed-event-attributes
                               #:lambda-function-failed-event-attributes
                               #:lambda-function-scheduled-event-attributes
                               #:lambda-function-started-event-attributes
                               #:lambda-function-timed-out-event-attributes
-                              #:lambda-function-timeout-type
-                              #:limit-exceeded-fault #:limited-data
-                              #:list-activity-types #:list-activity-types-input
-                              #:list-closed-workflow-executions
-                              #:list-closed-workflow-executions-input
-                              #:list-domains #:list-domains-input
+                              #:lambda-function-timeout-type #:limited-data
+                              #:list-activity-types
+                              #:list-closed-workflow-executions #:list-domains
                               #:list-open-workflow-executions
-                              #:list-open-workflow-executions-input
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
-                              #:list-workflow-types #:list-workflow-types-input
+                              #:list-tags-for-resource #:list-workflow-types
                               #:marker-name #:marker-recorded-event-attributes
-                              #:name #:open-decision-tasks-count
-                              #:operation-not-permitted-fault #:page-size
+                              #:name #:open-decision-tasks-count #:page-size
                               #:page-token #:pending-task-count
-                              #:poll-for-activity-task
-                              #:poll-for-activity-task-input
-                              #:poll-for-decision-task
-                              #:poll-for-decision-task-input
+                              #:poll-for-activity-task #:poll-for-decision-task
                               #:record-activity-task-heartbeat
-                              #:record-activity-task-heartbeat-input
                               #:record-marker-decision-attributes
                               #:record-marker-failed-cause
                               #:record-marker-failed-event-attributes
-                              #:register-activity-type
-                              #:register-activity-type-input #:register-domain
-                              #:register-domain-input #:register-workflow-type
-                              #:register-workflow-type-input
-                              #:registration-status
+                              #:register-activity-type #:register-domain
+                              #:register-workflow-type #:registration-status
                               #:request-cancel-activity-task-decision-attributes
                               #:request-cancel-activity-task-failed-cause
                               #:request-cancel-activity-task-failed-event-attributes
@@ -122,19 +92,14 @@
                               #:request-cancel-external-workflow-execution-failed-event-attributes
                               #:request-cancel-external-workflow-execution-initiated-event-attributes
                               #:request-cancel-workflow-execution
-                              #:request-cancel-workflow-execution-input
                               #:resource-tag #:resource-tag-key
                               #:resource-tag-key-list #:resource-tag-list
                               #:resource-tag-value
                               #:respond-activity-task-canceled
-                              #:respond-activity-task-canceled-input
                               #:respond-activity-task-completed
-                              #:respond-activity-task-completed-input
                               #:respond-activity-task-failed
-                              #:respond-activity-task-failed-input
-                              #:respond-decision-task-completed
-                              #:respond-decision-task-completed-input
-                              #:reverse-order #:run
+                              #:respond-decision-task-completed #:reverse-order
+                              #:run
                               #:schedule-activity-task-decision-attributes
                               #:schedule-activity-task-failed-cause
                               #:schedule-activity-task-failed-event-attributes
@@ -146,7 +111,6 @@
                               #:signal-external-workflow-execution-failed-event-attributes
                               #:signal-external-workflow-execution-initiated-event-attributes
                               #:signal-name #:signal-workflow-execution
-                              #:signal-workflow-execution-input
                               #:simple-workflow-service
                               #:start-at-previous-started-event
                               #:start-child-workflow-execution-decision-attributes
@@ -158,29 +122,17 @@
                               #:start-timer-decision-attributes
                               #:start-timer-failed-cause
                               #:start-timer-failed-event-attributes
-                              #:start-workflow-execution
-                              #:start-workflow-execution-input #:tag
-                              #:tag-filter #:tag-list #:tag-resource
-                              #:tag-resource-input #:task-list #:task-priority
-                              #:task-token #:terminate-reason
+                              #:start-workflow-execution #:tag #:tag-filter
+                              #:tag-list #:tag-resource #:task-list
+                              #:task-priority #:task-token #:terminate-reason
                               #:terminate-workflow-execution
-                              #:terminate-workflow-execution-input
                               #:timer-canceled-event-attributes
                               #:timer-fired-event-attributes #:timer-id
                               #:timer-started-event-attributes #:timestamp
-                              #:too-many-tags-fault #:truncated
-                              #:type-already-exists-fault
-                              #:type-deprecated-fault
-                              #:type-not-deprecated-fault
-                              #:undeprecate-activity-type
-                              #:undeprecate-activity-type-input
-                              #:undeprecate-domain #:undeprecate-domain-input
-                              #:undeprecate-workflow-type
-                              #:undeprecate-workflow-type-input
-                              #:unknown-resource-fault #:untag-resource
-                              #:untag-resource-input #:version
-                              #:version-optional #:workflow-execution
-                              #:workflow-execution-already-started-fault
+                              #:truncated #:undeprecate-activity-type
+                              #:undeprecate-domain #:undeprecate-workflow-type
+                              #:untag-resource #:version #:version-optional
+                              #:workflow-execution
                               #:workflow-execution-cancel-requested-cause
                               #:workflow-execution-cancel-requested-event-attributes
                               #:workflow-execution-canceled-event-attributes

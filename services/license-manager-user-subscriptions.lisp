@@ -1,31 +1,18 @@
 (uiop/package:define-package #:pira/license-manager-user-subscriptions (:use)
-                             (:export #:access-denied-exception
-                              #:active-directory-identity-provider
+                             (:export #:active-directory-identity-provider
                               #:active-directory-settings
                               #:active-directory-type #:arn #:associate-user
-                              #:associate-user-request
-                              #:associate-user-response #:box-integer
-                              #:conflict-exception
-                              #:create-license-server-endpoint
-                              #:create-license-server-endpoint-request
-                              #:create-license-server-endpoint-response
+                              #:box-integer #:create-license-server-endpoint
                               #:credentials-provider
                               #:delete-license-server-endpoint
-                              #:delete-license-server-endpoint-request
-                              #:delete-license-server-endpoint-response
-                              #:deregister-identity-provider
-                              #:deregister-identity-provider-request
-                              #:deregister-identity-provider-response
-                              #:directory #:disassociate-user
-                              #:disassociate-user-request
-                              #:disassociate-user-response
-                              #:domain-network-settings #:filter #:filter-list
-                              #:identity-provider #:identity-provider-summary
+                              #:deregister-identity-provider #:directory
+                              #:disassociate-user #:domain-network-settings
+                              #:filter #:filter-list #:identity-provider
+                              #:identity-provider-summary
                               #:identity-provider-summary-list
                               #:instance-summary #:instance-summary-list
                               #:instance-user-summary
-                              #:instance-user-summary-list
-                              #:internal-server-exception #:ip-v4 #:ip-v4list
+                              #:instance-user-summary-list #:ip-v4 #:ip-v4list
                               #:license-manager-user-subscriptions
                               #:license-server #:license-server-endpoint
                               #:license-server-endpoint-id
@@ -33,49 +20,22 @@
                               #:license-server-endpoint-provisioning-status
                               #:license-server-health-status
                               #:license-server-list #:license-server-settings
-                              #:list-identity-providers
-                              #:list-identity-providers-request
-                              #:list-identity-providers-response
-                              #:list-instances #:list-instances-request
-                              #:list-instances-response
+                              #:list-identity-providers #:list-instances
                               #:list-license-server-endpoints
-                              #:list-license-server-endpoints-request
-                              #:list-license-server-endpoints-response
                               #:list-product-subscriptions
-                              #:list-product-subscriptions-request
-                              #:list-product-subscriptions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-user-associations
-                              #:list-user-associations-request
-                              #:list-user-associations-response
+                              #:list-tags-for-resource #:list-user-associations
                               #:product-user-summary
                               #:product-user-summary-list #:rds-sal-settings
-                              #:register-identity-provider
-                              #:register-identity-provider-request
-                              #:register-identity-provider-response
-                              #:resource-arn #:resource-not-found-exception
+                              #:register-identity-provider #:resource-arn
                               #:secrets-manager-credentials-provider
                               #:security-group #:server-endpoint
-                              #:server-settings #:server-type
-                              #:service-quota-exceeded-exception #:settings
+                              #:server-settings #:server-type #:settings
                               #:start-product-subscription
-                              #:start-product-subscription-request
-                              #:start-product-subscription-response
-                              #:stop-product-subscription
-                              #:stop-product-subscription-request
-                              #:stop-product-subscription-response
-                              #:string-list #:subnet #:subnets #:tag-key-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tags
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
+                              #:stop-product-subscription #:string-list
+                              #:subnet #:subnets #:tag-key-list #:tag-resource
+                              #:tags #:untag-resource
                               #:update-identity-provider-settings
-                              #:update-identity-provider-settings-request
-                              #:update-identity-provider-settings-response
-                              #:update-settings #:validation-exception))
+                              #:update-settings))
 (common-lisp:in-package #:pira/license-manager-user-subscriptions)
 
 (smithy/sdk/service:define-service license-manager-user-subscriptions

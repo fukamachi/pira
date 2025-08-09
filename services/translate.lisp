@@ -2,51 +2,22 @@
                              (:export #:awsshine-frontend-service-20170701
                               #:applied-terminology #:applied-terminology-list
                               #:bounded-length-string #:brevity
-                              #:client-token-string
-                              #:concurrent-modification-exception
-                              #:conflict-exception #:content-type
-                              #:create-parallel-data
-                              #:create-parallel-data-request
-                              #:create-parallel-data-response
-                              #:delete-parallel-data
-                              #:delete-parallel-data-request
-                              #:delete-parallel-data-response
-                              #:delete-terminology #:delete-terminology-request
-                              #:describe-text-translation-job
-                              #:describe-text-translation-job-request
-                              #:describe-text-translation-job-response
-                              #:description
-                              #:detected-language-low-confidence-exception
+                              #:client-token-string #:content-type
+                              #:create-parallel-data #:delete-parallel-data
+                              #:delete-terminology
+                              #:describe-text-translation-job #:description
                               #:directionality #:display-language-code
                               #:document #:document-content #:encryption-key
                               #:encryption-key-id #:encryption-key-type
-                              #:formality #:get-parallel-data
-                              #:get-parallel-data-request
-                              #:get-parallel-data-response #:get-terminology
-                              #:get-terminology-request
-                              #:get-terminology-response #:iam-role-arn
-                              #:import-terminology #:import-terminology-request
-                              #:import-terminology-response #:input-data-config
-                              #:integer #:internal-server-exception
-                              #:invalid-filter-exception
-                              #:invalid-parameter-value-exception
-                              #:invalid-request-exception #:job-details
+                              #:formality #:get-parallel-data #:get-terminology
+                              #:iam-role-arn #:import-terminology
+                              #:input-data-config #:integer #:job-details
                               #:job-id #:job-name #:job-status #:language
                               #:language-code-string
                               #:language-code-string-list #:languages-list
-                              #:limit-exceeded-exception #:list-languages
-                              #:list-languages-request
-                              #:list-languages-response #:list-parallel-data
-                              #:list-parallel-data-request
-                              #:list-parallel-data-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-terminologies #:list-terminologies-request
-                              #:list-terminologies-response
+                              #:list-languages #:list-parallel-data
+                              #:list-tags-for-resource #:list-terminologies
                               #:list-text-translation-jobs
-                              #:list-text-translation-jobs-request
-                              #:list-text-translation-jobs-response
                               #:localized-name-string #:long
                               #:max-results-integer #:merge-strategy
                               #:next-token #:output-data-config
@@ -55,43 +26,26 @@
                               #:parallel-data-format #:parallel-data-properties
                               #:parallel-data-properties-list
                               #:parallel-data-status #:profanity #:resource-arn
-                              #:resource-name #:resource-name-list
-                              #:resource-not-found-exception #:s3uri
-                              #:service-unavailable-exception
+                              #:resource-name #:resource-name-list #:s3uri
                               #:start-text-translation-job
-                              #:start-text-translation-job-request
-                              #:start-text-translation-job-response
-                              #:stop-text-translation-job
-                              #:stop-text-translation-job-request
-                              #:stop-text-translation-job-response #:string
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:stop-text-translation-job #:string #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value
                               #:target-language-code-string-list #:term
                               #:term-list #:terminology-arn #:terminology-data
                               #:terminology-data-format
                               #:terminology-data-location #:terminology-file
                               #:terminology-properties
                               #:terminology-properties-list
-                              #:text-size-limit-exceeded-exception
                               #:text-translation-job-filter
                               #:text-translation-job-properties
                               #:text-translation-job-properties-list
-                              #:timestamp #:too-many-requests-exception
-                              #:too-many-tags-exception #:translate-document
-                              #:translate-document-request
-                              #:translate-document-response #:translate-text
-                              #:translate-text-request
-                              #:translate-text-response #:translated-document
+                              #:timestamp #:translate-document #:translate-text
+                              #:translated-document
                               #:translated-document-content
                               #:translated-text-string #:translation-settings
-                              #:unbounded-length-string
-                              #:unsupported-display-language-code-exception
-                              #:unsupported-language-pair-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-parallel-data
-                              #:update-parallel-data-request
-                              #:update-parallel-data-response))
+                              #:unbounded-length-string #:untag-resource
+                              #:update-parallel-data))
 (common-lisp:in-package #:pira/translate)
 
 (smithy/sdk/service:define-service awsshine-frontend-service-20170701

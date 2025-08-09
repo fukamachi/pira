@@ -8,73 +8,22 @@
                               #:byte-match-tuples #:change-action
                               #:change-token #:change-token-status
                               #:comparison-operator #:country
-                              #:create-byte-match-set
-                              #:create-byte-match-set-request
-                              #:create-byte-match-set-response
-                              #:create-geo-match-set
-                              #:create-geo-match-set-request
-                              #:create-geo-match-set-response #:create-ipset
-                              #:create-ipset-request #:create-ipset-response
-                              #:create-rate-based-rule
-                              #:create-rate-based-rule-request
-                              #:create-rate-based-rule-response
+                              #:create-byte-match-set #:create-geo-match-set
+                              #:create-ipset #:create-rate-based-rule
                               #:create-regex-match-set
-                              #:create-regex-match-set-request
-                              #:create-regex-match-set-response
-                              #:create-regex-pattern-set
-                              #:create-regex-pattern-set-request
-                              #:create-regex-pattern-set-response #:create-rule
-                              #:create-rule-group #:create-rule-group-request
-                              #:create-rule-group-response
-                              #:create-rule-request #:create-rule-response
-                              #:create-size-constraint-set
-                              #:create-size-constraint-set-request
-                              #:create-size-constraint-set-response
-                              #:create-sql-injection-match-set
-                              #:create-sql-injection-match-set-request
-                              #:create-sql-injection-match-set-response
-                              #:create-web-acl #:create-web-aclmigration-stack
-                              #:create-web-aclmigration-stack-request
-                              #:create-web-aclmigration-stack-response
-                              #:create-web-aclrequest #:create-web-aclresponse
-                              #:create-xss-match-set
-                              #:create-xss-match-set-request
-                              #:create-xss-match-set-response
-                              #:delete-byte-match-set
-                              #:delete-byte-match-set-request
-                              #:delete-byte-match-set-response
-                              #:delete-geo-match-set
-                              #:delete-geo-match-set-request
-                              #:delete-geo-match-set-response #:delete-ipset
-                              #:delete-ipset-request #:delete-ipset-response
+                              #:create-regex-pattern-set #:create-rule
+                              #:create-rule-group #:create-size-constraint-set
+                              #:create-sql-injection-match-set #:create-web-acl
+                              #:create-web-aclmigration-stack
+                              #:create-xss-match-set #:delete-byte-match-set
+                              #:delete-geo-match-set #:delete-ipset
                               #:delete-logging-configuration
-                              #:delete-logging-configuration-request
-                              #:delete-logging-configuration-response
                               #:delete-permission-policy
-                              #:delete-permission-policy-request
-                              #:delete-permission-policy-response
-                              #:delete-rate-based-rule
-                              #:delete-rate-based-rule-request
-                              #:delete-rate-based-rule-response
-                              #:delete-regex-match-set
-                              #:delete-regex-match-set-request
-                              #:delete-regex-match-set-response
-                              #:delete-regex-pattern-set
-                              #:delete-regex-pattern-set-request
-                              #:delete-regex-pattern-set-response #:delete-rule
-                              #:delete-rule-group #:delete-rule-group-request
-                              #:delete-rule-group-response
-                              #:delete-rule-request #:delete-rule-response
-                              #:delete-size-constraint-set
-                              #:delete-size-constraint-set-request
-                              #:delete-size-constraint-set-response
-                              #:delete-sql-injection-match-set
-                              #:delete-sql-injection-match-set-request
-                              #:delete-sql-injection-match-set-response
-                              #:delete-web-acl #:delete-web-aclrequest
-                              #:delete-web-aclresponse #:delete-xss-match-set
-                              #:delete-xss-match-set-request
-                              #:delete-xss-match-set-response #:error-reason
+                              #:delete-rate-based-rule #:delete-regex-match-set
+                              #:delete-regex-pattern-set #:delete-rule
+                              #:delete-rule-group #:delete-size-constraint-set
+                              #:delete-sql-injection-match-set #:delete-web-acl
+                              #:delete-xss-match-set #:error-reason
                               #:excluded-rule #:excluded-rules #:field-to-match
                               #:geo-match-constraint
                               #:geo-match-constraint-type
@@ -82,101 +31,37 @@
                               #:geo-match-constraints #:geo-match-set
                               #:geo-match-set-summaries #:geo-match-set-summary
                               #:geo-match-set-update #:geo-match-set-updates
-                              #:get-byte-match-set #:get-byte-match-set-request
-                              #:get-byte-match-set-response #:get-change-token
-                              #:get-change-token-request
-                              #:get-change-token-response
-                              #:get-change-token-status
-                              #:get-change-token-status-request
-                              #:get-change-token-status-response
-                              #:get-geo-match-set #:get-geo-match-set-request
-                              #:get-geo-match-set-response #:get-ipset
-                              #:get-ipset-request #:get-ipset-response
-                              #:get-logging-configuration
-                              #:get-logging-configuration-request
-                              #:get-logging-configuration-response
-                              #:get-permission-policy
-                              #:get-permission-policy-request
-                              #:get-permission-policy-response
-                              #:get-rate-based-rule
+                              #:get-byte-match-set #:get-change-token
+                              #:get-change-token-status #:get-geo-match-set
+                              #:get-ipset #:get-logging-configuration
+                              #:get-permission-policy #:get-rate-based-rule
                               #:get-rate-based-rule-managed-keys
-                              #:get-rate-based-rule-managed-keys-request
-                              #:get-rate-based-rule-managed-keys-response
-                              #:get-rate-based-rule-request
-                              #:get-rate-based-rule-response
-                              #:get-regex-match-set
-                              #:get-regex-match-set-request
-                              #:get-regex-match-set-response
-                              #:get-regex-pattern-set
-                              #:get-regex-pattern-set-request
-                              #:get-regex-pattern-set-response #:get-rule
-                              #:get-rule-group #:get-rule-group-request
-                              #:get-rule-group-response #:get-rule-request
-                              #:get-rule-response #:get-sampled-requests
+                              #:get-regex-match-set #:get-regex-pattern-set
+                              #:get-rule #:get-rule-group
+                              #:get-sampled-requests
                               #:get-sampled-requests-max-items
-                              #:get-sampled-requests-request
-                              #:get-sampled-requests-response
                               #:get-size-constraint-set
-                              #:get-size-constraint-set-request
-                              #:get-size-constraint-set-response
-                              #:get-sql-injection-match-set
-                              #:get-sql-injection-match-set-request
-                              #:get-sql-injection-match-set-response
-                              #:get-web-acl #:get-web-aclrequest
-                              #:get-web-aclresponse #:get-xss-match-set
-                              #:get-xss-match-set-request
-                              #:get-xss-match-set-response #:httpheader
-                              #:httpheaders #:httpmethod #:httprequest
-                              #:httpversion #:header-name #:header-value
-                              #:ipset #:ipset-descriptor
-                              #:ipset-descriptor-type #:ipset-descriptor-value
-                              #:ipset-descriptors #:ipset-summaries
-                              #:ipset-summary #:ipset-update #:ipset-updates
-                              #:ipstring #:ignore-unsupported-type
+                              #:get-sql-injection-match-set #:get-web-acl
+                              #:get-xss-match-set #:httpheader #:httpheaders
+                              #:httpmethod #:httprequest #:httpversion
+                              #:header-name #:header-value #:ipset
+                              #:ipset-descriptor #:ipset-descriptor-type
+                              #:ipset-descriptor-value #:ipset-descriptors
+                              #:ipset-summaries #:ipset-summary #:ipset-update
+                              #:ipset-updates #:ipstring
+                              #:ignore-unsupported-type
                               #:list-activated-rules-in-rule-group
-                              #:list-activated-rules-in-rule-group-request
-                              #:list-activated-rules-in-rule-group-response
-                              #:list-byte-match-sets
-                              #:list-byte-match-sets-request
-                              #:list-byte-match-sets-response
-                              #:list-geo-match-sets
-                              #:list-geo-match-sets-request
-                              #:list-geo-match-sets-response #:list-ipsets
-                              #:list-ipsets-request #:list-ipsets-response
-                              #:list-logging-configurations
-                              #:list-logging-configurations-request
-                              #:list-logging-configurations-response
-                              #:list-rate-based-rules
-                              #:list-rate-based-rules-request
-                              #:list-rate-based-rules-response
-                              #:list-regex-match-sets
-                              #:list-regex-match-sets-request
-                              #:list-regex-match-sets-response
-                              #:list-regex-pattern-sets
-                              #:list-regex-pattern-sets-request
-                              #:list-regex-pattern-sets-response
-                              #:list-rule-groups #:list-rule-groups-request
-                              #:list-rule-groups-response #:list-rules
-                              #:list-rules-request #:list-rules-response
-                              #:list-size-constraint-sets
-                              #:list-size-constraint-sets-request
-                              #:list-size-constraint-sets-response
+                              #:list-byte-match-sets #:list-geo-match-sets
+                              #:list-ipsets #:list-logging-configurations
+                              #:list-rate-based-rules #:list-regex-match-sets
+                              #:list-regex-pattern-sets #:list-rule-groups
+                              #:list-rules #:list-size-constraint-sets
                               #:list-sql-injection-match-sets
-                              #:list-sql-injection-match-sets-request
-                              #:list-sql-injection-match-sets-response
                               #:list-subscribed-rule-groups
-                              #:list-subscribed-rule-groups-request
-                              #:list-subscribed-rule-groups-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-web-acls
-                              #:list-web-acls-request #:list-web-acls-response
-                              #:list-xss-match-sets
-                              #:list-xss-match-sets-request
-                              #:list-xss-match-sets-response
-                              #:log-destination-configs #:logging-configuration
-                              #:logging-configurations #:managed-key
-                              #:managed-keys #:match-field-data
+                              #:list-tags-for-resource #:list-web-acls
+                              #:list-xss-match-sets #:log-destination-configs
+                              #:logging-configuration #:logging-configurations
+                              #:managed-key #:managed-keys #:match-field-data
                               #:match-field-type #:metric-name
                               #:migration-error-type #:negated #:next-marker
                               #:pagination-limit #:parameter-exception-field
@@ -185,14 +70,9 @@
                               #:population-size #:positional-constraint
                               #:predicate #:predicate-type #:predicates
                               #:put-logging-configuration
-                              #:put-logging-configuration-request
-                              #:put-logging-configuration-response
-                              #:put-permission-policy
-                              #:put-permission-policy-request
-                              #:put-permission-policy-response
-                              #:rate-based-rule #:rate-key #:rate-limit
-                              #:redacted-fields #:regex-match-set
-                              #:regex-match-set-summaries
+                              #:put-permission-policy #:rate-based-rule
+                              #:rate-key #:rate-limit #:redacted-fields
+                              #:regex-match-set #:regex-match-set-summaries
                               #:regex-match-set-summary
                               #:regex-match-set-update
                               #:regex-match-set-updates #:regex-match-tuple
@@ -225,67 +105,24 @@
                               #:subscribed-rule-group-summaries
                               #:subscribed-rule-group-summary #:tag
                               #:tag-info-for-resource #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:tag-list #:tag-resource #:tag-value
                               #:text-transformation #:time-window #:timestamp
                               #:uristring #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-byte-match-set
-                              #:update-byte-match-set-request
-                              #:update-byte-match-set-response
-                              #:update-geo-match-set
-                              #:update-geo-match-set-request
-                              #:update-geo-match-set-response #:update-ipset
-                              #:update-ipset-request #:update-ipset-response
-                              #:update-rate-based-rule
-                              #:update-rate-based-rule-request
-                              #:update-rate-based-rule-response
+                              #:update-byte-match-set #:update-geo-match-set
+                              #:update-ipset #:update-rate-based-rule
                               #:update-regex-match-set
-                              #:update-regex-match-set-request
-                              #:update-regex-match-set-response
-                              #:update-regex-pattern-set
-                              #:update-regex-pattern-set-request
-                              #:update-regex-pattern-set-response #:update-rule
-                              #:update-rule-group #:update-rule-group-request
-                              #:update-rule-group-response
-                              #:update-rule-request #:update-rule-response
-                              #:update-size-constraint-set
-                              #:update-size-constraint-set-request
-                              #:update-size-constraint-set-response
-                              #:update-sql-injection-match-set
-                              #:update-sql-injection-match-set-request
-                              #:update-sql-injection-match-set-response
-                              #:update-web-acl #:update-web-aclrequest
-                              #:update-web-aclresponse #:update-xss-match-set
-                              #:update-xss-match-set-request
-                              #:update-xss-match-set-response
-                              #:wafbad-request-exception
-                              #:wafdisallowed-name-exception
-                              #:wafentity-migration-exception
-                              #:wafinternal-error-exception
-                              #:wafinvalid-account-exception
-                              #:wafinvalid-operation-exception
-                              #:wafinvalid-parameter-exception
-                              #:wafinvalid-permission-policy-exception
-                              #:wafinvalid-regex-pattern-exception
-                              #:waflimits-exceeded-exception
-                              #:wafnon-empty-entity-exception
-                              #:wafnonexistent-container-exception
-                              #:wafnonexistent-item-exception
-                              #:wafreferenced-item-exception
-                              #:wafservice-linked-role-error-exception
-                              #:wafstale-data-exception
-                              #:wafsubscription-not-found-exception
-                              #:waftag-operation-exception
-                              #:waftag-operation-internal-error-exception
-                              #:waf-action #:waf-action-type
-                              #:waf-override-action #:waf-override-action-type
-                              #:waf-rule-type #:web-acl #:web-aclsummaries
-                              #:web-aclsummary #:web-aclupdate #:web-aclupdates
-                              #:xss-match-set #:xss-match-set-summaries
-                              #:xss-match-set-summary #:xss-match-set-update
-                              #:xss-match-set-updates #:xss-match-tuple
-                              #:xss-match-tuples #:error-message))
+                              #:update-regex-pattern-set #:update-rule
+                              #:update-rule-group #:update-size-constraint-set
+                              #:update-sql-injection-match-set #:update-web-acl
+                              #:update-xss-match-set #:waf-action
+                              #:waf-action-type #:waf-override-action
+                              #:waf-override-action-type #:waf-rule-type
+                              #:web-acl #:web-aclsummaries #:web-aclsummary
+                              #:web-aclupdate #:web-aclupdates #:xss-match-set
+                              #:xss-match-set-summaries #:xss-match-set-summary
+                              #:xss-match-set-update #:xss-match-set-updates
+                              #:xss-match-tuple #:xss-match-tuples
+                              #:error-message))
 (common-lisp:in-package #:pira/waf)
 
 (smithy/sdk/service:define-service awswaf-20150824 :shape-name

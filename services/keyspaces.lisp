@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/keyspaces (:use)
-                             (:export #:arn #:access-denied-exception
-                              #:auto-scaling-policy #:auto-scaling-settings
+                             (:export #:arn #:auto-scaling-policy
+                              #:auto-scaling-settings
                               #:auto-scaling-specification #:boolean-object
                               #:capacity-specification
                               #:capacity-specification-summary #:capacity-units
@@ -10,37 +10,29 @@
                               #:client-side-timestamps-status #:clustering-key
                               #:clustering-key-list #:column-definition
                               #:column-definition-list #:comment
-                              #:conflict-exception #:create-keyspace
-                              #:create-keyspace-request
+                              #:create-keyspace #:create-keyspace-request
                               #:create-keyspace-response #:create-table
                               #:create-table-request #:create-table-response
-                              #:create-type #:create-type-request
-                              #:create-type-response #:default-time-to-live
+                              #:create-type #:default-time-to-live
                               #:delete-keyspace #:delete-keyspace-request
                               #:delete-keyspace-response #:delete-table
                               #:delete-table-request #:delete-table-response
-                              #:delete-type #:delete-type-request
-                              #:delete-type-response #:depth #:double-object
+                              #:delete-type #:depth #:double-object
                               #:encryption-specification #:encryption-type
                               #:field-definition #:field-list #:generic-string
                               #:get-keyspace #:get-keyspace-request
                               #:get-keyspace-response #:get-table
                               #:get-table-auto-scaling-settings
-                              #:get-table-auto-scaling-settings-request
-                              #:get-table-auto-scaling-settings-response
                               #:get-table-request #:get-table-response
-                              #:get-type #:get-type-request #:get-type-response
-                              #:integer-object #:internal-server-exception
-                              #:keyspace-name #:keyspace-status
-                              #:keyspace-summary #:keyspace-summary-list
-                              #:keyspaces-service #:list-keyspaces
-                              #:list-keyspaces-request
+                              #:get-type #:integer-object #:keyspace-name
+                              #:keyspace-status #:keyspace-summary
+                              #:keyspace-summary-list #:keyspaces-service
+                              #:list-keyspaces #:list-keyspaces-request
                               #:list-keyspaces-response #:list-tables
                               #:list-tables-request #:list-tables-response
                               #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response #:list-types
-                              #:list-types-request #:list-types-response
                               #:max-results #:next-token #:partition-key
                               #:partition-key-list #:point-in-time-recovery
                               #:point-in-time-recovery-status
@@ -53,14 +45,12 @@
                               #:replica-specification-summary-list
                               #:replication-group-status
                               #:replication-group-status-list
-                              #:replication-specification
-                              #:resource-not-found-exception #:restore-table
+                              #:replication-specification #:restore-table
                               #:restore-table-request #:restore-table-response
-                              #:schema-definition
-                              #:service-quota-exceeded-exception #:sort-order
-                              #:static-column #:static-column-list #:stream-arn
-                              #:table-name #:table-name-list #:table-status
-                              #:table-summary #:table-summary-list
+                              #:schema-definition #:sort-order #:static-column
+                              #:static-column-list #:stream-arn #:table-name
+                              #:table-name-list #:table-status #:table-summary
+                              #:table-summary-list
                               #:tables-replication-progress #:tag #:tag-key
                               #:tag-list #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tag-value
@@ -70,10 +60,8 @@
                               #:type-name-list #:type-status #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-keyspace
-                              #:update-keyspace-request
-                              #:update-keyspace-response #:update-table
-                              #:update-table-request #:update-table-response
-                              #:validation-exception #:view-type #:kms-key-arn
+                              #:update-table #:update-table-request
+                              #:update-table-response #:view-type #:kms-key-arn
                               #:region #:rs))
 (common-lisp:in-package #:pira/keyspaces)
 

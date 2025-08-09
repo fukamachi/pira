@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/mpa (:use)
-                             (:export #:awsfluffy-core-service
-                              #:access-denied-exception #:account-id
+                             (:export #:awsfluffy-core-service #:account-id
                               #:action-completion-strategy #:action-name
                               #:approval-strategy #:approval-strategy-response
                               #:approval-team #:approval-team-arn
@@ -9,33 +8,15 @@
                               #:approval-team-request-approvers
                               #:approval-team-status
                               #:approval-team-status-code #:cancel-session
-                              #:cancel-session-request
-                              #:cancel-session-response #:conflict-exception
-                              #:create-approval-team
-                              #:create-approval-team-request
-                              #:create-approval-team-response
-                              #:create-identity-source
-                              #:create-identity-source-request
-                              #:create-identity-source-response
+                              #:create-approval-team #:create-identity-source
                               #:delete-identity-source
-                              #:delete-identity-source-request
                               #:delete-inactive-approval-team-version
-                              #:delete-inactive-approval-team-version-request
-                              #:delete-inactive-approval-team-version-response
                               #:description #:filter #:filter-field #:filters
-                              #:get-approval-team #:get-approval-team-request
-                              #:get-approval-team-response
+                              #:get-approval-team
                               #:get-approval-team-response-approver
                               #:get-approval-team-response-approvers
-                              #:get-identity-source
-                              #:get-identity-source-request
-                              #:get-identity-source-response
-                              #:get-policy-version #:get-policy-version-request
-                              #:get-policy-version-response
-                              #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response #:get-session
-                              #:get-session-request #:get-session-response
+                              #:get-identity-source #:get-policy-version
+                              #:get-resource-policy #:get-session
                               #:get-session-response-approver-response
                               #:get-session-response-approver-responses
                               #:iam-identity-center
@@ -49,60 +30,34 @@
                               #:identity-source-status
                               #:identity-source-status-code
                               #:identity-source-type #:identity-sources
-                              #:identity-status #:internal-server-exception
-                              #:invalid-parameter-exception #:iso-timestamp
+                              #:identity-status #:iso-timestamp
                               #:list-approval-teams
-                              #:list-approval-teams-request
-                              #:list-approval-teams-response
                               #:list-approval-teams-response-approval-team
                               #:list-approval-teams-response-approval-teams
-                              #:list-identity-sources
-                              #:list-identity-sources-request
-                              #:list-identity-sources-response #:list-policies
-                              #:list-policies-request #:list-policies-response
-                              #:list-policy-versions
-                              #:list-policy-versions-request
-                              #:list-policy-versions-response
-                              #:list-resource-policies
-                              #:list-resource-policies-request
-                              #:list-resource-policies-response
+                              #:list-identity-sources #:list-policies
+                              #:list-policy-versions #:list-resource-policies
                               #:list-resource-policies-response-resource-policies
                               #:list-resource-policies-response-resource-policy
-                              #:list-sessions #:list-sessions-request
-                              #:list-sessions-response
-                              #:list-sessions-response-session
+                              #:list-sessions #:list-sessions-response-session
                               #:list-sessions-response-sessions
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:message #:mof-napproval-strategy #:operator
+                              #:list-tags-for-resource #:max-results #:message
+                              #:mof-napproval-strategy #:operator
                               #:participant-id #:pending-update #:policies
                               #:policies-references #:policy #:policy-document
                               #:policy-name #:policy-reference #:policy-status
                               #:policy-type #:policy-version
                               #:policy-version-id #:policy-version-summary
                               #:policy-versions #:qualified-policy-arn #:region
-                              #:requester-comment
-                              #:resource-not-found-exception
-                              #:service-principal
-                              #:service-quota-exceeded-exception #:session
+                              #:requester-comment #:service-principal #:session
                               #:session-arn #:session-execution-status
                               #:session-key #:session-metadata
                               #:session-response #:session-status
                               #:session-status-code #:session-value
-                              #:start-active-approval-team-deletion
-                              #:start-active-approval-team-deletion-request
-                              #:start-active-approval-team-deletion-response
-                              #:string #:tag-key #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:throttling-exception #:token
-                              #:too-many-tags-exception
+                              #:start-active-approval-team-deletion #:string
+                              #:tag-key #:tag-key-list #:tag-resource
+                              #:tag-value #:tags #:token
                               #:unqualified-policy-arn #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-approval-team
-                              #:update-approval-team-request
-                              #:update-approval-team-response
-                              #:validation-exception))
+                              #:update-approval-team))
 (common-lisp:in-package #:pira/mpa)
 
 (smithy/sdk/service:define-service awsfluffy-core-service :shape-name

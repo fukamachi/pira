@@ -1,10 +1,7 @@
 (uiop/package:define-package #:pira/dataexchange (:use)
                              (:export #:accept-data-grant
-                              #:accept-data-grant-request
-                              #:accept-data-grant-response
                               #:acceptance-state-filter-value
-                              #:acceptance-state-filter-values
-                              #:access-denied-exception #:action
+                              #:acceptance-state-filter-values #:action
                               #:api-description #:api-gateway-api-asset #:arn
                               #:asset-destination-entry #:asset-details
                               #:asset-entry #:asset-name #:asset-source-entry
@@ -13,9 +10,7 @@
                               #:auto-export-revision-to-s3request-details
                               #:aws-account-id #:cancel-job
                               #:cancel-job-request #:client-token #:code
-                              #:conflict-exception #:create-data-grant
-                              #:create-data-grant-request
-                              #:create-data-grant-response #:create-data-set
+                              #:create-data-grant #:create-data-set
                               #:create-data-set-request
                               #:create-data-set-response #:create-event-action
                               #:create-event-action-request
@@ -34,8 +29,8 @@
                               #:database-lftag-policy-and-permissions
                               #:database-lftag-policy-permission #:delete-asset
                               #:delete-asset-request #:delete-data-grant
-                              #:delete-data-grant-request #:delete-data-set
-                              #:delete-data-set-request #:delete-event-action
+                              #:delete-data-set #:delete-data-set-request
+                              #:delete-event-action
                               #:delete-event-action-request #:delete-revision
                               #:delete-revision-request
                               #:deprecation-request-details #:description
@@ -49,15 +44,12 @@
                               #:export-revisions-to-s3response-details
                               #:export-server-side-encryption #:get-asset
                               #:get-asset-request #:get-asset-response
-                              #:get-data-grant #:get-data-grant-request
-                              #:get-data-grant-response #:get-data-set
+                              #:get-data-grant #:get-data-set
                               #:get-data-set-request #:get-data-set-response
                               #:get-event-action #:get-event-action-request
                               #:get-event-action-response #:get-job
                               #:get-job-request #:get-job-response
-                              #:get-received-data-grant
-                              #:get-received-data-grant-request
-                              #:get-received-data-grant-response #:get-revision
+                              #:get-received-data-grant #:get-revision
                               #:get-revision-request #:get-revision-response
                               #:grant-distribution-scope #:id
                               #:import-asset-from-api-gateway-api-request-details
@@ -71,8 +63,7 @@
                               #:import-assets-from-redshift-data-shares-response-details
                               #:import-assets-from-s3request-details
                               #:import-assets-from-s3response-details
-                              #:internal-server-exception #:job-entry
-                              #:job-error #:job-error-limit-name
+                              #:job-entry #:job-error #:job-error-limit-name
                               #:job-error-resource-types #:kms-key-arn
                               #:kms-key-to-grant #:lfpermission
                               #:lfresource-details #:lfresource-type #:lftag
@@ -81,9 +72,7 @@
                               #:lake-formation-data-permission-details
                               #:lake-formation-data-permission-type
                               #:lake-formation-tag-policy-details #:limit-name
-                              #:list-data-grants #:list-data-grants-request
-                              #:list-data-grants-response
-                              #:list-data-set-revisions
+                              #:list-data-grants #:list-data-set-revisions
                               #:list-data-set-revisions-request
                               #:list-data-set-revisions-response
                               #:list-data-sets #:list-data-sets-request
@@ -111,8 +100,6 @@
                               #:list-of-schema-change-details
                               #:list-of-table-tag-policy-lfpermissions
                               #:list-of-string #:list-received-data-grants
-                              #:list-received-data-grants-request
-                              #:list-received-data-grants-response
                               #:list-revision-assets
                               #:list-revision-assets-request
                               #:list-revision-assets-response
@@ -126,10 +113,10 @@
                               #:receiver-principal #:redshift-data-share-asset
                               #:redshift-data-share-asset-source-entry
                               #:redshift-data-share-details #:request-details
-                              #:resource-not-found-exception #:resource-type
-                              #:response-details #:revision-destination-entry
-                              #:revision-entry #:revision-published
-                              #:revoke-revision #:revoke-revision-request
+                              #:resource-type #:response-details
+                              #:revision-destination-entry #:revision-entry
+                              #:revision-published #:revoke-revision
+                              #:revoke-revision-request
                               #:revoke-revision-response #:role-arn
                               #:s3data-access-asset
                               #:s3data-access-asset-source-entry
@@ -139,28 +126,24 @@
                               #:schema-change-type #:scope-details
                               #:send-api-asset #:send-api-asset-request
                               #:send-api-asset-response
-                              #:send-data-set-notification
-                              #:send-data-set-notification-request
-                              #:send-data-set-notification-response
-                              #:sender-principal #:server-side-encryption-types
-                              #:service-limit-exceeded-exception #:start-job
+                              #:send-data-set-notification #:sender-principal
+                              #:server-side-encryption-types #:start-job
                               #:start-job-request #:start-job-response #:state
                               #:table-lftag-policy
                               #:table-lftag-policy-and-permissions
                               #:table-tag-policy-lfpermission #:tag-resource
-                              #:tag-resource-request #:throttling-exception
-                              #:timestamp #:type #:untag-resource
-                              #:untag-resource-request #:update-asset
-                              #:update-asset-request #:update-asset-response
-                              #:update-data-set #:update-data-set-request
+                              #:tag-resource-request #:timestamp #:type
+                              #:untag-resource #:untag-resource-request
+                              #:update-asset #:update-asset-request
+                              #:update-asset-response #:update-data-set
+                              #:update-data-set-request
                               #:update-data-set-response #:update-event-action
                               #:update-event-action-request
                               #:update-event-action-response #:update-revision
                               #:update-revision-request
-                              #:update-revision-response #:validation-exception
-                              #:boolean #:double #:double-min0 #:string
-                              #:string-min0max16384 #:string-min0max4096
-                              #:string-min10max512
+                              #:update-revision-response #:boolean #:double
+                              #:double-min0 #:string #:string-min0max16384
+                              #:string-min0max4096 #:string-min10max512
                               #:string-min24max24pattern-aza-z094aza-z092aza-z093))
 (common-lisp:in-package #:pira/dataexchange)
 

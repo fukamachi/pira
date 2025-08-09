@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/privatenetworks (:use)
-                             (:export #:access-denied-exception
-                              #:acknowledge-order-receipt
+                             (:export #:acknowledge-order-receipt
                               #:acknowledge-order-receipt-request
                               #:acknowledge-order-receipt-response
                               #:acknowledgment-status
@@ -45,9 +44,7 @@
                               #:get-network-site-request
                               #:get-network-site-response #:get-order
                               #:get-order-request #:get-order-response
-                              #:health-status #:internal-server-exception
-                              #:limit-exceeded-exception
-                              #:list-device-identifiers
+                              #:health-status #:list-device-identifiers
                               #:list-device-identifiers-request
                               #:list-device-identifiers-response
                               #:list-network-resources
@@ -80,15 +77,13 @@
                               #:ordered-resource-definition
                               #:ordered-resource-definitions #:pagination-token
                               #:ping #:ping-response #:position
-                              #:resource-not-found-exception
                               #:return-information #:sensitive-string
                               #:site-plan #:start-network-resource-update
                               #:start-network-resource-update-request
                               #:start-network-resource-update-response
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception #:timestamp
-                              #:tracking-information
+                              #:tag-value #:timestamp #:tracking-information
                               #:tracking-information-list #:untag-resource
                               #:untag-resource-request
                               #:untag-resource-response #:update-network-site
@@ -96,7 +91,6 @@
                               #:update-network-site-plan-request
                               #:update-network-site-request
                               #:update-network-site-response #:update-type
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

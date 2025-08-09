@@ -1,26 +1,15 @@
 (uiop/package:define-package #:pira/kendra-ranking (:use)
                              (:export #:awskendra-reranking-frontend-service
-                              #:access-denied-exception #:amazon-resource-name
-                              #:body-tokens-list #:capacity-units-configuration
-                              #:client-token-name #:conflict-exception
+                              #:amazon-resource-name #:body-tokens-list
+                              #:capacity-units-configuration
+                              #:client-token-name
                               #:create-rescore-execution-plan
-                              #:create-rescore-execution-plan-request
-                              #:create-rescore-execution-plan-response
                               #:delete-rescore-execution-plan
-                              #:delete-rescore-execution-plan-request
-                              #:describe-rescore-execution-plan
-                              #:describe-rescore-execution-plan-request
-                              #:describe-rescore-execution-plan-response
-                              #:description #:document #:document-body
-                              #:document-id #:document-list #:document-title
-                              #:error-message #:float #:group-id
-                              #:internal-server-exception
-                              #:list-rescore-execution-plans
-                              #:list-rescore-execution-plans-request
-                              #:list-rescore-execution-plans-response
+                              #:describe-rescore-execution-plan #:description
+                              #:document #:document-body #:document-id
+                              #:document-list #:document-title #:error-message
+                              #:float #:group-id #:list-rescore-execution-plans
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:max-results-integer-for-list-rescore-execution-plans-request
                               #:next-token #:rescore #:rescore-capacity-unit
                               #:rescore-execution-plan-arn
@@ -29,21 +18,12 @@
                               #:rescore-execution-plan-status
                               #:rescore-execution-plan-summary
                               #:rescore-execution-plan-summary-list
-                              #:rescore-id #:rescore-request #:rescore-result
-                              #:rescore-result-item #:rescore-result-item-list
-                              #:resource-not-found-exception
-                              #:resource-unavailable-exception #:search-query
-                              #:service-quota-exceeded-exception #:tag
+                              #:rescore-id #:rescore-result-item
+                              #:rescore-result-item-list #:search-query #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:timestamp
+                              #:tag-resource #:tag-value #:timestamp
                               #:title-tokens-list #:tokens #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-rescore-execution-plan
-                              #:update-rescore-execution-plan-request
-                              #:validation-exception))
+                              #:update-rescore-execution-plan))
 (common-lisp:in-package #:pira/kendra-ranking)
 
 (smithy/sdk/service:define-service awskendra-reranking-frontend-service

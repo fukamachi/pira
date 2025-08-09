@@ -1,8 +1,8 @@
 (uiop/package:define-package #:pira/textract (:use)
-                             (:export #:access-denied-exception #:adapter
-                              #:adapter-description #:adapter-id #:adapter-list
-                              #:adapter-name #:adapter-overview #:adapter-page
-                              #:adapter-pages #:adapter-version
+                             (:export #:adapter #:adapter-description
+                              #:adapter-id #:adapter-list #:adapter-name
+                              #:adapter-overview #:adapter-page #:adapter-pages
+                              #:adapter-version
                               #:adapter-version-dataset-config
                               #:adapter-version-evaluation-metric
                               #:adapter-version-evaluation-metrics
@@ -10,132 +10,72 @@
                               #:adapter-version-status
                               #:adapter-version-status-message #:adapters
                               #:adapters-config #:amazon-resource-name
-                              #:analyze-document #:analyze-document-request
-                              #:analyze-document-response #:analyze-expense
-                              #:analyze-expense-request
-                              #:analyze-expense-response #:analyze-id
-                              #:analyze-iddetections #:analyze-idrequest
-                              #:analyze-idresponse #:angle #:auto-update
-                              #:bad-document-exception #:block #:block-list
-                              #:block-type #:bounding-box
-                              #:client-request-token #:conflict-exception
-                              #:content-classifier #:content-classifiers
-                              #:create-adapter #:create-adapter-request
-                              #:create-adapter-response
-                              #:create-adapter-version
-                              #:create-adapter-version-request
-                              #:create-adapter-version-response #:date-time
-                              #:delete-adapter #:delete-adapter-request
-                              #:delete-adapter-response
-                              #:delete-adapter-version
-                              #:delete-adapter-version-request
-                              #:delete-adapter-version-response
-                              #:detect-document-text
-                              #:detect-document-text-request
-                              #:detect-document-text-response
-                              #:detected-signature #:detected-signature-list
-                              #:document #:document-group #:document-group-list
+                              #:analyze-document #:analyze-expense #:analyze-id
+                              #:analyze-iddetections #:angle #:auto-update
+                              #:block #:block-list #:block-type #:bounding-box
+                              #:client-request-token #:content-classifier
+                              #:content-classifiers #:create-adapter
+                              #:create-adapter-version #:date-time
+                              #:delete-adapter #:delete-adapter-version
+                              #:detect-document-text #:detected-signature
+                              #:detected-signature-list #:document
+                              #:document-group #:document-group-list
                               #:document-location #:document-metadata
-                              #:document-pages #:document-too-large-exception
-                              #:entity-type #:entity-types #:error-code
-                              #:evaluation-metric #:expense-currency
-                              #:expense-detection #:expense-document
-                              #:expense-document-list #:expense-field
-                              #:expense-field-list #:expense-group-property
+                              #:document-pages #:entity-type #:entity-types
+                              #:error-code #:evaluation-metric
+                              #:expense-currency #:expense-detection
+                              #:expense-document #:expense-document-list
+                              #:expense-field #:expense-field-list
+                              #:expense-group-property
                               #:expense-group-property-list #:expense-type
                               #:extraction #:extraction-list #:feature-type
                               #:feature-types #:float #:flow-definition-arn
-                              #:geometry #:get-adapter #:get-adapter-request
-                              #:get-adapter-response #:get-adapter-version
-                              #:get-adapter-version-request
-                              #:get-adapter-version-response
+                              #:geometry #:get-adapter #:get-adapter-version
                               #:get-document-analysis
-                              #:get-document-analysis-request
-                              #:get-document-analysis-response
                               #:get-document-text-detection
-                              #:get-document-text-detection-request
-                              #:get-document-text-detection-response
-                              #:get-expense-analysis
-                              #:get-expense-analysis-request
-                              #:get-expense-analysis-response
-                              #:get-lending-analysis
-                              #:get-lending-analysis-request
-                              #:get-lending-analysis-response
+                              #:get-expense-analysis #:get-lending-analysis
                               #:get-lending-analysis-summary
-                              #:get-lending-analysis-summary-request
-                              #:get-lending-analysis-summary-response
                               #:human-loop-activation-output
                               #:human-loop-activation-reason
                               #:human-loop-activation-reasons #:human-loop-arn
                               #:human-loop-config #:human-loop-data-attributes
-                              #:human-loop-name
-                              #:human-loop-quota-exceeded-exception #:id-list
-                              #:idempotent-parameter-mismatch-exception
-                              #:identity-document #:identity-document-field
+                              #:human-loop-name #:id-list #:identity-document
+                              #:identity-document-field
                               #:identity-document-field-list
-                              #:identity-document-list #:image-blob
-                              #:internal-server-error
-                              #:invalid-job-id-exception
-                              #:invalid-kmskey-exception
-                              #:invalid-parameter-exception
-                              #:invalid-s3object-exception #:job-id
+                              #:identity-document-list #:image-blob #:job-id
                               #:job-status #:job-tag #:kmskey-id
                               #:lending-detection #:lending-detection-list
                               #:lending-document #:lending-field
                               #:lending-field-list #:lending-result
                               #:lending-result-list #:lending-summary
-                              #:limit-exceeded-exception #:line-item-fields
-                              #:line-item-group #:line-item-group-list
-                              #:line-item-list #:list-adapter-versions
-                              #:list-adapter-versions-request
-                              #:list-adapter-versions-response #:list-adapters
-                              #:list-adapters-request #:list-adapters-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:line-item-fields #:line-item-group
+                              #:line-item-group-list #:line-item-list
+                              #:list-adapter-versions #:list-adapters
+                              #:list-tags-for-resource #:max-results
                               #:non-empty-string #:normalized-value
                               #:notification-channel #:output-config
                               #:page-classification #:page-list #:pages
                               #:pagination-token #:percent #:point #:polygon
-                              #:prediction #:prediction-list
-                              #:provisioned-throughput-exceeded-exception
-                              #:queries #:queries-config #:query #:query-input
+                              #:prediction #:prediction-list #:queries
+                              #:queries-config #:query #:query-input
                               #:query-page #:query-pages #:relationship
                               #:relationship-list #:relationship-type
-                              #:resource-not-found-exception #:role-arn
-                              #:s3bucket #:s3object #:s3object-name
+                              #:role-arn #:s3bucket #:s3object #:s3object-name
                               #:s3object-version #:snstopic-arn
-                              #:selection-status
-                              #:service-quota-exceeded-exception
-                              #:signature-detection #:signature-detection-list
-                              #:split-document #:split-document-list
-                              #:start-document-analysis
-                              #:start-document-analysis-request
-                              #:start-document-analysis-response
+                              #:selection-status #:signature-detection
+                              #:signature-detection-list #:split-document
+                              #:split-document-list #:start-document-analysis
                               #:start-document-text-detection
-                              #:start-document-text-detection-request
-                              #:start-document-text-detection-response
-                              #:start-expense-analysis
-                              #:start-expense-analysis-request
-                              #:start-expense-analysis-response
-                              #:start-lending-analysis
-                              #:start-lending-analysis-request
-                              #:start-lending-analysis-response
+                              #:start-expense-analysis #:start-lending-analysis
                               #:status-message #:string #:string-list
                               #:synthesized-json-human-loop-activation-conditions-evaluation-results
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:text-type #:textract
-                              #:throttling-exception #:uinteger
+                              #:tag-value #:text-type #:textract #:uinteger
                               #:undetected-document-type-list
                               #:undetected-signature
-                              #:undetected-signature-list
-                              #:unsupported-document-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-adapter
-                              #:update-adapter-request
-                              #:update-adapter-response #:validation-exception
-                              #:value-type #:warning #:warnings))
+                              #:undetected-signature-list #:untag-resource
+                              #:update-adapter #:value-type #:warning
+                              #:warnings))
 (common-lisp:in-package #:pira/textract)
 
 (smithy/sdk/service:define-service textract :shape-name "Textract" :version

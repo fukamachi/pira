@@ -1,130 +1,57 @@
 (uiop/package:define-package #:pira/codeartifact (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:allow-publish #:allow-upstream #:arn #:asset
-                              #:asset-hashes #:asset-name #:asset-summary
-                              #:asset-summary-list
+                             (:export #:account-id #:allow-publish
+                              #:allow-upstream #:arn #:asset #:asset-hashes
+                              #:asset-name #:asset-summary #:asset-summary-list
                               #:associate-external-connection
-                              #:associate-external-connection-request
-                              #:associate-external-connection-result
                               #:associated-package #:associated-package-list
                               #:authorization-token-duration-seconds
                               #:boolean-optional
                               #:code-artifact-control-plane-service
-                              #:conflict-exception #:copy-package-versions
-                              #:copy-package-versions-request
-                              #:copy-package-versions-result #:create-domain
-                              #:create-domain-request #:create-domain-result
-                              #:create-package-group
-                              #:create-package-group-request
-                              #:create-package-group-result #:create-repository
-                              #:create-repository-request
-                              #:create-repository-result #:delete-domain
+                              #:copy-package-versions #:create-domain
+                              #:create-package-group #:create-repository
+                              #:delete-domain
                               #:delete-domain-permissions-policy
-                              #:delete-domain-permissions-policy-request
-                              #:delete-domain-permissions-policy-result
-                              #:delete-domain-request #:delete-domain-result
                               #:delete-package #:delete-package-group
-                              #:delete-package-group-request
-                              #:delete-package-group-result
-                              #:delete-package-request #:delete-package-result
-                              #:delete-package-versions
-                              #:delete-package-versions-request
-                              #:delete-package-versions-result
-                              #:delete-repository
+                              #:delete-package-versions #:delete-repository
                               #:delete-repository-permissions-policy
-                              #:delete-repository-permissions-policy-request
-                              #:delete-repository-permissions-policy-result
-                              #:delete-repository-request
-                              #:delete-repository-result #:describe-domain
-                              #:describe-domain-request
-                              #:describe-domain-result #:describe-package
+                              #:describe-domain #:describe-package
                               #:describe-package-group
-                              #:describe-package-group-request
-                              #:describe-package-group-result
-                              #:describe-package-request
-                              #:describe-package-result
-                              #:describe-package-version
-                              #:describe-package-version-request
-                              #:describe-package-version-result
-                              #:describe-repository
-                              #:describe-repository-request
-                              #:describe-repository-result #:description
-                              #:disassociate-external-connection
-                              #:disassociate-external-connection-request
-                              #:disassociate-external-connection-result
-                              #:dispose-package-versions
-                              #:dispose-package-versions-request
-                              #:dispose-package-versions-result
-                              #:domain-description #:domain-entry-point
-                              #:domain-name #:domain-status #:domain-summary
+                              #:describe-package-version #:describe-repository
+                              #:description #:disassociate-external-connection
+                              #:dispose-package-versions #:domain-description
+                              #:domain-entry-point #:domain-name
+                              #:domain-status #:domain-summary
                               #:domain-summary-list #:endpoint-type
                               #:error-message #:external-connection-name
                               #:external-connection-status
                               #:get-associated-package-group
-                              #:get-associated-package-group-request
-                              #:get-associated-package-group-result
                               #:get-authorization-token
-                              #:get-authorization-token-request
-                              #:get-authorization-token-result
                               #:get-domain-permissions-policy
-                              #:get-domain-permissions-policy-request
-                              #:get-domain-permissions-policy-result
                               #:get-package-version-asset
-                              #:get-package-version-asset-request
-                              #:get-package-version-asset-result
                               #:get-package-version-readme
-                              #:get-package-version-readme-request
-                              #:get-package-version-readme-result
                               #:get-repository-endpoint
-                              #:get-repository-endpoint-request
-                              #:get-repository-endpoint-result
                               #:get-repository-permissions-policy
-                              #:get-repository-permissions-policy-request
-                              #:get-repository-permissions-policy-result
                               #:hash-algorithm #:hash-value #:integer
-                              #:internal-server-exception #:license-info
-                              #:license-info-list
+                              #:license-info #:license-info-list
                               #:list-allowed-repositories-for-group
                               #:list-allowed-repositories-for-group-max-results
-                              #:list-allowed-repositories-for-group-request
-                              #:list-allowed-repositories-for-group-result
-                              #:list-associated-packages
-                              #:list-associated-packages-request
-                              #:list-associated-packages-result #:list-domains
-                              #:list-domains-max-results #:list-domains-request
-                              #:list-domains-result #:list-package-groups
+                              #:list-associated-packages #:list-domains
+                              #:list-domains-max-results #:list-package-groups
                               #:list-package-groups-max-results
-                              #:list-package-groups-request
-                              #:list-package-groups-result
                               #:list-package-version-assets
                               #:list-package-version-assets-max-results
-                              #:list-package-version-assets-request
-                              #:list-package-version-assets-result
                               #:list-package-version-dependencies
-                              #:list-package-version-dependencies-request
-                              #:list-package-version-dependencies-result
                               #:list-package-versions
                               #:list-package-versions-max-results
-                              #:list-package-versions-request
-                              #:list-package-versions-result #:list-packages
-                              #:list-packages-max-results
-                              #:list-packages-request #:list-packages-result
+                              #:list-packages #:list-packages-max-results
                               #:list-repositories #:list-repositories-in-domain
                               #:list-repositories-in-domain-max-results
-                              #:list-repositories-in-domain-request
-                              #:list-repositories-in-domain-result
                               #:list-repositories-max-results
-                              #:list-repositories-request
-                              #:list-repositories-result
                               #:list-sub-package-groups
-                              #:list-sub-package-groups-request
-                              #:list-sub-package-groups-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-result #:long
-                              #:long-optional #:origin-restrictions
-                              #:package-dependency #:package-dependency-list
-                              #:package-description #:package-format
+                              #:list-tags-for-resource #:long #:long-optional
+                              #:origin-restrictions #:package-dependency
+                              #:package-dependency-list #:package-description
+                              #:package-format
                               #:package-group-allowed-repository
                               #:package-group-allowed-repository-list
                               #:package-group-allowed-repository-update
@@ -160,46 +87,27 @@
                               #:package-version-summary-list #:pagination-token
                               #:policy-document #:policy-revision
                               #:publish-package-version
-                              #:publish-package-version-request
-                              #:publish-package-version-result
                               #:put-domain-permissions-policy
-                              #:put-domain-permissions-policy-request
-                              #:put-domain-permissions-policy-result
                               #:put-package-origin-configuration
-                              #:put-package-origin-configuration-request
-                              #:put-package-origin-configuration-result
                               #:put-repository-permissions-policy
-                              #:put-repository-permissions-policy-request
-                              #:put-repository-permissions-policy-result
                               #:repository-description
                               #:repository-external-connection-info
                               #:repository-external-connection-info-list
                               #:repository-name #:repository-name-list
                               #:repository-summary #:repository-summary-list
-                              #:resource-not-found-exception #:resource-policy
-                              #:resource-type #:retry-after-seconds #:sha256
-                              #:service-quota-exceeded-exception #:string
+                              #:resource-policy #:resource-type
+                              #:retry-after-seconds #:sha256 #:string
                               #:string255 #:successful-package-version-info
                               #:successful-package-version-info-map #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-result #:tag-value
-                              #:throttling-exception #:timestamp
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-result #:update-package-group
+                              #:tag-resource #:tag-value #:timestamp
+                              #:untag-resource #:update-package-group
                               #:update-package-group-origin-configuration
-                              #:update-package-group-origin-configuration-request
-                              #:update-package-group-origin-configuration-result
-                              #:update-package-group-request
-                              #:update-package-group-result
                               #:update-package-versions-status
-                              #:update-package-versions-status-request
-                              #:update-package-versions-status-result
-                              #:update-repository #:update-repository-request
-                              #:update-repository-result #:upstream-repository
+                              #:update-repository #:upstream-repository
                               #:upstream-repository-info
                               #:upstream-repository-info-list
-                              #:upstream-repository-list #:validation-exception
+                              #:upstream-repository-list
                               #:validation-exception-reason))
 (common-lisp:in-package #:pira/codeartifact)
 

@@ -1,79 +1,48 @@
 (uiop/package:define-package #:pira/payment-cryptography (:use)
-                             (:export #:access-denied-exception #:alias
-                              #:alias-name #:alias-resource #:aliases
-                              #:certificate-type #:conflict-exception
-                              #:create-alias #:create-alias-input
-                              #:create-alias-output #:create-key
-                              #:create-key-input #:create-key-output
-                              #:delete-alias #:delete-alias-input
-                              #:delete-alias-output #:delete-key
-                              #:delete-key-input #:delete-key-output
+                             (:export #:alias #:alias-name #:alias-resource
+                              #:aliases #:certificate-type #:create-alias
+                              #:create-key #:delete-alias #:delete-key
                               #:derive-key-usage
                               #:diffie-hellman-derivation-data
                               #:even-hex-length-between16and32
                               #:export-attributes
                               #:export-diffie-hellman-tr31key-block
                               #:export-dukpt-initial-key #:export-key
-                              #:export-key-cryptogram #:export-key-input
-                              #:export-key-material #:export-key-output
+                              #:export-key-cryptogram #:export-key-material
                               #:export-token-id #:export-tr31key-block
-                              #:export-tr34key-block #:get-alias
-                              #:get-alias-input #:get-alias-output #:get-key
-                              #:get-key-input #:get-key-output
+                              #:export-tr34key-block #:get-alias #:get-key
                               #:get-parameters-for-export
-                              #:get-parameters-for-export-input
-                              #:get-parameters-for-export-output
                               #:get-parameters-for-import
-                              #:get-parameters-for-import-input
-                              #:get-parameters-for-import-output
-                              #:get-public-key-certificate
-                              #:get-public-key-certificate-input
-                              #:get-public-key-certificate-output
-                              #:hex-length20or24
+                              #:get-public-key-certificate #:hex-length20or24
                               #:import-diffie-hellman-tr31key-block
                               #:import-key #:import-key-cryptogram
-                              #:import-key-input #:import-key-material
-                              #:import-key-output #:import-token-id
+                              #:import-key-material #:import-token-id
                               #:import-tr31key-block #:import-tr34key-block
-                              #:internal-server-exception #:key #:key-algorithm
-                              #:key-arn #:key-arn-or-key-alias-type
-                              #:key-attributes #:key-block-headers
-                              #:key-check-value #:key-check-value-algorithm
-                              #:key-class #:key-derivation-function
+                              #:key #:key-algorithm #:key-arn
+                              #:key-arn-or-key-alias-type #:key-attributes
+                              #:key-block-headers #:key-check-value
+                              #:key-check-value-algorithm #:key-class
+                              #:key-derivation-function
                               #:key-derivation-hash-algorithm
                               #:key-exportability #:key-material
                               #:key-material-type #:key-modes-of-use
                               #:key-origin #:key-resource #:key-state
                               #:key-summary #:key-summary-list #:key-usage
-                              #:key-version #:list-aliases #:list-aliases-input
-                              #:list-aliases-output #:list-keys
-                              #:list-keys-input #:list-keys-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:max-results
+                              #:key-version #:list-aliases #:list-keys
+                              #:list-tags-for-resource #:max-results
                               #:next-token #:optional-block-id
                               #:optional-block-value #:optional-blocks
                               #:payment-cryptography-control-plane
-                              #:resource-arn #:resource-not-found-exception
-                              #:restore-key #:restore-key-input
-                              #:restore-key-output
+                              #:resource-arn #:restore-key
                               #:root-certificate-public-key
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception
                               #:shared-information #:start-key-usage
-                              #:start-key-usage-input #:start-key-usage-output
-                              #:stop-key-usage #:stop-key-usage-input
-                              #:stop-key-usage-output #:symmetric-key-algorithm
-                              #:tag #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:tags #:throttling-exception
-                              #:timestamp #:tr31wrapped-key-block
+                              #:stop-key-usage #:symmetric-key-algorithm #:tag
+                              #:tag-key #:tag-keys #:tag-resource #:tag-value
+                              #:tags #:timestamp #:tr31wrapped-key-block
                               #:tr34key-block-format #:tr34wrapped-key-block
                               #:trusted-certificate-public-key #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:update-alias #:update-alias-input
-                              #:update-alias-output #:validation-exception
-                              #:wrapped-key #:wrapped-key-cryptogram
+                              #:update-alias #:wrapped-key
+                              #:wrapped-key-cryptogram
                               #:wrapped-key-material-format
                               #:wrapping-key-spec))
 (common-lisp:in-package #:pira/payment-cryptography)

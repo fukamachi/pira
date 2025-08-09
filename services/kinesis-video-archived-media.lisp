@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/kinesis-video-archived-media (:use)
                              (:export #:awsacuity-reader
-                              #:client-limit-exceeded-exception
                               #:clip-fragment-selector
                               #:clip-fragment-selector-type
                               #:clip-timestamp-range #:container-format
@@ -14,17 +13,10 @@
                               #:format-config-value #:fragment #:fragment-list
                               #:fragment-number-list #:fragment-number-string
                               #:fragment-selector #:fragment-selector-type
-                              #:get-clip #:get-clip-input #:get-clip-output
-                              #:get-dashstreaming-session-url
-                              #:get-dashstreaming-session-urlinput
-                              #:get-dashstreaming-session-urloutput
-                              #:get-hlsstreaming-session-url
-                              #:get-hlsstreaming-session-urlinput
-                              #:get-hlsstreaming-session-urloutput #:get-images
-                              #:get-images-input #:get-images-max-results
-                              #:get-images-output #:get-media-for-fragment-list
-                              #:get-media-for-fragment-list-input
-                              #:get-media-for-fragment-list-output
+                              #:get-clip #:get-dashstreaming-session-url
+                              #:get-hlsstreaming-session-url #:get-images
+                              #:get-images-max-results
+                              #:get-media-for-fragment-list
                               #:hlsdiscontinuity-mode
                               #:hlsdisplay-fragment-timestamp
                               #:hlsfragment-selector
@@ -32,20 +24,10 @@
                               #:hlsplayback-mode #:hlsstreaming-session-url
                               #:hlstimestamp-range #:height-pixels #:image
                               #:image-content #:image-error
-                              #:image-selector-type #:images
-                              #:invalid-argument-exception
-                              #:invalid-codec-private-data-exception
-                              #:invalid-media-frame-exception #:list-fragments
-                              #:list-fragments-input
-                              #:list-fragments-max-results
-                              #:list-fragments-output #:long
-                              #:missing-codec-private-data-exception
-                              #:next-token #:no-data-retention-exception
-                              #:not-authorized-exception #:payload
-                              #:resource-arn #:resource-not-found-exception
-                              #:sampling-interval #:stream-name #:timestamp
-                              #:timestamp-range
-                              #:unsupported-stream-media-type-exception
+                              #:image-selector-type #:images #:list-fragments
+                              #:list-fragments-max-results #:long #:next-token
+                              #:payload #:resource-arn #:sampling-interval
+                              #:stream-name #:timestamp #:timestamp-range
                               #:width-pixels))
 (common-lisp:in-package #:pira/kinesis-video-archived-media)
 

@@ -1,83 +1,41 @@
 (uiop/package:define-package #:pira/kinesis-video (:use)
-                             (:export #:apiname #:access-denied-exception
-                              #:account-channel-limit-exceeded-exception
-                              #:account-stream-limit-exceeded-exception
-                              #:channel-info #:channel-info-list #:channel-name
+                             (:export #:apiname #:channel-info
+                              #:channel-info-list #:channel-name
                               #:channel-name-condition #:channel-protocol
                               #:channel-role #:channel-type
-                              #:client-limit-exceeded-exception
                               #:comparison-operator #:configuration-status
-                              #:create-signaling-channel
-                              #:create-signaling-channel-input
-                              #:create-signaling-channel-output #:create-stream
-                              #:create-stream-input #:create-stream-output
+                              #:create-signaling-channel #:create-stream
                               #:data-endpoint #:data-retention-change-in-hours
                               #:data-retention-in-hours #:delete-after-upload
                               #:delete-edge-configuration
-                              #:delete-edge-configuration-input
-                              #:delete-edge-configuration-output
-                              #:delete-signaling-channel
-                              #:delete-signaling-channel-input
-                              #:delete-signaling-channel-output #:delete-stream
-                              #:delete-stream-input #:delete-stream-output
+                              #:delete-signaling-channel #:delete-stream
                               #:deletion-config #:describe-edge-configuration
-                              #:describe-edge-configuration-input
-                              #:describe-edge-configuration-output
                               #:describe-image-generation-configuration
-                              #:describe-image-generation-configuration-input
-                              #:describe-image-generation-configuration-output
                               #:describe-mapped-resource-configuration
-                              #:describe-mapped-resource-configuration-input
-                              #:describe-mapped-resource-configuration-output
                               #:describe-media-storage-configuration
-                              #:describe-media-storage-configuration-input
-                              #:describe-media-storage-configuration-output
                               #:describe-notification-configuration
-                              #:describe-notification-configuration-input
-                              #:describe-notification-configuration-output
-                              #:describe-signaling-channel
-                              #:describe-signaling-channel-input
-                              #:describe-signaling-channel-output
-                              #:describe-stream #:describe-stream-input
-                              #:describe-stream-output #:destination-region
-                              #:destination-uri #:device-name
-                              #:device-stream-limit-exceeded-exception
-                              #:duration-in-seconds #:edge-agent-status
-                              #:edge-config #:edge-retention-in-hours
-                              #:error-message #:failed-status-details #:format
-                              #:format-config #:format-config-key
-                              #:format-config-value #:get-data-endpoint
-                              #:get-data-endpoint-input
-                              #:get-data-endpoint-output
-                              #:get-signaling-channel-endpoint
-                              #:get-signaling-channel-endpoint-input
-                              #:get-signaling-channel-endpoint-output
-                              #:height-pixels #:hub-device-arn
-                              #:image-generation-configuration
+                              #:describe-signaling-channel #:describe-stream
+                              #:destination-region #:destination-uri
+                              #:device-name #:duration-in-seconds
+                              #:edge-agent-status #:edge-config
+                              #:edge-retention-in-hours #:error-message
+                              #:failed-status-details #:format #:format-config
+                              #:format-config-key #:format-config-value
+                              #:get-data-endpoint
+                              #:get-signaling-channel-endpoint #:height-pixels
+                              #:hub-device-arn #:image-generation-configuration
                               #:image-generation-destination-config
-                              #:image-selector-type
-                              #:invalid-argument-exception
-                              #:invalid-device-exception
-                              #:invalid-resource-format-exception
-                              #:job-status-details #:kinesis-video-20170930
-                              #:kms-key-id #:last-recorder-status
-                              #:last-uploader-status
+                              #:image-selector-type #:job-status-details
+                              #:kinesis-video-20170930 #:kms-key-id
+                              #:last-recorder-status #:last-uploader-status
                               #:list-edge-agent-configurations
                               #:list-edge-agent-configurations-edge-config
                               #:list-edge-agent-configurations-edge-config-list
-                              #:list-edge-agent-configurations-input
                               #:list-edge-agent-configurations-input-limit
-                              #:list-edge-agent-configurations-output
                               #:list-of-protocols #:list-signaling-channels
-                              #:list-signaling-channels-input
-                              #:list-signaling-channels-output #:list-streams
-                              #:list-streams-input #:list-streams-input-limit
-                              #:list-streams-output #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
-                              #:list-tags-for-stream
-                              #:list-tags-for-stream-input
-                              #:list-tags-for-stream-output #:local-size-config
+                              #:list-streams #:list-streams-input-limit
+                              #:list-tags-for-resource #:list-tags-for-stream
+                              #:local-size-config
                               #:mapped-resource-configuration-list
                               #:mapped-resource-configuration-list-item
                               #:mapped-resource-configuration-list-limit
@@ -87,55 +45,31 @@
                               #:media-storage-configuration-status #:media-type
                               #:media-uri-secret-arn #:media-uri-type
                               #:message-ttl-seconds #:next-token
-                              #:no-data-retention-exception
-                              #:not-authorized-exception
                               #:notification-configuration
                               #:notification-destination-config
                               #:recorder-config #:recorder-status
                               #:resource-arn #:resource-endpoint
                               #:resource-endpoint-list
-                              #:resource-endpoint-list-item
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception #:resource-tags
+                              #:resource-endpoint-list-item #:resource-tags
                               #:sampling-interval #:schedule-config
                               #:schedule-expression
                               #:single-master-channel-endpoint-configuration
                               #:single-master-configuration
-                              #:start-edge-configuration-update
-                              #:start-edge-configuration-update-input
-                              #:start-edge-configuration-update-output #:status
-                              #:strategy-on-full-size
-                              #:stream-edge-configuration-not-found-exception
-                              #:stream-info #:stream-info-list #:stream-name
+                              #:start-edge-configuration-update #:status
+                              #:strategy-on-full-size #:stream-info
+                              #:stream-info-list #:stream-name
                               #:stream-name-condition #:sync-status #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-on-create-list #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-stream #:tag-stream-input
-                              #:tag-stream-output #:tag-value
-                              #:tags-per-resource-exceeded-limit-exception
-                              #:timestamp #:type #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:untag-stream #:untag-stream-input
-                              #:untag-stream-output #:update-data-retention
-                              #:update-data-retention-input
+                              #:tag-on-create-list #:tag-resource #:tag-stream
+                              #:tag-value #:timestamp #:type #:untag-resource
+                              #:untag-stream #:update-data-retention
                               #:update-data-retention-operation
-                              #:update-data-retention-output
                               #:update-image-generation-configuration
-                              #:update-image-generation-configuration-input
-                              #:update-image-generation-configuration-output
                               #:update-media-storage-configuration
-                              #:update-media-storage-configuration-input
-                              #:update-media-storage-configuration-output
                               #:update-notification-configuration
-                              #:update-notification-configuration-input
-                              #:update-notification-configuration-output
-                              #:update-signaling-channel
-                              #:update-signaling-channel-input
-                              #:update-signaling-channel-output #:update-stream
-                              #:update-stream-input #:update-stream-output
+                              #:update-signaling-channel #:update-stream
                               #:uploader-config #:uploader-status #:version
-                              #:version-mismatch-exception #:width-pixels))
+                              #:width-pixels))
 (common-lisp:in-package #:pira/kinesis-video)
 
 (smithy/sdk/service:define-service kinesis-video-20170930 :shape-name

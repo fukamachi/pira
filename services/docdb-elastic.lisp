@@ -1,17 +1,11 @@
 (uiop/package:define-package #:pira/docdb-elastic (:use)
-                             (:export #:access-denied-exception
-                              #:apply-pending-maintenance-action
-                              #:apply-pending-maintenance-action-input
-                              #:apply-pending-maintenance-action-output #:arn
+                             (:export #:apply-pending-maintenance-action #:arn
                               #:auth #:chimera-db-lionfish-service-lambda
                               #:cluster #:cluster-in-list #:cluster-list
                               #:cluster-snapshot #:cluster-snapshot-in-list
-                              #:cluster-snapshot-list #:conflict-exception
-                              #:copy-cluster-snapshot
-                              #:copy-cluster-snapshot-input
-                              #:copy-cluster-snapshot-output #:create-cluster
-                              #:create-cluster-input #:create-cluster-output
-                              #:create-cluster-snapshot
+                              #:cluster-snapshot-list #:copy-cluster-snapshot
+                              #:create-cluster #:create-cluster-input
+                              #:create-cluster-output #:create-cluster-snapshot
                               #:create-cluster-snapshot-input
                               #:create-cluster-snapshot-output #:delete-cluster
                               #:delete-cluster-input #:delete-cluster-output
@@ -22,41 +16,31 @@
                               #:get-cluster-snapshot
                               #:get-cluster-snapshot-input
                               #:get-cluster-snapshot-output
-                              #:get-pending-maintenance-action
-                              #:get-pending-maintenance-action-input
-                              #:get-pending-maintenance-action-output
-                              #:input-string #:internal-server-exception
+                              #:get-pending-maintenance-action #:input-string
                               #:list-cluster-snapshots
                               #:list-cluster-snapshots-input
                               #:list-cluster-snapshots-output #:list-clusters
                               #:list-clusters-input #:list-clusters-output
                               #:list-pending-maintenance-actions
-                              #:list-pending-maintenance-actions-input
-                              #:list-pending-maintenance-actions-output
                               #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response #:opt-in-type
                               #:pagination-token #:password
                               #:pending-maintenance-action-details
                               #:pending-maintenance-action-details-list
-                              #:resource-not-found-exception
                               #:resource-pending-maintenance-action
                               #:resource-pending-maintenance-action-list
                               #:restore-cluster-from-snapshot
                               #:restore-cluster-from-snapshot-input
-                              #:restore-cluster-from-snapshot-output
-                              #:service-quota-exceeded-exception #:shard
+                              #:restore-cluster-from-snapshot-output #:shard
                               #:shard-list #:snapshot-type #:start-cluster
-                              #:start-cluster-input #:start-cluster-output
-                              #:status #:stop-cluster #:stop-cluster-input
-                              #:stop-cluster-output #:string-list #:tag-key
+                              #:status #:stop-cluster #:string-list #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception
-                              #:untag-resource #:untag-resource-request
+                              #:tag-value #:untag-resource
+                              #:untag-resource-request
                               #:untag-resource-response #:update-cluster
                               #:update-cluster-input #:update-cluster-output
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

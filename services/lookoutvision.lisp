@@ -1,57 +1,30 @@
 (uiop/package:define-package #:pira/lookoutvision (:use)
-                             (:export #:access-denied-exception #:anomaly
-                              #:anomaly-class-filter #:anomaly-list
-                              #:anomaly-mask #:anomaly-name #:boolean
-                              #:client-token #:color #:compiler-options
-                              #:component-description #:component-name
-                              #:component-version #:component-version-arn
-                              #:conflict-exception #:content-type
-                              #:create-dataset #:create-dataset-request
-                              #:create-dataset-response #:create-model
-                              #:create-model-request #:create-model-response
-                              #:create-project #:create-project-request
-                              #:create-project-response #:dataset-changes
-                              #:dataset-description #:dataset-entry
-                              #:dataset-entry-list
+                             (:export #:anomaly #:anomaly-class-filter
+                              #:anomaly-list #:anomaly-mask #:anomaly-name
+                              #:boolean #:client-token #:color
+                              #:compiler-options #:component-description
+                              #:component-name #:component-version
+                              #:component-version-arn #:content-type
+                              #:create-dataset #:create-model #:create-project
+                              #:dataset-changes #:dataset-description
+                              #:dataset-entry #:dataset-entry-list
                               #:dataset-ground-truth-manifest
                               #:dataset-image-stats #:dataset-metadata
                               #:dataset-metadata-list #:dataset-source
                               #:dataset-status #:dataset-status-message
                               #:dataset-type #:date-time #:delete-dataset
-                              #:delete-dataset-request
-                              #:delete-dataset-response #:delete-model
-                              #:delete-model-request #:delete-model-response
-                              #:delete-project #:delete-project-request
-                              #:delete-project-response #:describe-dataset
-                              #:describe-dataset-request
-                              #:describe-dataset-response #:describe-model
-                              #:describe-model-packaging-job
-                              #:describe-model-packaging-job-request
-                              #:describe-model-packaging-job-response
-                              #:describe-model-request
-                              #:describe-model-response #:describe-project
-                              #:describe-project-request
-                              #:describe-project-response #:detect-anomalies
-                              #:detect-anomalies-request
-                              #:detect-anomalies-response
-                              #:detect-anomaly-result #:exception-string
-                              #:float #:greengrass-configuration
+                              #:delete-model #:delete-project
+                              #:describe-dataset #:describe-model
+                              #:describe-model-packaging-job #:describe-project
+                              #:detect-anomalies #:detect-anomaly-result
+                              #:exception-string #:float
+                              #:greengrass-configuration
                               #:greengrass-output-details #:image-source
                               #:image-source-type #:inference-units
-                              #:input-s3object #:integer
-                              #:internal-server-exception #:is-labeled
+                              #:input-s3object #:integer #:is-labeled
                               #:kms-key-id #:list-dataset-entries
-                              #:list-dataset-entries-request
-                              #:list-dataset-entries-response
-                              #:list-model-packaging-jobs
-                              #:list-model-packaging-jobs-request
-                              #:list-model-packaging-jobs-response
-                              #:list-models #:list-models-request
-                              #:list-models-response #:list-projects
-                              #:list-projects-request #:list-projects-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-model-packaging-jobs #:list-models
+                              #:list-projects #:list-tags-for-resource
                               #:lookout-vision-service #:model-arn
                               #:model-description #:model-description-message
                               #:model-hosting-status #:model-metadata
@@ -73,30 +46,17 @@
                               #:pixel-anomaly #:project-arn
                               #:project-description #:project-metadata
                               #:project-metadata-list #:project-name
-                              #:query-string #:resource-not-found-exception
-                              #:resource-type #:retry-after-seconds
-                              #:s3bucket-name #:s3key-prefix #:s3location
-                              #:s3object-key #:s3object-version
-                              #:service-quota-exceeded-exception #:start-model
-                              #:start-model-packaging-job
-                              #:start-model-packaging-job-request
-                              #:start-model-packaging-job-response
-                              #:start-model-request #:start-model-response
-                              #:stop-model #:stop-model-request
-                              #:stop-model-response #:stream #:tag #:tag-arn
-                              #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:query-string #:resource-type
+                              #:retry-after-seconds #:s3bucket-name
+                              #:s3key-prefix #:s3location #:s3object-key
+                              #:s3object-version #:start-model
+                              #:start-model-packaging-job #:stop-model #:stream
+                              #:tag #:tag-arn #:tag-key #:tag-key-list
+                              #:tag-list #:tag-resource #:tag-value
                               #:target-device #:target-platform
                               #:target-platform-accelerator
                               #:target-platform-arch #:target-platform-os
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-dataset-entries
-                              #:update-dataset-entries-request
-                              #:update-dataset-entries-response
-                              #:validation-exception))
+                              #:untag-resource #:update-dataset-entries))
 (common-lisp:in-package #:pira/lookoutvision)
 
 (smithy/sdk/service:define-service lookout-vision-service :shape-name

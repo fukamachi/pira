@@ -1,21 +1,16 @@
 (uiop/package:define-package #:pira/sagemaker-geospatial (:use)
-                             (:export #:access-denied-exception
-                              #:algorithm-name-cloud-removal
+                             (:export #:algorithm-name-cloud-removal
                               #:algorithm-name-geo-mosaic
                               #:algorithm-name-resampling #:area-of-interest
                               #:area-of-interest-geometry #:arn #:asset-value
                               #:assets-map #:band-math-config-input
                               #:binary-file #:cloud-masking-config-input
                               #:cloud-removal-config-input
-                              #:comparison-operator #:conflict-exception
-                              #:custom-indices-input #:data-collection-arn
-                              #:data-collection-type #:data-collections-list
+                              #:comparison-operator #:custom-indices-input
+                              #:data-collection-arn #:data-collection-type
+                              #:data-collections-list
                               #:delete-earth-observation-job
-                              #:delete-earth-observation-job-input
-                              #:delete-earth-observation-job-output
                               #:delete-vector-enrichment-job
-                              #:delete-vector-enrichment-job-input
-                              #:delete-vector-enrichment-job-output
                               #:earth-observation-job
                               #:earth-observation-job-arn
                               #:earth-observation-job-error-details
@@ -32,24 +27,16 @@
                               #:export-error-details-output #:export-error-type
                               #:export-s3data-input
                               #:export-vector-enrichment-job
-                              #:export-vector-enrichment-job-input
-                              #:export-vector-enrichment-job-output
                               #:export-vector-enrichment-job-output-config
                               #:filter #:filter-list #:geo-mosaic-config-input
                               #:geometry #:get-earth-observation-job
-                              #:get-earth-observation-job-input
-                              #:get-earth-observation-job-output
                               #:get-raster-data-collection
                               #:get-raster-data-collection-input
                               #:get-raster-data-collection-output #:get-tile
-                              #:get-tile-input #:get-tile-output
-                              #:get-vector-enrichment-job
-                              #:get-vector-enrichment-job-input
-                              #:get-vector-enrichment-job-output #:group-by
+                              #:get-vector-enrichment-job #:group-by
                               #:image-source-band-list #:input-config-input
-                              #:input-config-output #:internal-server-exception
-                              #:item-source #:item-source-list
-                              #:job-config-input #:kms-key
+                              #:input-config-output #:item-source
+                              #:item-source-list #:job-config-input #:kms-key
                               #:land-cover-segmentation-config-input
                               #:landsat-cloud-cover-land-input #:linear-ring
                               #:linear-rings #:linear-rings-list
@@ -82,36 +69,26 @@
                               #:raster-data-collection-query-output
                               #:raster-data-collection-query-with-band-filter-input
                               #:resampling-config-input
-                              #:resource-not-found-exception
                               #:reverse-geocoding-config #:s3uri
                               #:sage-maker-geospatial
-                              #:search-raster-data-collection
-                              #:search-raster-data-collection-input
-                              #:search-raster-data-collection-output
-                              #:service-quota-exceeded-exception #:sort-order
+                              #:search-raster-data-collection #:sort-order
                               #:stack-config-input
                               #:start-earth-observation-job
-                              #:start-earth-observation-job-input
                               #:start-earth-observation-job-output
                               #:start-vector-enrichment-job
-                              #:start-vector-enrichment-job-input
                               #:start-vector-enrichment-job-output
                               #:stop-earth-observation-job
-                              #:stop-earth-observation-job-input
-                              #:stop-earth-observation-job-output
-                              #:stop-vector-enrichment-job
-                              #:stop-vector-enrichment-job-input
-                              #:stop-vector-enrichment-job-output
-                              #:string-list-input #:tag-key-list #:tag-resource
+                              #:stop-vector-enrichment-job #:string-list-input
+                              #:tag-key-list #:tag-resource
                               #:tag-resource-request #:tag-resource-response
                               #:tags #:target-options #:temporal-statistics
                               #:temporal-statistics-config-input
                               #:temporal-statistics-list-input
-                              #:throttling-exception #:time-range-filter-input
+                              #:time-range-filter-input
                               #:time-range-filter-output #:unit
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response #:user-defined
-                              #:validation-exception #:vector-enrichment-job
+                              #:vector-enrichment-job
                               #:vector-enrichment-job-arn
                               #:vector-enrichment-job-config
                               #:vector-enrichment-job-data-source-config-input

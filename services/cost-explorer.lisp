@@ -2,8 +2,7 @@
                              (:export #:awsinsights-index-service #:account-id
                               #:account-scope #:amortized-recurring-fee
                               #:amortized-upfront-fee #:analysis-details
-                              #:analysis-id #:analysis-ids
-                              #:analysis-not-found-exception #:analysis-status
+                              #:analysis-id #:analysis-ids #:analysis-status
                               #:analysis-summary #:analysis-summary-list
                               #:analysis-type #:anomalies #:anomaly
                               #:anomaly-date-interval #:anomaly-feedback-type
@@ -13,9 +12,7 @@
                               #:anomaly-subscriptions
                               #:approximate-usage-records-per-service
                               #:approximation-dimension #:arn #:attribute-type
-                              #:attribute-value #:attributes
-                              #:backfill-limit-exceeded-exception
-                              #:bill-expiration-exception #:billing-view-arn
+                              #:attribute-value #:attributes #:billing-view-arn
                               #:commitment-purchase-analysis-configuration
                               #:comparison-metric-value #:comparison-metrics
                               #:context #:cost-allocation-tag
@@ -65,28 +62,14 @@
                               #:coverage-normalized-units
                               #:coverage-normalized-units-percentage
                               #:coverages-by-time #:create-anomaly-monitor
-                              #:create-anomaly-monitor-request
-                              #:create-anomaly-monitor-response
                               #:create-anomaly-subscription
-                              #:create-anomaly-subscription-request
-                              #:create-anomaly-subscription-response
                               #:create-cost-category-definition
-                              #:create-cost-category-definition-request
-                              #:create-cost-category-definition-response
-                              #:current-instance #:data-unavailable-exception
-                              #:date-interval #:delete-anomaly-monitor
-                              #:delete-anomaly-monitor-request
-                              #:delete-anomaly-monitor-response
+                              #:current-instance #:date-interval
+                              #:delete-anomaly-monitor
                               #:delete-anomaly-subscription
-                              #:delete-anomaly-subscription-request
-                              #:delete-anomaly-subscription-response
                               #:delete-cost-category-definition
-                              #:delete-cost-category-definition-request
-                              #:delete-cost-category-definition-response
-                              #:describe-cost-category-definition
-                              #:describe-cost-category-definition-request
-                              #:describe-cost-category-definition-response
-                              #:dimension #:dimension-values
+                              #:describe-cost-category-definition #:dimension
+                              #:dimension-values
                               #:dimension-values-with-attributes
                               #:dimension-values-with-attributes-list
                               #:disk-resource-utilization
@@ -98,97 +81,38 @@
                               #:error-code #:error-message #:estimated
                               #:expression #:expressions #:finding-reason-code
                               #:finding-reason-codes #:forecast-result
-                              #:forecast-results-by-time
-                              #:generation-exists-exception #:generation-status
+                              #:forecast-results-by-time #:generation-status
                               #:generation-summary #:generation-summary-list
                               #:generic-boolean #:generic-double
                               #:generic-string #:get-anomalies
-                              #:get-anomalies-request #:get-anomalies-response
                               #:get-anomaly-monitors
-                              #:get-anomaly-monitors-request
-                              #:get-anomaly-monitors-response
                               #:get-anomaly-subscriptions
-                              #:get-anomaly-subscriptions-request
-                              #:get-anomaly-subscriptions-response
                               #:get-approximate-usage-records
-                              #:get-approximate-usage-records-request
-                              #:get-approximate-usage-records-response
                               #:get-commitment-purchase-analysis
-                              #:get-commitment-purchase-analysis-request
-                              #:get-commitment-purchase-analysis-response
                               #:get-cost-and-usage
                               #:get-cost-and-usage-comparisons
-                              #:get-cost-and-usage-comparisons-request
-                              #:get-cost-and-usage-comparisons-response
-                              #:get-cost-and-usage-request
-                              #:get-cost-and-usage-response
                               #:get-cost-and-usage-with-resources
-                              #:get-cost-and-usage-with-resources-request
-                              #:get-cost-and-usage-with-resources-response
                               #:get-cost-categories
-                              #:get-cost-categories-request
-                              #:get-cost-categories-response
-                              #:get-cost-comparison-drivers
-                              #:get-cost-comparison-drivers-request
-                              #:get-cost-comparison-drivers-response
-                              #:get-cost-forecast #:get-cost-forecast-request
-                              #:get-cost-forecast-response
-                              #:get-dimension-values
-                              #:get-dimension-values-request
-                              #:get-dimension-values-response
-                              #:get-reservation-coverage
-                              #:get-reservation-coverage-request
-                              #:get-reservation-coverage-response
+                              #:get-cost-comparison-drivers #:get-cost-forecast
+                              #:get-dimension-values #:get-reservation-coverage
                               #:get-reservation-purchase-recommendation
-                              #:get-reservation-purchase-recommendation-request
-                              #:get-reservation-purchase-recommendation-response
                               #:get-reservation-utilization
-                              #:get-reservation-utilization-request
-                              #:get-reservation-utilization-response
                               #:get-rightsizing-recommendation
-                              #:get-rightsizing-recommendation-request
-                              #:get-rightsizing-recommendation-response
                               #:get-savings-plan-purchase-recommendation-details
-                              #:get-savings-plan-purchase-recommendation-details-request
-                              #:get-savings-plan-purchase-recommendation-details-response
                               #:get-savings-plans-coverage
-                              #:get-savings-plans-coverage-request
-                              #:get-savings-plans-coverage-response
                               #:get-savings-plans-purchase-recommendation
-                              #:get-savings-plans-purchase-recommendation-request
-                              #:get-savings-plans-purchase-recommendation-response
                               #:get-savings-plans-utilization
                               #:get-savings-plans-utilization-details
-                              #:get-savings-plans-utilization-details-request
-                              #:get-savings-plans-utilization-details-response
-                              #:get-savings-plans-utilization-request
-                              #:get-savings-plans-utilization-response
-                              #:get-tags #:get-tags-request #:get-tags-response
-                              #:get-usage-forecast #:get-usage-forecast-request
-                              #:get-usage-forecast-response #:granularity
+                              #:get-tags #:get-usage-forecast #:granularity
                               #:group #:group-definition #:group-definition-key
                               #:group-definition-type #:group-definitions
-                              #:groups #:impact #:instance-details
-                              #:invalid-next-token-exception #:key #:keys
-                              #:limit-exceeded-exception
+                              #:groups #:impact #:instance-details #:key #:keys
                               #:list-commitment-purchase-analyses
-                              #:list-commitment-purchase-analyses-request
-                              #:list-commitment-purchase-analyses-response
                               #:list-cost-allocation-tag-backfill-history
-                              #:list-cost-allocation-tag-backfill-history-request
-                              #:list-cost-allocation-tag-backfill-history-response
                               #:list-cost-allocation-tags
-                              #:list-cost-allocation-tags-request
-                              #:list-cost-allocation-tags-response
                               #:list-cost-category-definitions
-                              #:list-cost-category-definitions-request
-                              #:list-cost-category-definitions-response
                               #:list-savings-plans-purchase-recommendation-generation
-                              #:list-savings-plans-purchase-recommendation-generation-request
-                              #:list-savings-plans-purchase-recommendation-generation-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:lookback-period-in-days #:match-option
                               #:match-options #:max-results
                               #:memory-dbinstance-details #:metric
@@ -207,17 +131,14 @@
                               #:page-size #:payment-option
                               #:platform-difference #:platform-differences
                               #:prediction-interval-level
-                              #:provide-anomaly-feedback
-                              #:provide-anomaly-feedback-request
-                              #:provide-anomaly-feedback-response
-                              #:purchased-hours #:purchased-units
-                              #:rdsinstance-details #:ricost-for-unused-hours
-                              #:realized-savings #:recommendation-detail-data
+                              #:provide-anomaly-feedback #:purchased-hours
+                              #:purchased-units #:rdsinstance-details
+                              #:ricost-for-unused-hours #:realized-savings
+                              #:recommendation-detail-data
                               #:recommendation-detail-hourly-metrics
                               #:recommendation-detail-id #:recommendation-id
                               #:recommendation-id-list #:recommendation-target
                               #:redshift-instance-details
-                              #:request-changed-exception
                               #:reservation-aggregates
                               #:reservation-coverage-group
                               #:reservation-coverage-groups
@@ -232,11 +153,11 @@
                               #:reservation-utilization-groups
                               #:reserved-capacity-details #:reserved-hours
                               #:reserved-normalized-units #:resource-details
-                              #:resource-not-found-exception #:resource-tag
-                              #:resource-tag-key #:resource-tag-key-list
-                              #:resource-tag-list #:resource-tag-value
-                              #:resource-utilization #:result-by-time
-                              #:results-by-time #:rightsizing-recommendation
+                              #:resource-tag #:resource-tag-key
+                              #:resource-tag-key-list #:resource-tag-list
+                              #:resource-tag-value #:resource-utilization
+                              #:result-by-time #:results-by-time
+                              #:rightsizing-recommendation
                               #:rightsizing-recommendation-configuration
                               #:rightsizing-recommendation-list
                               #:rightsizing-recommendation-metadata
@@ -267,52 +188,31 @@
                               #:savings-plans-utilization-detail
                               #:savings-plans-utilization-details
                               #:savings-plans-utilizations-by-time
-                              #:search-string
-                              #:service-quota-exceeded-exception
-                              #:service-specification #:sort-definition
-                              #:sort-definition-key #:sort-definitions
-                              #:sort-order #:start-commitment-purchase-analysis
-                              #:start-commitment-purchase-analysis-request
-                              #:start-commitment-purchase-analysis-response
+                              #:search-string #:service-specification
+                              #:sort-definition #:sort-definition-key
+                              #:sort-definitions #:sort-order
+                              #:start-commitment-purchase-analysis
                               #:start-cost-allocation-tag-backfill
-                              #:start-cost-allocation-tag-backfill-request
-                              #:start-cost-allocation-tag-backfill-response
                               #:start-savings-plans-purchase-recommendation-generation
-                              #:start-savings-plans-purchase-recommendation-generation-request
-                              #:start-savings-plans-purchase-recommendation-generation-response
                               #:subscriber #:subscriber-address
                               #:subscriber-status #:subscriber-type
                               #:subscribers #:supported-savings-plans-type
-                              #:tag-key #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-values #:tag-values-list #:target-instance
+                              #:tag-key #:tag-list #:tag-resource #:tag-values
+                              #:tag-values-list #:target-instance
                               #:target-instances-list #:term-in-years
                               #:terminate-recommendation-detail
-                              #:too-many-tags-exception #:total-actual-hours
-                              #:total-actual-units #:total-amortized-fee
-                              #:total-impact-filter #:total-potential-risavings
-                              #:total-running-hours
+                              #:total-actual-hours #:total-actual-units
+                              #:total-amortized-fee #:total-impact-filter
+                              #:total-potential-risavings #:total-running-hours
                               #:total-running-normalized-units
-                              #:unknown-monitor-exception
-                              #:unknown-subscription-exception
-                              #:unrealized-savings
-                              #:unresolvable-usage-unit-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:unused-hours
-                              #:unused-units #:update-anomaly-monitor
-                              #:update-anomaly-monitor-request
-                              #:update-anomaly-monitor-response
+                              #:unrealized-savings #:untag-resource
+                              #:unused-hours #:unused-units
+                              #:update-anomaly-monitor
                               #:update-anomaly-subscription
-                              #:update-anomaly-subscription-request
-                              #:update-anomaly-subscription-response
                               #:update-cost-allocation-tags-status
                               #:update-cost-allocation-tags-status-error
                               #:update-cost-allocation-tags-status-errors
-                              #:update-cost-allocation-tags-status-request
-                              #:update-cost-allocation-tags-status-response
                               #:update-cost-category-definition
-                              #:update-cost-category-definition-request
-                              #:update-cost-category-definition-response
                               #:usage-services #:utilization-by-time
                               #:utilization-percentage
                               #:utilization-percentage-in-units

@@ -1,19 +1,9 @@
 (uiop/package:define-package #:pira/clouddirectory (:use)
-                             (:export #:access-denied-exception
-                              #:add-facet-to-object
-                              #:add-facet-to-object-request
-                              #:add-facet-to-object-response
+                             (:export #:add-facet-to-object
                               #:amazon-cloud-directory-20170111 #:apply-schema
-                              #:apply-schema-request #:apply-schema-response
-                              #:arn #:arns #:attach-object
-                              #:attach-object-request #:attach-object-response
-                              #:attach-policy #:attach-policy-request
-                              #:attach-policy-response #:attach-to-index
-                              #:attach-to-index-request
-                              #:attach-to-index-response #:attach-typed-link
-                              #:attach-typed-link-request
-                              #:attach-typed-link-response #:attribute-key
-                              #:attribute-key-and-value
+                              #:arn #:arns #:attach-object #:attach-policy
+                              #:attach-to-index #:attach-typed-link
+                              #:attribute-key #:attribute-key-and-value
                               #:attribute-key-and-value-list
                               #:attribute-key-list #:attribute-name
                               #:attribute-name-and-value
@@ -76,7 +66,6 @@
                               #:batch-read-operation-list
                               #:batch-read-operation-response
                               #:batch-read-operation-response-list
-                              #:batch-read-request #:batch-read-response
                               #:batch-read-successful-response
                               #:batch-reference-name
                               #:batch-remove-facet-from-object
@@ -85,162 +74,56 @@
                               #:batch-update-link-attributes-response
                               #:batch-update-object-attributes
                               #:batch-update-object-attributes-response
-                              #:batch-write #:batch-write-exception
-                              #:batch-write-exception-type
+                              #:batch-write #:batch-write-exception-type
                               #:batch-write-operation
                               #:batch-write-operation-list
                               #:batch-write-operation-response
                               #:batch-write-operation-response-list
-                              #:batch-write-request #:batch-write-response
                               #:binary-attribute-value #:bool
-                              #:boolean-attribute-value
-                              #:cannot-list-parent-of-root-exception
-                              #:consistency-level #:create-directory
-                              #:create-directory-request
-                              #:create-directory-response #:create-facet
-                              #:create-facet-request #:create-facet-response
-                              #:create-index #:create-index-request
-                              #:create-index-response #:create-object
-                              #:create-object-request #:create-object-response
-                              #:create-schema #:create-schema-request
-                              #:create-schema-response
-                              #:create-typed-link-facet
-                              #:create-typed-link-facet-request
-                              #:create-typed-link-facet-response #:date
+                              #:boolean-attribute-value #:consistency-level
+                              #:create-directory #:create-facet #:create-index
+                              #:create-object #:create-schema
+                              #:create-typed-link-facet #:date
                               #:datetime-attribute-value #:delete-directory
-                              #:delete-directory-request
-                              #:delete-directory-response #:delete-facet
-                              #:delete-facet-request #:delete-facet-response
-                              #:delete-object #:delete-object-request
-                              #:delete-object-response #:delete-schema
-                              #:delete-schema-request #:delete-schema-response
-                              #:delete-typed-link-facet
-                              #:delete-typed-link-facet-request
-                              #:delete-typed-link-facet-response
-                              #:detach-from-index #:detach-from-index-request
-                              #:detach-from-index-response #:detach-object
-                              #:detach-object-request #:detach-object-response
-                              #:detach-policy #:detach-policy-request
-                              #:detach-policy-response #:detach-typed-link
-                              #:detach-typed-link-request #:directory
-                              #:directory-already-exists-exception
-                              #:directory-arn #:directory-deleted-exception
+                              #:delete-facet #:delete-object #:delete-schema
+                              #:delete-typed-link-facet #:detach-from-index
+                              #:detach-object #:detach-policy
+                              #:detach-typed-link #:directory #:directory-arn
                               #:directory-list #:directory-name
-                              #:directory-not-disabled-exception
-                              #:directory-not-enabled-exception
                               #:directory-state #:disable-directory
-                              #:disable-directory-request
-                              #:disable-directory-response #:enable-directory
-                              #:enable-directory-request
-                              #:enable-directory-response #:exception-message
-                              #:facet #:facet-already-exists-exception
+                              #:enable-directory #:exception-message #:facet
                               #:facet-attribute #:facet-attribute-definition
                               #:facet-attribute-list
                               #:facet-attribute-reference
                               #:facet-attribute-type #:facet-attribute-update
-                              #:facet-attribute-update-list
-                              #:facet-in-use-exception #:facet-name
-                              #:facet-name-list #:facet-not-found-exception
-                              #:facet-style #:facet-validation-exception
-                              #:get-applied-schema-version
-                              #:get-applied-schema-version-request
-                              #:get-applied-schema-version-response
-                              #:get-directory #:get-directory-request
-                              #:get-directory-response #:get-facet
-                              #:get-facet-request #:get-facet-response
-                              #:get-link-attributes
-                              #:get-link-attributes-request
-                              #:get-link-attributes-response
-                              #:get-object-attributes
-                              #:get-object-attributes-request
-                              #:get-object-attributes-response
-                              #:get-object-information
-                              #:get-object-information-request
-                              #:get-object-information-response
-                              #:get-schema-as-json #:get-schema-as-json-request
-                              #:get-schema-as-json-response
+                              #:facet-attribute-update-list #:facet-name
+                              #:facet-name-list #:facet-style
+                              #:get-applied-schema-version #:get-directory
+                              #:get-facet #:get-link-attributes
+                              #:get-object-attributes #:get-object-information
+                              #:get-schema-as-json
                               #:get-typed-link-facet-information
-                              #:get-typed-link-facet-information-request
-                              #:get-typed-link-facet-information-response
-                              #:incompatible-schema-exception
                               #:index-attachment #:index-attachment-list
-                              #:indexed-attribute-missing-exception
-                              #:internal-service-exception
-                              #:invalid-arn-exception
-                              #:invalid-attachment-exception
-                              #:invalid-facet-update-exception
-                              #:invalid-next-token-exception
-                              #:invalid-rule-exception
-                              #:invalid-schema-doc-exception
-                              #:invalid-tagging-request-exception
-                              #:limit-exceeded-exception
                               #:link-attribute-action #:link-attribute-update
                               #:link-attribute-update-list #:link-name
-                              #:link-name-already-in-use-exception
                               #:link-name-to-object-identifier-map
                               #:list-applied-schema-arns
-                              #:list-applied-schema-arns-request
-                              #:list-applied-schema-arns-response
                               #:list-attached-indices
-                              #:list-attached-indices-request
-                              #:list-attached-indices-response
-                              #:list-development-schema-arns
-                              #:list-development-schema-arns-request
-                              #:list-development-schema-arns-response
-                              #:list-directories #:list-directories-request
-                              #:list-directories-response
-                              #:list-facet-attributes
-                              #:list-facet-attributes-request
-                              #:list-facet-attributes-response
-                              #:list-facet-names #:list-facet-names-request
-                              #:list-facet-names-response
-                              #:list-incoming-typed-links
-                              #:list-incoming-typed-links-request
-                              #:list-incoming-typed-links-response #:list-index
-                              #:list-index-request #:list-index-response
+                              #:list-development-schema-arns #:list-directories
+                              #:list-facet-attributes #:list-facet-names
+                              #:list-incoming-typed-links #:list-index
                               #:list-managed-schema-arns
-                              #:list-managed-schema-arns-request
-                              #:list-managed-schema-arns-response
-                              #:list-object-attributes
-                              #:list-object-attributes-request
-                              #:list-object-attributes-response
-                              #:list-object-children
-                              #:list-object-children-request
-                              #:list-object-children-response
-                              #:list-object-parent-paths
-                              #:list-object-parent-paths-request
-                              #:list-object-parent-paths-response
-                              #:list-object-parents
-                              #:list-object-parents-request
-                              #:list-object-parents-response
+                              #:list-object-attributes #:list-object-children
+                              #:list-object-parent-paths #:list-object-parents
                               #:list-object-policies
-                              #:list-object-policies-request
-                              #:list-object-policies-response
                               #:list-outgoing-typed-links
-                              #:list-outgoing-typed-links-request
-                              #:list-outgoing-typed-links-response
                               #:list-policy-attachments
-                              #:list-policy-attachments-request
-                              #:list-policy-attachments-response
                               #:list-published-schema-arns
-                              #:list-published-schema-arns-request
-                              #:list-published-schema-arns-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-typed-link-facet-attributes
-                              #:list-typed-link-facet-attributes-request
-                              #:list-typed-link-facet-attributes-response
-                              #:list-typed-link-facet-names
-                              #:list-typed-link-facet-names-request
-                              #:list-typed-link-facet-names-response
-                              #:lookup-policy #:lookup-policy-request
-                              #:lookup-policy-response #:next-token
-                              #:not-index-exception #:not-node-exception
-                              #:not-policy-exception #:number-attribute-value
-                              #:number-results
-                              #:object-already-detached-exception
-                              #:object-attribute-action
+                              #:list-typed-link-facet-names #:lookup-policy
+                              #:next-token #:number-attribute-value
+                              #:number-results #:object-attribute-action
                               #:object-attribute-range
                               #:object-attribute-range-list
                               #:object-attribute-update
@@ -250,34 +133,22 @@
                               #:object-identifier-and-link-name-tuple
                               #:object-identifier-list
                               #:object-identifier-to-link-name-map
-                              #:object-not-detached-exception
                               #:object-reference #:object-type #:path-string
                               #:path-to-object-identifiers
                               #:path-to-object-identifiers-list
                               #:policy-attachment #:policy-attachment-list
                               #:policy-to-path #:policy-to-path-list
                               #:policy-type #:publish-schema
-                              #:publish-schema-request
-                              #:publish-schema-response #:put-schema-from-json
-                              #:put-schema-from-json-request
-                              #:put-schema-from-json-response #:range-mode
+                              #:put-schema-from-json #:range-mode
                               #:remove-facet-from-object
-                              #:remove-facet-from-object-request
-                              #:remove-facet-from-object-response
-                              #:required-attribute-behavior
-                              #:resource-not-found-exception
-                              #:retryable-conflict-exception #:rule #:rule-key
+                              #:required-attribute-behavior #:rule #:rule-key
                               #:rule-map #:rule-parameter-key
                               #:rule-parameter-map #:rule-parameter-value
-                              #:rule-type #:schema-already-exists-exception
-                              #:schema-already-published-exception
-                              #:schema-facet #:schema-facet-list
+                              #:rule-type #:schema-facet #:schema-facet-list
                               #:schema-json-document #:schema-name
                               #:selector-object-reference
-                              #:still-contains-links-exception
                               #:string-attribute-value #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:tags-number-results
                               #:typed-attribute-value
                               #:typed-attribute-value-range
@@ -291,29 +162,13 @@
                               #:typed-link-name #:typed-link-name-list
                               #:typed-link-schema-and-facet-name
                               #:typed-link-specifier
-                              #:typed-link-specifier-list
-                              #:unsupported-index-type-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-action-type
-                              #:update-facet #:update-facet-request
-                              #:update-facet-response #:update-link-attributes
-                              #:update-link-attributes-request
-                              #:update-link-attributes-response
-                              #:update-object-attributes
-                              #:update-object-attributes-request
-                              #:update-object-attributes-response
-                              #:update-schema #:update-schema-request
-                              #:update-schema-response
+                              #:typed-link-specifier-list #:untag-resource
+                              #:update-action-type #:update-facet
+                              #:update-link-attributes
+                              #:update-object-attributes #:update-schema
                               #:update-typed-link-facet
-                              #:update-typed-link-facet-request
-                              #:update-typed-link-facet-response
                               #:upgrade-applied-schema
-                              #:upgrade-applied-schema-request
-                              #:upgrade-applied-schema-response
-                              #:upgrade-published-schema
-                              #:upgrade-published-schema-request
-                              #:upgrade-published-schema-response
-                              #:validation-exception #:version))
+                              #:upgrade-published-schema #:version))
 (common-lisp:in-package #:pira/clouddirectory)
 
 (smithy/sdk/service:define-service amazon-cloud-directory-20170111 :shape-name

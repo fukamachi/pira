@@ -17,7 +17,7 @@
                               #:client-token #:code-guru-profiler
                               #:compute-platform #:configure-agent
                               #:configure-agent-request
-                              #:configure-agent-response #:conflict-exception
+                              #:configure-agent-response
                               #:create-profiling-group
                               #:create-profiling-group-request
                               #:create-profiling-group-response
@@ -46,7 +46,6 @@
                               #:get-recommendations
                               #:get-recommendations-request
                               #:get-recommendations-response
-                              #:internal-server-exception
                               #:list-findings-reports
                               #:list-findings-reports-request
                               #:list-findings-reports-response
@@ -78,22 +77,20 @@
                               #:remove-notification-channel-request
                               #:remove-notification-channel-response
                               #:remove-permission #:remove-permission-request
-                              #:remove-permission-response
-                              #:resource-not-found-exception #:revision-id
-                              #:service-quota-exceeded-exception #:strings
-                              #:submit-feedback #:submit-feedback-request
+                              #:remove-permission-response #:revision-id
+                              #:strings #:submit-feedback
+                              #:submit-feedback-request
                               #:submit-feedback-response #:tag-keys
                               #:tag-resource #:tag-resource-request
                               #:tag-resource-response #:tags-map #:target-frame
-                              #:target-frames #:thread-states
-                              #:throttling-exception #:timestamp
+                              #:target-frames #:thread-states #:timestamp
                               #:timestamp-structure #:unprocessed-end-time-map
                               #:untag-resource #:untag-resource-request
                               #:untag-resource-response
                               #:update-profiling-group
                               #:update-profiling-group-request
-                              #:update-profiling-group-response #:user-feedback
-                              #:validation-exception))
+                              #:update-profiling-group-response
+                              #:user-feedback))
 (common-lisp:in-package #:pira/codeguruprofiler)
 
 (smithy/sdk/service:define-service code-guru-profiler :shape-name

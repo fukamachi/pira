@@ -1,18 +1,11 @@
 (uiop/package:define-package #:pira/datazone (:use)
                              (:export #:accept-choice #:accept-choices
-                              #:accept-predictions #:accept-predictions-input
-                              #:accept-predictions-output #:accept-rule
+                              #:accept-predictions #:accept-rule
                               #:accept-rule-behavior
                               #:accept-subscription-request
-                              #:accept-subscription-request-input
-                              #:accept-subscription-request-output
                               #:accepted-asset-scope #:accepted-asset-scopes
-                              #:access-denied-exception #:action-link
-                              #:action-parameters #:add-entity-owner
-                              #:add-entity-owner-input
-                              #:add-entity-owner-output #:add-policy-grant
-                              #:add-policy-grant-input
-                              #:add-policy-grant-output
+                              #:action-link #:action-parameters
+                              #:add-entity-owner #:add-policy-grant
                               #:add-to-project-member-pool-policy-grant-detail
                               #:aggregation-attribute-display-value
                               #:aggregation-attribute-value
@@ -38,8 +31,6 @@
                               #:asset-type-identifier #:asset-type-identifiers
                               #:asset-type-item #:asset-types-for-rule
                               #:associate-environment-role
-                              #:associate-environment-role-input
-                              #:associate-environment-role-output
                               #:athena-properties-input
                               #:athena-properties-output
                               #:athena-properties-patch #:attribute #:auth-type
@@ -55,10 +46,7 @@
                               #:basic-authentication-credentials
                               #:business-name-generation-configuration
                               #:cancel-metadata-generation-run
-                              #:cancel-metadata-generation-run-input
-                              #:cancel-metadata-generation-run-output
-                              #:cancel-subscription #:cancel-subscription-input
-                              #:cancel-subscription-output #:change-action
+                              #:cancel-subscription #:change-action
                               #:client-token #:cloud-formation-properties
                               #:column-filter-configuration #:column-name-list
                               #:compute-environments
@@ -67,84 +55,40 @@
                               #:configurable-action-parameter-list
                               #:configurable-action-type-authorization
                               #:configurable-environment-action
-                              #:conflict-exception #:connection-credentials
-                              #:connection-id #:connection-name
-                              #:connection-properties
+                              #:connection-credentials #:connection-id
+                              #:connection-name #:connection-properties
                               #:connection-properties-input
                               #:connection-properties-output
                               #:connection-properties-patch #:connection-status
                               #:connection-summaries #:connection-summary
                               #:connection-type #:create-asset
-                              #:create-asset-filter #:create-asset-filter-input
-                              #:create-asset-filter-output #:create-asset-input
-                              #:create-asset-output #:create-asset-revision
-                              #:create-asset-revision-input
-                              #:create-asset-revision-output
-                              #:create-asset-type #:create-asset-type-input
-                              #:create-asset-type-output
+                              #:create-asset-filter #:create-asset-revision
+                              #:create-asset-type
                               #:create-asset-type-policy-grant-detail
-                              #:create-connection #:create-connection-input
-                              #:create-connection-output #:create-data-product
-                              #:create-data-product-input
-                              #:create-data-product-output
+                              #:create-connection #:create-data-product
                               #:create-data-product-revision
-                              #:create-data-product-revision-input
-                              #:create-data-product-revision-output
-                              #:create-data-source #:create-data-source-input
-                              #:create-data-source-output #:create-domain
-                              #:create-domain-input #:create-domain-output
-                              #:create-domain-unit #:create-domain-unit-input
-                              #:create-domain-unit-output
+                              #:create-data-source #:create-domain
+                              #:create-domain-unit
                               #:create-domain-unit-policy-grant-detail
                               #:create-environment #:create-environment-action
-                              #:create-environment-action-input
-                              #:create-environment-action-output
-                              #:create-environment-input
-                              #:create-environment-output
                               #:create-environment-profile
-                              #:create-environment-profile-input
-                              #:create-environment-profile-output
                               #:create-environment-profile-policy-grant-detail
-                              #:create-form-type #:create-form-type-input
-                              #:create-form-type-output
+                              #:create-form-type
                               #:create-form-type-policy-grant-detail
-                              #:create-glossary #:create-glossary-input
-                              #:create-glossary-output
+                              #:create-glossary
                               #:create-glossary-policy-grant-detail
-                              #:create-glossary-term
-                              #:create-glossary-term-input
-                              #:create-glossary-term-output
-                              #:create-group-profile
-                              #:create-group-profile-input
-                              #:create-group-profile-output
-                              #:create-listing-change-set
-                              #:create-listing-change-set-input
-                              #:create-listing-change-set-output
-                              #:create-project
+                              #:create-glossary-term #:create-group-profile
+                              #:create-listing-change-set #:create-project
                               #:create-project-from-project-profile-policy-grant-detail
-                              #:create-project-input
                               #:create-project-membership
-                              #:create-project-membership-input
-                              #:create-project-membership-output
-                              #:create-project-output
                               #:create-project-policy-grant-detail
-                              #:create-project-profile
-                              #:create-project-profile-input
-                              #:create-project-profile-output #:create-rule
-                              #:create-rule-input #:create-rule-output
+                              #:create-project-profile #:create-rule
                               #:create-subscription-grant
-                              #:create-subscription-grant-input
-                              #:create-subscription-grant-output
                               #:create-subscription-request
-                              #:create-subscription-request-input
-                              #:create-subscription-request-output
                               #:create-subscription-target
-                              #:create-subscription-target-input
-                              #:create-subscription-target-output
-                              #:create-user-profile #:create-user-profile-input
-                              #:create-user-profile-output #:created-at
-                              #:created-by #:credential-map #:cron-string
-                              #:custom-parameter #:custom-parameter-list
+                              #:create-user-profile #:created-at #:created-by
+                              #:credential-map #:cron-string #:custom-parameter
+                              #:custom-parameter-list
                               #:data-asset-activity-status
                               #:data-point-identifier #:data-product
                               #:data-product-description #:data-product-id
@@ -171,61 +115,28 @@
                               #:data-source-summary #:data-source-type
                               #:data-zone #:data-zone-entity-type #:date-time
                               #:decision-comment #:delete-asset
-                              #:delete-asset-filter #:delete-asset-filter-input
-                              #:delete-asset-input #:delete-asset-output
-                              #:delete-asset-type #:delete-asset-type-input
-                              #:delete-asset-type-output #:delete-connection
-                              #:delete-connection-input
-                              #:delete-connection-output #:delete-data-product
-                              #:delete-data-product-input
-                              #:delete-data-product-output #:delete-data-source
-                              #:delete-data-source-input
-                              #:delete-data-source-output #:delete-domain
-                              #:delete-domain-input #:delete-domain-output
-                              #:delete-domain-unit #:delete-domain-unit-input
-                              #:delete-domain-unit-output #:delete-environment
+                              #:delete-asset-filter #:delete-asset-type
+                              #:delete-connection #:delete-data-product
+                              #:delete-data-source #:delete-domain
+                              #:delete-domain-unit #:delete-environment
                               #:delete-environment-action
-                              #:delete-environment-action-input
                               #:delete-environment-blueprint-configuration
-                              #:delete-environment-blueprint-configuration-input
-                              #:delete-environment-blueprint-configuration-output
-                              #:delete-environment-input
-                              #:delete-environment-profile
-                              #:delete-environment-profile-input
-                              #:delete-form-type #:delete-form-type-input
-                              #:delete-form-type-output #:delete-glossary
-                              #:delete-glossary-input #:delete-glossary-output
-                              #:delete-glossary-term
-                              #:delete-glossary-term-input
-                              #:delete-glossary-term-output #:delete-listing
-                              #:delete-listing-input #:delete-listing-output
-                              #:delete-project #:delete-project-input
+                              #:delete-environment-profile #:delete-form-type
+                              #:delete-glossary #:delete-glossary-term
+                              #:delete-listing #:delete-project
                               #:delete-project-membership
-                              #:delete-project-membership-input
-                              #:delete-project-membership-output
-                              #:delete-project-output #:delete-project-profile
-                              #:delete-project-profile-input
-                              #:delete-project-profile-output #:delete-rule
-                              #:delete-rule-input #:delete-rule-output
+                              #:delete-project-profile #:delete-rule
                               #:delete-subscription-grant
-                              #:delete-subscription-grant-input
-                              #:delete-subscription-grant-output
                               #:delete-subscription-request
-                              #:delete-subscription-request-input
                               #:delete-subscription-target
-                              #:delete-subscription-target-input
-                              #:delete-time-series-data-points
-                              #:delete-time-series-data-points-input
-                              #:delete-time-series-data-points-output
-                              #:deployment #:deployment-message
-                              #:deployment-messages-list #:deployment-mode
-                              #:deployment-order #:deployment-properties
-                              #:deployment-status #:deployment-type
-                              #:description #:detailed-glossary-term
+                              #:delete-time-series-data-points #:deployment
+                              #:deployment-message #:deployment-messages-list
+                              #:deployment-mode #:deployment-order
+                              #:deployment-properties #:deployment-status
+                              #:deployment-type #:description
+                              #:detailed-glossary-term
                               #:detailed-glossary-terms
-                              #:disassociate-environment-role
-                              #:disassociate-environment-role-input
-                              #:disassociate-environment-role-output #:domain
+                              #:disassociate-environment-role #:domain
                               #:domain-description #:domain-id #:domain-name
                               #:domain-status #:domain-summaries
                               #:domain-summary #:domain-unit
@@ -289,77 +200,26 @@
                               #:form-type-data #:form-type-identifier
                               #:form-type-name #:form-type-status #:forms
                               #:forms-input-map #:forms-output-map #:get-asset
-                              #:get-asset-filter #:get-asset-filter-input
-                              #:get-asset-filter-output #:get-asset-input
-                              #:get-asset-output #:get-asset-type
-                              #:get-asset-type-input #:get-asset-type-output
-                              #:get-connection #:get-connection-input
-                              #:get-connection-output #:get-data-product
-                              #:get-data-product-input
-                              #:get-data-product-output #:get-data-source
-                              #:get-data-source-input #:get-data-source-output
-                              #:get-data-source-run #:get-data-source-run-input
-                              #:get-data-source-run-output #:get-domain
-                              #:get-domain-input #:get-domain-output
-                              #:get-domain-unit #:get-domain-unit-input
-                              #:get-domain-unit-output #:get-environment
+                              #:get-asset-filter #:get-asset-type
+                              #:get-connection #:get-data-product
+                              #:get-data-source #:get-data-source-run
+                              #:get-domain #:get-domain-unit #:get-environment
                               #:get-environment-action
-                              #:get-environment-action-input
-                              #:get-environment-action-output
                               #:get-environment-blueprint
                               #:get-environment-blueprint-configuration
-                              #:get-environment-blueprint-configuration-input
-                              #:get-environment-blueprint-configuration-output
-                              #:get-environment-blueprint-input
-                              #:get-environment-blueprint-output
                               #:get-environment-credentials
-                              #:get-environment-credentials-input
-                              #:get-environment-credentials-output
-                              #:get-environment-input #:get-environment-output
-                              #:get-environment-profile
-                              #:get-environment-profile-input
-                              #:get-environment-profile-output #:get-form-type
-                              #:get-form-type-input #:get-form-type-output
-                              #:get-glossary #:get-glossary-input
-                              #:get-glossary-output #:get-glossary-term
-                              #:get-glossary-term-input
-                              #:get-glossary-term-output #:get-group-profile
-                              #:get-group-profile-input
-                              #:get-group-profile-output
-                              #:get-iam-portal-login-url
-                              #:get-iam-portal-login-url-input
-                              #:get-iam-portal-login-url-output #:get-job-run
-                              #:get-job-run-input #:get-job-run-output
-                              #:get-lineage-event #:get-lineage-event-input
-                              #:get-lineage-event-output #:get-lineage-node
-                              #:get-lineage-node-input
-                              #:get-lineage-node-output #:get-listing
-                              #:get-listing-input #:get-listing-output
-                              #:get-metadata-generation-run
-                              #:get-metadata-generation-run-input
-                              #:get-metadata-generation-run-output
-                              #:get-project #:get-project-input
-                              #:get-project-output #:get-project-profile
-                              #:get-project-profile-input
-                              #:get-project-profile-output #:get-rule
-                              #:get-rule-input #:get-rule-output
+                              #:get-environment-profile #:get-form-type
+                              #:get-glossary #:get-glossary-term
+                              #:get-group-profile #:get-iam-portal-login-url
+                              #:get-job-run #:get-lineage-event
+                              #:get-lineage-node #:get-listing
+                              #:get-metadata-generation-run #:get-project
+                              #:get-project-profile #:get-rule
                               #:get-subscription #:get-subscription-grant
-                              #:get-subscription-grant-input
-                              #:get-subscription-grant-output
-                              #:get-subscription-input
-                              #:get-subscription-output
                               #:get-subscription-request-details
-                              #:get-subscription-request-details-input
-                              #:get-subscription-request-details-output
                               #:get-subscription-target
-                              #:get-subscription-target-input
-                              #:get-subscription-target-output
-                              #:get-time-series-data-point
-                              #:get-time-series-data-point-input
-                              #:get-time-series-data-point-output
-                              #:get-user-profile #:get-user-profile-input
-                              #:get-user-profile-output #:glossary
-                              #:glossary-description #:glossary-id
+                              #:get-time-series-data-point #:get-user-profile
+                              #:glossary #:glossary-description #:glossary-id
                               #:glossary-item
                               #:glossary-item-additional-attributes
                               #:glossary-name #:glossary-status #:glossary-term
@@ -388,14 +248,13 @@
                               #:iam-properties-input #:iam-properties-output
                               #:iam-properties-patch #:iam-role-arn
                               #:iam-user-profile-details #:import #:import-list
-                              #:in-expression #:internal-server-exception
-                              #:inventory-search-scope #:is-not-null-expression
-                              #:is-null-expression #:item-glossary-terms
-                              #:job-run-details #:job-run-error #:job-run-mode
-                              #:job-run-status #:job-run-summaries
-                              #:job-run-summary #:job-type #:kms-key-arn
-                              #:lake-formation-configuration #:last-name
-                              #:less-than-expression
+                              #:in-expression #:inventory-search-scope
+                              #:is-not-null-expression #:is-null-expression
+                              #:item-glossary-terms #:job-run-details
+                              #:job-run-error #:job-run-mode #:job-run-status
+                              #:job-run-summaries #:job-run-summary #:job-type
+                              #:kms-key-arn #:lake-formation-configuration
+                              #:last-name #:less-than-expression
                               #:less-than-or-equal-to-expression
                               #:like-expression #:lineage-event
                               #:lineage-event-error-message
@@ -410,84 +269,28 @@
                               #:lineage-node-type-item #:lineage-run-details
                               #:lineage-sql-query-run-details
                               #:lineage-sync-schedule #:list-asset-filters
-                              #:list-asset-filters-input
-                              #:list-asset-filters-output
-                              #:list-asset-revisions
-                              #:list-asset-revisions-input
-                              #:list-asset-revisions-output #:list-connections
-                              #:list-connections-input
-                              #:list-connections-output
+                              #:list-asset-revisions #:list-connections
                               #:list-data-product-revisions
-                              #:list-data-product-revisions-input
-                              #:list-data-product-revisions-output
                               #:list-data-source-run-activities
-                              #:list-data-source-run-activities-input
-                              #:list-data-source-run-activities-output
-                              #:list-data-source-runs
-                              #:list-data-source-runs-input
-                              #:list-data-source-runs-output
-                              #:list-data-sources #:list-data-sources-input
-                              #:list-data-sources-output
-                              #:list-domain-units-for-parent
-                              #:list-domain-units-for-parent-input
-                              #:list-domain-units-for-parent-output
-                              #:list-domains #:list-domains-input
-                              #:list-domains-output #:list-entity-owners
-                              #:list-entity-owners-input
-                              #:list-entity-owners-output
+                              #:list-data-source-runs #:list-data-sources
+                              #:list-domain-units-for-parent #:list-domains
+                              #:list-entity-owners
                               #:list-environment-action-summaries
                               #:list-environment-actions
-                              #:list-environment-actions-input
-                              #:list-environment-actions-output
                               #:list-environment-blueprint-configurations
-                              #:list-environment-blueprint-configurations-input
-                              #:list-environment-blueprint-configurations-output
                               #:list-environment-blueprints
-                              #:list-environment-blueprints-input
-                              #:list-environment-blueprints-output
-                              #:list-environment-profiles
-                              #:list-environment-profiles-input
-                              #:list-environment-profiles-output
-                              #:list-environments #:list-environments-input
-                              #:list-environments-output #:list-job-runs
-                              #:list-job-runs-input #:list-job-runs-output
-                              #:list-lineage-events #:list-lineage-events-input
-                              #:list-lineage-events-output
+                              #:list-environment-profiles #:list-environments
+                              #:list-job-runs #:list-lineage-events
                               #:list-lineage-node-history
-                              #:list-lineage-node-history-input
-                              #:list-lineage-node-history-output
                               #:list-metadata-generation-runs
-                              #:list-metadata-generation-runs-input
-                              #:list-metadata-generation-runs-output
-                              #:list-notifications #:list-notifications-input
-                              #:list-notifications-output #:list-policy-grants
-                              #:list-policy-grants-input
-                              #:list-policy-grants-output
+                              #:list-notifications #:list-policy-grants
                               #:list-project-memberships
-                              #:list-project-memberships-input
-                              #:list-project-memberships-output
-                              #:list-project-profiles
-                              #:list-project-profiles-input
-                              #:list-project-profiles-output #:list-projects
-                              #:list-projects-input #:list-projects-output
-                              #:list-rules #:list-rules-input
-                              #:list-rules-output #:list-subscription-grants
-                              #:list-subscription-grants-input
-                              #:list-subscription-grants-output
+                              #:list-project-profiles #:list-projects
+                              #:list-rules #:list-subscription-grants
                               #:list-subscription-requests
-                              #:list-subscription-requests-input
-                              #:list-subscription-requests-output
-                              #:list-subscription-targets
-                              #:list-subscription-targets-input
-                              #:list-subscription-targets-output
-                              #:list-subscriptions #:list-subscriptions-input
-                              #:list-subscriptions-output
+                              #:list-subscription-targets #:list-subscriptions
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-time-series-data-points
-                              #:list-time-series-data-points-input
-                              #:list-time-series-data-points-output #:listing
+                              #:list-time-series-data-points #:listing
                               #:listing-id #:listing-item #:listing-name
                               #:listing-revision #:listing-revision-input
                               #:listing-status #:listing-summaries
@@ -534,11 +337,7 @@
                               #:policy-arn #:policy-grant-detail
                               #:policy-grant-list #:policy-grant-member
                               #:policy-grant-principal #:post-lineage-event
-                              #:post-lineage-event-input
-                              #:post-lineage-event-output
                               #:post-time-series-data-points
-                              #:post-time-series-data-points-input
-                              #:post-time-series-data-points-output
                               #:prediction-choices #:prediction-configuration
                               #:project-deletion-error #:project-designation
                               #:project-grant-filter #:project-id #:project-ids
@@ -554,8 +353,6 @@
                               #:provisioning-configuration-list
                               #:provisioning-properties
                               #:put-environment-blueprint-configuration
-                              #:put-environment-blueprint-configuration-input
-                              #:put-environment-blueprint-configuration-output
                               #:recommendation-configuration
                               #:redshift-cluster-storage
                               #:redshift-credential-configuration
@@ -573,23 +370,14 @@
                               #:region-name #:regional-parameter
                               #:regional-parameter-map #:reject-choice
                               #:reject-choices #:reject-predictions
-                              #:reject-predictions-input
-                              #:reject-predictions-output #:reject-rule
-                              #:reject-rule-behavior
+                              #:reject-rule #:reject-rule-behavior
                               #:reject-subscription-request
-                              #:reject-subscription-request-input
-                              #:reject-subscription-request-output
                               #:relational-filter-configuration
                               #:relational-filter-configurations
-                              #:remove-entity-owner #:remove-entity-owner-input
-                              #:remove-entity-owner-output
-                              #:remove-policy-grant #:remove-policy-grant-input
-                              #:remove-policy-grant-output #:request-reason
-                              #:required-metadata-form-list #:resource
-                              #:resource-list #:resource-not-found-exception
-                              #:revision #:revision-input #:revoke-subscription
-                              #:revoke-subscription-input
-                              #:revoke-subscription-output #:role-arn
+                              #:remove-entity-owner #:remove-policy-grant
+                              #:request-reason #:required-metadata-form-list
+                              #:resource #:resource-list #:revision
+                              #:revision-input #:revoke-subscription #:role-arn
                               #:row-filter #:row-filter-configuration
                               #:row-filter-expression #:row-filter-list #:rule
                               #:rule-action #:rule-asset-type-list
@@ -607,32 +395,21 @@
                               #:sage-maker-run-configuration-input
                               #:sage-maker-run-configuration-output
                               #:schedule-configuration #:search
-                              #:search-group-profiles
-                              #:search-group-profiles-input
-                              #:search-group-profiles-output #:search-in-item
-                              #:search-in-list #:search-input
-                              #:search-inventory-result-item
+                              #:search-group-profiles #:search-in-item
+                              #:search-in-list #:search-inventory-result-item
                               #:search-inventory-result-items #:search-listings
-                              #:search-listings-input #:search-listings-output
-                              #:search-output
                               #:search-output-additional-attribute
                               #:search-output-additional-attributes
                               #:search-result-item #:search-result-items
                               #:search-sort #:search-text #:search-types
-                              #:search-types-input #:search-types-output
                               #:search-types-result-item
                               #:search-types-result-items
-                              #:search-user-profiles
-                              #:search-user-profiles-input
-                              #:search-user-profiles-output
-                              #:security-group-id-list #:self-grant-status
-                              #:self-grant-status-detail
+                              #:search-user-profiles #:security-group-id-list
+                              #:self-grant-status #:self-grant-status-detail
                               #:self-grant-status-details
-                              #:self-grant-status-output
-                              #:service-quota-exceeded-exception
-                              #:short-description #:single-sign-on #:smithy
-                              #:sort-field-connection #:sort-field-project
-                              #:sort-key #:sort-order
+                              #:self-grant-status-output #:short-description
+                              #:single-sign-on #:smithy #:sort-field-connection
+                              #:sort-field-project #:sort-key #:sort-order
                               #:spark-emr-properties-input
                               #:spark-emr-properties-output
                               #:spark-emr-properties-patch #:spark-glue-args
@@ -640,11 +417,7 @@
                               #:spark-glue-properties-output
                               #:sso-user-profile-details
                               #:start-data-source-run
-                              #:start-data-source-run-input
-                              #:start-data-source-run-output
-                              #:start-metadata-generation-run
-                              #:start-metadata-generation-run-input
-                              #:start-metadata-generation-run-output #:status
+                              #:start-metadata-generation-run #:status
                               #:string-list #:subnet-id #:subnet-id-list
                               #:subscribed-asset #:subscribed-asset-listing
                               #:subscribed-assets #:subscribed-listing
@@ -672,11 +445,9 @@
                               #:subscription-target-name
                               #:subscription-target-summary
                               #:subscription-targets #:subscriptions #:tag-key
-                              #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:target-entity-type #:task-id
-                              #:task-status #:term-relations #:text-match-item
-                              #:text-matches #:throttling-exception
+                              #:tag-key-list #:tag-resource #:tag-value #:tags
+                              #:target-entity-type #:task-id #:task-status
+                              #:term-relations #:text-match-item #:text-matches
                               #:time-series-data-point-form-input
                               #:time-series-data-point-form-input-list
                               #:time-series-data-point-form-output
@@ -687,51 +458,19 @@
                               #:time-series-entity-type #:time-series-form-name
                               #:timezone #:title #:token-url-parameters-map
                               #:topic #:tracking-asset-arns #:tracking-assets
-                              #:type-name #:types-search-scope
-                              #:unauthorized-exception #:unit #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-asset-filter
-                              #:update-asset-filter-input
-                              #:update-asset-filter-output #:update-connection
-                              #:update-connection-input
-                              #:update-connection-output #:update-data-source
-                              #:update-data-source-input
-                              #:update-data-source-output #:update-domain
-                              #:update-domain-input #:update-domain-output
-                              #:update-domain-unit #:update-domain-unit-input
-                              #:update-domain-unit-output #:update-environment
-                              #:update-environment-action
-                              #:update-environment-action-input
-                              #:update-environment-action-output
-                              #:update-environment-input
-                              #:update-environment-output
-                              #:update-environment-profile
-                              #:update-environment-profile-input
-                              #:update-environment-profile-output
-                              #:update-glossary #:update-glossary-input
-                              #:update-glossary-output #:update-glossary-term
-                              #:update-glossary-term-input
-                              #:update-glossary-term-output
-                              #:update-group-profile
-                              #:update-group-profile-input
-                              #:update-group-profile-output #:update-project
-                              #:update-project-input #:update-project-output
-                              #:update-project-profile
-                              #:update-project-profile-input
-                              #:update-project-profile-output #:update-rule
-                              #:update-rule-input #:update-rule-output
-                              #:update-subscription-grant-status
-                              #:update-subscription-grant-status-input
-                              #:update-subscription-grant-status-output
+                              #:type-name #:types-search-scope #:unit
+                              #:untag-resource #:update-asset-filter
+                              #:update-connection #:update-data-source
+                              #:update-domain #:update-domain-unit
+                              #:update-environment #:update-environment-action
+                              #:update-environment-profile #:update-glossary
+                              #:update-glossary-term #:update-group-profile
+                              #:update-project #:update-project-profile
+                              #:update-rule #:update-subscription-grant-status
                               #:update-subscription-request
-                              #:update-subscription-request-input
-                              #:update-subscription-request-output
                               #:update-subscription-target
-                              #:update-subscription-target-input
-                              #:update-subscription-target-output
-                              #:update-user-profile #:update-user-profile-input
-                              #:update-user-profile-output #:updated-at
-                              #:updated-by #:use-asset-type-policy-grant-detail
+                              #:update-user-profile #:updated-at #:updated-by
+                              #:use-asset-type-policy-grant-detail
                               #:user-assignment #:user-designation
                               #:user-details #:user-identifier
                               #:user-policy-grant-principal
@@ -740,7 +479,7 @@
                               #:user-profile-summaries #:user-profile-summary
                               #:user-profile-type #:user-search-text
                               #:user-search-type #:user-type #:username
-                              #:username-password #:validation-exception))
+                              #:username-password))
 (common-lisp:in-package #:pira/datazone)
 
 (smithy/sdk/service:define-service data-zone :shape-name "DataZone" :version

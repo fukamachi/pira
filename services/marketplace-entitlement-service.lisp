@@ -5,12 +5,8 @@
                               #:filter-value #:filter-value-list
                               #:get-entitlement-filter-name
                               #:get-entitlement-filters #:get-entitlements
-                              #:get-entitlements-request
-                              #:get-entitlements-result #:integer
-                              #:internal-service-error-exception
-                              #:invalid-parameter-exception #:non-empty-string
-                              #:page-size-integer #:product-code #:string
-                              #:throttling-exception #:timestamp))
+                              #:integer #:non-empty-string #:page-size-integer
+                              #:product-code #:string #:timestamp))
 (common-lisp:in-package #:pira/marketplace-entitlement-service)
 
 (smithy/sdk/service:define-service awsmpentitlement-service :shape-name

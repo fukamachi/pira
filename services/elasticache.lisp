@@ -1,35 +1,21 @@
 (uiop/package:define-package #:pira/elasticache (:use)
-                             (:export
-                              #:apicall-rate-for-customer-exceeded-fault
-                              #:azmode #:access-string #:add-tags-to-resource
-                              #:add-tags-to-resource-message
-                              #:allowed-node-group-id
-                              #:allowed-node-type-modifications-message
+                             (:export #:azmode #:access-string
+                              #:add-tags-to-resource #:allowed-node-group-id
                               #:amazon-elasti-cache-v9
                               #:auth-token-update-status
                               #:auth-token-update-strategy-type
                               #:authentication #:authentication-mode
                               #:authentication-type
-                              #:authorization-already-exists-fault
-                              #:authorization-not-found-fault
                               #:authorize-cache-security-group-ingress
-                              #:authorize-cache-security-group-ingress-message
-                              #:authorize-cache-security-group-ingress-result
                               #:automatic-failover-status #:availability-zone
                               #:availability-zones-list
                               #:aws-query-error-message
                               #:batch-apply-update-action
-                              #:batch-apply-update-action-message
-                              #:batch-stop-update-action
-                              #:batch-stop-update-action-message #:boolean
+                              #:batch-stop-update-action #:boolean
                               #:boolean-optional #:cache-cluster
-                              #:cache-cluster-already-exists-fault
                               #:cache-cluster-id-list #:cache-cluster-list
-                              #:cache-cluster-message
-                              #:cache-cluster-not-found-fault
                               #:cache-engine-version
-                              #:cache-engine-version-list
-                              #:cache-engine-version-message #:cache-node
+                              #:cache-engine-version-list #:cache-node
                               #:cache-node-ids-list #:cache-node-list
                               #:cache-node-type-specific-parameter
                               #:cache-node-type-specific-parameters-list
@@ -38,245 +24,111 @@
                               #:cache-node-update-status
                               #:cache-node-update-status-list
                               #:cache-parameter-group
-                              #:cache-parameter-group-already-exists-fault
                               #:cache-parameter-group-details
                               #:cache-parameter-group-list
                               #:cache-parameter-group-name-message
-                              #:cache-parameter-group-not-found-fault
-                              #:cache-parameter-group-quota-exceeded-fault
                               #:cache-parameter-group-status
-                              #:cache-parameter-groups-message
                               #:cache-security-group
-                              #:cache-security-group-already-exists-fault
                               #:cache-security-group-membership
                               #:cache-security-group-membership-list
-                              #:cache-security-group-message
                               #:cache-security-group-name-list
-                              #:cache-security-group-not-found-fault
-                              #:cache-security-group-quota-exceeded-fault
                               #:cache-security-groups #:cache-subnet-group
-                              #:cache-subnet-group-already-exists-fault
-                              #:cache-subnet-group-in-use
-                              #:cache-subnet-group-message
-                              #:cache-subnet-group-not-found-fault
-                              #:cache-subnet-group-quota-exceeded-fault
-                              #:cache-subnet-groups
-                              #:cache-subnet-quota-exceeded-fault
-                              #:cache-usage-limits #:change-type
+                              #:cache-subnet-groups #:cache-usage-limits
+                              #:change-type
                               #:cloud-watch-logs-destination-details
                               #:cluster-id-list #:cluster-mode
-                              #:cluster-quota-for-customer-exceeded-fault
-                              #:complete-migration #:complete-migration-message
-                              #:complete-migration-response #:configure-shard
-                              #:copy-serverless-cache-snapshot
-                              #:copy-serverless-cache-snapshot-request
-                              #:copy-serverless-cache-snapshot-response
-                              #:copy-snapshot #:copy-snapshot-message
-                              #:copy-snapshot-result #:create-cache-cluster
-                              #:create-cache-cluster-message
-                              #:create-cache-cluster-result
+                              #:complete-migration #:configure-shard
+                              #:copy-serverless-cache-snapshot #:copy-snapshot
+                              #:create-cache-cluster
                               #:create-cache-parameter-group
-                              #:create-cache-parameter-group-message
-                              #:create-cache-parameter-group-result
                               #:create-cache-security-group
-                              #:create-cache-security-group-message
-                              #:create-cache-security-group-result
                               #:create-cache-subnet-group
-                              #:create-cache-subnet-group-message
-                              #:create-cache-subnet-group-result
                               #:create-global-replication-group
-                              #:create-global-replication-group-message
-                              #:create-global-replication-group-result
                               #:create-replication-group
-                              #:create-replication-group-message
-                              #:create-replication-group-result
                               #:create-serverless-cache
-                              #:create-serverless-cache-request
-                              #:create-serverless-cache-response
                               #:create-serverless-cache-snapshot
-                              #:create-serverless-cache-snapshot-request
-                              #:create-serverless-cache-snapshot-response
-                              #:create-snapshot #:create-snapshot-message
-                              #:create-snapshot-result #:create-user
-                              #:create-user-group #:create-user-group-message
-                              #:create-user-message #:customer-node-endpoint
+                              #:create-snapshot #:create-user
+                              #:create-user-group #:customer-node-endpoint
                               #:customer-node-endpoint-list #:data-storage
                               #:data-storage-unit #:data-tiering-status
                               #:decrease-node-groups-in-global-replication-group
-                              #:decrease-node-groups-in-global-replication-group-message
-                              #:decrease-node-groups-in-global-replication-group-result
-                              #:decrease-replica-count
-                              #:decrease-replica-count-message
-                              #:decrease-replica-count-result
-                              #:default-user-associated-to-user-group-fault
-                              #:default-user-required #:delete-cache-cluster
-                              #:delete-cache-cluster-message
-                              #:delete-cache-cluster-result
+                              #:decrease-replica-count #:delete-cache-cluster
                               #:delete-cache-parameter-group
-                              #:delete-cache-parameter-group-message
                               #:delete-cache-security-group
-                              #:delete-cache-security-group-message
                               #:delete-cache-subnet-group
-                              #:delete-cache-subnet-group-message
                               #:delete-global-replication-group
-                              #:delete-global-replication-group-message
-                              #:delete-global-replication-group-result
                               #:delete-replication-group
-                              #:delete-replication-group-message
-                              #:delete-replication-group-result
                               #:delete-serverless-cache
-                              #:delete-serverless-cache-request
-                              #:delete-serverless-cache-response
                               #:delete-serverless-cache-snapshot
-                              #:delete-serverless-cache-snapshot-request
-                              #:delete-serverless-cache-snapshot-response
-                              #:delete-snapshot #:delete-snapshot-message
-                              #:delete-snapshot-result #:delete-user
-                              #:delete-user-group #:delete-user-group-message
-                              #:delete-user-message #:describe-cache-clusters
-                              #:describe-cache-clusters-message
+                              #:delete-snapshot #:delete-user
+                              #:delete-user-group #:describe-cache-clusters
                               #:describe-cache-engine-versions
-                              #:describe-cache-engine-versions-message
                               #:describe-cache-parameter-groups
-                              #:describe-cache-parameter-groups-message
                               #:describe-cache-parameters
-                              #:describe-cache-parameters-message
                               #:describe-cache-security-groups
-                              #:describe-cache-security-groups-message
                               #:describe-cache-subnet-groups
-                              #:describe-cache-subnet-groups-message
                               #:describe-engine-default-parameters
-                              #:describe-engine-default-parameters-message
-                              #:describe-engine-default-parameters-result
-                              #:describe-events #:describe-events-message
+                              #:describe-events
                               #:describe-global-replication-groups
-                              #:describe-global-replication-groups-message
-                              #:describe-global-replication-groups-result
                               #:describe-replication-groups
-                              #:describe-replication-groups-message
                               #:describe-reserved-cache-nodes
-                              #:describe-reserved-cache-nodes-message
                               #:describe-reserved-cache-nodes-offerings
-                              #:describe-reserved-cache-nodes-offerings-message
                               #:describe-serverless-cache-snapshots
-                              #:describe-serverless-cache-snapshots-request
-                              #:describe-serverless-cache-snapshots-response
                               #:describe-serverless-caches
-                              #:describe-serverless-caches-request
-                              #:describe-serverless-caches-response
-                              #:describe-service-updates
-                              #:describe-service-updates-message
-                              #:describe-snapshots
-                              #:describe-snapshots-list-message
-                              #:describe-snapshots-message
-                              #:describe-update-actions
-                              #:describe-update-actions-message
-                              #:describe-user-groups
-                              #:describe-user-groups-message
-                              #:describe-user-groups-result #:describe-users
-                              #:describe-users-message #:describe-users-result
-                              #:destination-details #:destination-type
-                              #:disassociate-global-replication-group
-                              #:disassociate-global-replication-group-message
-                              #:disassociate-global-replication-group-result
-                              #:double #:duplicate-user-name-fault
+                              #:describe-service-updates #:describe-snapshots
+                              #:describe-update-actions #:describe-user-groups
+                              #:describe-users #:destination-details
+                              #:destination-type
+                              #:disassociate-global-replication-group #:double
                               #:ec2security-group #:ec2security-group-list
                               #:ecpuper-second #:endpoint #:engine-defaults
                               #:engine-type #:event #:event-list
-                              #:events-message #:exception-message
+                              #:exception-message
                               #:export-serverless-cache-snapshot
-                              #:export-serverless-cache-snapshot-request
-                              #:export-serverless-cache-snapshot-response
-                              #:failover-global-replication-group
-                              #:failover-global-replication-group-message
-                              #:failover-global-replication-group-result
-                              #:filter #:filter-list #:filter-name
-                              #:filter-value #:filter-value-list
-                              #:global-node-group #:global-node-group-id-list
+                              #:failover-global-replication-group #:filter
+                              #:filter-list #:filter-name #:filter-value
+                              #:filter-value-list #:global-node-group
+                              #:global-node-group-id-list
                               #:global-node-group-list
                               #:global-replication-group
-                              #:global-replication-group-already-exists-fault
                               #:global-replication-group-info
                               #:global-replication-group-list
                               #:global-replication-group-member
                               #:global-replication-group-member-list
-                              #:global-replication-group-not-found-fault
                               #:increase-node-groups-in-global-replication-group
-                              #:increase-node-groups-in-global-replication-group-message
-                              #:increase-node-groups-in-global-replication-group-result
                               #:increase-replica-count
-                              #:increase-replica-count-message
-                              #:increase-replica-count-result
-                              #:input-authentication-type
-                              #:insufficient-cache-cluster-capacity-fault
-                              #:integer #:integer-optional #:invalid-arnfault
-                              #:invalid-cache-cluster-state-fault
-                              #:invalid-cache-parameter-group-state-fault
-                              #:invalid-cache-security-group-state-fault
-                              #:invalid-credentials-exception
-                              #:invalid-global-replication-group-state-fault
-                              #:invalid-kmskey-fault
-                              #:invalid-parameter-combination-exception
-                              #:invalid-parameter-value-exception
-                              #:invalid-replication-group-state-fault
-                              #:invalid-serverless-cache-snapshot-state-fault
-                              #:invalid-serverless-cache-state-fault
-                              #:invalid-snapshot-state-fault #:invalid-subnet
-                              #:invalid-user-group-state-fault
-                              #:invalid-user-state-fault
-                              #:invalid-vpcnetwork-state-fault #:ip-discovery
-                              #:key-list #:kinesis-firehose-destination-details
+                              #:input-authentication-type #:integer
+                              #:integer-optional #:ip-discovery #:key-list
+                              #:kinesis-firehose-destination-details
                               #:list-allowed-node-type-modifications
-                              #:list-allowed-node-type-modifications-message
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-message
                               #:log-delivery-configuration
                               #:log-delivery-configuration-list
                               #:log-delivery-configuration-request
                               #:log-delivery-configuration-request-list
                               #:log-delivery-configuration-status #:log-format
                               #:log-type #:modify-cache-cluster
-                              #:modify-cache-cluster-message
-                              #:modify-cache-cluster-result
                               #:modify-cache-parameter-group
-                              #:modify-cache-parameter-group-message
                               #:modify-cache-subnet-group
-                              #:modify-cache-subnet-group-message
-                              #:modify-cache-subnet-group-result
                               #:modify-global-replication-group
-                              #:modify-global-replication-group-message
-                              #:modify-global-replication-group-result
                               #:modify-replication-group
-                              #:modify-replication-group-message
-                              #:modify-replication-group-result
                               #:modify-replication-group-shard-configuration
-                              #:modify-replication-group-shard-configuration-message
-                              #:modify-replication-group-shard-configuration-result
-                              #:modify-serverless-cache
-                              #:modify-serverless-cache-request
-                              #:modify-serverless-cache-response #:modify-user
-                              #:modify-user-group #:modify-user-group-message
-                              #:modify-user-message #:multi-azstatus
-                              #:network-type #:network-type-list
-                              #:no-operation-fault #:node-group
+                              #:modify-serverless-cache #:modify-user
+                              #:modify-user-group #:multi-azstatus
+                              #:network-type #:network-type-list #:node-group
                               #:node-group-configuration
                               #:node-group-configuration-list #:node-group-list
                               #:node-group-member #:node-group-member-list
                               #:node-group-member-update-status
                               #:node-group-member-update-status-list
-                              #:node-group-not-found-fault
                               #:node-group-update-status
                               #:node-group-update-status-list
-                              #:node-groups-per-replication-group-quota-exceeded-fault
                               #:node-groups-to-remove-list
-                              #:node-groups-to-retain-list
-                              #:node-quota-for-cluster-exceeded-fault
-                              #:node-quota-for-customer-exceeded-fault
-                              #:node-snapshot #:node-snapshot-list
-                              #:node-type-list #:node-update-initiated-by
-                              #:node-update-status #:notification-configuration
-                              #:outpost-arns-list #:outpost-mode #:parameter
-                              #:parameter-name-value
+                              #:node-groups-to-retain-list #:node-snapshot
+                              #:node-snapshot-list #:node-type-list
+                              #:node-update-initiated-by #:node-update-status
+                              #:notification-configuration #:outpost-arns-list
+                              #:outpost-mode #:parameter #:parameter-name-value
                               #:parameter-name-value-list #:parameters-list
                               #:password-list-input
                               #:pending-automatic-failover-status
@@ -288,86 +140,43 @@
                               #:processed-update-action
                               #:processed-update-action-list
                               #:purchase-reserved-cache-nodes-offering
-                              #:purchase-reserved-cache-nodes-offering-message
-                              #:purchase-reserved-cache-nodes-offering-result
                               #:rebalance-slots-in-global-replication-group
-                              #:rebalance-slots-in-global-replication-group-message
-                              #:rebalance-slots-in-global-replication-group-result
-                              #:reboot-cache-cluster
-                              #:reboot-cache-cluster-message
-                              #:reboot-cache-cluster-result #:recurring-charge
+                              #:reboot-cache-cluster #:recurring-charge
                               #:recurring-charge-list #:regional-configuration
                               #:regional-configuration-list
                               #:remove-replicas-list
                               #:remove-tags-from-resource
-                              #:remove-tags-from-resource-message
                               #:replica-configuration-list #:replication-group
-                              #:replication-group-already-exists-fault
-                              #:replication-group-already-under-migration-fault
                               #:replication-group-id-list
                               #:replication-group-list
-                              #:replication-group-message
-                              #:replication-group-not-found-fault
-                              #:replication-group-not-under-migration-fault
                               #:replication-group-outpost-arn-list
                               #:replication-group-pending-modified-values
-                              #:reserved-cache-node
-                              #:reserved-cache-node-already-exists-fault
-                              #:reserved-cache-node-list
-                              #:reserved-cache-node-message
-                              #:reserved-cache-node-not-found-fault
-                              #:reserved-cache-node-quota-exceeded-fault
+                              #:reserved-cache-node #:reserved-cache-node-list
                               #:reserved-cache-nodes-offering
                               #:reserved-cache-nodes-offering-list
-                              #:reserved-cache-nodes-offering-message
-                              #:reserved-cache-nodes-offering-not-found-fault
                               #:reset-cache-parameter-group
-                              #:reset-cache-parameter-group-message
                               #:resharding-configuration
                               #:resharding-configuration-list
                               #:resharding-status
                               #:revoke-cache-security-group-ingress
-                              #:revoke-cache-security-group-ingress-message
-                              #:revoke-cache-security-group-ingress-result
                               #:scale-config #:security-group-ids-list
                               #:security-group-membership
                               #:security-group-membership-list
                               #:serverless-cache
-                              #:serverless-cache-already-exists-fault
                               #:serverless-cache-configuration
                               #:serverless-cache-list
-                              #:serverless-cache-not-found-fault
-                              #:serverless-cache-quota-for-customer-exceeded-fault
                               #:serverless-cache-snapshot
-                              #:serverless-cache-snapshot-already-exists-fault
-                              #:serverless-cache-snapshot-list
-                              #:serverless-cache-snapshot-not-found-fault
-                              #:serverless-cache-snapshot-quota-exceeded-fault
-                              #:service-linked-role-not-found-fault
-                              #:service-update #:service-update-list
-                              #:service-update-not-found-fault
-                              #:service-update-severity #:service-update-status
+                              #:serverless-cache-snapshot-list #:service-update
+                              #:service-update-list #:service-update-severity
+                              #:service-update-status
                               #:service-update-status-list
-                              #:service-update-type #:service-updates-message
-                              #:sla-met #:slot-migration #:snapshot
-                              #:snapshot-already-exists-fault
-                              #:snapshot-arns-list
-                              #:snapshot-feature-not-supported-fault
-                              #:snapshot-list #:snapshot-not-found-fault
-                              #:snapshot-quota-exceeded-fault #:source-type
-                              #:start-migration #:start-migration-message
-                              #:start-migration-response #:string #:subnet
+                              #:service-update-type #:sla-met #:slot-migration
+                              #:snapshot #:snapshot-arns-list #:snapshot-list
+                              #:source-type #:start-migration #:string #:subnet
                               #:subnet-identifier-list #:subnet-ids-list
-                              #:subnet-in-use #:subnet-list
-                              #:subnet-not-allowed-fault #:subnet-outpost
-                              #:tstamp #:tag #:tag-list #:tag-list-message
-                              #:tag-not-found-fault
-                              #:tag-quota-per-resource-exceeded #:test-failover
-                              #:test-failover-message
-                              #:test-failover-not-available-fault
-                              #:test-failover-result #:test-migration
-                              #:test-migration-message
-                              #:test-migration-response #:time-range-filter
+                              #:subnet-list #:subnet-outpost #:tstamp #:tag
+                              #:tag-list #:tag-list-message #:test-failover
+                              #:test-migration #:time-range-filter
                               #:transit-encryption-mode
                               #:ugreplication-group-id-list
                               #:ugserverless-cache-id-list
@@ -376,18 +185,13 @@
                               #:update-action-list
                               #:update-action-results-message
                               #:update-action-status
-                              #:update-action-status-list
-                              #:update-actions-message #:user
-                              #:user-already-exists-fault #:user-group
-                              #:user-group-already-exists-fault #:user-group-id
-                              #:user-group-id-list #:user-group-id-list-input
-                              #:user-group-list #:user-group-not-found-fault
+                              #:update-action-status-list #:user #:user-group
+                              #:user-group-id #:user-group-id-list
+                              #:user-group-id-list-input #:user-group-list
                               #:user-group-pending-changes
-                              #:user-group-quota-exceeded-fault
                               #:user-groups-update-status #:user-id
                               #:user-id-list #:user-id-list-input #:user-list
-                              #:user-name #:user-not-found-fault
-                              #:user-quota-exceeded-fault))
+                              #:user-name))
 (common-lisp:in-package #:pira/elasticache)
 
 (smithy/sdk/service:define-service amazon-elasti-cache-v9 :shape-name

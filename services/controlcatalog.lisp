@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/controlcatalog (:use)
-                             (:export #:access-denied-exception
-                              #:associated-domain-summary
+                             (:export #:associated-domain-summary
                               #:associated-objective-summary
                               #:common-control-arn
                               #:common-control-arn-filter-list
@@ -22,27 +21,17 @@
                               #:domain-resource-filter-list #:domain-summary
                               #:domain-summary-list #:framework-item
                               #:framework-mapping-details #:framework-name
-                              #:get-control #:get-control-request
-                              #:get-control-response #:governed-resource
+                              #:get-control #:governed-resource
                               #:governed-resources #:implementation-details
                               #:implementation-filter
                               #:implementation-identifier
                               #:implementation-identifier-filter-list
                               #:implementation-summary #:implementation-type
                               #:implementation-type-filter-list
-                              #:internal-server-exception
-                              #:list-common-controls
-                              #:list-common-controls-request
-                              #:list-common-controls-response
-                              #:list-control-mappings
-                              #:list-control-mappings-request
-                              #:list-control-mappings-response #:list-controls
-                              #:list-controls-request #:list-controls-response
-                              #:list-domains #:list-domains-request
-                              #:list-domains-response #:list-objectives
-                              #:list-objectives-request
-                              #:list-objectives-response #:mapping
-                              #:mapping-type #:mapping-type-filter-list
+                              #:list-common-controls #:list-control-mappings
+                              #:list-controls #:list-domains #:list-objectives
+                              #:mapping #:mapping-type
+                              #:mapping-type-filter-list
                               #:max-list-common-controls-results
                               #:max-list-control-mappings-results
                               #:max-list-controls-results
@@ -53,9 +42,7 @@
                               #:objective-resource-filter-list
                               #:objective-summary #:objective-summary-list
                               #:pagination-token #:region-code
-                              #:region-configuration
-                              #:resource-not-found-exception
-                              #:throttling-exception #:validation-exception))
+                              #:region-configuration))
 (common-lisp:in-package #:pira/controlcatalog)
 
 (smithy/sdk/service:define-service control-catalog :shape-name "ControlCatalog"

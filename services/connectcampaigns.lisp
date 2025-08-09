@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/connectcampaigns (:use)
-                             (:export #:access-denied-exception
-                              #:agentless-dialer-config
+                             (:export #:agentless-dialer-config
                               #:amazon-connect-campaign-service
                               #:answer-machine-detection-config #:arn
                               #:attribute-name #:attribute-value #:attributes
@@ -9,8 +8,8 @@
                               #:campaign-id-list #:campaign-name
                               #:campaign-state #:campaign-summary
                               #:campaign-summary-list #:client-token
-                              #:conflict-exception #:contact-flow-id
-                              #:create-campaign #:create-campaign-request
+                              #:contact-flow-id #:create-campaign
+                              #:create-campaign-request
                               #:create-campaign-response #:delete-campaign
                               #:delete-campaign-request
                               #:delete-connect-instance-config
@@ -46,10 +45,7 @@
                               #:instance-onboarding-job-failure-code
                               #:instance-onboarding-job-status
                               #:instance-onboarding-job-status-code
-                              #:internal-server-exception
-                              #:invalid-campaign-state-exception
-                              #:invalid-state-exception #:list-campaigns
-                              #:list-campaigns-request
+                              #:list-campaigns #:list-campaigns-request
                               #:list-campaigns-response
                               #:list-tags-for-resource
                               #:list-tags-for-resource-request
@@ -61,12 +57,9 @@
                               #:put-dial-request-batch
                               #:put-dial-request-batch-request
                               #:put-dial-request-batch-response #:queue-id
-                              #:resource-not-found-exception #:resume-campaign
-                              #:resume-campaign-request
-                              #:service-linked-role-arn
-                              #:service-quota-exceeded-exception
-                              #:source-phone-number #:start-campaign
-                              #:start-campaign-request
+                              #:resume-campaign #:resume-campaign-request
+                              #:service-linked-role-arn #:source-phone-number
+                              #:start-campaign #:start-campaign-request
                               #:start-instance-onboarding-job
                               #:start-instance-onboarding-job-request
                               #:start-instance-onboarding-job-response
@@ -75,8 +68,7 @@
                               #:successful-campaign-state-response-list
                               #:successful-request #:successful-request-list
                               #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-value
-                              #:throttling-exception #:time-stamp
+                              #:tag-resource-request #:tag-value #:time-stamp
                               #:untag-resource #:untag-resource-request
                               #:update-campaign-dialer-config
                               #:update-campaign-dialer-config-request
@@ -84,7 +76,7 @@
                               #:update-campaign-name-request
                               #:update-campaign-outbound-call-config
                               #:update-campaign-outbound-call-config-request
-                              #:validation-exception #:xamazon-error-type))
+                              #:xamazon-error-type))
 (common-lisp:in-package #:pira/connectcampaigns)
 
 (smithy/sdk/service:define-service amazon-connect-campaign-service :shape-name

@@ -2,55 +2,23 @@
                              (:export #:awsaccount-number #:account-settings
                               #:accounts-cleanup #:amazon-resource-name
                               #:amazon-resource-names #:android-paths
-                              #:app-packages-cleanup #:argument-exception
-                              #:artifact #:artifact-category #:artifact-type
-                              #:artifacts #:billing-method #:boolean #:cpu
-                              #:cannot-delete-exception #:client-id
+                              #:app-packages-cleanup #:artifact
+                              #:artifact-category #:artifact-type #:artifacts
+                              #:billing-method #:boolean #:cpu #:client-id
                               #:content-type #:counters #:create-device-pool
-                              #:create-device-pool-request
-                              #:create-device-pool-result
                               #:create-instance-profile
-                              #:create-instance-profile-request
-                              #:create-instance-profile-result
-                              #:create-network-profile
-                              #:create-network-profile-request
-                              #:create-network-profile-result #:create-project
-                              #:create-project-request #:create-project-result
+                              #:create-network-profile #:create-project
                               #:create-remote-access-session
                               #:create-remote-access-session-configuration
-                              #:create-remote-access-session-request
-                              #:create-remote-access-session-result
-                              #:create-test-grid-project
-                              #:create-test-grid-project-request
-                              #:create-test-grid-project-result
-                              #:create-test-grid-url
-                              #:create-test-grid-url-request
-                              #:create-test-grid-url-result #:create-upload
-                              #:create-upload-request #:create-upload-result
-                              #:create-vpceconfiguration
-                              #:create-vpceconfiguration-request
-                              #:create-vpceconfiguration-result #:currency-code
-                              #:customer-artifact-paths #:date-time
-                              #:delete-device-pool #:delete-device-pool-request
-                              #:delete-device-pool-result
+                              #:create-test-grid-project #:create-test-grid-url
+                              #:create-upload #:create-vpceconfiguration
+                              #:currency-code #:customer-artifact-paths
+                              #:date-time #:delete-device-pool
                               #:delete-instance-profile
-                              #:delete-instance-profile-request
-                              #:delete-instance-profile-result
-                              #:delete-network-profile
-                              #:delete-network-profile-request
-                              #:delete-network-profile-result #:delete-project
-                              #:delete-project-request #:delete-project-result
-                              #:delete-remote-access-session
-                              #:delete-remote-access-session-request
-                              #:delete-remote-access-session-result
-                              #:delete-run #:delete-run-request
-                              #:delete-run-result #:delete-test-grid-project
-                              #:delete-test-grid-project-request
-                              #:delete-test-grid-project-result #:delete-upload
-                              #:delete-upload-request #:delete-upload-result
-                              #:delete-vpceconfiguration
-                              #:delete-vpceconfiguration-request
-                              #:delete-vpceconfiguration-result #:device
+                              #:delete-network-profile #:delete-project
+                              #:delete-remote-access-session #:delete-run
+                              #:delete-test-grid-project #:delete-upload
+                              #:delete-vpceconfiguration #:device
                               #:device-attribute #:device-availability
                               #:device-farm-arn #:device-farm-20150623
                               #:device-filter #:device-filter-attribute
@@ -67,115 +35,41 @@
                               #:exception-message #:execution-configuration
                               #:execution-result #:execution-result-code
                               #:execution-status #:filter
-                              #:get-account-settings
-                              #:get-account-settings-request
-                              #:get-account-settings-result #:get-device
-                              #:get-device-instance
-                              #:get-device-instance-request
-                              #:get-device-instance-result #:get-device-pool
+                              #:get-account-settings #:get-device
+                              #:get-device-instance #:get-device-pool
                               #:get-device-pool-compatibility
-                              #:get-device-pool-compatibility-request
-                              #:get-device-pool-compatibility-result
-                              #:get-device-pool-request
-                              #:get-device-pool-result #:get-device-request
-                              #:get-device-result #:get-instance-profile
-                              #:get-instance-profile-request
-                              #:get-instance-profile-result #:get-job
-                              #:get-job-request #:get-job-result
-                              #:get-network-profile
-                              #:get-network-profile-request
-                              #:get-network-profile-result
-                              #:get-offering-status
-                              #:get-offering-status-request
-                              #:get-offering-status-result #:get-project
-                              #:get-project-request #:get-project-result
-                              #:get-remote-access-session
-                              #:get-remote-access-session-request
-                              #:get-remote-access-session-result #:get-run
-                              #:get-run-request #:get-run-result #:get-suite
-                              #:get-suite-request #:get-suite-result #:get-test
-                              #:get-test-grid-project
-                              #:get-test-grid-project-request
-                              #:get-test-grid-project-result
-                              #:get-test-grid-session
-                              #:get-test-grid-session-request
-                              #:get-test-grid-session-result #:get-test-request
-                              #:get-test-result #:get-upload
-                              #:get-upload-request #:get-upload-result
-                              #:get-vpceconfiguration
-                              #:get-vpceconfiguration-request
-                              #:get-vpceconfiguration-result #:host-address
-                              #:idempotency-exception #:incompatibility-message
+                              #:get-instance-profile #:get-job
+                              #:get-network-profile #:get-offering-status
+                              #:get-project #:get-remote-access-session
+                              #:get-run #:get-suite #:get-test
+                              #:get-test-grid-project #:get-test-grid-session
+                              #:get-upload #:get-vpceconfiguration
+                              #:host-address #:incompatibility-message
                               #:incompatibility-messages
                               #:install-to-remote-access-session
-                              #:install-to-remote-access-session-request
-                              #:install-to-remote-access-session-result
                               #:instance-labels #:instance-profile
                               #:instance-profiles #:instance-status #:integer
-                              #:interaction-mode #:internal-service-exception
-                              #:invalid-operation-exception #:ios-paths #:job
-                              #:job-timeout-minutes #:jobs
-                              #:limit-exceeded-exception #:list-artifacts
-                              #:list-artifacts-request #:list-artifacts-result
-                              #:list-device-instances
-                              #:list-device-instances-request
-                              #:list-device-instances-result
-                              #:list-device-pools #:list-device-pools-request
-                              #:list-device-pools-result #:list-devices
-                              #:list-devices-request #:list-devices-result
-                              #:list-instance-profiles
-                              #:list-instance-profiles-request
-                              #:list-instance-profiles-result #:list-jobs
-                              #:list-jobs-request #:list-jobs-result
-                              #:list-network-profiles
-                              #:list-network-profiles-request
-                              #:list-network-profiles-result
+                              #:interaction-mode #:ios-paths #:job
+                              #:job-timeout-minutes #:jobs #:list-artifacts
+                              #:list-device-instances #:list-device-pools
+                              #:list-devices #:list-instance-profiles
+                              #:list-jobs #:list-network-profiles
                               #:list-offering-promotions
-                              #:list-offering-promotions-request
-                              #:list-offering-promotions-result
-                              #:list-offering-transactions
-                              #:list-offering-transactions-request
-                              #:list-offering-transactions-result
-                              #:list-offerings #:list-offerings-request
-                              #:list-offerings-result #:list-projects
-                              #:list-projects-request #:list-projects-result
-                              #:list-remote-access-sessions
-                              #:list-remote-access-sessions-request
-                              #:list-remote-access-sessions-result #:list-runs
-                              #:list-runs-request #:list-runs-result
-                              #:list-samples #:list-samples-request
-                              #:list-samples-result #:list-suites
-                              #:list-suites-request #:list-suites-result
+                              #:list-offering-transactions #:list-offerings
+                              #:list-projects #:list-remote-access-sessions
+                              #:list-runs #:list-samples #:list-suites
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-test-grid-projects
-                              #:list-test-grid-projects-request
-                              #:list-test-grid-projects-result
                               #:list-test-grid-session-actions
-                              #:list-test-grid-session-actions-request
-                              #:list-test-grid-session-actions-result
                               #:list-test-grid-session-artifacts
-                              #:list-test-grid-session-artifacts-request
-                              #:list-test-grid-session-artifacts-result
-                              #:list-test-grid-sessions
-                              #:list-test-grid-sessions-request
-                              #:list-test-grid-sessions-result #:list-tests
-                              #:list-tests-request #:list-tests-result
-                              #:list-unique-problems
-                              #:list-unique-problems-request
-                              #:list-unique-problems-result #:list-uploads
-                              #:list-uploads-request #:list-uploads-result
-                              #:list-vpceconfigurations
-                              #:list-vpceconfigurations-request
-                              #:list-vpceconfigurations-result #:location
-                              #:long #:max-page-size #:max-slot-map #:message
+                              #:list-test-grid-sessions #:list-tests
+                              #:list-unique-problems #:list-uploads
+                              #:list-vpceconfigurations #:location #:long
+                              #:max-page-size #:max-slot-map #:message
                               #:metadata #:monetary-amount #:name
                               #:network-profile #:network-profile-type
-                              #:network-profiles #:non-empty-string
-                              #:not-eligible-exception #:not-found-exception
-                              #:offering #:offering-identifier
-                              #:offering-promotion
+                              #:network-profiles #:non-empty-string #:offering
+                              #:offering-identifier #:offering-promotion
                               #:offering-promotion-identifier
                               #:offering-promotions #:offering-status
                               #:offering-status-map #:offering-transaction
@@ -184,32 +78,23 @@
                               #:offerings #:package-ids #:pagination-token
                               #:percent-integer #:problem #:problem-detail
                               #:problems #:project #:projects
-                              #:purchase-offering #:purchase-offering-request
-                              #:purchase-offering-result
-                              #:purchased-devices-map #:radios
-                              #:recurring-charge #:recurring-charge-frequency
-                              #:recurring-charges #:remote-access-session
-                              #:remote-access-sessions #:renew-offering
-                              #:renew-offering-request #:renew-offering-result
-                              #:resolution #:resource-description #:resource-id
+                              #:purchase-offering #:purchased-devices-map
+                              #:radios #:recurring-charge
+                              #:recurring-charge-frequency #:recurring-charges
+                              #:remote-access-session #:remote-access-sessions
+                              #:renew-offering #:resolution
+                              #:resource-description #:resource-id
                               #:resource-name #:rule #:rule-operator #:rules
                               #:run #:runs #:sample #:sample-type #:samples
                               #:schedule-run #:schedule-run-configuration
-                              #:schedule-run-request #:schedule-run-result
                               #:schedule-run-test #:security-group-id
                               #:security-group-ids #:sensitive-string
-                              #:sensitive-url #:service-account-exception
-                              #:service-dns-name #:skip-app-resign
-                              #:ssh-public-key #:stop-job #:stop-job-request
-                              #:stop-job-result #:stop-remote-access-session
-                              #:stop-remote-access-session-request
-                              #:stop-remote-access-session-result #:stop-run
-                              #:stop-run-request #:stop-run-result #:string
+                              #:sensitive-url #:service-dns-name
+                              #:skip-app-resign #:ssh-public-key #:stop-job
+                              #:stop-remote-access-session #:stop-run #:string
                               #:subnet-id #:subnet-ids #:suite #:suites #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-operation-exception #:tag-policy-exception
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:test
+                              #:tag-resource #:tag-value #:test
                               #:test-grid-project #:test-grid-projects
                               #:test-grid-session #:test-grid-session-action
                               #:test-grid-session-actions
@@ -220,31 +105,15 @@
                               #:test-grid-session-status #:test-grid-sessions
                               #:test-grid-url-expires-in-seconds-input
                               #:test-grid-vpc-config #:test-parameters
-                              #:test-type #:tests #:too-many-tags-exception
-                              #:transaction-identifier #:trial-minutes #:url
-                              #:unique-problem #:unique-problems
+                              #:test-type #:tests #:transaction-identifier
+                              #:trial-minutes #:url #:unique-problem
+                              #:unique-problems
                               #:unique-problems-by-execution-result-map
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-device-instance
-                              #:update-device-instance-request
-                              #:update-device-instance-result
-                              #:update-device-pool #:update-device-pool-request
-                              #:update-device-pool-result
-                              #:update-instance-profile
-                              #:update-instance-profile-request
-                              #:update-instance-profile-result
-                              #:update-network-profile
-                              #:update-network-profile-request
-                              #:update-network-profile-result #:update-project
-                              #:update-project-request #:update-project-result
-                              #:update-test-grid-project
-                              #:update-test-grid-project-request
-                              #:update-test-grid-project-result #:update-upload
-                              #:update-upload-request #:update-upload-result
-                              #:update-vpceconfiguration
-                              #:update-vpceconfiguration-request
-                              #:update-vpceconfiguration-result #:upload
+                              #:untag-resource #:update-device-instance
+                              #:update-device-pool #:update-instance-profile
+                              #:update-network-profile #:update-project
+                              #:update-test-grid-project #:update-upload
+                              #:update-vpceconfiguration #:upload
                               #:upload-category #:upload-status #:upload-type
                               #:uploads #:vpceconfiguration
                               #:vpceconfiguration-description

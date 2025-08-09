@@ -1,53 +1,26 @@
 (uiop/package:define-package #:pira/socialmessaging (:use)
-                             (:export #:access-denied-by-meta-exception
-                              #:access-denied-exception #:add-contact-number
+                             (:export #:add-contact-number
                               #:add-learn-more-link
                               #:add-security-recommendation
                               #:add-track-package-link #:arn
                               #:associate-in-progress-token
                               #:associate-whats-app-business-account
-                              #:associate-whats-app-business-account-input
-                              #:associate-whats-app-business-account-output
                               #:button-type #:code-expiration-minutes
                               #:create-whats-app-message-template
                               #:create-whats-app-message-template-from-library
-                              #:create-whats-app-message-template-from-library-input
-                              #:create-whats-app-message-template-from-library-output
-                              #:create-whats-app-message-template-input
                               #:create-whats-app-message-template-media
-                              #:create-whats-app-message-template-media-input
-                              #:create-whats-app-message-template-media-output
-                              #:create-whats-app-message-template-output
                               #:delete-all-languages
                               #:delete-whats-app-message-media
-                              #:delete-whats-app-message-media-input
-                              #:delete-whats-app-message-media-output
                               #:delete-whats-app-message-template
-                              #:delete-whats-app-message-template-input
-                              #:delete-whats-app-message-template-output
-                              #:dependency-exception
                               #:disassociate-whats-app-business-account
-                              #:disassociate-whats-app-business-account-input
-                              #:disassociate-whats-app-business-account-output
                               #:error-message #:event-destination-arn #:filter
                               #:get-linked-whats-app-business-account
-                              #:get-linked-whats-app-business-account-input
-                              #:get-linked-whats-app-business-account-output
                               #:get-linked-whats-app-business-account-phone-number
-                              #:get-linked-whats-app-business-account-phone-number-input
-                              #:get-linked-whats-app-business-account-phone-number-output
                               #:get-whats-app-message-media
-                              #:get-whats-app-message-media-input
-                              #:get-whats-app-message-media-output
-                              #:get-whats-app-message-template
-                              #:get-whats-app-message-template-input
-                              #:get-whats-app-message-template-output #:headers
-                              #:internal-service-exception
-                              #:invalid-parameters-exception #:iso-country-code
-                              #:library-template-body-inputs
+                              #:get-whats-app-message-template #:headers
+                              #:iso-country-code #:library-template-body-inputs
                               #:library-template-button-input
                               #:library-template-button-list
-                              #:limit-exceeded-exception
                               #:linked-account-with-incomplete-setup
                               #:linked-whats-app-business-account
                               #:linked-whats-app-business-account-arn
@@ -59,18 +32,10 @@
                               #:linked-whats-app-phone-number-arn
                               #:linked-whats-app-phone-number-resource
                               #:list-linked-whats-app-business-accounts
-                              #:list-linked-whats-app-business-accounts-input
-                              #:list-linked-whats-app-business-accounts-output
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
                               #:list-whats-app-message-templates
-                              #:list-whats-app-message-templates-input
-                              #:list-whats-app-message-templates-output
-                              #:list-whats-app-template-library
-                              #:list-whats-app-template-library-input
-                              #:list-whats-app-template-library-output
-                              #:max-results #:meta-industries #:meta-industry
+                              #:list-whats-app-template-library #:max-results
+                              #:meta-industries #:meta-industry
                               #:meta-library-template
                               #:meta-library-template-button-inputs
                               #:meta-library-template-button-list
@@ -87,28 +52,14 @@
                               #:meta-url-with-suffix-example #:next-token
                               #:otp-type #:phone-number
                               #:post-whats-app-message-media
-                              #:post-whats-app-message-media-input
-                              #:post-whats-app-message-media-output
                               #:put-whats-app-business-account-event-destinations
-                              #:put-whats-app-business-account-event-destinations-input
-                              #:put-whats-app-business-account-event-destinations-output
-                              #:registration-status
-                              #:resource-not-found-exception #:role-arn
-                              #:s3file #:s3presigned-url
-                              #:send-whats-app-message
-                              #:send-whats-app-message-input
-                              #:send-whats-app-message-output
+                              #:registration-status #:role-arn #:s3file
+                              #:s3presigned-url #:send-whats-app-message
                               #:social-messaging #:string-list #:supported-app
                               #:supported-apps #:tag #:tag-list #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
                               #:template-summary #:template-summary-list
-                              #:throttled-request-exception #:two-factor-pin
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output
+                              #:two-factor-pin #:untag-resource
                               #:update-whats-app-message-template
-                              #:update-whats-app-message-template-input
-                              #:update-whats-app-message-template-output
-                              #:validation-exception
                               #:waba-phone-number-setup-finalization
                               #:waba-phone-number-setup-finalization-list
                               #:waba-setup-finalization

@@ -1,32 +1,23 @@
 (uiop/package:define-package #:pira/controltower (:use)
-                             (:export #:awscontrol-tower-apis
-                              #:access-denied-exception #:arn #:baseline-arn
-                              #:baseline-operation
+                             (:export #:awscontrol-tower-apis #:arn
+                              #:baseline-arn #:baseline-operation
                               #:baseline-operation-resource
                               #:baseline-operation-status
                               #:baseline-operation-type #:baseline-resource
                               #:baseline-summary #:baseline-version #:baselines
-                              #:conflict-exception #:control-identifier
-                              #:control-identifiers #:control-operation
-                              #:control-operation-filter
+                              #:control-identifier #:control-identifiers
+                              #:control-operation #:control-operation-filter
                               #:control-operation-resource
                               #:control-operation-status
                               #:control-operation-statuses
                               #:control-operation-summary
                               #:control-operation-type
                               #:control-operation-types #:control-operations
-                              #:create-landing-zone #:create-landing-zone-input
-                              #:create-landing-zone-output
-                              #:delete-landing-zone #:delete-landing-zone-input
-                              #:delete-landing-zone-output #:disable-baseline
-                              #:disable-baseline-input
-                              #:disable-baseline-output #:disable-control
-                              #:disable-control-input #:disable-control-output
+                              #:create-landing-zone #:delete-landing-zone
+                              #:disable-baseline #:disable-control
                               #:drift-status #:drift-status-summary
                               #:drift-statuses #:enable-baseline
-                              #:enable-baseline-input #:enable-baseline-output
-                              #:enable-control #:enable-control-input
-                              #:enable-control-output
+                              #:enable-control
                               #:enabled-baseline-baseline-identifiers
                               #:enabled-baseline-details
                               #:enabled-baseline-drift-status
@@ -56,24 +47,10 @@
                               #:enabled-control-summary #:enabled-controls
                               #:enablement-status #:enablement-status-summary
                               #:enablement-statuses #:get-baseline
-                              #:get-baseline-input #:get-baseline-operation
-                              #:get-baseline-operation-input
-                              #:get-baseline-operation-output
-                              #:get-baseline-output #:get-control-operation
-                              #:get-control-operation-input
-                              #:get-control-operation-output
-                              #:get-enabled-baseline
-                              #:get-enabled-baseline-input
-                              #:get-enabled-baseline-output
-                              #:get-enabled-control #:get-enabled-control-input
-                              #:get-enabled-control-output #:get-landing-zone
-                              #:get-landing-zone-input
-                              #:get-landing-zone-operation
-                              #:get-landing-zone-operation-input
-                              #:get-landing-zone-operation-output
-                              #:get-landing-zone-output
-                              #:internal-server-exception #:landing-zone-detail
-                              #:landing-zone-drift-status
+                              #:get-baseline-operation #:get-control-operation
+                              #:get-enabled-baseline #:get-enabled-control
+                              #:get-landing-zone #:get-landing-zone-operation
+                              #:landing-zone-detail #:landing-zone-drift-status
                               #:landing-zone-drift-status-summary
                               #:landing-zone-operation-detail
                               #:landing-zone-operation-filter
@@ -86,58 +63,27 @@
                               #:landing-zone-operations #:landing-zone-resource
                               #:landing-zone-status #:landing-zone-summaries
                               #:landing-zone-summary #:landing-zone-version
-                              #:list-baselines #:list-baselines-input
-                              #:list-baselines-max-results
-                              #:list-baselines-output #:list-control-operations
-                              #:list-control-operations-input
+                              #:list-baselines #:list-baselines-max-results
+                              #:list-control-operations
                               #:list-control-operations-max-results
                               #:list-control-operations-next-token
-                              #:list-control-operations-output
                               #:list-enabled-baselines
-                              #:list-enabled-baselines-input
                               #:list-enabled-baselines-max-results
                               #:list-enabled-baselines-next-token
-                              #:list-enabled-baselines-output
                               #:list-enabled-controls
-                              #:list-enabled-controls-input
-                              #:list-enabled-controls-output
                               #:list-landing-zone-operations
-                              #:list-landing-zone-operations-input
                               #:list-landing-zone-operations-max-results
-                              #:list-landing-zone-operations-output
-                              #:list-landing-zones #:list-landing-zones-input
+                              #:list-landing-zones
                               #:list-landing-zones-max-results
-                              #:list-landing-zones-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:manifest
-                              #:max-results #:operation-identifier #:region
-                              #:region-name #:reset-enabled-baseline
-                              #:reset-enabled-baseline-input
-                              #:reset-enabled-baseline-output
-                              #:reset-enabled-control
-                              #:reset-enabled-control-input
-                              #:reset-enabled-control-output
-                              #:reset-landing-zone #:reset-landing-zone-input
-                              #:reset-landing-zone-output
-                              #:resource-not-found-exception
-                              #:service-quota-exceeded-exception #:tag-key
-                              #:tag-keys #:tag-map #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:tagging-resource
-                              #:target-identifier #:target-identifiers
-                              #:target-regions #:throttling-exception
-                              #:timestamp #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:update-enabled-baseline
-                              #:update-enabled-baseline-input
-                              #:update-enabled-baseline-output
-                              #:update-enabled-control
-                              #:update-enabled-control-input
-                              #:update-enabled-control-output
-                              #:update-landing-zone #:update-landing-zone-input
-                              #:update-landing-zone-output
-                              #:validation-exception))
+                              #:list-tags-for-resource #:manifest #:max-results
+                              #:operation-identifier #:region #:region-name
+                              #:reset-enabled-baseline #:reset-enabled-control
+                              #:reset-landing-zone #:tag-key #:tag-keys
+                              #:tag-map #:tag-resource #:tag-value
+                              #:tagging-resource #:target-identifier
+                              #:target-identifiers #:target-regions #:timestamp
+                              #:untag-resource #:update-enabled-baseline
+                              #:update-enabled-control #:update-landing-zone))
 (common-lisp:in-package #:pira/controltower)
 
 (smithy/sdk/service:define-service awscontrol-tower-apis :shape-name

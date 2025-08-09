@@ -1,64 +1,30 @@
 (uiop/package:define-package #:pira/signer (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:add-profile-permission
-                              #:add-profile-permission-request
-                              #:add-profile-permission-response #:arn
-                              #:bad-request-exception #:blob #:bucket-name
-                              #:cancel-signing-profile
-                              #:cancel-signing-profile-request #:category
+                             (:export #:account-id #:add-profile-permission
+                              #:arn #:blob #:bucket-name
+                              #:cancel-signing-profile #:category
                               #:certificate-arn #:certificate-hashes
-                              #:client-request-token #:conflict-exception
-                              #:describe-signing-job
-                              #:describe-signing-job-request
-                              #:describe-signing-job-response #:destination
-                              #:display-name #:encryption-algorithm
+                              #:client-request-token #:describe-signing-job
+                              #:destination #:display-name
+                              #:encryption-algorithm
                               #:encryption-algorithm-options
                               #:encryption-algorithms #:error-code
                               #:error-message #:get-revocation-status
-                              #:get-revocation-status-request
-                              #:get-revocation-status-response
-                              #:get-signing-platform
-                              #:get-signing-platform-request
-                              #:get-signing-platform-response
-                              #:get-signing-profile
-                              #:get-signing-profile-request
-                              #:get-signing-profile-response #:hash-algorithm
-                              #:hash-algorithm-options #:hash-algorithms
-                              #:image-format #:image-formats #:integer
-                              #:internal-service-error-exception #:job-id #:key
-                              #:list-profile-permissions
-                              #:list-profile-permissions-request
-                              #:list-profile-permissions-response
-                              #:list-signing-jobs #:list-signing-jobs-request
-                              #:list-signing-jobs-response
-                              #:list-signing-platforms
-                              #:list-signing-platforms-request
-                              #:list-signing-platforms-response
-                              #:list-signing-profiles
-                              #:list-signing-profiles-request
-                              #:list-signing-profiles-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:get-signing-platform #:get-signing-profile
+                              #:hash-algorithm #:hash-algorithm-options
+                              #:hash-algorithms #:image-format #:image-formats
+                              #:integer #:job-id #:key
+                              #:list-profile-permissions #:list-signing-jobs
+                              #:list-signing-platforms #:list-signing-profiles
+                              #:list-tags-for-resource #:max-results
                               #:max-size-in-mb #:metadata #:next-token
-                              #:not-found-exception #:payload #:permission
-                              #:permissions #:platform-id #:policy-size-bytes
-                              #:prefix #:profile-name #:profile-version
-                              #:put-signing-profile
-                              #:put-signing-profile-request
-                              #:put-signing-profile-response
-                              #:remove-profile-permission
-                              #:remove-profile-permission-request
-                              #:remove-profile-permission-response
-                              #:requested-by #:resource-not-found-exception
-                              #:revocation-reason-string #:revoke-signature
-                              #:revoke-signature-request
-                              #:revoke-signing-profile
-                              #:revoke-signing-profile-request
+                              #:payload #:permission #:permissions
+                              #:platform-id #:policy-size-bytes #:prefix
+                              #:profile-name #:profile-version
+                              #:put-signing-profile #:remove-profile-permission
+                              #:requested-by #:revocation-reason-string
+                              #:revoke-signature #:revoke-signing-profile
                               #:revoked-entities #:s3destination
-                              #:s3signed-object #:s3source
-                              #:service-limit-exceeded-exception #:sign-payload
-                              #:sign-payload-request #:sign-payload-response
+                              #:s3signed-object #:s3source #:sign-payload
                               #:signature-validity-period #:signed-object
                               #:signing-configuration
                               #:signing-configuration-overrides
@@ -71,15 +37,9 @@
                               #:signing-profile-revocation-record
                               #:signing-profile-status #:signing-profiles
                               #:signing-status #:source #:start-signing-job
-                              #:start-signing-job-request
-                              #:start-signing-job-response #:status-reason
-                              #:statuses #:string #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:timestamp
-                              #:too-many-requests-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:validation-exception
+                              #:status-reason #:statuses #:string #:tag-key
+                              #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:timestamp #:untag-resource
                               #:validity-type #:version #:wallaby-service
                               #:bool))
 (common-lisp:in-package #:pira/signer)

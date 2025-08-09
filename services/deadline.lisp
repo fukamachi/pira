@@ -6,9 +6,9 @@
                               #:accelerator-selections
                               #:accelerator-total-memory-mi-brange
                               #:accelerator-type #:accelerator-types
-                              #:access-denied-exception #:access-key-id
-                              #:acquired-limit #:acquired-limits
-                              #:aggregation-id #:allowed-storage-profile-ids
+                              #:access-key-id #:acquired-limit
+                              #:acquired-limits #:aggregation-id
+                              #:allowed-storage-profile-ids
                               #:amount-capability-name
                               #:amount-requirement-name
                               #:assigned-environment-enter-session-action-definition
@@ -19,41 +19,21 @@
                               #:assigned-sync-input-job-attachments-session-action-definition
                               #:assigned-task-run-session-action-definition
                               #:associate-member-to-farm
-                              #:associate-member-to-farm-request
-                              #:associate-member-to-farm-response
                               #:associate-member-to-fleet
-                              #:associate-member-to-fleet-request
-                              #:associate-member-to-fleet-response
                               #:associate-member-to-job
-                              #:associate-member-to-job-request
-                              #:associate-member-to-job-response
                               #:associate-member-to-queue
-                              #:associate-member-to-queue-request
-                              #:associate-member-to-queue-response
                               #:assume-fleet-role-for-read
-                              #:assume-fleet-role-for-read-request
-                              #:assume-fleet-role-for-read-response
                               #:assume-fleet-role-for-worker
-                              #:assume-fleet-role-for-worker-request
-                              #:assume-fleet-role-for-worker-response
                               #:assume-queue-role-for-read
-                              #:assume-queue-role-for-read-request
-                              #:assume-queue-role-for-read-response
                               #:assume-queue-role-for-user
-                              #:assume-queue-role-for-user-request
-                              #:assume-queue-role-for-user-response
-                              #:assume-queue-role-for-worker
-                              #:assume-queue-role-for-worker-request
-                              #:assume-queue-role-for-worker-response
-                              #:attachments #:attribute-capability-name
+                              #:assume-queue-role-for-worker #:attachments
+                              #:attribute-capability-name
                               #:attribute-capability-value
                               #:attribute-capability-values-list
                               #:auto-scaling-mode #:auto-scaling-status
                               #:aws-credentials #:batch-get-job-entity
                               #:batch-get-job-entity-errors
-                              #:batch-get-job-entity-list
-                              #:batch-get-job-entity-request
-                              #:batch-get-job-entity-response #:bounded-string
+                              #:batch-get-job-entity-list #:bounded-string
                               #:budget-action-to-add #:budget-action-to-remove
                               #:budget-action-type #:budget-actions-to-add
                               #:budget-actions-to-remove #:budget-id
@@ -62,38 +42,17 @@
                               #:budget-summary #:cancel-session-actions
                               #:client-token #:combination-expression
                               #:comparison-operator #:completed-status
-                              #:conflict-exception #:conflict-exception-reason
+                              #:conflict-exception-reason
                               #:consumed-usage-limit #:consumed-usages
-                              #:copy-job-template #:copy-job-template-request
-                              #:copy-job-template-response
-                              #:cpu-architecture-type #:create-budget
-                              #:create-budget-request #:create-budget-response
-                              #:create-farm #:create-farm-request
-                              #:create-farm-response #:create-fleet
-                              #:create-fleet-request #:create-fleet-response
-                              #:create-job #:create-job-request
-                              #:create-job-response
-                              #:create-job-target-task-run-status
-                              #:create-license-endpoint
-                              #:create-license-endpoint-request
-                              #:create-license-endpoint-response #:create-limit
-                              #:create-limit-request #:create-limit-response
-                              #:create-monitor #:create-monitor-request
-                              #:create-monitor-response #:create-queue
+                              #:copy-job-template #:cpu-architecture-type
+                              #:create-budget #:create-farm #:create-fleet
+                              #:create-job #:create-job-target-task-run-status
+                              #:create-license-endpoint #:create-limit
+                              #:create-monitor #:create-queue
                               #:create-queue-environment
-                              #:create-queue-environment-request
-                              #:create-queue-environment-response
                               #:create-queue-fleet-association
-                              #:create-queue-fleet-association-request
-                              #:create-queue-fleet-association-response
                               #:create-queue-limit-association
-                              #:create-queue-limit-association-request
-                              #:create-queue-limit-association-response
-                              #:create-queue-request #:create-queue-response
-                              #:create-storage-profile
-                              #:create-storage-profile-request
-                              #:create-storage-profile-response #:create-worker
-                              #:create-worker-request #:create-worker-response
+                              #:create-storage-profile #:create-worker
                               #:created-at #:created-by
                               #:custom-fleet-amount-capabilities
                               #:custom-fleet-attribute-capabilities
@@ -103,50 +62,22 @@
                               #:date-time-filter-expression #:deadline
                               #:deadline-principal-type
                               #:default-queue-budget-action #:delete-budget
-                              #:delete-budget-request #:delete-budget-response
-                              #:delete-farm #:delete-farm-request
-                              #:delete-farm-response #:delete-fleet
-                              #:delete-fleet-request #:delete-fleet-response
-                              #:delete-license-endpoint
-                              #:delete-license-endpoint-request
-                              #:delete-license-endpoint-response #:delete-limit
-                              #:delete-limit-request #:delete-limit-response
-                              #:delete-metered-product
-                              #:delete-metered-product-request
-                              #:delete-metered-product-response
-                              #:delete-monitor #:delete-monitor-request
-                              #:delete-monitor-response #:delete-queue
-                              #:delete-queue-environment
-                              #:delete-queue-environment-request
-                              #:delete-queue-environment-response
+                              #:delete-farm #:delete-fleet
+                              #:delete-license-endpoint #:delete-limit
+                              #:delete-metered-product #:delete-monitor
+                              #:delete-queue #:delete-queue-environment
                               #:delete-queue-fleet-association
-                              #:delete-queue-fleet-association-request
-                              #:delete-queue-fleet-association-response
                               #:delete-queue-limit-association
-                              #:delete-queue-limit-association-request
-                              #:delete-queue-limit-association-response
-                              #:delete-queue-request #:delete-queue-response
-                              #:delete-storage-profile
-                              #:delete-storage-profile-request
-                              #:delete-storage-profile-response #:delete-worker
-                              #:delete-worker-request #:delete-worker-response
+                              #:delete-storage-profile #:delete-worker
                               #:dependencies-list
                               #:dependency-consumer-resolution-status
                               #:dependency-counts #:description
                               #:desired-worker-status
                               #:disassociate-member-from-farm
-                              #:disassociate-member-from-farm-request
-                              #:disassociate-member-from-farm-response
                               #:disassociate-member-from-fleet
-                              #:disassociate-member-from-fleet-request
-                              #:disassociate-member-from-fleet-response
                               #:disassociate-member-from-job
-                              #:disassociate-member-from-job-request
-                              #:disassociate-member-from-job-response
-                              #:disassociate-member-from-queue
-                              #:disassociate-member-from-queue-request
-                              #:disassociate-member-from-queue-response
-                              #:dns-name #:document #:double #:ebs-iops
+                              #:disassociate-member-from-queue #:dns-name
+                              #:document #:double #:ebs-iops
                               #:ebs-throughput-mi-b #:ec2ebs-volume
                               #:ec2market-type #:ended-at #:ends-at
                               #:environment-details-entity
@@ -173,45 +104,17 @@
                               #:fleet-configuration #:fleet-id #:fleet-ids
                               #:fleet-member #:fleet-members #:fleet-resource
                               #:fleet-status #:fleet-summaries #:fleet-summary
-                              #:float-string #:get-budget #:get-budget-request
-                              #:get-budget-response #:get-farm
-                              #:get-farm-request #:get-farm-response
-                              #:get-fleet #:get-fleet-request
-                              #:get-fleet-response #:get-job
-                              #:get-job-entity-error #:get-job-request
-                              #:get-job-response #:get-license-endpoint
-                              #:get-license-endpoint-request
-                              #:get-license-endpoint-response #:get-limit
-                              #:get-limit-request #:get-limit-response
-                              #:get-monitor #:get-monitor-request
-                              #:get-monitor-response #:get-queue
-                              #:get-queue-environment
-                              #:get-queue-environment-request
-                              #:get-queue-environment-response
+                              #:float-string #:get-budget #:get-farm
+                              #:get-fleet #:get-job #:get-job-entity-error
+                              #:get-license-endpoint #:get-limit #:get-monitor
+                              #:get-queue #:get-queue-environment
                               #:get-queue-fleet-association
-                              #:get-queue-fleet-association-request
-                              #:get-queue-fleet-association-response
-                              #:get-queue-limit-association
-                              #:get-queue-limit-association-request
-                              #:get-queue-limit-association-response
-                              #:get-queue-request #:get-queue-response
-                              #:get-session #:get-session-action
-                              #:get-session-action-request
-                              #:get-session-action-response
-                              #:get-session-request #:get-session-response
-                              #:get-sessions-statistics-aggregation
-                              #:get-sessions-statistics-aggregation-request
-                              #:get-sessions-statistics-aggregation-response
-                              #:get-step #:get-step-request #:get-step-response
+                              #:get-queue-limit-association #:get-session
+                              #:get-session-action
+                              #:get-sessions-statistics-aggregation #:get-step
                               #:get-storage-profile
-                              #:get-storage-profile-for-queue
-                              #:get-storage-profile-for-queue-request
-                              #:get-storage-profile-for-queue-response
-                              #:get-storage-profile-request
-                              #:get-storage-profile-response #:get-task
-                              #:get-task-request #:get-task-response
-                              #:get-worker #:get-worker-request
-                              #:get-worker-response #:host-configuration
+                              #:get-storage-profile-for-queue #:get-task
+                              #:get-worker #:host-configuration
                               #:host-configuration-script
                               #:host-configuration-script-timeout-seconds
                               #:host-name #:host-properties-request
@@ -221,9 +124,9 @@
                               #:identity-center-principal-id
                               #:identity-store-id #:instance-type
                               #:instance-types #:int-string #:integer
-                              #:internal-server-error-exception #:ip-addresses
-                              #:ip-v4address #:ip-v4addresses #:ip-v6address
-                              #:ip-v6addresses #:job-attachment-details-entity
+                              #:ip-addresses #:ip-v4address #:ip-v4addresses
+                              #:ip-v6address #:ip-v6addresses
+                              #:job-attachment-details-entity
                               #:job-attachment-details-error
                               #:job-attachment-details-identifiers
                               #:job-attachment-settings
@@ -247,78 +150,33 @@
                               #:license-endpoint-summary #:license-product
                               #:limit-id #:limit-summaries #:limit-summary
                               #:list-attribute-capability-value
-                              #:list-available-metered-products
-                              #:list-available-metered-products-request
-                              #:list-available-metered-products-response
-                              #:list-budgets #:list-budgets-request
-                              #:list-budgets-response #:list-farm-members
-                              #:list-farm-members-request
-                              #:list-farm-members-response #:list-farms
-                              #:list-farms-request #:list-farms-response
-                              #:list-fleet-members #:list-fleet-members-request
-                              #:list-fleet-members-response #:list-fleets
-                              #:list-fleets-request #:list-fleets-response
-                              #:list-job-members #:list-job-members-request
-                              #:list-job-members-response
-                              #:list-job-parameter-definitions
-                              #:list-job-parameter-definitions-request
-                              #:list-job-parameter-definitions-response
-                              #:list-jobs #:list-jobs-request
-                              #:list-jobs-response #:list-license-endpoints
-                              #:list-license-endpoints-request
-                              #:list-license-endpoints-response #:list-limits
-                              #:list-limits-request #:list-limits-response
-                              #:list-metered-products
-                              #:list-metered-products-request
-                              #:list-metered-products-response #:list-monitors
-                              #:list-monitors-request #:list-monitors-response
+                              #:list-available-metered-products #:list-budgets
+                              #:list-farm-members #:list-farms
+                              #:list-fleet-members #:list-fleets
+                              #:list-job-members
+                              #:list-job-parameter-definitions #:list-jobs
+                              #:list-license-endpoints #:list-limits
+                              #:list-metered-products #:list-monitors
                               #:list-queue-environments
-                              #:list-queue-environments-request
-                              #:list-queue-environments-response
                               #:list-queue-fleet-associations
-                              #:list-queue-fleet-associations-request
-                              #:list-queue-fleet-associations-response
                               #:list-queue-limit-associations
-                              #:list-queue-limit-associations-request
-                              #:list-queue-limit-associations-response
-                              #:list-queue-members #:list-queue-members-request
-                              #:list-queue-members-response #:list-queues
-                              #:list-queues-request #:list-queues-response
-                              #:list-session-actions
-                              #:list-session-actions-request
-                              #:list-session-actions-response #:list-sessions
+                              #:list-queue-members #:list-queues
+                              #:list-session-actions #:list-sessions
                               #:list-sessions-for-worker
-                              #:list-sessions-for-worker-request
-                              #:list-sessions-for-worker-response
                               #:list-sessions-for-worker-summaries
-                              #:list-sessions-request #:list-sessions-response
-                              #:list-step-consumers
-                              #:list-step-consumers-request
-                              #:list-step-consumers-response
-                              #:list-step-dependencies
-                              #:list-step-dependencies-request
-                              #:list-step-dependencies-response #:list-steps
-                              #:list-steps-request #:list-steps-response
-                              #:list-storage-profiles
+                              #:list-step-consumers #:list-step-dependencies
+                              #:list-steps #:list-storage-profiles
                               #:list-storage-profiles-for-queue
-                              #:list-storage-profiles-for-queue-request
-                              #:list-storage-profiles-for-queue-response
-                              #:list-storage-profiles-request
-                              #:list-storage-profiles-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-tasks
-                              #:list-tasks-request #:list-tasks-response
-                              #:list-workers #:list-workers-request
-                              #:list-workers-response #:log-configuration
-                              #:log-driver #:log-error #:log-options
-                              #:log-parameters #:logical-operator
-                              #:manifest-properties #:manifest-properties-list
-                              #:max-count #:max-failed-tasks-count
-                              #:max-results #:max-retries-per-task
-                              #:max-worker-count #:membership-level
-                              #:memory-amount-mi-b #:memory-mi-brange
-                              #:metered-product-id #:metered-product-resource
+                              #:list-tags-for-resource #:list-tasks
+                              #:list-workers #:log-configuration #:log-driver
+                              #:log-error #:log-options #:log-parameters
+                              #:logical-operator #:manifest-properties
+                              #:manifest-properties-list #:max-count
+                              #:max-failed-tasks-count #:max-results
+                              #:max-retries-per-task #:max-worker-count
+                              #:membership-level #:memory-amount-mi-b
+                              #:memory-mi-brange #:metered-product-id
+                              #:metered-product-resource
                               #:metered-product-summary
                               #:metered-product-summary-list
                               #:min-one-max-integer #:min-one-max-ten-thousand
@@ -333,8 +191,6 @@
                               #:path-mapping-rules #:path-string #:period
                               #:port-number #:posix-user #:priority
                               #:process-exit-code #:put-metered-product
-                              #:put-metered-product-request
-                              #:put-metered-product-response
                               #:queue-blocked-reason #:queue-environment-id
                               #:queue-environment-summaries
                               #:queue-environment-summary
@@ -347,29 +203,23 @@
                               #:queue-member-list #:queue-resource
                               #:queue-status #:queue-summaries #:queue-summary
                               #:required-file-system-location-names
-                              #:resource-name #:resource-not-found-exception
-                              #:response-budget-action
+                              #:resource-name #:response-budget-action
                               #:response-budget-action-list #:run-as
                               #:s3bucket-name #:s3key #:s3location #:s3prefix
                               #:search-filter-expression
                               #:search-filter-expressions
                               #:search-grouped-filter-expressions #:search-jobs
-                              #:search-jobs-request #:search-jobs-response
                               #:search-sort-expression
                               #:search-sort-expressions #:search-steps
-                              #:search-steps-request #:search-steps-response
-                              #:search-tasks #:search-tasks-request
-                              #:search-tasks-response #:search-term
+                              #:search-tasks #:search-term
                               #:search-term-filter-expression
                               #:search-term-matching-type #:search-workers
-                              #:search-workers-request
-                              #:search-workers-response #:secret-access-key
-                              #:security-group-id #:security-group-id-list
+                              #:secret-access-key #:security-group-id
+                              #:security-group-id-list
                               #:service-managed-ec2fleet-configuration
                               #:service-managed-ec2instance-capabilities
                               #:service-managed-ec2instance-market-options
                               #:service-managed-fleet-operating-system-family
-                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason
                               #:session-action-definition
                               #:session-action-definition-summary
@@ -386,8 +236,6 @@
                               #:sessions-statistics-aggregation-status
                               #:sessions-statistics-resources #:sort-order
                               #:start-sessions-statistics-aggregation
-                              #:start-sessions-statistics-aggregation-request
-                              #:start-sessions-statistics-aggregation-response
                               #:started-at #:starts-at #:statistics
                               #:statistics-list #:stats #:status-message
                               #:step-amount-capabilities
@@ -414,9 +262,8 @@
                               #:subnet-id-list
                               #:sync-input-job-attachments-session-action-definition
                               #:sync-input-job-attachments-session-action-definition-summary
-                              #:tag-propagation-mode #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tags #:task-failure-retry-count #:task-id
+                              #:tag-propagation-mode #:tag-resource #:tags
+                              #:task-failure-retry-count #:task-id
                               #:task-parameter-value #:task-parameters
                               #:task-retry-count
                               #:task-run-manifest-properties-list-request
@@ -429,51 +276,26 @@
                               #:task-search-summaries #:task-search-summary
                               #:task-summaries #:task-summary
                               #:task-target-run-status #:threshold-percentage
-                              #:throttling-exception #:timestamp #:timezone
-                              #:total-results #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-budget
-                              #:update-budget-request #:update-budget-response
-                              #:update-farm #:update-farm-request
-                              #:update-farm-response #:update-fleet
-                              #:update-fleet-request #:update-fleet-response
-                              #:update-job #:update-job-lifecycle-status
-                              #:update-job-request #:update-job-response
-                              #:update-limit #:update-limit-request
-                              #:update-limit-response #:update-monitor
-                              #:update-monitor-request
-                              #:update-monitor-response #:update-queue
+                              #:timestamp #:timezone #:total-results
+                              #:untag-resource #:update-budget #:update-farm
+                              #:update-fleet #:update-job
+                              #:update-job-lifecycle-status #:update-limit
+                              #:update-monitor #:update-queue
                               #:update-queue-environment
-                              #:update-queue-environment-request
-                              #:update-queue-environment-response
                               #:update-queue-fleet-association
-                              #:update-queue-fleet-association-request
-                              #:update-queue-fleet-association-response
                               #:update-queue-fleet-association-status
                               #:update-queue-limit-association
-                              #:update-queue-limit-association-request
-                              #:update-queue-limit-association-response
                               #:update-queue-limit-association-status
-                              #:update-queue-request #:update-queue-response
-                              #:update-session #:update-session-request
-                              #:update-session-response #:update-step
-                              #:update-step-request #:update-step-response
-                              #:update-storage-profile
-                              #:update-storage-profile-request
-                              #:update-storage-profile-response #:update-task
-                              #:update-task-request #:update-task-response
-                              #:update-worker #:update-worker-request
-                              #:update-worker-response #:update-worker-schedule
-                              #:update-worker-schedule-interval
-                              #:update-worker-schedule-request
-                              #:update-worker-schedule-response #:updated-at
+                              #:update-session #:update-step
+                              #:update-storage-profile #:update-task
+                              #:update-worker #:update-worker-schedule
+                              #:update-worker-schedule-interval #:updated-at
                               #:updated-by #:updated-session-action-info
                               #:updated-session-actions #:updated-worker-status
                               #:url #:usage-group-by #:usage-group-by-field
                               #:usage-statistic #:usage-statistics
                               #:usage-tracking-resource #:usage-type #:user-id
                               #:user-jobs-first #:vcpu-count-range
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vpc-configuration

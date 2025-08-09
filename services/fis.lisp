@@ -7,28 +7,20 @@
                               #:action-summary-list #:action-target
                               #:action-target-map #:action-target-name
                               #:actions-mode #:client-token
-                              #:cloud-watch-log-group-arn #:conflict-exception
+                              #:cloud-watch-log-group-arn
                               #:create-experiment-template
                               #:create-experiment-template-action-input
                               #:create-experiment-template-action-input-map
                               #:create-experiment-template-experiment-options-input
                               #:create-experiment-template-log-configuration-input
                               #:create-experiment-template-report-configuration-input
-                              #:create-experiment-template-request
-                              #:create-experiment-template-response
                               #:create-experiment-template-stop-condition-input
                               #:create-experiment-template-stop-condition-input-list
                               #:create-experiment-template-target-input
                               #:create-experiment-template-target-input-map
                               #:create-target-account-configuration
-                              #:create-target-account-configuration-request
-                              #:create-target-account-configuration-response
                               #:creation-time #:delete-experiment-template
-                              #:delete-experiment-template-request
-                              #:delete-experiment-template-response
                               #:delete-target-account-configuration
-                              #:delete-target-account-configuration-request
-                              #:delete-target-account-configuration-response
                               #:empty-target-resolution-mode
                               #:exception-message #:experiment
                               #:experiment-action
@@ -134,51 +126,23 @@
                               #:experiment-template-target-parameter-value
                               #:experiment-template-target-selection-mode
                               #:fault-injection-simulator #:get-action
-                              #:get-action-request #:get-action-response
-                              #:get-experiment #:get-experiment-request
-                              #:get-experiment-response
+                              #:get-experiment
                               #:get-experiment-target-account-configuration
-                              #:get-experiment-target-account-configuration-request
-                              #:get-experiment-target-account-configuration-response
-                              #:get-experiment-template
-                              #:get-experiment-template-request
-                              #:get-experiment-template-response
-                              #:get-safety-lever #:get-safety-lever-request
-                              #:get-safety-lever-response
+                              #:get-experiment-template #:get-safety-lever
                               #:get-target-account-configuration
-                              #:get-target-account-configuration-request
-                              #:get-target-account-configuration-response
-                              #:get-target-resource-type
-                              #:get-target-resource-type-request
-                              #:get-target-resource-type-response
-                              #:last-update-time #:list-actions
-                              #:list-actions-max-results #:list-actions-request
-                              #:list-actions-response
+                              #:get-target-resource-type #:last-update-time
+                              #:list-actions #:list-actions-max-results
                               #:list-experiment-resolved-targets
                               #:list-experiment-resolved-targets-max-results
-                              #:list-experiment-resolved-targets-request
-                              #:list-experiment-resolved-targets-response
                               #:list-experiment-target-account-configurations
-                              #:list-experiment-target-account-configurations-request
-                              #:list-experiment-target-account-configurations-response
                               #:list-experiment-templates
                               #:list-experiment-templates-max-results
-                              #:list-experiment-templates-request
-                              #:list-experiment-templates-response
                               #:list-experiments #:list-experiments-max-results
-                              #:list-experiments-request
-                              #:list-experiments-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-target-account-configurations
                               #:list-target-account-configurations-max-results
-                              #:list-target-account-configurations-request
-                              #:list-target-account-configurations-response
                               #:list-target-resource-types
                               #:list-target-resource-types-max-results
-                              #:list-target-resource-types-request
-                              #:list-target-resource-types-response
                               #:log-schema-version #:next-token
                               #:report-configuration-cloud-watch-dashboard-identifier
                               #:report-configuration-cloud-watch-dashboard-input
@@ -188,23 +152,16 @@
                               #:report-configuration-s3output-input
                               #:report-configuration-s3output-prefix
                               #:resolved-target #:resolved-target-list
-                              #:resource-arn #:resource-arn-list
-                              #:resource-not-found-exception #:role-arn
+                              #:resource-arn #:resource-arn-list #:role-arn
                               #:s3bucket-name #:s3object-key #:safety-lever
                               #:safety-lever-id #:safety-lever-state
                               #:safety-lever-status #:safety-lever-status-input
-                              #:safety-lever-status-reason
-                              #:service-quota-exceeded-exception
-                              #:start-experiment
+                              #:safety-lever-status-reason #:start-experiment
                               #:start-experiment-experiment-options-input
-                              #:start-experiment-request
-                              #:start-experiment-response
                               #:stop-condition-source #:stop-condition-value
-                              #:stop-experiment #:stop-experiment-request
-                              #:stop-experiment-response #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:target-account-configuration
+                              #:stop-experiment #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-value
+                              #:target-account-configuration
                               #:target-account-configuration-description
                               #:target-account-configuration-list
                               #:target-account-configuration-summary
@@ -222,28 +179,19 @@
                               #:target-resource-type-parameter-required
                               #:target-resource-type-summary
                               #:target-resource-type-summary-list
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-experiment-template
+                              #:untag-resource #:update-experiment-template
                               #:update-experiment-template-action-input-item
                               #:update-experiment-template-action-input-map
                               #:update-experiment-template-experiment-options-input
                               #:update-experiment-template-log-configuration-input
                               #:update-experiment-template-report-configuration-input
-                              #:update-experiment-template-request
-                              #:update-experiment-template-response
                               #:update-experiment-template-stop-condition-input
                               #:update-experiment-template-stop-condition-input-list
                               #:update-experiment-template-target-input
                               #:update-experiment-template-target-input-map
                               #:update-safety-lever-state
                               #:update-safety-lever-state-input
-                              #:update-safety-lever-state-request
-                              #:update-safety-lever-state-response
-                              #:update-target-account-configuration
-                              #:update-target-account-configuration-request
-                              #:update-target-account-configuration-response
-                              #:validation-exception))
+                              #:update-target-account-configuration))
 (common-lisp:in-package #:pira/fis)
 
 (smithy/sdk/service:define-service fault-injection-simulator :shape-name

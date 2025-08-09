@@ -1,38 +1,16 @@
 (uiop/package:define-package #:pira/iot-data-plane (:use)
-                             (:export #:conflict-exception #:content-type
-                              #:correlation-data #:delete-thing-shadow
-                              #:delete-thing-shadow-request
-                              #:delete-thing-shadow-response
-                              #:get-retained-message
-                              #:get-retained-message-request
-                              #:get-retained-message-response
-                              #:get-thing-shadow #:get-thing-shadow-request
-                              #:get-thing-shadow-response
-                              #:internal-failure-exception
-                              #:invalid-request-exception
-                              #:iot-moonraker-service #:json-document
-                              #:list-named-shadows-for-thing
-                              #:list-named-shadows-for-thing-request
-                              #:list-named-shadows-for-thing-response
-                              #:list-retained-messages
-                              #:list-retained-messages-request
-                              #:list-retained-messages-response #:max-results
-                              #:message-expiry #:method-not-allowed-exception
-                              #:named-shadow-list #:next-token #:page-size
-                              #:payload #:payload-format-indicator
-                              #:payload-size #:publish #:publish-request #:qos
-                              #:request-entity-too-large-exception
-                              #:resource-not-found-exception #:response-topic
+                             (:export #:content-type #:correlation-data
+                              #:delete-thing-shadow #:get-retained-message
+                              #:get-thing-shadow #:iot-moonraker-service
+                              #:json-document #:list-named-shadows-for-thing
+                              #:list-retained-messages #:max-results
+                              #:message-expiry #:named-shadow-list #:next-token
+                              #:page-size #:payload #:payload-format-indicator
+                              #:payload-size #:publish #:qos #:response-topic
                               #:retain #:retained-message-list
-                              #:retained-message-summary
-                              #:service-unavailable-exception #:shadow-name
+                              #:retained-message-summary #:shadow-name
                               #:synthesized-json-user-properties #:thing-name
-                              #:throttling-exception #:timestamp #:topic
-                              #:unauthorized-exception
-                              #:unsupported-document-encoding-exception
-                              #:update-thing-shadow
-                              #:update-thing-shadow-request
-                              #:update-thing-shadow-response
+                              #:timestamp #:topic #:update-thing-shadow
                               #:user-properties-blob #:error-message))
 (common-lisp:in-package #:pira/iot-data-plane)
 

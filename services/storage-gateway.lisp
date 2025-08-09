@@ -1,21 +1,9 @@
 (uiop/package:define-package #:pira/storage-gateway (:use)
-                             (:export #:activate-gateway
-                              #:activate-gateway-input
-                              #:activate-gateway-output #:activation-key
+                             (:export #:activate-gateway #:activation-key
                               #:active-directory-status #:add-cache
-                              #:add-cache-input #:add-cache-output
-                              #:add-tags-to-resource
-                              #:add-tags-to-resource-input
-                              #:add-tags-to-resource-output #:add-upload-buffer
-                              #:add-upload-buffer-input
-                              #:add-upload-buffer-output #:add-working-storage
-                              #:add-working-storage-input
-                              #:add-working-storage-output #:assign-tape-pool
-                              #:assign-tape-pool-input
-                              #:assign-tape-pool-output #:associate-file-system
-                              #:associate-file-system-input
-                              #:associate-file-system-output #:attach-volume
-                              #:attach-volume-input #:attach-volume-output
+                              #:add-tags-to-resource #:add-upload-buffer
+                              #:add-working-storage #:assign-tape-pool
+                              #:associate-file-system #:attach-volume
                               #:audit-destination-arn #:authentication
                               #:automatic-tape-creation-policy-info
                               #:automatic-tape-creation-policy-infos
@@ -36,127 +24,45 @@
                               #:cache-report-status
                               #:cache-stale-timeout-in-seconds
                               #:cachedi-scsivolume #:cachedi-scsivolumes
-                              #:cancel-archival #:cancel-archival-input
-                              #:cancel-archival-output #:cancel-cache-report
-                              #:cancel-cache-report-input
-                              #:cancel-cache-report-output #:cancel-retrieval
-                              #:cancel-retrieval-input
-                              #:cancel-retrieval-output #:case-sensitivity
+                              #:cancel-archival #:cancel-cache-report
+                              #:cancel-retrieval #:case-sensitivity
                               #:chap-credentials #:chap-info #:chap-secret
                               #:client-token #:cloud-watch-log-group-arn
                               #:create-cachedi-scsivolume
-                              #:create-cachedi-scsivolume-input
-                              #:create-cachedi-scsivolume-output
-                              #:create-nfsfile-share
-                              #:create-nfsfile-share-input
-                              #:create-nfsfile-share-output
-                              #:create-smbfile-share
-                              #:create-smbfile-share-input
-                              #:create-smbfile-share-output #:create-snapshot
+                              #:create-nfsfile-share #:create-smbfile-share
+                              #:create-snapshot
                               #:create-snapshot-from-volume-recovery-point
-                              #:create-snapshot-from-volume-recovery-point-input
-                              #:create-snapshot-from-volume-recovery-point-output
-                              #:create-snapshot-input #:create-snapshot-output
-                              #:create-storedi-scsivolume
-                              #:create-storedi-scsivolume-input
-                              #:create-storedi-scsivolume-output
-                              #:create-tape-pool #:create-tape-pool-input
-                              #:create-tape-pool-output
-                              #:create-tape-with-barcode
-                              #:create-tape-with-barcode-input
-                              #:create-tape-with-barcode-output #:create-tapes
-                              #:create-tapes-input #:create-tapes-output
+                              #:create-storedi-scsivolume #:create-tape-pool
+                              #:create-tape-with-barcode #:create-tapes
                               #:created-date #:dnshost-name #:day-of-month
                               #:day-of-week #:days-of-week
                               #:delete-automatic-tape-creation-policy
-                              #:delete-automatic-tape-creation-policy-input
-                              #:delete-automatic-tape-creation-policy-output
                               #:delete-bandwidth-rate-limit
-                              #:delete-bandwidth-rate-limit-input
-                              #:delete-bandwidth-rate-limit-output
-                              #:delete-cache-report #:delete-cache-report-input
-                              #:delete-cache-report-output
-                              #:delete-chap-credentials
-                              #:delete-chap-credentials-input
-                              #:delete-chap-credentials-output
-                              #:delete-file-share #:delete-file-share-input
-                              #:delete-file-share-output #:delete-gateway
-                              #:delete-gateway-input #:delete-gateway-output
-                              #:delete-snapshot-schedule
-                              #:delete-snapshot-schedule-input
-                              #:delete-snapshot-schedule-output #:delete-tape
-                              #:delete-tape-archive #:delete-tape-archive-input
-                              #:delete-tape-archive-output #:delete-tape-input
-                              #:delete-tape-output #:delete-tape-pool
-                              #:delete-tape-pool-input
-                              #:delete-tape-pool-output #:delete-volume
-                              #:delete-volume-input #:delete-volume-output
-                              #:deprecation-date
+                              #:delete-cache-report #:delete-chap-credentials
+                              #:delete-file-share #:delete-gateway
+                              #:delete-snapshot-schedule #:delete-tape
+                              #:delete-tape-archive #:delete-tape-pool
+                              #:delete-volume #:deprecation-date
                               #:describe-availability-monitor-test
-                              #:describe-availability-monitor-test-input
-                              #:describe-availability-monitor-test-output
                               #:describe-bandwidth-rate-limit
-                              #:describe-bandwidth-rate-limit-input
-                              #:describe-bandwidth-rate-limit-output
                               #:describe-bandwidth-rate-limit-schedule
-                              #:describe-bandwidth-rate-limit-schedule-input
-                              #:describe-bandwidth-rate-limit-schedule-output
-                              #:describe-cache #:describe-cache-input
-                              #:describe-cache-output #:describe-cache-report
-                              #:describe-cache-report-input
-                              #:describe-cache-report-output
+                              #:describe-cache #:describe-cache-report
                               #:describe-cachedi-scsivolumes
-                              #:describe-cachedi-scsivolumes-input
-                              #:describe-cachedi-scsivolumes-output
                               #:describe-chap-credentials
-                              #:describe-chap-credentials-input
-                              #:describe-chap-credentials-output
                               #:describe-file-system-associations
-                              #:describe-file-system-associations-input
-                              #:describe-file-system-associations-output
                               #:describe-gateway-information
-                              #:describe-gateway-information-input
-                              #:describe-gateway-information-output
                               #:describe-maintenance-start-time
-                              #:describe-maintenance-start-time-input
-                              #:describe-maintenance-start-time-output
                               #:describe-nfsfile-shares
-                              #:describe-nfsfile-shares-input
-                              #:describe-nfsfile-shares-output
-                              #:describe-smbfile-shares
-                              #:describe-smbfile-shares-input
-                              #:describe-smbfile-shares-output
-                              #:describe-smbsettings
-                              #:describe-smbsettings-input
-                              #:describe-smbsettings-output
+                              #:describe-smbfile-shares #:describe-smbsettings
                               #:describe-snapshot-schedule
-                              #:describe-snapshot-schedule-input
-                              #:describe-snapshot-schedule-output
                               #:describe-storedi-scsivolumes
-                              #:describe-storedi-scsivolumes-input
-                              #:describe-storedi-scsivolumes-output
                               #:describe-tape-archives
-                              #:describe-tape-archives-input
-                              #:describe-tape-archives-output
-                              #:describe-tape-recovery-points
-                              #:describe-tape-recovery-points-input
-                              #:describe-tape-recovery-points-output
-                              #:describe-tapes #:describe-tapes-input
-                              #:describe-tapes-output #:describe-upload-buffer
-                              #:describe-upload-buffer-input
-                              #:describe-upload-buffer-output
-                              #:describe-vtldevices #:describe-vtldevices-input
-                              #:describe-vtldevices-output
-                              #:describe-working-storage
-                              #:describe-working-storage-input
-                              #:describe-working-storage-output #:description
-                              #:detach-volume #:detach-volume-input
-                              #:detach-volume-output #:device-type
+                              #:describe-tape-recovery-points #:describe-tapes
+                              #:describe-upload-buffer #:describe-vtldevices
+                              #:describe-working-storage #:description
+                              #:detach-volume #:device-type
                               #:devicei-scsiattributes #:disable-gateway
-                              #:disable-gateway-input #:disable-gateway-output
-                              #:disassociate-file-system
-                              #:disassociate-file-system-input
-                              #:disassociate-file-system-output #:disk
+                              #:disassociate-file-system #:disk
                               #:disk-allocation-type #:disk-attribute
                               #:disk-attribute-list #:disk-id #:disk-ids
                               #:disks #:domain-name #:domain-user-name
@@ -165,8 +71,6 @@
                               #:encryption-type
                               #:endpoint-network-configuration #:endpoint-type
                               #:error-code #:evict-files-failing-upload
-                              #:evict-files-failing-upload-input
-                              #:evict-files-failing-upload-output
                               #:file-share-arn #:file-share-arnlist
                               #:file-share-client-list #:file-share-id
                               #:file-share-info #:file-share-info-list
@@ -190,87 +94,44 @@
                               #:gateway-timezone #:gateway-type #:gateways
                               #:host #:host-environment #:host-environment-id
                               #:hosts #:hour-of-day #:ipv4address #:initiator
-                              #:initiators #:internal-server-error
-                              #:invalid-gateway-request-exception
-                              #:ip-address-list #:ipv4or-ipv6address-cidr
-                              #:iqn-name #:join-domain #:join-domain-input
-                              #:join-domain-output #:kmskey
-                              #:last-software-update
+                              #:initiators #:ip-address-list
+                              #:ipv4or-ipv6address-cidr #:iqn-name
+                              #:join-domain #:kmskey #:last-software-update
                               #:list-automatic-tape-creation-policies
-                              #:list-automatic-tape-creation-policies-input
-                              #:list-automatic-tape-creation-policies-output
-                              #:list-cache-reports #:list-cache-reports-input
-                              #:list-cache-reports-output #:list-file-shares
-                              #:list-file-shares-input
-                              #:list-file-shares-output
-                              #:list-file-system-associations
-                              #:list-file-system-associations-input
-                              #:list-file-system-associations-output
-                              #:list-gateways #:list-gateways-input
-                              #:list-gateways-output #:list-local-disks
-                              #:list-local-disks-input
-                              #:list-local-disks-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:list-tape-pools
-                              #:list-tape-pools-input #:list-tape-pools-output
-                              #:list-tapes #:list-tapes-input
-                              #:list-tapes-output #:list-volume-initiators
-                              #:list-volume-initiators-input
-                              #:list-volume-initiators-output
-                              #:list-volume-recovery-points
-                              #:list-volume-recovery-points-input
-                              #:list-volume-recovery-points-output
-                              #:list-volumes #:list-volumes-input
-                              #:list-volumes-output #:local-console-password
-                              #:location-arn #:marker #:medium-changer-type
-                              #:minimum-num-tapes #:minute-of-hour
-                              #:nfsfile-share-defaults #:nfsfile-share-info
-                              #:nfsfile-share-info-list #:network-interface
-                              #:network-interface-id
+                              #:list-cache-reports #:list-file-shares
+                              #:list-file-system-associations #:list-gateways
+                              #:list-local-disks #:list-tags-for-resource
+                              #:list-tape-pools #:list-tapes
+                              #:list-volume-initiators
+                              #:list-volume-recovery-points #:list-volumes
+                              #:local-console-password #:location-arn #:marker
+                              #:medium-changer-type #:minimum-num-tapes
+                              #:minute-of-hour #:nfsfile-share-defaults
+                              #:nfsfile-share-info #:nfsfile-share-info-list
+                              #:network-interface #:network-interface-id
                               #:next-update-availability-date #:notification-id
                               #:notification-policy #:notify-when-uploaded
-                              #:notify-when-uploaded-input
-                              #:notify-when-uploaded-output
                               #:num-tapes-to-create #:object-acl
                               #:organizational-unit #:path #:permission-id
                               #:permission-mode #:pool-arn #:pool-arns
                               #:pool-id #:pool-info #:pool-infos #:pool-name
                               #:pool-status #:positive-int-object
-                              #:recurrence-in-hours #:refresh-cache
-                              #:refresh-cache-input #:refresh-cache-output
-                              #:region-id #:remove-tags-from-resource
-                              #:remove-tags-from-resource-input
-                              #:remove-tags-from-resource-output
+                              #:recurrence-in-hours #:refresh-cache #:region-id
+                              #:remove-tags-from-resource
                               #:report-completion-percent #:reset-cache
-                              #:reset-cache-input #:reset-cache-output
                               #:resource-arn #:retention-lock-time-in-days
                               #:retention-lock-type #:retrieve-tape-archive
-                              #:retrieve-tape-archive-input
-                              #:retrieve-tape-archive-output
-                              #:retrieve-tape-recovery-point
-                              #:retrieve-tape-recovery-point-input
-                              #:retrieve-tape-recovery-point-output #:role
+                              #:retrieve-tape-recovery-point #:role
                               #:smbfile-share-info #:smbfile-share-info-list
                               #:smbguest-password #:smblocal-groups
                               #:smbsecurity-strategy
-                              #:service-unavailable-error
                               #:set-local-console-password
-                              #:set-local-console-password-input
-                              #:set-local-console-password-output
-                              #:set-smbguest-password
-                              #:set-smbguest-password-input
-                              #:set-smbguest-password-output #:shutdown-gateway
-                              #:shutdown-gateway-input
-                              #:shutdown-gateway-output #:snapshot-description
-                              #:snapshot-id #:software-update-preferences
+                              #:set-smbguest-password #:shutdown-gateway
+                              #:snapshot-description #:snapshot-id
+                              #:software-update-preferences
                               #:software-updates-end-date #:software-version
                               #:squash #:start-availability-monitor-test
-                              #:start-availability-monitor-test-input
-                              #:start-availability-monitor-test-output
-                              #:start-cache-report #:start-cache-report-input
-                              #:start-cache-report-output #:start-gateway
-                              #:start-gateway-input #:start-gateway-output
+                              #:start-cache-report #:start-gateway
                               #:storage-class #:storage-gateway-error
                               #:storage-gateway-20130630 #:storedi-scsivolume
                               #:storedi-scsivolumes
@@ -287,50 +148,19 @@
                               #:tapes #:target-arn #:target-name #:time
                               #:timeout-in-seconds
                               #:update-automatic-tape-creation-policy
-                              #:update-automatic-tape-creation-policy-input
-                              #:update-automatic-tape-creation-policy-output
                               #:update-bandwidth-rate-limit
-                              #:update-bandwidth-rate-limit-input
-                              #:update-bandwidth-rate-limit-output
                               #:update-bandwidth-rate-limit-schedule
-                              #:update-bandwidth-rate-limit-schedule-input
-                              #:update-bandwidth-rate-limit-schedule-output
                               #:update-chap-credentials
-                              #:update-chap-credentials-input
-                              #:update-chap-credentials-output
                               #:update-file-system-association
-                              #:update-file-system-association-input
-                              #:update-file-system-association-output
                               #:update-gateway-information
-                              #:update-gateway-information-input
-                              #:update-gateway-information-output
                               #:update-gateway-software-now
-                              #:update-gateway-software-now-input
-                              #:update-gateway-software-now-output
                               #:update-maintenance-start-time
-                              #:update-maintenance-start-time-input
-                              #:update-maintenance-start-time-output
-                              #:update-nfsfile-share
-                              #:update-nfsfile-share-input
-                              #:update-nfsfile-share-output
-                              #:update-smbfile-share
-                              #:update-smbfile-share-input
-                              #:update-smbfile-share-output
+                              #:update-nfsfile-share #:update-smbfile-share
                               #:update-smbfile-share-visibility
-                              #:update-smbfile-share-visibility-input
-                              #:update-smbfile-share-visibility-output
                               #:update-smblocal-groups
-                              #:update-smblocal-groups-input
-                              #:update-smblocal-groups-output
                               #:update-smbsecurity-strategy
-                              #:update-smbsecurity-strategy-input
-                              #:update-smbsecurity-strategy-output
                               #:update-snapshot-schedule
-                              #:update-snapshot-schedule-input
-                              #:update-snapshot-schedule-output
-                              #:update-vtldevice-type
-                              #:update-vtldevice-type-input
-                              #:update-vtldevice-type-output #:user-list
+                              #:update-vtldevice-type #:user-list
                               #:user-list-user #:vtldevice #:vtldevice-arn
                               #:vtldevice-arns #:vtldevice-product-identifier
                               #:vtldevice-type #:vtldevice-vendor #:vtldevices

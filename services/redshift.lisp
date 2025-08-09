@@ -1,157 +1,73 @@
 (uiop/package:define-package #:pira/redshift (:use)
                              (:export #:accept-reserved-node-exchange
-                              #:accept-reserved-node-exchange-input-message
-                              #:accept-reserved-node-exchange-output-message
-                              #:access-to-cluster-denied-fault
-                              #:access-to-snapshot-denied-fault
                               #:account-attribute #:account-attribute-list
                               #:account-with-restore-access
                               #:accounts-with-restore-access-list #:action-type
                               #:add-partner #:aqua-configuration
                               #:aqua-configuration-status #:aqua-status
                               #:associate-data-share-consumer
-                              #:associate-data-share-consumer-message
                               #:associated-cluster-list #:association
                               #:association-list #:attribute-list
                               #:attribute-name-list #:attribute-value-list
                               #:attribute-value-target #:authentication-profile
-                              #:authentication-profile-already-exists-fault
                               #:authentication-profile-list
                               #:authentication-profile-name-string
-                              #:authentication-profile-not-found-fault
-                              #:authentication-profile-quota-exceeded-fault
-                              #:authorization-already-exists-fault
-                              #:authorization-not-found-fault
-                              #:authorization-quota-exceeded-fault
                               #:authorization-status
                               #:authorize-cluster-security-group-ingress
-                              #:authorize-cluster-security-group-ingress-message
-                              #:authorize-cluster-security-group-ingress-result
                               #:authorize-data-share
-                              #:authorize-data-share-message
                               #:authorize-endpoint-access
-                              #:authorize-endpoint-access-message
                               #:authorize-snapshot-access
-                              #:authorize-snapshot-access-message
-                              #:authorize-snapshot-access-result
                               #:authorized-audience-list
                               #:authorized-token-issuer
                               #:authorized-token-issuer-list
                               #:availability-zone #:availability-zone-list
                               #:batch-delete-cluster-snapshots
-                              #:batch-delete-cluster-snapshots-request
-                              #:batch-delete-cluster-snapshots-result
-                              #:batch-delete-request-size-exceeded-fault
                               #:batch-modify-cluster-snapshots
-                              #:batch-modify-cluster-snapshots-limit-exceeded-fault
-                              #:batch-modify-cluster-snapshots-message
-                              #:batch-modify-cluster-snapshots-output-message
                               #:batch-snapshot-operation-error-list
                               #:batch-snapshot-operation-errors #:boolean
-                              #:boolean-optional #:bucket-not-found-fault
-                              #:cancel-resize #:cancel-resize-message
+                              #:boolean-optional #:cancel-resize
                               #:certificate-association
                               #:certificate-association-list #:cluster
-                              #:cluster-already-exists-fault
                               #:cluster-associated-to-schedule
                               #:cluster-credentials #:cluster-db-revision
                               #:cluster-db-revisions-list
-                              #:cluster-db-revisions-message
                               #:cluster-extended-credentials #:cluster-iam-role
                               #:cluster-iam-role-list #:cluster-list
                               #:cluster-node #:cluster-nodes-list
-                              #:cluster-not-found-fault
-                              #:cluster-on-latest-revision-fault
                               #:cluster-parameter-group
-                              #:cluster-parameter-group-already-exists-fault
                               #:cluster-parameter-group-details
                               #:cluster-parameter-group-name-message
-                              #:cluster-parameter-group-not-found-fault
-                              #:cluster-parameter-group-quota-exceeded-fault
                               #:cluster-parameter-group-status
                               #:cluster-parameter-group-status-list
-                              #:cluster-parameter-groups-message
                               #:cluster-parameter-status
                               #:cluster-parameter-status-list
-                              #:cluster-quota-exceeded-fault
                               #:cluster-security-group
-                              #:cluster-security-group-already-exists-fault
                               #:cluster-security-group-membership
                               #:cluster-security-group-membership-list
-                              #:cluster-security-group-message
                               #:cluster-security-group-name-list
-                              #:cluster-security-group-not-found-fault
-                              #:cluster-security-group-quota-exceeded-fault
                               #:cluster-security-groups
-                              #:cluster-snapshot-already-exists-fault
                               #:cluster-snapshot-copy-status
-                              #:cluster-snapshot-not-found-fault
-                              #:cluster-snapshot-quota-exceeded-fault
-                              #:cluster-subnet-group
-                              #:cluster-subnet-group-already-exists-fault
-                              #:cluster-subnet-group-message
-                              #:cluster-subnet-group-not-found-fault
-                              #:cluster-subnet-group-quota-exceeded-fault
-                              #:cluster-subnet-groups
-                              #:cluster-subnet-quota-exceeded-fault
+                              #:cluster-subnet-group #:cluster-subnet-groups
                               #:cluster-version #:cluster-version-list
-                              #:cluster-versions-message #:clusters-message
-                              #:conflict-policy-update-fault
                               #:consumer-identifier-list
                               #:copy-cluster-snapshot
-                              #:copy-cluster-snapshot-message
-                              #:copy-cluster-snapshot-result
-                              #:copy-to-region-disabled-fault
-                              #:create-authentication-profile
-                              #:create-authentication-profile-message
-                              #:create-authentication-profile-result
-                              #:create-cluster #:create-cluster-message
+                              #:create-authentication-profile #:create-cluster
                               #:create-cluster-parameter-group
-                              #:create-cluster-parameter-group-message
-                              #:create-cluster-parameter-group-result
-                              #:create-cluster-result
                               #:create-cluster-security-group
-                              #:create-cluster-security-group-message
-                              #:create-cluster-security-group-result
                               #:create-cluster-snapshot
-                              #:create-cluster-snapshot-message
-                              #:create-cluster-snapshot-result
                               #:create-cluster-subnet-group
-                              #:create-cluster-subnet-group-message
-                              #:create-cluster-subnet-group-result
                               #:create-custom-domain-association
-                              #:create-custom-domain-association-message
-                              #:create-custom-domain-association-result
                               #:create-endpoint-access
-                              #:create-endpoint-access-message
                               #:create-event-subscription
-                              #:create-event-subscription-message
-                              #:create-event-subscription-result
                               #:create-hsm-client-certificate
-                              #:create-hsm-client-certificate-message
-                              #:create-hsm-client-certificate-result
-                              #:create-hsm-configuration
-                              #:create-hsm-configuration-message
-                              #:create-hsm-configuration-result
-                              #:create-integration #:create-integration-message
+                              #:create-hsm-configuration #:create-integration
                               #:create-redshift-idc-application
-                              #:create-redshift-idc-application-message
-                              #:create-redshift-idc-application-result
                               #:create-scheduled-action
-                              #:create-scheduled-action-message
                               #:create-snapshot-copy-grant
-                              #:create-snapshot-copy-grant-message
-                              #:create-snapshot-copy-grant-result
-                              #:create-snapshot-schedule
-                              #:create-snapshot-schedule-message #:create-tags
-                              #:create-tags-message #:create-usage-limit
-                              #:create-usage-limit-message
-                              #:custom-cname-association-fault
-                              #:custom-domain-association-not-found-fault
-                              #:custom-domain-associations-message
+                              #:create-snapshot-schedule #:create-tags
+                              #:create-usage-limit
                               #:custom-domain-certificate-arn-string
-                              #:custom-domain-name-string
-                              #:customer-storage-message #:data-share
+                              #:custom-domain-name-string #:data-share
                               #:data-share-association
                               #:data-share-association-list #:data-share-list
                               #:data-share-status
@@ -159,317 +75,125 @@
                               #:data-share-status-for-producer
                               #:data-share-type #:data-transfer-progress
                               #:db-group-list #:deauthorize-data-share
-                              #:deauthorize-data-share-message
                               #:default-cluster-parameters
                               #:deferred-maintenance-window
                               #:deferred-maintenance-windows-list
-                              #:delete-authentication-profile
-                              #:delete-authentication-profile-message
-                              #:delete-authentication-profile-result
-                              #:delete-cluster #:delete-cluster-message
+                              #:delete-authentication-profile #:delete-cluster
                               #:delete-cluster-parameter-group
-                              #:delete-cluster-parameter-group-message
-                              #:delete-cluster-result
                               #:delete-cluster-security-group
-                              #:delete-cluster-security-group-message
                               #:delete-cluster-snapshot
                               #:delete-cluster-snapshot-message
                               #:delete-cluster-snapshot-message-list
-                              #:delete-cluster-snapshot-result
                               #:delete-cluster-subnet-group
-                              #:delete-cluster-subnet-group-message
                               #:delete-custom-domain-association
-                              #:delete-custom-domain-association-message
                               #:delete-endpoint-access
-                              #:delete-endpoint-access-message
                               #:delete-event-subscription
-                              #:delete-event-subscription-message
                               #:delete-hsm-client-certificate
-                              #:delete-hsm-client-certificate-message
-                              #:delete-hsm-configuration
-                              #:delete-hsm-configuration-message
-                              #:delete-integration #:delete-integration-message
+                              #:delete-hsm-configuration #:delete-integration
                               #:delete-partner
                               #:delete-redshift-idc-application
-                              #:delete-redshift-idc-application-message
                               #:delete-resource-policy
-                              #:delete-resource-policy-message
                               #:delete-scheduled-action
-                              #:delete-scheduled-action-message
                               #:delete-snapshot-copy-grant
-                              #:delete-snapshot-copy-grant-message
-                              #:delete-snapshot-schedule
-                              #:delete-snapshot-schedule-message #:delete-tags
-                              #:delete-tags-message #:delete-usage-limit
-                              #:delete-usage-limit-message
-                              #:dependent-service-access-denied-fault
-                              #:dependent-service-request-throttling-fault
-                              #:dependent-service-unavailable-fault
-                              #:deregister-namespace
-                              #:deregister-namespace-input-message
-                              #:deregister-namespace-output-message
+                              #:delete-snapshot-schedule #:delete-tags
+                              #:delete-usage-limit #:deregister-namespace
                               #:describe-account-attributes
-                              #:describe-account-attributes-message
                               #:describe-authentication-profiles
-                              #:describe-authentication-profiles-message
-                              #:describe-authentication-profiles-result
                               #:describe-cluster-db-revisions
-                              #:describe-cluster-db-revisions-message
                               #:describe-cluster-parameter-groups
-                              #:describe-cluster-parameter-groups-message
                               #:describe-cluster-parameters
-                              #:describe-cluster-parameters-message
                               #:describe-cluster-security-groups
-                              #:describe-cluster-security-groups-message
                               #:describe-cluster-snapshots
-                              #:describe-cluster-snapshots-message
                               #:describe-cluster-subnet-groups
-                              #:describe-cluster-subnet-groups-message
                               #:describe-cluster-tracks
-                              #:describe-cluster-tracks-message
-                              #:describe-cluster-versions
-                              #:describe-cluster-versions-message
-                              #:describe-clusters #:describe-clusters-message
+                              #:describe-cluster-versions #:describe-clusters
                               #:describe-custom-domain-associations
-                              #:describe-custom-domain-associations-message
                               #:describe-data-shares
                               #:describe-data-shares-for-consumer
-                              #:describe-data-shares-for-consumer-message
-                              #:describe-data-shares-for-consumer-result
                               #:describe-data-shares-for-producer
-                              #:describe-data-shares-for-producer-message
-                              #:describe-data-shares-for-producer-result
-                              #:describe-data-shares-message
-                              #:describe-data-shares-result
                               #:describe-default-cluster-parameters
-                              #:describe-default-cluster-parameters-message
-                              #:describe-default-cluster-parameters-result
                               #:describe-endpoint-access
-                              #:describe-endpoint-access-message
                               #:describe-endpoint-authorization
-                              #:describe-endpoint-authorization-message
                               #:describe-event-categories
-                              #:describe-event-categories-message
-                              #:describe-event-subscriptions
-                              #:describe-event-subscriptions-message
-                              #:describe-events #:describe-events-message
+                              #:describe-event-subscriptions #:describe-events
                               #:describe-hsm-client-certificates
-                              #:describe-hsm-client-certificates-message
                               #:describe-hsm-configurations
-                              #:describe-hsm-configurations-message
                               #:describe-inbound-integrations
-                              #:describe-inbound-integrations-message
                               #:describe-integrations
                               #:describe-integrations-filter
                               #:describe-integrations-filter-list
                               #:describe-integrations-filter-name
                               #:describe-integrations-filter-value-list
-                              #:describe-integrations-message
                               #:describe-logging-status
-                              #:describe-logging-status-message
                               #:describe-node-configuration-options
-                              #:describe-node-configuration-options-message
                               #:describe-orderable-cluster-options
-                              #:describe-orderable-cluster-options-message
                               #:describe-partners
-                              #:describe-partners-input-message
-                              #:describe-partners-output-message
                               #:describe-redshift-idc-applications
-                              #:describe-redshift-idc-applications-message
-                              #:describe-redshift-idc-applications-result
                               #:describe-reserved-node-exchange-status
-                              #:describe-reserved-node-exchange-status-input-message
-                              #:describe-reserved-node-exchange-status-output-message
                               #:describe-reserved-node-offerings
-                              #:describe-reserved-node-offerings-message
-                              #:describe-reserved-nodes
-                              #:describe-reserved-nodes-message
-                              #:describe-resize #:describe-resize-message
+                              #:describe-reserved-nodes #:describe-resize
                               #:describe-scheduled-actions
-                              #:describe-scheduled-actions-message
                               #:describe-snapshot-copy-grants
-                              #:describe-snapshot-copy-grants-message
-                              #:describe-snapshot-schedules
-                              #:describe-snapshot-schedules-message
-                              #:describe-snapshot-schedules-output-message
-                              #:describe-storage
-                              #:describe-table-restore-status
-                              #:describe-table-restore-status-message
-                              #:describe-tags #:describe-tags-message
-                              #:describe-usage-limits
-                              #:describe-usage-limits-message #:description
-                              #:disable-logging #:disable-logging-message
-                              #:disable-snapshot-copy
-                              #:disable-snapshot-copy-message
-                              #:disable-snapshot-copy-result
-                              #:disassociate-data-share-consumer
-                              #:disassociate-data-share-consumer-message
-                              #:double #:double-optional #:ec2security-group
+                              #:describe-snapshot-schedules #:describe-storage
+                              #:describe-table-restore-status #:describe-tags
+                              #:describe-usage-limits #:description
+                              #:disable-logging #:disable-snapshot-copy
+                              #:disassociate-data-share-consumer #:double
+                              #:double-optional #:ec2security-group
                               #:ec2security-group-list #:elastic-ip-status
                               #:eligible-tracks-to-update-list #:enable-logging
-                              #:enable-logging-message #:enable-snapshot-copy
-                              #:enable-snapshot-copy-message
-                              #:enable-snapshot-copy-result
-                              #:encryption-context-map #:endpoint
-                              #:endpoint-access #:endpoint-access-list
-                              #:endpoint-accesses
-                              #:endpoint-already-exists-fault
+                              #:enable-snapshot-copy #:encryption-context-map
+                              #:endpoint #:endpoint-access
+                              #:endpoint-access-list #:endpoint-accesses
                               #:endpoint-authorization
-                              #:endpoint-authorization-already-exists-fault
                               #:endpoint-authorization-list
-                              #:endpoint-authorization-not-found-fault
-                              #:endpoint-authorizations
-                              #:endpoint-authorizations-per-cluster-limit-exceeded-fault
-                              #:endpoint-not-found-fault
-                              #:endpoints-per-authorization-limit-exceeded-fault
-                              #:endpoints-per-cluster-limit-exceeded-fault
-                              #:event #:event-categories-list
-                              #:event-categories-map
-                              #:event-categories-map-list
-                              #:event-categories-message #:event-info-map
+                              #:endpoint-authorizations #:event
+                              #:event-categories-list #:event-categories-map
+                              #:event-categories-map-list #:event-info-map
                               #:event-info-map-list #:event-list
-                              #:event-subscription
-                              #:event-subscription-quota-exceeded-fault
-                              #:event-subscriptions-list
-                              #:event-subscriptions-message #:events-message
+                              #:event-subscription #:event-subscriptions-list
                               #:exception-message #:failover-primary-compute
-                              #:failover-primary-compute-input-message
-                              #:failover-primary-compute-result
                               #:get-cluster-credentials
-                              #:get-cluster-credentials-message
                               #:get-cluster-credentials-with-iam
-                              #:get-cluster-credentials-with-iammessage
                               #:get-reserved-node-exchange-configuration-options
-                              #:get-reserved-node-exchange-configuration-options-input-message
-                              #:get-reserved-node-exchange-configuration-options-output-message
                               #:get-reserved-node-exchange-offerings
-                              #:get-reserved-node-exchange-offerings-input-message
-                              #:get-reserved-node-exchange-offerings-output-message
-                              #:get-resource-policy
-                              #:get-resource-policy-message
-                              #:get-resource-policy-result
-                              #:hsm-client-certificate
-                              #:hsm-client-certificate-already-exists-fault
-                              #:hsm-client-certificate-list
-                              #:hsm-client-certificate-message
-                              #:hsm-client-certificate-not-found-fault
-                              #:hsm-client-certificate-quota-exceeded-fault
-                              #:hsm-configuration
-                              #:hsm-configuration-already-exists-fault
-                              #:hsm-configuration-list
-                              #:hsm-configuration-message
-                              #:hsm-configuration-not-found-fault
-                              #:hsm-configuration-quota-exceeded-fault
-                              #:hsm-status #:iprange #:iprange-list
-                              #:iam-role-arn-list #:idc-display-name-string
+                              #:get-resource-policy #:hsm-client-certificate
+                              #:hsm-client-certificate-list #:hsm-configuration
+                              #:hsm-configuration-list #:hsm-status #:iprange
+                              #:iprange-list #:iam-role-arn-list
+                              #:idc-display-name-string
                               #:identity-namespace-string #:impact-ranking-type
                               #:import-tables-completed
                               #:import-tables-in-progress
-                              #:import-tables-not-started
-                              #:in-progress-table-restore-quota-exceeded-fault
-                              #:inbound-integration #:inbound-integration-arn
-                              #:inbound-integration-list
-                              #:inbound-integrations-message
-                              #:incompatible-orderable-options
-                              #:insufficient-cluster-capacity-fault
-                              #:insufficient-s3bucket-policy-fault #:integer
+                              #:import-tables-not-started #:inbound-integration
+                              #:inbound-integration-arn
+                              #:inbound-integration-list #:integer
                               #:integer-optional #:integration
-                              #:integration-already-exists-fault
-                              #:integration-arn
-                              #:integration-conflict-operation-fault
-                              #:integration-conflict-state-fault
-                              #:integration-description #:integration-error
-                              #:integration-error-list #:integration-list
-                              #:integration-name #:integration-not-found-fault
-                              #:integration-quota-exceeded-fault
-                              #:integration-source-not-found-fault
-                              #:integration-target-not-found-fault
-                              #:integrations-message
-                              #:invalid-authentication-profile-request-fault
-                              #:invalid-authorization-state-fault
-                              #:invalid-cluster-parameter-group-state-fault
-                              #:invalid-cluster-security-group-state-fault
-                              #:invalid-cluster-snapshot-schedule-state-fault
-                              #:invalid-cluster-snapshot-state-fault
-                              #:invalid-cluster-state-fault
-                              #:invalid-cluster-subnet-group-state-fault
-                              #:invalid-cluster-subnet-state-fault
-                              #:invalid-cluster-track-fault
-                              #:invalid-data-share-fault
-                              #:invalid-elastic-ip-fault
-                              #:invalid-endpoint-state-fault
-                              #:invalid-hsm-client-certificate-state-fault
-                              #:invalid-hsm-configuration-state-fault
-                              #:invalid-namespace-fault #:invalid-policy-fault
-                              #:invalid-reserved-node-state-fault
-                              #:invalid-restore-fault
-                              #:invalid-retention-period-fault
-                              #:invalid-s3bucket-name-fault
-                              #:invalid-s3key-prefix-fault
-                              #:invalid-schedule-fault
-                              #:invalid-scheduled-action-fault
-                              #:invalid-snapshot-copy-grant-state-fault
-                              #:invalid-subnet
-                              #:invalid-subscription-state-fault
-                              #:invalid-table-restore-argument-fault
-                              #:invalid-tag-fault #:invalid-usage-limit-fault
-                              #:invalid-vpcnetwork-state-fault
-                              #:ipv6cidr-block-not-found-fault
+                              #:integration-arn #:integration-description
+                              #:integration-error #:integration-error-list
+                              #:integration-list #:integration-name
                               #:lake-formation-query
                               #:lake-formation-scope-union
                               #:lake-formation-service-integrations
-                              #:limit-exceeded-fault #:list-recommendations
-                              #:list-recommendations-message
-                              #:list-recommendations-result
-                              #:log-destination-type #:log-type-list
-                              #:logging-status #:long #:long-optional
-                              #:maintenance-track #:mode
+                              #:list-recommendations #:log-destination-type
+                              #:log-type-list #:logging-status #:long
+                              #:long-optional #:maintenance-track #:mode
                               #:modify-aqua-configuration
-                              #:modify-aqua-input-message
-                              #:modify-aqua-output-message
-                              #:modify-authentication-profile
-                              #:modify-authentication-profile-message
-                              #:modify-authentication-profile-result
-                              #:modify-cluster #:modify-cluster-db-revision
-                              #:modify-cluster-db-revision-message
-                              #:modify-cluster-db-revision-result
+                              #:modify-authentication-profile #:modify-cluster
+                              #:modify-cluster-db-revision
                               #:modify-cluster-iam-roles
-                              #:modify-cluster-iam-roles-message
-                              #:modify-cluster-iam-roles-result
                               #:modify-cluster-maintenance
-                              #:modify-cluster-maintenance-message
-                              #:modify-cluster-maintenance-result
-                              #:modify-cluster-message
                               #:modify-cluster-parameter-group
-                              #:modify-cluster-parameter-group-message
-                              #:modify-cluster-result #:modify-cluster-snapshot
-                              #:modify-cluster-snapshot-message
-                              #:modify-cluster-snapshot-result
+                              #:modify-cluster-snapshot
                               #:modify-cluster-snapshot-schedule
-                              #:modify-cluster-snapshot-schedule-message
                               #:modify-cluster-subnet-group
-                              #:modify-cluster-subnet-group-message
-                              #:modify-cluster-subnet-group-result
                               #:modify-custom-domain-association
-                              #:modify-custom-domain-association-message
-                              #:modify-custom-domain-association-result
                               #:modify-endpoint-access
-                              #:modify-endpoint-access-message
-                              #:modify-event-subscription
-                              #:modify-event-subscription-message
-                              #:modify-event-subscription-result
-                              #:modify-integration #:modify-integration-message
+                              #:modify-event-subscription #:modify-integration
                               #:modify-redshift-idc-application
-                              #:modify-redshift-idc-application-message
-                              #:modify-redshift-idc-application-result
                               #:modify-scheduled-action
-                              #:modify-scheduled-action-message
                               #:modify-snapshot-copy-retention-period
-                              #:modify-snapshot-copy-retention-period-message
-                              #:modify-snapshot-copy-retention-period-result
-                              #:modify-snapshot-schedule
-                              #:modify-snapshot-schedule-message
-                              #:modify-usage-limit #:modify-usage-limit-message
+                              #:modify-snapshot-schedule #:modify-usage-limit
                               #:namespace-identifier-union
                               #:namespace-registration-status
                               #:network-interface #:network-interface-list
@@ -478,12 +202,8 @@
                               #:node-configuration-options-filter
                               #:node-configuration-options-filter-list
                               #:node-configuration-options-filter-name
-                              #:node-configuration-options-message
-                              #:number-of-nodes-per-cluster-limit-exceeded-fault
-                              #:number-of-nodes-quota-exceeded-fault
                               #:operator-type #:orderable-cluster-option
-                              #:orderable-cluster-options-list
-                              #:orderable-cluster-options-message #:parameter
+                              #:orderable-cluster-options-list #:parameter
                               #:parameter-apply-type #:parameter-group-list
                               #:parameters-list
                               #:partner-integration-account-id
@@ -496,163 +216,80 @@
                               #:partner-integration-partner-name
                               #:partner-integration-status
                               #:partner-integration-status-message
-                              #:partner-not-found-fault #:pause-cluster
-                              #:pause-cluster-message #:pause-cluster-result
+                              #:pause-cluster #:pause-cluster-message
                               #:pending-actions-list #:pending-modified-values
                               #:provisioned-identifier
                               #:purchase-reserved-node-offering
-                              #:purchase-reserved-node-offering-message
-                              #:purchase-reserved-node-offering-result
-                              #:put-resource-policy
-                              #:put-resource-policy-message
-                              #:put-resource-policy-result #:read-write-access
-                              #:reboot-cluster #:reboot-cluster-message
-                              #:reboot-cluster-result #:recommendation
+                              #:put-resource-policy #:read-write-access
+                              #:reboot-cluster #:recommendation
                               #:recommendation-list #:recommended-action
                               #:recommended-action-list
                               #:recommended-action-type #:recurring-charge
                               #:recurring-charge-list
                               #:redshift-idc-application
-                              #:redshift-idc-application-already-exists-fault
                               #:redshift-idc-application-list
                               #:redshift-idc-application-name
-                              #:redshift-idc-application-not-exists-fault
-                              #:redshift-idc-application-quota-exceeded-fault
                               #:redshift-service-version20121201
                               #:reference-link #:reference-link-list
-                              #:register-namespace
-                              #:register-namespace-input-message
-                              #:register-namespace-output-message
-                              #:reject-data-share #:reject-data-share-message
+                              #:register-namespace #:reject-data-share
                               #:reserved-node
-                              #:reserved-node-already-exists-fault
-                              #:reserved-node-already-migrated-fault
                               #:reserved-node-configuration-option
                               #:reserved-node-configuration-option-list
                               #:reserved-node-exchange-action-type
-                              #:reserved-node-exchange-not-found-fault
                               #:reserved-node-exchange-status
                               #:reserved-node-exchange-status-list
                               #:reserved-node-exchange-status-type
-                              #:reserved-node-list
-                              #:reserved-node-not-found-fault
-                              #:reserved-node-offering
+                              #:reserved-node-list #:reserved-node-offering
                               #:reserved-node-offering-list
-                              #:reserved-node-offering-not-found-fault
                               #:reserved-node-offering-type
-                              #:reserved-node-offerings-message
-                              #:reserved-node-quota-exceeded-fault
-                              #:reserved-nodes-message
-                              #:reset-cluster-parameter-group
-                              #:reset-cluster-parameter-group-message
-                              #:resize-cluster #:resize-cluster-message
-                              #:resize-cluster-result #:resize-info
-                              #:resize-not-found-fault
-                              #:resize-progress-message
-                              #:resource-not-found-fault #:resource-policy
+                              #:reset-cluster-parameter-group #:resize-cluster
+                              #:resize-cluster-message #:resize-info
+                              #:resize-progress-message #:resource-policy
                               #:restorable-node-type-list
-                              #:restore-from-cluster-snapshot
-                              #:restore-from-cluster-snapshot-message
-                              #:restore-from-cluster-snapshot-result
-                              #:restore-status
+                              #:restore-from-cluster-snapshot #:restore-status
                               #:restore-table-from-cluster-snapshot
-                              #:restore-table-from-cluster-snapshot-message
-                              #:restore-table-from-cluster-snapshot-result
                               #:resume-cluster #:resume-cluster-message
-                              #:resume-cluster-result #:revision-target
-                              #:revision-targets-list
+                              #:revision-target #:revision-targets-list
                               #:revoke-cluster-security-group-ingress
-                              #:revoke-cluster-security-group-ingress-message
-                              #:revoke-cluster-security-group-ingress-result
-                              #:revoke-endpoint-access
-                              #:revoke-endpoint-access-message
-                              #:revoke-snapshot-access
-                              #:revoke-snapshot-access-message
-                              #:revoke-snapshot-access-result
+                              #:revoke-endpoint-access #:revoke-snapshot-access
                               #:rotate-encryption-key
-                              #:rotate-encryption-key-message
-                              #:rotate-encryption-key-result
                               #:s3access-grants-scope-union
                               #:s3access-grants-service-integrations
-                              #:s3key-prefix-value #:snsinvalid-topic-fault
-                              #:snsno-authorization-fault
-                              #:snstopic-arn-not-found-fault
-                              #:schedule-definition-list
-                              #:schedule-definition-type-unsupported-fault
+                              #:s3key-prefix-value #:schedule-definition-list
                               #:schedule-state #:scheduled-action
-                              #:scheduled-action-already-exists-fault
                               #:scheduled-action-filter
                               #:scheduled-action-filter-list
                               #:scheduled-action-filter-name
-                              #:scheduled-action-list
-                              #:scheduled-action-not-found-fault
-                              #:scheduled-action-quota-exceeded-fault
-                              #:scheduled-action-state
+                              #:scheduled-action-list #:scheduled-action-state
                               #:scheduled-action-time-list
                               #:scheduled-action-type
-                              #:scheduled-action-type-unsupported-fault
                               #:scheduled-action-type-values
-                              #:scheduled-actions-message
                               #:scheduled-snapshot-time-list
                               #:secondary-cluster-info #:sensitive-string
                               #:serverless-identifier #:service-authorization
                               #:service-integration-list
                               #:service-integrations-union #:snapshot
                               #:snapshot-attribute-to-sort-by
-                              #:snapshot-copy-already-disabled-fault
-                              #:snapshot-copy-already-enabled-fault
-                              #:snapshot-copy-disabled-fault
-                              #:snapshot-copy-grant
-                              #:snapshot-copy-grant-already-exists-fault
-                              #:snapshot-copy-grant-list
-                              #:snapshot-copy-grant-message
-                              #:snapshot-copy-grant-not-found-fault
-                              #:snapshot-copy-grant-quota-exceeded-fault
+                              #:snapshot-copy-grant #:snapshot-copy-grant-list
                               #:snapshot-error-message
                               #:snapshot-identifier-list #:snapshot-list
-                              #:snapshot-message #:snapshot-schedule
-                              #:snapshot-schedule-already-exists-fault
-                              #:snapshot-schedule-list
-                              #:snapshot-schedule-not-found-fault
-                              #:snapshot-schedule-quota-exceeded-fault
-                              #:snapshot-schedule-update-in-progress-fault
+                              #:snapshot-schedule #:snapshot-schedule-list
                               #:snapshot-sorting-entity
                               #:snapshot-sorting-entity-list #:sort-by-order
-                              #:source-arn #:source-ids-list
-                              #:source-not-found-fault #:source-type #:string
-                              #:subnet #:subnet-already-in-use
-                              #:subnet-identifier-list #:subnet-list
-                              #:subscription-already-exist-fault
-                              #:subscription-category-not-found-fault
-                              #:subscription-event-id-not-found-fault
-                              #:subscription-not-found-fault
-                              #:subscription-severity-not-found-fault
-                              #:supported-operation #:supported-operation-list
-                              #:supported-platform #:supported-platforms-list
-                              #:tstamp #:table-limit-exceeded-fault
-                              #:table-restore-not-found-fault
+                              #:source-arn #:source-ids-list #:source-type
+                              #:string #:subnet #:subnet-identifier-list
+                              #:subnet-list #:supported-operation
+                              #:supported-operation-list #:supported-platform
+                              #:supported-platforms-list #:tstamp
                               #:table-restore-status
                               #:table-restore-status-list
-                              #:table-restore-status-message
                               #:table-restore-status-type #:tag #:tag-key-list
-                              #:tag-limit-exceeded-fault #:tag-list
-                              #:tag-value-list #:tagged-resource
-                              #:tagged-resource-list
-                              #:tagged-resource-list-message #:target-arn
-                              #:track-list #:track-list-message
-                              #:unauthorized-operation
-                              #:unauthorized-partner-integration-fault
-                              #:unknown-snapshot-copy-region-fault
-                              #:unsupported-operation-fault
-                              #:unsupported-option-fault
-                              #:update-partner-status
-                              #:update-partner-status-input-message
-                              #:update-target #:usage-limit
-                              #:usage-limit-already-exists-fault
-                              #:usage-limit-breach-action
+                              #:tag-list #:tag-value-list #:tagged-resource
+                              #:tagged-resource-list #:target-arn #:track-list
+                              #:update-partner-status #:update-target
+                              #:usage-limit #:usage-limit-breach-action
                               #:usage-limit-feature-type
                               #:usage-limit-limit-type #:usage-limit-list
-                              #:usage-limit-not-found-fault
                               #:usage-limit-period #:usage-limits
                               #:value-string-list #:vpc-endpoint
                               #:vpc-endpoints-list #:vpc-identifier-list

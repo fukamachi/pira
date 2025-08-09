@@ -1,29 +1,19 @@
 (uiop/package:define-package #:pira/networkmanager (:use)
                              (:export #:awsaccount-id #:awslocation
-                              #:accept-attachment #:accept-attachment-request
-                              #:accept-attachment-response
-                              #:access-denied-exception #:account-id
-                              #:account-status #:account-status-list #:action
+                              #:accept-attachment #:account-id #:account-status
+                              #:account-status-list #:action
                               #:associate-connect-peer
-                              #:associate-connect-peer-request
-                              #:associate-connect-peer-response
-                              #:associate-customer-gateway
-                              #:associate-customer-gateway-request
-                              #:associate-customer-gateway-response
-                              #:associate-link #:associate-link-request
-                              #:associate-link-response
+                              #:associate-customer-gateway #:associate-link
                               #:associate-transit-gateway-connect-peer
-                              #:associate-transit-gateway-connect-peer-request
-                              #:associate-transit-gateway-connect-peer-response
                               #:attachment #:attachment-error
                               #:attachment-error-code #:attachment-error-list
                               #:attachment-id #:attachment-list
                               #:attachment-state #:attachment-type #:bandwidth
                               #:bgp-options #:boolean #:change-action
                               #:change-set-state #:change-status #:change-type
-                              #:client-token #:conflict-exception
-                              #:connect-attachment #:connect-attachment-options
-                              #:connect-peer #:connect-peer-association
+                              #:client-token #:connect-attachment
+                              #:connect-attachment-options #:connect-peer
+                              #:connect-peer-association
                               #:connect-peer-association-list
                               #:connect-peer-association-state
                               #:connect-peer-bgp-configuration
@@ -53,7 +43,6 @@
                               #:core-network-policy-document
                               #:core-network-policy-error
                               #:core-network-policy-error-list
-                              #:core-network-policy-exception
                               #:core-network-policy-version
                               #:core-network-policy-version-list
                               #:core-network-segment
@@ -61,194 +50,75 @@
                               #:core-network-segment-list #:core-network-state
                               #:core-network-summary
                               #:core-network-summary-list
-                              #:create-connect-attachment
-                              #:create-connect-attachment-request
-                              #:create-connect-attachment-response
-                              #:create-connect-peer
-                              #:create-connect-peer-request
-                              #:create-connect-peer-response
-                              #:create-connection #:create-connection-request
-                              #:create-connection-response
-                              #:create-core-network
-                              #:create-core-network-request
-                              #:create-core-network-response #:create-device
-                              #:create-device-request #:create-device-response
+                              #:create-connect-attachment #:create-connect-peer
+                              #:create-connection #:create-core-network
+                              #:create-device
                               #:create-direct-connect-gateway-attachment
-                              #:create-direct-connect-gateway-attachment-request
-                              #:create-direct-connect-gateway-attachment-response
-                              #:create-global-network
-                              #:create-global-network-request
-                              #:create-global-network-response #:create-link
-                              #:create-link-request #:create-link-response
-                              #:create-site #:create-site-request
-                              #:create-site-response
+                              #:create-global-network #:create-link
+                              #:create-site
                               #:create-site-to-site-vpn-attachment
-                              #:create-site-to-site-vpn-attachment-request
-                              #:create-site-to-site-vpn-attachment-response
                               #:create-transit-gateway-peering
-                              #:create-transit-gateway-peering-request
-                              #:create-transit-gateway-peering-response
                               #:create-transit-gateway-route-table-attachment
-                              #:create-transit-gateway-route-table-attachment-request
-                              #:create-transit-gateway-route-table-attachment-response
-                              #:create-vpc-attachment
-                              #:create-vpc-attachment-request
-                              #:create-vpc-attachment-response
-                              #:customer-gateway-arn
+                              #:create-vpc-attachment #:customer-gateway-arn
                               #:customer-gateway-arn-list
                               #:customer-gateway-association
                               #:customer-gateway-association-list
                               #:customer-gateway-association-state #:date-time
-                              #:delete-attachment #:delete-attachment-request
-                              #:delete-attachment-response
-                              #:delete-connect-peer
-                              #:delete-connect-peer-request
-                              #:delete-connect-peer-response
-                              #:delete-connection #:delete-connection-request
-                              #:delete-connection-response
-                              #:delete-core-network
+                              #:delete-attachment #:delete-connect-peer
+                              #:delete-connection #:delete-core-network
                               #:delete-core-network-policy-version
-                              #:delete-core-network-policy-version-request
-                              #:delete-core-network-policy-version-response
-                              #:delete-core-network-request
-                              #:delete-core-network-response #:delete-device
-                              #:delete-device-request #:delete-device-response
-                              #:delete-global-network
-                              #:delete-global-network-request
-                              #:delete-global-network-response #:delete-link
-                              #:delete-link-request #:delete-link-response
-                              #:delete-peering #:delete-peering-request
-                              #:delete-peering-response
-                              #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response #:delete-site
-                              #:delete-site-request #:delete-site-response
+                              #:delete-device #:delete-global-network
+                              #:delete-link #:delete-peering
+                              #:delete-resource-policy #:delete-site
                               #:deregister-transit-gateway
-                              #:deregister-transit-gateway-request
-                              #:deregister-transit-gateway-response
-                              #:describe-global-networks
-                              #:describe-global-networks-request
-                              #:describe-global-networks-response #:device
-                              #:device-arn #:device-id #:device-id-list
-                              #:device-list #:device-state
-                              #:direct-connect-gateway-arn
+                              #:describe-global-networks #:device #:device-arn
+                              #:device-id #:device-id-list #:device-list
+                              #:device-state #:direct-connect-gateway-arn
                               #:direct-connect-gateway-attachment
                               #:disassociate-connect-peer
-                              #:disassociate-connect-peer-request
-                              #:disassociate-connect-peer-response
                               #:disassociate-customer-gateway
-                              #:disassociate-customer-gateway-request
-                              #:disassociate-customer-gateway-response
-                              #:disassociate-link #:disassociate-link-request
-                              #:disassociate-link-response
+                              #:disassociate-link
                               #:disassociate-transit-gateway-connect-peer
-                              #:disassociate-transit-gateway-connect-peer-request
-                              #:disassociate-transit-gateway-connect-peer-response
                               #:edge-override #:edge-set #:edge-set-list
                               #:exception-context-key #:exception-context-map
                               #:exception-context-value
                               #:execute-core-network-change-set
-                              #:execute-core-network-change-set-request
-                              #:execute-core-network-change-set-response
                               #:external-region-code
                               #:external-region-code-list #:filter-map
                               #:filter-name #:filter-value #:filter-values
-                              #:get-connect-attachment
-                              #:get-connect-attachment-request
-                              #:get-connect-attachment-response
-                              #:get-connect-peer
-                              #:get-connect-peer-associations
-                              #:get-connect-peer-associations-request
-                              #:get-connect-peer-associations-response
-                              #:get-connect-peer-request
-                              #:get-connect-peer-response #:get-connections
-                              #:get-connections-request
-                              #:get-connections-response #:get-core-network
+                              #:get-connect-attachment #:get-connect-peer
+                              #:get-connect-peer-associations #:get-connections
+                              #:get-core-network
                               #:get-core-network-change-events
-                              #:get-core-network-change-events-request
-                              #:get-core-network-change-events-response
                               #:get-core-network-change-set
-                              #:get-core-network-change-set-request
-                              #:get-core-network-change-set-response
                               #:get-core-network-policy
-                              #:get-core-network-policy-request
-                              #:get-core-network-policy-response
-                              #:get-core-network-request
-                              #:get-core-network-response
-                              #:get-customer-gateway-associations
-                              #:get-customer-gateway-associations-request
-                              #:get-customer-gateway-associations-response
-                              #:get-devices #:get-devices-request
-                              #:get-devices-response
+                              #:get-customer-gateway-associations #:get-devices
                               #:get-direct-connect-gateway-attachment
-                              #:get-direct-connect-gateway-attachment-request
-                              #:get-direct-connect-gateway-attachment-response
-                              #:get-link-associations
-                              #:get-link-associations-request
-                              #:get-link-associations-response #:get-links
-                              #:get-links-request #:get-links-response
+                              #:get-link-associations #:get-links
                               #:get-network-resource-counts
-                              #:get-network-resource-counts-request
-                              #:get-network-resource-counts-response
                               #:get-network-resource-relationships
-                              #:get-network-resource-relationships-request
-                              #:get-network-resource-relationships-response
-                              #:get-network-resources
-                              #:get-network-resources-request
-                              #:get-network-resources-response
-                              #:get-network-routes #:get-network-routes-request
-                              #:get-network-routes-response
-                              #:get-network-telemetry
-                              #:get-network-telemetry-request
-                              #:get-network-telemetry-response
-                              #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response
-                              #:get-route-analysis #:get-route-analysis-request
-                              #:get-route-analysis-response
-                              #:get-site-to-site-vpn-attachment
-                              #:get-site-to-site-vpn-attachment-request
-                              #:get-site-to-site-vpn-attachment-response
-                              #:get-sites #:get-sites-request
-                              #:get-sites-response
+                              #:get-network-resources #:get-network-routes
+                              #:get-network-telemetry #:get-resource-policy
+                              #:get-route-analysis
+                              #:get-site-to-site-vpn-attachment #:get-sites
                               #:get-transit-gateway-connect-peer-associations
-                              #:get-transit-gateway-connect-peer-associations-request
-                              #:get-transit-gateway-connect-peer-associations-response
                               #:get-transit-gateway-peering
-                              #:get-transit-gateway-peering-request
-                              #:get-transit-gateway-peering-response
                               #:get-transit-gateway-registrations
-                              #:get-transit-gateway-registrations-request
-                              #:get-transit-gateway-registrations-response
                               #:get-transit-gateway-route-table-attachment
-                              #:get-transit-gateway-route-table-attachment-request
-                              #:get-transit-gateway-route-table-attachment-response
-                              #:get-vpc-attachment #:get-vpc-attachment-request
-                              #:get-vpc-attachment-response #:global-network
+                              #:get-vpc-attachment #:global-network
                               #:global-network-arn #:global-network-id
                               #:global-network-id-list #:global-network-list
                               #:global-network-state #:ipaddress #:integer
-                              #:internal-server-exception #:link #:link-arn
-                              #:link-association #:link-association-list
-                              #:link-association-state #:link-id #:link-id-list
-                              #:link-list #:link-state #:list-attachments
-                              #:list-attachments-request
-                              #:list-attachments-response #:list-connect-peers
-                              #:list-connect-peers-request
-                              #:list-connect-peers-response
+                              #:link #:link-arn #:link-association
+                              #:link-association-list #:link-association-state
+                              #:link-id #:link-id-list #:link-list #:link-state
+                              #:list-attachments #:list-connect-peers
                               #:list-core-network-policy-versions
-                              #:list-core-network-policy-versions-request
-                              #:list-core-network-policy-versions-response
-                              #:list-core-networks #:list-core-networks-request
-                              #:list-core-networks-response
+                              #:list-core-networks
                               #:list-organization-service-access-status
-                              #:list-organization-service-access-status-request
-                              #:list-organization-service-access-status-response
-                              #:list-peerings #:list-peerings-request
-                              #:list-peerings-response #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:location
-                              #:long #:max-results #:network-function-group
+                              #:list-peerings #:list-tags-for-resource
+                              #:location #:long #:max-results
+                              #:network-function-group
                               #:network-function-group-list
                               #:network-function-group-name #:network-manager
                               #:network-resource #:network-resource-count
@@ -269,23 +139,12 @@
                               #:permissions-error-context
                               #:proposed-network-function-group-change
                               #:proposed-segment-change
-                              #:put-core-network-policy
-                              #:put-core-network-policy-request
-                              #:put-core-network-policy-response
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response
+                              #:put-core-network-policy #:put-resource-policy
                               #:reason-context-key #:reason-context-map
                               #:reason-context-value #:register-transit-gateway
-                              #:register-transit-gateway-request
-                              #:register-transit-gateway-response
-                              #:reject-attachment #:reject-attachment-request
-                              #:reject-attachment-response #:relationship
+                              #:reject-attachment #:relationship
                               #:relationship-list #:resource-arn
-                              #:resource-not-found-exception
                               #:restore-core-network-policy-version
-                              #:restore-core-network-policy-version-request
-                              #:restore-core-network-policy-version-response
                               #:retry-after-seconds #:route-analysis
                               #:route-analysis-completion
                               #:route-analysis-completion-reason-code
@@ -301,23 +160,16 @@
                               #:send-via-mode #:server-side-string
                               #:service-insertion-action
                               #:service-insertion-action-list
-                              #:service-insertion-segments
-                              #:service-quota-exceeded-exception #:site
-                              #:site-arn #:site-id #:site-id-list #:site-list
-                              #:site-state #:site-to-site-vpn-attachment
+                              #:service-insertion-segments #:site #:site-arn
+                              #:site-id #:site-id-list #:site-list #:site-state
+                              #:site-to-site-vpn-attachment
                               #:start-organization-service-access-update
-                              #:start-organization-service-access-update-request
-                              #:start-organization-service-access-update-response
-                              #:start-route-analysis
-                              #:start-route-analysis-request
-                              #:start-route-analysis-response #:subnet-arn
+                              #:start-route-analysis #:subnet-arn
                               #:subnet-arn-list
                               #:synthesized-json-core-network-policy-document
                               #:synthesized-json-resource-policy-document #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:transit-gateway-arn
+                              #:tag-resource #:tag-value #:transit-gateway-arn
                               #:transit-gateway-arn-list
                               #:transit-gateway-attachment-arn
                               #:transit-gateway-attachment-id
@@ -335,29 +187,12 @@
                               #:transit-gateway-route-table-arn
                               #:transit-gateway-route-table-attachment
                               #:tunnel-protocol #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-connection
-                              #:update-connection-request
-                              #:update-connection-response
-                              #:update-core-network
-                              #:update-core-network-request
-                              #:update-core-network-response #:update-device
-                              #:update-device-request #:update-device-response
+                              #:update-connection #:update-core-network
+                              #:update-device
                               #:update-direct-connect-gateway-attachment
-                              #:update-direct-connect-gateway-attachment-request
-                              #:update-direct-connect-gateway-attachment-response
-                              #:update-global-network
-                              #:update-global-network-request
-                              #:update-global-network-response #:update-link
-                              #:update-link-request #:update-link-response
-                              #:update-network-resource-metadata
-                              #:update-network-resource-metadata-request
-                              #:update-network-resource-metadata-response
-                              #:update-site #:update-site-request
-                              #:update-site-response #:update-vpc-attachment
-                              #:update-vpc-attachment-request
-                              #:update-vpc-attachment-response
-                              #:validation-exception
+                              #:update-global-network #:update-link
+                              #:update-network-resource-metadata #:update-site
+                              #:update-vpc-attachment
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:via #:vpc-arn

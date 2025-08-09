@@ -1,10 +1,7 @@
 (uiop/package:define-package #:pira/inspector-scan (:use)
-                             (:export #:access-denied-exception
-                              #:inspector-scan #:internal-server-exception
+                             (:export #:inspector-scan
                               #:internal-server-exception-reason
                               #:output-format #:sbom #:scan-sbom
-                              #:scan-sbom-request #:scan-sbom-response
-                              #:throttling-exception #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-fields
                               #:validation-exception-reason))

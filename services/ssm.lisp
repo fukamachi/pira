@@ -1,34 +1,25 @@
 (uiop/package:define-package #:pira/ssm (:use)
-                             (:export #:access-denied-exception
-                              #:access-key-id-type #:access-key-secret-type
-                              #:access-request-id #:access-request-status
-                              #:access-type #:account #:account-id
-                              #:account-id-list #:account-sharing-info
+                             (:export #:access-key-id-type
+                              #:access-key-secret-type #:access-request-id
+                              #:access-request-status #:access-type #:account
+                              #:account-id #:account-id-list
+                              #:account-sharing-info
                               #:account-sharing-info-list #:accounts
                               #:activation #:activation-code
                               #:activation-description #:activation-id
                               #:activation-list #:add-tags-to-resource
-                              #:add-tags-to-resource-request
-                              #:add-tags-to-resource-result #:agent-error-code
-                              #:agent-type #:agent-version
+                              #:agent-error-code #:agent-type #:agent-version
                               #:aggregator-schema-only #:alarm
                               #:alarm-configuration #:alarm-list #:alarm-name
                               #:alarm-state-information
                               #:alarm-state-information-list #:allowed-pattern
-                              #:already-exists-exception #:amazon-ssm
-                              #:apply-only-at-cron-interval
+                              #:amazon-ssm #:apply-only-at-cron-interval
                               #:approve-after-days #:architecture
-                              #:associate-ops-item-related-item
-                              #:associate-ops-item-related-item-request
-                              #:associate-ops-item-related-item-response
-                              #:associated-instances #:association
-                              #:association-already-exists
+                              #:associate-ops-item-related-item #:association
                               #:association-compliance-severity
                               #:association-description
                               #:association-description-list
-                              #:association-does-not-exist
                               #:association-execution
-                              #:association-execution-does-not-exist
                               #:association-execution-filter
                               #:association-execution-filter-key
                               #:association-execution-filter-list
@@ -45,8 +36,7 @@
                               #:association-filter-list
                               #:association-filter-operator-type
                               #:association-filter-value #:association-id
-                              #:association-id-list
-                              #:association-limit-exceeded #:association-list
+                              #:association-id-list #:association-list
                               #:association-name #:association-overview
                               #:association-resource-id
                               #:association-resource-type #:association-status
@@ -54,7 +44,6 @@
                               #:association-status-name
                               #:association-sync-compliance
                               #:association-version #:association-version-info
-                              #:association-version-limit-exceeded
                               #:association-version-list #:attachment-content
                               #:attachment-content-list #:attachment-hash
                               #:attachment-hash-type #:attachment-identifier
@@ -66,9 +55,6 @@
                               #:attachments-source-value
                               #:attachments-source-values #:attribute-name
                               #:attribute-value #:automation-action-name
-                              #:automation-definition-not-approved-exception
-                              #:automation-definition-not-found-exception
-                              #:automation-definition-version-not-found-exception
                               #:automation-execution
                               #:automation-execution-filter
                               #:automation-execution-filter-key
@@ -77,17 +63,14 @@
                               #:automation-execution-filter-value-list
                               #:automation-execution-id
                               #:automation-execution-inputs
-                              #:automation-execution-limit-exceeded-exception
                               #:automation-execution-metadata
                               #:automation-execution-metadata-list
-                              #:automation-execution-not-found-exception
                               #:automation-execution-preview
                               #:automation-execution-status
                               #:automation-parameter-key
                               #:automation-parameter-map
                               #:automation-parameter-value
                               #:automation-parameter-value-list
-                              #:automation-step-not-found-exception
                               #:automation-subtype
                               #:automation-target-parameter-name
                               #:automation-type #:baseline-description
@@ -95,11 +78,8 @@
                               #:batch-error-message #:boolean
                               #:calendar-name-or-arn #:calendar-name-or-arnlist
                               #:calendar-state #:cancel-command
-                              #:cancel-command-request #:cancel-command-result
-                              #:cancel-maintenance-window-execution
-                              #:cancel-maintenance-window-execution-request
-                              #:cancel-maintenance-window-execution-result
-                              #:category #:category-enum-list #:category-list
+                              #:cancel-maintenance-window-execution #:category
+                              #:category-enum-list #:category-list
                               #:change-details-value #:change-request-name
                               #:client-token #:cloud-watch-log-group-name
                               #:cloud-watch-output-config
@@ -134,186 +114,69 @@
                               #:compliance-summary-count
                               #:compliance-summary-item
                               #:compliance-summary-item-list
-                              #:compliance-type-count-limit-exceeded-exception
                               #:compliance-type-name #:compliance-upload-type
                               #:compliant-summary #:computer-name
                               #:connection-status #:content-length
-                              #:create-activation #:create-activation-request
-                              #:create-activation-result #:create-association
+                              #:create-activation #:create-association
                               #:create-association-batch
-                              #:create-association-batch-request
                               #:create-association-batch-request-entries
                               #:create-association-batch-request-entry
-                              #:create-association-batch-result
-                              #:create-association-request
-                              #:create-association-result #:create-document
-                              #:create-document-request
-                              #:create-document-result
-                              #:create-maintenance-window
-                              #:create-maintenance-window-request
-                              #:create-maintenance-window-result
-                              #:create-ops-item #:create-ops-item-request
-                              #:create-ops-item-response #:create-ops-metadata
-                              #:create-ops-metadata-request
-                              #:create-ops-metadata-result
+                              #:create-document #:create-maintenance-window
+                              #:create-ops-item #:create-ops-metadata
                               #:create-patch-baseline
-                              #:create-patch-baseline-request
-                              #:create-patch-baseline-result
-                              #:create-resource-data-sync
-                              #:create-resource-data-sync-request
-                              #:create-resource-data-sync-result #:created-date
-                              #:credentials
-                              #:custom-schema-count-limit-exceeded-exception
-                              #:date-time #:default-baseline
+                              #:create-resource-data-sync #:created-date
+                              #:credentials #:date-time #:default-baseline
                               #:default-instance-name #:delete-activation
-                              #:delete-activation-request
-                              #:delete-activation-result #:delete-association
-                              #:delete-association-request
-                              #:delete-association-result #:delete-document
-                              #:delete-document-request
-                              #:delete-document-result #:delete-inventory
-                              #:delete-inventory-request
-                              #:delete-inventory-result
-                              #:delete-maintenance-window
-                              #:delete-maintenance-window-request
-                              #:delete-maintenance-window-result
-                              #:delete-ops-item #:delete-ops-item-request
-                              #:delete-ops-item-response #:delete-ops-metadata
-                              #:delete-ops-metadata-request
-                              #:delete-ops-metadata-result #:delete-parameter
-                              #:delete-parameter-request
-                              #:delete-parameter-result #:delete-parameters
-                              #:delete-parameters-request
-                              #:delete-parameters-result
+                              #:delete-association #:delete-document
+                              #:delete-inventory #:delete-maintenance-window
+                              #:delete-ops-item #:delete-ops-metadata
+                              #:delete-parameter #:delete-parameters
                               #:delete-patch-baseline
-                              #:delete-patch-baseline-request
-                              #:delete-patch-baseline-result
                               #:delete-resource-data-sync
-                              #:delete-resource-data-sync-request
-                              #:delete-resource-data-sync-result
                               #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response
                               #:delivery-timed-out-count
                               #:deregister-managed-instance
-                              #:deregister-managed-instance-request
-                              #:deregister-managed-instance-result
                               #:deregister-patch-baseline-for-patch-group
-                              #:deregister-patch-baseline-for-patch-group-request
-                              #:deregister-patch-baseline-for-patch-group-result
                               #:deregister-target-from-maintenance-window
-                              #:deregister-target-from-maintenance-window-request
-                              #:deregister-target-from-maintenance-window-result
                               #:deregister-task-from-maintenance-window
-                              #:deregister-task-from-maintenance-window-request
-                              #:deregister-task-from-maintenance-window-result
                               #:describe-activations
                               #:describe-activations-filter
                               #:describe-activations-filter-keys
                               #:describe-activations-filter-list
-                              #:describe-activations-request
-                              #:describe-activations-result
                               #:describe-association
                               #:describe-association-execution-targets
-                              #:describe-association-execution-targets-request
-                              #:describe-association-execution-targets-result
                               #:describe-association-executions
-                              #:describe-association-executions-request
-                              #:describe-association-executions-result
-                              #:describe-association-request
-                              #:describe-association-result
                               #:describe-automation-executions
-                              #:describe-automation-executions-request
-                              #:describe-automation-executions-result
                               #:describe-automation-step-executions
-                              #:describe-automation-step-executions-request
-                              #:describe-automation-step-executions-result
-                              #:describe-available-patches
-                              #:describe-available-patches-request
-                              #:describe-available-patches-result
-                              #:describe-document
+                              #:describe-available-patches #:describe-document
                               #:describe-document-permission
-                              #:describe-document-permission-request
-                              #:describe-document-permission-response
-                              #:describe-document-request
-                              #:describe-document-result
                               #:describe-effective-instance-associations
-                              #:describe-effective-instance-associations-request
-                              #:describe-effective-instance-associations-result
                               #:describe-effective-patches-for-patch-baseline
-                              #:describe-effective-patches-for-patch-baseline-request
-                              #:describe-effective-patches-for-patch-baseline-result
                               #:describe-instance-associations-status
-                              #:describe-instance-associations-status-request
-                              #:describe-instance-associations-status-result
                               #:describe-instance-information
-                              #:describe-instance-information-request
-                              #:describe-instance-information-result
                               #:describe-instance-patch-states
                               #:describe-instance-patch-states-for-patch-group
-                              #:describe-instance-patch-states-for-patch-group-request
-                              #:describe-instance-patch-states-for-patch-group-result
-                              #:describe-instance-patch-states-request
-                              #:describe-instance-patch-states-result
                               #:describe-instance-patches
-                              #:describe-instance-patches-request
-                              #:describe-instance-patches-result
                               #:describe-instance-properties
                               #:describe-instance-properties-max-results
-                              #:describe-instance-properties-request
-                              #:describe-instance-properties-result
                               #:describe-inventory-deletions
-                              #:describe-inventory-deletions-request
-                              #:describe-inventory-deletions-result
                               #:describe-maintenance-window-execution-task-invocations
-                              #:describe-maintenance-window-execution-task-invocations-request
-                              #:describe-maintenance-window-execution-task-invocations-result
                               #:describe-maintenance-window-execution-tasks
-                              #:describe-maintenance-window-execution-tasks-request
-                              #:describe-maintenance-window-execution-tasks-result
                               #:describe-maintenance-window-executions
-                              #:describe-maintenance-window-executions-request
-                              #:describe-maintenance-window-executions-result
                               #:describe-maintenance-window-schedule
-                              #:describe-maintenance-window-schedule-request
-                              #:describe-maintenance-window-schedule-result
                               #:describe-maintenance-window-targets
-                              #:describe-maintenance-window-targets-request
-                              #:describe-maintenance-window-targets-result
                               #:describe-maintenance-window-tasks
-                              #:describe-maintenance-window-tasks-request
-                              #:describe-maintenance-window-tasks-result
                               #:describe-maintenance-windows
                               #:describe-maintenance-windows-for-target
-                              #:describe-maintenance-windows-for-target-request
-                              #:describe-maintenance-windows-for-target-result
-                              #:describe-maintenance-windows-request
-                              #:describe-maintenance-windows-result
-                              #:describe-ops-items #:describe-ops-items-request
-                              #:describe-ops-items-response
-                              #:describe-parameters
-                              #:describe-parameters-request
-                              #:describe-parameters-result
+                              #:describe-ops-items #:describe-parameters
                               #:describe-patch-baselines
-                              #:describe-patch-baselines-request
-                              #:describe-patch-baselines-result
                               #:describe-patch-group-state
-                              #:describe-patch-group-state-request
-                              #:describe-patch-group-state-result
                               #:describe-patch-groups
-                              #:describe-patch-groups-request
-                              #:describe-patch-groups-result
-                              #:describe-patch-properties
-                              #:describe-patch-properties-request
-                              #:describe-patch-properties-result
-                              #:describe-sessions #:describe-sessions-request
-                              #:describe-sessions-response
+                              #:describe-patch-properties #:describe-sessions
                               #:description-in-document
                               #:disassociate-ops-item-related-item
-                              #:disassociate-ops-item-related-item-request
-                              #:disassociate-ops-item-related-item-response
-                              #:document-arn #:document-already-exists
-                              #:document-author #:document-content
+                              #:document-arn #:document-author
+                              #:document-content
                               #:document-default-version-description
                               #:document-description #:document-display-name
                               #:document-filter #:document-filter-key
@@ -326,7 +189,6 @@
                               #:document-key-values-filter-list
                               #:document-key-values-filter-value
                               #:document-key-values-filter-values
-                              #:document-limit-exceeded
                               #:document-metadata-enum
                               #:document-metadata-response-info #:document-name
                               #:document-owner #:document-parameter
@@ -335,7 +197,6 @@
                               #:document-parameter-list
                               #:document-parameter-name
                               #:document-parameter-type
-                              #:document-permission-limit
                               #:document-permission-max-results
                               #:document-permission-type #:document-requires
                               #:document-requires-list #:document-review-action
@@ -349,13 +210,8 @@
                               #:document-sha1 #:document-status
                               #:document-status-information #:document-type
                               #:document-version #:document-version-info
-                              #:document-version-limit-exceeded
                               #:document-version-list #:document-version-name
-                              #:document-version-number
-                              #:does-not-exist-exception #:dry-run
-                              #:duplicate-document-content
-                              #:duplicate-document-version-name
-                              #:duplicate-instance-id #:duration
+                              #:document-version-number #:dry-run #:duration
                               #:effective-instance-association-max-results
                               #:effective-patch #:effective-patch-list
                               #:error-count #:exclude-account
@@ -366,86 +222,31 @@
                               #:external-alarm-state
                               #:failed-create-association
                               #:failed-create-association-list
-                              #:failure-details #:fault
-                              #:feature-not-available-exception
-                              #:get-access-token #:get-access-token-request
-                              #:get-access-token-response
-                              #:get-automation-execution
-                              #:get-automation-execution-request
-                              #:get-automation-execution-result
-                              #:get-calendar-state #:get-calendar-state-request
-                              #:get-calendar-state-response
-                              #:get-command-invocation
-                              #:get-command-invocation-request
-                              #:get-command-invocation-result
-                              #:get-connection-status
-                              #:get-connection-status-request
-                              #:get-connection-status-response
+                              #:failure-details #:fault #:get-access-token
+                              #:get-automation-execution #:get-calendar-state
+                              #:get-command-invocation #:get-connection-status
                               #:get-default-patch-baseline
-                              #:get-default-patch-baseline-request
-                              #:get-default-patch-baseline-result
                               #:get-deployable-patch-snapshot-for-instance
-                              #:get-deployable-patch-snapshot-for-instance-request
-                              #:get-deployable-patch-snapshot-for-instance-result
-                              #:get-document #:get-document-request
-                              #:get-document-result #:get-execution-preview
-                              #:get-execution-preview-request
-                              #:get-execution-preview-response #:get-inventory
-                              #:get-inventory-request #:get-inventory-result
-                              #:get-inventory-schema
+                              #:get-document #:get-execution-preview
+                              #:get-inventory #:get-inventory-schema
                               #:get-inventory-schema-max-results
-                              #:get-inventory-schema-request
-                              #:get-inventory-schema-result
                               #:get-maintenance-window
                               #:get-maintenance-window-execution
-                              #:get-maintenance-window-execution-request
-                              #:get-maintenance-window-execution-result
                               #:get-maintenance-window-execution-task
                               #:get-maintenance-window-execution-task-invocation
-                              #:get-maintenance-window-execution-task-invocation-request
-                              #:get-maintenance-window-execution-task-invocation-result
-                              #:get-maintenance-window-execution-task-request
-                              #:get-maintenance-window-execution-task-result
-                              #:get-maintenance-window-request
-                              #:get-maintenance-window-result
-                              #:get-maintenance-window-task
-                              #:get-maintenance-window-task-request
-                              #:get-maintenance-window-task-result
-                              #:get-ops-item #:get-ops-item-request
-                              #:get-ops-item-response #:get-ops-metadata
-                              #:get-ops-metadata-max-results
-                              #:get-ops-metadata-request
-                              #:get-ops-metadata-result #:get-ops-summary
-                              #:get-ops-summary-request
-                              #:get-ops-summary-result #:get-parameter
-                              #:get-parameter-history
-                              #:get-parameter-history-request
-                              #:get-parameter-history-result
-                              #:get-parameter-request #:get-parameter-result
-                              #:get-parameters #:get-parameters-by-path
+                              #:get-maintenance-window-task #:get-ops-item
+                              #:get-ops-metadata #:get-ops-metadata-max-results
+                              #:get-ops-summary #:get-parameter
+                              #:get-parameter-history #:get-parameters
+                              #:get-parameters-by-path
                               #:get-parameters-by-path-max-results
-                              #:get-parameters-by-path-request
-                              #:get-parameters-by-path-result
-                              #:get-parameters-request #:get-parameters-result
                               #:get-patch-baseline
                               #:get-patch-baseline-for-patch-group
-                              #:get-patch-baseline-for-patch-group-request
-                              #:get-patch-baseline-for-patch-group-result
-                              #:get-patch-baseline-request
-                              #:get-patch-baseline-result
                               #:get-resource-policies
-                              #:get-resource-policies-request
-                              #:get-resource-policies-response
                               #:get-resource-policies-response-entries
                               #:get-resource-policies-response-entry
-                              #:get-service-setting
-                              #:get-service-setting-request
-                              #:get-service-setting-result
-                              #:hierarchy-level-limit-exceeded-exception
-                              #:hierarchy-type-mismatch-exception #:ipaddress
-                              #:iso8601string #:iam-role #:idempotency-token
-                              #:idempotent-parameter-mismatch #:impact-type
-                              #:incompatible-policy-exception
+                              #:get-service-setting #:ipaddress #:iso8601string
+                              #:iam-role #:idempotency-token #:impact-type
                               #:install-override-list
                               #:instance-aggregated-association-overview
                               #:instance-association
@@ -489,44 +290,6 @@
                               #:instance-role #:instance-state
                               #:instance-status #:instance-tag-name
                               #:instance-type #:instances-count #:integer
-                              #:internal-server-error #:invalid-activation
-                              #:invalid-activation-id
-                              #:invalid-aggregator-exception
-                              #:invalid-allowed-pattern-exception
-                              #:invalid-association
-                              #:invalid-association-version
-                              #:invalid-automation-execution-parameters-exception
-                              #:invalid-automation-signal-exception
-                              #:invalid-automation-status-update-exception
-                              #:invalid-command-id
-                              #:invalid-delete-inventory-parameters-exception
-                              #:invalid-deletion-id-exception
-                              #:invalid-document #:invalid-document-content
-                              #:invalid-document-operation
-                              #:invalid-document-schema-version
-                              #:invalid-document-type
-                              #:invalid-document-version #:invalid-filter
-                              #:invalid-filter-key #:invalid-filter-option
-                              #:invalid-filter-value #:invalid-instance-id
-                              #:invalid-instance-information-filter-value
-                              #:invalid-instance-property-filter-value
-                              #:invalid-inventory-group-exception
-                              #:invalid-inventory-item-context-exception
-                              #:invalid-inventory-request-exception
-                              #:invalid-item-content-exception #:invalid-key-id
-                              #:invalid-next-token
-                              #:invalid-notification-config
-                              #:invalid-option-exception
-                              #:invalid-output-folder #:invalid-output-location
-                              #:invalid-parameters #:invalid-permission-type
-                              #:invalid-plugin-name
-                              #:invalid-policy-attribute-exception
-                              #:invalid-policy-type-exception
-                              #:invalid-resource-id #:invalid-resource-type
-                              #:invalid-result-attribute-exception
-                              #:invalid-role #:invalid-schedule #:invalid-tag
-                              #:invalid-target #:invalid-target-maps
-                              #:invalid-type-name-exception #:invalid-update
                               #:inventory-aggregator
                               #:inventory-aggregator-expression
                               #:inventory-aggregator-list
@@ -566,65 +329,25 @@
                               #:inventory-result-item-map
                               #:inventory-schema-delete-option
                               #:inventory-type-display-name
-                              #:invocation-does-not-exist
                               #:invocation-trace-output #:is-sub-type-schema
-                              #:item-content-mismatch-exception
-                              #:item-size-limit-exceeded-exception #:key-list
-                              #:key-name #:label-parameter-version
-                              #:label-parameter-version-request
-                              #:label-parameter-version-result
+                              #:key-list #:key-name #:label-parameter-version
                               #:last-resource-data-sync-message
                               #:last-resource-data-sync-status
                               #:last-resource-data-sync-time
                               #:last-successful-resource-data-sync-time
-                              #:list-association-versions
-                              #:list-association-versions-request
-                              #:list-association-versions-result
-                              #:list-associations #:list-associations-request
-                              #:list-associations-result
-                              #:list-command-invocations
-                              #:list-command-invocations-request
-                              #:list-command-invocations-result #:list-commands
-                              #:list-commands-request #:list-commands-result
+                              #:list-association-versions #:list-associations
+                              #:list-command-invocations #:list-commands
                               #:list-compliance-items
-                              #:list-compliance-items-request
-                              #:list-compliance-items-result
                               #:list-compliance-summaries
-                              #:list-compliance-summaries-request
-                              #:list-compliance-summaries-result
                               #:list-document-metadata-history
-                              #:list-document-metadata-history-request
-                              #:list-document-metadata-history-response
-                              #:list-document-versions
-                              #:list-document-versions-request
-                              #:list-document-versions-result #:list-documents
-                              #:list-documents-request #:list-documents-result
-                              #:list-inventory-entries
-                              #:list-inventory-entries-request
-                              #:list-inventory-entries-result #:list-nodes
-                              #:list-nodes-request #:list-nodes-result
-                              #:list-nodes-summary #:list-nodes-summary-request
-                              #:list-nodes-summary-result
-                              #:list-ops-item-events
-                              #:list-ops-item-events-request
-                              #:list-ops-item-events-response
-                              #:list-ops-item-related-items
-                              #:list-ops-item-related-items-request
-                              #:list-ops-item-related-items-response
-                              #:list-ops-metadata
+                              #:list-document-versions #:list-documents
+                              #:list-inventory-entries #:list-nodes
+                              #:list-nodes-summary #:list-ops-item-events
+                              #:list-ops-item-related-items #:list-ops-metadata
                               #:list-ops-metadata-max-results
-                              #:list-ops-metadata-request
-                              #:list-ops-metadata-result
                               #:list-resource-compliance-summaries
-                              #:list-resource-compliance-summaries-request
-                              #:list-resource-compliance-summaries-result
                               #:list-resource-data-sync
-                              #:list-resource-data-sync-request
-                              #:list-resource-data-sync-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-result #:logging-info
-                              #:long
+                              #:list-tags-for-resource #:logging-info #:long
                               #:maintenance-window-allow-unassociated-targets
                               #:maintenance-window-automation-parameters
                               #:maintenance-window-cutoff
@@ -689,24 +412,20 @@
                               #:maintenance-window-task-type
                               #:maintenance-window-timezone
                               #:maintenance-windows-for-target-list
-                              #:malformed-resource-policy-document-exception
                               #:managed-instance-id #:managed-status
-                              #:max-concurrency #:max-document-size-exceeded
-                              #:max-errors #:max-results
+                              #:max-concurrency #:max-errors #:max-results
                               #:max-results-ec2compatible
                               #:max-session-duration #:metadata-key
                               #:metadata-keys-to-delete-list #:metadata-map
                               #:metadata-value #:metadata-value-string
-                              #:modify-document-permission
-                              #:modify-document-permission-request
-                              #:modify-document-permission-response
-                              #:next-token #:node #:node-account-id
-                              #:node-aggregator #:node-aggregator-list
-                              #:node-aggregator-type #:node-attribute-name
-                              #:node-capture-time #:node-filter
-                              #:node-filter-key #:node-filter-list
-                              #:node-filter-operator-type #:node-filter-value
-                              #:node-filter-value-list #:node-id #:node-list
+                              #:modify-document-permission #:next-token #:node
+                              #:node-account-id #:node-aggregator
+                              #:node-aggregator-list #:node-aggregator-type
+                              #:node-attribute-name #:node-capture-time
+                              #:node-filter #:node-filter-key
+                              #:node-filter-list #:node-filter-operator-type
+                              #:node-filter-value #:node-filter-value-list
+                              #:node-id #:node-list
                               #:node-organizational-unit-id
                               #:node-organizational-unit-path #:node-owner-info
                               #:node-region #:node-summary #:node-summary-list
@@ -728,11 +447,8 @@
                               #:ops-entity-list #:ops-filter #:ops-filter-key
                               #:ops-filter-list #:ops-filter-operator-type
                               #:ops-filter-value #:ops-filter-value-list
-                              #:ops-item #:ops-item-access-denied-exception
-                              #:ops-item-account-id
-                              #:ops-item-already-exists-exception
-                              #:ops-item-arn #:ops-item-category
-                              #:ops-item-conflict-exception #:ops-item-data-key
+                              #:ops-item #:ops-item-account-id #:ops-item-arn
+                              #:ops-item-category #:ops-item-data-key
                               #:ops-item-data-type #:ops-item-data-value
                               #:ops-item-data-value-string
                               #:ops-item-description #:ops-item-event-filter
@@ -747,19 +463,13 @@
                               #:ops-item-filter-key #:ops-item-filter-operator
                               #:ops-item-filter-value #:ops-item-filter-values
                               #:ops-item-filters #:ops-item-id
-                              #:ops-item-identity
-                              #:ops-item-invalid-parameter-exception
-                              #:ops-item-limit-exceeded-exception
-                              #:ops-item-max-results
-                              #:ops-item-not-found-exception
+                              #:ops-item-identity #:ops-item-max-results
                               #:ops-item-notification #:ops-item-notifications
                               #:ops-item-operational-data
                               #:ops-item-ops-data-keys-list
                               #:ops-item-parameter-names-list
                               #:ops-item-priority
-                              #:ops-item-related-item-already-exists-exception
                               #:ops-item-related-item-association-id
-                              #:ops-item-related-item-association-not-found-exception
                               #:ops-item-related-item-association-resource-type
                               #:ops-item-related-item-association-resource-uri
                               #:ops-item-related-item-association-type
@@ -775,48 +485,33 @@
                               #:ops-item-severity #:ops-item-source
                               #:ops-item-status #:ops-item-summaries
                               #:ops-item-summary #:ops-item-title
-                              #:ops-item-type #:ops-metadata
-                              #:ops-metadata-already-exists-exception
-                              #:ops-metadata-arn #:ops-metadata-filter
-                              #:ops-metadata-filter-key
+                              #:ops-item-type #:ops-metadata #:ops-metadata-arn
+                              #:ops-metadata-filter #:ops-metadata-filter-key
                               #:ops-metadata-filter-list
                               #:ops-metadata-filter-value
                               #:ops-metadata-filter-value-list
-                              #:ops-metadata-invalid-argument-exception
-                              #:ops-metadata-key-limit-exceeded-exception
-                              #:ops-metadata-limit-exceeded-exception
-                              #:ops-metadata-list
-                              #:ops-metadata-not-found-exception
-                              #:ops-metadata-resource-id
-                              #:ops-metadata-too-many-updates-exception
+                              #:ops-metadata-list #:ops-metadata-resource-id
                               #:ops-result-attribute
                               #:ops-result-attribute-list #:output-source
                               #:output-source-id #:output-source-type
                               #:owner-information #:psparameter-name
                               #:psparameter-selector #:psparameter-value
                               #:psparameter-version #:parameter
-                              #:parameter-already-exists #:parameter-data-type
-                              #:parameter-description #:parameter-history
-                              #:parameter-history-list
+                              #:parameter-data-type #:parameter-description
+                              #:parameter-history #:parameter-history-list
                               #:parameter-inline-policy #:parameter-key-id
                               #:parameter-label #:parameter-label-list
-                              #:parameter-limit-exceeded #:parameter-list
-                              #:parameter-max-version-limit-exceeded
-                              #:parameter-metadata #:parameter-metadata-list
-                              #:parameter-name #:parameter-name-list
-                              #:parameter-not-found
-                              #:parameter-pattern-mismatch-exception
-                              #:parameter-policies #:parameter-policy-list
-                              #:parameter-string-filter
+                              #:parameter-list #:parameter-metadata
+                              #:parameter-metadata-list #:parameter-name
+                              #:parameter-name-list #:parameter-policies
+                              #:parameter-policy-list #:parameter-string-filter
                               #:parameter-string-filter-key
                               #:parameter-string-filter-list
                               #:parameter-string-filter-value
                               #:parameter-string-filter-value-list
                               #:parameter-string-query-option #:parameter-tier
                               #:parameter-type #:parameter-value
-                              #:parameter-value-list
-                              #:parameter-version-label-limit-exceeded
-                              #:parameter-version-not-found #:parameters
+                              #:parameter-value-list #:parameters
                               #:parameters-filter #:parameters-filter-key
                               #:parameters-filter-list
                               #:parameters-filter-value
@@ -874,63 +569,39 @@
                               #:patch-unreported-not-applicable-count
                               #:patch-vendor #:patch-version #:ping-status
                               #:platform-name #:platform-type
-                              #:platform-type-list #:platform-version
-                              #:policies-limit-exceeded-exception #:policy
+                              #:platform-type-list #:platform-version #:policy
                               #:policy-hash #:policy-id #:product
                               #:progress-counters #:put-compliance-items
-                              #:put-compliance-items-request
-                              #:put-compliance-items-result #:put-inventory
-                              #:put-inventory-message #:put-inventory-request
-                              #:put-inventory-result #:put-parameter
-                              #:put-parameter-request #:put-parameter-result
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:reboot-option
-                              #:region #:region-list #:regions
+                              #:put-inventory #:put-inventory-message
+                              #:put-parameter #:put-resource-policy
+                              #:reboot-option #:region #:region-list #:regions
                               #:register-default-patch-baseline
-                              #:register-default-patch-baseline-request
-                              #:register-default-patch-baseline-result
                               #:register-patch-baseline-for-patch-group
-                              #:register-patch-baseline-for-patch-group-request
-                              #:register-patch-baseline-for-patch-group-result
                               #:register-target-with-maintenance-window
-                              #:register-target-with-maintenance-window-request
-                              #:register-target-with-maintenance-window-result
                               #:register-task-with-maintenance-window
-                              #:register-task-with-maintenance-window-request
-                              #:register-task-with-maintenance-window-result
                               #:registration-limit #:registration-metadata-item
                               #:registration-metadata-key
                               #:registration-metadata-list
                               #:registration-metadata-value
                               #:registrations-count #:related-ops-item
                               #:related-ops-items #:remaining-count
-                              #:remove-tags-from-resource
-                              #:remove-tags-from-resource-request
-                              #:remove-tags-from-resource-result #:require-type
-                              #:reset-service-setting
-                              #:reset-service-setting-request
-                              #:reset-service-setting-result #:resolved-targets
+                              #:remove-tags-from-resource #:require-type
+                              #:reset-service-setting #:resolved-targets
                               #:resource-arn-string
                               #:resource-compliance-summary-item
                               #:resource-compliance-summary-item-list
                               #:resource-count #:resource-count-by-status
                               #:resource-data-sync-awskmskey-arn
-                              #:resource-data-sync-already-exists-exception
                               #:resource-data-sync-aws-organizations-source
-                              #:resource-data-sync-conflict-exception
-                              #:resource-data-sync-count-exceeded-exception
                               #:resource-data-sync-created-time
                               #:resource-data-sync-destination-data-sharing
                               #:resource-data-sync-destination-data-sharing-type
                               #:resource-data-sync-enable-all-ops-data-sources
                               #:resource-data-sync-include-future-regions
-                              #:resource-data-sync-invalid-configuration-exception
                               #:resource-data-sync-item
                               #:resource-data-sync-item-list
                               #:resource-data-sync-last-modified-time
                               #:resource-data-sync-name
-                              #:resource-data-sync-not-found-exception
                               #:resource-data-sync-organization-source-type
                               #:resource-data-sync-organizational-unit
                               #:resource-data-sync-organizational-unit-id
@@ -947,35 +618,22 @@
                               #:resource-data-sync-source-with-state
                               #:resource-data-sync-state
                               #:resource-data-sync-type #:resource-id
-                              #:resource-in-use-exception
-                              #:resource-limit-exceeded-exception
-                              #:resource-not-found-exception
-                              #:resource-policy-conflict-exception
-                              #:resource-policy-invalid-parameter-exception
-                              #:resource-policy-limit-exceeded-exception
                               #:resource-policy-max-results
-                              #:resource-policy-not-found-exception
                               #:resource-policy-parameter-names-list
                               #:resource-type #:resource-type-for-tagging
                               #:response-code #:result-attribute
                               #:result-attribute-list #:resume-session
-                              #:resume-session-request
-                              #:resume-session-response #:review-information
-                              #:review-information-list #:review-status
-                              #:reviewer #:runbook #:runbooks #:s3bucket-name
-                              #:s3key-prefix #:s3output-location #:s3output-url
-                              #:s3region #:schedule-expression
-                              #:schedule-offset #:scheduled-window-execution
+                              #:review-information #:review-information-list
+                              #:review-status #:reviewer #:runbook #:runbooks
+                              #:s3bucket-name #:s3key-prefix
+                              #:s3output-location #:s3output-url #:s3region
+                              #:schedule-expression #:schedule-offset
+                              #:scheduled-window-execution
                               #:scheduled-window-execution-list
-                              #:send-automation-signal
-                              #:send-automation-signal-request
-                              #:send-automation-signal-result #:send-command
-                              #:send-command-request #:send-command-result
-                              #:service-quota-exceeded-exception #:service-role
-                              #:service-setting #:service-setting-id
-                              #:service-setting-not-found
-                              #:service-setting-value #:session
-                              #:session-details #:session-filter
+                              #:send-automation-signal #:send-command
+                              #:service-role #:service-setting
+                              #:service-setting-id #:service-setting-value
+                              #:session #:session-details #:session-filter
                               #:session-filter-key #:session-filter-list
                               #:session-filter-value #:session-id
                               #:session-list
@@ -994,104 +652,43 @@
                               #:snapshot-id #:source-id #:source-type
                               #:standard-error-content
                               #:standard-output-content #:start-access-request
-                              #:start-access-request-request
-                              #:start-access-request-response
                               #:start-associations-once
-                              #:start-associations-once-request
-                              #:start-associations-once-result
                               #:start-automation-execution
-                              #:start-automation-execution-request
-                              #:start-automation-execution-result
                               #:start-change-request-execution
-                              #:start-change-request-execution-request
-                              #:start-change-request-execution-result
-                              #:start-execution-preview
-                              #:start-execution-preview-request
-                              #:start-execution-preview-response
-                              #:start-session #:start-session-request
-                              #:start-session-response #:status-additional-info
-                              #:status-details #:status-message #:status-name
-                              #:status-unchanged #:step-execution
+                              #:start-execution-preview #:start-session
+                              #:status-additional-info #:status-details
+                              #:status-message #:status-name #:step-execution
                               #:step-execution-filter
                               #:step-execution-filter-key
                               #:step-execution-filter-list
                               #:step-execution-filter-value
                               #:step-execution-filter-value-list
                               #:step-execution-list #:step-preview-map
-                              #:stop-automation-execution
-                              #:stop-automation-execution-request
-                              #:stop-automation-execution-result #:stop-type
+                              #:stop-automation-execution #:stop-type
                               #:stream-url #:string #:string1to256
-                              #:string-date-time #:string-list
-                              #:sub-type-count-limit-exceeded-exception #:tag
-                              #:tag-key #:tag-list #:tag-value #:target
-                              #:target-count #:target-in-use-exception
+                              #:string-date-time #:string-list #:tag #:tag-key
+                              #:tag-list #:tag-value #:target #:target-count
                               #:target-key #:target-location #:target-locations
                               #:target-locations-url #:target-map
                               #:target-map-key #:target-map-value
                               #:target-map-value-list #:target-maps
-                              #:target-not-connected #:target-parameter-list
-                              #:target-preview #:target-preview-list
-                              #:target-type #:target-value #:target-values
-                              #:targets #:terminate-session
-                              #:terminate-session-request
-                              #:terminate-session-response
-                              #:throttling-exception #:timeout-seconds
-                              #:token-value #:too-many-tags-error
-                              #:too-many-updates #:total-count
-                              #:total-size-limit-exceeded-exception #:uuid
-                              #:unlabel-parameter-version
-                              #:unlabel-parameter-version-request
-                              #:unlabel-parameter-version-result
-                              #:unsupported-calendar-exception
-                              #:unsupported-feature-required-exception
-                              #:unsupported-inventory-item-context-exception
-                              #:unsupported-inventory-schema-version-exception
-                              #:unsupported-operating-system
-                              #:unsupported-operation-exception
-                              #:unsupported-parameter-type
-                              #:unsupported-platform-type #:update-association
-                              #:update-association-request
-                              #:update-association-result
-                              #:update-association-status
-                              #:update-association-status-request
-                              #:update-association-status-result
-                              #:update-document
+                              #:target-parameter-list #:target-preview
+                              #:target-preview-list #:target-type
+                              #:target-value #:target-values #:targets
+                              #:terminate-session #:timeout-seconds
+                              #:token-value #:total-count #:uuid
+                              #:unlabel-parameter-version #:update-association
+                              #:update-association-status #:update-document
                               #:update-document-default-version
-                              #:update-document-default-version-request
-                              #:update-document-default-version-result
                               #:update-document-metadata
-                              #:update-document-metadata-request
-                              #:update-document-metadata-response
-                              #:update-document-request
-                              #:update-document-result
                               #:update-maintenance-window
-                              #:update-maintenance-window-request
-                              #:update-maintenance-window-result
                               #:update-maintenance-window-target
-                              #:update-maintenance-window-target-request
-                              #:update-maintenance-window-target-result
                               #:update-maintenance-window-task
-                              #:update-maintenance-window-task-request
-                              #:update-maintenance-window-task-result
-                              #:update-managed-instance-role
-                              #:update-managed-instance-role-request
-                              #:update-managed-instance-role-result
-                              #:update-ops-item #:update-ops-item-request
-                              #:update-ops-item-response #:update-ops-metadata
-                              #:update-ops-metadata-request
-                              #:update-ops-metadata-result
-                              #:update-patch-baseline
-                              #:update-patch-baseline-request
-                              #:update-patch-baseline-result
+                              #:update-managed-instance-role #:update-ops-item
+                              #:update-ops-metadata #:update-patch-baseline
                               #:update-resource-data-sync
-                              #:update-resource-data-sync-request
-                              #:update-resource-data-sync-result
-                              #:update-service-setting
-                              #:update-service-setting-request
-                              #:update-service-setting-result #:url
-                              #:valid-next-step #:valid-next-step-list
-                              #:validation-exception #:version))
+                              #:update-service-setting #:url #:valid-next-step
+                              #:valid-next-step-list #:version))
 (common-lisp:in-package #:pira/ssm)
 
 (smithy/sdk/service:define-service amazon-ssm :shape-name "AmazonSSM" :version

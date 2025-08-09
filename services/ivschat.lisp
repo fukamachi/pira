@@ -1,12 +1,10 @@
 (uiop/package:define-package #:pira/ivschat (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-interactive-video-service-chat
+                             (:export #:amazon-interactive-video-service-chat
                               #:bucket-name #:chat-token
                               #:chat-token-attributes #:chat-token-capabilities
                               #:chat-token-capability
                               #:cloud-watch-logs-destination-configuration
-                              #:conflict-exception #:create-chat-token
-                              #:create-chat-token-request
+                              #:create-chat-token #:create-chat-token-request
                               #:create-chat-token-response
                               #:create-logging-configuration
                               #:create-logging-configuration-request
@@ -28,7 +26,7 @@
                               #:get-logging-configuration-request
                               #:get-logging-configuration-response #:get-room
                               #:get-room-request #:get-room-response #:id
-                              #:internal-server-exception #:lambda-arn #:limit
+                              #:lambda-arn #:limit
                               #:list-logging-configurations
                               #:list-logging-configurations-request
                               #:list-logging-configurations-response
@@ -47,8 +45,7 @@
                               #:max-logging-configuration-results
                               #:max-room-results #:message-id
                               #:message-review-handler #:pagination-token
-                              #:pending-verification #:reason #:resource-arn
-                              #:resource-id #:resource-not-found-exception
+                              #:reason #:resource-arn #:resource-id
                               #:resource-type #:room-arn #:room-id
                               #:room-identifier #:room-list
                               #:room-max-message-length
@@ -56,12 +53,11 @@
                               #:room-summary #:s3destination-configuration
                               #:send-event #:send-event-request
                               #:send-event-response
-                              #:service-quota-exceeded-exception
                               #:session-duration-in-minutes #:string #:tag-key
                               #:tag-key-list #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:throttling-exception #:time
-                              #:untag-resource #:untag-resource-request
+                              #:tag-value #:tags #:time #:untag-resource
+                              #:untag-resource-request
                               #:untag-resource-response
                               #:update-logging-configuration
                               #:update-logging-configuration-request
@@ -69,7 +65,6 @@
                               #:update-logging-configuration-state
                               #:update-room #:update-room-request
                               #:update-room-response #:user-id
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))

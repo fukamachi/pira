@@ -2,22 +2,17 @@
                              (:export #:adds #:amazon-cloud-search2013 #:blob
                               #:bucket #:bucket-info #:bucket-list
                               #:content-type #:cursor #:deletes
-                              #:document-service-exception
                               #:document-service-warning
                               #:document-service-warnings #:double #:expr
                               #:exprs #:facet #:facets #:field-stats
                               #:field-value #:fields #:filter-query #:highlight
                               #:highlights #:hit #:hit-list #:hits #:long
                               #:partial #:query #:query-options #:query-parser
-                              #:return #:search #:search-exception
-                              #:search-request #:search-response
-                              #:search-status #:size #:sort #:start #:stat
-                              #:stats #:string #:suggest #:suggest-model
-                              #:suggest-request #:suggest-response
-                              #:suggest-status #:suggester #:suggestion-match
-                              #:suggestions #:suggestions-size
-                              #:upload-documents #:upload-documents-request
-                              #:upload-documents-response))
+                              #:return #:search #:search-status #:size #:sort
+                              #:start #:stat #:stats #:string #:suggest
+                              #:suggest-model #:suggest-status #:suggester
+                              #:suggestion-match #:suggestions
+                              #:suggestions-size #:upload-documents))
 (common-lisp:in-package #:pira/cloudsearch-domain)
 
 (smithy/sdk/service:define-service amazon-cloud-search2013 :shape-name

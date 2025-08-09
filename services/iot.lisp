@@ -4,15 +4,10 @@
                               #:abort-criteria-list
                               #:abort-threshold-percentage
                               #:accept-certificate-transfer
-                              #:accept-certificate-transfer-request
                               #:acm-certificate-arn #:action #:action-list
                               #:action-type #:active-violation
                               #:active-violations #:add-thing-to-billing-group
-                              #:add-thing-to-billing-group-request
-                              #:add-thing-to-billing-group-response
                               #:add-thing-to-thing-group
-                              #:add-thing-to-thing-group-request
-                              #:add-thing-to-thing-group-response
                               #:add-things-to-thing-group-params
                               #:additional-metrics-to-retain-list
                               #:additional-metrics-to-retain-v2list
@@ -40,20 +35,10 @@
                               #:asset-property-value-list
                               #:asset-property-variant
                               #:associate-sbom-with-package-version
-                              #:associate-sbom-with-package-version-request
-                              #:associate-sbom-with-package-version-response
-                              #:associate-targets-with-job
-                              #:associate-targets-with-job-request
-                              #:associate-targets-with-job-response
-                              #:attach-policy #:attach-policy-request
+                              #:associate-targets-with-job #:attach-policy
                               #:attach-principal-policy
-                              #:attach-principal-policy-request
                               #:attach-security-profile
-                              #:attach-security-profile-request
-                              #:attach-security-profile-response
-                              #:attach-thing-principal
-                              #:attach-thing-principal-request
-                              #:attach-thing-principal-response #:attribute-key
+                              #:attach-thing-principal #:attribute-key
                               #:attribute-name #:attribute-payload
                               #:attribute-value #:attributes #:attributes-map
                               #:audit-check-configuration
@@ -125,22 +110,12 @@
                               #:cacertificate-status
                               #:cacertificate-update-action #:cacertificates
                               #:cancel-audit-mitigation-actions-task
-                              #:cancel-audit-mitigation-actions-task-request
-                              #:cancel-audit-mitigation-actions-task-response
-                              #:cancel-audit-task #:cancel-audit-task-request
-                              #:cancel-audit-task-response
-                              #:cancel-certificate-transfer
-                              #:cancel-certificate-transfer-request
+                              #:cancel-audit-task #:cancel-certificate-transfer
                               #:cancel-detect-mitigation-actions-task
-                              #:cancel-detect-mitigation-actions-task-request
-                              #:cancel-detect-mitigation-actions-task-response
                               #:cancel-job #:cancel-job-execution
-                              #:cancel-job-execution-request
-                              #:cancel-job-request #:cancel-job-response
                               #:canceled-checks-count #:canceled-findings-count
                               #:canceled-things #:canned-access-control-list
                               #:certificate #:certificate-arn
-                              #:certificate-conflict-exception
                               #:certificate-description #:certificate-id
                               #:certificate-mode #:certificate-name
                               #:certificate-path-on-device #:certificate-pem
@@ -152,15 +127,10 @@
                               #:certificate-provider-summary
                               #:certificate-providers
                               #:certificate-signing-request
-                              #:certificate-state-exception
-                              #:certificate-status
-                              #:certificate-validation-exception
-                              #:certificate-validity #:certificates
-                              #:channel-name #:check-compliant
+                              #:certificate-status #:certificate-validity
+                              #:certificates #:channel-name #:check-compliant
                               #:check-custom-configuration #:cidr #:cidrs
                               #:clear-default-authorizer
-                              #:clear-default-authorizer-request
-                              #:clear-default-authorizer-response
                               #:client-certificate-callback-arn
                               #:client-certificate-config #:client-id
                               #:client-properties #:client-request-token
@@ -191,94 +161,33 @@
                               #:configuration #:configuration-details
                               #:configuration-status
                               #:confirm-topic-rule-destination
-                              #:confirm-topic-rule-destination-request
-                              #:confirm-topic-rule-destination-response
-                              #:confirmation-token #:conflict-exception
-                              #:conflicting-resource-update-exception
-                              #:connection-attribute-name
+                              #:confirmation-token #:connection-attribute-name
                               #:connectivity-api-thing-name
                               #:connectivity-timestamp
                               #:consecutive-datapoints-to-alarm
                               #:consecutive-datapoints-to-clear #:content-type
                               #:correlation-data #:count
-                              #:create-audit-suppression
-                              #:create-audit-suppression-request
-                              #:create-audit-suppression-response
-                              #:create-authorizer #:create-authorizer-request
-                              #:create-authorizer-response
+                              #:create-audit-suppression #:create-authorizer
                               #:create-billing-group
-                              #:create-billing-group-request
-                              #:create-billing-group-response
                               #:create-certificate-from-csr
-                              #:create-certificate-from-csr-request
-                              #:create-certificate-from-csr-response
-                              #:create-certificate-provider
-                              #:create-certificate-provider-request
-                              #:create-certificate-provider-response
-                              #:create-command #:create-command-request
-                              #:create-command-response #:create-custom-metric
-                              #:create-custom-metric-request
-                              #:create-custom-metric-response
-                              #:create-dimension #:create-dimension-request
-                              #:create-dimension-response
+                              #:create-certificate-provider #:create-command
+                              #:create-custom-metric #:create-dimension
                               #:create-domain-configuration
-                              #:create-domain-configuration-request
-                              #:create-domain-configuration-response
                               #:create-dynamic-thing-group
-                              #:create-dynamic-thing-group-request
-                              #:create-dynamic-thing-group-response
-                              #:create-fleet-metric
-                              #:create-fleet-metric-request
-                              #:create-fleet-metric-response #:create-job
-                              #:create-job-request #:create-job-response
+                              #:create-fleet-metric #:create-job
                               #:create-job-template
-                              #:create-job-template-request
-                              #:create-job-template-response
                               #:create-keys-and-certificate
-                              #:create-keys-and-certificate-request
-                              #:create-keys-and-certificate-response
-                              #:create-mitigation-action
-                              #:create-mitigation-action-request
-                              #:create-mitigation-action-response
-                              #:create-otaupdate #:create-otaupdate-request
-                              #:create-otaupdate-response #:create-package
-                              #:create-package-request
-                              #:create-package-response
-                              #:create-package-version
-                              #:create-package-version-request
-                              #:create-package-version-response #:create-policy
-                              #:create-policy-request #:create-policy-response
-                              #:create-policy-version
-                              #:create-policy-version-request
-                              #:create-policy-version-response
+                              #:create-mitigation-action #:create-otaupdate
+                              #:create-package #:create-package-version
+                              #:create-policy #:create-policy-version
                               #:create-provisioning-claim
-                              #:create-provisioning-claim-request
-                              #:create-provisioning-claim-response
                               #:create-provisioning-template
-                              #:create-provisioning-template-request
-                              #:create-provisioning-template-response
                               #:create-provisioning-template-version
-                              #:create-provisioning-template-version-request
-                              #:create-provisioning-template-version-response
-                              #:create-role-alias #:create-role-alias-request
-                              #:create-role-alias-response
-                              #:create-scheduled-audit
-                              #:create-scheduled-audit-request
-                              #:create-scheduled-audit-response
-                              #:create-security-profile
-                              #:create-security-profile-request
-                              #:create-security-profile-response
-                              #:create-stream #:create-stream-request
-                              #:create-stream-response #:create-thing
-                              #:create-thing-group #:create-thing-group-request
-                              #:create-thing-group-response
-                              #:create-thing-request #:create-thing-response
-                              #:create-thing-type #:create-thing-type-request
-                              #:create-thing-type-response #:create-topic-rule
-                              #:create-topic-rule-destination
-                              #:create-topic-rule-destination-request
-                              #:create-topic-rule-destination-response
-                              #:create-topic-rule-request #:created-at-date
+                              #:create-role-alias #:create-scheduled-audit
+                              #:create-security-profile #:create-stream
+                              #:create-thing #:create-thing-group
+                              #:create-thing-type #:create-topic-rule
+                              #:create-topic-rule-destination #:created-at-date
                               #:creation-date #:credential-duration-seconds
                               #:cron-expression #:custom-code-signing
                               #:custom-metric-arn #:custom-metric-display-name
@@ -286,205 +195,66 @@
                               #:data-collection-percentage #:date-type
                               #:day-of-month #:day-of-week
                               #:delete-account-audit-configuration
-                              #:delete-account-audit-configuration-request
-                              #:delete-account-audit-configuration-response
                               #:delete-additional-metrics-to-retain
                               #:delete-alert-targets #:delete-audit-suppression
-                              #:delete-audit-suppression-request
-                              #:delete-audit-suppression-response
-                              #:delete-authorizer #:delete-authorizer-request
-                              #:delete-authorizer-response #:delete-behaviors
-                              #:delete-billing-group
-                              #:delete-billing-group-request
-                              #:delete-billing-group-response
-                              #:delete-cacertificate
-                              #:delete-cacertificate-request
-                              #:delete-cacertificate-response
+                              #:delete-authorizer #:delete-behaviors
+                              #:delete-billing-group #:delete-cacertificate
                               #:delete-certificate
-                              #:delete-certificate-provider
-                              #:delete-certificate-provider-request
-                              #:delete-certificate-provider-response
-                              #:delete-certificate-request #:delete-command
-                              #:delete-command-execution
-                              #:delete-command-execution-request
-                              #:delete-command-execution-response
-                              #:delete-command-request
-                              #:delete-command-response
-                              #:delete-conflict-exception
-                              #:delete-custom-metric
-                              #:delete-custom-metric-request
-                              #:delete-custom-metric-response
-                              #:delete-dimension #:delete-dimension-request
-                              #:delete-dimension-response
-                              #:delete-domain-configuration
-                              #:delete-domain-configuration-request
-                              #:delete-domain-configuration-response
+                              #:delete-certificate-provider #:delete-command
+                              #:delete-command-execution #:delete-custom-metric
+                              #:delete-dimension #:delete-domain-configuration
                               #:delete-dynamic-thing-group
-                              #:delete-dynamic-thing-group-request
-                              #:delete-dynamic-thing-group-response
-                              #:delete-fleet-metric
-                              #:delete-fleet-metric-request #:delete-job
-                              #:delete-job-execution
-                              #:delete-job-execution-request
-                              #:delete-job-request #:delete-job-template
-                              #:delete-job-template-request
+                              #:delete-fleet-metric #:delete-job
+                              #:delete-job-execution #:delete-job-template
                               #:delete-metrics-export-config
-                              #:delete-mitigation-action
-                              #:delete-mitigation-action-request
-                              #:delete-mitigation-action-response
-                              #:delete-otaupdate #:delete-otaupdate-request
-                              #:delete-otaupdate-response #:delete-package
-                              #:delete-package-request
-                              #:delete-package-response
-                              #:delete-package-version
-                              #:delete-package-version-request
-                              #:delete-package-version-response #:delete-policy
-                              #:delete-policy-request #:delete-policy-version
-                              #:delete-policy-version-request
+                              #:delete-mitigation-action #:delete-otaupdate
+                              #:delete-package #:delete-package-version
+                              #:delete-policy #:delete-policy-version
                               #:delete-provisioning-template
-                              #:delete-provisioning-template-request
-                              #:delete-provisioning-template-response
                               #:delete-provisioning-template-version
-                              #:delete-provisioning-template-version-request
-                              #:delete-provisioning-template-version-response
-                              #:delete-registration-code
-                              #:delete-registration-code-request
-                              #:delete-registration-code-response
-                              #:delete-role-alias #:delete-role-alias-request
-                              #:delete-role-alias-response
+                              #:delete-registration-code #:delete-role-alias
                               #:delete-scheduled-audit
-                              #:delete-scheduled-audit-request
-                              #:delete-scheduled-audit-response
                               #:delete-scheduled-audits
-                              #:delete-security-profile
-                              #:delete-security-profile-request
-                              #:delete-security-profile-response
-                              #:delete-stream #:delete-stream-request
-                              #:delete-stream-response #:delete-stream
-                              #:delete-thing #:delete-thing-group
-                              #:delete-thing-group-request
-                              #:delete-thing-group-response
-                              #:delete-thing-request #:delete-thing-response
-                              #:delete-thing-type #:delete-thing-type-request
-                              #:delete-thing-type-response #:delete-topic-rule
+                              #:delete-security-profile #:delete-stream
+                              #:delete-stream #:delete-thing
+                              #:delete-thing-group #:delete-thing-type
+                              #:delete-topic-rule
                               #:delete-topic-rule-destination
-                              #:delete-topic-rule-destination-request
-                              #:delete-topic-rule-destination-response
-                              #:delete-topic-rule-request
-                              #:delete-v2logging-level
-                              #:delete-v2logging-level-request
-                              #:delivery-stream-name #:denied
-                              #:deprecate-thing-type
-                              #:deprecate-thing-type-request
-                              #:deprecate-thing-type-response
+                              #:delete-v2logging-level #:delivery-stream-name
+                              #:denied #:deprecate-thing-type
                               #:deprecation-date #:deprecation-flag
                               #:describe-account-audit-configuration
-                              #:describe-account-audit-configuration-request
-                              #:describe-account-audit-configuration-response
                               #:describe-audit-finding
-                              #:describe-audit-finding-request
-                              #:describe-audit-finding-response
                               #:describe-audit-mitigation-actions-task
-                              #:describe-audit-mitigation-actions-task-request
-                              #:describe-audit-mitigation-actions-task-response
                               #:describe-audit-suppression
-                              #:describe-audit-suppression-request
-                              #:describe-audit-suppression-response
-                              #:describe-audit-task
-                              #:describe-audit-task-request
-                              #:describe-audit-task-response
-                              #:describe-authorizer
-                              #:describe-authorizer-request
-                              #:describe-authorizer-response
-                              #:describe-billing-group
-                              #:describe-billing-group-request
-                              #:describe-billing-group-response
-                              #:describe-cacertificate
-                              #:describe-cacertificate-request
-                              #:describe-cacertificate-response
+                              #:describe-audit-task #:describe-authorizer
+                              #:describe-billing-group #:describe-cacertificate
                               #:describe-certificate
                               #:describe-certificate-provider
-                              #:describe-certificate-provider-request
-                              #:describe-certificate-provider-response
-                              #:describe-certificate-request
-                              #:describe-certificate-response
                               #:describe-custom-metric
-                              #:describe-custom-metric-request
-                              #:describe-custom-metric-response
                               #:describe-default-authorizer
-                              #:describe-default-authorizer-request
-                              #:describe-default-authorizer-response
                               #:describe-detect-mitigation-actions-task
-                              #:describe-detect-mitigation-actions-task-request
-                              #:describe-detect-mitigation-actions-task-response
-                              #:describe-dimension #:describe-dimension-request
-                              #:describe-dimension-response
+                              #:describe-dimension
                               #:describe-domain-configuration
-                              #:describe-domain-configuration-request
-                              #:describe-domain-configuration-response
                               #:describe-encryption-configuration
-                              #:describe-encryption-configuration-request
-                              #:describe-encryption-configuration-response
-                              #:describe-endpoint #:describe-endpoint-request
-                              #:describe-endpoint-response
+                              #:describe-endpoint
                               #:describe-event-configurations
-                              #:describe-event-configurations-request
-                              #:describe-event-configurations-response
-                              #:describe-fleet-metric
-                              #:describe-fleet-metric-request
-                              #:describe-fleet-metric-response #:describe-index
-                              #:describe-index-request
-                              #:describe-index-response #:describe-job
-                              #:describe-job-execution
-                              #:describe-job-execution-request
-                              #:describe-job-execution-response
-                              #:describe-job-request #:describe-job-response
+                              #:describe-fleet-metric #:describe-index
+                              #:describe-job #:describe-job-execution
                               #:describe-job-template
-                              #:describe-job-template-request
-                              #:describe-job-template-response
                               #:describe-managed-job-template
-                              #:describe-managed-job-template-request
-                              #:describe-managed-job-template-response
                               #:describe-mitigation-action
-                              #:describe-mitigation-action-request
-                              #:describe-mitigation-action-response
                               #:describe-provisioning-template
-                              #:describe-provisioning-template-request
-                              #:describe-provisioning-template-response
                               #:describe-provisioning-template-version
-                              #:describe-provisioning-template-version-request
-                              #:describe-provisioning-template-version-response
-                              #:describe-role-alias
-                              #:describe-role-alias-request
-                              #:describe-role-alias-response
-                              #:describe-scheduled-audit
-                              #:describe-scheduled-audit-request
-                              #:describe-scheduled-audit-response
-                              #:describe-security-profile
-                              #:describe-security-profile-request
-                              #:describe-security-profile-response
-                              #:describe-stream #:describe-stream-request
-                              #:describe-stream-response #:describe-thing
-                              #:describe-thing-group
-                              #:describe-thing-group-request
-                              #:describe-thing-group-response
+                              #:describe-role-alias #:describe-scheduled-audit
+                              #:describe-security-profile #:describe-stream
+                              #:describe-thing #:describe-thing-group
                               #:describe-thing-registration-task
-                              #:describe-thing-registration-task-request
-                              #:describe-thing-registration-task-response
-                              #:describe-thing-request
-                              #:describe-thing-response #:describe-thing-type
-                              #:describe-thing-type-request
-                              #:describe-thing-type-response #:description
-                              #:destination #:destination-package-versions
-                              #:detach-policy #:detach-policy-request
+                              #:describe-thing-type #:description #:destination
+                              #:destination-package-versions #:detach-policy
                               #:detach-principal-policy
-                              #:detach-principal-policy-request
                               #:detach-security-profile
-                              #:detach-security-profile-request
-                              #:detach-security-profile-response
-                              #:detach-thing-principal
-                              #:detach-thing-principal-request
-                              #:detach-thing-principal-response #:details-key
+                              #:detach-thing-principal #:details-key
                               #:details-map #:details-value
                               #:detect-mitigation-action-execution
                               #:detect-mitigation-action-execution-error-code
@@ -503,10 +273,8 @@
                               #:dimension-string-value
                               #:dimension-string-values #:dimension-type
                               #:dimension-value-operator #:disable-all-logs
-                              #:disable-topic-rule #:disable-topic-rule-request
+                              #:disable-topic-rule
                               #:disassociate-sbom-from-package-version
-                              #:disassociate-sbom-from-package-version-request
-                              #:disassociate-sbom-from-package-version-response
                               #:disconnect-reason #:disconnect-reason-value
                               #:display-name #:document-parameter
                               #:document-parameters #:domain-configuration-arn
@@ -524,24 +292,24 @@
                               #:elasticsearch-index #:elasticsearch-type
                               #:enable-caching-for-http
                               #:enable-io-tlogging-params #:enable-ocspcheck
-                              #:enable-topic-rule #:enable-topic-rule-request
-                              #:enabled #:enabled2 #:enabled-boolean
-                              #:encryption-type #:endpoint-address
-                              #:endpoint-type #:environment #:environments
-                              #:error-code #:error-info #:error-message
-                              #:error-message2 #:evaluation-statistic
-                              #:event-configurations #:event-type #:example
-                              #:execution-name-prefix #:execution-number
-                              #:expected-version #:expires-in-sec
-                              #:expires-in-seconds #:explicit-deny
-                              #:exponential-rollout-rate #:export-metric
-                              #:failed-checks-count #:failed-findings-count
-                              #:failed-things #:field #:field-name #:field-type
-                              #:fields #:file-id #:file-location #:file-name
-                              #:file-type #:finding-id #:finding-ids
-                              #:firehose-action #:firehose-separator #:flag
-                              #:fleet-metric-arn #:fleet-metric-description
-                              #:fleet-metric-name #:fleet-metric-name-and-arn
+                              #:enable-topic-rule #:enabled #:enabled2
+                              #:enabled-boolean #:encryption-type
+                              #:endpoint-address #:endpoint-type #:environment
+                              #:environments #:error-code #:error-info
+                              #:error-message #:error-message2
+                              #:evaluation-statistic #:event-configurations
+                              #:event-type #:example #:execution-name-prefix
+                              #:execution-number #:expected-version
+                              #:expires-in-sec #:expires-in-seconds
+                              #:explicit-deny #:exponential-rollout-rate
+                              #:export-metric #:failed-checks-count
+                              #:failed-findings-count #:failed-things #:field
+                              #:field-name #:field-type #:fields #:file-id
+                              #:file-location #:file-name #:file-type
+                              #:finding-id #:finding-ids #:firehose-action
+                              #:firehose-separator #:flag #:fleet-metric-arn
+                              #:fleet-metric-description #:fleet-metric-name
+                              #:fleet-metric-name-and-arn
                               #:fleet-metric-name-and-arn-list
                               #:fleet-metric-period #:fleet-metric-unit
                               #:force-delete #:force-delete-awsjob #:force-flag
@@ -549,83 +317,37 @@
                               #:generic-long-value #:geo-location-target
                               #:geo-locations-filter
                               #:get-behavior-model-training-summaries
-                              #:get-behavior-model-training-summaries-request
-                              #:get-behavior-model-training-summaries-response
-                              #:get-buckets-aggregation
-                              #:get-buckets-aggregation-request
-                              #:get-buckets-aggregation-response
-                              #:get-cardinality #:get-cardinality-request
-                              #:get-cardinality-response #:get-command
-                              #:get-command-execution
-                              #:get-command-execution-request
-                              #:get-command-execution-response
-                              #:get-command-request #:get-command-response
+                              #:get-buckets-aggregation #:get-cardinality
+                              #:get-command #:get-command-execution
                               #:get-effective-policies
-                              #:get-effective-policies-request
-                              #:get-effective-policies-response
-                              #:get-indexing-configuration
-                              #:get-indexing-configuration-request
-                              #:get-indexing-configuration-response
-                              #:get-job-document #:get-job-document-request
-                              #:get-job-document-response #:get-logging-options
-                              #:get-logging-options-request
-                              #:get-logging-options-response #:get-otaupdate
-                              #:get-otaupdate-request #:get-otaupdate-response
+                              #:get-indexing-configuration #:get-job-document
+                              #:get-logging-options #:get-otaupdate
                               #:get-package #:get-package-configuration
-                              #:get-package-configuration-request
-                              #:get-package-configuration-response
-                              #:get-package-request #:get-package-response
-                              #:get-package-version
-                              #:get-package-version-request
-                              #:get-package-version-response #:get-percentiles
-                              #:get-percentiles-request
-                              #:get-percentiles-response #:get-policy
-                              #:get-policy-request #:get-policy-response
-                              #:get-policy-version #:get-policy-version-request
-                              #:get-policy-version-response
-                              #:get-registration-code
-                              #:get-registration-code-request
-                              #:get-registration-code-response #:get-statistics
-                              #:get-statistics-request
-                              #:get-statistics-response
-                              #:get-thing-connectivity-data
-                              #:get-thing-connectivity-data-request
-                              #:get-thing-connectivity-data-response
-                              #:get-topic-rule #:get-topic-rule-destination
-                              #:get-topic-rule-destination-request
-                              #:get-topic-rule-destination-response
-                              #:get-topic-rule-request
-                              #:get-topic-rule-response #:get-v2logging-options
-                              #:get-v2logging-options-request
-                              #:get-v2logging-options-response
-                              #:group-name-and-arn #:hash-algorithm
-                              #:hash-key-field #:hash-key-value #:header-key
-                              #:header-list #:header-value #:http-action
-                              #:http-action-header #:http-authorization
-                              #:http-context #:http-header-name
-                              #:http-header-value #:http-headers
-                              #:http-query-string
+                              #:get-package-version #:get-percentiles
+                              #:get-policy #:get-policy-version
+                              #:get-registration-code #:get-statistics
+                              #:get-thing-connectivity-data #:get-topic-rule
+                              #:get-topic-rule-destination
+                              #:get-v2logging-options #:group-name-and-arn
+                              #:hash-algorithm #:hash-key-field
+                              #:hash-key-value #:header-key #:header-list
+                              #:header-value #:http-action #:http-action-header
+                              #:http-authorization #:http-context
+                              #:http-header-name #:http-header-value
+                              #:http-headers #:http-query-string
                               #:http-url-destination-configuration
                               #:http-url-destination-properties
                               #:http-url-destination-summary #:implicit-deny
                               #:in-progress-checks-count #:in-progress-things
                               #:in-progress-timeout-in-minutes
                               #:increment-factor #:index-name
-                              #:index-names-list #:index-not-ready-exception
-                              #:index-schema #:index-status #:indexing-filter
-                              #:inline-document #:input-name
-                              #:integer-parameter-value #:internal-exception
-                              #:internal-failure-exception
-                              #:internal-server-exception
-                              #:invalid-aggregation-exception
-                              #:invalid-query-exception
-                              #:invalid-request-exception
-                              #:invalid-response-exception
-                              #:invalid-state-transition-exception
-                              #:iot-analytics-action #:iot-events-action
-                              #:iot-site-wise-action #:is-authenticated
-                              #:is-default-version #:is-disabled
-                              #:is-suppressed #:issuer-certificate-identifier
+                              #:index-names-list #:index-schema #:index-status
+                              #:indexing-filter #:inline-document #:input-name
+                              #:integer-parameter-value #:iot-analytics-action
+                              #:iot-events-action #:iot-site-wise-action
+                              #:is-authenticated #:is-default-version
+                              #:is-disabled #:is-suppressed
+                              #:issuer-certificate-identifier
                               #:issuer-certificate-serial-number
                               #:issuer-certificate-subject #:issuer-id #:job
                               #:job-arn #:job-description #:job-document
@@ -652,177 +374,54 @@
                               #:kms-access-role-arn #:kms-key-arn
                               #:lambda-action #:laser-max-results
                               #:last-modified-date #:last-updated-at-date
-                              #:limit-exceeded-exception
-                              #:list-active-violations
-                              #:list-active-violations-request
-                              #:list-active-violations-response
-                              #:list-attached-policies
-                              #:list-attached-policies-request
-                              #:list-attached-policies-response
+                              #:list-active-violations #:list-attached-policies
                               #:list-audit-findings
-                              #:list-audit-findings-request
-                              #:list-audit-findings-response
                               #:list-audit-mitigation-actions-executions
-                              #:list-audit-mitigation-actions-executions-request
-                              #:list-audit-mitigation-actions-executions-response
                               #:list-audit-mitigation-actions-tasks
-                              #:list-audit-mitigation-actions-tasks-request
-                              #:list-audit-mitigation-actions-tasks-response
-                              #:list-audit-suppressions
-                              #:list-audit-suppressions-request
-                              #:list-audit-suppressions-response
-                              #:list-audit-tasks #:list-audit-tasks-request
-                              #:list-audit-tasks-response #:list-authorizers
-                              #:list-authorizers-request
-                              #:list-authorizers-response #:list-billing-groups
-                              #:list-billing-groups-request
-                              #:list-billing-groups-response
+                              #:list-audit-suppressions #:list-audit-tasks
+                              #:list-authorizers #:list-billing-groups
                               #:list-cacertificates
-                              #:list-cacertificates-request
-                              #:list-cacertificates-response
-                              #:list-certificate-providers
-                              #:list-certificate-providers-request
-                              #:list-certificate-providers-response
-                              #:list-certificates #:list-certificates-by-ca
-                              #:list-certificates-by-carequest
-                              #:list-certificates-by-caresponse
-                              #:list-certificates-request
-                              #:list-certificates-response
-                              #:list-command-executions
-                              #:list-command-executions-request
-                              #:list-command-executions-response
-                              #:list-commands #:list-commands-request
-                              #:list-commands-response #:list-custom-metrics
-                              #:list-custom-metrics-request
-                              #:list-custom-metrics-response
+                              #:list-certificate-providers #:list-certificates
+                              #:list-certificates-by-ca
+                              #:list-command-executions #:list-commands
+                              #:list-custom-metrics
                               #:list-detect-mitigation-actions-executions
-                              #:list-detect-mitigation-actions-executions-request
-                              #:list-detect-mitigation-actions-executions-response
                               #:list-detect-mitigation-actions-tasks
-                              #:list-detect-mitigation-actions-tasks-request
-                              #:list-detect-mitigation-actions-tasks-response
-                              #:list-dimensions #:list-dimensions-request
-                              #:list-dimensions-response
-                              #:list-domain-configurations
-                              #:list-domain-configurations-request
-                              #:list-domain-configurations-response
-                              #:list-fleet-metrics #:list-fleet-metrics-request
-                              #:list-fleet-metrics-response #:list-indices
-                              #:list-indices-request #:list-indices-response
+                              #:list-dimensions #:list-domain-configurations
+                              #:list-fleet-metrics #:list-indices
                               #:list-job-executions-for-job
-                              #:list-job-executions-for-job-request
-                              #:list-job-executions-for-job-response
                               #:list-job-executions-for-thing
-                              #:list-job-executions-for-thing-request
-                              #:list-job-executions-for-thing-response
-                              #:list-job-templates #:list-job-templates-request
-                              #:list-job-templates-response #:list-jobs
-                              #:list-jobs-request #:list-jobs-response
-                              #:list-managed-job-templates
-                              #:list-managed-job-templates-request
-                              #:list-managed-job-templates-response
-                              #:list-metric-values #:list-metric-values-request
-                              #:list-metric-values-response
-                              #:list-mitigation-actions
-                              #:list-mitigation-actions-request
-                              #:list-mitigation-actions-response
-                              #:list-otaupdates #:list-otaupdates-request
-                              #:list-otaupdates-response
+                              #:list-job-templates #:list-jobs
+                              #:list-managed-job-templates #:list-metric-values
+                              #:list-mitigation-actions #:list-otaupdates
                               #:list-outgoing-certificates
-                              #:list-outgoing-certificates-request
-                              #:list-outgoing-certificates-response
-                              #:list-package-versions
-                              #:list-package-versions-request
-                              #:list-package-versions-response #:list-packages
-                              #:list-packages-request #:list-packages-response
-                              #:list-policies #:list-policies-request
-                              #:list-policies-response #:list-policy-principals
-                              #:list-policy-principals-request
-                              #:list-policy-principals-response
-                              #:list-policy-versions
-                              #:list-policy-versions-request
-                              #:list-policy-versions-response
-                              #:list-principal-policies
-                              #:list-principal-policies-request
-                              #:list-principal-policies-response
+                              #:list-package-versions #:list-packages
+                              #:list-policies #:list-policy-principals
+                              #:list-policy-versions #:list-principal-policies
                               #:list-principal-things
-                              #:list-principal-things-request
-                              #:list-principal-things-response
                               #:list-principal-things-v2
-                              #:list-principal-things-v2request
-                              #:list-principal-things-v2response
                               #:list-provisioning-template-versions
-                              #:list-provisioning-template-versions-request
-                              #:list-provisioning-template-versions-response
                               #:list-provisioning-templates
-                              #:list-provisioning-templates-request
-                              #:list-provisioning-templates-response
                               #:list-related-resources-for-audit-finding
-                              #:list-related-resources-for-audit-finding-request
-                              #:list-related-resources-for-audit-finding-response
-                              #:list-role-aliases #:list-role-aliases-request
-                              #:list-role-aliases-response
+                              #:list-role-aliases
                               #:list-sbom-validation-results
-                              #:list-sbom-validation-results-request
-                              #:list-sbom-validation-results-response
-                              #:list-scheduled-audits
-                              #:list-scheduled-audits-request
-                              #:list-scheduled-audits-response
-                              #:list-security-profiles
+                              #:list-scheduled-audits #:list-security-profiles
                               #:list-security-profiles-for-target
-                              #:list-security-profiles-for-target-request
-                              #:list-security-profiles-for-target-response
-                              #:list-security-profiles-request
-                              #:list-security-profiles-response #:list-streams
-                              #:list-streams-request #:list-streams-response
-                              #:list-suppressed-alerts
+                              #:list-streams #:list-suppressed-alerts
                               #:list-suppressed-findings
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-targets-for-policy
-                              #:list-targets-for-policy-request
-                              #:list-targets-for-policy-response
                               #:list-targets-for-security-profile
-                              #:list-targets-for-security-profile-request
-                              #:list-targets-for-security-profile-response
                               #:list-thing-groups #:list-thing-groups-for-thing
-                              #:list-thing-groups-for-thing-request
-                              #:list-thing-groups-for-thing-response
-                              #:list-thing-groups-request
-                              #:list-thing-groups-response
                               #:list-thing-principals
-                              #:list-thing-principals-request
-                              #:list-thing-principals-response
                               #:list-thing-principals-v2
-                              #:list-thing-principals-v2request
-                              #:list-thing-principals-v2response
                               #:list-thing-registration-task-reports
-                              #:list-thing-registration-task-reports-request
-                              #:list-thing-registration-task-reports-response
                               #:list-thing-registration-tasks
-                              #:list-thing-registration-tasks-request
-                              #:list-thing-registration-tasks-response
-                              #:list-thing-types #:list-thing-types-request
-                              #:list-thing-types-response #:list-things
+                              #:list-thing-types #:list-things
                               #:list-things-in-billing-group
-                              #:list-things-in-billing-group-request
-                              #:list-things-in-billing-group-response
                               #:list-things-in-thing-group
-                              #:list-things-in-thing-group-request
-                              #:list-things-in-thing-group-response
-                              #:list-things-request #:list-things-response
-                              #:list-topic-rule-destinations
-                              #:list-topic-rule-destinations-request
-                              #:list-topic-rule-destinations-response
-                              #:list-topic-rules #:list-topic-rules-request
-                              #:list-topic-rules-response
-                              #:list-v2logging-levels
-                              #:list-v2logging-levels-request
-                              #:list-v2logging-levels-response
-                              #:list-violation-events
-                              #:list-violation-events-request
-                              #:list-violation-events-response
+                              #:list-topic-rule-destinations #:list-topic-rules
+                              #:list-v2logging-levels #:list-violation-events
                               #:location-action #:location-timestamp
                               #:log-group-name #:log-level #:log-target
                               #:log-target-configuration
@@ -831,7 +430,6 @@
                               #:long-parameter-value
                               #:machine-learning-detection-config
                               #:maintenance-window #:maintenance-windows
-                              #:malformed-policy-exception
                               #:managed-job-template-name
                               #:managed-job-template-summary
                               #:managed-job-templates-summary-list
@@ -862,13 +460,12 @@
                               #:next-token #:non-compliant-checks-count
                               #:non-compliant-resource
                               #:non-compliant-resources-count
-                              #:not-configured-exception #:nullable-boolean
-                              #:number #:number-list #:number-of-retries
-                              #:number-of-things #:ocsplambda-arn
-                              #:otaupdate-arn #:otaupdate-description
-                              #:otaupdate-error-message #:otaupdate-file
-                              #:otaupdate-file-version #:otaupdate-files
-                              #:otaupdate-id #:otaupdate-info
+                              #:nullable-boolean #:number #:number-list
+                              #:number-of-retries #:number-of-things
+                              #:ocsplambda-arn #:otaupdate-arn
+                              #:otaupdate-description #:otaupdate-error-message
+                              #:otaupdate-file #:otaupdate-file-version
+                              #:otaupdate-files #:otaupdate-id #:otaupdate-info
                               #:otaupdate-status #:otaupdate-summary
                               #:otaupdates-summary #:open-search-action
                               #:optional #:optional-version
@@ -911,10 +508,8 @@
                               #:put-asset-property-value-entry
                               #:put-asset-property-value-entry-list
                               #:put-item-input
-                              #:put-verification-state-on-violation
-                              #:put-verification-state-on-violation-request
-                              #:put-verification-state-on-violation-response
-                              #:qos #:query-max-results #:query-string
+                              #:put-verification-state-on-violation #:qos
+                              #:query-max-results #:query-string
                               #:query-version #:queue-url #:queued-things
                               #:range-key-field #:range-key-value
                               #:rate-increase-criteria #:reason-code
@@ -922,46 +517,28 @@
                               #:reason-for-non-compliance-code
                               #:reason-for-non-compliance-codes #:recursive
                               #:recursive-without-default #:regex
-                              #:register-cacertificate
-                              #:register-cacertificate-request
-                              #:register-cacertificate-response
-                              #:register-certificate
-                              #:register-certificate-request
-                              #:register-certificate-response
+                              #:register-cacertificate #:register-certificate
                               #:register-certificate-without-ca
-                              #:register-certificate-without-carequest
-                              #:register-certificate-without-caresponse
-                              #:register-thing #:register-thing-request
-                              #:register-thing-response #:registration-code
-                              #:registration-code-validation-exception
+                              #:register-thing #:registration-code
                               #:registration-config #:registry-max-results
                               #:registry-s3bucket-name #:registry-s3key-name
-                              #:reject-certificate-transfer
-                              #:reject-certificate-transfer-request
-                              #:rejected-things #:related-resource
-                              #:related-resources #:remove-authorizer-config
+                              #:reject-certificate-transfer #:rejected-things
+                              #:related-resource #:related-resources
+                              #:remove-authorizer-config
                               #:remove-auto-registration #:remove-hook
                               #:remove-thing-from-billing-group
-                              #:remove-thing-from-billing-group-request
-                              #:remove-thing-from-billing-group-response
                               #:remove-thing-from-thing-group
-                              #:remove-thing-from-thing-group-request
-                              #:remove-thing-from-thing-group-response
                               #:remove-thing-type #:removed-things
                               #:replace-default-policy-version-params
-                              #:replace-topic-rule #:replace-topic-rule-request
-                              #:report-type #:republish-action
+                              #:replace-topic-rule #:report-type
+                              #:republish-action
                               #:reserved-domain-configuration-name #:resource
-                              #:resource-already-exists-exception
                               #:resource-arn #:resource-arns
                               #:resource-attribute-key
                               #:resource-attribute-value #:resource-attributes
                               #:resource-description #:resource-identifier
-                              #:resource-logical-id
-                              #:resource-not-found-exception
-                              #:resource-registration-failure-exception
-                              #:resource-type #:resources #:response-topic
-                              #:retry-attempt #:retry-criteria
+                              #:resource-logical-id #:resource-type #:resources
+                              #:response-topic #:retry-attempt #:retry-criteria
                               #:retry-criteria-list #:retryable-failure-type
                               #:role-alias #:role-alias-arn
                               #:role-alias-description #:role-aliases
@@ -981,9 +558,7 @@
                               #:scheduled-audit-metadata-list
                               #:scheduled-audit-name #:scheduled-job-rollout
                               #:scheduled-job-rollout-list #:scheduling-config
-                              #:search-index #:search-index-request
-                              #:search-index-response
-                              #:search-query-max-results
+                              #:search-index #:search-query-max-results
                               #:searchable-attributes #:seconds
                               #:security-group-id #:security-group-list
                               #:security-policy #:security-profile-arn
@@ -1001,48 +576,30 @@
                               #:server-certificate-status-detail
                               #:server-certificate-summary
                               #:server-certificates #:server-name
-                              #:service-name #:service-quota-exceeded-exception
-                              #:service-type #:service-unavailable-exception
-                              #:set-as-active #:set-as-active-flag
-                              #:set-as-default #:set-default-authorizer
-                              #:set-default-authorizer-request
-                              #:set-default-authorizer-response
+                              #:service-name #:service-type #:set-as-active
+                              #:set-as-active-flag #:set-as-default
+                              #:set-default-authorizer
                               #:set-default-policy-version
-                              #:set-default-policy-version-request
-                              #:set-logging-options
-                              #:set-logging-options-request
-                              #:set-v2logging-level
-                              #:set-v2logging-level-request
-                              #:set-v2logging-options
-                              #:set-v2logging-options-request #:shadow-name
+                              #:set-logging-options #:set-v2logging-level
+                              #:set-v2logging-options #:shadow-name
                               #:sig-v4authorization #:signature
                               #:signature-algorithm #:signing-job-id
                               #:signing-profile-name
                               #:signing-profile-parameter #:signing-region
                               #:skipped-findings-count #:skyfall-max-results
                               #:sns-action #:sns-topic-arn #:sort-order
-                              #:sql-parse-exception #:sqs-action
+                              #:sqs-action
                               #:start-audit-mitigation-actions-task
-                              #:start-audit-mitigation-actions-task-request
-                              #:start-audit-mitigation-actions-task-response
                               #:start-detect-mitigation-actions-task
-                              #:start-detect-mitigation-actions-task-request
-                              #:start-detect-mitigation-actions-task-response
                               #:start-on-demand-audit-task
-                              #:start-on-demand-audit-task-request
-                              #:start-on-demand-audit-task-response
                               #:start-signing-job-parameter
                               #:start-thing-registration-task
-                              #:start-thing-registration-task-request
-                              #:start-thing-registration-task-response
                               #:state-machine-name #:state-reason #:state-value
                               #:statistical-threshold #:statistics #:status
                               #:status-code #:status-reason
                               #:status-reason-code #:status-reason-description
                               #:std-deviation #:step-functions-action
-                              #:stop-thing-registration-task
-                              #:stop-thing-registration-task-request
-                              #:stop-thing-registration-task-response #:stream
+                              #:stop-thing-registration-task #:stream
                               #:stream-arn #:stream-description #:stream-file
                               #:stream-files #:stream-id #:stream-info
                               #:stream-name #:stream-summary #:stream-version
@@ -1055,25 +612,20 @@
                               #:suppress-alerts #:suppress-indefinitely
                               #:suppressed-non-compliant-resources-count
                               #:table-name #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:target #:target-arn
-                              #:target-audit-check-names #:target-field-name
-                              #:target-field-order #:target-selection
+                              #:tag-list #:tag-map #:tag-resource #:tag-value
+                              #:target #:target-arn #:target-audit-check-names
+                              #:target-field-name #:target-field-order
+                              #:target-selection
                               #:target-violation-ids-for-detect-mitigation-actions
-                              #:targets #:task-already-exists-exception
-                              #:task-id #:task-id-list #:task-statistics
+                              #:targets #:task-id #:task-id-list
+                              #:task-statistics
                               #:task-statistics-for-audit-check #:template-arn
                               #:template-body #:template-description
                               #:template-name #:template-type
                               #:template-version-id #:terms-aggregation
-                              #:test-authorization #:test-authorization-request
-                              #:test-authorization-response
-                              #:test-invoke-authorizer
-                              #:test-invoke-authorizer-request
-                              #:test-invoke-authorizer-response #:thing-arn
-                              #:thing-attribute #:thing-attribute-list
-                              #:thing-connectivity
+                              #:test-authorization #:test-invoke-authorizer
+                              #:thing-arn #:thing-attribute
+                              #:thing-attribute-list #:thing-connectivity
                               #:thing-connectivity-indexing-mode
                               #:thing-document #:thing-document-list
                               #:thing-group-arn #:thing-group-description
@@ -1093,10 +645,9 @@
                               #:thing-type-description #:thing-type-id
                               #:thing-type-list #:thing-type-metadata
                               #:thing-type-name #:thing-type-properties
-                              #:throttling-exception #:time-filter
-                              #:timed-out-things #:timeout-config #:timestamp
-                              #:timestream-action #:timestream-database-name
-                              #:timestream-dimension
+                              #:time-filter #:timed-out-things #:timeout-config
+                              #:timestamp #:timestream-action
+                              #:timestream-database-name #:timestream-dimension
                               #:timestream-dimension-list
                               #:timestream-dimension-name
                               #:timestream-dimension-value
@@ -1115,110 +666,43 @@
                               #:topic-rule-list #:topic-rule-list-item
                               #:topic-rule-max-results #:topic-rule-payload
                               #:total-checks-count #:total-findings-count
-                              #:total-resources-count
-                              #:transfer-already-completed-exception
-                              #:transfer-certificate
-                              #:transfer-certificate-request
-                              #:transfer-certificate-response
-                              #:transfer-conflict-exception #:transfer-data
-                              #:unauthorized-exception #:undo-deprecate
+                              #:total-resources-count #:transfer-certificate
+                              #:transfer-data #:undo-deprecate
                               #:unset-default-version #:unsigned-long
                               #:unsigned-long-parameter-value #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response
                               #:update-account-audit-configuration
-                              #:update-account-audit-configuration-request
-                              #:update-account-audit-configuration-response
-                              #:update-audit-suppression
-                              #:update-audit-suppression-request
-                              #:update-audit-suppression-response
-                              #:update-authorizer #:update-authorizer-request
-                              #:update-authorizer-response
-                              #:update-billing-group
-                              #:update-billing-group-request
-                              #:update-billing-group-response
-                              #:update-cacertificate
+                              #:update-audit-suppression #:update-authorizer
+                              #:update-billing-group #:update-cacertificate
                               #:update-cacertificate-params
-                              #:update-cacertificate-request
                               #:update-certificate
-                              #:update-certificate-provider
-                              #:update-certificate-provider-request
-                              #:update-certificate-provider-response
-                              #:update-certificate-request #:update-command
-                              #:update-command-request
-                              #:update-command-response #:update-custom-metric
-                              #:update-custom-metric-request
-                              #:update-custom-metric-response
+                              #:update-certificate-provider #:update-command
+                              #:update-custom-metric
                               #:update-device-certificate-params
-                              #:update-dimension #:update-dimension-request
-                              #:update-dimension-response
-                              #:update-domain-configuration
-                              #:update-domain-configuration-request
-                              #:update-domain-configuration-response
+                              #:update-dimension #:update-domain-configuration
                               #:update-dynamic-thing-group
-                              #:update-dynamic-thing-group-request
-                              #:update-dynamic-thing-group-response
                               #:update-encryption-configuration
-                              #:update-encryption-configuration-request
-                              #:update-encryption-configuration-response
                               #:update-event-configurations
-                              #:update-event-configurations-request
-                              #:update-event-configurations-response
                               #:update-fleet-metric
-                              #:update-fleet-metric-request
-                              #:update-indexing-configuration
-                              #:update-indexing-configuration-request
-                              #:update-indexing-configuration-response
-                              #:update-job #:update-job-request
-                              #:update-mitigation-action
-                              #:update-mitigation-action-request
-                              #:update-mitigation-action-response
-                              #:update-package #:update-package-configuration
-                              #:update-package-configuration-request
-                              #:update-package-configuration-response
-                              #:update-package-request
-                              #:update-package-response
+                              #:update-indexing-configuration #:update-job
+                              #:update-mitigation-action #:update-package
+                              #:update-package-configuration
                               #:update-package-version
-                              #:update-package-version-request
-                              #:update-package-version-response
                               #:update-provisioning-template
-                              #:update-provisioning-template-request
-                              #:update-provisioning-template-response
-                              #:update-role-alias #:update-role-alias-request
-                              #:update-role-alias-response
-                              #:update-scheduled-audit
-                              #:update-scheduled-audit-request
-                              #:update-scheduled-audit-response
-                              #:update-security-profile
-                              #:update-security-profile-request
-                              #:update-security-profile-response
-                              #:update-stream #:update-stream-request
-                              #:update-stream-response #:update-thing
-                              #:update-thing-group #:update-thing-group-request
-                              #:update-thing-group-response
+                              #:update-role-alias #:update-scheduled-audit
+                              #:update-security-profile #:update-stream
+                              #:update-thing #:update-thing-group
                               #:update-thing-groups-for-thing
-                              #:update-thing-groups-for-thing-request
-                              #:update-thing-groups-for-thing-response
-                              #:update-thing-request #:update-thing-response
-                              #:update-thing-type #:update-thing-type-request
-                              #:update-thing-type-response
-                              #:update-topic-rule-destination
-                              #:update-topic-rule-destination-request
-                              #:update-topic-rule-destination-response #:url
+                              #:update-thing-type
+                              #:update-topic-rule-destination #:url
                               #:use-base64 #:user-properties #:user-property
                               #:user-property-key #:user-property-key-name
                               #:user-property-value #:valid
                               #:validate-security-profile-behaviors
-                              #:validate-security-profile-behaviors-request
-                              #:validate-security-profile-behaviors-response
-                              #:validation-error #:validation-errors
-                              #:validation-exception #:value #:variance
-                              #:verification-state
+                              #:validation-error #:validation-errors #:value
+                              #:variance #:verification-state
                               #:verification-state-description #:version
-                              #:version-conflict-exception #:version-name
-                              #:version-number #:version-update-by-jobs-config
-                              #:versions-limit-exceeded-exception
-                              #:violation-event
+                              #:version-name #:version-number
+                              #:version-update-by-jobs-config #:violation-event
                               #:violation-event-additional-info
                               #:violation-event-occurrence-range
                               #:violation-event-type #:violation-events

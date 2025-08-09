@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/ssm-quicksetup (:use)
-                             (:export #:access-denied-exception
-                              #:configuration-definition
+                             (:export #:configuration-definition
                               #:configuration-definition-input
                               #:configuration-definition-summaries-list
                               #:configuration-definition-summary
@@ -10,44 +9,22 @@
                               #:configuration-manager-summary
                               #:configuration-parameters-map
                               #:configuration-summary #:configurations-list
-                              #:conflict-exception
                               #:create-configuration-manager
-                              #:create-configuration-manager-input
-                              #:create-configuration-manager-output
-                              #:delete-configuration-manager
-                              #:delete-configuration-manager-input #:filter
+                              #:delete-configuration-manager #:filter
                               #:filter-values #:filters-list
-                              #:get-configuration #:get-configuration-input
-                              #:get-configuration-manager
-                              #:get-configuration-manager-input
-                              #:get-configuration-manager-output
-                              #:get-configuration-output #:get-service-settings
-                              #:get-service-settings-output #:iamrole-arn
-                              #:internal-server-exception
+                              #:get-configuration #:get-configuration-manager
+                              #:get-service-settings #:iamrole-arn
                               #:list-configuration-managers
-                              #:list-configuration-managers-input
-                              #:list-configuration-managers-output
-                              #:list-configurations #:list-configurations-input
-                              #:list-configurations-output
-                              #:list-quick-setup-types
-                              #:list-quick-setup-types-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:quick-setup
+                              #:list-configurations #:list-quick-setup-types
+                              #:list-tags-for-resource #:quick-setup
                               #:quick-setup-type-list #:quick-setup-type-output
-                              #:resource-not-found-exception #:service-settings
-                              #:status #:status-details #:status-summaries-list
-                              #:status-summary #:status-type #:tag-entry
-                              #:tag-keys #:tag-resource #:tag-resource-input
-                              #:tags #:tags-map #:throttling-exception
-                              #:untag-resource #:untag-resource-input
+                              #:service-settings #:status #:status-details
+                              #:status-summaries-list #:status-summary
+                              #:status-type #:tag-entry #:tag-keys
+                              #:tag-resource #:tags #:tags-map #:untag-resource
                               #:update-configuration-definition
-                              #:update-configuration-definition-input
                               #:update-configuration-manager
-                              #:update-configuration-manager-input
-                              #:update-service-settings
-                              #:update-service-settings-input
-                              #:validation-exception))
+                              #:update-service-settings))
 (common-lisp:in-package #:pira/ssm-quicksetup)
 
 (smithy/sdk/service:define-service quick-setup :shape-name "QuickSetup"

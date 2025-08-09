@@ -6,58 +6,30 @@
                               #:augmented-manifests-list-item
                               #:batch-detect-dominant-language
                               #:batch-detect-dominant-language-item-result
-                              #:batch-detect-dominant-language-request
-                              #:batch-detect-dominant-language-response
                               #:batch-detect-entities
                               #:batch-detect-entities-item-result
-                              #:batch-detect-entities-request
-                              #:batch-detect-entities-response
                               #:batch-detect-key-phrases
                               #:batch-detect-key-phrases-item-result
-                              #:batch-detect-key-phrases-request
-                              #:batch-detect-key-phrases-response
                               #:batch-detect-sentiment
                               #:batch-detect-sentiment-item-result
-                              #:batch-detect-sentiment-request
-                              #:batch-detect-sentiment-response
                               #:batch-detect-syntax
                               #:batch-detect-syntax-item-result
-                              #:batch-detect-syntax-request
-                              #:batch-detect-syntax-response
                               #:batch-detect-targeted-sentiment
                               #:batch-detect-targeted-sentiment-item-result
-                              #:batch-detect-targeted-sentiment-request
-                              #:batch-detect-targeted-sentiment-response
                               #:batch-item-error #:batch-item-error-list
-                              #:batch-size-limit-exceeded-exception #:block
-                              #:block-reference #:block-type #:bounding-box
-                              #:child-block #:classifier-evaluation-metrics
+                              #:block #:block-reference #:block-type
+                              #:bounding-box #:child-block
+                              #:classifier-evaluation-metrics
                               #:classifier-metadata #:classify-document
-                              #:classify-document-request
-                              #:classify-document-response
                               #:client-request-token-string #:comprehend-arn
                               #:comprehend-arn-name #:comprehend-dataset-arn
                               #:comprehend-endpoint-arn
                               #:comprehend-endpoint-name
                               #:comprehend-flywheel-arn #:comprehend-model-arn
-                              #:comprehend-20171127
-                              #:concurrent-modification-exception
-                              #:contains-pii-entities
-                              #:contains-pii-entities-request
-                              #:contains-pii-entities-response #:create-dataset
-                              #:create-dataset-request
-                              #:create-dataset-response
-                              #:create-document-classifier
-                              #:create-document-classifier-request
-                              #:create-document-classifier-response
-                              #:create-endpoint #:create-endpoint-request
-                              #:create-endpoint-response
-                              #:create-entity-recognizer
-                              #:create-entity-recognizer-request
-                              #:create-entity-recognizer-response
-                              #:create-flywheel #:create-flywheel-request
-                              #:create-flywheel-response
-                              #:customer-input-string
+                              #:comprehend-20171127 #:contains-pii-entities
+                              #:create-dataset #:create-document-classifier
+                              #:create-endpoint #:create-entity-recognizer
+                              #:create-flywheel #:customer-input-string
                               #:customer-input-string-list
                               #:data-security-config
                               #:dataset-augmented-manifests-list
@@ -71,83 +43,28 @@
                               #:dataset-filter #:dataset-input-data-config
                               #:dataset-properties #:dataset-properties-list
                               #:dataset-status #:dataset-type
-                              #:delete-document-classifier
-                              #:delete-document-classifier-request
-                              #:delete-document-classifier-response
-                              #:delete-endpoint #:delete-endpoint-request
-                              #:delete-endpoint-response
-                              #:delete-entity-recognizer
-                              #:delete-entity-recognizer-request
-                              #:delete-entity-recognizer-response
-                              #:delete-flywheel #:delete-flywheel-request
-                              #:delete-flywheel-response
-                              #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response
-                              #:describe-dataset #:describe-dataset-request
-                              #:describe-dataset-response
+                              #:delete-document-classifier #:delete-endpoint
+                              #:delete-entity-recognizer #:delete-flywheel
+                              #:delete-resource-policy #:describe-dataset
                               #:describe-document-classification-job
-                              #:describe-document-classification-job-request
-                              #:describe-document-classification-job-response
                               #:describe-document-classifier
-                              #:describe-document-classifier-request
-                              #:describe-document-classifier-response
                               #:describe-dominant-language-detection-job
-                              #:describe-dominant-language-detection-job-request
-                              #:describe-dominant-language-detection-job-response
-                              #:describe-endpoint #:describe-endpoint-request
-                              #:describe-endpoint-response
+                              #:describe-endpoint
                               #:describe-entities-detection-job
-                              #:describe-entities-detection-job-request
-                              #:describe-entities-detection-job-response
                               #:describe-entity-recognizer
-                              #:describe-entity-recognizer-request
-                              #:describe-entity-recognizer-response
                               #:describe-events-detection-job
-                              #:describe-events-detection-job-request
-                              #:describe-events-detection-job-response
                               #:describe-flywheel #:describe-flywheel-iteration
-                              #:describe-flywheel-iteration-request
-                              #:describe-flywheel-iteration-response
-                              #:describe-flywheel-request
-                              #:describe-flywheel-response
                               #:describe-key-phrases-detection-job
-                              #:describe-key-phrases-detection-job-request
-                              #:describe-key-phrases-detection-job-response
                               #:describe-pii-entities-detection-job
-                              #:describe-pii-entities-detection-job-request
-                              #:describe-pii-entities-detection-job-response
                               #:describe-resource-policy
-                              #:describe-resource-policy-request
-                              #:describe-resource-policy-response
                               #:describe-sentiment-detection-job
-                              #:describe-sentiment-detection-job-request
-                              #:describe-sentiment-detection-job-response
                               #:describe-targeted-sentiment-detection-job
-                              #:describe-targeted-sentiment-detection-job-request
-                              #:describe-targeted-sentiment-detection-job-response
-                              #:describe-topics-detection-job
-                              #:describe-topics-detection-job-request
-                              #:describe-topics-detection-job-response
-                              #:description #:detect-dominant-language
-                              #:detect-dominant-language-request
-                              #:detect-dominant-language-response
-                              #:detect-entities #:detect-entities-request
-                              #:detect-entities-response #:detect-key-phrases
-                              #:detect-key-phrases-request
-                              #:detect-key-phrases-response
-                              #:detect-pii-entities
-                              #:detect-pii-entities-request
-                              #:detect-pii-entities-response #:detect-sentiment
-                              #:detect-sentiment-request
-                              #:detect-sentiment-response #:detect-syntax
-                              #:detect-syntax-request #:detect-syntax-response
+                              #:describe-topics-detection-job #:description
+                              #:detect-dominant-language #:detect-entities
+                              #:detect-key-phrases #:detect-pii-entities
+                              #:detect-sentiment #:detect-syntax
                               #:detect-targeted-sentiment
-                              #:detect-targeted-sentiment-request
-                              #:detect-targeted-sentiment-response
-                              #:detect-toxic-content
-                              #:detect-toxic-content-request
-                              #:detect-toxic-content-response #:document-class
+                              #:detect-toxic-content #:document-class
                               #:document-classification-config
                               #:document-classification-job-filter
                               #:document-classification-job-properties
@@ -215,57 +132,28 @@
                               #:flywheel-properties #:flywheel-s3uri
                               #:flywheel-status #:flywheel-summary
                               #:flywheel-summary-list #:geometry #:iam-role-arn
-                              #:import-model #:import-model-request
-                              #:import-model-response #:inference-units-integer
+                              #:import-model #:inference-units-integer
                               #:input-data-config #:input-format #:integer
-                              #:internal-server-exception
-                              #:invalid-filter-exception
                               #:invalid-request-detail
                               #:invalid-request-detail-reason
-                              #:invalid-request-exception
                               #:invalid-request-reason #:job-id #:job-name
-                              #:job-not-found-exception #:job-status
-                              #:key-phrase #:key-phrases-detection-job-filter
+                              #:job-status #:key-phrase
+                              #:key-phrases-detection-job-filter
                               #:key-phrases-detection-job-properties
                               #:key-phrases-detection-job-properties-list
-                              #:kms-key-id #:kms-key-validation-exception
-                              #:label-delimiter #:label-list-item #:labels-list
-                              #:language-code #:list-datasets
-                              #:list-datasets-request #:list-datasets-response
+                              #:kms-key-id #:label-delimiter #:label-list-item
+                              #:labels-list #:language-code #:list-datasets
                               #:list-document-classification-jobs
-                              #:list-document-classification-jobs-request
-                              #:list-document-classification-jobs-response
                               #:list-document-classifier-summaries
-                              #:list-document-classifier-summaries-request
-                              #:list-document-classifier-summaries-response
                               #:list-document-classifiers
-                              #:list-document-classifiers-request
-                              #:list-document-classifiers-response
                               #:list-dominant-language-detection-jobs
-                              #:list-dominant-language-detection-jobs-request
-                              #:list-dominant-language-detection-jobs-response
-                              #:list-endpoints #:list-endpoints-request
-                              #:list-endpoints-response
-                              #:list-entities-detection-jobs
-                              #:list-entities-detection-jobs-request
-                              #:list-entities-detection-jobs-response
+                              #:list-endpoints #:list-entities-detection-jobs
                               #:list-entity-recognizer-summaries
-                              #:list-entity-recognizer-summaries-request
-                              #:list-entity-recognizer-summaries-response
                               #:list-entity-recognizers
-                              #:list-entity-recognizers-request
-                              #:list-entity-recognizers-response
                               #:list-events-detection-jobs
-                              #:list-events-detection-jobs-request
-                              #:list-events-detection-jobs-response
                               #:list-flywheel-iteration-history
-                              #:list-flywheel-iteration-history-request
-                              #:list-flywheel-iteration-history-response
-                              #:list-flywheels #:list-flywheels-request
-                              #:list-flywheels-response
+                              #:list-flywheels
                               #:list-key-phrases-detection-jobs
-                              #:list-key-phrases-detection-jobs-request
-                              #:list-key-phrases-detection-jobs-response
                               #:list-of-block-references #:list-of-blocks
                               #:list-of-child-blocks #:list-of-classes
                               #:list-of-descriptive-mention-indices
@@ -288,26 +176,15 @@
                               #:list-of-text-segments #:list-of-toxic-content
                               #:list-of-toxic-labels #:list-of-warnings
                               #:list-pii-entities-detection-jobs
-                              #:list-pii-entities-detection-jobs-request
-                              #:list-pii-entities-detection-jobs-response
                               #:list-sentiment-detection-jobs
-                              #:list-sentiment-detection-jobs-request
-                              #:list-sentiment-detection-jobs-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-targeted-sentiment-detection-jobs
-                              #:list-targeted-sentiment-detection-jobs-request
-                              #:list-targeted-sentiment-detection-jobs-response
-                              #:list-topics-detection-jobs
-                              #:list-topics-detection-jobs-request
-                              #:list-topics-detection-jobs-response
-                              #:mask-character #:max-results-integer
-                              #:mention-sentiment #:model-status #:model-type
-                              #:number-of-documents #:number-of-topics-integer
-                              #:output-data-config #:page-based-error-code
-                              #:page-based-warning-code #:part-of-speech-tag
-                              #:part-of-speech-tag-type
+                              #:list-topics-detection-jobs #:mask-character
+                              #:max-results-integer #:mention-sentiment
+                              #:model-status #:model-type #:number-of-documents
+                              #:number-of-topics-integer #:output-data-config
+                              #:page-based-error-code #:page-based-warning-code
+                              #:part-of-speech-tag #:part-of-speech-tag-type
                               #:pii-entities-detection-job-filter
                               #:pii-entities-detection-job-properties
                               #:pii-entities-detection-job-properties-list
@@ -315,107 +192,52 @@
                               #:pii-entities-detection-mode #:pii-entity
                               #:pii-entity-type #:pii-output-data-config
                               #:point #:policy #:policy-revision-id #:polygon
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:redaction-config
+                              #:put-resource-policy #:redaction-config
                               #:relationship-type #:relationships-list-item
-                              #:resource-in-use-exception
-                              #:resource-limit-exceeded-exception
-                              #:resource-not-found-exception
-                              #:resource-unavailable-exception #:s3uri
-                              #:security-group-id #:security-group-ids
+                              #:s3uri #:security-group-id #:security-group-ids
                               #:semi-structured-document-blob
                               #:sentiment-detection-job-filter
                               #:sentiment-detection-job-properties
                               #:sentiment-detection-job-properties-list
                               #:sentiment-score #:sentiment-type #:split
                               #:start-document-classification-job
-                              #:start-document-classification-job-request
-                              #:start-document-classification-job-response
                               #:start-dominant-language-detection-job
-                              #:start-dominant-language-detection-job-request
-                              #:start-dominant-language-detection-job-response
                               #:start-entities-detection-job
-                              #:start-entities-detection-job-request
-                              #:start-entities-detection-job-response
                               #:start-events-detection-job
-                              #:start-events-detection-job-request
-                              #:start-events-detection-job-response
                               #:start-flywheel-iteration
-                              #:start-flywheel-iteration-request
-                              #:start-flywheel-iteration-response
                               #:start-key-phrases-detection-job
-                              #:start-key-phrases-detection-job-request
-                              #:start-key-phrases-detection-job-response
                               #:start-pii-entities-detection-job
-                              #:start-pii-entities-detection-job-request
-                              #:start-pii-entities-detection-job-response
                               #:start-sentiment-detection-job
-                              #:start-sentiment-detection-job-request
-                              #:start-sentiment-detection-job-response
                               #:start-targeted-sentiment-detection-job
-                              #:start-targeted-sentiment-detection-job-request
-                              #:start-targeted-sentiment-detection-job-response
                               #:start-topics-detection-job
-                              #:start-topics-detection-job-request
-                              #:start-topics-detection-job-response
                               #:stop-dominant-language-detection-job
-                              #:stop-dominant-language-detection-job-request
-                              #:stop-dominant-language-detection-job-response
                               #:stop-entities-detection-job
-                              #:stop-entities-detection-job-request
-                              #:stop-entities-detection-job-response
                               #:stop-events-detection-job
-                              #:stop-events-detection-job-request
-                              #:stop-events-detection-job-response
                               #:stop-key-phrases-detection-job
-                              #:stop-key-phrases-detection-job-request
-                              #:stop-key-phrases-detection-job-response
                               #:stop-pii-entities-detection-job
-                              #:stop-pii-entities-detection-job-request
-                              #:stop-pii-entities-detection-job-response
                               #:stop-sentiment-detection-job
-                              #:stop-sentiment-detection-job-request
-                              #:stop-sentiment-detection-job-response
                               #:stop-targeted-sentiment-detection-job
-                              #:stop-targeted-sentiment-detection-job-request
-                              #:stop-targeted-sentiment-detection-job-response
                               #:stop-training-document-classifier
-                              #:stop-training-document-classifier-request
-                              #:stop-training-document-classifier-response
-                              #:stop-training-entity-recognizer
-                              #:stop-training-entity-recognizer-request
-                              #:stop-training-entity-recognizer-response
-                              #:string #:string-list #:subnet-id #:subnets
+                              #:stop-training-entity-recognizer #:string
+                              #:string-list #:subnet-id #:subnets
                               #:syntax-language-code #:syntax-token #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:target-event-types
+                              #:tag-resource #:tag-value #:target-event-types
                               #:targeted-sentiment-detection-job-filter
                               #:targeted-sentiment-detection-job-properties
                               #:targeted-sentiment-detection-job-properties-list
                               #:targeted-sentiment-entity
                               #:targeted-sentiment-entity-type
                               #:targeted-sentiment-mention #:task-config
-                              #:text-segment
-                              #:text-size-limit-exceeded-exception #:timestamp
-                              #:too-many-requests-exception
-                              #:too-many-tag-keys-exception
-                              #:too-many-tags-exception
+                              #:text-segment #:timestamp
                               #:topics-detection-job-filter
                               #:topics-detection-job-properties
                               #:topics-detection-job-properties-list
                               #:toxic-content #:toxic-content-type
-                              #:toxic-labels #:unsupported-language-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:toxic-labels #:untag-resource
                               #:update-data-security-config #:update-endpoint
-                              #:update-endpoint-request
-                              #:update-endpoint-response #:update-flywheel
-                              #:update-flywheel-request
-                              #:update-flywheel-response #:version-name
-                              #:vpc-config #:warnings-list-item))
+                              #:update-flywheel #:version-name #:vpc-config
+                              #:warnings-list-item))
 (common-lisp:in-package #:pira/comprehend)
 
 (smithy/sdk/service:define-service comprehend-20171127 :shape-name

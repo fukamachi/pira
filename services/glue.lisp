@@ -1,10 +1,9 @@
 (uiop/package:define-package #:pira/glue (:use)
                              (:export #:awsglue
                               #:awsmanaged-client-application-reference
-                              #:access-denied-exception #:access-token
-                              #:account-id #:action #:action-list
-                              #:additional-context-map #:additional-option-keys
-                              #:additional-options
+                              #:access-token #:account-id #:action
+                              #:action-list #:additional-context-map
+                              #:additional-option-keys #:additional-options
                               #:additional-plan-options-map #:agg-function
                               #:aggregate #:aggregate-operation
                               #:aggregate-operations
@@ -13,7 +12,6 @@
                               #:allowed-value-description-string
                               #:allowed-value-value-string #:allowed-values
                               #:allowed-values-string-list
-                              #:already-exists-exception
                               #:amazon-redshift-advanced-option
                               #:amazon-redshift-advanced-options
                               #:amazon-redshift-node-data
@@ -35,96 +33,55 @@
                               #:backfill-errors
                               #:basic-authentication-credentials
                               #:basic-catalog-target #:batch-create-partition
-                              #:batch-create-partition-request
-                              #:batch-create-partition-response
                               #:batch-delete-connection
-                              #:batch-delete-connection-request
-                              #:batch-delete-connection-response
                               #:batch-delete-partition
-                              #:batch-delete-partition-request
-                              #:batch-delete-partition-response
                               #:batch-delete-partition-value-list
                               #:batch-delete-table
                               #:batch-delete-table-name-list
-                              #:batch-delete-table-request
-                              #:batch-delete-table-response
                               #:batch-delete-table-version
                               #:batch-delete-table-version-list
-                              #:batch-delete-table-version-request
-                              #:batch-delete-table-version-response
                               #:batch-get-blueprint-names
-                              #:batch-get-blueprints
-                              #:batch-get-blueprints-request
-                              #:batch-get-blueprints-response
-                              #:batch-get-crawlers #:batch-get-crawlers-request
-                              #:batch-get-crawlers-response
+                              #:batch-get-blueprints #:batch-get-crawlers
                               #:batch-get-custom-entity-types
-                              #:batch-get-custom-entity-types-request
-                              #:batch-get-custom-entity-types-response
                               #:batch-get-data-quality-result
-                              #:batch-get-data-quality-result-request
-                              #:batch-get-data-quality-result-response
-                              #:batch-get-dev-endpoints
-                              #:batch-get-dev-endpoints-request
-                              #:batch-get-dev-endpoints-response
-                              #:batch-get-jobs #:batch-get-jobs-request
-                              #:batch-get-jobs-response #:batch-get-partition
-                              #:batch-get-partition-request
-                              #:batch-get-partition-response
+                              #:batch-get-dev-endpoints #:batch-get-jobs
+                              #:batch-get-partition
                               #:batch-get-partition-value-list
                               #:batch-get-table-optimizer
                               #:batch-get-table-optimizer-entries
                               #:batch-get-table-optimizer-entry
                               #:batch-get-table-optimizer-error
                               #:batch-get-table-optimizer-errors
-                              #:batch-get-table-optimizer-request
-                              #:batch-get-table-optimizer-response
-                              #:batch-get-triggers #:batch-get-triggers-request
-                              #:batch-get-triggers-response
-                              #:batch-get-workflows
-                              #:batch-get-workflows-request
-                              #:batch-get-workflows-response
+                              #:batch-get-triggers #:batch-get-workflows
                               #:batch-put-data-quality-statistic-annotation
-                              #:batch-put-data-quality-statistic-annotation-request
-                              #:batch-put-data-quality-statistic-annotation-response
                               #:batch-size #:batch-stop-job-run
                               #:batch-stop-job-run-error
                               #:batch-stop-job-run-error-list
                               #:batch-stop-job-run-job-run-id-list
-                              #:batch-stop-job-run-request
-                              #:batch-stop-job-run-response
                               #:batch-stop-job-run-successful-submission
                               #:batch-stop-job-run-successful-submission-list
                               #:batch-table-optimizer #:batch-table-optimizers
                               #:batch-update-partition
                               #:batch-update-partition-failure-entry
                               #:batch-update-partition-failure-list
-                              #:batch-update-partition-request
                               #:batch-update-partition-request-entry
                               #:batch-update-partition-request-entry-list
-                              #:batch-update-partition-response #:batch-window
-                              #:binary-column-statistics-data #:blob
-                              #:blueprint #:blueprint-details #:blueprint-names
-                              #:blueprint-parameter-spec #:blueprint-parameters
-                              #:blueprint-run #:blueprint-run-state
-                              #:blueprint-runs #:blueprint-status #:blueprints
-                              #:bool #:boolean #:boolean-column-statistics-data
+                              #:batch-window #:binary-column-statistics-data
+                              #:blob #:blueprint #:blueprint-details
+                              #:blueprint-names #:blueprint-parameter-spec
+                              #:blueprint-parameters #:blueprint-run
+                              #:blueprint-run-state #:blueprint-runs
+                              #:blueprint-status #:blueprints #:bool #:boolean
+                              #:boolean-column-statistics-data
                               #:boolean-nullable #:boolean-value
                               #:bounded-partition-value-list #:boxed-boolean
                               #:boxed-double-fraction #:boxed-long
                               #:boxed-non-negative-int
                               #:boxed-non-negative-long #:boxed-positive-int
                               #:cancel-data-quality-rule-recommendation-run
-                              #:cancel-data-quality-rule-recommendation-run-request
-                              #:cancel-data-quality-rule-recommendation-run-response
                               #:cancel-data-quality-ruleset-evaluation-run
-                              #:cancel-data-quality-ruleset-evaluation-run-request
-                              #:cancel-data-quality-ruleset-evaluation-run-response
-                              #:cancel-mltask-run #:cancel-mltask-run-request
-                              #:cancel-mltask-run-response #:cancel-statement
-                              #:cancel-statement-request
-                              #:cancel-statement-response #:capabilities
-                              #:catalog #:catalog-delta-source
+                              #:cancel-mltask-run #:cancel-statement
+                              #:capabilities #:catalog #:catalog-delta-source
                               #:catalog-encryption-mode #:catalog-entries
                               #:catalog-entry #:catalog-getter-page-size
                               #:catalog-hudi-source #:catalog-iceberg-source
@@ -136,10 +93,8 @@
                               #:catalog-schema-change-policy #:catalog-source
                               #:catalog-tables-list #:catalog-target
                               #:catalog-target-list #:category
-                              #:check-schema-version-validity
-                              #:check-schema-version-validity-input
-                              #:check-schema-version-validity-response
-                              #:classification #:classifier #:classifier-list
+                              #:check-schema-version-validity #:classification
+                              #:classifier #:classifier-list
                               #:classifier-name-list #:cloud-watch-encryption
                               #:cloud-watch-encryption-mode #:code-gen-arg-name
                               #:code-gen-arg-value
@@ -157,13 +112,10 @@
                               #:column-statistics-errors
                               #:column-statistics-list
                               #:column-statistics-state
-                              #:column-statistics-task-not-running-exception
                               #:column-statistics-task-run
                               #:column-statistics-task-run-id-list
-                              #:column-statistics-task-running-exception
                               #:column-statistics-task-runs-list
                               #:column-statistics-task-settings
-                              #:column-statistics-task-stopping-exception
                               #:column-statistics-type #:column-type-string
                               #:column-value-string-list #:column-values-string
                               #:comment-string #:commit-id-string
@@ -176,15 +128,11 @@
                               #:compute-environment-configuration-map
                               #:compute-environment-list
                               #:compute-environment-name #:compute-environments
-                              #:concurrent-modification-exception
-                              #:concurrent-runs-exceeded-exception #:condition
-                              #:condition-check-failure-exception
-                              #:condition-expression
+                              #:condition #:condition-expression
                               #:condition-expression-list #:condition-list
                               #:config-value-string #:configuration-map
-                              #:configuration-object #:conflict-exception
-                              #:confusion-matrix #:connection
-                              #:connection-input #:connection-list
+                              #:configuration-object #:confusion-matrix
+                              #:connection #:connection-input #:connection-list
                               #:connection-name #:connection-options
                               #:connection-password-encryption
                               #:connection-properties #:connection-property-key
@@ -202,78 +150,28 @@
                               #:crawler-lineage-settings #:crawler-list
                               #:crawler-metrics #:crawler-metrics-list
                               #:crawler-name-list #:crawler-node-details
-                              #:crawler-not-running-exception
-                              #:crawler-running-exception
                               #:crawler-security-configuration #:crawler-state
-                              #:crawler-stopping-exception #:crawler-targets
-                              #:crawls-filter #:crawls-filter-list
-                              #:create-blueprint #:create-blueprint-request
-                              #:create-blueprint-response #:create-catalog
-                              #:create-catalog-request
-                              #:create-catalog-response #:create-classifier
-                              #:create-classifier-request
-                              #:create-classifier-response
+                              #:crawler-targets #:crawls-filter
+                              #:crawls-filter-list #:create-blueprint
+                              #:create-catalog #:create-classifier
                               #:create-column-statistics-task-settings
-                              #:create-column-statistics-task-settings-request
-                              #:create-column-statistics-task-settings-response
-                              #:create-connection #:create-connection-request
-                              #:create-connection-response #:create-crawler
-                              #:create-crawler-request
-                              #:create-crawler-response
+                              #:create-connection #:create-crawler
                               #:create-csv-classifier-request
                               #:create-custom-entity-type
-                              #:create-custom-entity-type-request
-                              #:create-custom-entity-type-response
-                              #:create-data-quality-ruleset
-                              #:create-data-quality-ruleset-request
-                              #:create-data-quality-ruleset-response
-                              #:create-database #:create-database-request
-                              #:create-database-response #:create-dev-endpoint
-                              #:create-dev-endpoint-request
-                              #:create-dev-endpoint-response
+                              #:create-data-quality-ruleset #:create-database
+                              #:create-dev-endpoint
                               #:create-grok-classifier-request
                               #:create-iceberg-table-input #:create-integration
-                              #:create-integration-request
                               #:create-integration-resource-property
-                              #:create-integration-resource-property-request
-                              #:create-integration-resource-property-response
-                              #:create-integration-response
                               #:create-integration-table-properties
-                              #:create-integration-table-properties-request
-                              #:create-integration-table-properties-response
-                              #:create-job #:create-job-request
-                              #:create-job-response
-                              #:create-json-classifier-request
-                              #:create-mltransform #:create-mltransform-request
-                              #:create-mltransform-response #:create-partition
-                              #:create-partition-index
-                              #:create-partition-index-request
-                              #:create-partition-index-response
-                              #:create-partition-request
-                              #:create-partition-response #:create-registry
-                              #:create-registry-input
-                              #:create-registry-response #:create-schema
-                              #:create-schema-input #:create-schema-response
-                              #:create-script #:create-script-request
-                              #:create-script-response
-                              #:create-security-configuration
-                              #:create-security-configuration-request
-                              #:create-security-configuration-response
-                              #:create-session #:create-session-request
-                              #:create-session-response #:create-table
-                              #:create-table-optimizer
-                              #:create-table-optimizer-request
-                              #:create-table-optimizer-response
-                              #:create-table-request #:create-table-response
-                              #:create-trigger #:create-trigger-request
-                              #:create-trigger-response #:create-usage-profile
-                              #:create-usage-profile-request
-                              #:create-usage-profile-response
-                              #:create-user-defined-function
-                              #:create-user-defined-function-request
-                              #:create-user-defined-function-response
-                              #:create-workflow #:create-workflow-request
-                              #:create-workflow-response
+                              #:create-job #:create-json-classifier-request
+                              #:create-mltransform #:create-partition
+                              #:create-partition-index #:create-registry
+                              #:create-schema #:create-script
+                              #:create-security-configuration #:create-session
+                              #:create-table #:create-table-optimizer
+                              #:create-trigger #:create-usage-profile
+                              #:create-user-defined-function #:create-workflow
                               #:create-xmlclassifier-request
                               #:created-timestamp #:credential-key
                               #:credential-map #:credential-value
@@ -339,92 +237,28 @@
                               #:date-column-statistics-data #:ddb-export-type
                               #:decimal-column-statistics-data #:decimal-number
                               #:delete-behavior #:delete-blueprint
-                              #:delete-blueprint-request
-                              #:delete-blueprint-response #:delete-catalog
-                              #:delete-catalog-request
-                              #:delete-catalog-response #:delete-classifier
-                              #:delete-classifier-request
-                              #:delete-classifier-response
+                              #:delete-catalog #:delete-classifier
                               #:delete-column-statistics-for-partition
-                              #:delete-column-statistics-for-partition-request
-                              #:delete-column-statistics-for-partition-response
                               #:delete-column-statistics-for-table
-                              #:delete-column-statistics-for-table-request
-                              #:delete-column-statistics-for-table-response
                               #:delete-column-statistics-task-settings
-                              #:delete-column-statistics-task-settings-request
-                              #:delete-column-statistics-task-settings-response
                               #:delete-connection #:delete-connection-name-list
-                              #:delete-connection-request
-                              #:delete-connection-response #:delete-crawler
-                              #:delete-crawler-request
-                              #:delete-crawler-response
-                              #:delete-custom-entity-type
-                              #:delete-custom-entity-type-request
-                              #:delete-custom-entity-type-response
-                              #:delete-data-quality-ruleset
-                              #:delete-data-quality-ruleset-request
-                              #:delete-data-quality-ruleset-response
-                              #:delete-database #:delete-database-request
-                              #:delete-database-response #:delete-dev-endpoint
-                              #:delete-dev-endpoint-request
-                              #:delete-dev-endpoint-response
-                              #:delete-integration #:delete-integration-request
-                              #:delete-integration-response
+                              #:delete-crawler #:delete-custom-entity-type
+                              #:delete-data-quality-ruleset #:delete-database
+                              #:delete-dev-endpoint #:delete-integration
                               #:delete-integration-table-properties
-                              #:delete-integration-table-properties-request
-                              #:delete-integration-table-properties-response
-                              #:delete-job #:delete-job-request
-                              #:delete-job-response #:delete-mltransform
-                              #:delete-mltransform-request
-                              #:delete-mltransform-response #:delete-partition
-                              #:delete-partition-index
-                              #:delete-partition-index-request
-                              #:delete-partition-index-response
-                              #:delete-partition-request
-                              #:delete-partition-response #:delete-registry
-                              #:delete-registry-input
-                              #:delete-registry-response
-                              #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response #:delete-schema
-                              #:delete-schema-input #:delete-schema-response
-                              #:delete-schema-versions
-                              #:delete-schema-versions-input
-                              #:delete-schema-versions-response
-                              #:delete-security-configuration
-                              #:delete-security-configuration-request
-                              #:delete-security-configuration-response
-                              #:delete-session #:delete-session-request
-                              #:delete-session-response #:delete-table
-                              #:delete-table-optimizer
-                              #:delete-table-optimizer-request
-                              #:delete-table-optimizer-response
-                              #:delete-table-request #:delete-table-response
-                              #:delete-table-version
-                              #:delete-table-version-request
-                              #:delete-table-version-response #:delete-trigger
-                              #:delete-trigger-request
-                              #:delete-trigger-response #:delete-usage-profile
-                              #:delete-usage-profile-request
-                              #:delete-usage-profile-response
-                              #:delete-user-defined-function
-                              #:delete-user-defined-function-request
-                              #:delete-user-defined-function-response
-                              #:delete-workflow #:delete-workflow-request
-                              #:delete-workflow-response #:delta-target
-                              #:delta-target-compression-type
+                              #:delete-job #:delete-mltransform
+                              #:delete-partition #:delete-partition-index
+                              #:delete-registry #:delete-resource-policy
+                              #:delete-schema #:delete-schema-versions
+                              #:delete-security-configuration #:delete-session
+                              #:delete-table #:delete-table-optimizer
+                              #:delete-table-version #:delete-trigger
+                              #:delete-usage-profile
+                              #:delete-user-defined-function #:delete-workflow
+                              #:delta-target #:delta-target-compression-type
                               #:delta-target-list #:describe-connection-type
-                              #:describe-connection-type-request
-                              #:describe-connection-type-response
-                              #:describe-entity #:describe-entity-request
-                              #:describe-entity-response
-                              #:describe-inbound-integrations
-                              #:describe-inbound-integrations-request
-                              #:describe-inbound-integrations-response
-                              #:describe-integrations
-                              #:describe-integrations-request
-                              #:describe-integrations-response #:description
+                              #:describe-entity #:describe-inbound-integrations
+                              #:describe-integrations #:description
                               #:description-string
                               #:description-string-removable #:dev-endpoint
                               #:dev-endpoint-custom-libraries
@@ -447,10 +281,10 @@
                               #:encryption-at-rest #:encryption-configuration
                               #:entity #:entity-description #:entity-field-name
                               #:entity-label #:entity-list #:entity-name
-                              #:entity-not-found-exception #:error-by-name
-                              #:error-code-string #:error-detail
-                              #:error-details #:error-message-string
-                              #:error-string #:evaluate-data-quality
+                              #:error-by-name #:error-code-string
+                              #:error-detail #:error-details
+                              #:error-message-string #:error-string
+                              #:evaluate-data-quality
                               #:evaluate-data-quality-multi-frame
                               #:evaluated-metrics-map #:evaluation-metrics
                               #:event-batching-condition #:event-queue-arn
@@ -459,12 +293,9 @@
                               #:execution-time #:exist-condition
                               #:export-labels-task-run-properties
                               #:extended-string #:federated-catalog
-                              #:federated-database
-                              #:federated-resource-already-exists-exception
-                              #:federated-table #:federation-identifier
-                              #:federation-source-error-code
-                              #:federation-source-exception
-                              #:federation-source-retryable-exception #:field
+                              #:federated-database #:federated-table
+                              #:federation-identifier
+                              #:federation-source-error-code #:field
                               #:field-data-type #:field-description
                               #:field-filter-operator
                               #:field-filter-operators-list #:field-label
@@ -480,179 +311,54 @@
                               #:format-string #:generic512char-string
                               #:generic-bounded-double #:generic-limited-string
                               #:generic-map #:generic-string #:get-blueprint
-                              #:get-blueprint-request #:get-blueprint-response
-                              #:get-blueprint-run #:get-blueprint-run-request
-                              #:get-blueprint-run-response #:get-blueprint-runs
-                              #:get-blueprint-runs-request
-                              #:get-blueprint-runs-response #:get-catalog
-                              #:get-catalog-import-status
-                              #:get-catalog-import-status-request
-                              #:get-catalog-import-status-response
-                              #:get-catalog-request #:get-catalog-response
-                              #:get-catalogs #:get-catalogs-request
-                              #:get-catalogs-response #:get-classifier
-                              #:get-classifier-request
-                              #:get-classifier-response #:get-classifiers
-                              #:get-classifiers-request
-                              #:get-classifiers-response
+                              #:get-blueprint-run #:get-blueprint-runs
+                              #:get-catalog #:get-catalog-import-status
+                              #:get-catalogs #:get-classifier #:get-classifiers
                               #:get-column-names-list
                               #:get-column-statistics-for-partition
-                              #:get-column-statistics-for-partition-request
-                              #:get-column-statistics-for-partition-response
                               #:get-column-statistics-for-table
-                              #:get-column-statistics-for-table-request
-                              #:get-column-statistics-for-table-response
                               #:get-column-statistics-task-run
-                              #:get-column-statistics-task-run-request
-                              #:get-column-statistics-task-run-response
                               #:get-column-statistics-task-runs
-                              #:get-column-statistics-task-runs-request
-                              #:get-column-statistics-task-runs-response
                               #:get-column-statistics-task-settings
-                              #:get-column-statistics-task-settings-request
-                              #:get-column-statistics-task-settings-response
-                              #:get-connection #:get-connection-request
-                              #:get-connection-response #:get-connections
-                              #:get-connections-filter
-                              #:get-connections-request
-                              #:get-connections-response #:get-crawler
-                              #:get-crawler-metrics
-                              #:get-crawler-metrics-request
-                              #:get-crawler-metrics-response
-                              #:get-crawler-request #:get-crawler-response
-                              #:get-crawlers #:get-crawlers-request
-                              #:get-crawlers-response #:get-custom-entity-type
-                              #:get-custom-entity-type-request
-                              #:get-custom-entity-type-response
+                              #:get-connection #:get-connections
+                              #:get-connections-filter #:get-crawler
+                              #:get-crawler-metrics #:get-crawlers
+                              #:get-custom-entity-type
                               #:get-data-catalog-encryption-settings
-                              #:get-data-catalog-encryption-settings-request
-                              #:get-data-catalog-encryption-settings-response
                               #:get-data-quality-model
-                              #:get-data-quality-model-request
-                              #:get-data-quality-model-response
                               #:get-data-quality-model-result
-                              #:get-data-quality-model-result-request
-                              #:get-data-quality-model-result-response
                               #:get-data-quality-result
-                              #:get-data-quality-result-request
-                              #:get-data-quality-result-response
                               #:get-data-quality-rule-recommendation-run
-                              #:get-data-quality-rule-recommendation-run-request
-                              #:get-data-quality-rule-recommendation-run-response
                               #:get-data-quality-ruleset
                               #:get-data-quality-ruleset-evaluation-run
-                              #:get-data-quality-ruleset-evaluation-run-request
-                              #:get-data-quality-ruleset-evaluation-run-response
-                              #:get-data-quality-ruleset-request
-                              #:get-data-quality-ruleset-response
-                              #:get-database #:get-database-request
-                              #:get-database-response #:get-databases
-                              #:get-databases-request #:get-databases-response
-                              #:get-dataflow-graph #:get-dataflow-graph-request
-                              #:get-dataflow-graph-response #:get-dev-endpoint
-                              #:get-dev-endpoint-request
-                              #:get-dev-endpoint-response #:get-dev-endpoints
-                              #:get-dev-endpoints-request
-                              #:get-dev-endpoints-response #:get-entity-records
-                              #:get-entity-records-request
-                              #:get-entity-records-response
+                              #:get-database #:get-databases
+                              #:get-dataflow-graph #:get-dev-endpoint
+                              #:get-dev-endpoints #:get-entity-records
                               #:get-integration-resource-property
-                              #:get-integration-resource-property-request
-                              #:get-integration-resource-property-response
-                              #:get-integration-table-properties
-                              #:get-integration-table-properties-request
-                              #:get-integration-table-properties-response
-                              #:get-job #:get-job-bookmark
-                              #:get-job-bookmark-request
-                              #:get-job-bookmark-response #:get-job-request
-                              #:get-job-response #:get-job-run
-                              #:get-job-run-request #:get-job-run-response
-                              #:get-job-runs #:get-job-runs-request
-                              #:get-job-runs-response #:get-jobs
-                              #:get-jobs-request #:get-jobs-response
-                              #:get-mltask-run #:get-mltask-run-request
-                              #:get-mltask-run-response #:get-mltask-runs
-                              #:get-mltask-runs-request
-                              #:get-mltask-runs-response #:get-mltransform
-                              #:get-mltransform-request
-                              #:get-mltransform-response #:get-mltransforms
-                              #:get-mltransforms-request
-                              #:get-mltransforms-response #:get-mapping
-                              #:get-mapping-request #:get-mapping-response
-                              #:get-partition #:get-partition-indexes
-                              #:get-partition-indexes-request
-                              #:get-partition-indexes-response
-                              #:get-partition-request #:get-partition-response
-                              #:get-partitions #:get-partitions-request
-                              #:get-partitions-response #:get-plan
-                              #:get-plan-request #:get-plan-response
-                              #:get-registry #:get-registry-input
-                              #:get-registry-response #:get-resource-policies
-                              #:get-resource-policies-request
-                              #:get-resource-policies-response
+                              #:get-integration-table-properties #:get-job
+                              #:get-job-bookmark #:get-job-run #:get-job-runs
+                              #:get-jobs #:get-mltask-run #:get-mltask-runs
+                              #:get-mltransform #:get-mltransforms
+                              #:get-mapping #:get-partition
+                              #:get-partition-indexes #:get-partitions
+                              #:get-plan #:get-registry #:get-resource-policies
                               #:get-resource-policies-response-list
-                              #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response #:get-schema
-                              #:get-schema-by-definition
-                              #:get-schema-by-definition-input
-                              #:get-schema-by-definition-response
-                              #:get-schema-input #:get-schema-response
-                              #:get-schema-version #:get-schema-version-input
-                              #:get-schema-version-response
+                              #:get-resource-policy #:get-schema
+                              #:get-schema-by-definition #:get-schema-version
                               #:get-schema-versions-diff
-                              #:get-schema-versions-diff-input
-                              #:get-schema-versions-diff-response
                               #:get-security-configuration
-                              #:get-security-configuration-request
-                              #:get-security-configuration-response
-                              #:get-security-configurations
-                              #:get-security-configurations-request
-                              #:get-security-configurations-response
-                              #:get-session #:get-session-request
-                              #:get-session-response #:get-statement
-                              #:get-statement-request #:get-statement-response
-                              #:get-table #:get-table-optimizer
-                              #:get-table-optimizer-request
-                              #:get-table-optimizer-response
-                              #:get-table-request #:get-table-response
-                              #:get-table-version #:get-table-version-request
-                              #:get-table-version-response #:get-table-versions
-                              #:get-table-versions-list
-                              #:get-table-versions-request
-                              #:get-table-versions-response #:get-tables
-                              #:get-tables-request #:get-tables-response
-                              #:get-tags #:get-tags-request #:get-tags-response
-                              #:get-trigger #:get-trigger-request
-                              #:get-trigger-response #:get-triggers
-                              #:get-triggers-request #:get-triggers-response
+                              #:get-security-configurations #:get-session
+                              #:get-statement #:get-table #:get-table-optimizer
+                              #:get-table-version #:get-table-versions
+                              #:get-table-versions-list #:get-tables #:get-tags
+                              #:get-trigger #:get-triggers
                               #:get-unfiltered-partition-metadata
-                              #:get-unfiltered-partition-metadata-request
-                              #:get-unfiltered-partition-metadata-response
                               #:get-unfiltered-partitions-metadata
-                              #:get-unfiltered-partitions-metadata-request
-                              #:get-unfiltered-partitions-metadata-response
                               #:get-unfiltered-table-metadata
-                              #:get-unfiltered-table-metadata-request
-                              #:get-unfiltered-table-metadata-response
-                              #:get-usage-profile #:get-usage-profile-request
-                              #:get-usage-profile-response
-                              #:get-user-defined-function
-                              #:get-user-defined-function-request
-                              #:get-user-defined-function-response
-                              #:get-user-defined-functions
-                              #:get-user-defined-functions-request
-                              #:get-user-defined-functions-response
-                              #:get-workflow #:get-workflow-request
-                              #:get-workflow-response #:get-workflow-run
-                              #:get-workflow-run-properties
-                              #:get-workflow-run-properties-request
-                              #:get-workflow-run-properties-response
-                              #:get-workflow-run-request
-                              #:get-workflow-run-response #:get-workflow-runs
-                              #:get-workflow-runs-request
-                              #:get-workflow-runs-response
-                              #:glue-encryption-exception #:glue-policy
+                              #:get-usage-profile #:get-user-defined-function
+                              #:get-user-defined-functions #:get-workflow
+                              #:get-workflow-run #:get-workflow-run-properties
+                              #:get-workflow-runs #:glue-policy
                               #:glue-record-type #:glue-resource-arn
                               #:glue-schema #:glue-schemas
                               #:glue-studio-column-name-string
@@ -685,15 +391,8 @@
                               #:iceberg-table-update-list #:iceberg-target
                               #:iceberg-target-compression-type
                               #:iceberg-target-list #:iceberg-transform-string
-                              #:id-string
-                              #:idempotent-parameter-mismatch-exception
-                              #:idle-timeout
-                              #:illegal-blueprint-state-exception
-                              #:illegal-session-state-exception
-                              #:illegal-workflow-state-exception
+                              #:id-string #:idle-timeout
                               #:import-catalog-to-glue
-                              #:import-catalog-to-glue-request
-                              #:import-catalog-to-glue-response
                               #:import-labels-task-run-properties
                               #:inbound-integration #:inbound-integrations-list
                               #:inclusion-annotation-list
@@ -701,25 +400,17 @@
                               #:integer-flag #:integer-list #:integer-value
                               #:integration
                               #:integration-additional-encryption-context-map
-                              #:integration-config
-                              #:integration-conflict-operation-fault
-                              #:integration-description #:integration-error
-                              #:integration-error-list
+                              #:integration-config #:integration-description
+                              #:integration-error #:integration-error-list
                               #:integration-error-message #:integration-filter
                               #:integration-filter-list
                               #:integration-filter-values #:integration-integer
-                              #:integration-not-found-fault
                               #:integration-partition
                               #:integration-partition-spec-list
-                              #:integration-quota-exceeded-fault
                               #:integration-source-properties-map
                               #:integration-status #:integration-string
                               #:integration-tags-list #:integration-timestamp
-                              #:integrations-list #:internal-server-exception
-                              #:internal-service-exception
-                              #:invalid-input-exception
-                              #:invalid-integration-state-fault
-                              #:invalid-state-exception #:is-parent-entity
+                              #:integrations-list #:is-parent-entity
                               #:is-version-valid #:iso8601date-time
                               #:jdbcconnection-type #:jdbcconnector-options
                               #:jdbcconnector-source #:jdbcconnector-target
@@ -733,7 +424,6 @@
                               #:job-run-state #:job-update #:join #:join-column
                               #:join-columns #:join-type #:json-classifier
                               #:json-path #:json-value #:jwt-token
-                              #:kmskey-not-accessible-fault
                               #:kafka-streaming-source-options #:key-list
                               #:key-schema-element #:key-schema-element-list
                               #:key-string #:kinesis-streaming-source-options
@@ -745,69 +435,27 @@
                               #:latest-schema-version-boolean #:limit
                               #:limited-path-list #:limited-string-list
                               #:lineage-configuration #:list-blueprints
-                              #:list-blueprints-request
-                              #:list-blueprints-response
                               #:list-column-statistics-task-runs
-                              #:list-column-statistics-task-runs-request
-                              #:list-column-statistics-task-runs-response
-                              #:list-connection-types
-                              #:list-connection-types-request
-                              #:list-connection-types-response #:list-crawlers
-                              #:list-crawlers-request #:list-crawlers-response
-                              #:list-crawls #:list-crawls-request
-                              #:list-crawls-response #:list-custom-entity-types
-                              #:list-custom-entity-types-request
-                              #:list-custom-entity-types-response
+                              #:list-connection-types #:list-crawlers
+                              #:list-crawls #:list-custom-entity-types
                               #:list-data-quality-results
-                              #:list-data-quality-results-request
-                              #:list-data-quality-results-response
                               #:list-data-quality-rule-recommendation-runs
-                              #:list-data-quality-rule-recommendation-runs-request
-                              #:list-data-quality-rule-recommendation-runs-response
                               #:list-data-quality-ruleset-evaluation-runs
-                              #:list-data-quality-ruleset-evaluation-runs-request
-                              #:list-data-quality-ruleset-evaluation-runs-response
                               #:list-data-quality-rulesets
-                              #:list-data-quality-rulesets-request
-                              #:list-data-quality-rulesets-response
                               #:list-data-quality-statistic-annotations
-                              #:list-data-quality-statistic-annotations-request
-                              #:list-data-quality-statistic-annotations-response
                               #:list-data-quality-statistics
-                              #:list-data-quality-statistics-request
-                              #:list-data-quality-statistics-response
-                              #:list-dev-endpoints #:list-dev-endpoints-request
-                              #:list-dev-endpoints-response #:list-entities
-                              #:list-entities-request #:list-entities-response
-                              #:list-jobs #:list-jobs-request
-                              #:list-jobs-response #:list-mltransforms
-                              #:list-mltransforms-request
-                              #:list-mltransforms-response #:list-of-string
-                              #:list-registries #:list-registries-input
-                              #:list-registries-response #:list-schema-versions
-                              #:list-schema-versions-input
-                              #:list-schema-versions-response #:list-schemas
-                              #:list-schemas-input #:list-schemas-response
-                              #:list-sessions #:list-sessions-request
-                              #:list-sessions-response #:list-statements
-                              #:list-statements-request
-                              #:list-statements-response
+                              #:list-dev-endpoints #:list-entities #:list-jobs
+                              #:list-mltransforms #:list-of-string
+                              #:list-registries #:list-schema-versions
+                              #:list-schemas #:list-sessions #:list-statements
                               #:list-table-optimizer-runs
-                              #:list-table-optimizer-runs-request
-                              #:list-table-optimizer-runs-response
                               #:list-table-optimizer-runs-token #:list-triggers
-                              #:list-triggers-request #:list-triggers-response
-                              #:list-usage-profiles
-                              #:list-usage-profiles-request
-                              #:list-usage-profiles-response #:list-workflows
-                              #:list-workflows-request
-                              #:list-workflows-response #:location
+                              #:list-usage-profiles #:list-workflows #:location
                               #:location-map #:location-string
                               #:location-string-list #:log-group #:log-stream
                               #:logical #:logical-operator #:long
                               #:long-column-statistics-data #:long-value
                               #:long-value-string #:mltransform
-                              #:mltransform-not-ready-exception
                               #:mluser-data-encryption
                               #:mluser-data-encryption-mode-string
                               #:maintenance-window #:many-inputs #:map-value
@@ -825,27 +473,23 @@
                               #:microsoft-sqlserver-catalog-source
                               #:microsoft-sqlserver-catalog-target
                               #:milliseconds-count #:modify-integration
-                              #:modify-integration-request
-                              #:modify-integration-response #:mongo-dbtarget
-                              #:mongo-dbtarget-list #:my-sqlcatalog-source
-                              #:my-sqlcatalog-target #:name-string
-                              #:name-string-list #:new-rules #:next-token
-                              #:no-schedule-exception #:node #:node-id
-                              #:node-id-list #:node-list #:node-name
-                              #:node-type #:non-negative-double
-                              #:non-negative-int #:non-negative-integer
-                              #:non-negative-long #:notification-property
-                              #:notify-delay-after #:null-check-box-list
-                              #:null-value-field #:null-value-fields
-                              #:nullable-boolean #:nullable-double
-                              #:nullable-integer #:nullable-string
+                              #:mongo-dbtarget #:mongo-dbtarget-list
+                              #:my-sqlcatalog-source #:my-sqlcatalog-target
+                              #:name-string #:name-string-list #:new-rules
+                              #:next-token #:node #:node-id #:node-id-list
+                              #:node-list #:node-name #:node-type
+                              #:non-negative-double #:non-negative-int
+                              #:non-negative-integer #:non-negative-long
+                              #:notification-property #:notify-delay-after
+                              #:null-check-box-list #:null-value-field
+                              #:null-value-fields #:nullable-boolean
+                              #:nullable-double #:nullable-integer
+                              #:nullable-string
                               #:number-target-partitions-string
                               #:oauth2client-application #:oauth2credentials
                               #:oauth2grant-type #:oauth2properties
                               #:oauth2properties-input #:one-input
-                              #:open-table-format-input #:operation
-                              #:operation-not-supported-exception
-                              #:operation-timeout-exception #:option
+                              #:open-table-format-input #:operation #:option
                               #:option-key #:option-list #:option-value
                               #:oracle-sqlcatalog-source
                               #:oracle-sqlcatalog-target
@@ -879,7 +523,6 @@
                               #:password #:path #:path-list #:permission
                               #:permission-list #:permission-type
                               #:permission-type-list
-                              #:permission-type-mismatch-exception
                               #:physical-connection-requirements #:pii-type
                               #:policy-json-string #:polling-time
                               #:positive-integer #:positive-long
@@ -895,25 +538,13 @@
                               #:property-type #:property-types #:property-value
                               #:public-keys-list
                               #:put-data-catalog-encryption-settings
-                              #:put-data-catalog-encryption-settings-request
-                              #:put-data-catalog-encryption-settings-response
                               #:put-data-quality-profile-annotation
-                              #:put-data-quality-profile-annotation-request
-                              #:put-data-quality-profile-annotation-response
                               #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response
                               #:put-schema-version-metadata
-                              #:put-schema-version-metadata-input
-                              #:put-schema-version-metadata-response
-                              #:put-workflow-run-properties
-                              #:put-workflow-run-properties-request
-                              #:put-workflow-run-properties-response
-                              #:python-script #:python-version-string
+                              #:put-workflow-run-properties #:python-script
+                              #:python-version-string
                               #:query-schema-version-metadata
-                              #:query-schema-version-metadata-input
                               #:query-schema-version-metadata-max-results
-                              #:query-schema-version-metadata-response
                               #:query-session-context #:quote-char #:recipe
                               #:recipe-action #:recipe-reference #:recipe-step
                               #:recipe-steps #:recipe-version #:record
@@ -921,30 +552,19 @@
                               #:recrawl-policy #:redirect-uri #:redshift-source
                               #:redshift-target #:reference-datasets-list
                               #:refresh-token #:register-schema-version
-                              #:register-schema-version-input
-                              #:register-schema-version-response #:registry-id
-                              #:registry-list-definition #:registry-list-item
-                              #:registry-status #:relational-catalog-source
-                              #:remove-schema-version-metadata
-                              #:remove-schema-version-metadata-input
-                              #:remove-schema-version-metadata-response
-                              #:rename-field #:replace-boolean
-                              #:reset-job-bookmark #:reset-job-bookmark-request
-                              #:reset-job-bookmark-response #:resource-action
-                              #:resource-arn-string
-                              #:resource-not-found-exception
-                              #:resource-not-ready-exception
-                              #:resource-number-limit-exceeded-exception
+                              #:registry-id #:registry-list-definition
+                              #:registry-list-item #:registry-status
+                              #:relational-catalog-source
+                              #:remove-schema-version-metadata #:rename-field
+                              #:replace-boolean #:reset-job-bookmark
+                              #:resource-action #:resource-arn-string
                               #:resource-share-type #:resource-state
                               #:resource-type #:resource-uri
                               #:resource-uri-list #:resume-workflow-run
-                              #:resume-workflow-run-request
-                              #:resume-workflow-run-response
                               #:retention-configuration #:retention-metrics
                               #:role #:role-arn #:role-string #:route #:row-tag
                               #:rule-metrics-map #:ruleset-names #:run-id
                               #:run-identifier #:run-metrics #:run-statement
-                              #:run-statement-request #:run-statement-response
                               #:runtime-name-string #:s3catalog-delta-source
                               #:s3catalog-hudi-source
                               #:s3catalog-iceberg-source #:s3catalog-source
@@ -963,9 +583,6 @@
                               #:s3target #:s3target-list
                               #:sample-size-percentage #:scala-code #:schedule
                               #:schedule-state #:schedule-type
-                              #:scheduler-not-running-exception
-                              #:scheduler-running-exception
-                              #:scheduler-transitioning-exception
                               #:schema-change-policy #:schema-checkpoint-number
                               #:schema-column #:schema-definition-diff
                               #:schema-definition-string #:schema-diff-type
@@ -981,7 +598,6 @@
                               #:schema-version-number #:schema-version-status
                               #:script-location-string
                               #:search-property-predicates #:search-tables
-                              #:search-tables-request #:search-tables-response
                               #:secret-arn #:security-configuration
                               #:security-configuration-list
                               #:security-group-id-list #:segment
@@ -1001,42 +617,16 @@
                               #:spark-connector-source #:spark-connector-target
                               #:spark-sql #:spigot #:split-fields #:sql-alias
                               #:sql-aliases #:sql-query #:start-blueprint-run
-                              #:start-blueprint-run-request
-                              #:start-blueprint-run-response
                               #:start-column-statistics-task-run
-                              #:start-column-statistics-task-run-request
-                              #:start-column-statistics-task-run-response
                               #:start-column-statistics-task-run-schedule
-                              #:start-column-statistics-task-run-schedule-request
-                              #:start-column-statistics-task-run-schedule-response
-                              #:start-crawler #:start-crawler-request
-                              #:start-crawler-response #:start-crawler-schedule
-                              #:start-crawler-schedule-request
-                              #:start-crawler-schedule-response
+                              #:start-crawler #:start-crawler-schedule
                               #:start-data-quality-rule-recommendation-run
-                              #:start-data-quality-rule-recommendation-run-request
-                              #:start-data-quality-rule-recommendation-run-response
                               #:start-data-quality-ruleset-evaluation-run
-                              #:start-data-quality-ruleset-evaluation-run-request
-                              #:start-data-quality-ruleset-evaluation-run-response
                               #:start-export-labels-task-run
-                              #:start-export-labels-task-run-request
-                              #:start-export-labels-task-run-response
-                              #:start-import-labels-task-run
-                              #:start-import-labels-task-run-request
-                              #:start-import-labels-task-run-response
-                              #:start-job-run #:start-job-run-request
-                              #:start-job-run-response
+                              #:start-import-labels-task-run #:start-job-run
                               #:start-mlevaluation-task-run
-                              #:start-mlevaluation-task-run-request
-                              #:start-mlevaluation-task-run-response
                               #:start-mllabeling-set-generation-task-run
-                              #:start-mllabeling-set-generation-task-run-request
-                              #:start-mllabeling-set-generation-task-run-response
-                              #:start-trigger #:start-trigger-request
-                              #:start-trigger-response #:start-workflow-run
-                              #:start-workflow-run-request
-                              #:start-workflow-run-response
+                              #:start-trigger #:start-workflow-run
                               #:starting-event-batch-condition
                               #:starting-position #:statement #:statement-list
                               #:statement-output #:statement-output-data
@@ -1047,20 +637,10 @@
                               #:statistic-properties-map #:statistic-summary
                               #:statistic-summary-list #:status-details
                               #:stop-column-statistics-task-run
-                              #:stop-column-statistics-task-run-request
-                              #:stop-column-statistics-task-run-response
                               #:stop-column-statistics-task-run-schedule
-                              #:stop-column-statistics-task-run-schedule-request
-                              #:stop-column-statistics-task-run-schedule-response
-                              #:stop-crawler #:stop-crawler-request
-                              #:stop-crawler-response #:stop-crawler-schedule
-                              #:stop-crawler-schedule-request
-                              #:stop-crawler-schedule-response #:stop-session
-                              #:stop-session-request #:stop-session-response
-                              #:stop-trigger #:stop-trigger-request
-                              #:stop-trigger-response #:stop-workflow-run
-                              #:stop-workflow-run-request
-                              #:stop-workflow-run-response #:storage-descriptor
+                              #:stop-crawler #:stop-crawler-schedule
+                              #:stop-session #:stop-trigger #:stop-workflow-run
+                              #:storage-descriptor
                               #:streaming-data-preview-options #:string128
                               #:string2048 #:string-column-statistics-data
                               #:string-list #:string-to-string-map
@@ -1077,21 +657,17 @@
                               #:table-prefix #:table-status #:table-type-string
                               #:table-version #:table-version-error
                               #:table-version-errors #:tag #:tag-key
-                              #:tag-keys-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags-map #:target-column
-                              #:target-format #:target-processing-properties
-                              #:target-redshift-catalog
-                              #:target-resource-not-found #:target-table-config
+                              #:tag-keys-list #:tag-resource #:tag-value
+                              #:tags-map #:target-column #:target-format
+                              #:target-processing-properties
+                              #:target-redshift-catalog #:target-table-config
                               #:task-run #:task-run-filter-criteria
                               #:task-run-list #:task-run-properties
                               #:task-run-sort-column-type
                               #:task-run-sort-criteria #:task-status-type
                               #:task-type #:test-connection
-                              #:test-connection-input #:test-connection-request
-                              #:test-connection-response #:throttling-exception
-                              #:timeout #:timestamp #:timestamp-filter
-                              #:timestamp-value
+                              #:test-connection-input #:timeout #:timestamp
+                              #:timestamp-filter #:timestamp-value
                               #:timestamped-inclusion-annotation #:token
                               #:token-url #:token-url-parameter-key
                               #:token-url-parameter-value
@@ -1110,79 +686,32 @@
                               #:two-inputs #:type-string #:uri
                               #:unfiltered-partition
                               #:unfiltered-partition-list #:union #:union-type
-                              #:unnest-spec #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-behavior
-                              #:update-blueprint #:update-blueprint-request
-                              #:update-blueprint-response #:update-catalog
-                              #:update-catalog-behavior
-                              #:update-catalog-request
-                              #:update-catalog-response #:update-classifier
-                              #:update-classifier-request
-                              #:update-classifier-response
+                              #:unnest-spec #:untag-resource #:update-behavior
+                              #:update-blueprint #:update-catalog
+                              #:update-catalog-behavior #:update-classifier
                               #:update-column-statistics-for-partition
-                              #:update-column-statistics-for-partition-request
-                              #:update-column-statistics-for-partition-response
                               #:update-column-statistics-for-table
-                              #:update-column-statistics-for-table-request
-                              #:update-column-statistics-for-table-response
                               #:update-column-statistics-list
                               #:update-column-statistics-task-settings
-                              #:update-column-statistics-task-settings-request
-                              #:update-column-statistics-task-settings-response
-                              #:update-connection #:update-connection-request
-                              #:update-connection-response #:update-crawler
-                              #:update-crawler-request
-                              #:update-crawler-response
+                              #:update-connection #:update-crawler
                               #:update-crawler-schedule
-                              #:update-crawler-schedule-request
-                              #:update-crawler-schedule-response
                               #:update-csv-classifier-request
-                              #:update-data-quality-ruleset
-                              #:update-data-quality-ruleset-request
-                              #:update-data-quality-ruleset-response
-                              #:update-database #:update-database-request
-                              #:update-database-response #:update-dev-endpoint
-                              #:update-dev-endpoint-request
-                              #:update-dev-endpoint-response
+                              #:update-data-quality-ruleset #:update-database
+                              #:update-dev-endpoint
                               #:update-grok-classifier-request
                               #:update-iceberg-input
                               #:update-iceberg-table-input
                               #:update-integration-resource-property
-                              #:update-integration-resource-property-request
-                              #:update-integration-resource-property-response
                               #:update-integration-table-properties
-                              #:update-integration-table-properties-request
-                              #:update-integration-table-properties-response
                               #:update-job #:update-job-from-source-control
-                              #:update-job-from-source-control-request
-                              #:update-job-from-source-control-response
-                              #:update-job-request #:update-job-response
                               #:update-json-classifier-request
-                              #:update-mltransform #:update-mltransform-request
-                              #:update-mltransform-response
+                              #:update-mltransform
                               #:update-open-table-format-input
-                              #:update-partition #:update-partition-request
-                              #:update-partition-response #:update-registry
-                              #:update-registry-input
-                              #:update-registry-response #:update-schema
-                              #:update-schema-input #:update-schema-response
-                              #:update-source-control-from-job
-                              #:update-source-control-from-job-request
-                              #:update-source-control-from-job-response
+                              #:update-partition #:update-registry
+                              #:update-schema #:update-source-control-from-job
                               #:update-table #:update-table-optimizer
-                              #:update-table-optimizer-request
-                              #:update-table-optimizer-response
-                              #:update-table-request #:update-table-response
-                              #:update-trigger #:update-trigger-request
-                              #:update-trigger-response #:update-usage-profile
-                              #:update-usage-profile-request
-                              #:update-usage-profile-response
-                              #:update-user-defined-function
-                              #:update-user-defined-function-request
-                              #:update-user-defined-function-response
-                              #:update-workflow #:update-workflow-request
-                              #:update-workflow-response
+                              #:update-trigger #:update-usage-profile
+                              #:update-user-defined-function #:update-workflow
                               #:update-xmlclassifier-request
                               #:updated-timestamp
                               #:upsert-redshift-target-options #:uri-string
@@ -1193,13 +722,11 @@
                               #:user-defined-function-list
                               #:user-managed-client-application-client-id
                               #:user-managed-client-application-client-secret
-                              #:username #:validation-exception #:value-string
-                              #:value-string-list #:vendor #:version-id
-                              #:version-long-number
-                              #:version-mismatch-exception #:version-string
-                              #:versions-string #:view-definition
-                              #:view-definition-input #:view-dialect
-                              #:view-dialect-version-string
+                              #:username #:value-string #:value-string-list
+                              #:vendor #:version-id #:version-long-number
+                              #:version-string #:versions-string
+                              #:view-definition #:view-definition-input
+                              #:view-dialect #:view-dialect-version-string
                               #:view-representation #:view-representation-input
                               #:view-representation-input-list
                               #:view-representation-list

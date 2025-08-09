@@ -1,75 +1,26 @@
 (uiop/package:define-package #:pira/route53-recovery-control-config (:use)
-                             (:export #:access-denied-exception
-                              #:assertion-rule #:assertion-rule-update
-                              #:cluster #:cluster-endpoint #:conflict-exception
-                              #:control-panel #:create-cluster
-                              #:create-cluster-request
-                              #:create-cluster-response #:create-control-panel
-                              #:create-control-panel-request
-                              #:create-control-panel-response
-                              #:create-routing-control
-                              #:create-routing-control-request
-                              #:create-routing-control-response
-                              #:create-safety-rule #:create-safety-rule-request
-                              #:create-safety-rule-response #:delete-cluster
-                              #:delete-cluster-request
-                              #:delete-cluster-response #:delete-control-panel
-                              #:delete-control-panel-request
-                              #:delete-control-panel-response
-                              #:delete-routing-control
-                              #:delete-routing-control-request
-                              #:delete-routing-control-response
-                              #:delete-safety-rule #:delete-safety-rule-request
-                              #:delete-safety-rule-response #:describe-cluster
-                              #:describe-cluster-request
-                              #:describe-cluster-response
-                              #:describe-control-panel
-                              #:describe-control-panel-request
-                              #:describe-control-panel-response
-                              #:describe-routing-control
-                              #:describe-routing-control-request
-                              #:describe-routing-control-response
-                              #:describe-safety-rule
-                              #:describe-safety-rule-request
-                              #:describe-safety-rule-response #:gating-rule
-                              #:gating-rule-update #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response
-                              #:internal-server-exception
+                             (:export #:assertion-rule #:assertion-rule-update
+                              #:cluster #:cluster-endpoint #:control-panel
+                              #:create-cluster #:create-control-panel
+                              #:create-routing-control #:create-safety-rule
+                              #:delete-cluster #:delete-control-panel
+                              #:delete-routing-control #:delete-safety-rule
+                              #:describe-cluster #:describe-control-panel
+                              #:describe-routing-control #:describe-safety-rule
+                              #:gating-rule #:gating-rule-update
+                              #:get-resource-policy
                               #:list-associated-route53health-checks
-                              #:list-associated-route53health-checks-request
-                              #:list-associated-route53health-checks-response
-                              #:list-clusters #:list-clusters-request
-                              #:list-clusters-response #:list-control-panels
-                              #:list-control-panels-request
-                              #:list-control-panels-response
-                              #:list-routing-controls
-                              #:list-routing-controls-request
-                              #:list-routing-controls-response
-                              #:list-safety-rules #:list-safety-rules-request
-                              #:list-safety-rules-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:list-clusters #:list-control-panels
+                              #:list-routing-controls #:list-safety-rules
+                              #:list-tags-for-resource #:max-results
                               #:network-type #:new-assertion-rule
-                              #:new-gating-rule #:resource-not-found-exception
+                              #:new-gating-rule
                               #:route53recovery-control-config
                               #:routing-control #:rule #:rule-config
-                              #:rule-type #:service-quota-exceeded-exception
-                              #:status #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-cluster
-                              #:update-cluster-request
-                              #:update-cluster-response #:update-control-panel
-                              #:update-control-panel-request
-                              #:update-control-panel-response
-                              #:update-routing-control
-                              #:update-routing-control-request
-                              #:update-routing-control-response
-                              #:update-safety-rule #:update-safety-rule-request
-                              #:update-safety-rule-response
-                              #:validation-exception #:boolean #:integer
+                              #:rule-type #:status #:tag-resource
+                              #:untag-resource #:update-cluster
+                              #:update-control-panel #:update-routing-control
+                              #:update-safety-rule #:boolean #:integer
                               #:list-of-cluster #:list-of-cluster-endpoint
                               #:list-of-control-panel #:list-of-routing-control
                               #:list-of-rule #:list-of-string

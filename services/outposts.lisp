@@ -1,10 +1,9 @@
 (uiop/package:define-package #:pira/outposts (:use)
                              (:export #:awsservice-name #:awsservice-name-list
-                              #:access-denied-exception #:account-id
-                              #:account-id-list #:address #:address-line1
-                              #:address-line2 #:address-line3 #:address-type
-                              #:arn #:asset-id #:asset-id-input #:asset-id-list
-                              #:asset-info #:asset-instance
+                              #:account-id #:account-id-list #:address
+                              #:address-line1 #:address-line2 #:address-line3
+                              #:address-type #:arn #:asset-id #:asset-id-input
+                              #:asset-id-list #:asset-info #:asset-instance
                               #:asset-instance-capacity-list
                               #:asset-instance-list
                               #:asset-instance-type-capacity
@@ -14,10 +13,7 @@
                               #:availability-zone-id-list
                               #:availability-zone-list #:blocking-instance
                               #:blocking-instances-list #:cidr #:cidrlist
-                              #:cancel-capacity-task
-                              #:cancel-capacity-task-input
-                              #:cancel-capacity-task-output #:cancel-order
-                              #:cancel-order-input #:cancel-order-output
+                              #:cancel-capacity-task #:cancel-order
                               #:capacity-task-failure
                               #:capacity-task-failure-type #:capacity-task-id
                               #:capacity-task-list #:capacity-task-status
@@ -29,42 +25,20 @@
                               #:catalog-item-power-kva #:catalog-item-status
                               #:catalog-item-weight-lbs #:city #:city-list
                               #:compute-asset-state #:compute-attributes
-                              #:conflict-exception #:connection-details
-                              #:connection-id #:contact-name
-                              #:contact-phone-number #:country-code
-                              #:country-code-list #:create-order
-                              #:create-order-input #:create-order-output
-                              #:create-outpost #:create-outpost-input
-                              #:create-outpost-output #:create-site
-                              #:create-site-input #:create-site-output
-                              #:delete-outpost #:delete-outpost-input
-                              #:delete-outpost-output #:delete-site
-                              #:delete-site-input #:delete-site-output
-                              #:device-serial-number #:district-or-county
-                              #:dry-run #:ec2capacity
+                              #:connection-details #:connection-id
+                              #:contact-name #:contact-phone-number
+                              #:country-code #:country-code-list #:create-order
+                              #:create-outpost #:create-site #:delete-outpost
+                              #:delete-site #:device-serial-number
+                              #:district-or-county #:dry-run #:ec2capacity
                               #:ec2capacity-list-definition #:ec2family-list
                               #:error-message #:family #:fiber-optic-cable-type
-                              #:get-capacity-task #:get-capacity-task-input
-                              #:get-capacity-task-output #:get-catalog-item
-                              #:get-catalog-item-input
-                              #:get-catalog-item-output #:get-connection
-                              #:get-connection-request
-                              #:get-connection-response #:get-order
-                              #:get-order-input #:get-order-output
-                              #:get-outpost #:get-outpost-billing-information
-                              #:get-outpost-billing-information-input
-                              #:get-outpost-billing-information-output
-                              #:get-outpost-input #:get-outpost-instance-types
-                              #:get-outpost-instance-types-input
-                              #:get-outpost-instance-types-output
-                              #:get-outpost-output
-                              #:get-outpost-supported-instance-types
-                              #:get-outpost-supported-instance-types-input
-                              #:get-outpost-supported-instance-types-output
-                              #:get-site #:get-site-address
-                              #:get-site-address-input
-                              #:get-site-address-output #:get-site-input
-                              #:get-site-output #:host-id #:host-id-list
+                              #:get-capacity-task #:get-catalog-item
+                              #:get-connection #:get-order #:get-outpost
+                              #:get-outpost-billing-information
+                              #:get-outpost-instance-types
+                              #:get-outpost-supported-instance-types #:get-site
+                              #:get-site-address #:host-id #:host-id-list
                               #:iso8601timestamp #:instance-families
                               #:instance-family-name #:instance-id
                               #:instance-id-list #:instance-type
@@ -72,42 +46,28 @@
                               #:instance-type-item
                               #:instance-type-list-definition
                               #:instance-type-name #:instances-to-exclude
-                              #:internal-server-exception #:life-cycle-status
-                              #:life-cycle-status-list #:line-item
-                              #:line-item-asset-information
+                              #:life-cycle-status #:life-cycle-status-list
+                              #:line-item #:line-item-asset-information
                               #:line-item-asset-information-list #:line-item-id
                               #:line-item-list-definition #:line-item-quantity
                               #:line-item-request
                               #:line-item-request-list-definition
                               #:line-item-status #:line-item-status-counts
-                              #:list-asset-instances
-                              #:list-asset-instances-input
-                              #:list-asset-instances-output #:list-assets
-                              #:list-assets-input #:list-assets-output
+                              #:list-asset-instances #:list-assets
                               #:list-blocking-instances-for-capacity-task
-                              #:list-blocking-instances-for-capacity-task-input
-                              #:list-blocking-instances-for-capacity-task-output
-                              #:list-capacity-tasks #:list-capacity-tasks-input
-                              #:list-capacity-tasks-output #:list-catalog-items
-                              #:list-catalog-items-input
-                              #:list-catalog-items-output #:list-orders
-                              #:list-orders-input #:list-orders-output
-                              #:list-outposts #:list-outposts-input
-                              #:list-outposts-output #:list-sites
-                              #:list-sites-input #:list-sites-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:mac-address
+                              #:list-capacity-tasks #:list-catalog-items
+                              #:list-orders #:list-outposts #:list-sites
+                              #:list-tags-for-resource #:mac-address
                               #:mac-address-list #:max-results1000 #:max-size
                               #:maximum-supported-weight-lbs #:municipality
                               #:network-interface-device-index
-                              #:not-found-exception #:nullable-double
-                              #:optical-standard #:order #:order-id
-                              #:order-id-list #:order-status #:order-summary
-                              #:order-summary-list-definition #:order-type
-                              #:outpost #:outpost-arn #:outpost-description
-                              #:outpost-id #:outpost-id-only
-                              #:outpost-identifier #:outpost-instance-type
+                              #:nullable-double #:optical-standard #:order
+                              #:order-id #:order-id-list #:order-status
+                              #:order-summary #:order-summary-list-definition
+                              #:order-type #:outpost #:outpost-arn
+                              #:outpost-description #:outpost-id
+                              #:outpost-id-only #:outpost-identifier
+                              #:outpost-instance-type
                               #:outpost-instance-type-list #:outpost-name
                               #:outposts-olaf-service #:owner-id
                               #:payment-option #:payment-term #:postal-code
@@ -116,15 +76,11 @@
                               #:rack-elevation #:rack-id
                               #:rack-physical-properties
                               #:requested-instance-pools #:resource-type
-                              #:server-endpoint
-                              #:service-quota-exceeded-exception
-                              #:shipment-carrier #:shipment-information #:site
-                              #:site-arn #:site-description #:site-id
-                              #:site-name #:site-notes #:sku-code
-                              #:start-capacity-task #:start-capacity-task-input
-                              #:start-capacity-task-output #:start-connection
-                              #:start-connection-request
-                              #:start-connection-response #:state-or-region
+                              #:server-endpoint #:shipment-carrier
+                              #:shipment-information #:site #:site-arn
+                              #:site-description #:site-id #:site-name
+                              #:site-notes #:sku-code #:start-capacity-task
+                              #:start-connection #:state-or-region
                               #:state-or-region-list #:status-list #:string
                               #:subscription #:subscription-list
                               #:subscription-status #:subscription-type
@@ -133,22 +89,14 @@
                               #:supported-uplink-gbps
                               #:supported-uplink-gbps-list-definition #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:task-action-on-blocking-instances
                               #:token #:tracking-id #:underlay-ip-address
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-outpost
-                              #:update-outpost-input #:update-outpost-output
-                              #:update-site #:update-site-address
-                              #:update-site-address-input
-                              #:update-site-address-output #:update-site-input
-                              #:update-site-output
+                              #:untag-resource #:update-outpost #:update-site
+                              #:update-site-address
                               #:update-site-rack-physical-properties
-                              #:update-site-rack-physical-properties-input
-                              #:update-site-rack-physical-properties-output
                               #:uplink-count #:uplink-gbps #:vcpucount
-                              #:validation-exception #:wire-guard-public-key
-                              #:outpost-list-definition #:site-list-definition))
+                              #:wire-guard-public-key #:outpost-list-definition
+                              #:site-list-definition))
 (common-lisp:in-package #:pira/outposts)
 
 (smithy/sdk/service:define-service outposts-olaf-service :shape-name

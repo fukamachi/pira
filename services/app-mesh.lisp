@@ -7,10 +7,9 @@
                               #:aws-cloud-map-name
                               #:aws-cloud-map-service-discovery #:backend
                               #:backend-defaults #:backends
-                              #:bad-request-exception
                               #:certificate-authority-arns #:client-policy
                               #:client-policy-tls #:client-tls-certificate
-                              #:conflict-exception #:create-gateway-route
+                              #:create-gateway-route
                               #:create-gateway-route-input
                               #:create-gateway-route-output #:create-mesh
                               #:create-mesh-input #:create-mesh-output
@@ -65,8 +64,7 @@
                               #:duration #:duration-unit #:duration-value
                               #:egress-filter #:egress-filter-type
                               #:exact-host-name #:file-access-log #:file-path
-                              #:forbidden-exception #:gateway-route
-                              #:gateway-route-data
+                              #:gateway-route #:gateway-route-data
                               #:gateway-route-hostname-match
                               #:gateway-route-hostname-rewrite
                               #:gateway-route-list #:gateway-route-priority
@@ -105,11 +103,10 @@
                               #:http-retry-policy-events #:http-route
                               #:http-route-action #:http-route-header
                               #:http-route-headers #:http-route-match
-                              #:http-scheme #:http-timeout
-                              #:internal-server-error-exception #:ip-preference
+                              #:http-scheme #:http-timeout #:ip-preference
                               #:json-format #:json-format-ref #:json-key
-                              #:json-value #:limit-exceeded-exception
-                              #:list-gateway-routes #:list-gateway-routes-input
+                              #:json-value #:list-gateway-routes
+                              #:list-gateway-routes-input
                               #:list-gateway-routes-limit
                               #:list-gateway-routes-output #:list-meshes
                               #:list-meshes-input #:list-meshes-limit
@@ -147,18 +144,17 @@
                               #:max-retries #:mesh #:mesh-data #:mesh-list
                               #:mesh-ref #:mesh-service-discovery #:mesh-spec
                               #:mesh-status #:mesh-status-code #:method-name
-                              #:not-found-exception #:outlier-detection
+                              #:outlier-detection
                               #:outlier-detection-max-ejection-percent
                               #:outlier-detection-max-server-errors
                               #:percent-int #:port-mapping #:port-number
                               #:port-protocol #:port-set
                               #:query-parameter-match #:query-parameter-name
-                              #:resource-in-use-exception #:resource-metadata
-                              #:resource-name #:route #:route-data #:route-list
-                              #:route-priority #:route-ref #:route-spec
-                              #:route-status #:route-status-code
-                              #:sds-secret-name #:service-discovery
-                              #:service-name #:service-unavailable-exception
+                              #:resource-metadata #:resource-name #:route
+                              #:route-data #:route-list #:route-priority
+                              #:route-ref #:route-spec #:route-status
+                              #:route-status-code #:sds-secret-name
+                              #:service-discovery #:service-name
                               #:subject-alternative-name
                               #:subject-alternative-name-list
                               #:subject-alternative-name-matchers
@@ -174,9 +170,7 @@
                               #:tls-validation-context-acm-trust
                               #:tls-validation-context-file-trust
                               #:tls-validation-context-sds-trust
-                              #:tls-validation-context-trust
-                              #:too-many-requests-exception
-                              #:too-many-tags-exception #:untag-resource
+                              #:tls-validation-context-trust #:untag-resource
                               #:untag-resource-input #:untag-resource-output
                               #:update-gateway-route
                               #:update-gateway-route-input

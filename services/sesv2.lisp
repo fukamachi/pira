@@ -1,22 +1,18 @@
 (uiop/package:define-package #:pira/sesv2 (:use)
                              (:export #:account-details
-                              #:account-suspended-exception
                               #:additional-contact-email-address
                               #:additional-contact-email-addresses
-                              #:admin-email #:already-exists-exception
-                              #:amazon-resource-name #:archive-arn
-                              #:archiving-options #:attachment
+                              #:admin-email #:amazon-resource-name
+                              #:archive-arn #:archiving-options #:attachment
                               #:attachment-content-description
                               #:attachment-content-disposition
                               #:attachment-content-id
                               #:attachment-content-transfer-encoding
                               #:attachment-content-type #:attachment-file-name
                               #:attachment-list #:attributes-data
-                              #:bad-request-exception #:batch-get-metric-data
+                              #:batch-get-metric-data
                               #:batch-get-metric-data-queries
                               #:batch-get-metric-data-query
-                              #:batch-get-metric-data-request
-                              #:batch-get-metric-data-response
                               #:behavior-on-mx-failure #:blacklist-entries
                               #:blacklist-entry #:blacklist-item-name
                               #:blacklist-item-names #:blacklist-report
@@ -26,60 +22,29 @@
                               #:bulk-email-entry-list #:bulk-email-entry-result
                               #:bulk-email-entry-result-list
                               #:bulk-email-status #:campaign-id
-                              #:cancel-export-job #:cancel-export-job-request
-                              #:cancel-export-job-response #:case-id #:charset
+                              #:cancel-export-job #:case-id #:charset
                               #:cloud-watch-destination
                               #:cloud-watch-dimension-configuration
                               #:cloud-watch-dimension-configurations
                               #:complaint #:complaint-feedback-type
-                              #:complaint-sub-type
-                              #:concurrent-modification-exception
-                              #:configuration-set-name
-                              #:configuration-set-name-list
-                              #:conflict-exception #:contact #:contact-language
-                              #:contact-list #:contact-list-destination
+                              #:complaint-sub-type #:configuration-set-name
+                              #:configuration-set-name-list #:contact
+                              #:contact-language #:contact-list
+                              #:contact-list-destination
                               #:contact-list-import-action #:contact-list-name
                               #:content #:counter #:create-configuration-set
                               #:create-configuration-set-event-destination
-                              #:create-configuration-set-event-destination-request
-                              #:create-configuration-set-event-destination-response
-                              #:create-configuration-set-request
-                              #:create-configuration-set-response
                               #:create-contact #:create-contact-list
-                              #:create-contact-list-request
-                              #:create-contact-list-response
-                              #:create-contact-request
-                              #:create-contact-response
                               #:create-custom-verification-email-template
-                              #:create-custom-verification-email-template-request
-                              #:create-custom-verification-email-template-response
                               #:create-dedicated-ip-pool
-                              #:create-dedicated-ip-pool-request
-                              #:create-dedicated-ip-pool-response
                               #:create-deliverability-test-report
-                              #:create-deliverability-test-report-request
-                              #:create-deliverability-test-report-response
                               #:create-email-identity
                               #:create-email-identity-policy
-                              #:create-email-identity-policy-request
-                              #:create-email-identity-policy-response
-                              #:create-email-identity-request
-                              #:create-email-identity-response
-                              #:create-email-template
-                              #:create-email-template-request
-                              #:create-email-template-response
-                              #:create-export-job #:create-export-job-request
-                              #:create-export-job-response #:create-import-job
-                              #:create-import-job-request
-                              #:create-import-job-response
-                              #:create-multi-region-endpoint
-                              #:create-multi-region-endpoint-request
-                              #:create-multi-region-endpoint-response
-                              #:create-tenant #:create-tenant-request
+                              #:create-email-template #:create-export-job
+                              #:create-import-job
+                              #:create-multi-region-endpoint #:create-tenant
                               #:create-tenant-resource-association
-                              #:create-tenant-resource-association-request
-                              #:create-tenant-resource-association-response
-                              #:create-tenant-response #:custom-redirect-domain
+                              #:custom-redirect-domain
                               #:custom-verification-email-template-metadata
                               #:custom-verification-email-templates-list
                               #:daily-volume #:daily-volumes
@@ -88,41 +53,15 @@
                               #:dedicated-ip-pool #:default-dimension-value
                               #:delete-configuration-set
                               #:delete-configuration-set-event-destination
-                              #:delete-configuration-set-event-destination-request
-                              #:delete-configuration-set-event-destination-response
-                              #:delete-configuration-set-request
-                              #:delete-configuration-set-response
                               #:delete-contact #:delete-contact-list
-                              #:delete-contact-list-request
-                              #:delete-contact-list-response
-                              #:delete-contact-request
-                              #:delete-contact-response
                               #:delete-custom-verification-email-template
-                              #:delete-custom-verification-email-template-request
-                              #:delete-custom-verification-email-template-response
                               #:delete-dedicated-ip-pool
-                              #:delete-dedicated-ip-pool-request
-                              #:delete-dedicated-ip-pool-response
                               #:delete-email-identity
                               #:delete-email-identity-policy
-                              #:delete-email-identity-policy-request
-                              #:delete-email-identity-policy-response
-                              #:delete-email-identity-request
-                              #:delete-email-identity-response
                               #:delete-email-template
-                              #:delete-email-template-request
-                              #:delete-email-template-response
                               #:delete-multi-region-endpoint
-                              #:delete-multi-region-endpoint-request
-                              #:delete-multi-region-endpoint-response
-                              #:delete-suppressed-destination
-                              #:delete-suppressed-destination-request
-                              #:delete-suppressed-destination-response
-                              #:delete-tenant #:delete-tenant-request
+                              #:delete-suppressed-destination #:delete-tenant
                               #:delete-tenant-resource-association
-                              #:delete-tenant-resource-association-request
-                              #:delete-tenant-resource-association-response
-                              #:delete-tenant-response
                               #:deliverability-dashboard-account-status
                               #:deliverability-test-report
                               #:deliverability-test-reports
@@ -167,239 +106,112 @@
                               #:failed-records-s3url #:failure-info
                               #:failure-redirection-url #:feature-status
                               #:feedback-id #:general-enforcement-status
-                              #:get-account #:get-account-request
-                              #:get-account-response #:get-blacklist-reports
-                              #:get-blacklist-reports-request
-                              #:get-blacklist-reports-response
+                              #:get-account #:get-blacklist-reports
                               #:get-configuration-set
                               #:get-configuration-set-event-destinations
-                              #:get-configuration-set-event-destinations-request
-                              #:get-configuration-set-event-destinations-response
-                              #:get-configuration-set-request
-                              #:get-configuration-set-response #:get-contact
-                              #:get-contact-list #:get-contact-list-request
-                              #:get-contact-list-response #:get-contact-request
-                              #:get-contact-response
+                              #:get-contact #:get-contact-list
                               #:get-custom-verification-email-template
-                              #:get-custom-verification-email-template-request
-                              #:get-custom-verification-email-template-response
                               #:get-dedicated-ip #:get-dedicated-ip-pool
-                              #:get-dedicated-ip-pool-request
-                              #:get-dedicated-ip-pool-response
-                              #:get-dedicated-ip-request
-                              #:get-dedicated-ip-response #:get-dedicated-ips
-                              #:get-dedicated-ips-request
-                              #:get-dedicated-ips-response
+                              #:get-dedicated-ips
                               #:get-deliverability-dashboard-options
-                              #:get-deliverability-dashboard-options-request
-                              #:get-deliverability-dashboard-options-response
                               #:get-deliverability-test-report
-                              #:get-deliverability-test-report-request
-                              #:get-deliverability-test-report-response
                               #:get-domain-deliverability-campaign
-                              #:get-domain-deliverability-campaign-request
-                              #:get-domain-deliverability-campaign-response
                               #:get-domain-statistics-report
-                              #:get-domain-statistics-report-request
-                              #:get-domain-statistics-report-response
                               #:get-email-identity
                               #:get-email-identity-policies
-                              #:get-email-identity-policies-request
-                              #:get-email-identity-policies-response
-                              #:get-email-identity-request
-                              #:get-email-identity-response
-                              #:get-email-template #:get-email-template-request
-                              #:get-email-template-response #:get-export-job
-                              #:get-export-job-request
-                              #:get-export-job-response #:get-import-job
-                              #:get-import-job-request
-                              #:get-import-job-response #:get-message-insights
-                              #:get-message-insights-request
-                              #:get-message-insights-response
+                              #:get-email-template #:get-export-job
+                              #:get-import-job #:get-message-insights
                               #:get-multi-region-endpoint
-                              #:get-multi-region-endpoint-request
-                              #:get-multi-region-endpoint-response
                               #:get-reputation-entity
-                              #:get-reputation-entity-request
-                              #:get-reputation-entity-response
-                              #:get-suppressed-destination
-                              #:get-suppressed-destination-request
-                              #:get-suppressed-destination-response
-                              #:get-tenant #:get-tenant-request
-                              #:get-tenant-response #:guardian-attributes
-                              #:guardian-options #:https-policy #:identity
-                              #:identity-info #:identity-info-list
-                              #:identity-type #:image-url #:import-data-source
-                              #:import-destination #:import-destination-type
-                              #:import-job-summary #:import-job-summary-list
+                              #:get-suppressed-destination #:get-tenant
+                              #:guardian-attributes #:guardian-options
+                              #:https-policy #:identity #:identity-info
+                              #:identity-info-list #:identity-type #:image-url
+                              #:import-data-source #:import-destination
+                              #:import-destination-type #:import-job-summary
+                              #:import-job-summary-list
                               #:inbox-placement-tracking-option
                               #:insights-email-address #:insights-event
-                              #:insights-events
-                              #:internal-service-error-exception
-                              #:invalid-next-token-exception #:ip #:ip-list
-                              #:isp #:isp-filter-list #:isp-name
-                              #:isp-name-list #:isp-placement #:isp-placements
-                              #:job-id #:job-status
-                              #:kinesis-firehose-destination
+                              #:insights-events #:ip #:ip-list #:isp
+                              #:isp-filter-list #:isp-name #:isp-name-list
+                              #:isp-placement #:isp-placements #:job-id
+                              #:job-status #:kinesis-firehose-destination
                               #:last-delivery-event-list
                               #:last-engagement-event-list #:last-fresh-start
-                              #:limit-exceeded-exception
-                              #:list-configuration-sets
-                              #:list-configuration-sets-request
-                              #:list-configuration-sets-response
-                              #:list-contact-lists #:list-contact-lists-request
-                              #:list-contact-lists-response #:list-contacts
-                              #:list-contacts-filter #:list-contacts-request
-                              #:list-contacts-response
+                              #:list-configuration-sets #:list-contact-lists
+                              #:list-contacts #:list-contacts-filter
                               #:list-custom-verification-email-templates
-                              #:list-custom-verification-email-templates-request
-                              #:list-custom-verification-email-templates-response
                               #:list-dedicated-ip-pools
-                              #:list-dedicated-ip-pools-request
-                              #:list-dedicated-ip-pools-response
                               #:list-deliverability-test-reports
-                              #:list-deliverability-test-reports-request
-                              #:list-deliverability-test-reports-response
                               #:list-domain-deliverability-campaigns
-                              #:list-domain-deliverability-campaigns-request
-                              #:list-domain-deliverability-campaigns-response
-                              #:list-email-identities
-                              #:list-email-identities-request
-                              #:list-email-identities-response
-                              #:list-email-templates
-                              #:list-email-templates-request
-                              #:list-email-templates-response
-                              #:list-export-jobs #:list-export-jobs-request
-                              #:list-export-jobs-response #:list-import-jobs
-                              #:list-import-jobs-request
-                              #:list-import-jobs-response
+                              #:list-email-identities #:list-email-templates
+                              #:list-export-jobs #:list-import-jobs
                               #:list-management-options
                               #:list-multi-region-endpoints
-                              #:list-multi-region-endpoints-request
-                              #:list-multi-region-endpoints-response
                               #:list-of-contact-lists #:list-of-contacts
                               #:list-of-dedicated-ip-pools
                               #:list-recommendation-filter-value
                               #:list-recommendations
                               #:list-recommendations-filter
                               #:list-recommendations-filter-key
-                              #:list-recommendations-request
-                              #:list-recommendations-response
                               #:list-reputation-entities
-                              #:list-reputation-entities-request
-                              #:list-reputation-entities-response
                               #:list-resource-tenants
-                              #:list-resource-tenants-request
-                              #:list-resource-tenants-response
                               #:list-suppressed-destinations
-                              #:list-suppressed-destinations-request
-                              #:list-suppressed-destinations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-tenant-resources
+                              #:list-tags-for-resource #:list-tenant-resources
                               #:list-tenant-resources-filter
                               #:list-tenant-resources-filter-key
                               #:list-tenant-resources-filter-value
-                              #:list-tenant-resources-request
-                              #:list-tenant-resources-response #:list-tenants
-                              #:list-tenants-request #:list-tenants-response
-                              #:mail-from-attributes #:mail-from-domain-name
-                              #:mail-from-domain-not-verified-exception
-                              #:mail-from-domain-status #:mail-type
-                              #:max24hour-send #:max-delivery-seconds
-                              #:max-items #:max-send-rate #:message
-                              #:message-content #:message-data #:message-header
+                              #:list-tenants #:mail-from-attributes
+                              #:mail-from-domain-name #:mail-from-domain-status
+                              #:mail-type #:max24hour-send
+                              #:max-delivery-seconds #:max-items
+                              #:max-send-rate #:message #:message-content
+                              #:message-data #:message-header
                               #:message-header-list #:message-header-name
                               #:message-header-value
                               #:message-insights-data-source
                               #:message-insights-export-max-results
-                              #:message-insights-filters #:message-rejected
-                              #:message-tag #:message-tag-list
-                              #:message-tag-name #:message-tag-value #:metric
-                              #:metric-aggregation #:metric-data-error
-                              #:metric-data-error-list #:metric-data-result
-                              #:metric-data-result-list #:metric-dimension-name
-                              #:metric-dimension-value #:metric-namespace
-                              #:metric-value-list #:metrics-data-source
-                              #:multi-region-endpoint #:multi-region-endpoints
-                              #:next-token #:next-token-v2
-                              #:not-found-exception #:outbound-message-id
+                              #:message-insights-filters #:message-tag
+                              #:message-tag-list #:message-tag-name
+                              #:message-tag-value #:metric #:metric-aggregation
+                              #:metric-data-error #:metric-data-error-list
+                              #:metric-data-result #:metric-data-result-list
+                              #:metric-dimension-name #:metric-dimension-value
+                              #:metric-namespace #:metric-value-list
+                              #:metrics-data-source #:multi-region-endpoint
+                              #:multi-region-endpoints #:next-token
+                              #:next-token-v2 #:outbound-message-id
                               #:overall-volume #:page-size-v2 #:percentage
                               #:percentage100wrapper #:pinpoint-destination
                               #:placement-statistics #:policy #:policy-map
                               #:policy-name #:pool-name #:primary-name-server
                               #:private-key #:processed-records-count
                               #:put-account-dedicated-ip-warmup-attributes
-                              #:put-account-dedicated-ip-warmup-attributes-request
-                              #:put-account-dedicated-ip-warmup-attributes-response
                               #:put-account-details
-                              #:put-account-details-request
-                              #:put-account-details-response
                               #:put-account-sending-attributes
-                              #:put-account-sending-attributes-request
-                              #:put-account-sending-attributes-response
                               #:put-account-suppression-attributes
-                              #:put-account-suppression-attributes-request
-                              #:put-account-suppression-attributes-response
                               #:put-account-vdm-attributes
-                              #:put-account-vdm-attributes-request
-                              #:put-account-vdm-attributes-response
                               #:put-configuration-set-archiving-options
-                              #:put-configuration-set-archiving-options-request
-                              #:put-configuration-set-archiving-options-response
                               #:put-configuration-set-delivery-options
-                              #:put-configuration-set-delivery-options-request
-                              #:put-configuration-set-delivery-options-response
                               #:put-configuration-set-reputation-options
-                              #:put-configuration-set-reputation-options-request
-                              #:put-configuration-set-reputation-options-response
                               #:put-configuration-set-sending-options
-                              #:put-configuration-set-sending-options-request
-                              #:put-configuration-set-sending-options-response
                               #:put-configuration-set-suppression-options
-                              #:put-configuration-set-suppression-options-request
-                              #:put-configuration-set-suppression-options-response
                               #:put-configuration-set-tracking-options
-                              #:put-configuration-set-tracking-options-request
-                              #:put-configuration-set-tracking-options-response
                               #:put-configuration-set-vdm-options
-                              #:put-configuration-set-vdm-options-request
-                              #:put-configuration-set-vdm-options-response
                               #:put-dedicated-ip-in-pool
-                              #:put-dedicated-ip-in-pool-request
-                              #:put-dedicated-ip-in-pool-response
                               #:put-dedicated-ip-pool-scaling-attributes
-                              #:put-dedicated-ip-pool-scaling-attributes-request
-                              #:put-dedicated-ip-pool-scaling-attributes-response
                               #:put-dedicated-ip-warmup-attributes
-                              #:put-dedicated-ip-warmup-attributes-request
-                              #:put-dedicated-ip-warmup-attributes-response
                               #:put-deliverability-dashboard-option
-                              #:put-deliverability-dashboard-option-request
-                              #:put-deliverability-dashboard-option-response
                               #:put-email-identity-configuration-set-attributes
-                              #:put-email-identity-configuration-set-attributes-request
-                              #:put-email-identity-configuration-set-attributes-response
                               #:put-email-identity-dkim-attributes
-                              #:put-email-identity-dkim-attributes-request
-                              #:put-email-identity-dkim-attributes-response
                               #:put-email-identity-dkim-signing-attributes
-                              #:put-email-identity-dkim-signing-attributes-request
-                              #:put-email-identity-dkim-signing-attributes-response
                               #:put-email-identity-feedback-attributes
-                              #:put-email-identity-feedback-attributes-request
-                              #:put-email-identity-feedback-attributes-response
                               #:put-email-identity-mail-from-attributes
-                              #:put-email-identity-mail-from-attributes-request
-                              #:put-email-identity-mail-from-attributes-response
-                              #:put-suppressed-destination
-                              #:put-suppressed-destination-request
-                              #:put-suppressed-destination-response
-                              #:query-error-code #:query-error-message
-                              #:query-identifier #:raw-attachment-data
-                              #:raw-message #:raw-message-data #:rbl-name
-                              #:recommendation #:recommendation-description
+                              #:put-suppressed-destination #:query-error-code
+                              #:query-error-message #:query-identifier
+                              #:raw-attachment-data #:raw-message
+                              #:raw-message-data #:rbl-name #:recommendation
+                              #:recommendation-description
                               #:recommendation-impact #:recommendation-status
                               #:recommendation-type #:recommendations-list
                               #:region #:regions #:rendered-email-template
@@ -416,14 +228,9 @@
                               #:review-details #:review-status #:route
                               #:route-details #:routes #:routes-details #:s3url
                               #:soarecord #:scaling-mode #:selector
-                              #:send-bulk-email #:send-bulk-email-request
-                              #:send-bulk-email-response
-                              #:send-custom-verification-email
-                              #:send-custom-verification-email-request
-                              #:send-custom-verification-email-response
-                              #:send-email #:send-email-request
-                              #:send-email-response #:send-quota
-                              #:sending-options #:sending-paused-exception
+                              #:send-bulk-email
+                              #:send-custom-verification-email #:send-email
+                              #:send-quota #:sending-options
                               #:sending-pool-name #:sending-status
                               #:sent-last24hours #:serial-number
                               #:simple-email-service-v2 #:sns-destination
@@ -439,44 +246,23 @@
                               #:suppression-list-reason
                               #:suppression-list-reasons #:suppression-options
                               #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:template
+                              #:tag-resource #:tag-value #:template
                               #:template-content #:tenant #:tenant-id
                               #:tenant-info #:tenant-info-list #:tenant-name
                               #:tenant-resource #:tenant-resource-list
-                              #:test-render-email-template
-                              #:test-render-email-template-request
-                              #:test-render-email-template-response #:timestamp
-                              #:timestamp-list #:tls-policy
-                              #:too-many-requests-exception #:topic
+                              #:test-render-email-template #:timestamp
+                              #:timestamp-list #:tls-policy #:topic
                               #:topic-filter #:topic-name #:topic-preference
                               #:topic-preference-list #:topics
                               #:tracking-options #:unsubscribe-all
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:untag-resource
                               #:update-configuration-set-event-destination
-                              #:update-configuration-set-event-destination-request
-                              #:update-configuration-set-event-destination-response
                               #:update-contact #:update-contact-list
-                              #:update-contact-list-request
-                              #:update-contact-list-response
-                              #:update-contact-request
-                              #:update-contact-response
                               #:update-custom-verification-email-template
-                              #:update-custom-verification-email-template-request
-                              #:update-custom-verification-email-template-response
                               #:update-email-identity-policy
-                              #:update-email-identity-policy-request
-                              #:update-email-identity-policy-response
                               #:update-email-template
-                              #:update-email-template-request
-                              #:update-email-template-response
                               #:update-reputation-entity-customer-managed-status
-                              #:update-reputation-entity-customer-managed-status-request
-                              #:update-reputation-entity-customer-managed-status-response
                               #:update-reputation-entity-policy
-                              #:update-reputation-entity-policy-request
-                              #:update-reputation-entity-policy-response
                               #:use-case-description
                               #:use-default-if-preference-unavailable
                               #:vdm-attributes #:vdm-options

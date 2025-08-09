@@ -4,15 +4,9 @@
                               #:additional-instance-configuration #:ami
                               #:ami-distribution-configuration #:ami-list
                               #:ami-name-string #:arn #:boolean #:build-type
-                              #:call-rate-limit-exceeded-exception
                               #:cancel-image-creation
-                              #:cancel-image-creation-request
-                              #:cancel-image-creation-response
-                              #:cancel-lifecycle-execution
-                              #:cancel-lifecycle-execution-request
-                              #:cancel-lifecycle-execution-response
-                              #:client-exception #:client-token #:component
-                              #:component-build-version-arn
+                              #:cancel-lifecycle-execution #:client-token
+                              #:component #:component-build-version-arn
                               #:component-configuration
                               #:component-configuration-list #:component-data
                               #:component-format #:component-parameter
@@ -35,57 +29,24 @@
                               #:container-recipe-arn #:container-recipe-summary
                               #:container-recipe-summary-list
                               #:container-repository-service #:container-type
-                              #:create-component #:create-component-request
-                              #:create-component-response
-                              #:create-container-recipe
-                              #:create-container-recipe-request
-                              #:create-container-recipe-response
+                              #:create-component #:create-container-recipe
                               #:create-distribution-configuration
-                              #:create-distribution-configuration-request
-                              #:create-distribution-configuration-response
                               #:create-image #:create-image-pipeline
-                              #:create-image-pipeline-request
-                              #:create-image-pipeline-response
                               #:create-image-recipe
-                              #:create-image-recipe-request
-                              #:create-image-recipe-response
-                              #:create-image-request #:create-image-response
                               #:create-infrastructure-configuration
-                              #:create-infrastructure-configuration-request
-                              #:create-infrastructure-configuration-response
-                              #:create-lifecycle-policy
-                              #:create-lifecycle-policy-request
-                              #:create-lifecycle-policy-response
-                              #:create-workflow #:create-workflow-request
-                              #:create-workflow-response #:cvss-score
-                              #:cvss-score-adjustment
+                              #:create-lifecycle-policy #:create-workflow
+                              #:cvss-score #:cvss-score-adjustment
                               #:cvss-score-adjustment-list #:cvss-score-details
                               #:cvss-score-list #:date-time
                               #:date-time-timestamp #:delete-component
-                              #:delete-component-request
-                              #:delete-component-response
                               #:delete-container-recipe
-                              #:delete-container-recipe-request
-                              #:delete-container-recipe-response
                               #:delete-distribution-configuration
-                              #:delete-distribution-configuration-request
-                              #:delete-distribution-configuration-response
                               #:delete-image #:delete-image-pipeline
-                              #:delete-image-pipeline-request
-                              #:delete-image-pipeline-response
                               #:delete-image-recipe
-                              #:delete-image-recipe-request
-                              #:delete-image-recipe-response
-                              #:delete-image-request #:delete-image-response
                               #:delete-infrastructure-configuration
-                              #:delete-infrastructure-configuration-request
-                              #:delete-infrastructure-configuration-response
-                              #:delete-lifecycle-policy
-                              #:delete-lifecycle-policy-request
-                              #:delete-lifecycle-policy-response
-                              #:delete-workflow #:delete-workflow-request
-                              #:delete-workflow-response #:disk-image-format
-                              #:distribution #:distribution-configuration
+                              #:delete-lifecycle-policy #:delete-workflow
+                              #:disk-image-format #:distribution
+                              #:distribution-configuration
                               #:distribution-configuration-arn
                               #:distribution-configuration-summary
                               #:distribution-configuration-summary-list
@@ -101,53 +62,19 @@
                               #:fast-launch-launch-template-specification
                               #:fast-launch-snapshot-configuration #:filter
                               #:filter-list #:filter-name #:filter-value
-                              #:filter-values #:forbidden-exception
-                              #:get-component #:get-component-policy
-                              #:get-component-policy-request
-                              #:get-component-policy-response
-                              #:get-component-request #:get-component-response
-                              #:get-container-recipe
+                              #:filter-values #:get-component
+                              #:get-component-policy #:get-container-recipe
                               #:get-container-recipe-policy
-                              #:get-container-recipe-policy-request
-                              #:get-container-recipe-policy-response
-                              #:get-container-recipe-request
-                              #:get-container-recipe-response
-                              #:get-distribution-configuration
-                              #:get-distribution-configuration-request
-                              #:get-distribution-configuration-response
-                              #:get-image #:get-image-pipeline
-                              #:get-image-pipeline-request
-                              #:get-image-pipeline-response #:get-image-policy
-                              #:get-image-policy-request
-                              #:get-image-policy-response #:get-image-recipe
-                              #:get-image-recipe-policy
-                              #:get-image-recipe-policy-request
-                              #:get-image-recipe-policy-response
-                              #:get-image-recipe-request
-                              #:get-image-recipe-response #:get-image-request
-                              #:get-image-response
+                              #:get-distribution-configuration #:get-image
+                              #:get-image-pipeline #:get-image-policy
+                              #:get-image-recipe #:get-image-recipe-policy
                               #:get-infrastructure-configuration
-                              #:get-infrastructure-configuration-request
-                              #:get-infrastructure-configuration-response
-                              #:get-lifecycle-execution
-                              #:get-lifecycle-execution-request
-                              #:get-lifecycle-execution-response
-                              #:get-lifecycle-policy
-                              #:get-lifecycle-policy-request
-                              #:get-lifecycle-policy-response
-                              #:get-marketplace-resource
-                              #:get-marketplace-resource-request
-                              #:get-marketplace-resource-response
-                              #:get-workflow #:get-workflow-execution
-                              #:get-workflow-execution-request
-                              #:get-workflow-execution-response
-                              #:get-workflow-request #:get-workflow-response
+                              #:get-lifecycle-execution #:get-lifecycle-policy
+                              #:get-marketplace-resource #:get-workflow
+                              #:get-workflow-execution
                               #:get-workflow-step-execution
-                              #:get-workflow-step-execution-request
-                              #:get-workflow-step-execution-response
                               #:http-put-response-hop-limit #:http-tokens
-                              #:idempotent-parameter-mismatch-exception #:image
-                              #:image-aggregation #:image-build-message
+                              #:image #:image-aggregation #:image-build-message
                               #:image-build-version-arn #:image-builder-arn
                               #:image-package #:image-package-list
                               #:image-pipeline #:image-pipeline-aggregation
@@ -169,12 +96,7 @@
                               #:image-version #:image-version-arn
                               #:image-version-arn-or-build-version-arn
                               #:image-version-list #:import-component
-                              #:import-component-request
-                              #:import-component-response #:import-disk-image
-                              #:import-disk-image-request
-                              #:import-disk-image-response #:import-vm-image
-                              #:import-vm-image-request
-                              #:import-vm-image-response
+                              #:import-disk-image #:import-vm-image
                               #:infrastructure-configuration
                               #:infrastructure-configuration-arn
                               #:infrastructure-configuration-summary
@@ -188,12 +110,6 @@
                               #:instance-metadata-options
                               #:instance-profile-name-type #:instance-type
                               #:instance-type-list
-                              #:invalid-pagination-token-exception
-                              #:invalid-parameter-combination-exception
-                              #:invalid-parameter-exception
-                              #:invalid-parameter-value-exception
-                              #:invalid-request-exception
-                              #:invalid-version-number-exception
                               #:launch-permission-configuration
                               #:launch-template-configuration
                               #:launch-template-configuration-list
@@ -233,68 +149,24 @@
                               #:lifecycle-policy-summary
                               #:lifecycle-policy-summary-list
                               #:lifecycle-policy-time-unit
-                              #:list-component-build-versions
-                              #:list-component-build-versions-request
-                              #:list-component-build-versions-response
-                              #:list-components #:list-components-request
-                              #:list-components-response
+                              #:list-component-build-versions #:list-components
                               #:list-container-recipes
-                              #:list-container-recipes-request
-                              #:list-container-recipes-response
                               #:list-distribution-configurations
-                              #:list-distribution-configurations-request
-                              #:list-distribution-configurations-response
-                              #:list-image-build-versions
-                              #:list-image-build-versions-request
-                              #:list-image-build-versions-response
-                              #:list-image-packages
-                              #:list-image-packages-request
-                              #:list-image-packages-response
+                              #:list-image-build-versions #:list-image-packages
                               #:list-image-pipeline-images
-                              #:list-image-pipeline-images-request
-                              #:list-image-pipeline-images-response
-                              #:list-image-pipelines
-                              #:list-image-pipelines-request
-                              #:list-image-pipelines-response
-                              #:list-image-recipes #:list-image-recipes-request
-                              #:list-image-recipes-response
+                              #:list-image-pipelines #:list-image-recipes
                               #:list-image-scan-finding-aggregations
-                              #:list-image-scan-finding-aggregations-request
-                              #:list-image-scan-finding-aggregations-response
-                              #:list-image-scan-findings
-                              #:list-image-scan-findings-request
-                              #:list-image-scan-findings-response #:list-images
-                              #:list-images-request #:list-images-response
+                              #:list-image-scan-findings #:list-images
                               #:list-infrastructure-configurations
-                              #:list-infrastructure-configurations-request
-                              #:list-infrastructure-configurations-response
                               #:list-lifecycle-execution-resources
-                              #:list-lifecycle-execution-resources-request
-                              #:list-lifecycle-execution-resources-response
                               #:list-lifecycle-executions
-                              #:list-lifecycle-executions-request
-                              #:list-lifecycle-executions-response
                               #:list-lifecycle-policies
-                              #:list-lifecycle-policies-request
-                              #:list-lifecycle-policies-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-waiting-workflow-steps
-                              #:list-waiting-workflow-steps-request
-                              #:list-waiting-workflow-steps-response
                               #:list-workflow-build-versions
-                              #:list-workflow-build-versions-request
-                              #:list-workflow-build-versions-response
                               #:list-workflow-executions
-                              #:list-workflow-executions-request
-                              #:list-workflow-executions-response
-                              #:list-workflow-step-executions
-                              #:list-workflow-step-executions-request
-                              #:list-workflow-step-executions-response
-                              #:list-workflows #:list-workflows-request
-                              #:list-workflows-response #:logging
-                              #:marketplace-resource-location
+                              #:list-workflow-step-executions #:list-workflows
+                              #:logging #:marketplace-resource-location
                               #:marketplace-resource-type
                               #:max-parallel-launches #:non-empty-string
                               #:non-empty-string-list #:non-negative-double
@@ -311,63 +183,33 @@
                               #:product-code-id #:product-code-list
                               #:product-code-list-item #:product-code-type
                               #:put-component-policy
-                              #:put-component-policy-request
-                              #:put-component-policy-response
-                              #:put-container-recipe-policy
-                              #:put-container-recipe-policy-request
-                              #:put-container-recipe-policy-response
-                              #:put-image-policy #:put-image-policy-request
-                              #:put-image-policy-response
-                              #:put-image-recipe-policy
-                              #:put-image-recipe-policy-request
-                              #:put-image-recipe-policy-response #:region-list
+                              #:put-container-recipe-policy #:put-image-policy
+                              #:put-image-recipe-policy #:region-list
                               #:remediation #:remediation-recommendation
-                              #:resource-already-exists-exception
-                              #:resource-dependency-exception
-                              #:resource-in-use-exception #:resource-name
-                              #:resource-not-found-exception
-                              #:resource-policy-document #:resource-state
+                              #:resource-name #:resource-policy-document
+                              #:resource-state
                               #:resource-state-update-exclusion-rules
                               #:resource-state-update-include-resources
                               #:resource-status #:resource-tag-map
                               #:restricted-integer #:role-name-or-arn
                               #:s3export-configuration #:s3logs #:schedule
                               #:security-group-ids #:send-workflow-step-action
-                              #:send-workflow-step-action-request
-                              #:send-workflow-step-action-response
-                              #:service-exception
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception
                               #:severity-count-number #:severity-counts
                               #:sns-topic-arn #:source-layer-hash
                               #:ssm-parameter-configuration
                               #:ssm-parameter-configuration-list
                               #:ssm-parameter-data-type #:ssm-parameter-name
                               #:start-image-pipeline-execution
-                              #:start-image-pipeline-execution-request
-                              #:start-image-pipeline-execution-response
-                              #:start-resource-state-update
-                              #:start-resource-state-update-request
-                              #:start-resource-state-update-response
-                              #:string-list #:systems-manager-agent #:tag-key
-                              #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:target-container-repository
+                              #:start-resource-state-update #:string-list
+                              #:systems-manager-agent #:tag-key #:tag-key-list
+                              #:tag-map #:tag-resource #:tag-value
+                              #:target-container-repository
                               #:target-resource-count #:tenancy-type #:timezone
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:untag-resource
                               #:update-distribution-configuration
-                              #:update-distribution-configuration-request
-                              #:update-distribution-configuration-response
                               #:update-image-pipeline
-                              #:update-image-pipeline-request
-                              #:update-image-pipeline-response
                               #:update-infrastructure-configuration
-                              #:update-infrastructure-configuration-request
-                              #:update-infrastructure-configuration-response
-                              #:update-lifecycle-policy
-                              #:update-lifecycle-policy-request
-                              #:update-lifecycle-policy-response #:uri
+                              #:update-lifecycle-policy #:uri
                               #:user-data-override #:version-number
                               #:vulnerability-id #:vulnerability-id-aggregation
                               #:vulnerability-id-list #:vulnerable-package

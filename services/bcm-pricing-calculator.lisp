@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/bcm-pricing-calculator (:use)
-                             (:export #:awsbcmpricing-calculator
-                              #:access-denied-exception #:account-id
+                             (:export #:awsbcmpricing-calculator #:account-id
                               #:add-reserved-instance-action
                               #:add-savings-plan-action #:arn
                               #:availability-zone
@@ -12,8 +11,6 @@
                               #:batch-create-bill-scenario-commitment-modification-errors
                               #:batch-create-bill-scenario-commitment-modification-item
                               #:batch-create-bill-scenario-commitment-modification-items
-                              #:batch-create-bill-scenario-commitment-modification-request
-                              #:batch-create-bill-scenario-commitment-modification-response
                               #:batch-create-bill-scenario-usage-modification
                               #:batch-create-bill-scenario-usage-modification-entries
                               #:batch-create-bill-scenario-usage-modification-entry
@@ -22,8 +19,6 @@
                               #:batch-create-bill-scenario-usage-modification-errors
                               #:batch-create-bill-scenario-usage-modification-item
                               #:batch-create-bill-scenario-usage-modification-items
-                              #:batch-create-bill-scenario-usage-modification-request
-                              #:batch-create-bill-scenario-usage-modification-response
                               #:batch-create-workload-estimate-usage
                               #:batch-create-workload-estimate-usage-code
                               #:batch-create-workload-estimate-usage-entries
@@ -32,51 +27,37 @@
                               #:batch-create-workload-estimate-usage-errors
                               #:batch-create-workload-estimate-usage-item
                               #:batch-create-workload-estimate-usage-items
-                              #:batch-create-workload-estimate-usage-request
-                              #:batch-create-workload-estimate-usage-response
                               #:batch-delete-bill-scenario-commitment-modification
                               #:batch-delete-bill-scenario-commitment-modification-entries
                               #:batch-delete-bill-scenario-commitment-modification-error
                               #:batch-delete-bill-scenario-commitment-modification-error-code
                               #:batch-delete-bill-scenario-commitment-modification-errors
-                              #:batch-delete-bill-scenario-commitment-modification-request
-                              #:batch-delete-bill-scenario-commitment-modification-response
                               #:batch-delete-bill-scenario-usage-modification
                               #:batch-delete-bill-scenario-usage-modification-entries
                               #:batch-delete-bill-scenario-usage-modification-error
                               #:batch-delete-bill-scenario-usage-modification-error-code
                               #:batch-delete-bill-scenario-usage-modification-errors
-                              #:batch-delete-bill-scenario-usage-modification-request
-                              #:batch-delete-bill-scenario-usage-modification-response
                               #:batch-delete-workload-estimate-usage
                               #:batch-delete-workload-estimate-usage-entries
                               #:batch-delete-workload-estimate-usage-error
                               #:batch-delete-workload-estimate-usage-errors
-                              #:batch-delete-workload-estimate-usage-request
-                              #:batch-delete-workload-estimate-usage-response
                               #:batch-update-bill-scenario-commitment-modification
                               #:batch-update-bill-scenario-commitment-modification-entries
                               #:batch-update-bill-scenario-commitment-modification-entry
                               #:batch-update-bill-scenario-commitment-modification-error
                               #:batch-update-bill-scenario-commitment-modification-error-code
                               #:batch-update-bill-scenario-commitment-modification-errors
-                              #:batch-update-bill-scenario-commitment-modification-request
-                              #:batch-update-bill-scenario-commitment-modification-response
                               #:batch-update-bill-scenario-usage-modification
                               #:batch-update-bill-scenario-usage-modification-entries
                               #:batch-update-bill-scenario-usage-modification-entry
                               #:batch-update-bill-scenario-usage-modification-error
                               #:batch-update-bill-scenario-usage-modification-error-code
                               #:batch-update-bill-scenario-usage-modification-errors
-                              #:batch-update-bill-scenario-usage-modification-request
-                              #:batch-update-bill-scenario-usage-modification-response
                               #:batch-update-workload-estimate-usage
                               #:batch-update-workload-estimate-usage-entries
                               #:batch-update-workload-estimate-usage-entry
                               #:batch-update-workload-estimate-usage-error
                               #:batch-update-workload-estimate-usage-errors
-                              #:batch-update-workload-estimate-usage-request
-                              #:batch-update-workload-estimate-usage-response
                               #:bill-estimate #:bill-estimate-commitment
                               #:bill-estimate-commitment-summaries
                               #:bill-estimate-commitment-summary
@@ -102,120 +83,59 @@
                               #:bill-scenario-usage-modification
                               #:bill-scenario-usage-modification-item
                               #:bill-scenario-usage-modification-items
-                              #:client-token #:conflict-exception #:cost-amount
-                              #:cost-difference #:create-bill-estimate
-                              #:create-bill-estimate-request
-                              #:create-bill-estimate-response
-                              #:create-bill-scenario
-                              #:create-bill-scenario-request
-                              #:create-bill-scenario-response
-                              #:create-workload-estimate
-                              #:create-workload-estimate-request
-                              #:create-workload-estimate-response
-                              #:currency-code #:data-unavailable-exception
-                              #:delete-bill-estimate
-                              #:delete-bill-estimate-request
-                              #:delete-bill-estimate-response
-                              #:delete-bill-scenario
-                              #:delete-bill-scenario-request
-                              #:delete-bill-scenario-response
-                              #:delete-workload-estimate
-                              #:delete-workload-estimate-request
-                              #:delete-workload-estimate-response #:expression
+                              #:client-token #:cost-amount #:cost-difference
+                              #:create-bill-estimate #:create-bill-scenario
+                              #:create-workload-estimate #:currency-code
+                              #:delete-bill-estimate #:delete-bill-scenario
+                              #:delete-workload-estimate #:expression
                               #:expression-filter #:expression-list
                               #:filter-timestamp #:get-bill-estimate
-                              #:get-bill-estimate-request
-                              #:get-bill-estimate-response #:get-bill-scenario
-                              #:get-bill-scenario-request
-                              #:get-bill-scenario-response #:get-preferences
-                              #:get-preferences-request
-                              #:get-preferences-response
-                              #:get-workload-estimate
-                              #:get-workload-estimate-request
-                              #:get-workload-estimate-response
-                              #:historical-usage-entity
-                              #:internal-server-exception #:key
-                              #:list-bill-estimate-commitments
-                              #:list-bill-estimate-commitments-request
-                              #:list-bill-estimate-commitments-response
+                              #:get-bill-scenario #:get-preferences
+                              #:get-workload-estimate #:historical-usage-entity
+                              #:key #:list-bill-estimate-commitments
                               #:list-bill-estimate-input-commitment-modifications
-                              #:list-bill-estimate-input-commitment-modifications-request
-                              #:list-bill-estimate-input-commitment-modifications-response
                               #:list-bill-estimate-input-usage-modifications
-                              #:list-bill-estimate-input-usage-modifications-request
-                              #:list-bill-estimate-input-usage-modifications-response
                               #:list-bill-estimate-line-items
                               #:list-bill-estimate-line-items-filter
                               #:list-bill-estimate-line-items-filter-name
                               #:list-bill-estimate-line-items-filter-values
                               #:list-bill-estimate-line-items-filters
-                              #:list-bill-estimate-line-items-request
-                              #:list-bill-estimate-line-items-response
                               #:list-bill-estimates
                               #:list-bill-estimates-filter
                               #:list-bill-estimates-filter-name
                               #:list-bill-estimates-filter-values
                               #:list-bill-estimates-filters
-                              #:list-bill-estimates-request
-                              #:list-bill-estimates-response
                               #:list-bill-scenario-commitment-modifications
-                              #:list-bill-scenario-commitment-modifications-request
-                              #:list-bill-scenario-commitment-modifications-response
                               #:list-bill-scenario-usage-modifications
-                              #:list-bill-scenario-usage-modifications-request
-                              #:list-bill-scenario-usage-modifications-response
                               #:list-bill-scenarios
                               #:list-bill-scenarios-filter
                               #:list-bill-scenarios-filter-name
                               #:list-bill-scenarios-filter-values
                               #:list-bill-scenarios-filters
-                              #:list-bill-scenarios-request
-                              #:list-bill-scenarios-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-usage-filter #:list-usage-filter-name
+                              #:list-tags-for-resource #:list-usage-filter
+                              #:list-usage-filter-name
                               #:list-usage-filter-values #:list-usage-filters
                               #:list-workload-estimate-usage
-                              #:list-workload-estimate-usage-request
-                              #:list-workload-estimate-usage-response
                               #:list-workload-estimates
                               #:list-workload-estimates-filter
                               #:list-workload-estimates-filter-name
                               #:list-workload-estimates-filter-values
-                              #:list-workload-estimates-filters
-                              #:list-workload-estimates-request
-                              #:list-workload-estimates-response #:match-option
+                              #:list-workload-estimates-filters #:match-option
                               #:max-results #:negate-reserved-instance-action
                               #:negate-savings-plan-action #:next-page-token
                               #:operation #:purchase-agreement-type #:rate-type
                               #:rate-types #:reserved-instance-instance-count
-                              #:resource-id #:resource-not-found-exception
-                              #:resource-tag-key #:resource-tag-keys
-                              #:resource-tag-value #:savings-plan-arns
-                              #:savings-plan-commitment #:service-code
-                              #:service-cost-difference-map
-                              #:service-quota-exceeded-exception #:string-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tags
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-bill-estimate
-                              #:update-bill-estimate-request
-                              #:update-bill-estimate-response
-                              #:update-bill-scenario
-                              #:update-bill-scenario-request
-                              #:update-bill-scenario-response
-                              #:update-preferences #:update-preferences-request
-                              #:update-preferences-response
-                              #:update-workload-estimate
-                              #:update-workload-estimate-request
-                              #:update-workload-estimate-response
-                              #:usage-amount #:usage-amounts #:usage-group
-                              #:usage-quantities #:usage-quantity
-                              #:usage-quantity-result #:usage-type #:uuid
-                              #:validation-exception
-                              #:validation-exception-field
+                              #:resource-id #:resource-tag-key
+                              #:resource-tag-keys #:resource-tag-value
+                              #:savings-plan-arns #:savings-plan-commitment
+                              #:service-code #:service-cost-difference-map
+                              #:string-list #:tag-resource #:tags
+                              #:untag-resource #:update-bill-estimate
+                              #:update-bill-scenario #:update-preferences
+                              #:update-workload-estimate #:usage-amount
+                              #:usage-amounts #:usage-group #:usage-quantities
+                              #:usage-quantity #:usage-quantity-result
+                              #:usage-type #:uuid #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:workload-estimate
                               #:workload-estimate-cost-status

@@ -1,10 +1,6 @@
 (uiop/package:define-package #:pira/guardduty (:use)
                              (:export #:accept-administrator-invitation
-                              #:accept-administrator-invitation-request
-                              #:accept-administrator-invitation-response
-                              #:accept-invitation #:accept-invitation-request
-                              #:accept-invitation-response
-                              #:access-control-list #:access-denied-exception
+                              #:accept-invitation #:access-control-list
                               #:access-key #:access-key-details #:account
                               #:account-detail #:account-details
                               #:account-free-trial-info
@@ -20,15 +16,13 @@
                               #:anomaly-profile-features #:anomaly-profiles
                               #:anomaly-unusual
                               #:anomaly-unusual-behavior-feature
-                              #:archive-findings #:archive-findings-request
-                              #:archive-findings-response #:auto-enable-members
+                              #:archive-findings #:auto-enable-members
                               #:autonomous-system #:aws-api-call-action
-                              #:bad-request-exception #:behavior
-                              #:block-public-access #:boolean
+                              #:behavior #:block-public-access #:boolean
                               #:bucket-level-permissions #:bucket-policy #:city
                               #:client-token #:cloud-trail-configuration-result
-                              #:cluster-status #:condition #:conflict-exception
-                              #:container #:container-finding-resource
+                              #:cluster-status #:condition #:container
+                              #:container-finding-resource
                               #:container-image-uid
                               #:container-instance-details #:container-uid
                               #:container-uids #:containers
@@ -47,64 +41,30 @@
                               #:coverage-sort-key #:coverage-statistics
                               #:coverage-statistics-type
                               #:coverage-statistics-type-list #:coverage-status
-                              #:create-detector #:create-detector-request
-                              #:create-detector-response #:create-filter
-                              #:create-filter-request #:create-filter-response
-                              #:create-ipset #:create-ipset-request
-                              #:create-ipset-response
-                              #:create-malware-protection-plan
-                              #:create-malware-protection-plan-request
-                              #:create-malware-protection-plan-response
-                              #:create-members #:create-members-request
-                              #:create-members-response
+                              #:create-detector #:create-filter #:create-ipset
+                              #:create-malware-protection-plan #:create-members
                               #:create-protected-resource
                               #:create-publishing-destination
-                              #:create-publishing-destination-request
-                              #:create-publishing-destination-response
                               #:create-s3bucket-resource
                               #:create-sample-findings
-                              #:create-sample-findings-request
-                              #:create-sample-findings-response
-                              #:create-threat-intel-set
-                              #:create-threat-intel-set-request
-                              #:create-threat-intel-set-response #:criterion
+                              #:create-threat-intel-set #:criterion
                               #:criterion-key #:dnslogs-configuration-result
                               #:data-source #:data-source-configurations
                               #:data-source-configurations-result
                               #:data-source-free-trial #:data-source-list
                               #:data-source-status #:data-sources-free-trial
                               #:date-statistics #:decline-invitations
-                              #:decline-invitations-request
-                              #:decline-invitations-response
                               #:default-server-side-encryption
-                              #:delete-detector #:delete-detector-request
-                              #:delete-detector-response #:delete-filter
-                              #:delete-filter-request #:delete-filter-response
-                              #:delete-ipset #:delete-ipset-request
-                              #:delete-ipset-response #:delete-invitations
-                              #:delete-invitations-request
-                              #:delete-invitations-response
-                              #:delete-malware-protection-plan
-                              #:delete-malware-protection-plan-request
-                              #:delete-members #:delete-members-request
-                              #:delete-members-response
+                              #:delete-detector #:delete-filter #:delete-ipset
+                              #:delete-invitations
+                              #:delete-malware-protection-plan #:delete-members
                               #:delete-publishing-destination
-                              #:delete-publishing-destination-request
-                              #:delete-publishing-destination-response
                               #:delete-threat-intel-set
-                              #:delete-threat-intel-set-request
-                              #:delete-threat-intel-set-response
                               #:describe-malware-scans
-                              #:describe-malware-scans-request
-                              #:describe-malware-scans-response
                               #:describe-organization-configuration
-                              #:describe-organization-configuration-request
-                              #:describe-organization-configuration-response
-                              #:describe-publishing-destination
-                              #:describe-publishing-destination-request
-                              #:describe-publishing-destination-response
-                              #:destination #:destination-properties
-                              #:destination-type #:destinations #:detection
+                              #:describe-publishing-destination #:destination
+                              #:destination-properties #:destination-type
+                              #:destinations #:detection
                               #:detector-additional-configuration
                               #:detector-additional-configuration-result
                               #:detector-additional-configuration-results
@@ -117,18 +77,10 @@
                               #:detector-feature-result #:detector-id
                               #:detector-ids #:detector-status
                               #:disable-organization-admin-account
-                              #:disable-organization-admin-account-request
-                              #:disable-organization-admin-account-response
                               #:disassociate-from-administrator-account
-                              #:disassociate-from-administrator-account-request
-                              #:disassociate-from-administrator-account-response
                               #:disassociate-from-master-account
-                              #:disassociate-from-master-account-request
-                              #:disassociate-from-master-account-response
-                              #:disassociate-members
-                              #:disassociate-members-request
-                              #:disassociate-members-response
-                              #:dns-request-action #:domain-details #:double
+                              #:disassociate-members #:dns-request-action
+                              #:domain-details #:double
                               #:ebs-snapshot-preservation #:ebs-volume-details
                               #:ebs-volume-scan-details #:ebs-volumes-result
                               #:ec2instance #:ec2instance-uid
@@ -137,8 +89,6 @@
                               #:ecs-task-details #:eks-cluster
                               #:eks-cluster-details #:email
                               #:enable-organization-admin-account
-                              #:enable-organization-admin-account-request
-                              #:enable-organization-admin-account-response
                               #:endpoint-ids #:eq #:equals #:evidence
                               #:fargate-details
                               #:feature-additional-configuration
@@ -158,59 +108,27 @@
                               #:free-trial-feature-configurations-results
                               #:free-trial-feature-result #:geo-location
                               #:get-administrator-account
-                              #:get-administrator-account-request
-                              #:get-administrator-account-response
-                              #:get-coverage-statistics
-                              #:get-coverage-statistics-request
-                              #:get-coverage-statistics-response #:get-detector
-                              #:get-detector-request #:get-detector-response
-                              #:get-filter #:get-filter-request
-                              #:get-filter-response #:get-findings
-                              #:get-findings-request #:get-findings-response
-                              #:get-findings-statistics
-                              #:get-findings-statistics-request
-                              #:get-findings-statistics-response #:get-ipset
-                              #:get-ipset-request #:get-ipset-response
+                              #:get-coverage-statistics #:get-detector
+                              #:get-filter #:get-findings
+                              #:get-findings-statistics #:get-ipset
                               #:get-invitations-count
-                              #:get-invitations-count-request
-                              #:get-invitations-count-response
                               #:get-malware-protection-plan
-                              #:get-malware-protection-plan-request
-                              #:get-malware-protection-plan-response
-                              #:get-malware-scan-settings
-                              #:get-malware-scan-settings-request
-                              #:get-malware-scan-settings-response
-                              #:get-master-account #:get-master-account-request
-                              #:get-master-account-response
-                              #:get-member-detectors
-                              #:get-member-detectors-request
-                              #:get-member-detectors-response #:get-members
-                              #:get-members-request #:get-members-response
+                              #:get-malware-scan-settings #:get-master-account
+                              #:get-member-detectors #:get-members
                               #:get-organization-statistics
-                              #:get-organization-statistics-response
                               #:get-remaining-free-trial-days
-                              #:get-remaining-free-trial-days-request
-                              #:get-remaining-free-trial-days-response
-                              #:get-threat-intel-set
-                              #:get-threat-intel-set-request
-                              #:get-threat-intel-set-response
-                              #:get-usage-statistics
-                              #:get-usage-statistics-request
-                              #:get-usage-statistics-response #:group-by-type
-                              #:grouped-by-account #:grouped-by-date
-                              #:grouped-by-finding-type #:grouped-by-resource
-                              #:grouped-by-severity #:groups
-                              #:guard-duty-apiservice #:guard-duty-arn
+                              #:get-threat-intel-set #:get-usage-statistics
+                              #:group-by-type #:grouped-by-account
+                              #:grouped-by-date #:grouped-by-finding-type
+                              #:grouped-by-resource #:grouped-by-severity
+                              #:groups #:guard-duty-apiservice #:guard-duty-arn
                               #:highest-severity-threat-details #:host-path
                               #:iam-instance-profile #:impersonated-user
                               #:indicator #:indicator-title #:indicator-type
                               #:indicator-value-string #:indicator-values
                               #:indicators #:instance-arn #:instance-details
-                              #:integer #:integer-value-with-max
-                              #:internal-server-error-exception #:invitation
-                              #:invitations #:invite-members
-                              #:invite-members-request
-                              #:invite-members-response #:ip-set-format
+                              #:integer #:integer-value-with-max #:invitation
+                              #:invitations #:invite-members #:ip-set-format
                               #:ip-set-ids #:ip-set-status #:ipv6addresses
                               #:issues #:item-path #:item-paths
                               #:kubernetes-api-call-action
@@ -227,32 +145,12 @@
                               #:kubernetes-user-details #:kubernetes-workload
                               #:kubernetes-workload-details #:lambda-details
                               #:lineage #:lineage-object #:list-coverage
-                              #:list-coverage-request #:list-coverage-response
-                              #:list-detectors #:list-detectors-request
-                              #:list-detectors-response #:list-filters
-                              #:list-filters-request #:list-filters-response
-                              #:list-findings #:list-findings-request
-                              #:list-findings-response #:list-ipsets
-                              #:list-ipsets-request #:list-ipsets-response
-                              #:list-invitations #:list-invitations-request
-                              #:list-invitations-response
-                              #:list-malware-protection-plans
-                              #:list-malware-protection-plans-request
-                              #:list-malware-protection-plans-response
-                              #:list-members #:list-members-request
-                              #:list-members-response
+                              #:list-detectors #:list-filters #:list-findings
+                              #:list-ipsets #:list-invitations
+                              #:list-malware-protection-plans #:list-members
                               #:list-organization-admin-accounts
-                              #:list-organization-admin-accounts-request
-                              #:list-organization-admin-accounts-response
                               #:list-publishing-destinations
-                              #:list-publishing-destinations-request
-                              #:list-publishing-destinations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-threat-intel-sets
-                              #:list-threat-intel-sets-request
-                              #:list-threat-intel-sets-response
+                              #:list-tags-for-resource #:list-threat-intel-sets
                               #:local-ip-details #:local-port-details
                               #:location #:login-attribute #:login-attributes
                               #:long #:long-value
@@ -335,11 +233,10 @@
                               #:remote-account-details #:remote-ip-details
                               #:remote-port-details #:resource #:resource-arn
                               #:resource-data #:resource-details
-                              #:resource-list #:resource-not-found-exception
-                              #:resource-statistics #:resource-type
-                              #:resource-uids #:resource-v2 #:resources
-                              #:runtime-context #:runtime-details #:s3bucket
-                              #:s3bucket-detail #:s3bucket-details
+                              #:resource-list #:resource-statistics
+                              #:resource-type #:resource-uids #:resource-v2
+                              #:resources #:runtime-context #:runtime-details
+                              #:s3bucket #:s3bucket-detail #:s3bucket-details
                               #:s3logs-configuration
                               #:s3logs-configuration-result #:s3object
                               #:s3object-detail #:s3object-details
@@ -359,58 +256,30 @@
                               #:session-name-list #:severity-statistics
                               #:signal #:signal-description #:signal-type
                               #:signals #:sort-criteria #:source-ips #:sources
-                              #:start-malware-scan #:start-malware-scan-request
-                              #:start-malware-scan-response
-                              #:start-monitoring-members
-                              #:start-monitoring-members-request
-                              #:start-monitoring-members-response
-                              #:stop-monitoring-members
-                              #:stop-monitoring-members-request
-                              #:stop-monitoring-members-response #:string
-                              #:subnet-ids #:tag #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
-                              #:threat #:threat-detected-by-name
+                              #:start-malware-scan #:start-monitoring-members
+                              #:stop-monitoring-members #:string #:subnet-ids
+                              #:tag #:tag-key #:tag-key-list #:tag-map
+                              #:tag-resource #:tag-value #:tags #:threat
+                              #:threat-detected-by-name
                               #:threat-intel-set-format #:threat-intel-set-ids
                               #:threat-intel-set-status
                               #:threat-intelligence-detail
                               #:threat-intelligence-details #:threat-names
                               #:threats #:threats-detected-item-count
                               #:timestamp #:total #:trigger-details
-                              #:unarchive-findings #:unarchive-findings-request
-                              #:unarchive-findings-response
-                              #:unprocessed-account #:unprocessed-accounts
+                              #:unarchive-findings #:unprocessed-account
+                              #:unprocessed-accounts
                               #:unprocessed-data-sources-result
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-detector
-                              #:update-detector-request
-                              #:update-detector-response #:update-filter
-                              #:update-filter-request #:update-filter-response
-                              #:update-findings-feedback
-                              #:update-findings-feedback-request
-                              #:update-findings-feedback-response
-                              #:update-ipset #:update-ipset-request
-                              #:update-ipset-response
-                              #:update-malware-protection-plan
-                              #:update-malware-protection-plan-request
+                              #:untag-resource #:update-detector
+                              #:update-filter #:update-findings-feedback
+                              #:update-ipset #:update-malware-protection-plan
                               #:update-malware-scan-settings
-                              #:update-malware-scan-settings-request
-                              #:update-malware-scan-settings-response
                               #:update-member-detectors
-                              #:update-member-detectors-request
-                              #:update-member-detectors-response
                               #:update-organization-configuration
-                              #:update-organization-configuration-request
-                              #:update-organization-configuration-response
                               #:update-protected-resource
                               #:update-publishing-destination
-                              #:update-publishing-destination-request
-                              #:update-publishing-destination-response
                               #:update-s3bucket-resource
-                              #:update-threat-intel-set
-                              #:update-threat-intel-set-request
-                              #:update-threat-intel-set-response
-                              #:usage-account-result
+                              #:update-threat-intel-set #:usage-account-result
                               #:usage-account-result-list #:usage-criteria
                               #:usage-data-source-result
                               #:usage-data-source-result-list #:usage-feature

@@ -1,29 +1,17 @@
 (uiop/package:define-package #:pira/resource-groups-tagging-api (:use)
                              (:export #:amazon-resource-type
                               #:compliance-details #:compliance-status
-                              #:concurrent-modification-exception
-                              #:constraint-violation-exception
-                              #:describe-report-creation
-                              #:describe-report-creation-input
-                              #:describe-report-creation-output #:error-code
+                              #:describe-report-creation #:error-code
                               #:error-message #:exception-message
                               #:exclude-compliant-resources
                               #:failed-resources-map #:failure-info
-                              #:get-compliance-summary
-                              #:get-compliance-summary-input
-                              #:get-compliance-summary-output #:get-resources
-                              #:get-resources-input #:get-resources-output
-                              #:get-tag-keys #:get-tag-keys-input
-                              #:get-tag-keys-output #:get-tag-values
-                              #:get-tag-values-input #:get-tag-values-output
-                              #:group-by #:group-by-attribute
-                              #:include-compliance-details
-                              #:internal-service-exception
-                              #:invalid-parameter-exception #:last-updated
+                              #:get-compliance-summary #:get-resources
+                              #:get-tag-keys #:get-tag-values #:group-by
+                              #:group-by-attribute #:include-compliance-details
+                              #:last-updated
                               #:max-results-get-compliance-summary
                               #:non-compliant-resources #:pagination-token
-                              #:pagination-token-expired-exception #:region
-                              #:region-filter-list #:resource-arn
+                              #:region #:region-filter-list #:resource-arn
                               #:resource-arnlist-for-get
                               #:resource-arnlist-for-tag-untag
                               #:resource-groups-tagging-api-20170126
@@ -31,20 +19,15 @@
                               #:resource-tag-mapping-list
                               #:resource-type-filter-list #:resources-per-page
                               #:s3bucket #:s3location #:start-date
-                              #:start-report-creation
-                              #:start-report-creation-input
-                              #:start-report-creation-output #:status
-                              #:status-code #:summary #:summary-list #:tag
-                              #:tag-filter #:tag-filter-list #:tag-key
-                              #:tag-key-filter-list #:tag-key-list
-                              #:tag-key-list-for-untag #:tag-list #:tag-map
-                              #:tag-resources #:tag-resources-input
-                              #:tag-resources-output #:tag-value
+                              #:start-report-creation #:status #:status-code
+                              #:summary #:summary-list #:tag #:tag-filter
+                              #:tag-filter-list #:tag-key #:tag-key-filter-list
+                              #:tag-key-list #:tag-key-list-for-untag
+                              #:tag-list #:tag-map #:tag-resources #:tag-value
                               #:tag-value-list #:tag-values-output-list
                               #:tags-per-page #:target-id
                               #:target-id-filter-list #:target-id-type
-                              #:throttled-exception #:untag-resources
-                              #:untag-resources-input #:untag-resources-output))
+                              #:untag-resources))
 (common-lisp:in-package #:pira/resource-groups-tagging-api)
 
 (smithy/sdk/service:define-service resource-groups-tagging-api-20170126

@@ -1,72 +1,30 @@
 (uiop/package:define-package #:pira/codestar-connections (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:amazon-resource-name #:blocker-status
-                              #:blocker-type #:branch-name
-                              #:code-star-connections-20191201
-                              #:concurrent-modification-exception
-                              #:conditional-check-failed-exception
-                              #:conflict-exception #:connection
+                             (:export #:account-id #:amazon-resource-name
+                              #:blocker-status #:blocker-type #:branch-name
+                              #:code-star-connections-20191201 #:connection
                               #:connection-arn #:connection-list
                               #:connection-name #:connection-status
-                              #:create-connection #:create-connection-input
-                              #:create-connection-output #:create-host
-                              #:create-host-input #:create-host-output
+                              #:create-connection #:create-host
                               #:create-repository-link
-                              #:create-repository-link-input
-                              #:create-repository-link-output
-                              #:create-sync-configuration
-                              #:create-sync-configuration-input
-                              #:create-sync-configuration-output
-                              #:created-reason #:delete-connection
-                              #:delete-connection-input
-                              #:delete-connection-output #:delete-host
-                              #:delete-host-input #:delete-host-output
+                              #:create-sync-configuration #:created-reason
+                              #:delete-connection #:delete-host
                               #:delete-repository-link
-                              #:delete-repository-link-input
-                              #:delete-repository-link-output
                               #:delete-sync-configuration
-                              #:delete-sync-configuration-input
-                              #:delete-sync-configuration-output
                               #:deployment-file-path #:directory
                               #:error-message #:event #:external-id
-                              #:get-connection #:get-connection-input
-                              #:get-connection-output #:get-host
-                              #:get-host-input #:get-host-output
-                              #:get-repository-link #:get-repository-link-input
-                              #:get-repository-link-output
+                              #:get-connection #:get-host #:get-repository-link
                               #:get-repository-sync-status
-                              #:get-repository-sync-status-input
-                              #:get-repository-sync-status-output
                               #:get-resource-sync-status
-                              #:get-resource-sync-status-input
-                              #:get-resource-sync-status-output
                               #:get-sync-blocker-summary
-                              #:get-sync-blocker-summary-input
-                              #:get-sync-blocker-summary-output
-                              #:get-sync-configuration
-                              #:get-sync-configuration-input
-                              #:get-sync-configuration-output #:host #:host-arn
+                              #:get-sync-configuration #:host #:host-arn
                               #:host-list #:host-name #:host-status
                               #:host-status-message #:iam-role-arn #:id
-                              #:internal-server-exception
-                              #:invalid-input-exception #:kms-key-arn
-                              #:latest-sync-blocker-list
-                              #:limit-exceeded-exception #:list-connections
-                              #:list-connections-input
-                              #:list-connections-output #:list-hosts
-                              #:list-hosts-input #:list-hosts-output
+                              #:kms-key-arn #:latest-sync-blocker-list
+                              #:list-connections #:list-hosts
                               #:list-repository-links
-                              #:list-repository-links-input
-                              #:list-repository-links-output
                               #:list-repository-sync-definitions
-                              #:list-repository-sync-definitions-input
-                              #:list-repository-sync-definitions-output
                               #:list-sync-configurations
-                              #:list-sync-configurations-input
-                              #:list-sync-configurations-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:max-results
+                              #:list-tags-for-resource #:max-results
                               #:next-token #:owner-id #:parent #:provider-type
                               #:publish-deployment-status #:repository-link-arn
                               #:repository-link-id #:repository-link-info
@@ -77,42 +35,24 @@
                               #:repository-sync-event
                               #:repository-sync-event-list
                               #:repository-sync-status #:resolved-reason
-                              #:resource-already-exists-exception
-                              #:resource-name #:resource-not-found-exception
-                              #:resource-sync-attempt #:resource-sync-event
-                              #:resource-sync-event-list #:resource-sync-status
-                              #:resource-unavailable-exception
-                              #:retry-latest-commit-failed-exception #:revision
-                              #:sha #:security-group-id #:security-group-ids
+                              #:resource-name #:resource-sync-attempt
+                              #:resource-sync-event #:resource-sync-event-list
+                              #:resource-sync-status #:revision #:sha
+                              #:security-group-id #:security-group-ids
                               #:sharp-next-token #:subnet-id #:subnet-ids
                               #:sync-blocker #:sync-blocker-context
                               #:sync-blocker-context-key
                               #:sync-blocker-context-list
                               #:sync-blocker-context-value
-                              #:sync-blocker-does-not-exist-exception
                               #:sync-blocker-summary #:sync-configuration
                               #:sync-configuration-list
-                              #:sync-configuration-still-exists-exception
                               #:sync-configuration-type #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:target #:throttling-exception
-                              #:timestamp #:tls-certificate
-                              #:trigger-resource-update-on #:type
-                              #:unsupported-operation-exception
-                              #:unsupported-provider-type-exception
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output #:update-host
-                              #:update-host-input #:update-host-output
-                              #:update-out-of-sync-exception
-                              #:update-repository-link
-                              #:update-repository-link-input
-                              #:update-repository-link-output
-                              #:update-sync-blocker #:update-sync-blocker-input
-                              #:update-sync-blocker-output
-                              #:update-sync-configuration
-                              #:update-sync-configuration-input
-                              #:update-sync-configuration-output #:url
+                              #:tag-value #:target #:timestamp
+                              #:tls-certificate #:trigger-resource-update-on
+                              #:type #:untag-resource #:update-host
+                              #:update-repository-link #:update-sync-blocker
+                              #:update-sync-configuration #:url
                               #:vpc-configuration #:vpc-id))
 (common-lisp:in-package #:pira/codestar-connections)
 

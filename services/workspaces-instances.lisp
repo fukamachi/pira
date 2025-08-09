@@ -1,40 +1,25 @@
 (uiop/package:define-package #:pira/workspaces-instances (:use)
-                             (:export #:arn #:access-denied-exception
-                              #:amd-sev-snp-enum #:associate-volume
-                              #:associate-volume-request
-                              #:associate-volume-response #:auto-recovery-enum
+                             (:export #:arn #:amd-sev-snp-enum
+                              #:associate-volume #:auto-recovery-enum
                               #:availability-zone #:bandwidth-weighting-enum
                               #:block-device-mapping-request
                               #:block-device-mappings
                               #:capacity-reservation-preference-enum
                               #:capacity-reservation-specification
                               #:capacity-reservation-target #:client-token
-                              #:conflict-exception
                               #:connection-tracking-specification-request
                               #:cpu-credits-enum #:cpu-options-request
-                              #:create-volume #:create-volume-request
-                              #:create-volume-response
-                              #:create-workspace-instance
-                              #:create-workspace-instance-request
-                              #:create-workspace-instance-response
+                              #:create-volume #:create-workspace-instance
                               #:credit-specification-request #:delete-volume
-                              #:delete-volume-request #:delete-volume-response
-                              #:delete-workspace-instance
-                              #:delete-workspace-instance-request
-                              #:delete-workspace-instance-response
-                              #:description #:device-name
-                              #:disassociate-mode-enum #:disassociate-volume
-                              #:disassociate-volume-request
-                              #:disassociate-volume-response
-                              #:ec2instance-error #:ec2instance-errors
-                              #:ec2managed-instance #:eucmifrontend-apiservice
-                              #:ebs-block-device
+                              #:delete-workspace-instance #:description
+                              #:device-name #:disassociate-mode-enum
+                              #:disassociate-volume #:ec2instance-error
+                              #:ec2instance-errors #:ec2managed-instance
+                              #:eucmifrontend-apiservice #:ebs-block-device
                               #:ena-srd-specification-request
                               #:ena-srd-udp-specification-request
                               #:enclave-options-request
                               #:get-workspace-instance
-                              #:get-workspace-instance-request
-                              #:get-workspace-instance-response
                               #:hibernation-options-request #:host-id
                               #:hostname-type-enum #:http-endpoint-enum
                               #:http-protocol-ipv6enum
@@ -50,22 +35,14 @@
                               #:instance-network-performance-options-request
                               #:instance-type #:instance-type-info
                               #:instance-types #:interface-type-enum
-                              #:internal-server-exception #:ipv4address
-                              #:ipv4prefix #:ipv4prefix-specification-request
-                              #:ipv4prefixes #:ipv6address #:ipv6addresses
-                              #:ipv6prefix #:ipv6prefix-specification-request
-                              #:ipv6prefixes #:kms-key-id
-                              #:license-configuration-request
+                              #:ipv4address #:ipv4prefix
+                              #:ipv4prefix-specification-request #:ipv4prefixes
+                              #:ipv6address #:ipv6addresses #:ipv6prefix
+                              #:ipv6prefix-specification-request #:ipv6prefixes
+                              #:kms-key-id #:license-configuration-request
                               #:license-specifications #:list-instance-types
-                              #:list-instance-types-request
-                              #:list-instance-types-response #:list-regions
-                              #:list-regions-request #:list-regions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-regions #:list-tags-for-resource
                               #:list-workspace-instances
-                              #:list-workspace-instances-request
-                              #:list-workspace-instances-response
                               #:managed-instance-request #:market-type-enum
                               #:max-results #:network-interface-id
                               #:network-interfaces #:next-token
@@ -75,22 +52,16 @@
                               #:private-ip-address-specification
                               #:private-ip-addresses #:provision-state-enum
                               #:provision-states #:region #:region-list
-                              #:region-name #:resource-not-found-exception
-                              #:resource-type-enum
+                              #:region-name #:resource-type-enum
                               #:run-instances-monitoring-enabled
                               #:security-group-id #:security-group-ids
                               #:security-group-name #:security-group-names
-                              #:service-quota-exceeded-exception #:snapshot-id
-                              #:spot-instance-type-enum #:spot-market-options
-                              #:string128 #:string64 #:subnet-id #:tag
-                              #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-specification
+                              #:snapshot-id #:spot-instance-type-enum
+                              #:spot-market-options #:string128 #:string64
+                              #:subnet-id #:tag #:tag-key #:tag-key-list
+                              #:tag-list #:tag-resource #:tag-specification
                               #:tag-specifications #:tag-value #:tenancy-enum
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:user-data
-                              #:validation-exception
+                              #:untag-resource #:user-data
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:virtual-name

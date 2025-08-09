@@ -2,23 +2,13 @@
                              (:export #:apierror-list-type #:apierror-type
                               #:add-replica-region-list-type
                               #:automatically-rotate-after-days-type
-                              #:batch-get-secret-value
-                              #:batch-get-secret-value-request
-                              #:batch-get-secret-value-response #:boolean-type
+                              #:batch-get-secret-value #:boolean-type
                               #:cancel-rotate-secret
-                              #:cancel-rotate-secret-request
-                              #:cancel-rotate-secret-response
                               #:client-request-token-type #:create-secret
-                              #:create-secret-request #:create-secret-response
-                              #:created-date-type #:decryption-failure
-                              #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response #:delete-secret
-                              #:delete-secret-request #:delete-secret-response
-                              #:deleted-date-type #:deletion-date-type
-                              #:describe-secret #:describe-secret-request
-                              #:describe-secret-response #:description-type
-                              #:duration-type #:encryption-failure #:error-code
+                              #:created-date-type #:delete-resource-policy
+                              #:delete-secret #:deleted-date-type
+                              #:deletion-date-type #:describe-secret
+                              #:description-type #:duration-type #:error-code
                               #:error-message #:exclude-characters-type
                               #:exclude-lowercase-type #:exclude-numbers-type
                               #:exclude-punctuation-type
@@ -26,56 +16,28 @@
                               #:filter-name-string-type
                               #:filter-value-string-type
                               #:filter-values-string-list #:filters-list-type
-                              #:get-random-password
-                              #:get-random-password-request
-                              #:get-random-password-response
-                              #:get-resource-policy
-                              #:get-resource-policy-request
-                              #:get-resource-policy-response #:get-secret-value
-                              #:get-secret-value-request
-                              #:get-secret-value-response #:include-space-type
-                              #:internal-service-error
-                              #:invalid-next-token-exception
-                              #:invalid-parameter-exception
-                              #:invalid-request-exception
+                              #:get-random-password #:get-resource-policy
+                              #:get-secret-value #:include-space-type
                               #:kms-key-id-list-type #:kms-key-id-type
                               #:last-accessed-date-type
                               #:last-changed-date-type #:last-rotated-date-type
-                              #:limit-exceeded-exception
-                              #:list-secret-version-ids
-                              #:list-secret-version-ids-request
-                              #:list-secret-version-ids-response #:list-secrets
-                              #:list-secrets-request #:list-secrets-response
-                              #:malformed-policy-document-exception
+                              #:list-secret-version-ids #:list-secrets
                               #:max-results-batch-type #:max-results-type
                               #:name-type #:next-rotation-date-type
                               #:next-token-type
                               #:non-empty-resource-policy-type
                               #:owning-service-type #:password-length-type
-                              #:precondition-not-met-exception
-                              #:public-policy-exception #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:put-secret-value
-                              #:put-secret-value-request
-                              #:put-secret-value-response
+                              #:put-resource-policy #:put-secret-value
                               #:random-password-type
                               #:recovery-window-in-days-type #:region-type
                               #:remove-regions-from-replication
-                              #:remove-regions-from-replication-request
-                              #:remove-regions-from-replication-response
                               #:remove-replica-region-list-type
                               #:replica-region-type
                               #:replicate-secret-to-regions
-                              #:replicate-secret-to-regions-request
-                              #:replicate-secret-to-regions-response
                               #:replication-status-list-type
                               #:replication-status-type
                               #:require-each-included-type-type
-                              #:resource-exists-exception
-                              #:resource-not-found-exception #:restore-secret
-                              #:restore-secret-request
-                              #:restore-secret-response #:rotate-secret
-                              #:rotate-secret-request #:rotate-secret-response
+                              #:restore-secret #:rotate-secret
                               #:rotation-enabled-type #:rotation-lambda-arntype
                               #:rotation-rules-type #:rotation-token-type
                               #:schedule-expression-type #:secret-arntype
@@ -90,21 +52,12 @@
                               #:secret-versions-list-type
                               #:secret-versions-to-stages-map-type
                               #:sort-order-type #:status-message-type
-                              #:status-type #:stop-replication-to-replica
-                              #:stop-replication-to-replica-request
-                              #:stop-replication-to-replica-response #:tag
+                              #:status-type #:stop-replication-to-replica #:tag
                               #:tag-key-list-type #:tag-key-type
-                              #:tag-list-type #:tag-resource
-                              #:tag-resource-request #:tag-value-type
-                              #:timestamp-type #:untag-resource
-                              #:untag-resource-request #:update-secret
-                              #:update-secret-request #:update-secret-response
+                              #:tag-list-type #:tag-resource #:tag-value-type
+                              #:timestamp-type #:untag-resource #:update-secret
                               #:update-secret-version-stage
-                              #:update-secret-version-stage-request
-                              #:update-secret-version-stage-response
                               #:validate-resource-policy
-                              #:validate-resource-policy-request
-                              #:validate-resource-policy-response
                               #:validation-errors-entry
                               #:validation-errors-type #:secretsmanager))
 (common-lisp:in-package #:pira/secrets-manager)

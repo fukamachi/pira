@@ -23,44 +23,18 @@
                               #:continuous-hyper-parameter-ranges
                               #:continuous-max-value #:continuous-min-value
                               #:create-batch-inference-job
-                              #:create-batch-inference-job-request
-                              #:create-batch-inference-job-response
-                              #:create-batch-segment-job
-                              #:create-batch-segment-job-request
-                              #:create-batch-segment-job-response
-                              #:create-campaign #:create-campaign-request
-                              #:create-campaign-response
-                              #:create-data-deletion-job
-                              #:create-data-deletion-job-request
-                              #:create-data-deletion-job-response
-                              #:create-dataset #:create-dataset-export-job
-                              #:create-dataset-export-job-request
-                              #:create-dataset-export-job-response
+                              #:create-batch-segment-job #:create-campaign
+                              #:create-data-deletion-job #:create-dataset
+                              #:create-dataset-export-job
                               #:create-dataset-group
-                              #:create-dataset-group-request
-                              #:create-dataset-group-response
                               #:create-dataset-import-job
-                              #:create-dataset-import-job-request
-                              #:create-dataset-import-job-response
-                              #:create-dataset-request
-                              #:create-dataset-response #:create-event-tracker
-                              #:create-event-tracker-request
-                              #:create-event-tracker-response #:create-filter
-                              #:create-filter-request #:create-filter-response
-                              #:create-metric-attribution
-                              #:create-metric-attribution-request
-                              #:create-metric-attribution-response
-                              #:create-recommender #:create-recommender-request
-                              #:create-recommender-response #:create-schema
-                              #:create-schema-request #:create-schema-response
-                              #:create-solution #:create-solution-request
-                              #:create-solution-response
-                              #:create-solution-version
-                              #:create-solution-version-request
-                              #:create-solution-version-response
-                              #:data-deletion-job #:data-deletion-job-summary
-                              #:data-deletion-jobs #:data-source #:dataset
-                              #:dataset-export-job #:dataset-export-job-output
+                              #:create-event-tracker #:create-filter
+                              #:create-metric-attribution #:create-recommender
+                              #:create-schema #:create-solution
+                              #:create-solution-version #:data-deletion-job
+                              #:data-deletion-job-summary #:data-deletion-jobs
+                              #:data-source #:dataset #:dataset-export-job
+                              #:dataset-export-job-output
                               #:dataset-export-job-summary
                               #:dataset-export-jobs #:dataset-group
                               #:dataset-group-summary #:dataset-groups
@@ -76,131 +50,54 @@
                               #:default-hyper-parameter-ranges
                               #:default-integer-hyper-parameter-range
                               #:default-integer-hyper-parameter-ranges
-                              #:delete-campaign #:delete-campaign-request
-                              #:delete-dataset #:delete-dataset-group
-                              #:delete-dataset-group-request
-                              #:delete-dataset-request #:delete-event-tracker
-                              #:delete-event-tracker-request #:delete-filter
-                              #:delete-filter-request
-                              #:delete-metric-attribution
-                              #:delete-metric-attribution-request
-                              #:delete-recommender #:delete-recommender-request
-                              #:delete-schema #:delete-schema-request
-                              #:delete-solution #:delete-solution-request
-                              #:describe-algorithm #:describe-algorithm-request
-                              #:describe-algorithm-response
+                              #:delete-campaign #:delete-dataset
+                              #:delete-dataset-group #:delete-event-tracker
+                              #:delete-filter #:delete-metric-attribution
+                              #:delete-recommender #:delete-schema
+                              #:delete-solution #:describe-algorithm
                               #:describe-batch-inference-job
-                              #:describe-batch-inference-job-request
-                              #:describe-batch-inference-job-response
-                              #:describe-batch-segment-job
-                              #:describe-batch-segment-job-request
-                              #:describe-batch-segment-job-response
-                              #:describe-campaign #:describe-campaign-request
-                              #:describe-campaign-response
-                              #:describe-data-deletion-job
-                              #:describe-data-deletion-job-request
-                              #:describe-data-deletion-job-response
-                              #:describe-dataset #:describe-dataset-export-job
-                              #:describe-dataset-export-job-request
-                              #:describe-dataset-export-job-response
+                              #:describe-batch-segment-job #:describe-campaign
+                              #:describe-data-deletion-job #:describe-dataset
+                              #:describe-dataset-export-job
                               #:describe-dataset-group
-                              #:describe-dataset-group-request
-                              #:describe-dataset-group-response
                               #:describe-dataset-import-job
-                              #:describe-dataset-import-job-request
-                              #:describe-dataset-import-job-response
-                              #:describe-dataset-request
-                              #:describe-dataset-response
                               #:describe-event-tracker
-                              #:describe-event-tracker-request
-                              #:describe-event-tracker-response
                               #:describe-feature-transformation
-                              #:describe-feature-transformation-request
-                              #:describe-feature-transformation-response
-                              #:describe-filter #:describe-filter-request
-                              #:describe-filter-response
-                              #:describe-metric-attribution
-                              #:describe-metric-attribution-request
-                              #:describe-metric-attribution-response
-                              #:describe-recipe #:describe-recipe-request
-                              #:describe-recipe-response #:describe-recommender
-                              #:describe-recommender-request
-                              #:describe-recommender-response #:describe-schema
-                              #:describe-schema-request
-                              #:describe-schema-response #:describe-solution
-                              #:describe-solution-request
-                              #:describe-solution-response
-                              #:describe-solution-version
-                              #:describe-solution-version-request
-                              #:describe-solution-version-response
-                              #:description #:docker-uri #:domain
-                              #:error-message #:event-parameters
-                              #:event-parameters-list #:event-tracker
-                              #:event-tracker-summary #:event-trackers
-                              #:event-type #:event-type-threshold-value
-                              #:event-type-weight #:event-value-threshold
-                              #:events-config #:excluded-dataset-columns
-                              #:failure-reason #:feature-transformation
+                              #:describe-filter #:describe-metric-attribution
+                              #:describe-recipe #:describe-recommender
+                              #:describe-schema #:describe-solution
+                              #:describe-solution-version #:description
+                              #:docker-uri #:domain #:error-message
+                              #:event-parameters #:event-parameters-list
+                              #:event-tracker #:event-tracker-summary
+                              #:event-trackers #:event-type
+                              #:event-type-threshold-value #:event-type-weight
+                              #:event-value-threshold #:events-config
+                              #:excluded-dataset-columns #:failure-reason
+                              #:feature-transformation
                               #:feature-transformation-parameters
                               #:featurization-parameters
                               #:fields-for-theme-generation #:filter
                               #:filter-expression #:filter-summary #:filters
-                              #:get-solution-metrics
-                              #:get-solution-metrics-request
-                              #:get-solution-metrics-response #:hpoconfig
-                              #:hpoobjective #:hpoobjective-type #:hporesource
+                              #:get-solution-metrics #:hpoconfig #:hpoobjective
+                              #:hpoobjective-type #:hporesource
                               #:hporesource-config #:hyper-parameter-ranges
                               #:hyper-parameters #:import-mode #:ingestion-mode
                               #:integer #:integer-hyper-parameter-range
                               #:integer-hyper-parameter-ranges
                               #:integer-max-value #:integer-min-value
-                              #:invalid-input-exception
-                              #:invalid-next-token-exception #:item-attribute
-                              #:kms-key-arn #:limit-exceeded-exception
+                              #:item-attribute #:kms-key-arn
                               #:list-batch-inference-jobs
-                              #:list-batch-inference-jobs-request
-                              #:list-batch-inference-jobs-response
-                              #:list-batch-segment-jobs
-                              #:list-batch-segment-jobs-request
-                              #:list-batch-segment-jobs-response
-                              #:list-campaigns #:list-campaigns-request
-                              #:list-campaigns-response
+                              #:list-batch-segment-jobs #:list-campaigns
                               #:list-data-deletion-jobs
-                              #:list-data-deletion-jobs-request
-                              #:list-data-deletion-jobs-response
-                              #:list-dataset-export-jobs
-                              #:list-dataset-export-jobs-request
-                              #:list-dataset-export-jobs-response
-                              #:list-dataset-groups
-                              #:list-dataset-groups-request
-                              #:list-dataset-groups-response
-                              #:list-dataset-import-jobs
-                              #:list-dataset-import-jobs-request
-                              #:list-dataset-import-jobs-response
-                              #:list-datasets #:list-datasets-request
-                              #:list-datasets-response #:list-event-trackers
-                              #:list-event-trackers-request
-                              #:list-event-trackers-response #:list-filters
-                              #:list-filters-request #:list-filters-response
+                              #:list-dataset-export-jobs #:list-dataset-groups
+                              #:list-dataset-import-jobs #:list-datasets
+                              #:list-event-trackers #:list-filters
                               #:list-metric-attribution-metrics
-                              #:list-metric-attribution-metrics-request
-                              #:list-metric-attribution-metrics-response
-                              #:list-metric-attributions
-                              #:list-metric-attributions-request
-                              #:list-metric-attributions-response
-                              #:list-recipes #:list-recipes-request
-                              #:list-recipes-response #:list-recommenders
-                              #:list-recommenders-request
-                              #:list-recommenders-response #:list-schemas
-                              #:list-schemas-request #:list-schemas-response
-                              #:list-solution-versions
-                              #:list-solution-versions-request
-                              #:list-solution-versions-response
-                              #:list-solutions #:list-solutions-request
-                              #:list-solutions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:list-metric-attributions #:list-recipes
+                              #:list-recommenders #:list-schemas
+                              #:list-solution-versions #:list-solutions
+                              #:list-tags-for-resource #:max-results
                               #:metric-attribute #:metric-attributes
                               #:metric-attributes-names-list
                               #:metric-attribution #:metric-attribution-output
@@ -216,44 +113,24 @@
                               #:recommender #:recommender-config
                               #:recommender-summary
                               #:recommender-update-summary #:recommenders
-                              #:resource-already-exists-exception
-                              #:resource-config #:resource-in-use-exception
-                              #:resource-not-found-exception #:role-arn
-                              #:s3data-config #:s3location
-                              #:scheduling-expression #:schemas #:solution
-                              #:solution-config #:solution-summary
+                              #:resource-config #:role-arn #:s3data-config
+                              #:s3location #:scheduling-expression #:schemas
+                              #:solution #:solution-config #:solution-summary
                               #:solution-update-config
                               #:solution-update-summary #:solution-version
                               #:solution-version-summary #:solution-versions
-                              #:solutions #:start-recommender
-                              #:start-recommender-request
-                              #:start-recommender-response #:status
-                              #:stop-recommender #:stop-recommender-request
-                              #:stop-recommender-response
-                              #:stop-solution-version-creation
-                              #:stop-solution-version-creation-request #:tag
-                              #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:theme-generation-config
-                              #:too-many-tag-keys-exception
-                              #:too-many-tags-exception #:tracking-id
+                              #:solutions #:start-recommender #:status
+                              #:stop-recommender
+                              #:stop-solution-version-creation #:tag #:tag-key
+                              #:tag-keys #:tag-resource #:tag-value #:tags
+                              #:theme-generation-config #:tracking-id
                               #:training-data-config #:training-hours
                               #:training-input-mode #:training-mode
                               #:training-type #:transactions-per-second
                               #:tunable #:tuned-hpoparams #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-campaign
-                              #:update-campaign-request
-                              #:update-campaign-response #:update-dataset
-                              #:update-dataset-request
-                              #:update-dataset-response
-                              #:update-metric-attribution
-                              #:update-metric-attribution-request
-                              #:update-metric-attribution-response
-                              #:update-recommender #:update-recommender-request
-                              #:update-recommender-response #:update-solution
-                              #:update-solution-request
-                              #:update-solution-response))
+                              #:update-campaign #:update-dataset
+                              #:update-metric-attribution #:update-recommender
+                              #:update-solution))
 (common-lisp:in-package #:pira/personalize)
 
 (smithy/sdk/service:define-service amazon-personalize :shape-name

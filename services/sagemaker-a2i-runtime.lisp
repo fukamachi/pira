@@ -1,28 +1,15 @@
 (uiop/package:define-package #:pira/sagemaker-a2i-runtime (:use)
                              (:export #:amazon-sage-maker-a2iruntime
-                              #:conflict-exception #:content-classifier
-                              #:content-classifiers #:delete-human-loop
-                              #:delete-human-loop-request
-                              #:delete-human-loop-response
-                              #:describe-human-loop
-                              #:describe-human-loop-request
-                              #:describe-human-loop-response #:failure-reason
-                              #:flow-definition-arn #:human-loop-arn
-                              #:human-loop-data-attributes #:human-loop-input
-                              #:human-loop-name #:human-loop-output
-                              #:human-loop-status #:human-loop-summaries
-                              #:human-loop-summary #:input-content
-                              #:internal-server-exception #:list-human-loops
-                              #:list-human-loops-request
-                              #:list-human-loops-response #:max-results
-                              #:next-token #:resource-not-found-exception
-                              #:service-quota-exceeded-exception #:sort-order
-                              #:start-human-loop #:start-human-loop-request
-                              #:start-human-loop-response #:stop-human-loop
-                              #:stop-human-loop-request
-                              #:stop-human-loop-response #:string
-                              #:throttling-exception #:timestamp
-                              #:validation-exception))
+                              #:content-classifier #:content-classifiers
+                              #:delete-human-loop #:describe-human-loop
+                              #:failure-reason #:flow-definition-arn
+                              #:human-loop-arn #:human-loop-data-attributes
+                              #:human-loop-input #:human-loop-name
+                              #:human-loop-output #:human-loop-status
+                              #:human-loop-summaries #:human-loop-summary
+                              #:input-content #:list-human-loops #:max-results
+                              #:next-token #:sort-order #:start-human-loop
+                              #:stop-human-loop #:string #:timestamp))
 (common-lisp:in-package #:pira/sagemaker-a2i-runtime)
 
 (smithy/sdk/service:define-service amazon-sage-maker-a2iruntime :shape-name

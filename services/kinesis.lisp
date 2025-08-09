@@ -1,117 +1,59 @@
 (uiop/package:define-package #:pira/kinesis (:use)
-                             (:export #:access-denied-exception
-                              #:add-tags-to-stream #:add-tags-to-stream-input
-                              #:boolean-object #:child-shard #:child-shard-list
-                              #:consumer #:consumer-arn #:consumer-count-object
+                             (:export #:add-tags-to-stream #:boolean-object
+                              #:child-shard #:child-shard-list #:consumer
+                              #:consumer-arn #:consumer-count-object
                               #:consumer-description #:consumer-list
                               #:consumer-name #:consumer-status #:create-stream
-                              #:create-stream-input #:data
-                              #:decrease-stream-retention-period
-                              #:decrease-stream-retention-period-input
-                              #:delete-resource-policy
-                              #:delete-resource-policy-input #:delete-stream
-                              #:delete-stream-input
-                              #:deregister-stream-consumer
-                              #:deregister-stream-consumer-input
-                              #:describe-limits #:describe-limits-input
-                              #:describe-limits-output #:describe-stream
-                              #:describe-stream-consumer
-                              #:describe-stream-consumer-input
-                              #:describe-stream-consumer-output
-                              #:describe-stream-input
+                              #:data #:decrease-stream-retention-period
+                              #:delete-resource-policy #:delete-stream
+                              #:deregister-stream-consumer #:describe-limits
+                              #:describe-stream #:describe-stream-consumer
                               #:describe-stream-input-limit
-                              #:describe-stream-output
                               #:describe-stream-summary
-                              #:describe-stream-summary-input
-                              #:describe-stream-summary-output
                               #:disable-enhanced-monitoring
-                              #:disable-enhanced-monitoring-input
-                              #:enable-enhanced-monitoring
-                              #:enable-enhanced-monitoring-input
-                              #:encryption-type #:enhanced-metrics
-                              #:enhanced-monitoring-list
+                              #:enable-enhanced-monitoring #:encryption-type
+                              #:enhanced-metrics #:enhanced-monitoring-list
                               #:enhanced-monitoring-output #:error-code
-                              #:error-message #:expired-iterator-exception
-                              #:expired-next-token-exception #:get-records
-                              #:get-records-input #:get-records-input-limit
-                              #:get-records-output #:get-resource-policy
-                              #:get-resource-policy-input
-                              #:get-resource-policy-output #:get-shard-iterator
-                              #:get-shard-iterator-input
-                              #:get-shard-iterator-output #:hash-key
-                              #:hash-key-range
-                              #:increase-stream-retention-period
-                              #:increase-stream-retention-period-input
-                              #:internal-failure-exception
-                              #:invalid-argument-exception
-                              #:kmsaccess-denied-exception
-                              #:kmsdisabled-exception
-                              #:kmsinvalid-state-exception
-                              #:kmsnot-found-exception #:kmsopt-in-required
-                              #:kmsthrottling-exception #:key-id
-                              #:kinesis-20131202 #:limit-exceeded-exception
-                              #:list-shards #:list-shards-input
-                              #:list-shards-input-limit #:list-shards-output
-                              #:list-stream-consumers
-                              #:list-stream-consumers-input
+                              #:error-message #:get-records
+                              #:get-records-input-limit #:get-resource-policy
+                              #:get-shard-iterator #:hash-key #:hash-key-range
+                              #:increase-stream-retention-period #:key-id
+                              #:kinesis-20131202 #:list-shards
+                              #:list-shards-input-limit #:list-stream-consumers
                               #:list-stream-consumers-input-limit
-                              #:list-stream-consumers-output #:list-streams
-                              #:list-streams-input #:list-streams-input-limit
-                              #:list-streams-output #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
-                              #:list-tags-for-stream
-                              #:list-tags-for-stream-input
-                              #:list-tags-for-stream-input-limit
-                              #:list-tags-for-stream-output #:merge-shards
-                              #:merge-shards-input #:metrics-name
-                              #:metrics-name-list #:millis-behind-latest
-                              #:next-token
+                              #:list-streams #:list-streams-input-limit
+                              #:list-tags-for-resource #:list-tags-for-stream
+                              #:list-tags-for-stream-input-limit #:merge-shards
+                              #:metrics-name #:metrics-name-list
+                              #:millis-behind-latest #:next-token
                               #:on-demand-stream-count-limit-object
                               #:on-demand-stream-count-object #:partition-key
-                              #:policy #:positive-integer-object
-                              #:provisioned-throughput-exceeded-exception
-                              #:put-record #:put-record-input
-                              #:put-record-output #:put-records
-                              #:put-records-input #:put-records-output
-                              #:put-records-request-entry
+                              #:policy #:positive-integer-object #:put-record
+                              #:put-records #:put-records-request-entry
                               #:put-records-request-entry-list
                               #:put-records-result-entry
                               #:put-records-result-entry-list
-                              #:put-resource-policy #:put-resource-policy-input
-                              #:record #:record-list #:register-stream-consumer
-                              #:register-stream-consumer-input
-                              #:register-stream-consumer-output
-                              #:remove-tags-from-stream
-                              #:remove-tags-from-stream-input #:resource-arn
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
+                              #:put-resource-policy #:record #:record-list
+                              #:register-stream-consumer
+                              #:remove-tags-from-stream #:resource-arn
                               #:retention-period-hours #:scaling-type
                               #:sequence-number #:sequence-number-range #:shard
                               #:shard-count-object #:shard-filter
                               #:shard-filter-type #:shard-id #:shard-id-list
                               #:shard-iterator #:shard-iterator-type
-                              #:shard-list #:split-shard #:split-shard-input
-                              #:start-stream-encryption
-                              #:start-stream-encryption-input
-                              #:starting-position #:stop-stream-encryption
-                              #:stop-stream-encryption-input #:stream-arn
+                              #:shard-list #:split-shard
+                              #:start-stream-encryption #:starting-position
+                              #:stop-stream-encryption #:stream-arn
                               #:stream-description #:stream-description-summary
                               #:stream-mode #:stream-mode-details #:stream-name
                               #:stream-name-list #:stream-status
                               #:stream-summary #:stream-summary-list
                               #:subscribe-to-shard #:subscribe-to-shard-event
-                              #:subscribe-to-shard-event-stream
-                              #:subscribe-to-shard-input
-                              #:subscribe-to-shard-output #:tag #:tag-key
+                              #:subscribe-to-shard-event-stream #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-map
-                              #:tag-resource #:tag-resource-input #:tag-value
-                              #:timestamp #:untag-resource
-                              #:untag-resource-input #:update-shard-count
-                              #:update-shard-count-input
-                              #:update-shard-count-output #:update-stream-mode
-                              #:update-stream-mode-input
-                              #:validation-exception))
+                              #:tag-resource #:tag-value #:timestamp
+                              #:untag-resource #:update-shard-count
+                              #:update-stream-mode))
 (common-lisp:in-package #:pira/kinesis)
 
 (smithy/sdk/service:define-service kinesis-20131202 :shape-name

@@ -1,123 +1,55 @@
 (uiop/package:define-package #:pira/workdocs (:use)
                              (:export #:awsgorilla-boy-service
-                              #:abort-document-version-upload
-                              #:abort-document-version-upload-request
-                              #:activate-user #:activate-user-request
-                              #:activate-user-response #:activity
-                              #:activity-names-filter-type #:activity-type
-                              #:add-resource-permissions
-                              #:add-resource-permissions-request
-                              #:add-resource-permissions-response
+                              #:abort-document-version-upload #:activate-user
+                              #:activity #:activity-names-filter-type
+                              #:activity-type #:add-resource-permissions
                               #:additional-response-field-type
                               #:additional-response-fields-list
                               #:authentication-header-type #:boolean-enum-type
                               #:boolean-type #:comment #:comment-id-type
                               #:comment-list #:comment-metadata
                               #:comment-status-type #:comment-text-type
-                              #:comment-visibility-type
-                              #:concurrent-modification-exception
-                              #:conflicting-operation-exception
-                              #:content-category-type #:create-comment
-                              #:create-comment-request
-                              #:create-comment-response
-                              #:create-custom-metadata
-                              #:create-custom-metadata-request
-                              #:create-custom-metadata-response #:create-folder
-                              #:create-folder-request #:create-folder-response
-                              #:create-labels #:create-labels-request
-                              #:create-labels-response
-                              #:create-notification-subscription
-                              #:create-notification-subscription-request
-                              #:create-notification-subscription-response
-                              #:create-user #:create-user-request
-                              #:create-user-response #:custom-metadata-key-list
-                              #:custom-metadata-key-type
-                              #:custom-metadata-limit-exceeded-exception
-                              #:custom-metadata-map
+                              #:comment-visibility-type #:content-category-type
+                              #:create-comment #:create-custom-metadata
+                              #:create-folder #:create-labels
+                              #:create-notification-subscription #:create-user
+                              #:custom-metadata-key-list
+                              #:custom-metadata-key-type #:custom-metadata-map
                               #:custom-metadata-value-type #:date-range-type
-                              #:deactivate-user #:deactivate-user-request
-                              #:deactivating-last-system-user-exception
-                              #:delete-comment #:delete-comment-request
-                              #:delete-custom-metadata
-                              #:delete-custom-metadata-request
-                              #:delete-custom-metadata-response
-                              #:delete-document #:delete-document-request
-                              #:delete-document-version
-                              #:delete-document-version-request #:delete-folder
-                              #:delete-folder-contents
-                              #:delete-folder-contents-request
-                              #:delete-folder-request #:delete-labels
-                              #:delete-labels-request #:delete-labels-response
-                              #:delete-notification-subscription
-                              #:delete-notification-subscription-request
-                              #:delete-user #:delete-user-request
-                              #:describe-activities
-                              #:describe-activities-request
-                              #:describe-activities-response
-                              #:describe-comments #:describe-comments-request
-                              #:describe-comments-response
+                              #:deactivate-user #:delete-comment
+                              #:delete-custom-metadata #:delete-document
+                              #:delete-document-version #:delete-folder
+                              #:delete-folder-contents #:delete-labels
+                              #:delete-notification-subscription #:delete-user
+                              #:describe-activities #:describe-comments
                               #:describe-document-versions
-                              #:describe-document-versions-request
-                              #:describe-document-versions-response
-                              #:describe-folder-contents
-                              #:describe-folder-contents-request
-                              #:describe-folder-contents-response
-                              #:describe-groups #:describe-groups-request
-                              #:describe-groups-response
+                              #:describe-folder-contents #:describe-groups
                               #:describe-notification-subscriptions
-                              #:describe-notification-subscriptions-request
-                              #:describe-notification-subscriptions-response
                               #:describe-resource-permissions
-                              #:describe-resource-permissions-request
-                              #:describe-resource-permissions-response
-                              #:describe-root-folders
-                              #:describe-root-folders-request
-                              #:describe-root-folders-response #:describe-users
-                              #:describe-users-request
-                              #:describe-users-response #:document-content-type
-                              #:document-locked-for-comments-exception
-                              #:document-metadata #:document-metadata-list
-                              #:document-source-type #:document-source-url-map
-                              #:document-status-type #:document-thumbnail-type
+                              #:describe-root-folders #:describe-users
+                              #:document-content-type #:document-metadata
+                              #:document-metadata-list #:document-source-type
+                              #:document-source-url-map #:document-status-type
+                              #:document-thumbnail-type
                               #:document-thumbnail-url-map
                               #:document-version-id-type
                               #:document-version-metadata
                               #:document-version-metadata-list
-                              #:document-version-status
-                              #:draft-upload-out-of-sync-exception
-                              #:email-address-type
-                              #:entity-already-exists-exception
-                              #:entity-id-list #:entity-not-exists-exception
-                              #:error-message-type #:exception-code-type
-                              #:failed-dependency-exception #:field-names-type
+                              #:document-version-status #:email-address-type
+                              #:entity-id-list #:error-message-type
+                              #:exception-code-type #:field-names-type
                               #:filters #:folder-content-type #:folder-metadata
                               #:folder-metadata-list #:get-current-user
-                              #:get-current-user-request
-                              #:get-current-user-response #:get-document
-                              #:get-document-path #:get-document-path-request
-                              #:get-document-path-response
-                              #:get-document-request #:get-document-response
-                              #:get-document-version
-                              #:get-document-version-request
-                              #:get-document-version-response #:get-folder
-                              #:get-folder-path #:get-folder-path-request
-                              #:get-folder-path-response #:get-folder-request
-                              #:get-folder-response #:get-resources
-                              #:get-resources-request #:get-resources-response
+                              #:get-document #:get-document-path
+                              #:get-document-version #:get-folder
+                              #:get-folder-path #:get-resources
                               #:group-metadata #:group-metadata-list
                               #:group-name-type #:hash-type #:header-name-type
                               #:header-value-type #:id-type
-                              #:illegal-user-state-exception
                               #:initiate-document-version-upload
-                              #:initiate-document-version-upload-request
-                              #:initiate-document-version-upload-response
-                              #:invalid-argument-exception
-                              #:invalid-comment-operation-exception
-                              #:invalid-operation-exception
-                              #:invalid-password-exception #:language-code-type
-                              #:limit-exceeded-exception #:limit-type
-                              #:locale-type #:long-range-type #:long-type
-                              #:marker-type #:message-type #:next-marker-type
+                              #:language-code-type #:limit-type #:locale-type
+                              #:long-range-type #:long-type #:marker-type
+                              #:message-type #:next-marker-type
                               #:notification-options #:order-by-field-type
                               #:order-type #:organization-user-list
                               #:page-marker-type #:participants #:password-type
@@ -125,13 +57,8 @@
                               #:positive-integer-type #:positive-size-type
                               #:principal #:principal-list
                               #:principal-role-type #:principal-type
-                              #:prohibited-state-exception
                               #:remove-all-resource-permissions
-                              #:remove-all-resource-permissions-request
                               #:remove-resource-permission
-                              #:remove-resource-permission-request
-                              #:requested-entity-too-large-exception
-                              #:resource-already-checked-out-exception
                               #:resource-collection-type #:resource-id-type
                               #:resource-metadata #:resource-name-type
                               #:resource-path #:resource-path-component
@@ -140,7 +67,6 @@
                               #:resource-type #:response-item
                               #:response-item-type #:response-item-web-url
                               #:response-items-list #:restore-document-versions
-                              #:restore-document-versions-request
                               #:role-permission-type #:role-type
                               #:search-ancestor-id #:search-ancestor-id-list
                               #:search-collection-type
@@ -154,37 +80,25 @@
                               #:search-query-scope-type-list
                               #:search-query-type #:search-resource-type
                               #:search-resource-type-list #:search-resources
-                              #:search-resources-request
-                              #:search-resources-response
                               #:search-result-sort-list
                               #:search-results-limit-type #:search-sort-result
-                              #:service-unavailable-exception #:share-principal
-                              #:share-principal-list #:share-result
-                              #:share-results-list #:share-status-type
-                              #:shared-label #:shared-labels
-                              #:signed-header-map #:size-type #:sort-order
-                              #:storage-limit-exceeded-exception
-                              #:storage-limit-will-exceed-exception
-                              #:storage-rule-type #:storage-type #:subscription
-                              #:subscription-end-point-type #:subscription-list
-                              #:subscription-protocol-type #:subscription-type
-                              #:text-locale-type-list #:time-zone-id-type
-                              #:timestamp-type #:too-many-labels-exception
-                              #:too-many-subscriptions-exception
-                              #:unauthorized-operation-exception
-                              #:unauthorized-resource-access-exception
-                              #:update-document #:update-document-request
-                              #:update-document-version
-                              #:update-document-version-request #:update-folder
-                              #:update-folder-request #:update-user
-                              #:update-user-request #:update-user-response
-                              #:upload-metadata #:url-type #:user
-                              #:user-activities #:user-attribute-value-type
-                              #:user-filter-type #:user-ids-type
-                              #:user-metadata #:user-metadata-list
-                              #:user-sort-type #:user-status-type
-                              #:user-storage-metadata #:user-type
-                              #:username-type))
+                              #:share-principal #:share-principal-list
+                              #:share-result #:share-results-list
+                              #:share-status-type #:shared-label
+                              #:shared-labels #:signed-header-map #:size-type
+                              #:sort-order #:storage-rule-type #:storage-type
+                              #:subscription #:subscription-end-point-type
+                              #:subscription-list #:subscription-protocol-type
+                              #:subscription-type #:text-locale-type-list
+                              #:time-zone-id-type #:timestamp-type
+                              #:update-document #:update-document-version
+                              #:update-folder #:update-user #:upload-metadata
+                              #:url-type #:user #:user-activities
+                              #:user-attribute-value-type #:user-filter-type
+                              #:user-ids-type #:user-metadata
+                              #:user-metadata-list #:user-sort-type
+                              #:user-status-type #:user-storage-metadata
+                              #:user-type #:username-type))
 (common-lisp:in-package #:pira/workdocs)
 
 (smithy/sdk/service:define-service awsgorilla-boy-service :shape-name

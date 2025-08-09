@@ -1,30 +1,17 @@
 (uiop/package:define-package #:pira/lightsail (:use)
-                             (:export #:access-denied-exception
-                              #:access-direction #:access-key
+                             (:export #:access-direction #:access-key
                               #:access-key-last-used #:access-key-list
                               #:access-receiver-list #:access-rules
                               #:access-type #:account-level-bpa-sync
-                              #:account-level-bpa-sync-status
-                              #:account-setup-in-progress-exception #:add-on
+                              #:account-level-bpa-sync-status #:add-on
                               #:add-on-list #:add-on-request
                               #:add-on-request-list #:add-on-type #:alarm
                               #:alarm-state #:alarms-list #:allocate-static-ip
-                              #:allocate-static-ip-request
-                              #:allocate-static-ip-result #:app-category
-                              #:app-category-list
+                              #:app-category #:app-category-list
                               #:attach-certificate-to-distribution
-                              #:attach-certificate-to-distribution-request
-                              #:attach-certificate-to-distribution-result
-                              #:attach-disk #:attach-disk-request
-                              #:attach-disk-result
-                              #:attach-instances-to-load-balancer
-                              #:attach-instances-to-load-balancer-request
-                              #:attach-instances-to-load-balancer-result
+                              #:attach-disk #:attach-instances-to-load-balancer
                               #:attach-load-balancer-tls-certificate
-                              #:attach-load-balancer-tls-certificate-request
-                              #:attach-load-balancer-tls-certificate-result
-                              #:attach-static-ip #:attach-static-ip-request
-                              #:attach-static-ip-result #:attached-disk
+                              #:attach-static-ip #:attached-disk
                               #:attached-disk-list #:attached-disk-map
                               #:auto-mount-status
                               #:auto-snapshot-add-on-request
@@ -46,8 +33,6 @@
                               #:certificate-status #:certificate-status-list
                               #:certificate-summary #:certificate-summary-list
                               #:close-instance-public-ports
-                              #:close-instance-public-ports-request
-                              #:close-instance-public-ports-result
                               #:cloud-formation-stack-record
                               #:cloud-formation-stack-record-list
                               #:cloud-formation-stack-record-source-info
@@ -87,137 +72,44 @@
                               #:container-service-state
                               #:container-service-state-detail
                               #:container-service-state-detail-code
-                              #:container-services-list-result #:cookie-object
-                              #:copy-snapshot #:copy-snapshot-request
-                              #:copy-snapshot-result #:cost-estimate
+                              #:cookie-object #:copy-snapshot #:cost-estimate
                               #:cost-estimates #:create-bucket
-                              #:create-bucket-access-key
-                              #:create-bucket-access-key-request
-                              #:create-bucket-access-key-result
-                              #:create-bucket-request #:create-bucket-result
-                              #:create-certificate #:create-certificate-request
-                              #:create-certificate-result
+                              #:create-bucket-access-key #:create-certificate
                               #:create-cloud-formation-stack
-                              #:create-cloud-formation-stack-request
-                              #:create-cloud-formation-stack-result
                               #:create-contact-method
-                              #:create-contact-method-request
-                              #:create-contact-method-result
                               #:create-container-service
                               #:create-container-service-deployment
-                              #:create-container-service-deployment-request
-                              #:create-container-service-deployment-result
                               #:create-container-service-registry-login
-                              #:create-container-service-registry-login-request
-                              #:create-container-service-registry-login-result
-                              #:create-container-service-request
-                              #:create-container-service-result #:create-disk
-                              #:create-disk-from-snapshot
-                              #:create-disk-from-snapshot-request
-                              #:create-disk-from-snapshot-result
-                              #:create-disk-request #:create-disk-result
-                              #:create-disk-snapshot
-                              #:create-disk-snapshot-request
-                              #:create-disk-snapshot-result
-                              #:create-distribution
-                              #:create-distribution-request
-                              #:create-distribution-result #:create-domain
-                              #:create-domain-entry
-                              #:create-domain-entry-request
-                              #:create-domain-entry-result
-                              #:create-domain-request #:create-domain-result
+                              #:create-disk #:create-disk-from-snapshot
+                              #:create-disk-snapshot #:create-distribution
+                              #:create-domain #:create-domain-entry
                               #:create-guisession-access-details
-                              #:create-guisession-access-details-request
-                              #:create-guisession-access-details-result
-                              #:create-instance-snapshot
-                              #:create-instance-snapshot-request
-                              #:create-instance-snapshot-result
-                              #:create-instances
+                              #:create-instance-snapshot #:create-instances
                               #:create-instances-from-snapshot
-                              #:create-instances-from-snapshot-request
-                              #:create-instances-from-snapshot-result
-                              #:create-instances-request
-                              #:create-instances-result #:create-key-pair
-                              #:create-key-pair-request
-                              #:create-key-pair-result #:create-load-balancer
-                              #:create-load-balancer-request
-                              #:create-load-balancer-result
+                              #:create-key-pair #:create-load-balancer
                               #:create-load-balancer-tls-certificate
-                              #:create-load-balancer-tls-certificate-request
-                              #:create-load-balancer-tls-certificate-result
                               #:create-relational-database
                               #:create-relational-database-from-snapshot
-                              #:create-relational-database-from-snapshot-request
-                              #:create-relational-database-from-snapshot-result
-                              #:create-relational-database-request
-                              #:create-relational-database-result
-                              #:create-relational-database-snapshot
-                              #:create-relational-database-snapshot-request
-                              #:create-relational-database-snapshot-result
-                              #:currency #:delete-alarm #:delete-alarm-request
-                              #:delete-alarm-result #:delete-auto-snapshot
-                              #:delete-auto-snapshot-request
-                              #:delete-auto-snapshot-result #:delete-bucket
-                              #:delete-bucket-access-key
-                              #:delete-bucket-access-key-request
-                              #:delete-bucket-access-key-result
-                              #:delete-bucket-request #:delete-bucket-result
-                              #:delete-certificate #:delete-certificate-request
-                              #:delete-certificate-result
-                              #:delete-contact-method
-                              #:delete-contact-method-request
-                              #:delete-contact-method-result
+                              #:create-relational-database-snapshot #:currency
+                              #:delete-alarm #:delete-auto-snapshot
+                              #:delete-bucket #:delete-bucket-access-key
+                              #:delete-certificate #:delete-contact-method
                               #:delete-container-image
-                              #:delete-container-image-request
-                              #:delete-container-image-result
-                              #:delete-container-service
-                              #:delete-container-service-request
-                              #:delete-container-service-result #:delete-disk
-                              #:delete-disk-request #:delete-disk-result
-                              #:delete-disk-snapshot
-                              #:delete-disk-snapshot-request
-                              #:delete-disk-snapshot-result
-                              #:delete-distribution
-                              #:delete-distribution-request
-                              #:delete-distribution-result #:delete-domain
-                              #:delete-domain-entry
-                              #:delete-domain-entry-request
-                              #:delete-domain-entry-result
-                              #:delete-domain-request #:delete-domain-result
-                              #:delete-instance #:delete-instance-request
-                              #:delete-instance-result
-                              #:delete-instance-snapshot
-                              #:delete-instance-snapshot-request
-                              #:delete-instance-snapshot-result
-                              #:delete-key-pair #:delete-key-pair-request
-                              #:delete-key-pair-result #:delete-known-host-keys
-                              #:delete-known-host-keys-request
-                              #:delete-known-host-keys-result
+                              #:delete-container-service #:delete-disk
+                              #:delete-disk-snapshot #:delete-distribution
+                              #:delete-domain #:delete-domain-entry
+                              #:delete-instance #:delete-instance-snapshot
+                              #:delete-key-pair #:delete-known-host-keys
                               #:delete-load-balancer
-                              #:delete-load-balancer-request
-                              #:delete-load-balancer-result
                               #:delete-load-balancer-tls-certificate
-                              #:delete-load-balancer-tls-certificate-request
-                              #:delete-load-balancer-tls-certificate-result
                               #:delete-relational-database
-                              #:delete-relational-database-request
-                              #:delete-relational-database-result
                               #:delete-relational-database-snapshot
-                              #:delete-relational-database-snapshot-request
-                              #:delete-relational-database-snapshot-result
                               #:destination-info
                               #:detach-certificate-from-distribution
-                              #:detach-certificate-from-distribution-request
-                              #:detach-certificate-from-distribution-result
-                              #:detach-disk #:detach-disk-request
-                              #:detach-disk-result
+                              #:detach-disk
                               #:detach-instances-from-load-balancer
-                              #:detach-instances-from-load-balancer-request
-                              #:detach-instances-from-load-balancer-result
-                              #:detach-static-ip #:detach-static-ip-request
-                              #:detach-static-ip-result #:disable-add-on
-                              #:disable-add-on-request #:disable-add-on-result
-                              #:disk #:disk-info #:disk-info-list #:disk-list
+                              #:detach-static-ip #:disable-add-on #:disk
+                              #:disk-info #:disk-info-list #:disk-list
                               #:disk-map #:disk-map-list #:disk-snapshot
                               #:disk-snapshot-info #:disk-snapshot-list
                               #:disk-snapshot-state #:disk-state
@@ -231,178 +123,63 @@
                               #:domain-list #:domain-name #:domain-name-list
                               #:domain-validation-record
                               #:domain-validation-record-list
-                              #:download-default-key-pair
-                              #:download-default-key-pair-request
-                              #:download-default-key-pair-result
-                              #:eligible-to-renew #:email-address
-                              #:enable-add-on #:enable-add-on-request
-                              #:enable-add-on-result #:endpoint-request
-                              #:environment #:estimate-by-time
-                              #:estimates-by-time #:export-snapshot
-                              #:export-snapshot-record
+                              #:download-default-key-pair #:eligible-to-renew
+                              #:email-address #:enable-add-on
+                              #:endpoint-request #:environment
+                              #:estimate-by-time #:estimates-by-time
+                              #:export-snapshot #:export-snapshot-record
                               #:export-snapshot-record-list
                               #:export-snapshot-record-source-info
                               #:export-snapshot-record-source-type
-                              #:export-snapshot-request
-                              #:export-snapshot-result #:forward-values
-                              #:get-active-names #:get-active-names-request
-                              #:get-active-names-result #:get-alarms
-                              #:get-alarms-request #:get-alarms-result
-                              #:get-auto-snapshots #:get-auto-snapshots-request
-                              #:get-auto-snapshots-result #:get-blueprints
-                              #:get-blueprints-request #:get-blueprints-result
-                              #:get-bucket-access-keys
-                              #:get-bucket-access-keys-request
-                              #:get-bucket-access-keys-result
-                              #:get-bucket-bundles #:get-bucket-bundles-request
-                              #:get-bucket-bundles-result
-                              #:get-bucket-metric-data
-                              #:get-bucket-metric-data-request
-                              #:get-bucket-metric-data-result #:get-buckets
-                              #:get-buckets-request #:get-buckets-result
-                              #:get-bundles #:get-bundles-request
-                              #:get-bundles-result #:get-certificates
-                              #:get-certificates-request
-                              #:get-certificates-result
+                              #:forward-values #:get-active-names #:get-alarms
+                              #:get-auto-snapshots #:get-blueprints
+                              #:get-bucket-access-keys #:get-bucket-bundles
+                              #:get-bucket-metric-data #:get-buckets
+                              #:get-bundles #:get-certificates
                               #:get-cloud-formation-stack-records
-                              #:get-cloud-formation-stack-records-request
-                              #:get-cloud-formation-stack-records-result
-                              #:get-contact-methods
-                              #:get-contact-methods-request
-                              #:get-contact-methods-result
-                              #:get-container-apimetadata
-                              #:get-container-apimetadata-request
-                              #:get-container-apimetadata-result
-                              #:get-container-images
-                              #:get-container-images-request
-                              #:get-container-images-result #:get-container-log
-                              #:get-container-log-request
-                              #:get-container-log-result
+                              #:get-contact-methods #:get-container-apimetadata
+                              #:get-container-images #:get-container-log
                               #:get-container-service-deployments
-                              #:get-container-service-deployments-request
-                              #:get-container-service-deployments-result
                               #:get-container-service-metric-data
-                              #:get-container-service-metric-data-request
-                              #:get-container-service-metric-data-result
                               #:get-container-service-powers
-                              #:get-container-service-powers-request
-                              #:get-container-service-powers-result
-                              #:get-container-services
-                              #:get-container-services-request
-                              #:get-cost-estimate #:get-cost-estimate-request
-                              #:get-cost-estimate-result #:get-disk
-                              #:get-disk-request #:get-disk-result
-                              #:get-disk-snapshot #:get-disk-snapshot-request
-                              #:get-disk-snapshot-result #:get-disk-snapshots
-                              #:get-disk-snapshots-request
-                              #:get-disk-snapshots-result #:get-disks
-                              #:get-disks-request #:get-disks-result
+                              #:get-container-services #:get-cost-estimate
+                              #:get-disk #:get-disk-snapshot
+                              #:get-disk-snapshots #:get-disks
                               #:get-distribution-bundles
-                              #:get-distribution-bundles-request
-                              #:get-distribution-bundles-result
                               #:get-distribution-latest-cache-reset
-                              #:get-distribution-latest-cache-reset-request
-                              #:get-distribution-latest-cache-reset-result
                               #:get-distribution-metric-data
-                              #:get-distribution-metric-data-request
-                              #:get-distribution-metric-data-result
-                              #:get-distributions #:get-distributions-request
-                              #:get-distributions-result #:get-domain
-                              #:get-domain-request #:get-domain-result
-                              #:get-domains #:get-domains-request
-                              #:get-domains-result
-                              #:get-export-snapshot-records
-                              #:get-export-snapshot-records-request
-                              #:get-export-snapshot-records-result
-                              #:get-instance #:get-instance-access-details
-                              #:get-instance-access-details-request
-                              #:get-instance-access-details-result
+                              #:get-distributions #:get-domain #:get-domains
+                              #:get-export-snapshot-records #:get-instance
+                              #:get-instance-access-details
                               #:get-instance-metric-data
-                              #:get-instance-metric-data-request
-                              #:get-instance-metric-data-result
                               #:get-instance-port-states
-                              #:get-instance-port-states-request
-                              #:get-instance-port-states-result
-                              #:get-instance-request #:get-instance-result
-                              #:get-instance-snapshot
-                              #:get-instance-snapshot-request
-                              #:get-instance-snapshot-result
-                              #:get-instance-snapshots
-                              #:get-instance-snapshots-request
-                              #:get-instance-snapshots-result
-                              #:get-instance-state #:get-instance-state-request
-                              #:get-instance-state-result #:get-instances
-                              #:get-instances-request #:get-instances-result
-                              #:get-key-pair #:get-key-pair-request
-                              #:get-key-pair-result #:get-key-pairs
-                              #:get-key-pairs-request #:get-key-pairs-result
+                              #:get-instance-snapshot #:get-instance-snapshots
+                              #:get-instance-state #:get-instances
+                              #:get-key-pair #:get-key-pairs
                               #:get-load-balancer
                               #:get-load-balancer-metric-data
-                              #:get-load-balancer-metric-data-request
-                              #:get-load-balancer-metric-data-result
-                              #:get-load-balancer-request
-                              #:get-load-balancer-result
                               #:get-load-balancer-tls-certificates
-                              #:get-load-balancer-tls-certificates-request
-                              #:get-load-balancer-tls-certificates-result
                               #:get-load-balancer-tls-policies
-                              #:get-load-balancer-tls-policies-request
-                              #:get-load-balancer-tls-policies-result
-                              #:get-load-balancers #:get-load-balancers-request
-                              #:get-load-balancers-result #:get-operation
-                              #:get-operation-request #:get-operation-result
+                              #:get-load-balancers #:get-operation
                               #:get-operations #:get-operations-for-resource
-                              #:get-operations-for-resource-request
-                              #:get-operations-for-resource-result
-                              #:get-operations-request #:get-operations-result
-                              #:get-regions #:get-regions-request
-                              #:get-regions-result #:get-relational-database
+                              #:get-regions #:get-relational-database
                               #:get-relational-database-blueprints
-                              #:get-relational-database-blueprints-request
-                              #:get-relational-database-blueprints-result
                               #:get-relational-database-bundles
-                              #:get-relational-database-bundles-request
-                              #:get-relational-database-bundles-result
                               #:get-relational-database-events
-                              #:get-relational-database-events-request
-                              #:get-relational-database-events-result
                               #:get-relational-database-log-events
-                              #:get-relational-database-log-events-request
-                              #:get-relational-database-log-events-result
                               #:get-relational-database-log-streams
-                              #:get-relational-database-log-streams-request
-                              #:get-relational-database-log-streams-result
                               #:get-relational-database-master-user-password
-                              #:get-relational-database-master-user-password-request
-                              #:get-relational-database-master-user-password-result
                               #:get-relational-database-metric-data
-                              #:get-relational-database-metric-data-request
-                              #:get-relational-database-metric-data-result
                               #:get-relational-database-parameters
-                              #:get-relational-database-parameters-request
-                              #:get-relational-database-parameters-result
-                              #:get-relational-database-request
-                              #:get-relational-database-result
                               #:get-relational-database-snapshot
-                              #:get-relational-database-snapshot-request
-                              #:get-relational-database-snapshot-result
                               #:get-relational-database-snapshots
-                              #:get-relational-database-snapshots-request
-                              #:get-relational-database-snapshots-result
-                              #:get-relational-databases
-                              #:get-relational-databases-request
-                              #:get-relational-databases-result
-                              #:get-setup-history #:get-setup-history-request
-                              #:get-setup-history-result #:get-static-ip
-                              #:get-static-ip-request #:get-static-ip-result
-                              #:get-static-ips #:get-static-ips-request
-                              #:get-static-ips-result #:header-enum
+                              #:get-relational-databases #:get-setup-history
+                              #:get-static-ip #:get-static-ips #:header-enum
                               #:header-forward-list #:header-object
                               #:host-key-attributes #:host-keys-list
                               #:http-endpoint #:http-protocol-ipv6
                               #:http-tokens #:iamaccess-key-id
-                              #:import-key-pair #:import-key-pair-request
-                              #:import-key-pair-result #:in-use-resource-count
+                              #:import-key-pair #:in-use-resource-count
                               #:include-certificate-details #:input-origin
                               #:instance #:instance-access-details
                               #:instance-access-protocol #:instance-entry
@@ -418,11 +195,9 @@
                               #:instance-port-state-list #:instance-snapshot
                               #:instance-snapshot-info #:instance-snapshot-list
                               #:instance-snapshot-state #:instance-state
-                              #:invalid-input-exception #:ip-address
-                              #:ip-address-type #:ipv6address
-                              #:ipv6address-list #:is-vpc-peered
-                              #:is-vpc-peered-request #:is-vpc-peered-result
-                              #:iso-date #:issuer-ca #:key-algorithm #:key-pair
+                              #:ip-address #:ip-address-type #:ipv6address
+                              #:ipv6address-list #:is-vpc-peered #:iso-date
+                              #:issuer-ca #:key-algorithm #:key-pair
                               #:key-pair-list #:lightsail-distribution
                               #:lightsail-20161128 #:load-balancer
                               #:load-balancer-attribute-name
@@ -455,15 +230,13 @@
                               #:name-servers-update-state
                               #:name-servers-update-state-code
                               #:network-protocol #:non-empty-string
-                              #:not-found-exception #:notification-trigger-list
-                              #:open-instance-public-ports
-                              #:open-instance-public-ports-request
-                              #:open-instance-public-ports-result #:operation
-                              #:operation-failure-exception #:operation-list
-                              #:operation-status #:operation-type #:origin
+                              #:notification-trigger-list
+                              #:open-instance-public-ports #:operation
+                              #:operation-list #:operation-status
+                              #:operation-type #:origin
                               #:origin-protocol-policy-enum #:partner-id-list
-                              #:password-data #:peer-vpc #:peer-vpc-request
-                              #:peer-vpc-result #:pending-maintenance-action
+                              #:password-data #:peer-vpc
+                              #:pending-maintenance-action
                               #:pending-maintenance-action-list
                               #:pending-modified-relational-database-values
                               #:port #:port-access-type #:port-info
@@ -471,24 +244,12 @@
                               #:port-list #:port-map #:port-state
                               #:pricing-unit #:private-registry-access
                               #:private-registry-access-request #:put-alarm
-                              #:put-alarm-request #:put-alarm-result
-                              #:put-instance-public-ports
-                              #:put-instance-public-ports-request
-                              #:put-instance-public-ports-result
-                              #:query-string-object
+                              #:put-instance-public-ports #:query-string-object
                               #:r53hosted-zone-deletion-state
                               #:r53hosted-zone-deletion-state-code
-                              #:reboot-instance #:reboot-instance-request
-                              #:reboot-instance-result
-                              #:reboot-relational-database
-                              #:reboot-relational-database-request
-                              #:reboot-relational-database-result
+                              #:reboot-instance #:reboot-relational-database
                               #:record-state #:region #:region-list
-                              #:region-name
-                              #:region-setup-in-progress-exception
-                              #:register-container-image
-                              #:register-container-image-request
-                              #:register-container-image-result
+                              #:region-name #:register-container-image
                               #:registered-domain-delegation-info
                               #:relational-database
                               #:relational-database-blueprint
@@ -507,13 +268,10 @@
                               #:relational-database-password-version
                               #:relational-database-snapshot
                               #:relational-database-snapshot-list
-                              #:release-static-ip #:release-static-ip-request
-                              #:release-static-ip-result #:renewal-status
+                              #:release-static-ip #:renewal-status
                               #:renewal-status-reason #:renewal-summary
                               #:request-failure-reason
-                              #:reset-distribution-cache
-                              #:reset-distribution-cache-request
-                              #:reset-distribution-cache-result #:resource-arn
+                              #:reset-distribution-cache #:resource-arn
                               #:resource-bucket-access
                               #:resource-budget-estimate #:resource-location
                               #:resource-name #:resource-name-list
@@ -521,76 +279,34 @@
                               #:resource-type #:resources-budget-estimate
                               #:revocation-reason
                               #:send-contact-method-verification
-                              #:send-contact-method-verification-request
-                              #:send-contact-method-verification-result
                               #:sensitive-non-empty-string #:sensitive-string
-                              #:serial-number #:service-exception #:session
-                              #:sessions #:set-ip-address-type
-                              #:set-ip-address-type-request
-                              #:set-ip-address-type-result
+                              #:serial-number #:session #:sessions
+                              #:set-ip-address-type
                               #:set-resource-access-for-bucket
-                              #:set-resource-access-for-bucket-request
-                              #:set-resource-access-for-bucket-result
                               #:setup-domain-name #:setup-domain-name-list
                               #:setup-execution-details
                               #:setup-execution-details-list #:setup-history
                               #:setup-history-page-token
                               #:setup-history-resource #:setup-instance-https
-                              #:setup-instance-https-request
-                              #:setup-instance-https-result #:setup-request
-                              #:setup-status #:start-guisession
-                              #:start-guisession-request
-                              #:start-guisession-result #:start-instance
-                              #:start-instance-request #:start-instance-result
-                              #:start-relational-database
-                              #:start-relational-database-request
-                              #:start-relational-database-result #:static-ip
-                              #:static-ip-list #:status #:status-type
-                              #:stop-guisession #:stop-guisession-request
-                              #:stop-guisession-result #:stop-instance
+                              #:setup-request #:setup-status #:start-guisession
+                              #:start-instance #:start-relational-database
+                              #:static-ip #:static-ip-list #:status
+                              #:status-type #:stop-guisession #:stop-instance
                               #:stop-instance-on-idle-request
-                              #:stop-instance-request #:stop-instance-result
-                              #:stop-relational-database
-                              #:stop-relational-database-request
-                              #:stop-relational-database-result #:string-list
+                              #:stop-relational-database #:string-list
                               #:string-max256 #:subject-alternative-name-list
                               #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-result #:tag-value #:test-alarm
-                              #:test-alarm-request #:test-alarm-result
+                              #:tag-resource #:tag-value #:test-alarm
                               #:time-of-day #:time-period #:treat-missing-data
-                              #:unauthenticated-exception #:unpeer-vpc
-                              #:unpeer-vpc-request #:unpeer-vpc-result
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-result #:update-bucket
-                              #:update-bucket-bundle
-                              #:update-bucket-bundle-request
-                              #:update-bucket-bundle-result
-                              #:update-bucket-request #:update-bucket-result
-                              #:update-container-service
-                              #:update-container-service-request
-                              #:update-container-service-result
+                              #:unpeer-vpc #:untag-resource #:update-bucket
+                              #:update-bucket-bundle #:update-container-service
                               #:update-distribution
                               #:update-distribution-bundle
-                              #:update-distribution-bundle-request
-                              #:update-distribution-bundle-result
-                              #:update-distribution-request
-                              #:update-distribution-result
                               #:update-domain-entry
-                              #:update-domain-entry-request
-                              #:update-domain-entry-result
                               #:update-instance-metadata-options
-                              #:update-instance-metadata-options-request
-                              #:update-instance-metadata-options-result
                               #:update-load-balancer-attribute
-                              #:update-load-balancer-attribute-request
-                              #:update-load-balancer-attribute-result
                               #:update-relational-database
                               #:update-relational-database-parameters
-                              #:update-relational-database-parameters-request
-                              #:update-relational-database-parameters-result
-                              #:update-relational-database-request
-                              #:update-relational-database-result
                               #:viewer-minimum-tls-protocol-version-enum
                               #:boolean #:double #:float #:integer #:long
                               #:setup-history-list #:string #:timestamp))

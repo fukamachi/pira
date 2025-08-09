@@ -1,21 +1,17 @@
 (uiop/package:define-package #:pira/appconfigdata (:use)
                              (:export #:app-config-data #:bad-request-details
-                              #:bad-request-exception #:bad-request-reason
-                              #:configuration-session
+                              #:bad-request-reason #:configuration-session
                               #:get-latest-configuration
                               #:get-latest-configuration-request
                               #:get-latest-configuration-response #:id
-                              #:identifier #:integer
-                              #:internal-server-exception
-                              #:invalid-parameter-detail
+                              #:identifier #:integer #:invalid-parameter-detail
                               #:invalid-parameter-map
                               #:invalid-parameter-problem
-                              #:optional-poll-seconds
-                              #:resource-not-found-exception #:resource-type
+                              #:optional-poll-seconds #:resource-type
                               #:sensitive-blob #:start-configuration-session
                               #:start-configuration-session-request
                               #:start-configuration-session-response #:string
-                              #:string-map #:throttling-exception #:token))
+                              #:string-map #:token))
 (common-lisp:in-package #:pira/appconfigdata)
 
 (smithy/sdk/service:define-service app-config-data :shape-name "AppConfigData"

@@ -1,22 +1,15 @@
 (uiop/package:define-package #:pira/qldb-session (:use)
                              (:export #:abort-transaction-request
-                              #:abort-transaction-result
-                              #:bad-request-exception
-                              #:capacity-exceeded-exception #:commit-digest
+                              #:abort-transaction-result #:commit-digest
                               #:commit-transaction-request
                               #:commit-transaction-result #:end-session-request
                               #:end-session-result #:error-code #:error-message
                               #:execute-statement-request
                               #:execute-statement-result #:fetch-page-request
-                              #:fetch-page-result #:iousage
-                              #:invalid-session-exception #:ion-binary
-                              #:ion-text #:ledger-name
-                              #:limit-exceeded-exception
-                              #:occ-conflict-exception #:page #:page-token
+                              #:fetch-page-result #:iousage #:ion-binary
+                              #:ion-text #:ledger-name #:page #:page-token
                               #:processing-time-milliseconds #:qldbsession
-                              #:rate-exceeded-exception #:read-ios
-                              #:send-command #:send-command-request
-                              #:send-command-result #:session-token
+                              #:read-ios #:send-command #:session-token
                               #:start-session-request #:start-session-result
                               #:start-transaction-request
                               #:start-transaction-result #:statement

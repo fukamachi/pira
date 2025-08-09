@@ -1,80 +1,37 @@
 (uiop/package:define-package #:pira/s3tables (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:bad-request-exception #:conflict-exception
-                              #:create-namespace #:create-namespace-request
-                              #:create-namespace-response #:create-table
-                              #:create-table-bucket
-                              #:create-table-bucket-request
-                              #:create-table-bucket-response
-                              #:create-table-request #:create-table-response
-                              #:delete-namespace #:delete-namespace-request
-                              #:delete-table #:delete-table-bucket
+                             (:export #:account-id #:create-namespace
+                              #:create-table #:create-table-bucket
+                              #:delete-namespace #:delete-table
+                              #:delete-table-bucket
                               #:delete-table-bucket-encryption
-                              #:delete-table-bucket-encryption-request
                               #:delete-table-bucket-policy
-                              #:delete-table-bucket-policy-request
-                              #:delete-table-bucket-request
-                              #:delete-table-policy
-                              #:delete-table-policy-request
-                              #:delete-table-request #:encryption-configuration
-                              #:error-message #:forbidden-exception
-                              #:get-namespace #:get-namespace-request
-                              #:get-namespace-response #:get-table
+                              #:delete-table-policy #:encryption-configuration
+                              #:error-message #:get-namespace #:get-table
                               #:get-table-bucket #:get-table-bucket-encryption
-                              #:get-table-bucket-encryption-request
-                              #:get-table-bucket-encryption-response
                               #:get-table-bucket-maintenance-configuration
-                              #:get-table-bucket-maintenance-configuration-request
-                              #:get-table-bucket-maintenance-configuration-response
-                              #:get-table-bucket-policy
-                              #:get-table-bucket-policy-request
-                              #:get-table-bucket-policy-response
-                              #:get-table-bucket-request
-                              #:get-table-bucket-response
-                              #:get-table-encryption
-                              #:get-table-encryption-request
-                              #:get-table-encryption-response
+                              #:get-table-bucket-policy #:get-table-encryption
                               #:get-table-maintenance-configuration
-                              #:get-table-maintenance-configuration-request
-                              #:get-table-maintenance-configuration-response
                               #:get-table-maintenance-job-status
-                              #:get-table-maintenance-job-status-request
-                              #:get-table-maintenance-job-status-response
-                              #:get-table-metadata-location
-                              #:get-table-metadata-location-request
-                              #:get-table-metadata-location-response
-                              #:get-table-policy #:get-table-policy-request
-                              #:get-table-policy-response #:get-table-request
-                              #:get-table-response
+                              #:get-table-metadata-location #:get-table-policy
                               #:iceberg-compaction-settings
                               #:iceberg-compaction-strategy #:iceberg-metadata
                               #:iceberg-schema
                               #:iceberg-snapshot-management-settings
                               #:iceberg-unreferenced-file-removal-settings
-                              #:internal-server-error-exception #:job-status
-                              #:list-namespaces #:list-namespaces-limit
-                              #:list-namespaces-request
-                              #:list-namespaces-response #:list-table-buckets
-                              #:list-table-buckets-limit
-                              #:list-table-buckets-request
-                              #:list-table-buckets-response #:list-tables
-                              #:list-tables-limit #:list-tables-request
-                              #:list-tables-response #:maintenance-status
+                              #:job-status #:list-namespaces
+                              #:list-namespaces-limit #:list-table-buckets
+                              #:list-table-buckets-limit #:list-tables
+                              #:list-tables-limit #:maintenance-status
                               #:metadata-location #:namespace-id
                               #:namespace-list #:namespace-name
                               #:namespace-resource #:namespace-summary
                               #:namespace-summary-list #:next-token
-                              #:not-found-exception #:open-table-format
-                              #:positive-integer #:put-table-bucket-encryption
-                              #:put-table-bucket-encryption-request
+                              #:open-table-format #:positive-integer
+                              #:put-table-bucket-encryption
                               #:put-table-bucket-maintenance-configuration
-                              #:put-table-bucket-maintenance-configuration-request
                               #:put-table-bucket-policy
-                              #:put-table-bucket-policy-request
                               #:put-table-maintenance-configuration
-                              #:put-table-maintenance-configuration-request
-                              #:put-table-policy #:put-table-policy-request
-                              #:rename-table #:rename-table-request
+                              #:put-table-policy #:rename-table
                               #:resource-policy #:s3table-buckets
                               #:ssealgorithm #:schema-field #:schema-field-list
                               #:table-arn #:table-bucket-arn
@@ -99,11 +56,8 @@
                               #:table-name #:table-policy-resource
                               #:table-resource #:table-summary
                               #:table-summary-list #:table-type
-                              #:too-many-requests-exception
-                              #:update-table-metadata-location
-                              #:update-table-metadata-location-request
-                              #:update-table-metadata-location-response
-                              #:version-token #:warehouse-location))
+                              #:update-table-metadata-location #:version-token
+                              #:warehouse-location))
 (common-lisp:in-package #:pira/s3tables)
 
 (smithy/sdk/service:define-service s3table-buckets :shape-name "S3TableBuckets"

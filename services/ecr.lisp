@@ -7,72 +7,30 @@
                               #:authorization-data #:authorization-data-list
                               #:aws-ecr-container-image-details #:base64
                               #:base-score #:batch-check-layer-availability
-                              #:batch-check-layer-availability-request
-                              #:batch-check-layer-availability-response
-                              #:batch-delete-image #:batch-delete-image-request
-                              #:batch-delete-image-response #:batch-get-image
-                              #:batch-get-image-request
-                              #:batch-get-image-response
+                              #:batch-delete-image #:batch-get-image
                               #:batch-get-repository-scanning-configuration
-                              #:batch-get-repository-scanning-configuration-request
-                              #:batch-get-repository-scanning-configuration-response
                               #:batched-operation-layer-digest
                               #:batched-operation-layer-digest-list
                               #:complete-layer-upload
-                              #:complete-layer-upload-request
-                              #:complete-layer-upload-response
                               #:create-pull-through-cache-rule
-                              #:create-pull-through-cache-rule-request
-                              #:create-pull-through-cache-rule-response
                               #:create-repository
                               #:create-repository-creation-template
-                              #:create-repository-creation-template-request
-                              #:create-repository-creation-template-response
-                              #:create-repository-request
-                              #:create-repository-response #:creation-timestamp
-                              #:credential-arn #:custom-role-arn #:cvss-score
+                              #:creation-timestamp #:credential-arn
+                              #:custom-role-arn #:cvss-score
                               #:cvss-score-adjustment
                               #:cvss-score-adjustment-list #:cvss-score-details
                               #:cvss-score-list #:date
                               #:delete-lifecycle-policy
-                              #:delete-lifecycle-policy-request
-                              #:delete-lifecycle-policy-response
                               #:delete-pull-through-cache-rule
-                              #:delete-pull-through-cache-rule-request
-                              #:delete-pull-through-cache-rule-response
-                              #:delete-registry-policy
-                              #:delete-registry-policy-request
-                              #:delete-registry-policy-response
-                              #:delete-repository
+                              #:delete-registry-policy #:delete-repository
                               #:delete-repository-creation-template
-                              #:delete-repository-creation-template-request
-                              #:delete-repository-creation-template-response
                               #:delete-repository-policy
-                              #:delete-repository-policy-request
-                              #:delete-repository-policy-response
-                              #:delete-repository-request
-                              #:delete-repository-response
                               #:describe-image-replication-status
-                              #:describe-image-replication-status-request
-                              #:describe-image-replication-status-response
-                              #:describe-image-scan-findings
-                              #:describe-image-scan-findings-request
-                              #:describe-image-scan-findings-response
-                              #:describe-images #:describe-images-filter
-                              #:describe-images-request
-                              #:describe-images-response
+                              #:describe-image-scan-findings #:describe-images
+                              #:describe-images-filter
                               #:describe-pull-through-cache-rules
-                              #:describe-pull-through-cache-rules-request
-                              #:describe-pull-through-cache-rules-response
-                              #:describe-registry #:describe-registry-request
-                              #:describe-registry-response
-                              #:describe-repositories
-                              #:describe-repositories-request
-                              #:describe-repositories-response
+                              #:describe-registry #:describe-repositories
                               #:describe-repository-creation-templates
-                              #:describe-repository-creation-templates-request
-                              #:describe-repository-creation-templates-response
-                              #:empty-upload-exception
                               #:encryption-configuration
                               #:encryption-configuration-for-repository-creation-template
                               #:encryption-type #:enhanced-image-scan-finding
@@ -83,40 +41,20 @@
                               #:finding-name #:finding-severity
                               #:finding-severity-counts #:fix-available
                               #:fixed-in-version #:force-flag
-                              #:get-account-setting
-                              #:get-account-setting-request
-                              #:get-account-setting-response
-                              #:get-authorization-token
+                              #:get-account-setting #:get-authorization-token
                               #:get-authorization-token-registry-id-list
-                              #:get-authorization-token-request
-                              #:get-authorization-token-response
                               #:get-download-url-for-layer
-                              #:get-download-url-for-layer-request
-                              #:get-download-url-for-layer-response
                               #:get-lifecycle-policy
                               #:get-lifecycle-policy-preview
-                              #:get-lifecycle-policy-preview-request
-                              #:get-lifecycle-policy-preview-response
-                              #:get-lifecycle-policy-request
-                              #:get-lifecycle-policy-response
                               #:get-registry-policy
-                              #:get-registry-policy-request
-                              #:get-registry-policy-response
                               #:get-registry-scanning-configuration
-                              #:get-registry-scanning-configuration-request
-                              #:get-registry-scanning-configuration-response
-                              #:get-repository-policy
-                              #:get-repository-policy-request
-                              #:get-repository-policy-response #:image
-                              #:image-action-type
-                              #:image-already-exists-exception #:image-count
-                              #:image-detail #:image-detail-list #:image-digest
-                              #:image-digest-does-not-match-exception
+                              #:get-repository-policy #:image
+                              #:image-action-type #:image-count #:image-detail
+                              #:image-detail-list #:image-digest
                               #:image-failure #:image-failure-code
                               #:image-failure-list #:image-failure-reason
                               #:image-identifier #:image-identifier-list
                               #:image-list #:image-manifest
-                              #:image-not-found-exception
                               #:image-replication-status
                               #:image-replication-status-list
                               #:image-scan-finding #:image-scan-finding-list
@@ -124,37 +62,21 @@
                               #:image-scan-findings-summary #:image-scan-status
                               #:image-scanning-configuration
                               #:image-size-in-bytes #:image-tag
-                              #:image-tag-already-exists-exception
                               #:image-tag-list #:image-tag-mutability
                               #:image-tag-mutability-exclusion-filter
                               #:image-tag-mutability-exclusion-filter-type
                               #:image-tag-mutability-exclusion-filter-value
                               #:image-tag-mutability-exclusion-filters
                               #:image-tags-list #:in-use-count
-                              #:initiate-layer-upload
-                              #:initiate-layer-upload-request
-                              #:initiate-layer-upload-response
-                              #:invalid-layer-exception
-                              #:invalid-layer-part-exception
-                              #:invalid-parameter-exception
-                              #:invalid-tag-parameter-exception
-                              #:is-ptcrule-valid #:kms-error #:kms-exception
-                              #:kms-key
+                              #:initiate-layer-upload #:is-ptcrule-valid
+                              #:kms-error #:kms-key
                               #:kms-key-for-repository-creation-template
-                              #:layer #:layer-already-exists-exception
-                              #:layer-availability #:layer-digest
+                              #:layer #:layer-availability #:layer-digest
                               #:layer-digest-list #:layer-failure
                               #:layer-failure-code #:layer-failure-list
-                              #:layer-failure-reason
-                              #:layer-inaccessible-exception #:layer-list
-                              #:layer-part-blob
-                              #:layer-part-too-small-exception
-                              #:layer-size-in-bytes
-                              #:layers-not-found-exception
-                              #:lifecycle-policy-not-found-exception
+                              #:layer-failure-reason #:layer-list
+                              #:layer-part-blob #:layer-size-in-bytes
                               #:lifecycle-policy-preview-filter
-                              #:lifecycle-policy-preview-in-progress-exception
-                              #:lifecycle-policy-preview-not-found-exception
                               #:lifecycle-policy-preview-result
                               #:lifecycle-policy-preview-result-list
                               #:lifecycle-policy-preview-status
@@ -163,50 +85,25 @@
                               #:lifecycle-policy-rule-priority
                               #:lifecycle-policy-text
                               #:lifecycle-policy-text-for-repository-creation-template
-                              #:lifecycle-preview-max-results
-                              #:limit-exceeded-exception #:list-images
-                              #:list-images-filter #:list-images-request
-                              #:list-images-response #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:media-type #:media-type-list #:metric
-                              #:next-token #:ptcvalidate-failure
+                              #:lifecycle-preview-max-results #:list-images
+                              #:list-images-filter #:list-tags-for-resource
+                              #:max-results #:media-type #:media-type-list
+                              #:metric #:next-token #:ptcvalidate-failure
                               #:package-manager #:package-vulnerability-details
                               #:part-size #:platform #:prefix #:prefix-list
                               #:proxy-endpoint #:pull-through-cache-rule
-                              #:pull-through-cache-rule-already-exists-exception
                               #:pull-through-cache-rule-list
-                              #:pull-through-cache-rule-not-found-exception
                               #:pull-through-cache-rule-repository-prefix
                               #:pull-through-cache-rule-repository-prefix-list
                               #:push-timestamp #:put-account-setting
-                              #:put-account-setting-request
-                              #:put-account-setting-response #:put-image
-                              #:put-image-request #:put-image-response
-                              #:put-image-scanning-configuration
-                              #:put-image-scanning-configuration-request
-                              #:put-image-scanning-configuration-response
-                              #:put-image-tag-mutability
-                              #:put-image-tag-mutability-request
-                              #:put-image-tag-mutability-response
-                              #:put-lifecycle-policy
-                              #:put-lifecycle-policy-request
-                              #:put-lifecycle-policy-response
+                              #:put-image #:put-image-scanning-configuration
+                              #:put-image-tag-mutability #:put-lifecycle-policy
                               #:put-registry-policy
-                              #:put-registry-policy-request
-                              #:put-registry-policy-response
                               #:put-registry-scanning-configuration
-                              #:put-registry-scanning-configuration-request
-                              #:put-registry-scanning-configuration-response
-                              #:put-replication-configuration
-                              #:put-replication-configuration-request
-                              #:put-replication-configuration-response
-                              #:rctapplied-for #:rctapplied-for-list #:reason
-                              #:recommendation #:recommendation-text
-                              #:recorded-pull-timestamp #:reference-urls-list
-                              #:referenced-images-not-found-exception #:region
-                              #:registry-id
-                              #:registry-policy-not-found-exception
+                              #:put-replication-configuration #:rctapplied-for
+                              #:rctapplied-for-list #:reason #:recommendation
+                              #:recommendation-text #:recorded-pull-timestamp
+                              #:reference-urls-list #:region #:registry-id
                               #:registry-policy-text
                               #:registry-scanning-configuration
                               #:registry-scanning-rule
@@ -218,17 +115,12 @@
                               #:replication-destination-list
                               #:replication-error #:replication-rule
                               #:replication-rule-list #:replication-status
-                              #:repository
-                              #:repository-already-exists-exception
-                              #:repository-creation-template
+                              #:repository #:repository-creation-template
                               #:repository-creation-template-list
                               #:repository-filter #:repository-filter-list
                               #:repository-filter-type
                               #:repository-filter-value #:repository-list
                               #:repository-name #:repository-name-list
-                              #:repository-not-empty-exception
-                              #:repository-not-found-exception
-                              #:repository-policy-not-found-exception
                               #:repository-policy-text
                               #:repository-scanning-configuration
                               #:repository-scanning-configuration-failure
@@ -236,10 +128,10 @@
                               #:repository-scanning-configuration-list
                               #:repository-template-description #:resource
                               #:resource-details #:resource-id #:resource-list
-                              #:scan-frequency #:scan-not-found-exception
-                              #:scan-on-push-flag #:scan-status
-                              #:scan-status-description #:scan-timestamp
-                              #:scan-type #:scanning-configuration-failure-code
+                              #:scan-frequency #:scan-on-push-flag
+                              #:scan-status #:scan-status-description
+                              #:scan-timestamp #:scan-type
+                              #:scanning-configuration-failure-code
                               #:scanning-configuration-failure-reason
                               #:scanning-configuration-repository-name-list
                               #:scanning-repository-filter
@@ -247,44 +139,18 @@
                               #:scanning-repository-filter-type
                               #:scanning-repository-filter-value #:score
                               #:score-details #:scoring-vector
-                              #:secret-not-found-exception #:server-exception
-                              #:set-repository-policy
-                              #:set-repository-policy-request
-                              #:set-repository-policy-response #:severity
+                              #:set-repository-policy #:severity
                               #:severity-count #:source #:source-layer-hash
-                              #:start-image-scan #:start-image-scan-request
-                              #:start-image-scan-response
-                              #:start-lifecycle-policy-preview
-                              #:start-lifecycle-policy-preview-request
-                              #:start-lifecycle-policy-preview-response
-                              #:status #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-status #:tag-value
-                              #:tags #:template-already-exists-exception
-                              #:template-not-found-exception #:title
-                              #:too-many-tags-exception #:type
-                              #:unable-to-access-secret-exception
-                              #:unable-to-decrypt-secret-value-exception
-                              #:unable-to-get-upstream-image-exception
-                              #:unable-to-get-upstream-layer-exception
-                              #:unsupported-image-type-exception
-                              #:unsupported-upstream-registry-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:start-image-scan
+                              #:start-lifecycle-policy-preview #:status #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-status #:tag-value #:tags
+                              #:title #:type #:untag-resource
                               #:update-pull-through-cache-rule
-                              #:update-pull-through-cache-rule-request
-                              #:update-pull-through-cache-rule-response
                               #:update-repository-creation-template
-                              #:update-repository-creation-template-request
-                              #:update-repository-creation-template-response
                               #:updated-timestamp #:upload-id
-                              #:upload-layer-part #:upload-layer-part-request
-                              #:upload-layer-part-response
-                              #:upload-not-found-exception #:upstream-registry
-                              #:url #:validate-pull-through-cache-rule
-                              #:validate-pull-through-cache-rule-request
-                              #:validate-pull-through-cache-rule-response
-                              #:validation-exception #:version
+                              #:upload-layer-part #:upstream-registry #:url
+                              #:validate-pull-through-cache-rule #:version
                               #:vulnerability-id
                               #:vulnerability-source-update-timestamp
                               #:vulnerable-package #:vulnerable-package-name

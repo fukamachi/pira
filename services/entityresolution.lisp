@@ -1,38 +1,14 @@
 (uiop/package:define-package #:pira/entityresolution (:use)
                              (:export #:awsvenice-service
-                              #:access-denied-exception #:add-policy-statement
-                              #:add-policy-statement-input
-                              #:add-policy-statement-output
-                              #:attribute-matching-model #:attribute-name
-                              #:aws-account-id #:aws-account-id-list
-                              #:batch-delete-unique-id
-                              #:batch-delete-unique-id-input
-                              #:batch-delete-unique-id-output
-                              #:conflict-exception #:create-id-mapping-workflow
-                              #:create-id-mapping-workflow-input
-                              #:create-id-mapping-workflow-output
-                              #:create-id-namespace #:create-id-namespace-input
-                              #:create-id-namespace-output
-                              #:create-matching-workflow
-                              #:create-matching-workflow-input
-                              #:create-matching-workflow-output
+                              #:add-policy-statement #:attribute-matching-model
+                              #:attribute-name #:aws-account-id
+                              #:aws-account-id-list #:batch-delete-unique-id
+                              #:create-id-mapping-workflow
+                              #:create-id-namespace #:create-matching-workflow
                               #:create-schema-mapping
-                              #:create-schema-mapping-input
-                              #:create-schema-mapping-output
                               #:delete-id-mapping-workflow
-                              #:delete-id-mapping-workflow-input
-                              #:delete-id-mapping-workflow-output
-                              #:delete-id-namespace #:delete-id-namespace-input
-                              #:delete-id-namespace-output
-                              #:delete-matching-workflow
-                              #:delete-matching-workflow-input
-                              #:delete-matching-workflow-output
-                              #:delete-policy-statement
-                              #:delete-policy-statement-input
-                              #:delete-policy-statement-output
-                              #:delete-schema-mapping
-                              #:delete-schema-mapping-input
-                              #:delete-schema-mapping-output
+                              #:delete-id-namespace #:delete-matching-workflow
+                              #:delete-policy-statement #:delete-schema-mapping
                               #:delete-unique-id-error
                               #:delete-unique-id-error-type
                               #:delete-unique-id-errors-list
@@ -41,29 +17,14 @@
                               #:disconnected-unique-ids-list #:entity-name
                               #:entity-name-or-id-mapping-workflow-arn
                               #:entity-name-or-id-namespace-arn #:error-details
-                              #:error-message #:exceeds-limit-exception
-                              #:failed-record #:failed-records-list
-                              #:generate-match-id #:generate-match-id-input
-                              #:generate-match-id-output #:get-id-mapping-job
-                              #:get-id-mapping-job-input
-                              #:get-id-mapping-job-output
-                              #:get-id-mapping-workflow
-                              #:get-id-mapping-workflow-input
-                              #:get-id-mapping-workflow-output
-                              #:get-id-namespace #:get-id-namespace-input
-                              #:get-id-namespace-output #:get-match-id
-                              #:get-match-id-input #:get-match-id-output
-                              #:get-matching-job #:get-matching-job-input
-                              #:get-matching-job-output #:get-matching-workflow
-                              #:get-matching-workflow-input
-                              #:get-matching-workflow-output #:get-policy
-                              #:get-policy-input #:get-policy-output
-                              #:get-provider-service
-                              #:get-provider-service-input
-                              #:get-provider-service-output
-                              #:get-schema-mapping #:get-schema-mapping-input
-                              #:get-schema-mapping-output
-                              #:header-safe-unique-id #:id-mapping-job-metrics
+                              #:error-message #:failed-record
+                              #:failed-records-list #:generate-match-id
+                              #:get-id-mapping-job #:get-id-mapping-workflow
+                              #:get-id-namespace #:get-match-id
+                              #:get-matching-job #:get-matching-workflow
+                              #:get-policy #:get-provider-service
+                              #:get-schema-mapping #:header-safe-unique-id
+                              #:id-mapping-job-metrics
                               #:id-mapping-job-output-source
                               #:id-mapping-job-output-source-config
                               #:id-mapping-role-arn
@@ -88,32 +49,14 @@
                               #:id-namespace-type #:incremental-run-config
                               #:incremental-run-type #:input-source
                               #:input-source-config
-                              #:intermediate-source-configuration
-                              #:internal-server-exception #:job-id #:job-list
-                              #:job-metrics #:job-output-source
+                              #:intermediate-source-configuration #:job-id
+                              #:job-list #:job-metrics #:job-output-source
                               #:job-output-source-config #:job-status
                               #:job-summary #:kmsarn #:list-id-mapping-jobs
-                              #:list-id-mapping-jobs-input
-                              #:list-id-mapping-jobs-output
-                              #:list-id-mapping-workflows
-                              #:list-id-mapping-workflows-input
-                              #:list-id-mapping-workflows-output
-                              #:list-id-namespaces #:list-id-namespaces-input
-                              #:list-id-namespaces-output #:list-matching-jobs
-                              #:list-matching-jobs-input
-                              #:list-matching-jobs-output
-                              #:list-matching-workflows
-                              #:list-matching-workflows-input
-                              #:list-matching-workflows-output
-                              #:list-provider-services
-                              #:list-provider-services-input
-                              #:list-provider-services-output
-                              #:list-schema-mappings
-                              #:list-schema-mappings-input
-                              #:list-schema-mappings-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:match-group
+                              #:list-id-mapping-workflows #:list-id-namespaces
+                              #:list-matching-jobs #:list-matching-workflows
+                              #:list-provider-services #:list-schema-mappings
+                              #:list-tags-for-resource #:match-group
                               #:match-groups-list #:match-purpose
                               #:matched-record #:matched-records-list
                               #:matching-keys #:matching-workflow-arn
@@ -134,47 +77,30 @@
                               #:provider-service-arn
                               #:provider-service-display-name
                               #:provider-service-list
-                              #:provider-service-summary #:put-policy
-                              #:put-policy-input #:put-policy-output #:record
+                              #:provider-service-summary #:put-policy #:record
                               #:record-attribute-map
                               #:record-attribute-map-string255 #:record-list
                               #:record-matching-model
                               #:record-matching-model-list
                               #:required-bucket-actions-list
                               #:resolution-techniques #:resolution-type
-                              #:resource-not-found-exception #:role-arn #:rule
-                              #:rule-based-properties #:rule-condition
-                              #:rule-condition-list #:rule-condition-properties
-                              #:rule-list #:s3path #:schema-attribute-type
-                              #:schema-input-attribute
+                              #:role-arn #:rule #:rule-based-properties
+                              #:rule-condition #:rule-condition-list
+                              #:rule-condition-properties #:rule-list #:s3path
+                              #:schema-attribute-type #:schema-input-attribute
                               #:schema-input-attributes #:schema-list
                               #:schema-mapping-arn #:schema-mapping-list
                               #:schema-mapping-summary #:schemas #:service-type
-                              #:start-id-mapping-job
-                              #:start-id-mapping-job-input
-                              #:start-id-mapping-job-output
-                              #:start-matching-job #:start-matching-job-input
-                              #:start-matching-job-output #:statement-action
-                              #:statement-action-list #:statement-condition
-                              #:statement-effect #:statement-id
-                              #:statement-principal #:statement-principal-list
-                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:throttling-exception #:unique-id
-                              #:unique-id-list #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:update-id-mapping-workflow
-                              #:update-id-mapping-workflow-input
-                              #:update-id-mapping-workflow-output
-                              #:update-id-namespace #:update-id-namespace-input
-                              #:update-id-namespace-output
-                              #:update-matching-workflow
-                              #:update-matching-workflow-input
-                              #:update-matching-workflow-output
-                              #:update-schema-mapping
-                              #:update-schema-mapping-input
-                              #:update-schema-mapping-output
-                              #:validation-exception #:venice-global-arn))
+                              #:start-id-mapping-job #:start-matching-job
+                              #:statement-action #:statement-action-list
+                              #:statement-condition #:statement-effect
+                              #:statement-id #:statement-principal
+                              #:statement-principal-list #:tag-key
+                              #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:unique-id #:unique-id-list
+                              #:untag-resource #:update-id-mapping-workflow
+                              #:update-id-namespace #:update-matching-workflow
+                              #:update-schema-mapping #:venice-global-arn))
 (common-lisp:in-package #:pira/entityresolution)
 
 (smithy/sdk/service:define-service awsvenice-service :shape-name

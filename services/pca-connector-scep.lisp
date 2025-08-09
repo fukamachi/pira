@@ -1,45 +1,23 @@
 (uiop/package:define-package #:pira/pca-connector-scep (:use)
-                             (:export #:access-denied-exception
-                              #:azure-application-id #:azure-domain
-                              #:bad-request-exception
+                             (:export #:azure-application-id #:azure-domain
                               #:certificate-authority-arn #:challenge
                               #:challenge-arn #:challenge-metadata
                               #:challenge-metadata-list
                               #:challenge-metadata-summary #:challenge-resource
-                              #:client-token #:conflict-exception #:connector
-                              #:connector-arn #:connector-list
-                              #:connector-resource #:connector-status
-                              #:connector-status-reason #:connector-summary
-                              #:connector-type #:create-challenge
-                              #:create-challenge-request
-                              #:create-challenge-response #:create-connector
-                              #:create-connector-request
-                              #:create-connector-response #:delete-challenge
-                              #:delete-challenge-request #:delete-connector
-                              #:delete-connector-request
-                              #:get-challenge-metadata
-                              #:get-challenge-metadata-request
-                              #:get-challenge-metadata-response
-                              #:get-challenge-password
-                              #:get-challenge-password-request
-                              #:get-challenge-password-response #:get-connector
-                              #:get-connector-request #:get-connector-response
-                              #:internal-server-exception
-                              #:intune-configuration #:list-challenge-metadata
-                              #:list-challenge-metadata-request
-                              #:list-challenge-metadata-response
-                              #:list-connectors #:list-connectors-request
-                              #:list-connectors-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:client-token #:connector #:connector-arn
+                              #:connector-list #:connector-resource
+                              #:connector-status #:connector-status-reason
+                              #:connector-summary #:connector-type
+                              #:create-challenge #:create-connector
+                              #:delete-challenge #:delete-connector
+                              #:get-challenge-metadata #:get-challenge-password
+                              #:get-connector #:intune-configuration
+                              #:list-challenge-metadata #:list-connectors
+                              #:list-tags-for-resource #:max-results
                               #:mobile-device-management #:next-token
                               #:open-id-configuration #:pca-connector-scep
-                              #:resource-not-found-exception #:sensitive-string
-                              #:service-quota-exceeded-exception #:tag-key-list
-                              #:tag-resource #:tag-resource-request #:tags
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request #:validation-exception
+                              #:sensitive-string #:tag-key-list #:tag-resource
+                              #:tags #:untag-resource
                               #:validation-exception-reason))
 (common-lisp:in-package #:pira/pca-connector-scep)
 

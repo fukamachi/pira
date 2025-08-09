@@ -1,56 +1,28 @@
 (uiop/package:define-package #:pira/account (:use)
-                             (:export #:accept-primary-email-update
-                              #:accept-primary-email-update-request
-                              #:accept-primary-email-update-response
-                              #:access-denied-exception #:account
+                             (:export #:accept-primary-email-update #:account
                               #:account-created-date #:account-id
                               #:account-name #:account-name-resource
                               #:address-line #:alternate-contact
                               #:alternate-contact-resource
                               #:alternate-contact-type #:city #:company-name
-                              #:conflict-exception #:contact-information
+                              #:contact-information
                               #:contact-information-phone-number
                               #:contact-information-resource #:country-code
-                              #:delete-alternate-contact
-                              #:delete-alternate-contact-request
-                              #:disable-region #:disable-region-request
+                              #:delete-alternate-contact #:disable-region
                               #:district-or-county #:email-address
-                              #:enable-region #:enable-region-request
-                              #:full-name #:get-account-information
-                              #:get-account-information-request
-                              #:get-account-information-response
-                              #:get-alternate-contact
-                              #:get-alternate-contact-request
-                              #:get-alternate-contact-response
-                              #:get-contact-information
-                              #:get-contact-information-request
-                              #:get-contact-information-response
-                              #:get-primary-email #:get-primary-email-request
-                              #:get-primary-email-response
-                              #:get-region-opt-status
-                              #:get-region-opt-status-request
-                              #:get-region-opt-status-response
-                              #:internal-server-exception #:list-regions
-                              #:list-regions-request #:list-regions-response
-                              #:name #:otp #:phone-number #:postal-code
+                              #:enable-region #:full-name
+                              #:get-account-information #:get-alternate-contact
+                              #:get-contact-information #:get-primary-email
+                              #:get-region-opt-status #:list-regions #:name
+                              #:otp #:phone-number #:postal-code
                               #:primary-email-address #:primary-email-resource
                               #:primary-email-update-status #:put-account-name
-                              #:put-account-name-request
-                              #:put-alternate-contact
-                              #:put-alternate-contact-request
-                              #:put-contact-information
-                              #:put-contact-information-request #:region
-                              #:region-name #:region-opt-list
+                              #:put-alternate-contact #:put-contact-information
+                              #:region #:region-name #:region-opt-list
                               #:region-opt-resource #:region-opt-status
-                              #:region-opt-status-list
-                              #:resource-not-found-exception #:sensitive-string
-                              #:start-primary-email-update
-                              #:start-primary-email-update-request
-                              #:start-primary-email-update-response
-                              #:state-or-region #:title
-                              #:too-many-requests-exception
-                              #:validation-exception
-                              #:validation-exception-field
+                              #:region-opt-status-list #:sensitive-string
+                              #:start-primary-email-update #:state-or-region
+                              #:title #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:website-url))
 (common-lisp:in-package #:pira/account)

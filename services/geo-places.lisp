@@ -1,8 +1,7 @@
 (uiop/package:define-package #:pira/geo-places (:use)
-                             (:export #:access-denied-exception #:access-point
-                              #:access-point-list #:access-restriction
-                              #:access-restriction-list #:address
-                              #:address-component-match-scores
+                             (:export #:access-point #:access-point-list
+                              #:access-restriction #:access-restriction-list
+                              #:address #:address-component-match-scores
                               #:address-component-phonemes #:api-key
                               #:autocomplete #:autocomplete-additional-feature
                               #:autocomplete-additional-feature-list
@@ -12,7 +11,6 @@
                               #:autocomplete-filter-place-type-list
                               #:autocomplete-highlights
                               #:autocomplete-intended-use
-                              #:autocomplete-request #:autocomplete-response
                               #:autocomplete-result-item
                               #:autocomplete-result-item-list #:bounding-box
                               #:business-chain #:business-chain-list #:category
@@ -32,14 +30,12 @@
                               #:geocode-filter-place-type-list
                               #:geocode-intended-use #:geocode-parsed-query
                               #:geocode-parsed-query-address-components
-                              #:geocode-query-components #:geocode-request
-                              #:geocode-response #:geocode-result-item
+                              #:geocode-query-components #:geocode-result-item
                               #:geocode-result-item-list #:get-place
                               #:get-place-additional-feature
                               #:get-place-additional-feature-list
-                              #:get-place-intended-use #:get-place-request
-                              #:get-place-response #:highlight #:highlight-list
-                              #:internal-server-exception #:intersection
+                              #:get-place-intended-use #:highlight
+                              #:highlight-list #:intersection
                               #:intersection-highlights-list
                               #:intersection-list #:intersection-street
                               #:intersection-street-list #:language-tag
@@ -69,8 +65,6 @@
                               #:reverse-geocode-filter-place-type
                               #:reverse-geocode-filter-place-type-list
                               #:reverse-geocode-intended-use
-                              #:reverse-geocode-request
-                              #:reverse-geocode-response
                               #:reverse-geocode-result-item
                               #:reverse-geocode-result-item-list
                               #:search-nearby
@@ -78,13 +72,11 @@
                               #:search-nearby-additional-feature-list
                               #:search-nearby-filter
                               #:search-nearby-intended-use
-                              #:search-nearby-request #:search-nearby-response
                               #:search-nearby-result-item
                               #:search-nearby-result-item-list #:search-text
                               #:search-text-additional-feature
                               #:search-text-additional-feature-list
                               #:search-text-filter #:search-text-intended-use
-                              #:search-text-request #:search-text-response
                               #:search-text-result-item
                               #:search-text-result-item-list
                               #:secondary-address-component
@@ -99,13 +91,10 @@
                               #:suggest-address-highlights #:suggest-filter
                               #:suggest-highlights #:suggest-intended-use
                               #:suggest-place-result #:suggest-query-result
-                              #:suggest-request #:suggest-response
                               #:suggest-result-item #:suggest-result-item-list
-                              #:suggest-result-item-type #:throttling-exception
-                              #:time-zone #:token #:type-placement
-                              #:type-separator #:usps-zip #:usps-zip-plus4
-                              #:validation-exception
-                              #:validation-exception-field
+                              #:suggest-result-item-type #:time-zone #:token
+                              #:type-placement #:type-separator #:usps-zip
+                              #:usps-zip-plus4 #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason
                               #:zip-classification-code))

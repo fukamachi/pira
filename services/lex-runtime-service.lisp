@@ -5,43 +5,28 @@
                               #:active-context-time-to-live
                               #:active-context-time-to-live-in-seconds
                               #:active-context-turns-to-live
-                              #:active-contexts-list #:bad-gateway-exception
-                              #:bad-request-exception #:blob-stream #:bot-alias
+                              #:active-contexts-list #:blob-stream #:bot-alias
                               #:bot-name #:bot-version #:button
                               #:button-text-string-with-length
                               #:button-value-string-with-length
-                              #:confirmation-status #:conflict-exception
-                              #:content-type #:delete-session
-                              #:delete-session-request
-                              #:delete-session-response
-                              #:dependency-failed-exception #:dialog-action
+                              #:confirmation-status #:content-type
+                              #:delete-session #:dialog-action
                               #:dialog-action-type #:dialog-state #:double
                               #:error-message #:fulfillment-state
                               #:generic-attachment #:get-session
-                              #:get-session-request #:get-session-response
                               #:http-content-type #:intent-confidence
                               #:intent-list #:intent-name #:intent-summary
                               #:intent-summary-checkpoint-label
-                              #:intent-summary-list
-                              #:internal-failure-exception
-                              #:limit-exceeded-exception
-                              #:loop-detected-exception #:message-format-type
-                              #:not-acceptable-exception #:not-found-exception
-                              #:parameter-name #:post-content
-                              #:post-content-request #:post-content-response
-                              #:post-text #:post-text-request
-                              #:post-text-response #:predicted-intent
-                              #:put-session #:put-session-request
-                              #:put-session-response
-                              #:request-timeout-exception #:response-card
+                              #:intent-summary-list #:message-format-type
+                              #:parameter-name #:post-content #:post-text
+                              #:predicted-intent #:put-session #:response-card
                               #:sensitive-string #:sensitive-string-unbounded
                               #:sentiment-label #:sentiment-response
                               #:sentiment-score #:string #:string-map
                               #:string-url-with-length #:string-with-length
                               #:synthesized-json-active-contexts-string
                               #:synthesized-json-attributes-string
-                              #:synthesized-json-string #:text
-                              #:unsupported-media-type-exception #:user-id
+                              #:synthesized-json-string #:text #:user-id
                               #:generic-attachment-list #:list-of-buttons))
 (common-lisp:in-package #:pira/lex-runtime-service)
 

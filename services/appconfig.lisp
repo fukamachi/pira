@@ -5,36 +5,22 @@
                               #:amazon-app-config #:application
                               #:application-list #:applications
                               #:applied-extension #:applied-extensions #:arn
-                              #:bad-request-details #:bad-request-exception
-                              #:bad-request-reason #:blob #:boolean
-                              #:bytes-measure #:configuration
+                              #:bad-request-details #:bad-request-reason #:blob
+                              #:boolean #:bytes-measure #:configuration
                               #:configuration-profile
                               #:configuration-profile-summary
                               #:configuration-profile-summary-list
                               #:configuration-profile-type
-                              #:configuration-profiles #:conflict-exception
-                              #:create-application #:create-application-request
+                              #:configuration-profiles #:create-application
                               #:create-configuration-profile
-                              #:create-configuration-profile-request
-                              #:create-deployment-strategy
-                              #:create-deployment-strategy-request
-                              #:create-environment #:create-environment-request
+                              #:create-deployment-strategy #:create-environment
                               #:create-extension #:create-extension-association
-                              #:create-extension-association-request
-                              #:create-extension-request
                               #:create-hosted-configuration-version
-                              #:create-hosted-configuration-version-request
-                              #:delete-application #:delete-application-request
+                              #:delete-application
                               #:delete-configuration-profile
-                              #:delete-configuration-profile-request
-                              #:delete-deployment-strategy
-                              #:delete-deployment-strategy-request
-                              #:delete-environment #:delete-environment-request
+                              #:delete-deployment-strategy #:delete-environment
                               #:delete-extension #:delete-extension-association
-                              #:delete-extension-association-request
-                              #:delete-extension-request
                               #:delete-hosted-configuration-version
-                              #:delete-hosted-configuration-version-request
                               #:deletion-protection-check
                               #:deletion-protection-duration
                               #:deletion-protection-settings #:deployment
@@ -54,72 +40,43 @@
                               #:extension-or-parameter-name
                               #:extension-summaries #:extension-summary
                               #:extensions #:float #:get-account-settings
-                              #:get-application #:get-application-request
-                              #:get-configuration #:get-configuration-profile
-                              #:get-configuration-profile-request
-                              #:get-configuration-request #:get-deployment
-                              #:get-deployment-request
-                              #:get-deployment-strategy
-                              #:get-deployment-strategy-request
-                              #:get-environment #:get-environment-request
+                              #:get-application #:get-configuration
+                              #:get-configuration-profile #:get-deployment
+                              #:get-deployment-strategy #:get-environment
                               #:get-extension #:get-extension-association
-                              #:get-extension-association-request
-                              #:get-extension-request
                               #:get-hosted-configuration-version
-                              #:get-hosted-configuration-version-request
                               #:growth-factor #:growth-type
                               #:hosted-configuration-version
                               #:hosted-configuration-version-summary
                               #:hosted-configuration-version-summary-list
                               #:hosted-configuration-versions #:id #:identifier
-                              #:integer #:internal-server-exception
-                              #:invalid-configuration-detail
+                              #:integer #:invalid-configuration-detail
                               #:invalid-configuration-detail-list
                               #:iso8601date-time #:kms-key-identifier
                               #:kms-key-identifier-or-empty #:list-applications
-                              #:list-applications-request
                               #:list-configuration-profiles
-                              #:list-configuration-profiles-request
-                              #:list-deployment-strategies
-                              #:list-deployment-strategies-request
-                              #:list-deployments #:list-deployments-request
-                              #:list-environments #:list-environments-request
-                              #:list-extension-associations
-                              #:list-extension-associations-request
-                              #:list-extensions #:list-extensions-request
+                              #:list-deployment-strategies #:list-deployments
+                              #:list-environments #:list-extension-associations
+                              #:list-extensions
                               #:list-hosted-configuration-versions
-                              #:list-hosted-configuration-versions-request
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request #:long-name
+                              #:list-tags-for-resource #:long-name
                               #:max-results #:minutes-between0and24hours
                               #:monitor #:monitor-list #:name #:next-token
                               #:parameter #:parameter-map #:parameter-value-map
-                              #:payload-too-large-exception #:percentage
-                              #:query-name #:replicate-to
-                              #:resource-not-found-exception #:resource-tags
-                              #:role-arn #:service-quota-exceeded-exception
-                              #:start-deployment #:start-deployment-request
-                              #:stop-deployment #:stop-deployment-request
-                              #:string #:string-with-length-between0and32768
+                              #:percentage #:query-name #:replicate-to
+                              #:resource-tags #:role-arn #:start-deployment
+                              #:stop-deployment #:string
+                              #:string-with-length-between0and32768
                               #:string-with-length-between1and2048
                               #:string-with-length-between1and255
                               #:string-with-length-between1and64 #:tag-key
                               #:tag-key-list #:tag-map #:tag-resource
-                              #:tag-resource-request #:tag-value #:triggered-by
-                              #:untag-resource #:untag-resource-request
-                              #:update-account-settings
-                              #:update-account-settings-request
-                              #:update-application #:update-application-request
+                              #:tag-value #:triggered-by #:untag-resource
+                              #:update-account-settings #:update-application
                               #:update-configuration-profile
-                              #:update-configuration-profile-request
-                              #:update-deployment-strategy
-                              #:update-deployment-strategy-request
-                              #:update-environment #:update-environment-request
+                              #:update-deployment-strategy #:update-environment
                               #:update-extension #:update-extension-association
-                              #:update-extension-association-request
-                              #:update-extension-request #:uri
-                              #:validate-configuration
-                              #:validate-configuration-request #:validator
+                              #:uri #:validate-configuration #:validator
                               #:validator-list #:validator-type
                               #:validator-type-list #:version #:version-label))
 (common-lisp:in-package #:pira/appconfig)

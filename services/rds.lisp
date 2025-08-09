@@ -1,43 +1,25 @@
 (uiop/package:define-package #:pira/rds (:use)
-                             (:export #:account-attributes-message
-                              #:account-quota #:account-quota-list
+                             (:export #:account-quota #:account-quota-list
                               #:activity-stream-mode
                               #:activity-stream-mode-list
                               #:activity-stream-policy-status
                               #:activity-stream-status #:add-role-to-dbcluster
-                              #:add-role-to-dbcluster-message
                               #:add-role-to-dbinstance
-                              #:add-role-to-dbinstance-message
                               #:add-source-identifier-to-subscription
-                              #:add-source-identifier-to-subscription-message
-                              #:add-source-identifier-to-subscription-result
-                              #:add-tags-to-resource
-                              #:add-tags-to-resource-message #:amazon-rdsv19
+                              #:add-tags-to-resource #:amazon-rdsv19
                               #:apply-method #:apply-pending-maintenance-action
-                              #:apply-pending-maintenance-action-message
-                              #:apply-pending-maintenance-action-result #:arn
-                              #:attribute-value-list #:audit-policy-state
+                              #:arn #:attribute-value-list #:audit-policy-state
                               #:auth-scheme
-                              #:authorization-already-exists-fault
-                              #:authorization-not-found-fault
-                              #:authorization-quota-exceeded-fault
                               #:authorize-dbsecurity-group-ingress
-                              #:authorize-dbsecurity-group-ingress-message
-                              #:authorize-dbsecurity-group-ingress-result
                               #:automation-mode #:availability-zone
                               #:availability-zone-list #:availability-zones
                               #:available-processor-feature
                               #:available-processor-feature-list
                               #:aws-backup-recovery-point-arn
-                              #:backtrack-dbcluster
-                              #:backtrack-dbcluster-message
-                              #:backup-policy-not-found-fault
-                              #:blue-green-deployment
-                              #:blue-green-deployment-already-exists-fault
+                              #:backtrack-dbcluster #:blue-green-deployment
                               #:blue-green-deployment-identifier
                               #:blue-green-deployment-list
                               #:blue-green-deployment-name
-                              #:blue-green-deployment-not-found-fault
                               #:blue-green-deployment-status
                               #:blue-green-deployment-status-details
                               #:blue-green-deployment-task
@@ -46,11 +28,9 @@
                               #:blue-green-deployment-task-status #:boolean
                               #:boolean-optional #:bucket-name
                               #:cacertificate-identifiers-list
-                              #:cancel-export-task #:cancel-export-task-message
-                              #:certificate #:certificate-details
-                              #:certificate-list #:certificate-message
-                              #:certificate-not-found-fault #:character-set
-                              #:client-password-auth-type
+                              #:cancel-export-task #:certificate
+                              #:certificate-details #:certificate-list
+                              #:character-set #:client-password-auth-type
                               #:cloudwatch-logs-export-configuration
                               #:cluster-pending-modified-values
                               #:cluster-scalability-type
@@ -58,694 +38,280 @@
                               #:connection-pool-configuration-info
                               #:context-attribute #:context-attribute-list
                               #:copy-dbcluster-parameter-group
-                              #:copy-dbcluster-parameter-group-message
-                              #:copy-dbcluster-parameter-group-result
                               #:copy-dbcluster-snapshot
-                              #:copy-dbcluster-snapshot-message
-                              #:copy-dbcluster-snapshot-result
-                              #:copy-dbparameter-group
-                              #:copy-dbparameter-group-message
-                              #:copy-dbparameter-group-result #:copy-dbsnapshot
-                              #:copy-dbsnapshot-message
-                              #:copy-dbsnapshot-result #:copy-option-group
-                              #:copy-option-group-message
-                              #:copy-option-group-result
+                              #:copy-dbparameter-group #:copy-dbsnapshot
+                              #:copy-option-group
                               #:create-blue-green-deployment
-                              #:create-blue-green-deployment-request
-                              #:create-blue-green-deployment-response
                               #:create-custom-dbengine-version
-                              #:create-custom-dbengine-version-fault
-                              #:create-custom-dbengine-version-message
                               #:create-dbcluster #:create-dbcluster-endpoint
-                              #:create-dbcluster-endpoint-message
-                              #:create-dbcluster-message
                               #:create-dbcluster-parameter-group
-                              #:create-dbcluster-parameter-group-message
-                              #:create-dbcluster-parameter-group-result
-                              #:create-dbcluster-result
-                              #:create-dbcluster-snapshot
-                              #:create-dbcluster-snapshot-message
-                              #:create-dbcluster-snapshot-result
-                              #:create-dbinstance #:create-dbinstance-message
+                              #:create-dbcluster-snapshot #:create-dbinstance
                               #:create-dbinstance-read-replica
-                              #:create-dbinstance-read-replica-message
-                              #:create-dbinstance-read-replica-result
-                              #:create-dbinstance-result
-                              #:create-dbparameter-group
-                              #:create-dbparameter-group-message
-                              #:create-dbparameter-group-result
-                              #:create-dbproxy #:create-dbproxy-endpoint
-                              #:create-dbproxy-endpoint-request
-                              #:create-dbproxy-endpoint-response
-                              #:create-dbproxy-request
-                              #:create-dbproxy-response
-                              #:create-dbsecurity-group
-                              #:create-dbsecurity-group-message
-                              #:create-dbsecurity-group-result
-                              #:create-dbshard-group
-                              #:create-dbshard-group-message
-                              #:create-dbsnapshot #:create-dbsnapshot-message
-                              #:create-dbsnapshot-result
-                              #:create-dbsubnet-group
-                              #:create-dbsubnet-group-message
-                              #:create-dbsubnet-group-result
+                              #:create-dbparameter-group #:create-dbproxy
+                              #:create-dbproxy-endpoint
+                              #:create-dbsecurity-group #:create-dbshard-group
+                              #:create-dbsnapshot #:create-dbsubnet-group
                               #:create-event-subscription
-                              #:create-event-subscription-message
-                              #:create-event-subscription-result
-                              #:create-global-cluster
-                              #:create-global-cluster-message
-                              #:create-global-cluster-result
-                              #:create-integration #:create-integration-message
-                              #:create-option-group
-                              #:create-option-group-message
-                              #:create-option-group-result
-                              #:create-tenant-database
-                              #:create-tenant-database-message
-                              #:create-tenant-database-result
-                              #:custom-availability-zone-not-found-fault
+                              #:create-global-cluster #:create-integration
+                              #:create-option-group #:create-tenant-database
                               #:custom-dbengine-version-ami
-                              #:custom-dbengine-version-already-exists-fault
                               #:custom-dbengine-version-manifest
-                              #:custom-dbengine-version-not-found-fault
-                              #:custom-dbengine-version-quota-exceeded-fault
                               #:custom-engine-name #:custom-engine-version
                               #:custom-engine-version-status #:dbcluster
-                              #:dbcluster-already-exists-fault
                               #:dbcluster-automated-backup
                               #:dbcluster-automated-backup-list
-                              #:dbcluster-automated-backup-message
-                              #:dbcluster-automated-backup-not-found-fault
-                              #:dbcluster-automated-backup-quota-exceeded-fault
                               #:dbcluster-backtrack #:dbcluster-backtrack-list
-                              #:dbcluster-backtrack-message
-                              #:dbcluster-backtrack-not-found-fault
                               #:dbcluster-capacity-info #:dbcluster-endpoint
-                              #:dbcluster-endpoint-already-exists-fault
-                              #:dbcluster-endpoint-list
-                              #:dbcluster-endpoint-message
-                              #:dbcluster-endpoint-not-found-fault
-                              #:dbcluster-endpoint-quota-exceeded-fault
-                              #:dbcluster-identifier #:dbcluster-list
-                              #:dbcluster-member #:dbcluster-member-list
-                              #:dbcluster-message #:dbcluster-not-found-fault
+                              #:dbcluster-endpoint-list #:dbcluster-identifier
+                              #:dbcluster-list #:dbcluster-member
+                              #:dbcluster-member-list
                               #:dbcluster-option-group-memberships
                               #:dbcluster-option-group-status
                               #:dbcluster-parameter-group
                               #:dbcluster-parameter-group-details
                               #:dbcluster-parameter-group-list
                               #:dbcluster-parameter-group-name-message
-                              #:dbcluster-parameter-group-not-found-fault
-                              #:dbcluster-parameter-groups-message
-                              #:dbcluster-quota-exceeded-fault #:dbcluster-role
-                              #:dbcluster-role-already-exists-fault
-                              #:dbcluster-role-not-found-fault
-                              #:dbcluster-role-quota-exceeded-fault
-                              #:dbcluster-roles #:dbcluster-snapshot
-                              #:dbcluster-snapshot-already-exists-fault
+                              #:dbcluster-role #:dbcluster-roles
+                              #:dbcluster-snapshot
                               #:dbcluster-snapshot-attribute
                               #:dbcluster-snapshot-attribute-list
                               #:dbcluster-snapshot-attributes-result
-                              #:dbcluster-snapshot-list
-                              #:dbcluster-snapshot-message
-                              #:dbcluster-snapshot-not-found-fault
-                              #:dbcluster-status-info
+                              #:dbcluster-snapshot-list #:dbcluster-status-info
                               #:dbcluster-status-info-list #:dbengine-version
-                              #:dbengine-version-list
-                              #:dbengine-version-message #:dbinstance
-                              #:dbinstance-already-exists-fault
+                              #:dbengine-version-list #:dbinstance
                               #:dbinstance-automated-backup
                               #:dbinstance-automated-backup-list
-                              #:dbinstance-automated-backup-message
-                              #:dbinstance-automated-backup-not-found-fault
-                              #:dbinstance-automated-backup-quota-exceeded-fault
                               #:dbinstance-automated-backups-replication
                               #:dbinstance-automated-backups-replication-list
-                              #:dbinstance-list #:dbinstance-message
-                              #:dbinstance-not-found-fault
-                              #:dbinstance-not-ready-fault #:dbinstance-role
-                              #:dbinstance-role-already-exists-fault
-                              #:dbinstance-role-not-found-fault
-                              #:dbinstance-role-quota-exceeded-fault
+                              #:dbinstance-list #:dbinstance-role
                               #:dbinstance-roles #:dbinstance-status-info
                               #:dbinstance-status-info-list
-                              #:dblog-file-not-found-fault
                               #:dbmajor-engine-version
                               #:dbmajor-engine-versions-list
-                              #:dbparameter-group
-                              #:dbparameter-group-already-exists-fault
-                              #:dbparameter-group-details
+                              #:dbparameter-group #:dbparameter-group-details
                               #:dbparameter-group-list
                               #:dbparameter-group-name-message
-                              #:dbparameter-group-not-found-fault
-                              #:dbparameter-group-quota-exceeded-fault
                               #:dbparameter-group-status
-                              #:dbparameter-group-status-list
-                              #:dbparameter-groups-message #:dbproxy
-                              #:dbproxy-already-exists-fault #:dbproxy-endpoint
-                              #:dbproxy-endpoint-already-exists-fault
-                              #:dbproxy-endpoint-list #:dbproxy-endpoint-name
-                              #:dbproxy-endpoint-not-found-fault
-                              #:dbproxy-endpoint-quota-exceeded-fault
-                              #:dbproxy-endpoint-status
+                              #:dbparameter-group-status-list #:dbproxy
+                              #:dbproxy-endpoint #:dbproxy-endpoint-list
+                              #:dbproxy-endpoint-name #:dbproxy-endpoint-status
                               #:dbproxy-endpoint-target-role #:dbproxy-list
-                              #:dbproxy-name #:dbproxy-not-found-fault
-                              #:dbproxy-quota-exceeded-fault #:dbproxy-status
-                              #:dbproxy-target
-                              #:dbproxy-target-already-registered-fault
-                              #:dbproxy-target-group
-                              #:dbproxy-target-group-not-found-fault
-                              #:dbproxy-target-not-found-fault
-                              #:dbrecommendation #:dbrecommendation-list
-                              #:dbrecommendation-message
-                              #:dbrecommendations-message #:dbsecurity-group
-                              #:dbsecurity-group-already-exists-fault
+                              #:dbproxy-name #:dbproxy-status #:dbproxy-target
+                              #:dbproxy-target-group #:dbrecommendation
+                              #:dbrecommendation-list #:dbsecurity-group
                               #:dbsecurity-group-membership
                               #:dbsecurity-group-membership-list
-                              #:dbsecurity-group-message
-                              #:dbsecurity-group-name-list
-                              #:dbsecurity-group-not-found-fault
-                              #:dbsecurity-group-not-supported-fault
-                              #:dbsecurity-group-quota-exceeded-fault
-                              #:dbsecurity-groups #:dbshard-group
-                              #:dbshard-group-already-exists-fault
-                              #:dbshard-group-identifier
-                              #:dbshard-group-not-found-fault
+                              #:dbsecurity-group-name-list #:dbsecurity-groups
+                              #:dbshard-group #:dbshard-group-identifier
                               #:dbshard-groups-list #:dbsnapshot
-                              #:dbsnapshot-already-exists-fault
                               #:dbsnapshot-attribute
                               #:dbsnapshot-attribute-list
                               #:dbsnapshot-attributes-result #:dbsnapshot-list
-                              #:dbsnapshot-message #:dbsnapshot-not-found-fault
                               #:dbsnapshot-tenant-database
-                              #:dbsnapshot-tenant-database-not-found-fault
                               #:dbsnapshot-tenant-databases-list
-                              #:dbsnapshot-tenant-databases-message
-                              #:dbsubnet-group
-                              #:dbsubnet-group-already-exists-fault
-                              #:dbsubnet-group-does-not-cover-enough-azs
-                              #:dbsubnet-group-message
-                              #:dbsubnet-group-not-allowed-fault
-                              #:dbsubnet-group-not-found-fault
-                              #:dbsubnet-group-quota-exceeded-fault
-                              #:dbsubnet-groups #:dbsubnet-quota-exceeded-fault
-                              #:dbupgrade-dependency-failure-fault
-                              #:data-filter #:database-arn
-                              #:database-insights-mode
+                              #:dbsubnet-group #:dbsubnet-groups #:data-filter
+                              #:database-arn #:database-insights-mode
                               #:delete-blue-green-deployment
-                              #:delete-blue-green-deployment-request
-                              #:delete-blue-green-deployment-response
                               #:delete-custom-dbengine-version
-                              #:delete-custom-dbengine-version-message
                               #:delete-dbcluster
                               #:delete-dbcluster-automated-backup
-                              #:delete-dbcluster-automated-backup-message
-                              #:delete-dbcluster-automated-backup-result
                               #:delete-dbcluster-endpoint
-                              #:delete-dbcluster-endpoint-message
-                              #:delete-dbcluster-message
                               #:delete-dbcluster-parameter-group
-                              #:delete-dbcluster-parameter-group-message
-                              #:delete-dbcluster-result
-                              #:delete-dbcluster-snapshot
-                              #:delete-dbcluster-snapshot-message
-                              #:delete-dbcluster-snapshot-result
-                              #:delete-dbinstance
+                              #:delete-dbcluster-snapshot #:delete-dbinstance
                               #:delete-dbinstance-automated-backup
-                              #:delete-dbinstance-automated-backup-message
-                              #:delete-dbinstance-automated-backup-result
-                              #:delete-dbinstance-message
-                              #:delete-dbinstance-result
-                              #:delete-dbparameter-group
-                              #:delete-dbparameter-group-message
-                              #:delete-dbproxy #:delete-dbproxy-endpoint
-                              #:delete-dbproxy-endpoint-request
-                              #:delete-dbproxy-endpoint-response
-                              #:delete-dbproxy-request
-                              #:delete-dbproxy-response
-                              #:delete-dbsecurity-group
-                              #:delete-dbsecurity-group-message
-                              #:delete-dbshard-group
-                              #:delete-dbshard-group-message
-                              #:delete-dbsnapshot #:delete-dbsnapshot-message
-                              #:delete-dbsnapshot-result
-                              #:delete-dbsubnet-group
-                              #:delete-dbsubnet-group-message
+                              #:delete-dbparameter-group #:delete-dbproxy
+                              #:delete-dbproxy-endpoint
+                              #:delete-dbsecurity-group #:delete-dbshard-group
+                              #:delete-dbsnapshot #:delete-dbsubnet-group
                               #:delete-event-subscription
-                              #:delete-event-subscription-message
-                              #:delete-event-subscription-result
-                              #:delete-global-cluster
-                              #:delete-global-cluster-message
-                              #:delete-global-cluster-result
-                              #:delete-integration #:delete-integration-message
-                              #:delete-option-group
-                              #:delete-option-group-message
-                              #:delete-tenant-database
-                              #:delete-tenant-database-message
-                              #:delete-tenant-database-result
+                              #:delete-global-cluster #:delete-integration
+                              #:delete-option-group #:delete-tenant-database
                               #:deregister-dbproxy-targets
-                              #:deregister-dbproxy-targets-request
-                              #:deregister-dbproxy-targets-response
                               #:describe-account-attributes
-                              #:describe-account-attributes-message
                               #:describe-blue-green-deployments
-                              #:describe-blue-green-deployments-request
-                              #:describe-blue-green-deployments-response
                               #:describe-certificates
-                              #:describe-certificates-message
                               #:describe-dbcluster-automated-backups
-                              #:describe-dbcluster-automated-backups-message
                               #:describe-dbcluster-backtracks
-                              #:describe-dbcluster-backtracks-message
                               #:describe-dbcluster-endpoints
-                              #:describe-dbcluster-endpoints-message
                               #:describe-dbcluster-parameter-groups
-                              #:describe-dbcluster-parameter-groups-message
                               #:describe-dbcluster-parameters
-                              #:describe-dbcluster-parameters-message
                               #:describe-dbcluster-snapshot-attributes
-                              #:describe-dbcluster-snapshot-attributes-message
-                              #:describe-dbcluster-snapshot-attributes-result
                               #:describe-dbcluster-snapshots
-                              #:describe-dbcluster-snapshots-message
                               #:describe-dbclusters
-                              #:describe-dbclusters-message
                               #:describe-dbengine-versions
-                              #:describe-dbengine-versions-message
                               #:describe-dbinstance-automated-backups
-                              #:describe-dbinstance-automated-backups-message
-                              #:describe-dbinstances
-                              #:describe-dbinstances-message
-                              #:describe-dblog-files
+                              #:describe-dbinstances #:describe-dblog-files
                               #:describe-dblog-files-details
                               #:describe-dblog-files-list
-                              #:describe-dblog-files-message
-                              #:describe-dblog-files-response
                               #:describe-dbmajor-engine-versions
-                              #:describe-dbmajor-engine-versions-request
-                              #:describe-dbmajor-engine-versions-response
                               #:describe-dbparameter-groups
-                              #:describe-dbparameter-groups-message
-                              #:describe-dbparameters
-                              #:describe-dbparameters-message
-                              #:describe-dbproxies #:describe-dbproxies-request
-                              #:describe-dbproxies-response
+                              #:describe-dbparameters #:describe-dbproxies
                               #:describe-dbproxy-endpoints
-                              #:describe-dbproxy-endpoints-request
-                              #:describe-dbproxy-endpoints-response
                               #:describe-dbproxy-target-groups
-                              #:describe-dbproxy-target-groups-request
-                              #:describe-dbproxy-target-groups-response
                               #:describe-dbproxy-targets
-                              #:describe-dbproxy-targets-request
-                              #:describe-dbproxy-targets-response
                               #:describe-dbrecommendations
-                              #:describe-dbrecommendations-message
                               #:describe-dbsecurity-groups
-                              #:describe-dbsecurity-groups-message
                               #:describe-dbshard-groups
-                              #:describe-dbshard-groups-message
-                              #:describe-dbshard-groups-response
                               #:describe-dbsnapshot-attributes
-                              #:describe-dbsnapshot-attributes-message
-                              #:describe-dbsnapshot-attributes-result
                               #:describe-dbsnapshot-tenant-databases
-                              #:describe-dbsnapshot-tenant-databases-message
-                              #:describe-dbsnapshots
-                              #:describe-dbsnapshots-message
-                              #:describe-dbsubnet-groups
-                              #:describe-dbsubnet-groups-message
+                              #:describe-dbsnapshots #:describe-dbsubnet-groups
                               #:describe-engine-default-cluster-parameters
-                              #:describe-engine-default-cluster-parameters-message
-                              #:describe-engine-default-cluster-parameters-result
                               #:describe-engine-default-parameters
-                              #:describe-engine-default-parameters-message
-                              #:describe-engine-default-parameters-result
                               #:describe-event-categories
-                              #:describe-event-categories-message
-                              #:describe-event-subscriptions
-                              #:describe-event-subscriptions-message
-                              #:describe-events #:describe-events-message
+                              #:describe-event-subscriptions #:describe-events
                               #:describe-export-tasks
-                              #:describe-export-tasks-message
                               #:describe-global-clusters
-                              #:describe-global-clusters-message
                               #:describe-integrations
-                              #:describe-integrations-message
-                              #:describe-integrations-response
                               #:describe-option-group-options
-                              #:describe-option-group-options-message
                               #:describe-option-groups
-                              #:describe-option-groups-message
                               #:describe-orderable-dbinstance-options
-                              #:describe-orderable-dbinstance-options-message
                               #:describe-pending-maintenance-actions
-                              #:describe-pending-maintenance-actions-message
                               #:describe-reserved-dbinstances
-                              #:describe-reserved-dbinstances-message
                               #:describe-reserved-dbinstances-offerings
-                              #:describe-reserved-dbinstances-offerings-message
                               #:describe-source-regions
-                              #:describe-source-regions-message
                               #:describe-tenant-databases
-                              #:describe-tenant-databases-message
                               #:describe-valid-dbinstance-modifications
-                              #:describe-valid-dbinstance-modifications-message
-                              #:describe-valid-dbinstance-modifications-result
-                              #:description #:disable-http-endpoint
-                              #:disable-http-endpoint-request
-                              #:disable-http-endpoint-response #:doc-link
+                              #:description #:disable-http-endpoint #:doc-link
                               #:doc-link-list #:domain-membership
-                              #:domain-membership-list #:domain-not-found-fault
-                              #:double #:double-optional #:double-range
+                              #:domain-membership-list #:double
+                              #:double-optional #:double-range
                               #:double-range-list #:download-dblog-file-portion
                               #:download-dblog-file-portion-details
-                              #:download-dblog-file-portion-message
                               #:ec2security-group #:ec2security-group-list
-                              #:ec2image-properties-not-supported-fault
-                              #:enable-http-endpoint
-                              #:enable-http-endpoint-request
-                              #:enable-http-endpoint-response
-                              #:encryption-context-map #:endpoint #:engine
-                              #:engine-defaults #:engine-family
-                              #:engine-mode-list #:event
+                              #:enable-http-endpoint #:encryption-context-map
+                              #:endpoint #:engine #:engine-defaults
+                              #:engine-family #:engine-mode-list #:event
                               #:event-categories-list #:event-categories-map
-                              #:event-categories-map-list
-                              #:event-categories-message #:event-list
-                              #:event-subscription
-                              #:event-subscription-quota-exceeded-fault
-                              #:event-subscriptions-list
-                              #:event-subscriptions-message #:events-message
+                              #:event-categories-map-list #:event-list
+                              #:event-subscription #:event-subscriptions-list
                               #:exception-message #:export-source-type
-                              #:export-task #:export-task-already-exists-fault
-                              #:export-task-not-found-fault #:export-tasks-list
-                              #:export-tasks-message #:failover-dbcluster
-                              #:failover-dbcluster-message
-                              #:failover-dbcluster-result
-                              #:failover-global-cluster
-                              #:failover-global-cluster-message
-                              #:failover-global-cluster-result #:failover-state
-                              #:failover-status #:feature-name-list #:filter
-                              #:filter-list #:filter-value-list
-                              #:global-cluster
-                              #:global-cluster-already-exists-fault
+                              #:export-task #:export-tasks-list
+                              #:failover-dbcluster #:failover-global-cluster
+                              #:failover-state #:failover-status
+                              #:feature-name-list #:filter #:filter-list
+                              #:filter-value-list #:global-cluster
                               #:global-cluster-identifier #:global-cluster-list
                               #:global-cluster-member
                               #:global-cluster-member-list
                               #:global-cluster-member-synchronization-status
-                              #:global-cluster-not-found-fault
-                              #:global-cluster-quota-exceeded-fault
-                              #:global-clusters-message #:iamauth-mode
-                              #:iprange #:iprange-list
-                              #:iam-role-missing-permissions-fault
-                              #:iam-role-not-found-fault
-                              #:instance-quota-exceeded-fault
-                              #:insufficient-available-ips-in-subnet-fault
-                              #:insufficient-dbcluster-capacity-fault
-                              #:insufficient-dbinstance-capacity-fault
-                              #:insufficient-storage-cluster-capacity-fault
-                              #:integer #:integer-optional #:integration
-                              #:integration-already-exists-fault
-                              #:integration-arn
-                              #:integration-conflict-operation-fault
-                              #:integration-description #:integration-error
-                              #:integration-error-list #:integration-identifier
-                              #:integration-list #:integration-name
-                              #:integration-not-found-fault
-                              #:integration-quota-exceeded-fault
-                              #:integration-status
-                              #:invalid-blue-green-deployment-state-fault
-                              #:invalid-custom-dbengine-version-state-fault
-                              #:invalid-dbcluster-automated-backup-state-fault
-                              #:invalid-dbcluster-capacity-fault
-                              #:invalid-dbcluster-endpoint-state-fault
-                              #:invalid-dbcluster-snapshot-state-fault
-                              #:invalid-dbcluster-state-fault
-                              #:invalid-dbinstance-automated-backup-state-fault
-                              #:invalid-dbinstance-state-fault
-                              #:invalid-dbparameter-group-state-fault
-                              #:invalid-dbproxy-endpoint-state-fault
-                              #:invalid-dbproxy-state-fault
-                              #:invalid-dbsecurity-group-state-fault
-                              #:invalid-dbshard-group-state-fault
-                              #:invalid-dbsnapshot-state-fault
-                              #:invalid-dbsubnet-group-fault
-                              #:invalid-dbsubnet-group-state-fault
-                              #:invalid-dbsubnet-state-fault
-                              #:invalid-event-subscription-state-fault
-                              #:invalid-export-only-fault
-                              #:invalid-export-source-state-fault
-                              #:invalid-export-task-state-fault
-                              #:invalid-global-cluster-state-fault
-                              #:invalid-integration-state-fault
-                              #:invalid-option-group-state-fault
-                              #:invalid-resource-state-fault
-                              #:invalid-restore-fault #:invalid-s3bucket-fault
-                              #:invalid-subnet #:invalid-vpcnetwork-state-fault
-                              #:issue-details #:kmskey-not-accessible-fault
-                              #:key-list #:kms-key-id-or-arn
+                              #:iamauth-mode #:iprange #:iprange-list #:integer
+                              #:integer-optional #:integration
+                              #:integration-arn #:integration-description
+                              #:integration-error #:integration-error-list
+                              #:integration-identifier #:integration-list
+                              #:integration-name #:integration-status
+                              #:issue-details #:key-list #:kms-key-id-or-arn
                               #:lifecycle-support-name #:limitless-database
                               #:limitless-database-status
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-message
                               #:local-write-forwarding-status #:log-type-list
                               #:long #:long-optional #:major-engine-version
-                              #:marker #:master-user-secret
-                              #:max-dbshard-group-limit-reached #:max-records
+                              #:marker #:master-user-secret #:max-records
                               #:metric #:metric-list #:metric-query
                               #:metric-reference #:metric-reference-list
                               #:minimum-engine-version-per-allowed-value
                               #:minimum-engine-version-per-allowed-value-list
-                              #:modify-activity-stream
-                              #:modify-activity-stream-request
-                              #:modify-activity-stream-response
-                              #:modify-certificates
-                              #:modify-certificates-message
-                              #:modify-certificates-result
+                              #:modify-activity-stream #:modify-certificates
                               #:modify-current-dbcluster-capacity
-                              #:modify-current-dbcluster-capacity-message
                               #:modify-custom-dbengine-version
-                              #:modify-custom-dbengine-version-message
                               #:modify-dbcluster #:modify-dbcluster-endpoint
-                              #:modify-dbcluster-endpoint-message
-                              #:modify-dbcluster-message
                               #:modify-dbcluster-parameter-group
-                              #:modify-dbcluster-parameter-group-message
-                              #:modify-dbcluster-result
                               #:modify-dbcluster-snapshot-attribute
-                              #:modify-dbcluster-snapshot-attribute-message
-                              #:modify-dbcluster-snapshot-attribute-result
-                              #:modify-dbinstance #:modify-dbinstance-message
-                              #:modify-dbinstance-result
-                              #:modify-dbparameter-group
-                              #:modify-dbparameter-group-message
+                              #:modify-dbinstance #:modify-dbparameter-group
                               #:modify-dbproxy #:modify-dbproxy-endpoint
-                              #:modify-dbproxy-endpoint-request
-                              #:modify-dbproxy-endpoint-response
-                              #:modify-dbproxy-request
-                              #:modify-dbproxy-response
                               #:modify-dbproxy-target-group
-                              #:modify-dbproxy-target-group-request
-                              #:modify-dbproxy-target-group-response
-                              #:modify-dbrecommendation
-                              #:modify-dbrecommendation-message
-                              #:modify-dbshard-group
-                              #:modify-dbshard-group-message
+                              #:modify-dbrecommendation #:modify-dbshard-group
                               #:modify-dbsnapshot #:modify-dbsnapshot-attribute
-                              #:modify-dbsnapshot-attribute-message
-                              #:modify-dbsnapshot-attribute-result
-                              #:modify-dbsnapshot-message
-                              #:modify-dbsnapshot-result
                               #:modify-dbsubnet-group
-                              #:modify-dbsubnet-group-message
-                              #:modify-dbsubnet-group-result
                               #:modify-event-subscription
-                              #:modify-event-subscription-message
-                              #:modify-event-subscription-result
-                              #:modify-global-cluster
-                              #:modify-global-cluster-message
-                              #:modify-global-cluster-result
-                              #:modify-integration #:modify-integration-message
-                              #:modify-option-group
-                              #:modify-option-group-message
-                              #:modify-option-group-result
-                              #:modify-tenant-database
-                              #:modify-tenant-database-message
-                              #:modify-tenant-database-result
-                              #:network-type-not-supported #:option
-                              #:option-configuration
+                              #:modify-global-cluster #:modify-integration
+                              #:modify-option-group #:modify-tenant-database
+                              #:option #:option-configuration
                               #:option-configuration-list #:option-group
-                              #:option-group-already-exists-fault
                               #:option-group-membership
                               #:option-group-membership-list
-                              #:option-group-not-found-fault
                               #:option-group-option
                               #:option-group-option-setting
                               #:option-group-option-settings-list
                               #:option-group-option-versions-list
-                              #:option-group-options-list
-                              #:option-group-options-message
-                              #:option-group-quota-exceeded-fault
-                              #:option-groups #:option-groups-list
-                              #:option-names-list #:option-setting
+                              #:option-group-options-list #:option-groups
+                              #:option-groups-list #:option-names-list
+                              #:option-setting
                               #:option-setting-configuration-list
                               #:option-settings-list #:option-version
                               #:options-conflicts-with #:options-depended-on
                               #:options-list #:orderable-dbinstance-option
-                              #:orderable-dbinstance-options-list
-                              #:orderable-dbinstance-options-message #:outpost
+                              #:orderable-dbinstance-options-list #:outpost
                               #:parameter #:parameters-list
                               #:pending-cloudwatch-logs-exports
                               #:pending-maintenance-action
                               #:pending-maintenance-action-details
                               #:pending-maintenance-actions
-                              #:pending-maintenance-actions-message
                               #:pending-modified-values
                               #:performance-insights-metric-dimension-group
                               #:performance-insights-metric-query
-                              #:performance-issue-details
-                              #:point-in-time-restore-not-enabled-fault
-                              #:processor-feature #:processor-feature-list
-                              #:promote-read-replica
+                              #:performance-issue-details #:processor-feature
+                              #:processor-feature-list #:promote-read-replica
                               #:promote-read-replica-dbcluster
-                              #:promote-read-replica-dbcluster-message
-                              #:promote-read-replica-dbcluster-result
-                              #:promote-read-replica-message
-                              #:promote-read-replica-result
-                              #:provisioned-iops-not-available-in-azfault
-                              #:purchase-reserved-dbinstances-offering
-                              #:purchase-reserved-dbinstances-offering-message
-                              #:purchase-reserved-dbinstances-offering-result
-                              #:range #:range-list
-                              #:rds-custom-cluster-configuration
+                              #:purchase-reserved-dbinstances-offering #:range
+                              #:range-list #:rds-custom-cluster-configuration
                               #:read-replica-dbcluster-identifier-list
                               #:read-replica-dbinstance-identifier-list
                               #:read-replica-identifier-list #:readers-arn-list
-                              #:reboot-dbcluster #:reboot-dbcluster-message
-                              #:reboot-dbcluster-result #:reboot-dbinstance
-                              #:reboot-dbinstance-message
-                              #:reboot-dbinstance-result #:reboot-dbshard-group
-                              #:reboot-dbshard-group-message
-                              #:recommended-action #:recommended-action-list
+                              #:reboot-dbcluster #:reboot-dbinstance
+                              #:reboot-dbshard-group #:recommended-action
+                              #:recommended-action-list
                               #:recommended-action-parameter
                               #:recommended-action-parameter-list
                               #:recommended-action-update
                               #:recommended-action-update-list
                               #:recurring-charge #:recurring-charge-list
                               #:reference-details #:register-dbproxy-targets
-                              #:register-dbproxy-targets-request
-                              #:register-dbproxy-targets-response
                               #:remove-from-global-cluster
-                              #:remove-from-global-cluster-message
-                              #:remove-from-global-cluster-result
                               #:remove-role-from-dbcluster
-                              #:remove-role-from-dbcluster-message
                               #:remove-role-from-dbinstance
-                              #:remove-role-from-dbinstance-message
                               #:remove-source-identifier-from-subscription
-                              #:remove-source-identifier-from-subscription-message
-                              #:remove-source-identifier-from-subscription-result
-                              #:remove-tags-from-resource
-                              #:remove-tags-from-resource-message
-                              #:replica-mode #:reserved-dbinstance
-                              #:reserved-dbinstance-already-exists-fault
-                              #:reserved-dbinstance-list
-                              #:reserved-dbinstance-message
-                              #:reserved-dbinstance-not-found-fault
-                              #:reserved-dbinstance-quota-exceeded-fault
+                              #:remove-tags-from-resource #:replica-mode
+                              #:reserved-dbinstance #:reserved-dbinstance-list
                               #:reserved-dbinstances-offering
                               #:reserved-dbinstances-offering-list
-                              #:reserved-dbinstances-offering-message
-                              #:reserved-dbinstances-offering-not-found-fault
                               #:reset-dbcluster-parameter-group
-                              #:reset-dbcluster-parameter-group-message
                               #:reset-dbparameter-group
-                              #:reset-dbparameter-group-message
-                              #:resource-not-found-fault
                               #:resource-pending-maintenance-actions
                               #:restore-dbcluster-from-s3
-                              #:restore-dbcluster-from-s3message
-                              #:restore-dbcluster-from-s3result
                               #:restore-dbcluster-from-snapshot
-                              #:restore-dbcluster-from-snapshot-message
-                              #:restore-dbcluster-from-snapshot-result
                               #:restore-dbcluster-to-point-in-time
-                              #:restore-dbcluster-to-point-in-time-message
-                              #:restore-dbcluster-to-point-in-time-result
                               #:restore-dbinstance-from-dbsnapshot
-                              #:restore-dbinstance-from-dbsnapshot-message
-                              #:restore-dbinstance-from-dbsnapshot-result
                               #:restore-dbinstance-from-s3
-                              #:restore-dbinstance-from-s3message
-                              #:restore-dbinstance-from-s3result
                               #:restore-dbinstance-to-point-in-time
-                              #:restore-dbinstance-to-point-in-time-message
-                              #:restore-dbinstance-to-point-in-time-result
                               #:restore-window
                               #:revoke-dbsecurity-group-ingress
-                              #:revoke-dbsecurity-group-ingress-message
-                              #:revoke-dbsecurity-group-ingress-result
-                              #:snsinvalid-topic-fault
-                              #:snsno-authorization-fault
-                              #:snstopic-arn-not-found-fault
                               #:scalar-reference-details
                               #:scaling-configuration
                               #:scaling-configuration-info #:sensitive-string
                               #:serverless-v2features-support
                               #:serverless-v2scaling-configuration
                               #:serverless-v2scaling-configuration-info
-                              #:shared-snapshot-quota-exceeded-fault
-                              #:snapshot-quota-exceeded-fault #:source-arn
-                              #:source-cluster-not-supported-fault
-                              #:source-database-not-supported-fault
-                              #:source-ids-list #:source-not-found-fault
-                              #:source-region #:source-region-list
-                              #:source-region-message #:source-type
-                              #:start-activity-stream
-                              #:start-activity-stream-request
-                              #:start-activity-stream-response
-                              #:start-dbcluster #:start-dbcluster-message
-                              #:start-dbcluster-result #:start-dbinstance
+                              #:source-arn #:source-ids-list #:source-region
+                              #:source-region-list #:source-type
+                              #:start-activity-stream #:start-dbcluster
+                              #:start-dbinstance
                               #:start-dbinstance-automated-backups-replication
-                              #:start-dbinstance-automated-backups-replication-message
-                              #:start-dbinstance-automated-backups-replication-result
-                              #:start-dbinstance-message
-                              #:start-dbinstance-result #:start-export-task
-                              #:start-export-task-message
-                              #:stop-activity-stream
-                              #:stop-activity-stream-request
-                              #:stop-activity-stream-response #:stop-dbcluster
-                              #:stop-dbcluster-message #:stop-dbcluster-result
-                              #:stop-dbinstance
+                              #:start-export-task #:stop-activity-stream
+                              #:stop-dbcluster #:stop-dbinstance
                               #:stop-dbinstance-automated-backups-replication
-                              #:stop-dbinstance-automated-backups-replication-message
-                              #:stop-dbinstance-automated-backups-replication-result
-                              #:stop-dbinstance-message
-                              #:stop-dbinstance-result
-                              #:storage-quota-exceeded-fault
-                              #:storage-type-not-available-fault
-                              #:storage-type-not-supported-fault #:string
-                              #:string255 #:string-list #:subnet
-                              #:subnet-already-in-use #:subnet-identifier-list
-                              #:subnet-list #:subscription-already-exist-fault
-                              #:subscription-category-not-found-fault
-                              #:subscription-not-found-fault
+                              #:string #:string255 #:string-list #:subnet
+                              #:subnet-identifier-list #:subnet-list
                               #:supported-character-sets-list
                               #:supported-engine-lifecycle
                               #:supported-engine-lifecycle-list
                               #:supported-timezones-list
                               #:switchover-blue-green-deployment
-                              #:switchover-blue-green-deployment-request
-                              #:switchover-blue-green-deployment-response
                               #:switchover-detail #:switchover-detail-list
                               #:switchover-detail-status
                               #:switchover-global-cluster
-                              #:switchover-global-cluster-message
-                              #:switchover-global-cluster-result
-                              #:switchover-read-replica
-                              #:switchover-read-replica-message
-                              #:switchover-read-replica-result
-                              #:switchover-timeout #:tstamp #:tag #:tag-list
-                              #:tag-list-message
+                              #:switchover-read-replica #:switchover-timeout
+                              #:tstamp #:tag #:tag-list
                               #:target-dbcluster-parameter-group-name
                               #:target-dbinstance-class
                               #:target-dbparameter-group-name
@@ -754,13 +320,8 @@
                               #:target-list #:target-role #:target-state
                               #:target-storage-type #:target-type
                               #:tenant-database
-                              #:tenant-database-already-exists-fault
-                              #:tenant-database-not-found-fault
                               #:tenant-database-pending-modified-values
-                              #:tenant-database-quota-exceeded-fault
-                              #:tenant-databases-list
-                              #:tenant-databases-message #:timezone
-                              #:unsupported-dbengine-version-fault
+                              #:tenant-databases-list #:timezone
                               #:upgrade-target #:user-auth-config
                               #:user-auth-config-info
                               #:user-auth-config-info-list

@@ -1,203 +1,78 @@
 (uiop/package:define-package #:pira/memorydb (:use)
-                             (:export #:acl #:aclalready-exists-fault
-                              #:aclcluster-name-list #:acllist #:aclname
-                              #:aclname-list #:aclnot-found-fault
-                              #:aclpending-changes #:aclquota-exceeded-fault
-                              #:acls-update-status
-                              #:apicall-rate-for-customer-exceeded-fault
-                              #:azstatus #:access-string #:amazon-memory-db
-                              #:authentication #:authentication-mode
-                              #:authentication-type #:availability-zone
-                              #:aws-query-error-message #:batch-update-cluster
-                              #:batch-update-cluster-request
-                              #:batch-update-cluster-response #:boolean
+                             (:export #:acl #:aclcluster-name-list #:acllist
+                              #:aclname #:aclname-list #:aclpending-changes
+                              #:acls-update-status #:azstatus #:access-string
+                              #:amazon-memory-db #:authentication
+                              #:authentication-mode #:authentication-type
+                              #:availability-zone #:aws-query-error-message
+                              #:batch-update-cluster #:boolean
                               #:boolean-optional #:cluster
-                              #:cluster-already-exists-fault
                               #:cluster-configuration #:cluster-list
-                              #:cluster-name-list #:cluster-not-found-fault
-                              #:cluster-pending-updates
-                              #:cluster-quota-for-customer-exceeded-fault
-                              #:copy-snapshot #:copy-snapshot-request
-                              #:copy-snapshot-response #:create-acl
-                              #:create-aclrequest #:create-aclresponse
-                              #:create-cluster #:create-cluster-request
-                              #:create-cluster-response
+                              #:cluster-name-list #:cluster-pending-updates
+                              #:copy-snapshot #:create-acl #:create-cluster
                               #:create-multi-region-cluster
-                              #:create-multi-region-cluster-request
-                              #:create-multi-region-cluster-response
-                              #:create-parameter-group
-                              #:create-parameter-group-request
-                              #:create-parameter-group-response
-                              #:create-snapshot #:create-snapshot-request
-                              #:create-snapshot-response #:create-subnet-group
-                              #:create-subnet-group-request
-                              #:create-subnet-group-response #:create-user
-                              #:create-user-request #:create-user-response
-                              #:data-tiering-status #:default-user-required
-                              #:delete-acl #:delete-aclrequest
-                              #:delete-aclresponse #:delete-cluster
-                              #:delete-cluster-request
-                              #:delete-cluster-response
-                              #:delete-multi-region-cluster
-                              #:delete-multi-region-cluster-request
-                              #:delete-multi-region-cluster-response
-                              #:delete-parameter-group
-                              #:delete-parameter-group-request
-                              #:delete-parameter-group-response
-                              #:delete-snapshot #:delete-snapshot-request
-                              #:delete-snapshot-response #:delete-subnet-group
-                              #:delete-subnet-group-request
-                              #:delete-subnet-group-response #:delete-user
-                              #:delete-user-request #:delete-user-response
-                              #:describe-acls #:describe-acls-request
-                              #:describe-acls-response #:describe-clusters
-                              #:describe-clusters-request
-                              #:describe-clusters-response
-                              #:describe-engine-versions
-                              #:describe-engine-versions-request
-                              #:describe-engine-versions-response
-                              #:describe-events #:describe-events-request
-                              #:describe-events-response
+                              #:create-parameter-group #:create-snapshot
+                              #:create-subnet-group #:create-user
+                              #:data-tiering-status #:delete-acl
+                              #:delete-cluster #:delete-multi-region-cluster
+                              #:delete-parameter-group #:delete-snapshot
+                              #:delete-subnet-group #:delete-user
+                              #:describe-acls #:describe-clusters
+                              #:describe-engine-versions #:describe-events
                               #:describe-multi-region-clusters
-                              #:describe-multi-region-clusters-request
-                              #:describe-multi-region-clusters-response
-                              #:describe-parameter-groups
-                              #:describe-parameter-groups-request
-                              #:describe-parameter-groups-response
-                              #:describe-parameters
-                              #:describe-parameters-request
-                              #:describe-parameters-response
+                              #:describe-parameter-groups #:describe-parameters
                               #:describe-reserved-nodes
                               #:describe-reserved-nodes-offerings
-                              #:describe-reserved-nodes-offerings-request
-                              #:describe-reserved-nodes-offerings-response
-                              #:describe-reserved-nodes-request
-                              #:describe-reserved-nodes-response
-                              #:describe-service-updates
-                              #:describe-service-updates-request
-                              #:describe-service-updates-response
-                              #:describe-snapshots #:describe-snapshots-request
-                              #:describe-snapshots-response
-                              #:describe-subnet-groups
-                              #:describe-subnet-groups-request
-                              #:describe-subnet-groups-response
-                              #:describe-users #:describe-users-request
-                              #:describe-users-response #:double
-                              #:duplicate-user-name-fault #:endpoint
-                              #:engine-version-info #:engine-version-info-list
-                              #:event #:event-list #:exception-message
-                              #:failover-shard #:failover-shard-request
-                              #:failover-shard-response #:filter #:filter-list
-                              #:filter-name #:filter-value #:filter-value-list
-                              #:input-authentication-type
-                              #:insufficient-cluster-capacity-fault #:integer
-                              #:integer-optional #:invalid-aclstate-fault
-                              #:invalid-arnfault #:invalid-cluster-state-fault
-                              #:invalid-credentials-exception
-                              #:invalid-kmskey-fault
-                              #:invalid-multi-region-cluster-state-fault
-                              #:invalid-node-state-fault
-                              #:invalid-parameter-combination-exception
-                              #:invalid-parameter-group-state-fault
-                              #:invalid-parameter-value-exception
-                              #:invalid-snapshot-state-fault #:invalid-subnet
-                              #:invalid-user-state-fault
-                              #:invalid-vpcnetwork-state-fault #:ip-discovery
+                              #:describe-service-updates #:describe-snapshots
+                              #:describe-subnet-groups #:describe-users
+                              #:double #:endpoint #:engine-version-info
+                              #:engine-version-info-list #:event #:event-list
+                              #:exception-message #:failover-shard #:filter
+                              #:filter-list #:filter-name #:filter-value
+                              #:filter-value-list #:input-authentication-type
+                              #:integer #:integer-optional #:ip-discovery
                               #:key-list #:kms-key-id
                               #:list-allowed-multi-region-cluster-updates
-                              #:list-allowed-multi-region-cluster-updates-request
-                              #:list-allowed-multi-region-cluster-updates-response
-                              #:list-allowed-node-type-updates
-                              #:list-allowed-node-type-updates-request
-                              #:list-allowed-node-type-updates-response
-                              #:list-tags #:list-tags-request
-                              #:list-tags-response #:multi-region-cluster
-                              #:multi-region-cluster-already-exists-fault
-                              #:multi-region-cluster-list
-                              #:multi-region-cluster-not-found-fault
-                              #:multi-region-parameter-group-not-found-fault
-                              #:network-type #:network-type-list
-                              #:no-operation-fault #:node #:node-list
-                              #:node-quota-for-cluster-exceeded-fault
-                              #:node-quota-for-customer-exceeded-fault
+                              #:list-allowed-node-type-updates #:list-tags
+                              #:multi-region-cluster
+                              #:multi-region-cluster-list #:network-type
+                              #:network-type-list #:node #:node-list
                               #:node-type-list #:parameter #:parameter-group
-                              #:parameter-group-already-exists-fault
-                              #:parameter-group-list
-                              #:parameter-group-not-found-fault
-                              #:parameter-group-quota-exceeded-fault
-                              #:parameter-name-list #:parameter-name-value
+                              #:parameter-group-list #:parameter-name-list
+                              #:parameter-name-value
                               #:parameter-name-value-list #:parameters-list
                               #:password-list-input
                               #:pending-modified-service-update
                               #:pending-modified-service-update-list
                               #:purchase-reserved-nodes-offering
-                              #:purchase-reserved-nodes-offering-request
-                              #:purchase-reserved-nodes-offering-response
                               #:recurring-charge #:recurring-charge-list
                               #:regional-cluster #:regional-cluster-list
                               #:replica-configuration-request #:reserved-node
-                              #:reserved-node-already-exists-fault
-                              #:reserved-node-list
-                              #:reserved-node-not-found-fault
-                              #:reserved-node-quota-exceeded-fault
-                              #:reserved-nodes-offering
+                              #:reserved-node-list #:reserved-nodes-offering
                               #:reserved-nodes-offering-list
-                              #:reserved-nodes-offering-not-found-fault
-                              #:reset-parameter-group
-                              #:reset-parameter-group-request
-                              #:reset-parameter-group-response
-                              #:resharding-status #:security-group-ids-list
+                              #:reset-parameter-group #:resharding-status
+                              #:security-group-ids-list
                               #:security-group-membership
-                              #:security-group-membership-list
-                              #:service-linked-role-not-found-fault
-                              #:service-update #:service-update-list
-                              #:service-update-not-found-fault
-                              #:service-update-request #:service-update-status
+                              #:security-group-membership-list #:service-update
+                              #:service-update-list #:service-update-request
+                              #:service-update-status
                               #:service-update-status-list
                               #:service-update-type #:shard
                               #:shard-configuration
                               #:shard-configuration-request #:shard-detail
-                              #:shard-details #:shard-list
-                              #:shard-not-found-fault
-                              #:shards-per-cluster-quota-exceeded-fault
-                              #:slot-migration #:snapshot
-                              #:snapshot-already-exists-fault
-                              #:snapshot-arns-list #:snapshot-list
-                              #:snapshot-not-found-fault
-                              #:snapshot-quota-exceeded-fault #:source-type
-                              #:string #:subnet #:subnet-group
-                              #:subnet-group-already-exists-fault
-                              #:subnet-group-in-use-fault #:subnet-group-list
-                              #:subnet-group-not-found-fault
-                              #:subnet-group-quota-exceeded-fault
-                              #:subnet-identifier-list #:subnet-in-use
-                              #:subnet-list #:subnet-not-allowed-fault
-                              #:subnet-quota-exceeded-fault #:tstamp #:tag
-                              #:tag-list #:tag-not-found-fault
-                              #:tag-quota-per-resource-exceeded #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:target-bucket
-                              #:test-failover-not-available-fault
+                              #:shard-details #:shard-list #:slot-migration
+                              #:snapshot #:snapshot-arns-list #:snapshot-list
+                              #:source-type #:string #:subnet #:subnet-group
+                              #:subnet-group-list #:subnet-identifier-list
+                              #:subnet-list #:tstamp #:tag #:tag-list
+                              #:tag-resource #:target-bucket
                               #:unprocessed-cluster #:unprocessed-cluster-list
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-acl
-                              #:update-aclrequest #:update-aclresponse
-                              #:update-cluster #:update-cluster-request
-                              #:update-cluster-response
+                              #:untag-resource #:update-acl #:update-cluster
                               #:update-multi-region-cluster
-                              #:update-multi-region-cluster-request
-                              #:update-multi-region-cluster-response
-                              #:update-parameter-group
-                              #:update-parameter-group-request
-                              #:update-parameter-group-response
-                              #:update-strategy #:update-subnet-group
-                              #:update-subnet-group-request
-                              #:update-subnet-group-response #:update-user
-                              #:update-user-request #:update-user-response
-                              #:user #:user-already-exists-fault #:user-list
-                              #:user-name #:user-name-list
-                              #:user-name-list-input #:user-not-found-fault
-                              #:user-quota-exceeded-fault))
+                              #:update-parameter-group #:update-strategy
+                              #:update-subnet-group #:update-user #:user
+                              #:user-list #:user-name #:user-name-list
+                              #:user-name-list-input))
 (common-lisp:in-package #:pira/memorydb)
 
 (smithy/sdk/service:define-service amazon-memory-db :shape-name

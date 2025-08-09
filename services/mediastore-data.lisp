@@ -1,23 +1,14 @@
 (uiop/package:define-package #:pira/mediastore-data (:use)
-                             (:export #:container-not-found-exception
-                              #:content-range-pattern #:content-type
-                              #:delete-object #:delete-object-request
-                              #:delete-object-response #:describe-object
-                              #:describe-object-request
-                              #:describe-object-response #:etag #:error-message
-                              #:get-object #:get-object-request
-                              #:get-object-response #:internal-server-error
-                              #:item #:item-list #:item-name #:item-type
-                              #:list-items #:list-items-request
-                              #:list-items-response #:list-limit
+                             (:export #:content-range-pattern #:content-type
+                              #:delete-object #:describe-object #:etag
+                              #:error-message #:get-object #:item #:item-list
+                              #:item-name #:item-type #:list-items #:list-limit
                               #:list-path-naming #:media-store-object-20170901
-                              #:non-negative-long #:object-not-found-exception
-                              #:pagination-token #:path-naming #:payload-blob
-                              #:put-object #:put-object-request
-                              #:put-object-response #:range-pattern
-                              #:requested-range-not-satisfiable-exception
-                              #:sha256hash #:storage-class #:string-primitive
-                              #:time-stamp #:upload-availability #:status-code))
+                              #:non-negative-long #:pagination-token
+                              #:path-naming #:payload-blob #:put-object
+                              #:range-pattern #:sha256hash #:storage-class
+                              #:string-primitive #:time-stamp
+                              #:upload-availability #:status-code))
 (common-lisp:in-package #:pira/mediastore-data)
 
 (smithy/sdk/service:define-service media-store-object-20170901 :shape-name

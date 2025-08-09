@@ -1,10 +1,7 @@
 (uiop/package:define-package #:pira/devops-guru (:use)
-                             (:export #:access-denied-exception
-                              #:account-health #:account-healths
+                             (:export #:account-health #:account-healths
                               #:account-id-list #:account-insight-health
                               #:add-notification-channel
-                              #:add-notification-channel-request
-                              #:add-notification-channel-response
                               #:amazon-code-guru-profiler-integration
                               #:analyzed-resource-count #:anomalous-log-group
                               #:anomalous-log-groups #:anomaly-description
@@ -34,8 +31,7 @@
                               #:cloud-watch-metrics-namespace
                               #:cloud-watch-metrics-period
                               #:cloud-watch-metrics-stat
-                              #:cloud-watch-metrics-unit #:conflict-exception
-                              #:cost
+                              #:cloud-watch-metrics-unit #:cost
                               #:cost-estimation-resource-collection-filter
                               #:cost-estimation-service-resource-count
                               #:cost-estimation-service-resource-state
@@ -43,40 +39,17 @@
                               #:cost-estimation-status
                               #:cost-estimation-tag-values
                               #:cost-estimation-time-range #:delete-insight
-                              #:delete-insight-request
-                              #:delete-insight-response
                               #:describe-account-health
-                              #:describe-account-health-request
-                              #:describe-account-health-response
-                              #:describe-account-overview
-                              #:describe-account-overview-request
-                              #:describe-account-overview-response
-                              #:describe-anomaly #:describe-anomaly-request
-                              #:describe-anomaly-response
+                              #:describe-account-overview #:describe-anomaly
                               #:describe-event-sources-config
-                              #:describe-event-sources-config-request
-                              #:describe-event-sources-config-response
-                              #:describe-feedback #:describe-feedback-request
-                              #:describe-feedback-response #:describe-insight
-                              #:describe-insight-request
-                              #:describe-insight-response
+                              #:describe-feedback #:describe-insight
                               #:describe-organization-health
-                              #:describe-organization-health-request
-                              #:describe-organization-health-response
                               #:describe-organization-overview
-                              #:describe-organization-overview-request
-                              #:describe-organization-overview-response
                               #:describe-organization-resource-collection-health
-                              #:describe-organization-resource-collection-health-request
-                              #:describe-organization-resource-collection-health-response
                               #:describe-resource-collection-health
-                              #:describe-resource-collection-health-request
-                              #:describe-resource-collection-health-response
-                              #:describe-service-integration
-                              #:describe-service-integration-request
-                              #:describe-service-integration-response
-                              #:end-time-range #:error-message-string
-                              #:error-name-string #:error-quota-code-string
+                              #:describe-service-integration #:end-time-range
+                              #:error-message-string #:error-name-string
+                              #:error-quota-code-string
                               #:error-service-code-string #:event #:event-class
                               #:event-data-source #:event-id #:event-name
                               #:event-resource #:event-resource-arn
@@ -85,54 +58,34 @@
                               #:event-source-opt-in-status
                               #:event-sources-config #:event-time-range
                               #:events #:explanation #:get-cost-estimation
-                              #:get-cost-estimation-request
-                              #:get-cost-estimation-response
-                              #:get-resource-collection
-                              #:get-resource-collection-request
-                              #:get-resource-collection-response
-                              #:insight-description #:insight-feedback
-                              #:insight-feedback-option #:insight-health
-                              #:insight-id #:insight-name #:insight-severities
-                              #:insight-severity #:insight-status
-                              #:insight-statuses #:insight-time-range
-                              #:insight-type #:internal-server-exception
-                              #:kmskey-id
+                              #:get-resource-collection #:insight-description
+                              #:insight-feedback #:insight-feedback-option
+                              #:insight-health #:insight-id #:insight-name
+                              #:insight-severities #:insight-severity
+                              #:insight-status #:insight-statuses
+                              #:insight-time-range #:insight-type #:kmskey-id
                               #:kmsserver-side-encryption-integration
                               #:kmsserver-side-encryption-integration-config
                               #:list-anomalies-for-insight
                               #:list-anomalies-for-insight-filters
                               #:list-anomalies-for-insight-max-results
-                              #:list-anomalies-for-insight-request
-                              #:list-anomalies-for-insight-response
                               #:list-anomalous-log-groups
                               #:list-anomalous-log-groups-max-results
-                              #:list-anomalous-log-groups-request
-                              #:list-anomalous-log-groups-response
                               #:list-events #:list-events-filters
-                              #:list-events-max-results #:list-events-request
-                              #:list-events-response #:list-insights
+                              #:list-events-max-results #:list-insights
                               #:list-insights-account-id-list
                               #:list-insights-any-status-filter
                               #:list-insights-closed-status-filter
                               #:list-insights-max-results
                               #:list-insights-ongoing-status-filter
                               #:list-insights-organizational-unit-id-list
-                              #:list-insights-request #:list-insights-response
                               #:list-insights-status-filter
                               #:list-monitored-resources
                               #:list-monitored-resources-filters
                               #:list-monitored-resources-max-results
-                              #:list-monitored-resources-request
-                              #:list-monitored-resources-response
                               #:list-notification-channels
-                              #:list-notification-channels-request
-                              #:list-notification-channels-response
                               #:list-organization-insights
-                              #:list-organization-insights-request
-                              #:list-organization-insights-response
-                              #:list-recommendations
-                              #:list-recommendations-request
-                              #:list-recommendations-response #:locale
+                              #:list-recommendations #:locale
                               #:log-anomaly-class #:log-anomaly-classes
                               #:log-anomaly-showcase #:log-anomaly-showcases
                               #:log-anomaly-token #:log-anomaly-type
@@ -190,7 +143,6 @@
                               #:proactive-insights
                               #:proactive-organization-insight-summary
                               #:proactive-organization-insights #:put-feedback
-                              #:put-feedback-request #:put-feedback-response
                               #:reactive-anomalies #:reactive-anomaly
                               #:reactive-anomaly-summary #:reactive-insight
                               #:reactive-insight-summary #:reactive-insights
@@ -219,66 +171,48 @@
                               #:recommendation-related-event-resources
                               #:recommendation-related-events #:recommendations
                               #:related-anomaly-source-details
-                              #:remove-notification-channel
-                              #:remove-notification-channel-request
-                              #:remove-notification-channel-response
-                              #:resource-arn #:resource-collection
+                              #:remove-notification-channel #:resource-arn
+                              #:resource-collection
                               #:resource-collection-filter
                               #:resource-collection-type #:resource-hours
                               #:resource-id-string #:resource-id-type
-                              #:resource-name #:resource-not-found-exception
-                              #:resource-permission #:resource-type
-                              #:resource-type-filter #:resource-type-filters
-                              #:retry-after-seconds #:search-insights
+                              #:resource-name #:resource-permission
+                              #:resource-type #:resource-type-filter
+                              #:resource-type-filters #:retry-after-seconds
+                              #:search-insights
                               #:search-insights-account-id-list
                               #:search-insights-filters
                               #:search-insights-max-results
-                              #:search-insights-request
-                              #:search-insights-response
                               #:search-organization-insights
                               #:search-organization-insights-filters
                               #:search-organization-insights-max-results
-                              #:search-organization-insights-request
-                              #:search-organization-insights-response
                               #:server-side-encryption-type
                               #:service-collection #:service-health
                               #:service-healths #:service-insight-health
                               #:service-integration-config #:service-name
-                              #:service-names
-                              #:service-quota-exceeded-exception
-                              #:service-resource-cost #:service-resource-costs
-                              #:sns-channel-config #:ssm-ops-item-id
-                              #:stack-name #:stack-names
-                              #:start-cost-estimation
-                              #:start-cost-estimation-request
-                              #:start-cost-estimation-response
-                              #:start-time-range #:tag-collection
-                              #:tag-collection-filter #:tag-collection-filters
-                              #:tag-collections
+                              #:service-names #:service-resource-cost
+                              #:service-resource-costs #:sns-channel-config
+                              #:ssm-ops-item-id #:stack-name #:stack-names
+                              #:start-cost-estimation #:start-time-range
+                              #:tag-collection #:tag-collection-filter
+                              #:tag-collection-filters #:tag-collections
                               #:tag-cost-estimation-resource-collection-filter
                               #:tag-cost-estimation-resource-collection-filters
                               #:tag-health #:tag-healths #:tag-value
-                              #:tag-values #:throttling-exception #:timestamp
+                              #:tag-values #:timestamp
                               #:timestamp-metric-value-pair
                               #:timestamp-metric-value-pair-list #:topic-arn
                               #:update-cloud-formation-collection-filter
                               #:update-event-sources-config
-                              #:update-event-sources-config-request
-                              #:update-event-sources-config-response
                               #:update-resource-collection
                               #:update-resource-collection-action
                               #:update-resource-collection-filter
-                              #:update-resource-collection-request
-                              #:update-resource-collection-response
                               #:update-service-integration
                               #:update-service-integration-config
-                              #:update-service-integration-request
-                              #:update-service-integration-response
                               #:update-stack-names
                               #:update-tag-collection-filter
                               #:update-tag-collection-filters
                               #:update-tag-values #:uuid-next-token
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-fields
                               #:validation-exception-reason))

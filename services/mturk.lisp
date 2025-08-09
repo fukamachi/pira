@@ -1,114 +1,53 @@
 (uiop/package:define-package #:pira/mturk (:use)
                              (:export #:accept-qualification-request
-                              #:accept-qualification-request-request
-                              #:accept-qualification-request-response
-                              #:approve-assignment #:approve-assignment-request
-                              #:approve-assignment-response #:assignment
+                              #:approve-assignment #:assignment
                               #:assignment-list #:assignment-status
                               #:assignment-status-list
                               #:associate-qualification-with-worker
-                              #:associate-qualification-with-worker-request
-                              #:associate-qualification-with-worker-response
                               #:bonus-payment #:bonus-payment-list #:boolean
                               #:comparator #:country-parameters
                               #:create-additional-assignments-for-hit
-                              #:create-additional-assignments-for-hitrequest
-                              #:create-additional-assignments-for-hitresponse
-                              #:create-hit #:create-hitrequest
-                              #:create-hitresponse #:create-hittype
-                              #:create-hittype-request
-                              #:create-hittype-response
+                              #:create-hit #:create-hittype
                               #:create-hitwith-hittype
-                              #:create-hitwith-hittype-request
-                              #:create-hitwith-hittype-response
-                              #:create-qualification-type
-                              #:create-qualification-type-request
-                              #:create-qualification-type-response
-                              #:create-worker-block
-                              #:create-worker-block-request
-                              #:create-worker-block-response #:currency-amount
-                              #:customer-id #:customer-id-list #:delete-hit
-                              #:delete-hitrequest #:delete-hitresponse
-                              #:delete-qualification-type
-                              #:delete-qualification-type-request
-                              #:delete-qualification-type-response
-                              #:delete-worker-block
-                              #:delete-worker-block-request
-                              #:delete-worker-block-response
+                              #:create-qualification-type #:create-worker-block
+                              #:currency-amount #:customer-id
+                              #:customer-id-list #:delete-hit
+                              #:delete-qualification-type #:delete-worker-block
                               #:disassociate-qualification-from-worker
-                              #:disassociate-qualification-from-worker-request
-                              #:disassociate-qualification-from-worker-response
                               #:entity-id #:event-type #:event-type-list
                               #:exception-message #:get-account-balance
-                              #:get-account-balance-request
-                              #:get-account-balance-response #:get-assignment
-                              #:get-assignment-request
-                              #:get-assignment-response #:get-file-upload-url
-                              #:get-file-upload-urlrequest
-                              #:get-file-upload-urlresponse #:get-hit
-                              #:get-hitrequest #:get-hitresponse
+                              #:get-assignment #:get-file-upload-url #:get-hit
                               #:get-qualification-score
-                              #:get-qualification-score-request
-                              #:get-qualification-score-response
-                              #:get-qualification-type
-                              #:get-qualification-type-request
-                              #:get-qualification-type-response #:hit
+                              #:get-qualification-type #:hit
                               #:hitaccess-actions #:hitlayout-parameter
                               #:hitlayout-parameter-list #:hitlist
                               #:hitreview-status #:hitstatus
                               #:idempotency-token #:integer #:integer-list
-                              #:list-assignments-for-hit
-                              #:list-assignments-for-hitrequest
-                              #:list-assignments-for-hitresponse
-                              #:list-bonus-payments
-                              #:list-bonus-payments-request
-                              #:list-bonus-payments-response #:list-hits
-                              #:list-hits-for-qualification-type
-                              #:list-hits-for-qualification-type-request
-                              #:list-hits-for-qualification-type-response
-                              #:list-hits-request #:list-hits-response
+                              #:list-assignments-for-hit #:list-bonus-payments
+                              #:list-hits #:list-hits-for-qualification-type
                               #:list-qualification-requests
-                              #:list-qualification-requests-request
-                              #:list-qualification-requests-response
                               #:list-qualification-types
-                              #:list-qualification-types-request
-                              #:list-qualification-types-response
                               #:list-review-policy-results-for-hit
-                              #:list-review-policy-results-for-hitrequest
-                              #:list-review-policy-results-for-hitresponse
-                              #:list-reviewable-hits
-                              #:list-reviewable-hits-request
-                              #:list-reviewable-hits-response
-                              #:list-worker-blocks #:list-worker-blocks-request
-                              #:list-worker-blocks-response
-                              #:list-workers-with-qualification-type
-                              #:list-workers-with-qualification-type-request
-                              #:list-workers-with-qualification-type-response
-                              #:locale #:locale-list #:long
+                              #:list-reviewable-hits #:list-worker-blocks
+                              #:list-workers-with-qualification-type #:locale
+                              #:locale-list #:long
                               #:mturk-requester-service-v20170117
                               #:notification-specification
                               #:notification-transport #:notify-workers
                               #:notify-workers-failure-code
                               #:notify-workers-failure-status
                               #:notify-workers-failure-status-list
-                              #:notify-workers-request
-                              #:notify-workers-response #:pagination-token
-                              #:parameter-map-entry #:parameter-map-entry-list
-                              #:policy-parameter #:policy-parameter-list
-                              #:qualification #:qualification-list
-                              #:qualification-request
+                              #:pagination-token #:parameter-map-entry
+                              #:parameter-map-entry-list #:policy-parameter
+                              #:policy-parameter-list #:qualification
+                              #:qualification-list #:qualification-request
                               #:qualification-request-list
                               #:qualification-requirement
                               #:qualification-requirement-list
                               #:qualification-status #:qualification-type
                               #:qualification-type-list
                               #:qualification-type-status #:reject-assignment
-                              #:reject-assignment-request
-                              #:reject-assignment-response
-                              #:reject-qualification-request
-                              #:reject-qualification-request-request
-                              #:reject-qualification-request-response
-                              #:request-error #:result-size
+                              #:reject-qualification-request #:result-size
                               #:review-action-detail
                               #:review-action-detail-list
                               #:review-action-status #:review-policy
@@ -116,28 +55,13 @@
                               #:review-report #:review-result-detail
                               #:review-result-detail-list
                               #:reviewable-hitstatus #:send-bonus
-                              #:send-bonus-request #:send-bonus-response
-                              #:send-test-event-notification
-                              #:send-test-event-notification-request
-                              #:send-test-event-notification-response
-                              #:service-fault #:string #:string-list
-                              #:timestamp #:turk-error-code
+                              #:send-test-event-notification #:string
+                              #:string-list #:timestamp #:turk-error-code
                               #:update-expiration-for-hit
-                              #:update-expiration-for-hitrequest
-                              #:update-expiration-for-hitresponse
-                              #:update-hitreview-status
-                              #:update-hitreview-status-request
-                              #:update-hitreview-status-response
-                              #:update-hittype-of-hit
-                              #:update-hittype-of-hitrequest
-                              #:update-hittype-of-hitresponse
+                              #:update-hitreview-status #:update-hittype-of-hit
                               #:update-notification-settings
-                              #:update-notification-settings-request
-                              #:update-notification-settings-response
-                              #:update-qualification-type
-                              #:update-qualification-type-request
-                              #:update-qualification-type-response
-                              #:worker-block #:worker-block-list))
+                              #:update-qualification-type #:worker-block
+                              #:worker-block-list))
 (common-lisp:in-package #:pira/mturk)
 
 (smithy/sdk/service:define-service mturk-requester-service-v20170117

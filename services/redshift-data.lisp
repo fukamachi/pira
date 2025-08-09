@@ -1,42 +1,18 @@
 (uiop/package:define-package #:pira/redshift-data (:use)
-                             (:export #:active-sessions-exceeded-exception
-                              #:active-statements-exceeded-exception
-                              #:batch-execute-statement
-                              #:batch-execute-statement-exception
-                              #:batch-execute-statement-input
-                              #:batch-execute-statement-output #:blob
+                             (:export #:batch-execute-statement #:blob
                               #:boxed-boolean #:boxed-double #:boxed-long
-                              #:cancel-statement #:cancel-statement-request
-                              #:cancel-statement-response #:client-token
+                              #:cancel-statement #:client-token
                               #:cluster-identifier-string #:column-list
                               #:column-metadata #:column-metadata-list
-                              #:database-connection-exception #:database-list
-                              #:db-group-list #:describe-statement
-                              #:describe-statement-request
-                              #:describe-statement-response #:describe-table
-                              #:describe-table-request
-                              #:describe-table-response #:execute-statement
-                              #:execute-statement-exception
-                              #:execute-statement-input
-                              #:execute-statement-output #:field #:field-list
+                              #:database-list #:db-group-list
+                              #:describe-statement #:describe-table
+                              #:execute-statement #:field #:field-list
                               #:formatted-sql-records #:get-statement-result
-                              #:get-statement-result-request
-                              #:get-statement-result-response
-                              #:get-statement-result-v2
-                              #:get-statement-result-v2request
-                              #:get-statement-result-v2response #:integer
-                              #:internal-server-exception #:list-databases
-                              #:list-databases-request
-                              #:list-databases-response #:list-schemas
-                              #:list-schemas-request #:list-schemas-response
-                              #:list-statements #:list-statements-limit
-                              #:list-statements-request
-                              #:list-statements-response #:list-tables
-                              #:list-tables-request #:list-tables-response
-                              #:long #:page-size #:parameter-name
-                              #:parameter-value #:query-records
-                              #:query-timeout-exception #:redshift-data
-                              #:resource-not-found-exception
+                              #:get-statement-result-v2 #:integer
+                              #:list-databases #:list-schemas #:list-statements
+                              #:list-statements-limit #:list-tables #:long
+                              #:page-size #:parameter-name #:parameter-value
+                              #:query-records #:redshift-data
                               #:result-format-string #:schema-list #:secret-arn
                               #:session-alive-seconds #:sql-list
                               #:sql-parameter #:sql-parameters-list
@@ -45,8 +21,7 @@
                               #:statement-string #:statement-string-list
                               #:status-string #:string #:sub-statement-data
                               #:sub-statement-list #:table-list #:table-member
-                              #:uuid #:validation-exception
-                              #:workgroup-name-string #:bool))
+                              #:uuid #:workgroup-name-string #:bool))
 (common-lisp:in-package #:pira/redshift-data)
 
 (smithy/sdk/service:define-service redshift-data :shape-name "RedshiftData"

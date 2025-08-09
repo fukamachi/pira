@@ -1,63 +1,29 @@
 (uiop/package:define-package #:pira/mediapackage-vod (:use)
                              (:export #:ad-markers #:asset-shallow
                               #:authorization #:cmaf-encryption #:cmaf-package
-                              #:configure-logs #:configure-logs-request
-                              #:configure-logs-response #:create-asset
-                              #:create-asset-request #:create-asset-response
+                              #:configure-logs #:create-asset
                               #:create-packaging-configuration
-                              #:create-packaging-configuration-request
-                              #:create-packaging-configuration-response
-                              #:create-packaging-group
-                              #:create-packaging-group-request
-                              #:create-packaging-group-response
-                              #:dash-encryption #:dash-manifest #:dash-package
-                              #:delete-asset #:delete-asset-request
-                              #:delete-asset-response
+                              #:create-packaging-group #:dash-encryption
+                              #:dash-manifest #:dash-package #:delete-asset
                               #:delete-packaging-configuration
-                              #:delete-packaging-configuration-request
-                              #:delete-packaging-configuration-response
-                              #:delete-packaging-group
-                              #:delete-packaging-group-request
-                              #:delete-packaging-group-response
-                              #:describe-asset #:describe-asset-request
-                              #:describe-asset-response
+                              #:delete-packaging-group #:describe-asset
                               #:describe-packaging-configuration
-                              #:describe-packaging-configuration-request
-                              #:describe-packaging-configuration-response
-                              #:describe-packaging-group
-                              #:describe-packaging-group-request
-                              #:describe-packaging-group-response
-                              #:egress-access-logs #:egress-endpoint
+                              #:describe-packaging-group #:egress-access-logs
+                              #:egress-endpoint
                               #:encryption-contract-configuration
-                              #:encryption-method #:forbidden-exception
-                              #:hls-encryption #:hls-manifest #:hls-package
-                              #:internal-server-error-exception #:list-assets
-                              #:list-assets-request #:list-assets-response
+                              #:encryption-method #:hls-encryption
+                              #:hls-manifest #:hls-package #:list-assets
                               #:list-packaging-configurations
-                              #:list-packaging-configurations-request
-                              #:list-packaging-configurations-response
-                              #:list-packaging-groups
-                              #:list-packaging-groups-request
-                              #:list-packaging-groups-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-packaging-groups #:list-tags-for-resource
                               #:manifest-layout #:max-results
                               #:media-package-vod #:mss-encryption
                               #:mss-manifest #:mss-package
-                              #:not-found-exception #:packaging-configuration
-                              #:packaging-group #:preset-speke20audio
-                              #:preset-speke20video #:profile
-                              #:scte-markers-source #:segment-template-format
-                              #:service-unavailable-exception
-                              #:speke-key-provider #:stream-order
-                              #:stream-selection #:tag-resource
-                              #:tag-resource-request #:tags
-                              #:too-many-requests-exception
-                              #:unprocessable-entity-exception #:untag-resource
-                              #:untag-resource-request #:update-packaging-group
-                              #:update-packaging-group-request
-                              #:update-packaging-group-response
+                              #:packaging-configuration #:packaging-group
+                              #:preset-speke20audio #:preset-speke20video
+                              #:profile #:scte-markers-source
+                              #:segment-template-format #:speke-key-provider
+                              #:stream-order #:stream-selection #:tag-resource
+                              #:tags #:untag-resource #:update-packaging-group
                               #:period-triggers-element #:boolean #:integer
                               #:list-of-asset-shallow #:list-of-dash-manifest
                               #:list-of-egress-endpoint #:list-of-hls-manifest

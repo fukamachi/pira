@@ -1,7 +1,6 @@
 (uiop/package:define-package #:pira/lex-runtime-v2 (:use)
                              (:export #:awsdeep-sense-run-time-service-api2-0
-                              #:access-denied-exception #:active-context
-                              #:active-context-name
+                              #:active-context #:active-context-name
                               #:active-context-parameters-map
                               #:active-context-time-to-live
                               #:active-context-time-to-live-in-seconds
@@ -9,50 +8,38 @@
                               #:active-contexts-list #:attachment-title
                               #:attachment-url #:audio-chunk
                               #:audio-input-event #:audio-response-event
-                              #:bad-gateway-exception #:blob-stream #:boolean
-                              #:bot-alias-identifier #:bot-identifier #:button
-                              #:button-text #:button-value #:buttons-list
-                              #:confidence-score #:configuration-event
-                              #:confirmation-state #:conflict-exception
+                              #:blob-stream #:boolean #:bot-alias-identifier
+                              #:bot-identifier #:button #:button-text
+                              #:button-value #:buttons-list #:confidence-score
+                              #:configuration-event #:confirmation-state
                               #:conversation-mode #:dtmfinput-event #:dtmfregex
-                              #:delete-session #:delete-session-request
-                              #:delete-session-response
-                              #:dependency-failed-exception #:dialog-action
+                              #:delete-session #:dialog-action
                               #:dialog-action-type #:disconnection-event
                               #:double #:elicit-sub-slot #:epoch-millis
-                              #:event-id #:get-session #:get-session-request
-                              #:get-session-response #:heartbeat-event
+                              #:event-id #:get-session #:heartbeat-event
                               #:image-response-card #:input-mode #:intent
                               #:intent-result-event #:intent-state
-                              #:internal-server-exception #:interpretation
-                              #:interpretation-source #:interpretations
-                              #:locale-id #:message #:message-content-type
-                              #:messages #:name #:non-empty-string
-                              #:parameter-name #:playback-completion-event
+                              #:interpretation #:interpretation-source
+                              #:interpretations #:locale-id #:message
+                              #:message-content-type #:messages #:name
+                              #:non-empty-string #:parameter-name
+                              #:playback-completion-event
                               #:playback-interruption-event
                               #:playback-interruption-reason #:put-session
-                              #:put-session-request #:put-session-response
-                              #:recognize-text #:recognize-text-request
-                              #:recognize-text-response #:recognize-utterance
-                              #:recognize-utterance-request
-                              #:recognize-utterance-response
-                              #:recognized-bot-member
-                              #:resource-not-found-exception
-                              #:runtime-hint-details #:runtime-hint-phrase
-                              #:runtime-hint-value #:runtime-hint-values-list
-                              #:runtime-hints #:sensitive-non-empty-string
-                              #:sentiment-response #:sentiment-score
-                              #:sentiment-type #:session-id #:session-state
-                              #:shape #:slot #:slot-hints-intent-map
-                              #:slot-hints-slot-map #:slots
-                              #:start-conversation #:start-conversation-request
+                              #:recognize-text #:recognize-utterance
+                              #:recognized-bot-member #:runtime-hint-details
+                              #:runtime-hint-phrase #:runtime-hint-value
+                              #:runtime-hint-values-list #:runtime-hints
+                              #:sensitive-non-empty-string #:sentiment-response
+                              #:sentiment-score #:sentiment-type #:session-id
+                              #:session-state #:shape #:slot
+                              #:slot-hints-intent-map #:slot-hints-slot-map
+                              #:slots #:start-conversation
                               #:start-conversation-request-event-stream
-                              #:start-conversation-response
                               #:start-conversation-response-event-stream
                               #:string #:string-list #:string-map #:style-type
                               #:text #:text-input-event #:text-response-event
-                              #:throttling-exception #:transcript-event
-                              #:validation-exception #:value #:values))
+                              #:transcript-event #:value #:values))
 (common-lisp:in-package #:pira/lex-runtime-v2)
 
 (smithy/sdk/service:define-service awsdeep-sense-run-time-service-api2-0

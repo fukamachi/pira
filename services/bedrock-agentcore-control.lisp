@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/bedrock-agentcore-control (:use)
-                             (:export #:access-denied-exception #:agent
-                              #:agent-artifact #:agent-endpoint
+                             (:export #:agent #:agent-artifact #:agent-endpoint
                               #:agent-endpoint-description
                               #:agent-endpoint-resource #:agent-endpoint-status
                               #:agent-endpoints #:agent-resource
@@ -35,35 +34,15 @@
                               #:code-interpreter-status
                               #:code-interpreter-summaries
                               #:code-interpreter-summary
-                              #:concurrent-modification-exception
-                              #:conflict-exception
                               #:consolidation-configuration
                               #:container-configuration #:create-agent-runtime
                               #:create-agent-runtime-endpoint
-                              #:create-agent-runtime-endpoint-request
-                              #:create-agent-runtime-endpoint-response
-                              #:create-agent-runtime-request
-                              #:create-agent-runtime-response
                               #:create-api-key-credential-provider
-                              #:create-api-key-credential-provider-request
-                              #:create-api-key-credential-provider-response
-                              #:create-browser #:create-browser-request
-                              #:create-browser-response
-                              #:create-code-interpreter
-                              #:create-code-interpreter-request
-                              #:create-code-interpreter-response
-                              #:create-gateway #:create-gateway-request
-                              #:create-gateway-response #:create-gateway-target
-                              #:create-gateway-target-request
-                              #:create-gateway-target-response #:create-memory
-                              #:create-memory-input #:create-memory-output
+                              #:create-browser #:create-code-interpreter
+                              #:create-gateway #:create-gateway-target
+                              #:create-memory
                               #:create-oauth2credential-provider
-                              #:create-oauth2credential-provider-request
-                              #:create-oauth2credential-provider-response
-                              #:create-workload-identity
-                              #:create-workload-identity-request
-                              #:create-workload-identity-response
-                              #:credential-provider
+                              #:create-workload-identity #:credential-provider
                               #:credential-provider-arn-type
                               #:credential-provider-configuration
                               #:credential-provider-configurations
@@ -79,37 +58,17 @@
                               #:custom-memory-strategy-input
                               #:custom-oauth2provider-config-input
                               #:custom-oauth2provider-config-output
-                              #:date-timestamp #:decryption-failure
-                              #:delete-agent-runtime
+                              #:date-timestamp #:delete-agent-runtime
                               #:delete-agent-runtime-endpoint
-                              #:delete-agent-runtime-endpoint-request
-                              #:delete-agent-runtime-endpoint-response
-                              #:delete-agent-runtime-request
-                              #:delete-agent-runtime-response
                               #:delete-api-key-credential-provider
-                              #:delete-api-key-credential-provider-request
-                              #:delete-api-key-credential-provider-response
-                              #:delete-browser #:delete-browser-request
-                              #:delete-browser-response
-                              #:delete-code-interpreter
-                              #:delete-code-interpreter-request
-                              #:delete-code-interpreter-response
-                              #:delete-gateway #:delete-gateway-request
-                              #:delete-gateway-response #:delete-gateway-target
-                              #:delete-gateway-target-request
-                              #:delete-gateway-target-response #:delete-memory
-                              #:delete-memory-input #:delete-memory-output
-                              #:delete-memory-strategies-list
+                              #:delete-browser #:delete-code-interpreter
+                              #:delete-gateway #:delete-gateway-target
+                              #:delete-memory #:delete-memory-strategies-list
                               #:delete-memory-strategy-input
                               #:delete-oauth2credential-provider
-                              #:delete-oauth2credential-provider-request
-                              #:delete-oauth2credential-provider-response
-                              #:delete-workload-identity
-                              #:delete-workload-identity-request
-                              #:delete-workload-identity-response #:description
+                              #:delete-workload-identity #:description
                               #:discovery-url #:discovery-url-type
-                              #:encryption-failure #:endpoint-name
-                              #:environment-variable-key
+                              #:endpoint-name #:environment-variable-key
                               #:environment-variable-value
                               #:environment-variables-map #:exception-level
                               #:extraction-configuration
@@ -123,64 +82,26 @@
                               #:gateway-summary #:gateway-target-resource
                               #:gateway-url #:get-agent-runtime
                               #:get-agent-runtime-endpoint
-                              #:get-agent-runtime-endpoint-request
-                              #:get-agent-runtime-endpoint-response
-                              #:get-agent-runtime-request
-                              #:get-agent-runtime-response
-                              #:get-api-key-credential-provider
-                              #:get-api-key-credential-provider-request
-                              #:get-api-key-credential-provider-response
-                              #:get-browser #:get-browser-request
-                              #:get-browser-response #:get-code-interpreter
-                              #:get-code-interpreter-request
-                              #:get-code-interpreter-response #:get-gateway
-                              #:get-gateway-request #:get-gateway-response
-                              #:get-gateway-target #:get-gateway-target-request
-                              #:get-gateway-target-response #:get-memory
-                              #:get-memory-input #:get-memory-output
-                              #:get-oauth2credential-provider
-                              #:get-oauth2credential-provider-request
-                              #:get-oauth2credential-provider-response
-                              #:get-token-vault #:get-token-vault-request
-                              #:get-token-vault-response
+                              #:get-api-key-credential-provider #:get-browser
+                              #:get-code-interpreter #:get-gateway
+                              #:get-gateway-target #:get-memory
+                              #:get-oauth2credential-provider #:get-token-vault
                               #:get-workload-identity
-                              #:get-workload-identity-request
-                              #:get-workload-identity-response
                               #:github-oauth2provider-config-input
                               #:github-oauth2provider-config-output
                               #:google-oauth2provider-config-input
                               #:google-oauth2provider-config-output
-                              #:inline-payload #:internal-server-exception
-                              #:issuer-url-type #:key-type #:kms-configuration
-                              #:kms-key-arn #:lambda-function-arn
+                              #:inline-payload #:issuer-url-type #:key-type
+                              #:kms-configuration #:kms-key-arn
+                              #:lambda-function-arn
                               #:list-agent-runtime-endpoints
-                              #:list-agent-runtime-endpoints-request
-                              #:list-agent-runtime-endpoints-response
                               #:list-agent-runtime-versions
-                              #:list-agent-runtime-versions-request
-                              #:list-agent-runtime-versions-response
                               #:list-agent-runtimes
-                              #:list-agent-runtimes-request
-                              #:list-agent-runtimes-response
                               #:list-api-key-credential-providers
-                              #:list-api-key-credential-providers-request
-                              #:list-api-key-credential-providers-response
-                              #:list-browsers #:list-browsers-request
-                              #:list-browsers-response #:list-code-interpreters
-                              #:list-code-interpreters-request
-                              #:list-code-interpreters-response
-                              #:list-gateway-targets
-                              #:list-gateway-targets-request
-                              #:list-gateway-targets-response #:list-gateways
-                              #:list-gateways-request #:list-gateways-response
-                              #:list-memories #:list-memories-input
-                              #:list-memories-output
-                              #:list-oauth2credential-providers
-                              #:list-oauth2credential-providers-request
-                              #:list-oauth2credential-providers-response
+                              #:list-browsers #:list-code-interpreters
+                              #:list-gateway-targets #:list-gateways
+                              #:list-memories #:list-oauth2credential-providers
                               #:list-workload-identities
-                              #:list-workload-identities-request
-                              #:list-workload-identities-response
                               #:mcpgateway-configuration #:max-results
                               #:mcp-instructions
                               #:mcp-lambda-target-configuration
@@ -218,8 +139,6 @@
                               #:oauth2provider-config-output #:override-type
                               #:prompt #:protocol-configuration
                               #:recording-config #:required-properties
-                              #:resource-limit-exceeded-exception
-                              #:resource-not-found-exception
                               #:resource-oauth2return-url-list-type
                               #:resource-oauth2return-url-type #:resource-type
                               #:response-list-type #:response-type #:role-arn
@@ -236,11 +155,7 @@
                               #:semantic-override-configuration-input
                               #:semantic-override-consolidation-configuration-input
                               #:semantic-override-extraction-configuration-input
-                              #:server-protocol #:service-exception
-                              #:service-quota-exceeded-exception
-                              #:set-token-vault-cmk
-                              #:set-token-vault-cmkrequest
-                              #:set-token-vault-cmkresponse
+                              #:server-protocol #:set-token-vault-cmk
                               #:slack-oauth2provider-config-input
                               #:slack-oauth2provider-config-output
                               #:status-reason #:status-reasons
@@ -253,37 +168,21 @@
                               #:target-id #:target-max-results #:target-name
                               #:target-next-token #:target-status
                               #:target-summaries #:target-summary
-                              #:throttled-exception #:throttling-exception
                               #:token-endpoint-type #:token-vault-id-type
                               #:tool-definition #:tool-definitions
-                              #:tool-schema #:unauthorized-exception
-                              #:update-agent-runtime
+                              #:tool-schema #:update-agent-runtime
                               #:update-agent-runtime-endpoint
-                              #:update-agent-runtime-endpoint-request
-                              #:update-agent-runtime-endpoint-response
-                              #:update-agent-runtime-request
-                              #:update-agent-runtime-response
                               #:update-api-key-credential-provider
-                              #:update-api-key-credential-provider-request
-                              #:update-api-key-credential-provider-response
-                              #:update-gateway #:update-gateway-request
-                              #:update-gateway-response #:update-gateway-target
-                              #:update-gateway-target-request
-                              #:update-gateway-target-response #:update-memory
-                              #:update-memory-input #:update-memory-output
+                              #:update-gateway #:update-gateway-target
+                              #:update-memory
                               #:update-oauth2credential-provider
-                              #:update-oauth2credential-provider-request
-                              #:update-oauth2credential-provider-response
                               #:update-workload-identity
-                              #:update-workload-identity-request
-                              #:update-workload-identity-response
                               #:user-preference-consolidation-override
                               #:user-preference-extraction-override
                               #:user-preference-memory-strategy-input
                               #:user-preference-override-configuration-input
                               #:user-preference-override-consolidation-configuration-input
                               #:user-preference-override-extraction-configuration-input
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:workload-identity

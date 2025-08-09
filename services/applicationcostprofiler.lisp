@@ -1,32 +1,14 @@
 (uiop/package:define-package #:pira/applicationcostprofiler (:use)
                              (:export #:awsapplication-cost-profiler
-                              #:access-denied-exception
-                              #:delete-report-definition
-                              #:delete-report-definition-request
-                              #:delete-report-definition-result #:error-message
+                              #:delete-report-definition #:error-message
                               #:format #:get-report-definition
-                              #:get-report-definition-request
-                              #:get-report-definition-result
-                              #:import-application-usage
-                              #:import-application-usage-request
-                              #:import-application-usage-result #:import-id
-                              #:integer #:internal-server-exception
-                              #:list-report-definitions
-                              #:list-report-definitions-request
-                              #:list-report-definitions-result
-                              #:put-report-definition
-                              #:put-report-definition-request
-                              #:put-report-definition-result
+                              #:import-application-usage #:import-id #:integer
+                              #:list-report-definitions #:put-report-definition
                               #:report-definition #:report-definition-list
                               #:report-description #:report-frequency
                               #:report-id #:s3bucket #:s3bucket-region #:s3key
-                              #:s3location #:s3prefix
-                              #:service-quota-exceeded-exception
-                              #:source-s3location #:throttling-exception
-                              #:timestamp #:token #:update-report-definition
-                              #:update-report-definition-request
-                              #:update-report-definition-result
-                              #:validation-exception))
+                              #:s3location #:s3prefix #:source-s3location
+                              #:timestamp #:token #:update-report-definition))
 (common-lisp:in-package #:pira/applicationcostprofiler)
 
 (smithy/sdk/service:define-service awsapplication-cost-profiler :shape-name

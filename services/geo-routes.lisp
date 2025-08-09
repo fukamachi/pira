@@ -1,21 +1,15 @@
 (uiop/package:define-package #:pira/geo-routes (:use)
-                             (:export #:access-denied-exception #:api-key
-                              #:before-waypoints-list #:bounding-box
-                              #:calculate-isolines #:calculate-isolines-request
-                              #:calculate-isolines-response
-                              #:calculate-route-matrix
-                              #:calculate-route-matrix-request
-                              #:calculate-route-matrix-response
-                              #:calculate-routes #:calculate-routes-request
-                              #:calculate-routes-response #:circle
-                              #:cluster-index #:corridor #:country-code
-                              #:country-code3 #:country-code-list
-                              #:currency-code #:day-of-week
+                             (:export #:api-key #:before-waypoints-list
+                              #:bounding-box #:calculate-isolines
+                              #:calculate-route-matrix #:calculate-routes
+                              #:circle #:cluster-index #:corridor
+                              #:country-code #:country-code3
+                              #:country-code-list #:currency-code #:day-of-week
                               #:dimension-centimeters #:distance-meters
                               #:distance-threshold-list #:duration-seconds
                               #:geometry-format #:heading #:index-list
-                              #:internal-server-exception #:isoline
-                              #:isoline-allow-options #:isoline-avoidance-area
+                              #:isoline #:isoline-allow-options
+                              #:isoline-avoidance-area
                               #:isoline-avoidance-area-geometry
                               #:isoline-avoidance-area-geometry-list
                               #:isoline-avoidance-area-list
@@ -47,9 +41,7 @@
                               #:linear-rings #:localized-string
                               #:localized-string-list #:matching-strategy
                               #:measurement-system #:optimize-waypoints
-                              #:optimize-waypoints-request
-                              #:optimize-waypoints-response #:polyline
-                              #:polyline-corridor #:polyline-ring
+                              #:polyline #:polyline-corridor #:polyline-ring
                               #:polyline-ring-list #:position #:position23
                               #:provider-resource
                               #:road-snap-hazardous-cargo-type
@@ -237,15 +229,11 @@
                               #:routes-service #:routing-objective
                               #:sensitive-string
                               #:side-of-street-matching-strategy
-                              #:snap-to-roads #:snap-to-roads-request
-                              #:snap-to-roads-response
-                              #:speed-kilometers-per-hour
-                              #:throttling-exception #:time-of-day
-                              #:time-threshold-list
+                              #:snap-to-roads #:speed-kilometers-per-hour
+                              #:time-of-day #:time-threshold-list
                               #:timestamp-with-timezone-offset #:traffic-usage
                               #:truck-road-type #:truck-road-type-list
                               #:tunnel-restriction-code #:turn-angle
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:waypoint-id

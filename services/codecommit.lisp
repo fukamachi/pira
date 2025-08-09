@@ -1,495 +1,172 @@
 (uiop/package:define-package #:pira/codecommit (:use)
-                             (:export #:account-id
-                              #:actor-does-not-exist-exception
-                              #:additional-data #:approval #:approval-list
-                              #:approval-rule #:approval-rule-content
-                              #:approval-rule-content-required-exception
-                              #:approval-rule-does-not-exist-exception
+                             (:export #:account-id #:additional-data #:approval
+                              #:approval-list #:approval-rule
+                              #:approval-rule-content
                               #:approval-rule-event-metadata #:approval-rule-id
                               #:approval-rule-name
-                              #:approval-rule-name-already-exists-exception
-                              #:approval-rule-name-required-exception
                               #:approval-rule-overridden-event-metadata
                               #:approval-rule-template
                               #:approval-rule-template-content
-                              #:approval-rule-template-content-required-exception
                               #:approval-rule-template-description
-                              #:approval-rule-template-does-not-exist-exception
                               #:approval-rule-template-id
-                              #:approval-rule-template-in-use-exception
                               #:approval-rule-template-name
-                              #:approval-rule-template-name-already-exists-exception
                               #:approval-rule-template-name-list
-                              #:approval-rule-template-name-required-exception
                               #:approval-rules-list
                               #:approval-rules-not-satisfied-list
                               #:approval-rules-satisfied-list #:approval-state
                               #:approval-state-changed-event-metadata
-                              #:approval-state-required-exception #:approved
-                              #:arn
+                              #:approved #:arn
                               #:associate-approval-rule-template-with-repository
-                              #:associate-approval-rule-template-with-repository-input
-                              #:author-does-not-exist-exception
                               #:batch-associate-approval-rule-template-with-repositories
                               #:batch-associate-approval-rule-template-with-repositories-error
                               #:batch-associate-approval-rule-template-with-repositories-errors-list
-                              #:batch-associate-approval-rule-template-with-repositories-input
-                              #:batch-associate-approval-rule-template-with-repositories-output
                               #:batch-describe-merge-conflicts
                               #:batch-describe-merge-conflicts-error
                               #:batch-describe-merge-conflicts-errors
-                              #:batch-describe-merge-conflicts-input
-                              #:batch-describe-merge-conflicts-output
                               #:batch-disassociate-approval-rule-template-from-repositories
                               #:batch-disassociate-approval-rule-template-from-repositories-error
                               #:batch-disassociate-approval-rule-template-from-repositories-errors-list
-                              #:batch-disassociate-approval-rule-template-from-repositories-input
-                              #:batch-disassociate-approval-rule-template-from-repositories-output
                               #:batch-get-commits #:batch-get-commits-error
                               #:batch-get-commits-errors-list
-                              #:batch-get-commits-input
-                              #:batch-get-commits-output
                               #:batch-get-repositories
                               #:batch-get-repositories-error
                               #:batch-get-repositories-error-code-enum
                               #:batch-get-repositories-errors-list
-                              #:batch-get-repositories-input
-                              #:batch-get-repositories-output
-                              #:before-commit-id-and-after-commit-id-are-same-exception
-                              #:blob-id-does-not-exist-exception
-                              #:blob-id-required-exception #:blob-metadata
-                              #:branch-does-not-exist-exception #:branch-info
-                              #:branch-name #:branch-name-exists-exception
-                              #:branch-name-is-tag-name-exception
-                              #:branch-name-list
-                              #:branch-name-required-exception
-                              #:caller-reactions
-                              #:cannot-delete-approval-rule-from-template-exception
-                              #:cannot-modify-approval-rule-from-template-exception
+                              #:blob-metadata #:branch-info #:branch-name
+                              #:branch-name-list #:caller-reactions
                               #:capital-boolean #:change-type-enum
-                              #:client-request-token
-                              #:client-request-token-required-exception
-                              #:clone-url-http #:clone-url-ssh
-                              #:code-commit-20150413 #:comment
-                              #:comment-content-required-exception
-                              #:comment-content-size-limit-exceeded-exception
-                              #:comment-deleted-exception
-                              #:comment-does-not-exist-exception #:comment-id
-                              #:comment-id-required-exception
-                              #:comment-not-created-by-caller-exception
-                              #:comments #:comments-for-compared-commit
+                              #:client-request-token #:clone-url-http
+                              #:clone-url-ssh #:code-commit-20150413 #:comment
+                              #:comment-id #:comments
+                              #:comments-for-compared-commit
                               #:comments-for-compared-commit-data
                               #:comments-for-pull-request
                               #:comments-for-pull-request-data #:commit
-                              #:commit-does-not-exist-exception #:commit-id
-                              #:commit-id-does-not-exist-exception
-                              #:commit-id-required-exception
-                              #:commit-ids-input-list
-                              #:commit-ids-limit-exceeded-exception
-                              #:commit-ids-list-required-exception
-                              #:commit-message-length-exceeded-exception
-                              #:commit-name #:commit-objects-list
-                              #:commit-required-exception
-                              #:concurrent-reference-update-exception
-                              #:conflict #:conflict-detail-level-type-enum
+                              #:commit-id #:commit-ids-input-list #:commit-name
+                              #:commit-objects-list #:conflict
+                              #:conflict-detail-level-type-enum
                               #:conflict-metadata #:conflict-metadata-list
                               #:conflict-resolution
                               #:conflict-resolution-strategy-type-enum
                               #:conflicts #:content #:count
-                              #:create-approval-rule-template
-                              #:create-approval-rule-template-input
-                              #:create-approval-rule-template-output
-                              #:create-branch #:create-branch-input
-                              #:create-commit #:create-commit-input
-                              #:create-commit-output #:create-pull-request
+                              #:create-approval-rule-template #:create-branch
+                              #:create-commit #:create-pull-request
                               #:create-pull-request-approval-rule
-                              #:create-pull-request-approval-rule-input
-                              #:create-pull-request-approval-rule-output
-                              #:create-pull-request-input
-                              #:create-pull-request-output #:create-repository
-                              #:create-repository-input
-                              #:create-repository-output
+                              #:create-repository
                               #:create-unreferenced-merge-commit
-                              #:create-unreferenced-merge-commit-input
-                              #:create-unreferenced-merge-commit-output
                               #:creation-date #:date
-                              #:default-branch-cannot-be-deleted-exception
-                              #:delete-approval-rule-template
-                              #:delete-approval-rule-template-input
-                              #:delete-approval-rule-template-output
-                              #:delete-branch #:delete-branch-input
-                              #:delete-branch-output #:delete-comment-content
-                              #:delete-comment-content-input
-                              #:delete-comment-content-output #:delete-file
+                              #:delete-approval-rule-template #:delete-branch
+                              #:delete-comment-content #:delete-file
                               #:delete-file-entries #:delete-file-entry
-                              #:delete-file-input #:delete-file-output
                               #:delete-pull-request-approval-rule
-                              #:delete-pull-request-approval-rule-input
-                              #:delete-pull-request-approval-rule-output
-                              #:delete-repository #:delete-repository-input
-                              #:delete-repository-output
-                              #:describe-merge-conflicts
-                              #:describe-merge-conflicts-input
-                              #:describe-merge-conflicts-output
-                              #:describe-pull-request-events
-                              #:describe-pull-request-events-input
-                              #:describe-pull-request-events-output
-                              #:description #:difference #:difference-list
-                              #:directory-name-conflicts-with-file-name-exception
+                              #:delete-repository #:describe-merge-conflicts
+                              #:describe-pull-request-events #:description
+                              #:difference #:difference-list
                               #:disassociate-approval-rule-template-from-repository
-                              #:disassociate-approval-rule-template-from-repository-input
-                              #:email
-                              #:encryption-integrity-checks-failed-exception
-                              #:encryption-key-access-denied-exception
-                              #:encryption-key-disabled-exception
-                              #:encryption-key-invalid-id-exception
-                              #:encryption-key-invalid-usage-exception
-                              #:encryption-key-not-found-exception
-                              #:encryption-key-required-exception
-                              #:encryption-key-unavailable-exception
-                              #:error-code #:error-message
+                              #:email #:error-code #:error-message
                               #:evaluate-pull-request-approval-rules
-                              #:evaluate-pull-request-approval-rules-input
-                              #:evaluate-pull-request-approval-rules-output
                               #:evaluation #:event-date #:exception-name #:file
-                              #:file-content
-                              #:file-content-and-source-file-specified-exception
-                              #:file-content-required-exception
-                              #:file-content-size-limit-exceeded-exception
-                              #:file-does-not-exist-exception
-                              #:file-entry-required-exception #:file-list
-                              #:file-metadata #:file-mode-required-exception
-                              #:file-mode-type-enum #:file-modes
-                              #:file-name-conflicts-with-directory-name-exception
-                              #:file-path-conflicts-with-submodule-path-exception
-                              #:file-paths #:file-size #:file-sizes
-                              #:file-too-large-exception #:file-version
-                              #:files-metadata #:folder
-                              #:folder-content-size-limit-exceeded-exception
-                              #:folder-does-not-exist-exception #:folder-list
-                              #:get-approval-rule-template
-                              #:get-approval-rule-template-input
-                              #:get-approval-rule-template-output #:get-blob
-                              #:get-blob-input #:get-blob-output #:get-branch
-                              #:get-branch-input #:get-branch-output
-                              #:get-comment #:get-comment-input
-                              #:get-comment-output #:get-comment-reactions
-                              #:get-comment-reactions-input
-                              #:get-comment-reactions-output
+                              #:file-content #:file-list #:file-metadata
+                              #:file-mode-type-enum #:file-modes #:file-paths
+                              #:file-size #:file-sizes #:file-version
+                              #:files-metadata #:folder #:folder-list
+                              #:get-approval-rule-template #:get-blob
+                              #:get-branch #:get-comment
+                              #:get-comment-reactions
                               #:get-comments-for-compared-commit
-                              #:get-comments-for-compared-commit-input
-                              #:get-comments-for-compared-commit-output
-                              #:get-comments-for-pull-request
-                              #:get-comments-for-pull-request-input
-                              #:get-comments-for-pull-request-output
-                              #:get-commit #:get-commit-input
-                              #:get-commit-output #:get-differences
-                              #:get-differences-input #:get-differences-output
-                              #:get-file #:get-file-input #:get-file-output
-                              #:get-folder #:get-folder-input
-                              #:get-folder-output #:get-merge-commit
-                              #:get-merge-commit-input
-                              #:get-merge-commit-output #:get-merge-conflicts
-                              #:get-merge-conflicts-input
-                              #:get-merge-conflicts-output #:get-merge-options
-                              #:get-merge-options-input
-                              #:get-merge-options-output #:get-pull-request
+                              #:get-comments-for-pull-request #:get-commit
+                              #:get-differences #:get-file #:get-folder
+                              #:get-merge-commit #:get-merge-conflicts
+                              #:get-merge-options #:get-pull-request
                               #:get-pull-request-approval-states
-                              #:get-pull-request-approval-states-input
-                              #:get-pull-request-approval-states-output
-                              #:get-pull-request-input
-                              #:get-pull-request-output
                               #:get-pull-request-override-state
-                              #:get-pull-request-override-state-input
-                              #:get-pull-request-override-state-output
-                              #:get-repository #:get-repository-input
-                              #:get-repository-output #:get-repository-triggers
-                              #:get-repository-triggers-input
-                              #:get-repository-triggers-output #:hunk-content
-                              #:idempotency-parameter-mismatch-exception
-                              #:invalid-actor-arn-exception
-                              #:invalid-approval-rule-content-exception
-                              #:invalid-approval-rule-name-exception
-                              #:invalid-approval-rule-template-content-exception
-                              #:invalid-approval-rule-template-description-exception
-                              #:invalid-approval-rule-template-name-exception
-                              #:invalid-approval-state-exception
-                              #:invalid-author-arn-exception
-                              #:invalid-blob-id-exception
-                              #:invalid-branch-name-exception
-                              #:invalid-client-request-token-exception
-                              #:invalid-comment-id-exception
-                              #:invalid-commit-exception
-                              #:invalid-commit-id-exception
-                              #:invalid-conflict-detail-level-exception
-                              #:invalid-conflict-resolution-exception
-                              #:invalid-conflict-resolution-strategy-exception
-                              #:invalid-continuation-token-exception
-                              #:invalid-deletion-parameter-exception
-                              #:invalid-description-exception
-                              #:invalid-destination-commit-specifier-exception
-                              #:invalid-email-exception
-                              #:invalid-file-location-exception
-                              #:invalid-file-mode-exception
-                              #:invalid-file-position-exception
-                              #:invalid-max-conflict-files-exception
-                              #:invalid-max-merge-hunks-exception
-                              #:invalid-max-results-exception
-                              #:invalid-merge-option-exception
-                              #:invalid-order-exception
-                              #:invalid-override-status-exception
-                              #:invalid-parent-commit-id-exception
-                              #:invalid-path-exception
-                              #:invalid-pull-request-event-type-exception
-                              #:invalid-pull-request-id-exception
-                              #:invalid-pull-request-status-exception
-                              #:invalid-pull-request-status-update-exception
-                              #:invalid-reaction-user-arn-exception
-                              #:invalid-reaction-value-exception
-                              #:invalid-reference-name-exception
-                              #:invalid-relative-file-version-enum-exception
-                              #:invalid-replacement-content-exception
-                              #:invalid-replacement-type-exception
-                              #:invalid-repository-description-exception
-                              #:invalid-repository-name-exception
-                              #:invalid-repository-trigger-branch-name-exception
-                              #:invalid-repository-trigger-custom-data-exception
-                              #:invalid-repository-trigger-destination-arn-exception
-                              #:invalid-repository-trigger-events-exception
-                              #:invalid-repository-trigger-name-exception
-                              #:invalid-repository-trigger-region-exception
-                              #:invalid-resource-arn-exception
-                              #:invalid-revision-id-exception
-                              #:invalid-rule-content-sha256exception
-                              #:invalid-sort-by-exception
-                              #:invalid-source-commit-specifier-exception
-                              #:invalid-system-tag-usage-exception
-                              #:invalid-tag-keys-list-exception
-                              #:invalid-tags-map-exception
-                              #:invalid-target-branch-exception
-                              #:invalid-target-exception
-                              #:invalid-targets-exception
-                              #:invalid-title-exception #:is-binary-file
+                              #:get-repository #:get-repository-triggers
+                              #:hunk-content #:is-binary-file
                               #:is-comment-deleted #:is-content-conflict
                               #:is-file-mode-conflict #:is-hunk-conflict
                               #:is-mergeable #:is-merged #:is-move
                               #:is-object-type-conflict #:keep-empty-folders
                               #:kms-key-id #:last-modified-date #:limit
                               #:line-number #:list-approval-rule-templates
-                              #:list-approval-rule-templates-input
-                              #:list-approval-rule-templates-output
                               #:list-associated-approval-rule-templates-for-repository
-                              #:list-associated-approval-rule-templates-for-repository-input
-                              #:list-associated-approval-rule-templates-for-repository-output
-                              #:list-branches #:list-branches-input
-                              #:list-branches-output #:list-file-commit-history
-                              #:list-file-commit-history-request
-                              #:list-file-commit-history-response
-                              #:list-pull-requests #:list-pull-requests-input
-                              #:list-pull-requests-output #:list-repositories
+                              #:list-branches #:list-file-commit-history
+                              #:list-pull-requests #:list-repositories
                               #:list-repositories-for-approval-rule-template
-                              #:list-repositories-for-approval-rule-template-input
-                              #:list-repositories-for-approval-rule-template-output
-                              #:list-repositories-input
-                              #:list-repositories-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output #:location
-                              #:manual-merge-required-exception #:max-results
-                              #:maximum-branches-exceeded-exception
-                              #:maximum-conflict-resolution-entries-exceeded-exception
-                              #:maximum-file-content-to-load-exceeded-exception
-                              #:maximum-file-entries-exceeded-exception
-                              #:maximum-items-to-compare-exceeded-exception
-                              #:maximum-number-of-approvals-exceeded-exception
-                              #:maximum-open-pull-requests-exceeded-exception
-                              #:maximum-repository-names-exceeded-exception
-                              #:maximum-repository-triggers-exceeded-exception
-                              #:maximum-rule-templates-associated-with-repository-exception
+                              #:list-tags-for-resource #:location #:max-results
                               #:merge-branches-by-fast-forward
-                              #:merge-branches-by-fast-forward-input
-                              #:merge-branches-by-fast-forward-output
                               #:merge-branches-by-squash
-                              #:merge-branches-by-squash-input
-                              #:merge-branches-by-squash-output
-                              #:merge-branches-by-three-way
-                              #:merge-branches-by-three-way-input
-                              #:merge-branches-by-three-way-output #:merge-hunk
+                              #:merge-branches-by-three-way #:merge-hunk
                               #:merge-hunk-detail #:merge-hunks
                               #:merge-metadata #:merge-operations
-                              #:merge-option-required-exception
                               #:merge-option-type-enum #:merge-options
                               #:merge-pull-request-by-fast-forward
-                              #:merge-pull-request-by-fast-forward-input
-                              #:merge-pull-request-by-fast-forward-output
                               #:merge-pull-request-by-squash
-                              #:merge-pull-request-by-squash-input
-                              #:merge-pull-request-by-squash-output
-                              #:merge-pull-request-by-three-way
-                              #:merge-pull-request-by-three-way-input
-                              #:merge-pull-request-by-three-way-output
-                              #:message #:mode
-                              #:multiple-conflict-resolution-entries-exception
-                              #:multiple-repositories-in-pull-request-exception
-                              #:name #:name-length-exceeded-exception
-                              #:next-token #:no-change-exception
-                              #:number-of-conflicts
-                              #:number-of-rule-templates-exceeded-exception
-                              #:number-of-rules-exceeded-exception #:object-id
-                              #:object-size #:object-type-enum #:object-types
-                              #:operation-not-allowed-exception #:order-enum
+                              #:merge-pull-request-by-three-way #:message
+                              #:mode #:name #:next-token #:number-of-conflicts
+                              #:object-id #:object-size #:object-type-enum
+                              #:object-types #:order-enum
                               #:origin-approval-rule-template #:overridden
-                              #:override-already-set-exception
                               #:override-pull-request-approval-rules
-                              #:override-pull-request-approval-rules-input
-                              #:override-status
-                              #:override-status-required-exception
-                              #:parent-commit-does-not-exist-exception
-                              #:parent-commit-id-outdated-exception
-                              #:parent-commit-id-required-exception
-                              #:parent-list #:path
-                              #:path-does-not-exist-exception
-                              #:path-required-exception #:position
+                              #:override-status #:parent-list #:path #:position
                               #:post-comment-for-compared-commit
-                              #:post-comment-for-compared-commit-input
-                              #:post-comment-for-compared-commit-output
                               #:post-comment-for-pull-request
-                              #:post-comment-for-pull-request-input
-                              #:post-comment-for-pull-request-output
-                              #:post-comment-reply #:post-comment-reply-input
-                              #:post-comment-reply-output #:pull-request
-                              #:pull-request-already-closed-exception
-                              #:pull-request-approval-rules-not-satisfied-exception
-                              #:pull-request-cannot-be-approved-by-author-exception
+                              #:post-comment-reply #:pull-request
                               #:pull-request-created-event-metadata
-                              #:pull-request-does-not-exist-exception
                               #:pull-request-event #:pull-request-event-list
                               #:pull-request-event-type #:pull-request-id
                               #:pull-request-id-list
-                              #:pull-request-id-required-exception
                               #:pull-request-merged-state-changed-event-metadata
                               #:pull-request-source-reference-updated-event-metadata
                               #:pull-request-status-changed-event-metadata
-                              #:pull-request-status-enum
-                              #:pull-request-status-required-exception
-                              #:pull-request-target #:pull-request-target-list
-                              #:put-comment-reaction
-                              #:put-comment-reaction-input #:put-file
-                              #:put-file-entries #:put-file-entry
-                              #:put-file-entry-conflict-exception
-                              #:put-file-input #:put-file-output
-                              #:put-repository-triggers
-                              #:put-repository-triggers-input
-                              #:put-repository-triggers-output
-                              #:reaction-counts-map #:reaction-emoji
-                              #:reaction-for-comment
-                              #:reaction-limit-exceeded-exception
+                              #:pull-request-status-enum #:pull-request-target
+                              #:pull-request-target-list #:put-comment-reaction
+                              #:put-file #:put-file-entries #:put-file-entry
+                              #:put-repository-triggers #:reaction-counts-map
+                              #:reaction-emoji #:reaction-for-comment
                               #:reaction-short-code #:reaction-unicode
                               #:reaction-users-list #:reaction-value
                               #:reaction-value-formats
-                              #:reaction-value-required-exception
-                              #:reactions-for-comment-list
-                              #:reference-does-not-exist-exception
-                              #:reference-name
-                              #:reference-name-required-exception
-                              #:reference-type-not-supported-exception
+                              #:reactions-for-comment-list #:reference-name
                               #:relative-file-version-enum
                               #:replace-content-entries #:replace-content-entry
-                              #:replacement-content-required-exception
-                              #:replacement-type-enum
-                              #:replacement-type-required-exception
-                              #:repository-description
-                              #:repository-does-not-exist-exception
-                              #:repository-id
-                              #:repository-limit-exceeded-exception
-                              #:repository-metadata #:repository-metadata-list
-                              #:repository-name
-                              #:repository-name-exists-exception
+                              #:replacement-type-enum #:repository-description
+                              #:repository-id #:repository-metadata
+                              #:repository-metadata-list #:repository-name
                               #:repository-name-id-pair
                               #:repository-name-id-pair-list
                               #:repository-name-list
-                              #:repository-name-required-exception
-                              #:repository-names-required-exception
-                              #:repository-not-associated-with-pull-request-exception
                               #:repository-not-found-list #:repository-trigger
-                              #:repository-trigger-branch-name-list-required-exception
                               #:repository-trigger-custom-data
-                              #:repository-trigger-destination-arn-required-exception
                               #:repository-trigger-event-enum
                               #:repository-trigger-event-list
-                              #:repository-trigger-events-list-required-exception
                               #:repository-trigger-execution-failure
                               #:repository-trigger-execution-failure-list
                               #:repository-trigger-execution-failure-message
                               #:repository-trigger-name
                               #:repository-trigger-name-list
-                              #:repository-trigger-name-required-exception
                               #:repository-triggers-configuration-id
-                              #:repository-triggers-list
-                              #:repository-triggers-list-required-exception
-                              #:resource-arn #:resource-arn-required-exception
-                              #:restricted-source-file-exception
+                              #:repository-triggers-list #:resource-arn
                               #:revision-children #:revision-dag #:revision-id
-                              #:revision-id-required-exception
-                              #:revision-not-current-exception
-                              #:rule-content-sha256
-                              #:same-file-content-exception
-                              #:same-path-request-exception
-                              #:set-file-mode-entries #:set-file-mode-entry
-                              #:sort-by-enum
-                              #:source-and-destination-are-same-exception
-                              #:source-file-or-content-required-exception
+                              #:rule-content-sha256 #:set-file-mode-entries
+                              #:set-file-mode-entry #:sort-by-enum
                               #:source-file-specifier #:sub-module
                               #:sub-module-list #:symbolic-link
                               #:symbolic-link-list #:tag-key #:tag-keys-list
-                              #:tag-keys-list-required-exception
-                              #:tag-policy-exception #:tag-resource
-                              #:tag-resource-input #:tag-value #:tags-map
-                              #:tags-map-required-exception #:target
-                              #:target-list #:target-required-exception
-                              #:targets-required-exception
-                              #:test-repository-triggers
-                              #:test-repository-triggers-input
-                              #:test-repository-triggers-output
-                              #:tip-of-source-reference-is-different-exception
-                              #:tips-divergence-exceeded-exception #:title
-                              #:title-required-exception
-                              #:too-many-tags-exception #:untag-resource
-                              #:untag-resource-input
+                              #:tag-resource #:tag-value #:tags-map #:target
+                              #:target-list #:test-repository-triggers #:title
+                              #:untag-resource
                               #:update-approval-rule-template-content
-                              #:update-approval-rule-template-content-input
-                              #:update-approval-rule-template-content-output
                               #:update-approval-rule-template-description
-                              #:update-approval-rule-template-description-input
-                              #:update-approval-rule-template-description-output
                               #:update-approval-rule-template-name
-                              #:update-approval-rule-template-name-input
-                              #:update-approval-rule-template-name-output
-                              #:update-comment #:update-comment-input
-                              #:update-comment-output #:update-default-branch
-                              #:update-default-branch-input
+                              #:update-comment #:update-default-branch
                               #:update-pull-request-approval-rule-content
-                              #:update-pull-request-approval-rule-content-input
-                              #:update-pull-request-approval-rule-content-output
                               #:update-pull-request-approval-state
-                              #:update-pull-request-approval-state-input
                               #:update-pull-request-description
-                              #:update-pull-request-description-input
-                              #:update-pull-request-description-output
                               #:update-pull-request-status
-                              #:update-pull-request-status-input
-                              #:update-pull-request-status-output
                               #:update-pull-request-title
-                              #:update-pull-request-title-input
-                              #:update-pull-request-title-output
                               #:update-repository-description
-                              #:update-repository-description-input
                               #:update-repository-encryption-key
-                              #:update-repository-encryption-key-input
-                              #:update-repository-encryption-key-output
-                              #:update-repository-name
-                              #:update-repository-name-input #:user-info
-                              #:blob))
+                              #:update-repository-name #:user-info #:blob))
 (common-lisp:in-package #:pira/codecommit)
 
 (smithy/sdk/service:define-service code-commit-20150413 :shape-name

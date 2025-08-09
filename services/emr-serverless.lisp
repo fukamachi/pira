@@ -12,8 +12,7 @@
                               #:configuration #:configuration-list
                               #:configuration-overrides
                               #:configuration-property-key
-                              #:configuration-property-value
-                              #:conflict-exception #:cpu-size
+                              #:configuration-property-value #:cpu-size
                               #:create-application #:create-application-request
                               #:create-application-response #:date
                               #:delete-application #:delete-application-request
@@ -37,8 +36,7 @@
                               #:image-digest #:image-uri #:init-script-path
                               #:initial-capacity-config
                               #:initial-capacity-config-map
-                              #:interactive-configuration
-                              #:internal-server-exception #:job-arn
+                              #:interactive-configuration #:job-arn
                               #:job-driver #:job-run #:job-run-attempt-summary
                               #:job-run-attempts #:job-run-execution-iam-policy
                               #:job-run-id #:job-run-mode #:job-run-resource
@@ -46,9 +44,7 @@
                               #:job-run-summary #:job-run-type #:job-runs
                               #:list-applications #:list-applications-request
                               #:list-applications-response
-                              #:list-job-run-attempts
-                              #:list-job-run-attempts-request
-                              #:list-job-run-attempts-response #:list-job-runs
+                              #:list-job-run-attempts #:list-job-runs
                               #:list-job-runs-request #:list-job-runs-response
                               #:list-tags-for-resource
                               #:list-tags-for-resource-request
@@ -63,13 +59,11 @@
                               #:prometheus-monitoring-configuration
                               #:prometheus-url-string #:query #:release-label
                               #:request-identity-user-arn #:resource-arn
-                              #:resource-not-found-exception
                               #:resource-utilization #:retry-policy
                               #:s3monitoring-configuration
                               #:scheduler-configuration #:security-group-ids
                               #:security-group-string
                               #:sensitive-properties-map
-                              #:service-quota-exceeded-exception
                               #:shutdown-grace-period-in-seconds #:spark-submit
                               #:spark-submit-parameters #:start-application
                               #:start-application-request
@@ -85,8 +79,7 @@
                               #:untag-resource-response #:update-application
                               #:update-application-request
                               #:update-application-response #:uri-string #:url
-                              #:validation-exception #:worker-counts
-                              #:worker-resource-config
+                              #:worker-counts #:worker-resource-config
                               #:worker-type-specification
                               #:worker-type-specification-input
                               #:worker-type-specification-input-map

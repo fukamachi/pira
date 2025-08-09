@@ -1,15 +1,10 @@
 (uiop/package:define-package #:pira/connect-contact-lens (:use)
-                             (:export #:access-denied-exception
-                              #:amazon-connect-contact-lens #:categories
-                              #:category-details #:category-name
+                             (:export #:amazon-connect-contact-lens
+                              #:categories #:category-details #:category-name
                               #:character-offset #:character-offsets
-                              #:contact-id #:instance-id
-                              #:internal-service-exception
-                              #:invalid-request-exception #:issue-detected
+                              #:contact-id #:instance-id #:issue-detected
                               #:issues-detected
                               #:list-realtime-contact-analysis-segments
-                              #:list-realtime-contact-analysis-segments-request
-                              #:list-realtime-contact-analysis-segments-response
                               #:matched-categories #:matched-details
                               #:max-results #:message #:next-token
                               #:offset-millis #:participant-id
@@ -20,8 +15,7 @@
                               #:post-contact-summary-status
                               #:realtime-contact-analysis-segment
                               #:realtime-contact-analysis-segments
-                              #:resource-not-found-exception #:sentiment-value
-                              #:throttling-exception #:transcript
+                              #:sentiment-value #:transcript
                               #:transcript-content #:transcript-id))
 (common-lisp:in-package #:pira/connect-contact-lens)
 

@@ -1,36 +1,15 @@
 (uiop/package:define-package #:pira/codecatalyst (:use)
-                             (:export #:access-denied-exception #:access-token
-                              #:access-token-id #:access-token-name
-                              #:access-token-secret #:access-token-summaries
-                              #:access-token-summary #:client-token
-                              #:code-catalyst #:comparison-operator
-                              #:conflict-exception #:create-access-token
-                              #:create-access-token-request
-                              #:create-access-token-response
-                              #:create-dev-environment
-                              #:create-dev-environment-request
-                              #:create-dev-environment-response
-                              #:create-project #:create-project-request
-                              #:create-project-response
+                             (:export #:access-token #:access-token-id
+                              #:access-token-name #:access-token-secret
+                              #:access-token-summaries #:access-token-summary
+                              #:client-token #:code-catalyst
+                              #:comparison-operator #:create-access-token
+                              #:create-dev-environment #:create-project
                               #:create-source-repository
                               #:create-source-repository-branch
-                              #:create-source-repository-branch-request
-                              #:create-source-repository-branch-response
-                              #:create-source-repository-request
-                              #:create-source-repository-response
-                              #:delete-access-token
-                              #:delete-access-token-request
-                              #:delete-access-token-response
-                              #:delete-dev-environment
-                              #:delete-dev-environment-request
-                              #:delete-dev-environment-response
-                              #:delete-project #:delete-project-request
-                              #:delete-project-response
-                              #:delete-source-repository
-                              #:delete-source-repository-request
-                              #:delete-source-repository-response
-                              #:delete-space #:delete-space-request
-                              #:delete-space-response #:dev-environment
+                              #:delete-access-token #:delete-dev-environment
+                              #:delete-project #:delete-source-repository
+                              #:delete-space #:dev-environment
                               #:dev-environment-access-details
                               #:dev-environment-repository-summaries
                               #:dev-environment-repository-summary
@@ -46,64 +25,33 @@
                               #:execute-command-session-configuration
                               #:execute-command-session-configuration-arguments
                               #:filter #:filter-key #:filters
-                              #:get-dev-environment
-                              #:get-dev-environment-request
-                              #:get-dev-environment-response #:get-project
-                              #:get-project-request #:get-project-response
+                              #:get-dev-environment #:get-project
                               #:get-source-repository
-                              #:get-source-repository-clone-urls
-                              #:get-source-repository-clone-urls-request
-                              #:get-source-repository-clone-urls-response
-                              #:get-source-repository-request
-                              #:get-source-repository-response #:get-space
-                              #:get-space-request #:get-space-response
-                              #:get-subscription #:get-subscription-request
-                              #:get-subscription-response #:get-user-details
-                              #:get-user-details-request
-                              #:get-user-details-response #:get-workflow
-                              #:get-workflow-request #:get-workflow-response
-                              #:get-workflow-run #:get-workflow-run-request
-                              #:get-workflow-run-response #:ide
+                              #:get-source-repository-clone-urls #:get-space
+                              #:get-subscription #:get-user-details
+                              #:get-workflow #:get-workflow-run #:ide
                               #:ide-configuration #:ide-configuration-list
                               #:ides #:inactivity-timeout-minutes
                               #:instance-type #:list-access-tokens
-                              #:list-access-tokens-request
-                              #:list-access-tokens-response
                               #:list-dev-environment-sessions
-                              #:list-dev-environment-sessions-request
-                              #:list-dev-environment-sessions-response
-                              #:list-dev-environments
-                              #:list-dev-environments-request
-                              #:list-dev-environments-response
-                              #:list-event-logs #:list-event-logs-request
-                              #:list-event-logs-response #:list-projects
-                              #:list-projects-request #:list-projects-response
-                              #:list-source-repositories
+                              #:list-dev-environments #:list-event-logs
+                              #:list-projects #:list-source-repositories
                               #:list-source-repositories-item
                               #:list-source-repositories-items
-                              #:list-source-repositories-request
-                              #:list-source-repositories-response
                               #:list-source-repository-branches
                               #:list-source-repository-branches-item
                               #:list-source-repository-branches-items
-                              #:list-source-repository-branches-request
-                              #:list-source-repository-branches-response
-                              #:list-spaces #:list-spaces-request
-                              #:list-spaces-response #:list-workflow-runs
-                              #:list-workflow-runs-request
-                              #:list-workflow-runs-response #:list-workflows
-                              #:list-workflows-request
-                              #:list-workflows-response #:name-string
-                              #:operation-type #:persistent-storage
+                              #:list-spaces #:list-workflow-runs
+                              #:list-workflows #:name-string #:operation-type
+                              #:persistent-storage
                               #:persistent-storage-configuration #:project
                               #:project-description #:project-display-name
                               #:project-information #:project-list-filter
                               #:project-list-filters #:project-summaries
                               #:project-summary #:region-string
                               #:repositories-input #:repository-input
-                              #:resource-not-found-exception #:sensitive-string
-                              #:service-quota-exceeded-exception
-                              #:source-repository #:source-repository-branch
+                              #:sensitive-string #:source-repository
+                              #:source-repository-branch
                               #:source-repository-branch-ref-string
                               #:source-repository-branch-string
                               #:source-repository-description-string
@@ -111,31 +59,14 @@
                               #:source-repository-name-string #:space
                               #:space-description #:space-summaries
                               #:space-summary #:start-dev-environment
-                              #:start-dev-environment-request
-                              #:start-dev-environment-response
                               #:start-dev-environment-session
-                              #:start-dev-environment-session-request
-                              #:start-dev-environment-session-response
-                              #:start-workflow-run #:start-workflow-run-request
-                              #:start-workflow-run-response #:status-reason
+                              #:start-workflow-run #:status-reason
                               #:stop-dev-environment
-                              #:stop-dev-environment-request
-                              #:stop-dev-environment-response
-                              #:stop-dev-environment-session
-                              #:stop-dev-environment-session-request
-                              #:stop-dev-environment-session-response
-                              #:string-list #:subscription
-                              #:throttling-exception #:timestamp
-                              #:update-dev-environment
-                              #:update-dev-environment-request
-                              #:update-dev-environment-response
-                              #:update-project #:update-project-request
-                              #:update-project-response #:update-space
-                              #:update-space-request #:update-space-response
-                              #:user-identity #:user-type #:uuid
-                              #:validation-exception #:verify-session
-                              #:verify-session-response #:workflow
-                              #:workflow-definition
+                              #:stop-dev-environment-session #:string-list
+                              #:subscription #:timestamp
+                              #:update-dev-environment #:update-project
+                              #:update-space #:user-identity #:user-type #:uuid
+                              #:verify-session #:workflow #:workflow-definition
                               #:workflow-definition-summary #:workflow-run
                               #:workflow-run-mode #:workflow-run-sort-criteria
                               #:workflow-run-sort-criteria-list

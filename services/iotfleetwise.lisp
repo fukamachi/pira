@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/iotfleetwise (:use)
-                             (:export #:access-denied-exception #:actuator
-                              #:amazon-resource-name #:associate-vehicle-fleet
+                             (:export #:actuator #:amazon-resource-name
+                              #:associate-vehicle-fleet
                               #:associate-vehicle-fleet-request
                               #:associate-vehicle-fleet-response #:attribute
                               #:batch-create-vehicle
@@ -17,8 +17,7 @@
                               #:cloud-watch-log-group-name #:collection-scheme
                               #:compression #:condition-based-collection-scheme
                               #:condition-based-signal-fetch-config
-                              #:conflict-exception #:create-campaign
-                              #:create-campaign-request
+                              #:create-campaign #:create-campaign-request
                               #:create-campaign-response
                               #:create-decoder-manifest
                               #:create-decoder-manifest-request
@@ -30,9 +29,7 @@
                               #:create-signal-catalog
                               #:create-signal-catalog-request
                               #:create-signal-catalog-response
-                              #:create-state-template
-                              #:create-state-template-request
-                              #:create-state-template-response #:create-vehicle
+                              #:create-state-template #:create-vehicle
                               #:create-vehicle-error #:create-vehicle-request
                               #:create-vehicle-request-item
                               #:create-vehicle-response
@@ -50,7 +47,6 @@
                               #:data-partition-upload-options #:data-partitions
                               #:decoder-manifest-resource
                               #:decoder-manifest-summary
-                              #:decoder-manifest-validation-exception
                               #:default-for-unmapped-signals-type
                               #:delete-campaign #:delete-campaign-request
                               #:delete-campaign-response
@@ -64,9 +60,7 @@
                               #:delete-signal-catalog
                               #:delete-signal-catalog-request
                               #:delete-signal-catalog-response
-                              #:delete-state-template
-                              #:delete-state-template-request
-                              #:delete-state-template-response #:delete-vehicle
+                              #:delete-state-template #:delete-vehicle
                               #:delete-vehicle-request
                               #:delete-vehicle-response #:diagnostics-mode
                               #:disassociate-vehicle-fleet
@@ -81,11 +75,9 @@
                               #:get-decoder-manifest
                               #:get-decoder-manifest-request
                               #:get-decoder-manifest-response
-                              #:get-encryption-configuration
-                              #:get-encryption-configuration-request
-                              #:get-encryption-configuration-response
-                              #:get-fleet #:get-fleet-request
-                              #:get-fleet-response #:get-logging-options
+                              #:get-encryption-configuration #:get-fleet
+                              #:get-fleet-request #:get-fleet-response
+                              #:get-logging-options
                               #:get-logging-options-request
                               #:get-logging-options-response
                               #:get-model-manifest #:get-model-manifest-request
@@ -95,8 +87,7 @@
                               #:get-register-account-status-response
                               #:get-signal-catalog #:get-signal-catalog-request
                               #:get-signal-catalog-response
-                              #:get-state-template #:get-state-template-request
-                              #:get-state-template-response #:get-vehicle
+                              #:get-state-template #:get-vehicle
                               #:get-vehicle-request #:get-vehicle-response
                               #:get-vehicle-status #:get-vehicle-status-request
                               #:get-vehicle-status-response #:iamrole-arn
@@ -107,15 +98,11 @@
                               #:import-signal-catalog
                               #:import-signal-catalog-request
                               #:import-signal-catalog-response #:interface-id
-                              #:interface-ids #:internal-server-exception
-                              #:invalid-network-interface
-                              #:invalid-network-interfaces
-                              #:invalid-node-exception #:invalid-signal
+                              #:interface-ids #:invalid-network-interface
+                              #:invalid-network-interfaces #:invalid-signal
                               #:invalid-signal-decoder
                               #:invalid-signal-decoders #:invalid-signals
-                              #:invalid-signals-exception
-                              #:io-tautobahn-control-plane
-                              #:limit-exceeded-exception #:list-campaigns
+                              #:io-tautobahn-control-plane #:list-campaigns
                               #:list-campaigns-request
                               #:list-campaigns-response
                               #:list-decoder-manifest-network-interfaces
@@ -143,10 +130,7 @@
                               #:list-signal-catalogs
                               #:list-signal-catalogs-request
                               #:list-signal-catalogs-response
-                              #:list-state-templates
-                              #:list-state-templates-request
-                              #:list-state-templates-response
-                              #:list-tags-for-resource
+                              #:list-state-templates #:list-tags-for-resource
                               #:list-tags-for-resource-request
                               #:list-tags-for-resource-response #:list-vehicles
                               #:list-vehicles-in-fleet
@@ -172,8 +156,6 @@
                               #:prefix #:primitive-message-definition
                               #:protocol-name #:protocol-version
                               #:put-encryption-configuration
-                              #:put-encryption-configuration-request
-                              #:put-encryption-configuration-response
                               #:put-logging-options
                               #:put-logging-options-request
                               #:put-logging-options-response
@@ -181,11 +163,9 @@
                               #:ros2primitive-type #:register-account
                               #:register-account-request
                               #:register-account-response #:registration-status
-                              #:resource-identifier
-                              #:resource-not-found-exception
-                              #:resource-unique-id #:retry-after-seconds
-                              #:s3bucket-arn #:s3config #:sensor
-                              #:signal-catalog-resource
+                              #:resource-identifier #:resource-unique-id
+                              #:retry-after-seconds #:s3bucket-arn #:s3config
+                              #:sensor #:signal-catalog-resource
                               #:signal-catalog-summary #:signal-decoder
                               #:signal-decoder-failure-reason
                               #:signal-decoder-type #:signal-decoders
@@ -217,8 +197,7 @@
                               #:structured-message-list-type #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
                               #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:throttling-exception
-                              #:time-based-collection-scheme
+                              #:tag-value #:time-based-collection-scheme
                               #:time-based-signal-fetch-config #:time-period
                               #:time-unit #:timestream-config
                               #:timestream-database-name
@@ -241,14 +220,11 @@
                               #:update-signal-catalog
                               #:update-signal-catalog-request
                               #:update-signal-catalog-response
-                              #:update-state-template
-                              #:update-state-template-request
-                              #:update-state-template-response #:update-vehicle
+                              #:update-state-template #:update-vehicle
                               #:update-vehicle-error #:update-vehicle-request
                               #:update-vehicle-request-item
                               #:update-vehicle-response
                               #:update-vehicle-response-item
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason

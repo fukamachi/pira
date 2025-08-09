@@ -1,57 +1,32 @@
 (uiop/package:define-package #:pira/aiops (:use)
-                             (:export #:aiops #:access-denied-exception
-                              #:chat-configuration-arn
+                             (:export #:aiops #:chat-configuration-arn
                               #:chat-configuration-arns
                               #:chatbot-notification-channel
-                              #:conflict-exception #:create-investigation-group
-                              #:create-investigation-group-input
-                              #:create-investigation-group-output
+                              #:create-investigation-group
                               #:cross-account-configuration
                               #:cross-account-configurations
                               #:delete-investigation-group
                               #:delete-investigation-group-policy
-                              #:delete-investigation-group-policy-output
-                              #:delete-investigation-group-policy-request
-                              #:delete-investigation-group-request
                               #:encryption-configuration
                               #:encryption-configuration-type
-                              #:forbidden-exception #:get-investigation-group
+                              #:get-investigation-group
                               #:get-investigation-group-policy
-                              #:get-investigation-group-policy-request
-                              #:get-investigation-group-policy-response
-                              #:get-investigation-group-request
-                              #:get-investigation-group-response
                               #:identifier-string-with-pattern-and-length-limits
-                              #:internal-server-exception #:investigation-group
-                              #:investigation-group-arn
+                              #:investigation-group #:investigation-group-arn
                               #:investigation-group-identifier
                               #:investigation-group-policy
                               #:investigation-group-policy-document
                               #:investigation-groups #:kms-key-id
                               #:list-investigation-groups
-                              #:list-investigation-groups-input
                               #:list-investigation-groups-model
-                              #:list-investigation-groups-output
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-output
-                              #:list-tags-for-resource-request
-                              #:put-investigation-group-policy
-                              #:put-investigation-group-policy-request
-                              #:put-investigation-group-policy-response
-                              #:resource-not-found-exception #:retention
+                              #:put-investigation-group-policy #:retention
                               #:role-arn #:snstopic-arn
                               #:sensitive-string-with-length-limits
-                              #:service-quota-exceeded-exception
                               #:string-with-pattern-and-length-limits #:tag-key
                               #:tag-key-boundaries #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:throttling-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-investigation-group
-                              #:update-investigation-group-output
-                              #:update-investigation-group-request
-                              #:validation-exception))
+                              #:tag-value #:tags #:untag-resource
+                              #:update-investigation-group))
 (common-lisp:in-package #:pira/aiops)
 
 (smithy/sdk/service:define-service aiops :shape-name "AIOps" :version

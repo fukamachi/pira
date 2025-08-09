@@ -1,9 +1,9 @@
 (uiop/package:define-package #:pira/mgn (:use)
-                             (:export #:arn #:access-denied-exception
-                              #:account-id #:account-resource #:action-category
-                              #:action-description #:action-id #:action-ids
-                              #:action-name #:appliance-id #:appliance-resource
-                              #:application #:application-aggregated-status
+                             (:export #:arn #:account-id #:account-resource
+                              #:action-category #:action-description
+                              #:action-id #:action-ids #:action-name
+                              #:appliance-id #:appliance-resource #:application
+                              #:application-aggregated-status
                               #:application-description
                               #:application-health-status #:application-id
                               #:application-ids #:application-ids-filter
@@ -26,7 +26,7 @@
                               #:change-server-life-cycle-state-source-server-lifecycle
                               #:change-server-life-cycle-state-source-server-lifecycle-state
                               #:client-idempotency-token
-                              #:cloud-watch-log-group-name #:conflict-exception
+                              #:cloud-watch-log-group-name
                               #:conflict-exception-errors #:connector
                               #:connector-arn #:connector-id
                               #:connector-ids-filter #:connector-name
@@ -34,7 +34,6 @@
                               #:connector-ssm-command-config #:connectors-list
                               #:cpus #:create-application
                               #:create-application-request #:create-connector
-                              #:create-connector-request
                               #:create-launch-configuration-template
                               #:create-launch-configuration-template-request
                               #:create-replication-configuration-template
@@ -53,8 +52,8 @@
                               #:data-replication-state #:delete-application
                               #:delete-application-request
                               #:delete-application-response #:delete-connector
-                              #:delete-connector-request #:delete-job
-                              #:delete-job-request #:delete-job-response
+                              #:delete-job #:delete-job-request
+                              #:delete-job-response
                               #:delete-launch-configuration-template
                               #:delete-launch-configuration-template-request
                               #:delete-launch-configuration-template-response
@@ -122,9 +121,9 @@
                               #:import-task-summary-waves #:initialize-service
                               #:initialize-service-request
                               #:initialize-service-response #:initiated-by
-                              #:internal-server-exception #:iops
-                              #:jmes-path-string #:job #:job-id #:job-log
-                              #:job-log-event #:job-log-event-data #:job-logs
+                              #:iops #:jmes-path-string #:job #:job-id
+                              #:job-log #:job-log-event #:job-log-event-data
+                              #:job-logs
                               #:job-post-launch-actions-launch-status
                               #:job-resource #:job-status #:job-type
                               #:jobs-list #:large-bounded-string
@@ -149,10 +148,8 @@
                               #:list-applications #:list-applications-request
                               #:list-applications-request-filters
                               #:list-applications-response #:list-connectors
-                              #:list-connectors-request
                               #:list-connectors-request-filters
-                              #:list-connectors-response #:list-export-errors
-                              #:list-export-errors-request
+                              #:list-export-errors #:list-export-errors-request
                               #:list-export-errors-response #:list-exports
                               #:list-exports-request
                               #:list-exports-request-filters
@@ -163,8 +160,6 @@
                               #:list-imports-request
                               #:list-imports-request-filters
                               #:list-imports-response #:list-managed-accounts
-                              #:list-managed-accounts-request
-                              #:list-managed-accounts-response
                               #:list-source-server-actions
                               #:list-source-server-actions-request
                               #:list-source-server-actions-response
@@ -182,7 +177,7 @@
                               #:operating-system-string #:order-type
                               #:pagination-token #:participating-server
                               #:participating-servers #:pause-replication
-                              #:pause-replication-request #:positive-integer
+                              #:positive-integer
                               #:post-launch-action-execution-status
                               #:post-launch-actions
                               #:post-launch-actions-deployment-type
@@ -212,13 +207,10 @@
                               #:replication-configuration-templates
                               #:replication-servers-security-groups-ids
                               #:replication-type #:replication-types
-                              #:resource-not-found-exception
-                              #:resume-replication #:resume-replication-request
-                              #:retry-data-replication
+                              #:resume-replication #:retry-data-replication
                               #:retry-data-replication-request #:s3bucket-name
                               #:s3bucket-source #:s3key #:s3log-bucket-name
                               #:secret-arn #:security-group-id
-                              #:service-quota-exceeded-exception
                               #:small-bounded-string #:source-properties
                               #:source-server #:source-server-action-document
                               #:source-server-action-documents
@@ -244,7 +236,6 @@
                               #:start-test-request
                               #:start-test-request-source-server-ids
                               #:start-test-response #:stop-replication
-                              #:stop-replication-request
                               #:strictly-positive-integer #:subnet-id #:tag-key
                               #:tag-keys #:tag-resource #:tag-resource-request
                               #:tag-value #:tags-map
@@ -256,14 +247,11 @@
                               #:terminate-target-instances-request
                               #:terminate-target-instances-request-source-server-ids
                               #:terminate-target-instances-response
-                              #:throttling-exception #:throughput
-                              #:unarchive-application
+                              #:throughput #:unarchive-application
                               #:unarchive-application-request #:unarchive-wave
-                              #:unarchive-wave-request
-                              #:uninitialized-account-exception
-                              #:untag-resource #:untag-resource-request
-                              #:update-application #:update-application-request
-                              #:update-connector #:update-connector-request
+                              #:unarchive-wave-request #:untag-resource
+                              #:untag-resource-request #:update-application
+                              #:update-application-request #:update-connector
                               #:update-launch-configuration
                               #:update-launch-configuration-request
                               #:update-launch-configuration-template
@@ -275,8 +263,7 @@
                               #:update-source-server
                               #:update-source-server-replication-type
                               #:update-source-server-replication-type-request
-                              #:update-source-server-request #:update-wave
-                              #:update-wave-request #:validation-exception
+                              #:update-wave #:update-wave-request
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:vcenter-client

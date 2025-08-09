@@ -1,11 +1,10 @@
 (uiop/package:define-package #:pira/mailmanager (:use)
-                             (:export #:accept-action #:access-denied-exception
-                              #:action-failure-policy #:add-header-action
-                              #:addon-instance #:addon-instance-arn
-                              #:addon-instance-id #:addon-instance-resource
-                              #:addon-instances #:addon-name
-                              #:addon-subscription #:addon-subscription-arn
-                              #:addon-subscription-id
+                             (:export #:accept-action #:action-failure-policy
+                              #:add-header-action #:addon-instance
+                              #:addon-instance-arn #:addon-instance-id
+                              #:addon-instance-resource #:addon-instances
+                              #:addon-name #:addon-subscription
+                              #:addon-subscription-arn #:addon-subscription-id
                               #:addon-subscription-resource
                               #:addon-subscriptions #:address #:address-filter
                               #:address-list #:address-list-arn
@@ -27,52 +26,19 @@
                               #:archive-string-operator
                               #:archive-string-to-evaluate
                               #:archived-message-id #:archives-list
-                              #:conflict-exception #:create-addon-instance
-                              #:create-addon-instance-request
-                              #:create-addon-instance-response
-                              #:create-addon-subscription
-                              #:create-addon-subscription-request
-                              #:create-addon-subscription-response
-                              #:create-address-list
-                              #:create-address-list-import-job
-                              #:create-address-list-import-job-request
-                              #:create-address-list-import-job-response
-                              #:create-address-list-request
-                              #:create-address-list-response #:create-archive
-                              #:create-archive-request
-                              #:create-archive-response #:create-ingress-point
-                              #:create-ingress-point-request
-                              #:create-ingress-point-response #:create-relay
-                              #:create-relay-request #:create-relay-response
-                              #:create-rule-set #:create-rule-set-request
-                              #:create-rule-set-response
-                              #:create-traffic-policy
-                              #:create-traffic-policy-request
-                              #:create-traffic-policy-response
+                              #:create-addon-instance
+                              #:create-addon-subscription #:create-address-list
+                              #:create-address-list-import-job #:create-archive
+                              #:create-ingress-point #:create-relay
+                              #:create-rule-set #:create-traffic-policy
                               #:delete-addon-instance
-                              #:delete-addon-instance-request
-                              #:delete-addon-instance-response
-                              #:delete-addon-subscription
-                              #:delete-addon-subscription-request
-                              #:delete-addon-subscription-response
-                              #:delete-address-list
-                              #:delete-address-list-request
-                              #:delete-address-list-response #:delete-archive
-                              #:delete-archive-request
-                              #:delete-archive-response #:delete-ingress-point
-                              #:delete-ingress-point-request
-                              #:delete-ingress-point-response #:delete-relay
-                              #:delete-relay-request #:delete-relay-response
-                              #:delete-rule-set #:delete-rule-set-request
-                              #:delete-rule-set-response
+                              #:delete-addon-subscription #:delete-address-list
+                              #:delete-archive #:delete-ingress-point
+                              #:delete-relay #:delete-rule-set
                               #:delete-traffic-policy
-                              #:delete-traffic-policy-request
-                              #:delete-traffic-policy-response
                               #:deliver-to-mailbox-action
                               #:deliver-to-qbusiness-action
                               #:deregister-member-from-address-list
-                              #:deregister-member-from-address-list-request
-                              #:deregister-member-from-address-list-response
                               #:drop-action #:email-address
                               #:email-received-headers-list #:envelope
                               #:error-message
@@ -80,44 +46,17 @@
                               #:export-max-results #:export-state
                               #:export-status #:export-summary
                               #:export-summary-list #:get-addon-instance
-                              #:get-addon-instance-request
-                              #:get-addon-instance-response
-                              #:get-addon-subscription
-                              #:get-addon-subscription-request
-                              #:get-addon-subscription-response
-                              #:get-address-list #:get-address-list-import-job
-                              #:get-address-list-import-job-request
-                              #:get-address-list-import-job-response
-                              #:get-address-list-request
-                              #:get-address-list-response #:get-archive
-                              #:get-archive-export #:get-archive-export-request
-                              #:get-archive-export-response
-                              #:get-archive-message
+                              #:get-addon-subscription #:get-address-list
+                              #:get-address-list-import-job #:get-archive
+                              #:get-archive-export #:get-archive-message
                               #:get-archive-message-content
-                              #:get-archive-message-content-request
-                              #:get-archive-message-content-response
-                              #:get-archive-message-request
-                              #:get-archive-message-response
-                              #:get-archive-request #:get-archive-response
-                              #:get-archive-search #:get-archive-search-request
-                              #:get-archive-search-response
-                              #:get-archive-search-results
-                              #:get-archive-search-results-request
-                              #:get-archive-search-results-response
-                              #:get-ingress-point #:get-ingress-point-request
-                              #:get-ingress-point-response
-                              #:get-member-of-address-list
-                              #:get-member-of-address-list-request
-                              #:get-member-of-address-list-response #:get-relay
-                              #:get-relay-request #:get-relay-response
-                              #:get-rule-set #:get-rule-set-request
-                              #:get-rule-set-response #:get-traffic-policy
-                              #:get-traffic-policy-request
-                              #:get-traffic-policy-response #:header-name
-                              #:header-value #:iam-role-arn #:id-or-arn
-                              #:idempotency-token #:import-data-format
-                              #:import-data-type #:import-job
-                              #:import-job-status #:import-jobs
+                              #:get-archive-search #:get-archive-search-results
+                              #:get-ingress-point #:get-member-of-address-list
+                              #:get-relay #:get-rule-set #:get-traffic-policy
+                              #:header-name #:header-value #:iam-role-arn
+                              #:id-or-arn #:idempotency-token
+                              #:import-data-format #:import-data-type
+                              #:import-job #:import-job-status #:import-jobs
                               #:ingress-address-list-arn-list
                               #:ingress-address-list-email-attribute
                               #:ingress-analysis #:ingress-boolean-expression
@@ -148,39 +87,14 @@
                               #:ipv4cidr #:ipv4cidrs #:ipv6cidr #:ipv6cidrs
                               #:job-id #:job-items-count #:job-name
                               #:kms-key-arn #:kms-key-id #:list-addon-instances
-                              #:list-addon-instances-request
-                              #:list-addon-instances-response
                               #:list-addon-subscriptions
-                              #:list-addon-subscriptions-request
-                              #:list-addon-subscriptions-response
                               #:list-address-list-import-jobs
-                              #:list-address-list-import-jobs-request
-                              #:list-address-list-import-jobs-response
-                              #:list-address-lists #:list-address-lists-request
-                              #:list-address-lists-response
-                              #:list-archive-exports
-                              #:list-archive-exports-request
-                              #:list-archive-exports-response
-                              #:list-archive-searches
-                              #:list-archive-searches-request
-                              #:list-archive-searches-response #:list-archives
-                              #:list-archives-request #:list-archives-response
+                              #:list-address-lists #:list-archive-exports
+                              #:list-archive-searches #:list-archives
                               #:list-ingress-points
-                              #:list-ingress-points-request
-                              #:list-ingress-points-response
-                              #:list-members-of-address-list
-                              #:list-members-of-address-list-request
-                              #:list-members-of-address-list-response
-                              #:list-relays #:list-relays-request
-                              #:list-relays-response #:list-rule-sets
-                              #:list-rule-sets-request
-                              #:list-rule-sets-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-traffic-policies
-                              #:list-traffic-policies-request
-                              #:list-traffic-policies-response #:mail-from
+                              #:list-members-of-address-list #:list-relays
+                              #:list-rule-sets #:list-tags-for-resource
+                              #:list-traffic-policies #:mail-from
                               #:mail-manager-svc #:max-message-size-bytes
                               #:message-body #:metadata #:mime-header-attribute
                               #:name-or-arn #:network-configuration
@@ -192,14 +106,11 @@
                               #:public-network-configuration
                               #:qbusiness-application-id #:qbusiness-index-id
                               #:recipients #:register-member-to-address-list
-                              #:register-member-to-address-list-request
-                              #:register-member-to-address-list-response
                               #:relay #:relay-action #:relay-arn
                               #:relay-authentication #:relay-id #:relay-name
                               #:relay-resource #:relay-server-name
                               #:relay-server-port #:relays
-                              #:replace-recipient-action
-                              #:resource-not-found-exception #:result-field
+                              #:replace-recipient-action #:result-field
                               #:retention-period #:row #:rows-list #:rule
                               #:rule-action #:rule-actions
                               #:rule-address-list-arn-list
@@ -232,50 +143,23 @@
                               #:search-max-results #:search-state
                               #:search-status #:search-summary
                               #:search-summary-list #:secret-arn #:send-action
-                              #:sender-ip-address
-                              #:service-quota-exceeded-exception
-                              #:smtp-password #:sns-action
+                              #:sender-ip-address #:smtp-password #:sns-action
                               #:sns-notification-encoding
                               #:sns-notification-payload-type #:sns-topic-arn
                               #:start-address-list-import-job
-                              #:start-address-list-import-job-request
-                              #:start-address-list-import-job-response
-                              #:start-archive-export
-                              #:start-archive-export-request
-                              #:start-archive-export-response
-                              #:start-archive-search
-                              #:start-archive-search-request
-                              #:start-archive-search-response
+                              #:start-archive-export #:start-archive-search
                               #:stop-address-list-import-job
-                              #:stop-address-list-import-job-request
-                              #:stop-address-list-import-job-response
-                              #:stop-archive-export
-                              #:stop-archive-export-request
-                              #:stop-archive-export-response
-                              #:stop-archive-search
-                              #:stop-archive-search-request
-                              #:stop-archive-search-response #:string-list
-                              #:string-value #:string-value-list #:tag
-                              #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:taggable-resource-arn #:throttling-exception
-                              #:traffic-policy #:traffic-policy-arn
-                              #:traffic-policy-id #:traffic-policy-list
-                              #:traffic-policy-name #:traffic-policy-resource
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-archive
-                              #:update-archive-request
-                              #:update-archive-response #:update-ingress-point
-                              #:update-ingress-point-request
-                              #:update-ingress-point-response #:update-relay
-                              #:update-relay-request #:update-relay-response
-                              #:update-rule-set #:update-rule-set-request
-                              #:update-rule-set-response
-                              #:update-traffic-policy
-                              #:update-traffic-policy-request
-                              #:update-traffic-policy-response
-                              #:validation-exception #:vpc-endpoint-id))
+                              #:stop-archive-export #:stop-archive-search
+                              #:string-list #:string-value #:string-value-list
+                              #:tag #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value
+                              #:taggable-resource-arn #:traffic-policy
+                              #:traffic-policy-arn #:traffic-policy-id
+                              #:traffic-policy-list #:traffic-policy-name
+                              #:traffic-policy-resource #:untag-resource
+                              #:update-archive #:update-ingress-point
+                              #:update-relay #:update-rule-set
+                              #:update-traffic-policy #:vpc-endpoint-id))
 (common-lisp:in-package #:pira/mailmanager)
 
 (smithy/sdk/service:define-service mail-manager-svc :shape-name

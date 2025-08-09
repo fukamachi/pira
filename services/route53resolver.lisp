@@ -1,76 +1,31 @@
 (uiop/package:define-package #:pira/route53resolver (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:action #:arn #:associate-firewall-rule-group
-                              #:associate-firewall-rule-group-request
-                              #:associate-firewall-rule-group-response
+                             (:export #:account-id #:action #:arn
+                              #:associate-firewall-rule-group
                               #:associate-resolver-endpoint-ip-address
-                              #:associate-resolver-endpoint-ip-address-request
-                              #:associate-resolver-endpoint-ip-address-response
                               #:associate-resolver-query-log-config
-                              #:associate-resolver-query-log-config-request
-                              #:associate-resolver-query-log-config-response
                               #:associate-resolver-rule
-                              #:associate-resolver-rule-request
-                              #:associate-resolver-rule-response
                               #:autodefined-reverse-flag
                               #:block-override-dns-type #:block-override-domain
                               #:block-override-ttl #:block-response #:boolean
-                              #:confidence-threshold #:conflict-exception
-                              #:count #:create-firewall-domain-list
-                              #:create-firewall-domain-list-request
-                              #:create-firewall-domain-list-response
+                              #:confidence-threshold #:count
+                              #:create-firewall-domain-list
                               #:create-firewall-rule
                               #:create-firewall-rule-group
-                              #:create-firewall-rule-group-request
-                              #:create-firewall-rule-group-response
-                              #:create-firewall-rule-request
-                              #:create-firewall-rule-response
                               #:create-outpost-resolver
-                              #:create-outpost-resolver-request
-                              #:create-outpost-resolver-response
                               #:create-resolver-endpoint
-                              #:create-resolver-endpoint-request
-                              #:create-resolver-endpoint-response
                               #:create-resolver-query-log-config
-                              #:create-resolver-query-log-config-request
-                              #:create-resolver-query-log-config-response
-                              #:create-resolver-rule
-                              #:create-resolver-rule-request
-                              #:create-resolver-rule-response
-                              #:creator-request-id #:delegation-record
-                              #:delete-firewall-domain-list
-                              #:delete-firewall-domain-list-request
-                              #:delete-firewall-domain-list-response
+                              #:create-resolver-rule #:creator-request-id
+                              #:delegation-record #:delete-firewall-domain-list
                               #:delete-firewall-rule
                               #:delete-firewall-rule-group
-                              #:delete-firewall-rule-group-request
-                              #:delete-firewall-rule-group-response
-                              #:delete-firewall-rule-request
-                              #:delete-firewall-rule-response
                               #:delete-outpost-resolver
-                              #:delete-outpost-resolver-request
-                              #:delete-outpost-resolver-response
                               #:delete-resolver-endpoint
-                              #:delete-resolver-endpoint-request
-                              #:delete-resolver-endpoint-response
                               #:delete-resolver-query-log-config
-                              #:delete-resolver-query-log-config-request
-                              #:delete-resolver-query-log-config-response
-                              #:delete-resolver-rule
-                              #:delete-resolver-rule-request
-                              #:delete-resolver-rule-response #:destination-arn
+                              #:delete-resolver-rule #:destination-arn
                               #:disassociate-firewall-rule-group
-                              #:disassociate-firewall-rule-group-request
-                              #:disassociate-firewall-rule-group-response
                               #:disassociate-resolver-endpoint-ip-address
-                              #:disassociate-resolver-endpoint-ip-address-request
-                              #:disassociate-resolver-endpoint-ip-address-response
                               #:disassociate-resolver-query-log-config
-                              #:disassociate-resolver-query-log-config-request
-                              #:disassociate-resolver-query-log-config-response
                               #:disassociate-resolver-rule
-                              #:disassociate-resolver-rule-request
-                              #:disassociate-resolver-rule-response
                               #:dns-threat-protection #:domain-list-file-url
                               #:domain-name #:exception-message #:filter
                               #:filter-name #:filter-value #:filter-values
@@ -93,130 +48,49 @@
                               #:firewall-rule-group-metadata-list
                               #:firewall-rule-group-policy
                               #:firewall-rule-group-status #:firewall-rules
-                              #:get-firewall-config
-                              #:get-firewall-config-request
-                              #:get-firewall-config-response
-                              #:get-firewall-domain-list
-                              #:get-firewall-domain-list-request
-                              #:get-firewall-domain-list-response
+                              #:get-firewall-config #:get-firewall-domain-list
                               #:get-firewall-rule-group
                               #:get-firewall-rule-group-association
-                              #:get-firewall-rule-group-association-request
-                              #:get-firewall-rule-group-association-response
                               #:get-firewall-rule-group-policy
-                              #:get-firewall-rule-group-policy-request
-                              #:get-firewall-rule-group-policy-response
-                              #:get-firewall-rule-group-request
-                              #:get-firewall-rule-group-response
-                              #:get-outpost-resolver
-                              #:get-outpost-resolver-request
-                              #:get-outpost-resolver-response
-                              #:get-resolver-config
-                              #:get-resolver-config-request
-                              #:get-resolver-config-response
+                              #:get-outpost-resolver #:get-resolver-config
                               #:get-resolver-dnssec-config
-                              #:get-resolver-dnssec-config-request
-                              #:get-resolver-dnssec-config-response
                               #:get-resolver-endpoint
-                              #:get-resolver-endpoint-request
-                              #:get-resolver-endpoint-response
                               #:get-resolver-query-log-config
                               #:get-resolver-query-log-config-association
-                              #:get-resolver-query-log-config-association-request
-                              #:get-resolver-query-log-config-association-response
                               #:get-resolver-query-log-config-policy
-                              #:get-resolver-query-log-config-policy-request
-                              #:get-resolver-query-log-config-policy-response
-                              #:get-resolver-query-log-config-request
-                              #:get-resolver-query-log-config-response
                               #:get-resolver-rule
                               #:get-resolver-rule-association
-                              #:get-resolver-rule-association-request
-                              #:get-resolver-rule-association-response
                               #:get-resolver-rule-policy
-                              #:get-resolver-rule-policy-request
-                              #:get-resolver-rule-policy-response
-                              #:get-resolver-rule-request
-                              #:get-resolver-rule-response
-                              #:import-firewall-domains
-                              #:import-firewall-domains-request
-                              #:import-firewall-domains-response
-                              #:instance-count
-                              #:internal-service-error-exception
-                              #:invalid-next-token-exception
-                              #:invalid-parameter-exception
-                              #:invalid-policy-document
-                              #:invalid-request-exception
-                              #:invalid-tag-exception #:ip #:ip-address-count
-                              #:ip-address-request #:ip-address-response
-                              #:ip-address-status #:ip-address-update
-                              #:ip-addresses-request #:ip-addresses-response
-                              #:ipv6 #:limit-exceeded-exception
+                              #:import-firewall-domains #:instance-count #:ip
+                              #:ip-address-count #:ip-address-request
+                              #:ip-address-response #:ip-address-status
+                              #:ip-address-update #:ip-addresses-request
+                              #:ip-addresses-response #:ipv6
                               #:list-domain-max-results #:list-firewall-configs
                               #:list-firewall-configs-max-result
-                              #:list-firewall-configs-request
-                              #:list-firewall-configs-response
                               #:list-firewall-domain-lists
-                              #:list-firewall-domain-lists-request
-                              #:list-firewall-domain-lists-response
                               #:list-firewall-domains
-                              #:list-firewall-domains-request
-                              #:list-firewall-domains-response
                               #:list-firewall-rule-group-associations
-                              #:list-firewall-rule-group-associations-request
-                              #:list-firewall-rule-group-associations-response
-                              #:list-firewall-rule-groups
-                              #:list-firewall-rule-groups-request
-                              #:list-firewall-rule-groups-response
-                              #:list-firewall-rules
-                              #:list-firewall-rules-request
-                              #:list-firewall-rules-response
-                              #:list-outpost-resolvers
-                              #:list-outpost-resolvers-request
-                              #:list-outpost-resolvers-response
-                              #:list-resolver-configs
+                              #:list-firewall-rule-groups #:list-firewall-rules
+                              #:list-outpost-resolvers #:list-resolver-configs
                               #:list-resolver-configs-max-result
-                              #:list-resolver-configs-request
-                              #:list-resolver-configs-response
                               #:list-resolver-dnssec-configs
-                              #:list-resolver-dnssec-configs-request
-                              #:list-resolver-dnssec-configs-response
                               #:list-resolver-endpoint-ip-addresses
-                              #:list-resolver-endpoint-ip-addresses-request
-                              #:list-resolver-endpoint-ip-addresses-response
                               #:list-resolver-endpoints
-                              #:list-resolver-endpoints-request
-                              #:list-resolver-endpoints-response
                               #:list-resolver-query-log-config-associations
-                              #:list-resolver-query-log-config-associations-request
-                              #:list-resolver-query-log-config-associations-response
                               #:list-resolver-query-log-configs
-                              #:list-resolver-query-log-configs-request
-                              #:list-resolver-query-log-configs-response
                               #:list-resolver-rule-associations
-                              #:list-resolver-rule-associations-request
-                              #:list-resolver-rule-associations-response
-                              #:list-resolver-rules
-                              #:list-resolver-rules-request
-                              #:list-resolver-rules-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:mutation-protection-status #:name #:next-token
-                              #:outpost-arn #:outpost-instance-type
-                              #:outpost-resolver #:outpost-resolver-list
-                              #:outpost-resolver-name #:outpost-resolver-status
+                              #:list-resolver-rules #:list-tags-for-resource
+                              #:max-results #:mutation-protection-status #:name
+                              #:next-token #:outpost-arn
+                              #:outpost-instance-type #:outpost-resolver
+                              #:outpost-resolver-list #:outpost-resolver-name
+                              #:outpost-resolver-status
                               #:outpost-resolver-status-message #:port
                               #:priority #:protocol #:protocol-list
                               #:put-firewall-rule-group-policy
-                              #:put-firewall-rule-group-policy-request
-                              #:put-firewall-rule-group-policy-response
                               #:put-resolver-query-log-config-policy
-                              #:put-resolver-query-log-config-policy-request
-                              #:put-resolver-query-log-config-policy-response
-                              #:put-resolver-rule-policy
-                              #:put-resolver-rule-policy-request
-                              #:put-resolver-rule-policy-response #:qtype
+                              #:put-resolver-rule-policy #:qtype
                               #:resolver-autodefined-reverse-status
                               #:resolver-config #:resolver-config-list
                               #:resolver-dnssecvalidation-status
@@ -240,52 +114,23 @@
                               #:resolver-rule-associations
                               #:resolver-rule-config #:resolver-rule-policy
                               #:resolver-rule-status #:resolver-rules
-                              #:resource-exists-exception #:resource-id
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception
-                              #:resource-unavailable-exception
-                              #:rfc3339time-string #:route53resolver
-                              #:rule-type-option #:security-group-ids
-                              #:server-name-indication #:service-principle
-                              #:service-quota-exceeded-exception #:share-status
-                              #:sort-by-key #:sort-order #:status-message
-                              #:string #:subnet-id #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:target-address #:target-list
-                              #:throttling-exception
-                              #:unknown-resource-exception #:unsigned
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-firewall-config
-                              #:update-firewall-config-request
-                              #:update-firewall-config-response
-                              #:update-firewall-domains
-                              #:update-firewall-domains-request
-                              #:update-firewall-domains-response
-                              #:update-firewall-rule
+                              #:resource-id #:rfc3339time-string
+                              #:route53resolver #:rule-type-option
+                              #:security-group-ids #:server-name-indication
+                              #:service-principle #:share-status #:sort-by-key
+                              #:sort-order #:status-message #:string
+                              #:subnet-id #:tag #:tag-key #:tag-key-list
+                              #:tag-list #:tag-resource #:tag-value
+                              #:target-address #:target-list #:unsigned
+                              #:untag-resource #:update-firewall-config
+                              #:update-firewall-domains #:update-firewall-rule
                               #:update-firewall-rule-group-association
-                              #:update-firewall-rule-group-association-request
-                              #:update-firewall-rule-group-association-response
-                              #:update-firewall-rule-request
-                              #:update-firewall-rule-response
                               #:update-ip-address #:update-ip-addresses
                               #:update-outpost-resolver
-                              #:update-outpost-resolver-request
-                              #:update-outpost-resolver-response
                               #:update-resolver-config
-                              #:update-resolver-config-request
-                              #:update-resolver-config-response
                               #:update-resolver-dnssec-config
-                              #:update-resolver-dnssec-config-request
-                              #:update-resolver-dnssec-config-response
-                              #:update-resolver-endpoint
-                              #:update-resolver-endpoint-request
-                              #:update-resolver-endpoint-response
-                              #:update-resolver-rule
-                              #:update-resolver-rule-request
-                              #:update-resolver-rule-response #:validation
-                              #:validation-exception))
+                              #:update-resolver-endpoint #:update-resolver-rule
+                              #:validation))
 (common-lisp:in-package #:pira/route53resolver)
 
 (smithy/sdk/service:define-service route53resolver :shape-name

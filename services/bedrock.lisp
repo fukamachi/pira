@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/bedrock (:use)
-                             (:export #:accept-eula #:access-denied-exception
-                              #:account-id #:acknowledgement-form-data-body
+                             (:export #:accept-eula #:account-id
+                              #:acknowledgement-form-data-body
                               #:additional-model-request-fields
                               #:additional-model-request-fields-key
                               #:additional-model-request-fields-value
@@ -159,8 +159,6 @@
                               #:batch-delete-evaluation-job-errors
                               #:batch-delete-evaluation-job-item
                               #:batch-delete-evaluation-job-items
-                              #:batch-delete-evaluation-job-request
-                              #:batch-delete-evaluation-job-response
                               #:bedrock-evaluator-model
                               #:bedrock-evaluator-models
                               #:bedrock-marketplace-resource
@@ -169,60 +167,24 @@
                               #:bucket-name #:byte-content-blob
                               #:byte-content-doc
                               #:cancel-automated-reasoning-policy-build-workflow
-                              #:cancel-automated-reasoning-policy-build-workflow-request
-                              #:cancel-automated-reasoning-policy-build-workflow-response
                               #:cloud-watch-config #:commitment-duration
-                              #:conflict-exception #:content-type
+                              #:content-type
                               #:create-automated-reasoning-policy
-                              #:create-automated-reasoning-policy-request
-                              #:create-automated-reasoning-policy-response
                               #:create-automated-reasoning-policy-test-case
-                              #:create-automated-reasoning-policy-test-case-request
-                              #:create-automated-reasoning-policy-test-case-response
                               #:create-automated-reasoning-policy-version
-                              #:create-automated-reasoning-policy-version-request
-                              #:create-automated-reasoning-policy-version-response
                               #:create-custom-model
                               #:create-custom-model-deployment
-                              #:create-custom-model-deployment-request
-                              #:create-custom-model-deployment-response
-                              #:create-custom-model-request
-                              #:create-custom-model-response
                               #:create-evaluation-job
-                              #:create-evaluation-job-request
-                              #:create-evaluation-job-response
                               #:create-foundation-model-agreement
-                              #:create-foundation-model-agreement-request
-                              #:create-foundation-model-agreement-response
-                              #:create-guardrail #:create-guardrail-request
-                              #:create-guardrail-response
-                              #:create-guardrail-version
-                              #:create-guardrail-version-request
-                              #:create-guardrail-version-response
+                              #:create-guardrail #:create-guardrail-version
                               #:create-inference-profile
-                              #:create-inference-profile-request
-                              #:create-inference-profile-response
                               #:create-marketplace-model-endpoint
-                              #:create-marketplace-model-endpoint-request
-                              #:create-marketplace-model-endpoint-response
                               #:create-model-copy-job
-                              #:create-model-copy-job-request
-                              #:create-model-copy-job-response
                               #:create-model-customization-job
-                              #:create-model-customization-job-request
-                              #:create-model-customization-job-response
                               #:create-model-import-job
-                              #:create-model-import-job-request
-                              #:create-model-import-job-response
                               #:create-model-invocation-job
-                              #:create-model-invocation-job-request
-                              #:create-model-invocation-job-response
                               #:create-prompt-router
-                              #:create-prompt-router-request
-                              #:create-prompt-router-response
                               #:create-provisioned-model-throughput
-                              #:create-provisioned-model-throughput-request
-                              #:create-provisioned-model-throughput-response
                               #:custom-metric-bedrock-evaluator-model
                               #:custom-metric-bedrock-evaluator-models
                               #:custom-metric-definition
@@ -243,45 +205,17 @@
                               #:data-processing-details
                               #:delete-automated-reasoning-policy
                               #:delete-automated-reasoning-policy-build-workflow
-                              #:delete-automated-reasoning-policy-build-workflow-request
-                              #:delete-automated-reasoning-policy-build-workflow-response
-                              #:delete-automated-reasoning-policy-request
-                              #:delete-automated-reasoning-policy-response
                               #:delete-automated-reasoning-policy-test-case
-                              #:delete-automated-reasoning-policy-test-case-request
-                              #:delete-automated-reasoning-policy-test-case-response
                               #:delete-custom-model
                               #:delete-custom-model-deployment
-                              #:delete-custom-model-deployment-request
-                              #:delete-custom-model-deployment-response
-                              #:delete-custom-model-request
-                              #:delete-custom-model-response
                               #:delete-foundation-model-agreement
-                              #:delete-foundation-model-agreement-request
-                              #:delete-foundation-model-agreement-response
-                              #:delete-guardrail #:delete-guardrail-request
-                              #:delete-guardrail-response
-                              #:delete-imported-model
-                              #:delete-imported-model-request
-                              #:delete-imported-model-response
+                              #:delete-guardrail #:delete-imported-model
                               #:delete-inference-profile
-                              #:delete-inference-profile-request
-                              #:delete-inference-profile-response
                               #:delete-marketplace-model-endpoint
-                              #:delete-marketplace-model-endpoint-request
-                              #:delete-marketplace-model-endpoint-response
                               #:delete-model-invocation-logging-configuration
-                              #:delete-model-invocation-logging-configuration-request
-                              #:delete-model-invocation-logging-configuration-response
                               #:delete-prompt-router
-                              #:delete-prompt-router-request
-                              #:delete-prompt-router-response
                               #:delete-provisioned-model-throughput
-                              #:delete-provisioned-model-throughput-request
-                              #:delete-provisioned-model-throughput-response
                               #:deregister-marketplace-model-endpoint
-                              #:deregister-marketplace-model-endpoint-request
-                              #:deregister-marketplace-model-endpoint-response
                               #:dimensional-price-rate #:distillation-config
                               #:endpoint-config #:endpoint-name
                               #:entitlement-availability #:error-message
@@ -325,8 +259,6 @@
                               #:evaluator-model-identifier
                               #:evaluator-model-identifiers
                               #:export-automated-reasoning-policy-version
-                              #:export-automated-reasoning-policy-version-request
-                              #:export-automated-reasoning-policy-version-response
                               #:external-source #:external-source-type
                               #:external-sources
                               #:external-sources-generation-configuration
@@ -342,70 +274,24 @@
                               #:generation-configuration
                               #:get-automated-reasoning-policy
                               #:get-automated-reasoning-policy-annotations
-                              #:get-automated-reasoning-policy-annotations-request
-                              #:get-automated-reasoning-policy-annotations-response
                               #:get-automated-reasoning-policy-build-workflow
-                              #:get-automated-reasoning-policy-build-workflow-request
-                              #:get-automated-reasoning-policy-build-workflow-response
                               #:get-automated-reasoning-policy-build-workflow-result-assets
-                              #:get-automated-reasoning-policy-build-workflow-result-assets-request
-                              #:get-automated-reasoning-policy-build-workflow-result-assets-response
                               #:get-automated-reasoning-policy-next-scenario
-                              #:get-automated-reasoning-policy-next-scenario-request
-                              #:get-automated-reasoning-policy-next-scenario-response
-                              #:get-automated-reasoning-policy-request
-                              #:get-automated-reasoning-policy-response
                               #:get-automated-reasoning-policy-test-case
-                              #:get-automated-reasoning-policy-test-case-request
-                              #:get-automated-reasoning-policy-test-case-response
                               #:get-automated-reasoning-policy-test-result
-                              #:get-automated-reasoning-policy-test-result-request
-                              #:get-automated-reasoning-policy-test-result-response
                               #:get-custom-model #:get-custom-model-deployment
-                              #:get-custom-model-deployment-request
-                              #:get-custom-model-deployment-response
-                              #:get-custom-model-request
-                              #:get-custom-model-response #:get-evaluation-job
-                              #:get-evaluation-job-request
-                              #:get-evaluation-job-response
-                              #:get-foundation-model
+                              #:get-evaluation-job #:get-foundation-model
                               #:get-foundation-model-availability
-                              #:get-foundation-model-availability-request
-                              #:get-foundation-model-availability-response
-                              #:get-foundation-model-request
-                              #:get-foundation-model-response #:get-guardrail
-                              #:get-guardrail-request #:get-guardrail-response
-                              #:get-imported-model #:get-imported-model-request
-                              #:get-imported-model-response
+                              #:get-guardrail #:get-imported-model
                               #:get-inference-profile
-                              #:get-inference-profile-request
-                              #:get-inference-profile-response
                               #:get-marketplace-model-endpoint
-                              #:get-marketplace-model-endpoint-request
-                              #:get-marketplace-model-endpoint-response
-                              #:get-model-copy-job #:get-model-copy-job-request
-                              #:get-model-copy-job-response
+                              #:get-model-copy-job
                               #:get-model-customization-job
-                              #:get-model-customization-job-request
-                              #:get-model-customization-job-response
-                              #:get-model-import-job
-                              #:get-model-import-job-request
-                              #:get-model-import-job-response
-                              #:get-model-invocation-job
-                              #:get-model-invocation-job-request
-                              #:get-model-invocation-job-response
+                              #:get-model-import-job #:get-model-invocation-job
                               #:get-model-invocation-logging-configuration
-                              #:get-model-invocation-logging-configuration-request
-                              #:get-model-invocation-logging-configuration-response
-                              #:get-prompt-router #:get-prompt-router-request
-                              #:get-prompt-router-response
+                              #:get-prompt-router
                               #:get-provisioned-model-throughput
-                              #:get-provisioned-model-throughput-request
-                              #:get-provisioned-model-throughput-response
-                              #:get-use-case-for-model-access
-                              #:get-use-case-for-model-access-request
-                              #:get-use-case-for-model-access-response
-                              #:guardrail-arn
+                              #:get-use-case-for-model-access #:guardrail-arn
                               #:guardrail-automated-reasoning-policy
                               #:guardrail-automated-reasoning-policy-config
                               #:guardrail-blocked-messaging
@@ -498,7 +384,6 @@
                               #:inference-profile-type #:inference-type
                               #:inference-type-list #:instance-count
                               #:instance-type #:instruct-supported
-                              #:internal-server-exception
                               #:invocation-log-source #:invocation-logs-config
                               #:job-name #:job-status-details
                               #:kb-inference-config #:key-prefix #:kms-key-arn
@@ -508,64 +393,24 @@
                               #:knowledge-base-retrieve-and-generate-configuration
                               #:knowledge-base-vector-search-configuration
                               #:legal-term #:list-automated-reasoning-policies
-                              #:list-automated-reasoning-policies-request
-                              #:list-automated-reasoning-policies-response
                               #:list-automated-reasoning-policy-build-workflows
-                              #:list-automated-reasoning-policy-build-workflows-request
-                              #:list-automated-reasoning-policy-build-workflows-response
                               #:list-automated-reasoning-policy-test-cases
-                              #:list-automated-reasoning-policy-test-cases-request
-                              #:list-automated-reasoning-policy-test-cases-response
                               #:list-automated-reasoning-policy-test-results
-                              #:list-automated-reasoning-policy-test-results-request
-                              #:list-automated-reasoning-policy-test-results-response
                               #:list-custom-model-deployments
-                              #:list-custom-model-deployments-request
-                              #:list-custom-model-deployments-response
-                              #:list-custom-models #:list-custom-models-request
-                              #:list-custom-models-response
-                              #:list-evaluation-jobs
-                              #:list-evaluation-jobs-request
-                              #:list-evaluation-jobs-response
+                              #:list-custom-models #:list-evaluation-jobs
                               #:list-foundation-model-agreement-offers
-                              #:list-foundation-model-agreement-offers-request
-                              #:list-foundation-model-agreement-offers-response
-                              #:list-foundation-models
-                              #:list-foundation-models-request
-                              #:list-foundation-models-response
-                              #:list-guardrails #:list-guardrails-request
-                              #:list-guardrails-response #:list-imported-models
-                              #:list-imported-models-request
-                              #:list-imported-models-response
-                              #:list-inference-profiles
-                              #:list-inference-profiles-request
-                              #:list-inference-profiles-response
+                              #:list-foundation-models #:list-guardrails
+                              #:list-imported-models #:list-inference-profiles
                               #:list-marketplace-model-endpoints
-                              #:list-marketplace-model-endpoints-request
-                              #:list-marketplace-model-endpoints-response
                               #:list-model-copy-jobs
-                              #:list-model-copy-jobs-request
-                              #:list-model-copy-jobs-response
                               #:list-model-customization-jobs
-                              #:list-model-customization-jobs-request
-                              #:list-model-customization-jobs-response
                               #:list-model-import-jobs
-                              #:list-model-import-jobs-request
-                              #:list-model-import-jobs-response
                               #:list-model-invocation-jobs
-                              #:list-model-invocation-jobs-request
-                              #:list-model-invocation-jobs-response
                               #:list-prompt-routers
-                              #:list-prompt-routers-request
-                              #:list-prompt-routers-response
                               #:list-provisioned-model-throughputs
-                              #:list-provisioned-model-throughputs-request
-                              #:list-provisioned-model-throughputs-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:log-group-name #:logging-config
-                              #:logging-resource #:marketplace-model-endpoint
+                              #:list-tags-for-resource #:log-group-name
+                              #:logging-config #:logging-resource
+                              #:marketplace-model-endpoint
                               #:marketplace-model-endpoint-summaries
                               #:marketplace-model-endpoint-summary
                               #:max-results #:max-tokens #:message
@@ -629,11 +474,7 @@
                               #:provisioned-model-summary
                               #:provisioned-model-throughput-resource
                               #:put-model-invocation-logging-configuration
-                              #:put-model-invocation-logging-configuration-request
-                              #:put-model-invocation-logging-configuration-response
                               #:put-use-case-for-model-access
-                              #:put-use-case-for-model-access-request
-                              #:put-use-case-for-model-access-response
                               #:query-transformation-configuration
                               #:query-transformation-type #:ragconfig
                               #:ragstop-sequences #:rag-configs #:rate-card
@@ -641,17 +482,13 @@
                               #:rating-scale-item-definition
                               #:rating-scale-item-value #:region-availability
                               #:register-marketplace-model-endpoint
-                              #:register-marketplace-model-endpoint-request
-                              #:register-marketplace-model-endpoint-response
                               #:request-metadata-base-filters
                               #:request-metadata-filters
                               #:request-metadata-filters-list
                               #:request-metadata-map
                               #:reranking-metadata-selection-mode
                               #:reranking-metadata-selective-mode-configuration
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception #:retrieval-filter
-                              #:retrieval-filter-list
+                              #:retrieval-filter #:retrieval-filter-list
                               #:retrieve-and-generate-configuration
                               #:retrieve-and-generate-type #:retrieve-config
                               #:role-arn #:routing-criteria #:s3config
@@ -659,60 +496,33 @@
                               #:s3uri #:sage-maker-endpoint
                               #:sage-maker-flow-definition-arn #:search-type
                               #:security-group-id #:security-group-ids
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception
                               #:sort-by-provisioned-models #:sort-jobs-by
                               #:sort-models-by #:sort-order
                               #:start-automated-reasoning-policy-build-workflow
-                              #:start-automated-reasoning-policy-build-workflow-request
-                              #:start-automated-reasoning-policy-build-workflow-response
                               #:start-automated-reasoning-policy-test-workflow
-                              #:start-automated-reasoning-policy-test-workflow-request
-                              #:start-automated-reasoning-policy-test-workflow-response
                               #:status #:status-details #:stop-evaluation-job
-                              #:stop-evaluation-job-request
-                              #:stop-evaluation-job-response
                               #:stop-model-customization-job
-                              #:stop-model-customization-job-request
-                              #:stop-model-customization-job-response
-                              #:stop-model-invocation-job
-                              #:stop-model-invocation-job-request
-                              #:stop-model-invocation-job-response #:subnet-id
+                              #:stop-model-invocation-job #:subnet-id
                               #:subnet-ids #:subscription-resource
                               #:support-term #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:tag-list #:tag-resource #:tag-value
                               #:taggable-resources-arn #:tagging-resource
                               #:teacher-model-config #:teacher-model-identifier
                               #:temperature #:term-details
                               #:text-inference-config #:text-prompt-template
-                              #:throttling-exception #:timestamp
-                              #:too-many-tags-exception #:top-p
-                              #:training-data-config #:training-details
-                              #:training-metrics #:training-resource
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:timestamp #:top-p #:training-data-config
+                              #:training-details #:training-metrics
+                              #:training-resource #:untag-resource
                               #:update-automated-reasoning-policy
                               #:update-automated-reasoning-policy-annotations
-                              #:update-automated-reasoning-policy-annotations-request
-                              #:update-automated-reasoning-policy-annotations-response
-                              #:update-automated-reasoning-policy-request
-                              #:update-automated-reasoning-policy-response
                               #:update-automated-reasoning-policy-test-case
-                              #:update-automated-reasoning-policy-test-case-request
-                              #:update-automated-reasoning-policy-test-case-response
-                              #:update-guardrail #:update-guardrail-request
-                              #:update-guardrail-response
+                              #:update-guardrail
                               #:update-marketplace-model-endpoint
-                              #:update-marketplace-model-endpoint-request
-                              #:update-marketplace-model-endpoint-response
                               #:update-provisioned-model-throughput
-                              #:update-provisioned-model-throughput-request
-                              #:update-provisioned-model-throughput-response
                               #:use-prompt-response #:validation-data-config
-                              #:validation-details #:validation-exception
-                              #:validation-metrics #:validator
-                              #:validator-metric #:validators #:validity-term
+                              #:validation-details #:validation-metrics
+                              #:validator #:validator-metric #:validators
+                              #:validity-term
                               #:vector-search-bedrock-reranking-configuration
                               #:vector-search-bedrock-reranking-model-configuration
                               #:vector-search-reranking-configuration

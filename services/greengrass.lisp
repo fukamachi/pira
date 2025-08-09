@@ -1,12 +1,7 @@
 (uiop/package:define-package #:pira/greengrass (:use)
                              (:export #:associate-role-to-group
-                              #:associate-role-to-group-request
-                              #:associate-role-to-group-response
                               #:associate-service-role-to-account
-                              #:associate-service-role-to-account-request
-                              #:associate-service-role-to-account-response
-                              #:bad-request-exception #:bulk-deployment
-                              #:bulk-deployment-metrics
+                              #:bulk-deployment #:bulk-deployment-metrics
                               #:bulk-deployment-result
                               #:bulk-deployment-results
                               #:bulk-deployment-status #:bulk-deployments
@@ -14,92 +9,34 @@
                               #:connector #:connector-definition-version #:core
                               #:core-definition-version
                               #:create-connector-definition
-                              #:create-connector-definition-request
-                              #:create-connector-definition-response
                               #:create-connector-definition-version
-                              #:create-connector-definition-version-request
-                              #:create-connector-definition-version-response
                               #:create-core-definition
-                              #:create-core-definition-request
-                              #:create-core-definition-response
                               #:create-core-definition-version
-                              #:create-core-definition-version-request
-                              #:create-core-definition-version-response
-                              #:create-deployment #:create-deployment-request
-                              #:create-deployment-response
-                              #:create-device-definition
-                              #:create-device-definition-request
-                              #:create-device-definition-response
+                              #:create-deployment #:create-device-definition
                               #:create-device-definition-version
-                              #:create-device-definition-version-request
-                              #:create-device-definition-version-response
                               #:create-function-definition
-                              #:create-function-definition-request
-                              #:create-function-definition-response
                               #:create-function-definition-version
-                              #:create-function-definition-version-request
-                              #:create-function-definition-version-response
                               #:create-group
                               #:create-group-certificate-authority
-                              #:create-group-certificate-authority-request
-                              #:create-group-certificate-authority-response
-                              #:create-group-request #:create-group-response
-                              #:create-group-version
-                              #:create-group-version-request
-                              #:create-group-version-response
-                              #:create-logger-definition
-                              #:create-logger-definition-request
-                              #:create-logger-definition-response
+                              #:create-group-version #:create-logger-definition
                               #:create-logger-definition-version
-                              #:create-logger-definition-version-request
-                              #:create-logger-definition-version-response
                               #:create-resource-definition
-                              #:create-resource-definition-request
-                              #:create-resource-definition-response
                               #:create-resource-definition-version
-                              #:create-resource-definition-version-request
-                              #:create-resource-definition-version-response
                               #:create-software-update-job
-                              #:create-software-update-job-request
-                              #:create-software-update-job-response
                               #:create-subscription-definition
-                              #:create-subscription-definition-request
-                              #:create-subscription-definition-response
                               #:create-subscription-definition-version
-                              #:create-subscription-definition-version-request
-                              #:create-subscription-definition-version-response
                               #:definition-information
                               #:delete-connector-definition
-                              #:delete-connector-definition-request
-                              #:delete-connector-definition-response
                               #:delete-core-definition
-                              #:delete-core-definition-request
-                              #:delete-core-definition-response
                               #:delete-device-definition
-                              #:delete-device-definition-request
-                              #:delete-device-definition-response
-                              #:delete-function-definition
-                              #:delete-function-definition-request
-                              #:delete-function-definition-response
-                              #:delete-group #:delete-group-request
-                              #:delete-group-response
+                              #:delete-function-definition #:delete-group
                               #:delete-logger-definition
-                              #:delete-logger-definition-request
-                              #:delete-logger-definition-response
                               #:delete-resource-definition
-                              #:delete-resource-definition-request
-                              #:delete-resource-definition-response
-                              #:delete-subscription-definition
-                              #:delete-subscription-definition-request
-                              #:delete-subscription-definition-response
-                              #:deployment #:deployment-type #:deployments
-                              #:device #:device-definition-version
+                              #:delete-subscription-definition #:deployment
+                              #:deployment-type #:deployments #:device
+                              #:device-definition-version
                               #:disassociate-role-from-group
-                              #:disassociate-role-from-group-request
-                              #:disassociate-role-from-group-response
                               #:disassociate-service-role-from-account
-                              #:disassociate-service-role-from-account-request
-                              #:disassociate-service-role-from-account-response
                               #:encoding-type #:error-detail #:error-details
                               #:function #:function-configuration
                               #:function-configuration-environment
@@ -109,144 +46,53 @@
                               #:function-execution-config
                               #:function-isolation-mode
                               #:function-run-as-config #:get-associated-role
-                              #:get-associated-role-request
-                              #:get-associated-role-response
                               #:get-bulk-deployment-status
-                              #:get-bulk-deployment-status-request
-                              #:get-bulk-deployment-status-response
                               #:get-connectivity-info
-                              #:get-connectivity-info-request
-                              #:get-connectivity-info-response
                               #:get-connector-definition
-                              #:get-connector-definition-request
-                              #:get-connector-definition-response
                               #:get-connector-definition-version
-                              #:get-connector-definition-version-request
-                              #:get-connector-definition-version-response
                               #:get-core-definition
-                              #:get-core-definition-request
-                              #:get-core-definition-response
                               #:get-core-definition-version
-                              #:get-core-definition-version-request
-                              #:get-core-definition-version-response
-                              #:get-deployment-status
-                              #:get-deployment-status-request
-                              #:get-deployment-status-response
-                              #:get-device-definition
-                              #:get-device-definition-request
-                              #:get-device-definition-response
+                              #:get-deployment-status #:get-device-definition
                               #:get-device-definition-version
-                              #:get-device-definition-version-request
-                              #:get-device-definition-version-response
                               #:get-function-definition
-                              #:get-function-definition-request
-                              #:get-function-definition-response
-                              #:get-function-definition-version
-                              #:get-function-definition-version-request
-                              #:get-function-definition-version-response
-                              #:get-group #:get-group-certificate-authority
-                              #:get-group-certificate-authority-request
-                              #:get-group-certificate-authority-response
+                              #:get-function-definition-version #:get-group
+                              #:get-group-certificate-authority
                               #:get-group-certificate-configuration
-                              #:get-group-certificate-configuration-request
-                              #:get-group-certificate-configuration-response
-                              #:get-group-request #:get-group-response
-                              #:get-group-version #:get-group-version-request
-                              #:get-group-version-response
-                              #:get-logger-definition
-                              #:get-logger-definition-request
-                              #:get-logger-definition-response
+                              #:get-group-version #:get-logger-definition
                               #:get-logger-definition-version
-                              #:get-logger-definition-version-request
-                              #:get-logger-definition-version-response
                               #:get-resource-definition
-                              #:get-resource-definition-request
-                              #:get-resource-definition-response
                               #:get-resource-definition-version
-                              #:get-resource-definition-version-request
-                              #:get-resource-definition-version-response
                               #:get-service-role-for-account
-                              #:get-service-role-for-account-request
-                              #:get-service-role-for-account-response
                               #:get-subscription-definition
-                              #:get-subscription-definition-request
-                              #:get-subscription-definition-response
                               #:get-subscription-definition-version
-                              #:get-subscription-definition-version-request
-                              #:get-subscription-definition-version-response
-                              #:get-thing-runtime-configuration
-                              #:get-thing-runtime-configuration-request
-                              #:get-thing-runtime-configuration-response
-                              #:greengrass
+                              #:get-thing-runtime-configuration #:greengrass
                               #:group-certificate-authority-properties
                               #:group-information #:group-owner-setting
-                              #:group-version #:internal-server-error-exception
+                              #:group-version
                               #:list-bulk-deployment-detailed-reports
-                              #:list-bulk-deployment-detailed-reports-request
-                              #:list-bulk-deployment-detailed-reports-response
                               #:list-bulk-deployments
-                              #:list-bulk-deployments-request
-                              #:list-bulk-deployments-response
                               #:list-connector-definition-versions
-                              #:list-connector-definition-versions-request
-                              #:list-connector-definition-versions-response
                               #:list-connector-definitions
-                              #:list-connector-definitions-request
-                              #:list-connector-definitions-response
                               #:list-core-definition-versions
-                              #:list-core-definition-versions-request
-                              #:list-core-definition-versions-response
-                              #:list-core-definitions
-                              #:list-core-definitions-request
-                              #:list-core-definitions-response
-                              #:list-deployments #:list-deployments-request
-                              #:list-deployments-response
+                              #:list-core-definitions #:list-deployments
                               #:list-device-definition-versions
-                              #:list-device-definition-versions-request
-                              #:list-device-definition-versions-response
                               #:list-device-definitions
-                              #:list-device-definitions-request
-                              #:list-device-definitions-response
                               #:list-function-definition-versions
-                              #:list-function-definition-versions-request
-                              #:list-function-definition-versions-response
                               #:list-function-definitions
-                              #:list-function-definitions-request
-                              #:list-function-definitions-response
                               #:list-group-certificate-authorities
-                              #:list-group-certificate-authorities-request
-                              #:list-group-certificate-authorities-response
-                              #:list-group-versions
-                              #:list-group-versions-request
-                              #:list-group-versions-response #:list-groups
-                              #:list-groups-request #:list-groups-response
+                              #:list-group-versions #:list-groups
                               #:list-logger-definition-versions
-                              #:list-logger-definition-versions-request
-                              #:list-logger-definition-versions-response
                               #:list-logger-definitions
-                              #:list-logger-definitions-request
-                              #:list-logger-definitions-response
                               #:list-resource-definition-versions
-                              #:list-resource-definition-versions-request
-                              #:list-resource-definition-versions-response
                               #:list-resource-definitions
-                              #:list-resource-definitions-request
-                              #:list-resource-definitions-response
                               #:list-subscription-definition-versions
-                              #:list-subscription-definition-versions-request
-                              #:list-subscription-definition-versions-response
                               #:list-subscription-definitions
-                              #:list-subscription-definitions-request
-                              #:list-subscription-definitions-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:local-device-resource-data
                               #:local-volume-resource-data #:logger
                               #:logger-component #:logger-definition-version
                               #:logger-level #:logger-type #:permission
-                              #:reset-deployments #:reset-deployments-request
-                              #:reset-deployments-response #:resource
+                              #:reset-deployments #:resource
                               #:resource-access-policy
                               #:resource-data-container
                               #:resource-definition-version
@@ -257,50 +103,23 @@
                               #:sage-maker-machine-learning-model-resource-data
                               #:secrets-manager-secret-resource-data
                               #:software-to-update #:start-bulk-deployment
-                              #:start-bulk-deployment-request
-                              #:start-bulk-deployment-response
-                              #:stop-bulk-deployment
-                              #:stop-bulk-deployment-request
-                              #:stop-bulk-deployment-response #:subscription
+                              #:stop-bulk-deployment #:subscription
                               #:subscription-definition-version #:tag-resource
-                              #:tag-resource-request #:tags #:telemetry
-                              #:telemetry-configuration
+                              #:tags #:telemetry #:telemetry-configuration
                               #:telemetry-configuration-update #:untag-resource
-                              #:untag-resource-request #:update-agent-log-level
+                              #:update-agent-log-level
                               #:update-connectivity-info
-                              #:update-connectivity-info-request
-                              #:update-connectivity-info-response
                               #:update-connector-definition
-                              #:update-connector-definition-request
-                              #:update-connector-definition-response
                               #:update-core-definition
-                              #:update-core-definition-request
-                              #:update-core-definition-response
                               #:update-device-definition
-                              #:update-device-definition-request
-                              #:update-device-definition-response
-                              #:update-function-definition
-                              #:update-function-definition-request
-                              #:update-function-definition-response
-                              #:update-group
+                              #:update-function-definition #:update-group
                               #:update-group-certificate-configuration
-                              #:update-group-certificate-configuration-request
-                              #:update-group-certificate-configuration-response
-                              #:update-group-request #:update-group-response
                               #:update-logger-definition
-                              #:update-logger-definition-request
-                              #:update-logger-definition-response
                               #:update-resource-definition
-                              #:update-resource-definition-request
-                              #:update-resource-definition-response
-                              #:update-subscription-definition
-                              #:update-subscription-definition-request
-                              #:update-subscription-definition-response
-                              #:update-targets #:update-targets-architecture
+                              #:update-subscription-definition #:update-targets
+                              #:update-targets-architecture
                               #:update-targets-operating-system
                               #:update-thing-runtime-configuration
-                              #:update-thing-runtime-configuration-request
-                              #:update-thing-runtime-configuration-response
                               #:version-information #:boolean #:integer
                               #:list-of-connectivity-info #:list-of-connector
                               #:list-of-core #:list-of-definition-information

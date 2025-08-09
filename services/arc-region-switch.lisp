@@ -1,11 +1,8 @@
 (uiop/package:define-package #:pira/arc-region-switch (:use)
                              (:export #:abbreviated-execution
                               #:abbreviated-executions-list #:abbreviated-plan
-                              #:access-denied-exception #:account-id
-                              #:alarm-condition #:alarm-type #:approval
-                              #:approve-plan-execution-step
-                              #:approve-plan-execution-step-request
-                              #:approve-plan-execution-step-response
+                              #:account-id #:alarm-condition #:alarm-type
+                              #:approval #:approve-plan-execution-step
                               #:arc-region-switch
                               #:arc-routing-control-configuration
                               #:arc-routing-control-state
@@ -13,12 +10,9 @@
                               #:asg-list #:associated-alarm
                               #:associated-alarm-map #:aurora-cluster-arn
                               #:aurora-cluster-arns #:cancel-plan-execution
-                              #:cancel-plan-execution-request
-                              #:cancel-plan-execution-response #:create-plan
-                              #:create-plan-request #:create-plan-response
+                              #:create-plan
                               #:custom-action-lambda-configuration
-                              #:delete-plan #:delete-plan-request
-                              #:delete-plan-response #:duration
+                              #:delete-plan #:duration
                               #:ec2asg-capacity-increase-configuration
                               #:ec2asg-capacity-monitoring-approach
                               #:ec2ungraceful
@@ -37,22 +31,14 @@
                               #:execution-event #:execution-event-list
                               #:execution-event-type #:execution-id
                               #:execution-mode #:execution-state #:get-plan
-                              #:get-plan-evaluation-status
-                              #:get-plan-evaluation-status-request
-                              #:get-plan-evaluation-status-response
-                              #:get-plan-execution #:get-plan-execution-request
-                              #:get-plan-execution-response
+                              #:get-plan-evaluation-status #:get-plan-execution
                               #:get-plan-execution-step-states-max-results
-                              #:get-plan-in-region #:get-plan-in-region-request
-                              #:get-plan-in-region-response #:get-plan-request
-                              #:get-plan-response #:global-aurora-configuration
+                              #:get-plan-in-region
+                              #:global-aurora-configuration
                               #:global-aurora-default-behavior
                               #:global-aurora-ungraceful
                               #:global-aurora-ungraceful-behavior
                               #:global-cluster-identifier #:iam-role-arn
-                              #:illegal-argument-exception
-                              #:illegal-state-exception
-                              #:internal-server-exception
                               #:kubernetes-namespace #:kubernetes-resource-type
                               #:kubernetes-scaling-application
                               #:kubernetes-scaling-apps
@@ -62,21 +48,10 @@
                               #:list-execution-events-max-results
                               #:list-executions-max-results
                               #:list-plan-execution-events
-                              #:list-plan-execution-events-request
-                              #:list-plan-execution-events-response
-                              #:list-plan-executions
-                              #:list-plan-executions-request
-                              #:list-plan-executions-response #:list-plans
+                              #:list-plan-executions #:list-plans
                               #:list-plans-in-region
-                              #:list-plans-in-region-request
-                              #:list-plans-in-region-response
-                              #:list-plans-request #:list-plans-response
                               #:list-route53health-checks
-                              #:list-route53health-checks-request
-                              #:list-route53health-checks-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:list-tags-for-resource #:max-results
                               #:minimal-workflow #:next-token
                               #:parallel-execution-block-configuration #:plan
                               #:plan-arn #:plan-list #:plan-name
@@ -85,9 +60,9 @@
                               #:region-switch-plan
                               #:region-switch-plan-configuration
                               #:region-to-run-in #:regional-scaling-resource
-                              #:resource-arn #:resource-not-found-exception
-                              #:resource-warning #:resource-warning-status
-                              #:resources #:role-arn #:route53health-check
+                              #:resource-arn #:resource-warning
+                              #:resource-warning-status #:resources #:role-arn
+                              #:route53health-check
                               #:route53health-check-configuration
                               #:route53health-check-id
                               #:route53health-check-list
@@ -97,28 +72,17 @@
                               #:route53resource-record-set-list
                               #:routing-control-arn
                               #:routing-control-state-change #:service
-                              #:service-list #:start-plan-execution
-                              #:start-plan-execution-request
-                              #:start-plan-execution-response #:step
+                              #:service-list #:start-plan-execution #:step
                               #:step-name #:step-state #:step-states
                               #:step-status #:steps #:tag-key #:tag-keys
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:tags
-                              #:trigger #:trigger-condition
-                              #:trigger-condition-list #:trigger-list
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-plan
+                              #:tag-resource #:tag-value #:tags #:trigger
+                              #:trigger-condition #:trigger-condition-list
+                              #:trigger-list #:untag-resource #:update-plan
                               #:update-plan-execution
                               #:update-plan-execution-action
-                              #:update-plan-execution-request
-                              #:update-plan-execution-response
                               #:update-plan-execution-step
-                              #:update-plan-execution-step-action
-                              #:update-plan-execution-step-request
-                              #:update-plan-execution-step-response
-                              #:update-plan-request #:update-plan-response
-                              #:workflow #:workflow-list
-                              #:workflow-target-action))
+                              #:update-plan-execution-step-action #:workflow
+                              #:workflow-list #:workflow-target-action))
 (common-lisp:in-package #:pira/arc-region-switch)
 
 (smithy/sdk/service:define-service arc-region-switch :shape-name

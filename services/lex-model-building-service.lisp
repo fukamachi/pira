@@ -1,8 +1,7 @@
 (uiop/package:define-package #:pira/lex-model-building-service (:use)
                              (:export #:awsdeep-sense-model-building-service
-                              #:access-denied-exception #:alias-name
-                              #:alias-name-or-list-all #:amazon-resource-name
-                              #:bad-request-exception #:blob #:boolean
+                              #:alias-name #:alias-name-or-list-all
+                              #:amazon-resource-name #:blob #:boolean
                               #:bot-alias-metadata #:bot-alias-metadata-list
                               #:bot-channel-association
                               #:bot-channel-association-list #:bot-channel-name
@@ -16,90 +15,41 @@
                               #:builtin-slot-type-signature
                               #:channel-configuration-map #:channel-status
                               #:channel-type #:code-hook #:confidence-threshold
-                              #:conflict-exception #:content-string
-                              #:content-type #:context-time-to-live-in-seconds
+                              #:content-string #:content-type
+                              #:context-time-to-live-in-seconds
                               #:context-turns-to-live
                               #:conversation-logs-request
                               #:conversation-logs-response #:count
-                              #:create-bot-version #:create-bot-version-request
-                              #:create-bot-version-response
-                              #:create-intent-version
-                              #:create-intent-version-request
-                              #:create-intent-version-response
+                              #:create-bot-version #:create-intent-version
                               #:create-slot-type-version
-                              #:create-slot-type-version-request
-                              #:create-slot-type-version-response
                               #:custom-or-builtin-slot-type-name #:delete-bot
-                              #:delete-bot-alias #:delete-bot-alias-request
+                              #:delete-bot-alias
                               #:delete-bot-channel-association
-                              #:delete-bot-channel-association-request
-                              #:delete-bot-request #:delete-bot-version
-                              #:delete-bot-version-request #:delete-intent
-                              #:delete-intent-request #:delete-intent-version
-                              #:delete-intent-version-request
-                              #:delete-slot-type #:delete-slot-type-request
-                              #:delete-slot-type-version
-                              #:delete-slot-type-version-request
-                              #:delete-utterances #:delete-utterances-request
+                              #:delete-bot-version #:delete-intent
+                              #:delete-intent-version #:delete-slot-type
+                              #:delete-slot-type-version #:delete-utterances
                               #:description #:destination #:enumeration-value
                               #:enumeration-values #:export-status
                               #:export-type #:follow-up-prompt
                               #:fulfillment-activity
                               #:fulfillment-activity-type #:get-bot
-                              #:get-bot-alias #:get-bot-alias-request
-                              #:get-bot-alias-response #:get-bot-aliases
-                              #:get-bot-aliases-request
-                              #:get-bot-aliases-response
+                              #:get-bot-alias #:get-bot-aliases
                               #:get-bot-channel-association
-                              #:get-bot-channel-association-request
-                              #:get-bot-channel-association-response
-                              #:get-bot-channel-associations
-                              #:get-bot-channel-associations-request
-                              #:get-bot-channel-associations-response
-                              #:get-bot-request #:get-bot-response
-                              #:get-bot-versions #:get-bot-versions-request
-                              #:get-bot-versions-response #:get-bots
-                              #:get-bots-request #:get-bots-response
-                              #:get-builtin-intent #:get-builtin-intent-request
-                              #:get-builtin-intent-response
-                              #:get-builtin-intents
-                              #:get-builtin-intents-request
-                              #:get-builtin-intents-response
-                              #:get-builtin-slot-types
-                              #:get-builtin-slot-types-request
-                              #:get-builtin-slot-types-response #:get-export
-                              #:get-export-request #:get-export-response
-                              #:get-import #:get-import-request
-                              #:get-import-response #:get-intent
-                              #:get-intent-request #:get-intent-response
-                              #:get-intent-versions
-                              #:get-intent-versions-request
-                              #:get-intent-versions-response #:get-intents
-                              #:get-intents-request #:get-intents-response
-                              #:get-migration #:get-migration-request
-                              #:get-migration-response #:get-migrations
-                              #:get-migrations-request
-                              #:get-migrations-response #:get-slot-type
-                              #:get-slot-type-request #:get-slot-type-response
-                              #:get-slot-type-versions
-                              #:get-slot-type-versions-request
-                              #:get-slot-type-versions-response
-                              #:get-slot-types #:get-slot-types-request
-                              #:get-slot-types-response #:get-utterances-view
-                              #:get-utterances-view-request
-                              #:get-utterances-view-response #:group-number
+                              #:get-bot-channel-associations #:get-bot-versions
+                              #:get-bots #:get-builtin-intent
+                              #:get-builtin-intents #:get-builtin-slot-types
+                              #:get-export #:get-import #:get-intent
+                              #:get-intent-versions #:get-intents
+                              #:get-migration #:get-migrations #:get-slot-type
+                              #:get-slot-type-versions #:get-slot-types
+                              #:get-utterances-view #:group-number
                               #:iam-role-arn #:import-status #:input-context
                               #:input-context-list #:input-context-name
                               #:intent #:intent-list #:intent-metadata
                               #:intent-metadata-list #:intent-name
-                              #:intent-utterance-list
-                              #:internal-failure-exception
-                              #:kendra-configuration #:kendra-index-arn
-                              #:kms-key-arn #:lambda-arn
-                              #:limit-exceeded-exception #:list-of-utterance
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:intent-utterance-list #:kendra-configuration
+                              #:kendra-index-arn #:kms-key-arn #:lambda-arn
+                              #:list-of-utterance #:list-tags-for-resource
                               #:lists-of-utterances #:locale #:locale-list
                               #:log-settings-request
                               #:log-settings-request-list
@@ -116,20 +66,14 @@
                               #:migration-id #:migration-sort-attribute
                               #:migration-status #:migration-strategy
                               #:migration-summary #:migration-summary-list
-                              #:name #:next-token #:not-found-exception
-                              #:numerical-version #:obfuscation-setting
-                              #:output-context #:output-context-list
-                              #:output-context-name
-                              #:precondition-failed-exception #:priority
-                              #:process-behavior #:prompt #:prompt-max-attempts
-                              #:put-bot #:put-bot-alias #:put-bot-alias-request
-                              #:put-bot-alias-response #:put-bot-request
-                              #:put-bot-response #:put-intent
-                              #:put-intent-request #:put-intent-response
-                              #:put-slot-type #:put-slot-type-request
-                              #:put-slot-type-response #:query-filter-string
-                              #:reference-type #:regex-pattern #:resource-arn
-                              #:resource-in-use-exception #:resource-prefix
+                              #:name #:next-token #:numerical-version
+                              #:obfuscation-setting #:output-context
+                              #:output-context-list #:output-context-name
+                              #:priority #:process-behavior #:prompt
+                              #:prompt-max-attempts #:put-bot #:put-bot-alias
+                              #:put-intent #:put-slot-type
+                              #:query-filter-string #:reference-type
+                              #:regex-pattern #:resource-arn #:resource-prefix
                               #:resource-reference #:resource-type
                               #:response-card #:session-ttl #:slot
                               #:slot-constraint #:slot-default-value
@@ -142,16 +86,11 @@
                               #:slot-type-regex-configuration
                               #:slot-utterance-list
                               #:slot-value-selection-strategy #:sort-order
-                              #:start-import #:start-import-request
-                              #:start-import-response #:start-migration
-                              #:start-migration-request
-                              #:start-migration-response #:statement #:status
-                              #:status-type #:string #:string-list
+                              #:start-import #:start-migration #:statement
+                              #:status #:status-type #:string #:string-list
                               #:synonym-list #:tag #:tag-key #:tag-key-list
-                              #:tag-list #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:timestamp
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:user-id #:utterance
+                              #:tag-list #:tag-resource #:tag-value #:timestamp
+                              #:untag-resource #:user-id #:utterance
                               #:utterance-data #:utterance-list
                               #:utterance-string #:v2bot-id #:v2bot-name
                               #:value #:version #:role-arn))

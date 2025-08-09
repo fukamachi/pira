@@ -1,6 +1,6 @@
 (uiop/package:define-package #:pira/bedrock-agent-runtime (:use)
                              (:export #:apischema #:awsresource-arn
-                              #:access-denied-exception #:action-group-executor
+                              #:action-group-executor
                               #:action-group-invocation-input
                               #:action-group-invocation-output
                               #:action-group-name #:action-group-output-string
@@ -24,8 +24,7 @@
                               #:api-invocation-input #:api-parameter
                               #:api-parameters #:api-path #:api-request-body
                               #:api-result #:attribute-type #:attribution
-                              #:bad-gateway-exception #:base-prompt-template
-                              #:bedrock-model-arn
+                              #:base-prompt-template #:bedrock-model-arn
                               #:bedrock-model-configurations
                               #:bedrock-reranking-configuration
                               #:bedrock-reranking-model-arn
@@ -41,26 +40,18 @@
                               #:collaborator-configuration
                               #:collaborator-configurations #:collaborators
                               #:condition-result-event #:confirmation-state
-                              #:conflict-exception #:content-block
-                              #:content-blocks #:content-body #:content-map
-                              #:content-type #:conversation-history
-                              #:conversation-role #:create-invocation
-                              #:create-invocation-request
-                              #:create-invocation-response #:create-session
-                              #:create-session-request
-                              #:create-session-response #:creation-mode
-                              #:custom-control-method #:custom-orchestration
+                              #:content-block #:content-blocks #:content-body
+                              #:content-map #:content-type
+                              #:conversation-history #:conversation-role
+                              #:create-invocation #:create-session
+                              #:creation-mode #:custom-control-method
+                              #:custom-orchestration
                               #:custom-orchestration-trace
                               #:custom-orchestration-trace-event
                               #:date-timestamp #:delete-agent-memory
-                              #:delete-agent-memory-request
-                              #:delete-agent-memory-response #:delete-session
-                              #:delete-session-request
-                              #:delete-session-response
-                              #:dependency-failed-exception #:end-session
-                              #:end-session-request #:end-session-response
-                              #:execution-type #:external-source
-                              #:external-source-type #:external-sources
+                              #:delete-session #:end-session #:execution-type
+                              #:external-source #:external-source-type
+                              #:external-sources
                               #:external-sources-generation-configuration
                               #:external-sources-retrieve-and-generate-configuration
                               #:failure-reason-string #:failure-trace
@@ -108,25 +99,14 @@
                               #:function-invocation-input #:function-parameter
                               #:function-parameters #:function-result
                               #:function-schema #:functions #:generate-query
-                              #:generate-query-request
-                              #:generate-query-resource
-                              #:generate-query-response #:generated-queries
+                              #:generate-query-resource #:generated-queries
                               #:generated-query #:generated-query-type
                               #:generated-response-part
                               #:generation-configuration #:get-agent-memory
-                              #:get-agent-memory-request
-                              #:get-agent-memory-response
                               #:get-execution-flow-snapshot
-                              #:get-execution-flow-snapshot-request
-                              #:get-execution-flow-snapshot-response
-                              #:get-flow-execution #:get-flow-execution-request
-                              #:get-flow-execution-response
-                              #:get-invocation-step
-                              #:get-invocation-step-request
-                              #:get-invocation-step-response #:get-session
-                              #:get-session-request #:get-session-response
-                              #:guadrail-action #:guardrail-action
-                              #:guardrail-assessment
+                              #:get-flow-execution #:get-invocation-step
+                              #:get-session #:guadrail-action
+                              #:guardrail-action #:guardrail-assessment
                               #:guardrail-assessment-list
                               #:guardrail-configuration
                               #:guardrail-configuration-with-arn
@@ -170,22 +150,17 @@
                               #:inline-bedrock-model-configurations
                               #:inline-session-state #:input-file #:input-files
                               #:input-prompt #:input-query-type #:input-text
-                              #:instruction #:internal-server-exception
-                              #:invocation-description #:invocation-identifier
-                              #:invocation-input #:invocation-input-member
-                              #:invocation-inputs #:invocation-resource
-                              #:invocation-result-member #:invocation-step
-                              #:invocation-step-payload
+                              #:instruction #:invocation-description
+                              #:invocation-identifier #:invocation-input
+                              #:invocation-input-member #:invocation-inputs
+                              #:invocation-resource #:invocation-result-member
+                              #:invocation-step #:invocation-step-payload
                               #:invocation-step-resource
                               #:invocation-step-summaries
                               #:invocation-step-summary #:invocation-summaries
                               #:invocation-summary #:invocation-type
-                              #:invoke-agent #:invoke-agent-request
-                              #:invoke-agent-response #:invoke-flow
-                              #:invoke-flow-request #:invoke-flow-response
-                              #:invoke-inline-agent
-                              #:invoke-inline-agent-request
-                              #:invoke-inline-agent-response #:kms-key-arn
+                              #:invoke-agent #:invoke-flow
+                              #:invoke-inline-agent #:kms-key-arn
                               #:knowledge-base #:knowledge-base-arn
                               #:knowledge-base-configuration
                               #:knowledge-base-configurations
@@ -201,20 +176,9 @@
                               #:knowledge-bases #:lambda-arn
                               #:lambda-resource-arn
                               #:list-flow-execution-events
-                              #:list-flow-execution-events-request
-                              #:list-flow-execution-events-response
-                              #:list-flow-executions
-                              #:list-flow-executions-request
-                              #:list-flow-executions-response
-                              #:list-invocation-steps
-                              #:list-invocation-steps-request
-                              #:list-invocation-steps-response
-                              #:list-invocations #:list-invocations-request
-                              #:list-invocations-response #:list-sessions
-                              #:list-sessions-request #:list-sessions-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:list-flow-executions #:list-invocation-steps
+                              #:list-invocations #:list-sessions
+                              #:list-tags-for-resource #:max-results
                               #:max-tokens #:maximum-length #:memories #:memory
                               #:memory-id #:memory-resource
                               #:memory-session-summary #:memory-type #:message
@@ -223,7 +187,6 @@
                               #:metadata-configuration-for-reranking
                               #:mime-type #:model-identifier
                               #:model-invocation-input
-                              #:model-not-ready-exception
                               #:model-performance-configuration #:name
                               #:next-token #:node-error-code
                               #:node-execution-content #:node-failure-event
@@ -232,10 +195,8 @@
                               #:node-output-event #:node-output-field
                               #:node-output-fields #:node-output-name
                               #:node-type #:non-blank-string #:observation
-                              #:optimize-prompt #:optimize-prompt-request
-                              #:optimize-prompt-resource
-                              #:optimize-prompt-response #:optimized-prompt
-                              #:optimized-prompt-event
+                              #:optimize-prompt #:optimize-prompt-resource
+                              #:optimized-prompt #:optimized-prompt-event
                               #:optimized-prompt-stream
                               #:orchestration-configuration
                               #:orchestration-executor
@@ -260,8 +221,6 @@
                               #:prompt-session-attributes-map #:prompt-state
                               #:prompt-template #:prompt-text #:prompt-type
                               #:property-parameters #:put-invocation-step
-                              #:put-invocation-step-request
-                              #:put-invocation-step-response
                               #:query-generation-input
                               #:query-transformation-configuration
                               #:query-transformation-mode
@@ -272,8 +231,7 @@
                               #:request-body #:require-confirmation #:rerank
                               #:rerank-document #:rerank-document-type
                               #:rerank-queries-list #:rerank-query
-                              #:rerank-query-content-type #:rerank-request
-                              #:rerank-resource #:rerank-response
+                              #:rerank-query-content-type #:rerank-resource
                               #:rerank-result #:rerank-results-list
                               #:rerank-source #:rerank-source-type
                               #:rerank-sources-list #:rerank-text-document
@@ -282,9 +240,9 @@
                               #:reranking-metadata-selection-mode
                               #:reranking-metadata-selective-mode-configuration
                               #:resource-description #:resource-name
-                              #:resource-not-found-exception #:response-body
-                              #:response-state #:response-stream
-                              #:retrieval-filter #:retrieval-filter-list
+                              #:response-body #:response-state
+                              #:response-stream #:retrieval-filter
+                              #:retrieval-filter-list
                               #:retrieval-result-confluence-location
                               #:retrieval-result-content
                               #:retrieval-result-content-column
@@ -308,17 +266,12 @@
                               #:retrieve-and-generate-input
                               #:retrieve-and-generate-output
                               #:retrieve-and-generate-output-event
-                              #:retrieve-and-generate-request
                               #:retrieve-and-generate-resource
-                              #:retrieve-and-generate-response
                               #:retrieve-and-generate-session-configuration
                               #:retrieve-and-generate-stream
-                              #:retrieve-and-generate-stream-request
                               #:retrieve-and-generate-stream-resource
-                              #:retrieve-and-generate-stream-response
                               #:retrieve-and-generate-stream-response-output
-                              #:retrieve-and-generate-type #:retrieve-request
-                              #:retrieve-resource #:retrieve-response
+                              #:retrieve-and-generate-type #:retrieve-resource
                               #:retrieved-reference #:retrieved-references
                               #:return-control-invocation-results
                               #:return-control-payload #:return-control-results
@@ -327,38 +280,27 @@
                               #:s3identifier #:s3location #:s3object-doc
                               #:s3object-file #:s3object-key #:s3uri
                               #:satisfied-condition #:satisfied-conditions
-                              #:search-type #:service-quota-exceeded-exception
-                              #:session-arn #:session-attributes-map
-                              #:session-id #:session-identifier
-                              #:session-metadata-key #:session-metadata-map
-                              #:session-metadata-value #:session-resource
-                              #:session-state #:session-status
-                              #:session-summaries #:session-summary
-                              #:session-ttl #:source #:span
-                              #:start-flow-execution
-                              #:start-flow-execution-request
-                              #:start-flow-execution-response
-                              #:stop-flow-execution
-                              #:stop-flow-execution-request
-                              #:stop-flow-execution-response #:stop-sequences
-                              #:streaming-configurations #:summary-text
-                              #:tag-key #:tag-key-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:taggable-resources-arn
-                              #:tagging-resource #:tags-map #:temperature
-                              #:text-inference-config #:text-prompt
-                              #:text-prompt-template #:text-response-part
-                              #:text-to-sql-configuration
+                              #:search-type #:session-arn
+                              #:session-attributes-map #:session-id
+                              #:session-identifier #:session-metadata-key
+                              #:session-metadata-map #:session-metadata-value
+                              #:session-resource #:session-state
+                              #:session-status #:session-summaries
+                              #:session-summary #:session-ttl #:source #:span
+                              #:start-flow-execution #:stop-flow-execution
+                              #:stop-sequences #:streaming-configurations
+                              #:summary-text #:tag-key #:tag-key-list
+                              #:tag-resource #:tag-value
+                              #:taggable-resources-arn #:tagging-resource
+                              #:tags-map #:temperature #:text-inference-config
+                              #:text-prompt #:text-prompt-template
+                              #:text-response-part #:text-to-sql-configuration
                               #:text-to-sql-configuration-type
                               #:text-to-sql-knowledge-base-configuration
-                              #:throttling-exception #:top-k #:top-p #:trace
-                              #:trace-id #:trace-knowledge-base-id #:trace-part
+                              #:top-k #:top-p #:trace #:trace-id
+                              #:trace-knowledge-base-id #:trace-part
                               #:transformation-configuration #:type
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-session
-                              #:update-session-request
-                              #:update-session-response #:usage #:uuid
-                              #:validation-exception
+                              #:untag-resource #:update-session #:usage #:uuid
                               #:vector-search-bedrock-reranking-configuration
                               #:vector-search-bedrock-reranking-model-configuration
                               #:vector-search-reranking-configuration

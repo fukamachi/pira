@@ -2,11 +2,10 @@
                              (:export #:apache-kafka-cluster
                               #:apache-kafka-cluster-description #:auto-scaling
                               #:auto-scaling-description #:auto-scaling-update
-                              #:bad-request-exception #:capacity
-                              #:capacity-description #:capacity-update
-                              #:cloud-watch-logs-log-delivery
+                              #:capacity #:capacity-description
+                              #:capacity-update #:cloud-watch-logs-log-delivery
                               #:cloud-watch-logs-log-delivery-description
-                              #:conflict-exception #:connector-configuration
+                              #:connector-configuration
                               #:connector-configuration-update
                               #:connector-operation-state
                               #:connector-operation-step
@@ -15,13 +14,10 @@
                               #:connector-operation-summary
                               #:connector-operation-type #:connector-state
                               #:connector-summary #:create-connector
-                              #:create-connector-request
                               #:create-connector-response
                               #:create-custom-plugin
-                              #:create-custom-plugin-request
                               #:create-custom-plugin-response
                               #:create-worker-configuration
-                              #:create-worker-configuration-request
                               #:create-worker-configuration-response
                               #:custom-plugin #:custom-plugin-content-type
                               #:custom-plugin-description
@@ -30,30 +26,21 @@
                               #:custom-plugin-location-description
                               #:custom-plugin-revision-summary
                               #:custom-plugin-state #:custom-plugin-summary
-                              #:delete-connector #:delete-connector-request
-                              #:delete-connector-response
+                              #:delete-connector #:delete-connector-response
                               #:delete-custom-plugin
-                              #:delete-custom-plugin-request
                               #:delete-custom-plugin-response
                               #:delete-worker-configuration
-                              #:delete-worker-configuration-request
                               #:delete-worker-configuration-response
                               #:describe-connector
                               #:describe-connector-operation
-                              #:describe-connector-operation-request
-                              #:describe-connector-operation-response
-                              #:describe-connector-request
                               #:describe-connector-response
                               #:describe-custom-plugin
-                              #:describe-custom-plugin-request
                               #:describe-custom-plugin-response
                               #:describe-worker-configuration
-                              #:describe-worker-configuration-request
                               #:describe-worker-configuration-response
                               #:firehose-log-delivery
                               #:firehose-log-delivery-description
-                              #:forbidden-exception
-                              #:internal-server-error-exception #:kafka-cluster
+                              #:kafka-cluster
                               #:kafka-cluster-client-authentication
                               #:kafka-cluster-client-authentication-description
                               #:kafka-cluster-client-authentication-type
@@ -62,21 +49,16 @@
                               #:kafka-cluster-encryption-in-transit-description
                               #:kafka-cluster-encryption-in-transit-type
                               #:kafka-connect #:list-connector-operations
-                              #:list-connector-operations-request
-                              #:list-connector-operations-response
-                              #:list-connectors #:list-connectors-request
-                              #:list-connectors-response #:list-custom-plugins
-                              #:list-custom-plugins-request
+                              #:list-connectors #:list-connectors-response
+                              #:list-custom-plugins
                               #:list-custom-plugins-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
                               #:list-tags-for-resource-response
                               #:list-worker-configurations
-                              #:list-worker-configurations-request
                               #:list-worker-configurations-response
                               #:log-delivery #:log-delivery-description
-                              #:max-results #:not-found-exception #:plugin
-                              #:plugin-description #:provisioned-capacity
+                              #:max-results #:plugin #:plugin-description
+                              #:provisioned-capacity
                               #:provisioned-capacity-description
                               #:provisioned-capacity-update #:s3location
                               #:s3location-description #:s3log-delivery
@@ -84,18 +66,12 @@
                               #:scale-in-policy-description
                               #:scale-in-policy-update #:scale-out-policy
                               #:scale-out-policy-description
-                              #:scale-out-policy-update
-                              #:service-unavailable-exception
-                              #:state-description #:tag-key #:tag-key-list
-                              #:tag-resource #:tag-resource-request
+                              #:scale-out-policy-update #:state-description
+                              #:tag-key #:tag-key-list #:tag-resource
                               #:tag-resource-response #:tag-value #:tags
-                              #:too-many-requests-exception
-                              #:unauthorized-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-connector
-                              #:update-connector-request
-                              #:update-connector-response #:vpc
-                              #:vpc-description #:worker-configuration
+                              #:untag-resource #:untag-resource-response
+                              #:update-connector #:update-connector-response
+                              #:vpc #:vpc-description #:worker-configuration
                               #:worker-configuration-description
                               #:worker-configuration-revision-description
                               #:worker-configuration-revision-summary

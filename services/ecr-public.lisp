@@ -2,119 +2,56 @@
                              (:export #:about-text #:architecture
                               #:architecture-list #:arn #:authorization-data
                               #:base64 #:batch-check-layer-availability
-                              #:batch-check-layer-availability-request
-                              #:batch-check-layer-availability-response
-                              #:batch-delete-image #:batch-delete-image-request
-                              #:batch-delete-image-response
+                              #:batch-delete-image
                               #:batched-operation-layer-digest
                               #:batched-operation-layer-digest-list
-                              #:complete-layer-upload
-                              #:complete-layer-upload-request
-                              #:complete-layer-upload-response
-                              #:create-repository #:create-repository-request
-                              #:create-repository-response #:creation-timestamp
+                              #:complete-layer-upload #:create-repository
+                              #:creation-timestamp
                               #:default-registry-alias-flag #:delete-repository
-                              #:delete-repository-policy
-                              #:delete-repository-policy-request
-                              #:delete-repository-policy-response
-                              #:delete-repository-request
-                              #:delete-repository-response
-                              #:describe-image-tags
-                              #:describe-image-tags-request
-                              #:describe-image-tags-response #:describe-images
-                              #:describe-images-request
-                              #:describe-images-response #:describe-registries
-                              #:describe-registries-request
-                              #:describe-registries-response
-                              #:describe-repositories
-                              #:describe-repositories-request
-                              #:describe-repositories-response
-                              #:empty-upload-exception #:exception-message
+                              #:delete-repository-policy #:describe-image-tags
+                              #:describe-images #:describe-registries
+                              #:describe-repositories #:exception-message
                               #:expiration-timestamp #:force-flag
                               #:get-authorization-token
-                              #:get-authorization-token-request
-                              #:get-authorization-token-response
                               #:get-registry-catalog-data
-                              #:get-registry-catalog-data-request
-                              #:get-registry-catalog-data-response
                               #:get-repository-catalog-data
-                              #:get-repository-catalog-data-request
-                              #:get-repository-catalog-data-response
-                              #:get-repository-policy
-                              #:get-repository-policy-request
-                              #:get-repository-policy-response #:image
-                              #:image-already-exists-exception #:image-detail
+                              #:get-repository-policy #:image #:image-detail
                               #:image-detail-list #:image-digest
-                              #:image-digest-does-not-match-exception
                               #:image-failure #:image-failure-code
                               #:image-failure-list #:image-failure-reason
                               #:image-identifier #:image-identifier-list
-                              #:image-manifest #:image-not-found-exception
-                              #:image-size-in-bytes #:image-tag
-                              #:image-tag-already-exists-exception
-                              #:image-tag-detail #:image-tag-detail-list
-                              #:image-tag-list #:initiate-layer-upload
-                              #:initiate-layer-upload-request
-                              #:initiate-layer-upload-response
-                              #:invalid-layer-exception
-                              #:invalid-layer-part-exception
-                              #:invalid-parameter-exception
-                              #:invalid-tag-parameter-exception #:layer
-                              #:layer-already-exists-exception
+                              #:image-manifest #:image-size-in-bytes
+                              #:image-tag #:image-tag-detail
+                              #:image-tag-detail-list #:image-tag-list
+                              #:initiate-layer-upload #:layer
                               #:layer-availability #:layer-digest
                               #:layer-digest-list #:layer-failure
                               #:layer-failure-code #:layer-failure-list
                               #:layer-failure-reason #:layer-list
-                              #:layer-part-blob
-                              #:layer-part-too-small-exception
-                              #:layer-size-in-bytes
-                              #:layers-not-found-exception
-                              #:limit-exceeded-exception
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:logo-image-blob #:marketplace-certified
-                              #:max-results #:media-type #:next-token
-                              #:operating-system #:operating-system-list
-                              #:part-size #:primary-registry-alias-flag
-                              #:push-timestamp #:put-image #:put-image-request
-                              #:put-image-response #:put-registry-catalog-data
-                              #:put-registry-catalog-data-request
-                              #:put-registry-catalog-data-response
+                              #:layer-part-blob #:layer-size-in-bytes
+                              #:list-tags-for-resource #:logo-image-blob
+                              #:marketplace-certified #:max-results
+                              #:media-type #:next-token #:operating-system
+                              #:operating-system-list #:part-size
+                              #:primary-registry-alias-flag #:push-timestamp
+                              #:put-image #:put-registry-catalog-data
                               #:put-repository-catalog-data
-                              #:put-repository-catalog-data-request
-                              #:put-repository-catalog-data-response
-                              #:referenced-image-detail
-                              #:referenced-images-not-found-exception
-                              #:registry #:registry-alias #:registry-alias-list
+                              #:referenced-image-detail #:registry
+                              #:registry-alias #:registry-alias-list
                               #:registry-alias-name #:registry-alias-status
                               #:registry-catalog-data #:registry-display-name
                               #:registry-id #:registry-id-or-alias
-                              #:registry-list #:registry-not-found-exception
-                              #:registry-verified #:repository
-                              #:repository-already-exists-exception
+                              #:registry-list #:registry-verified #:repository
                               #:repository-catalog-data
                               #:repository-catalog-data-input
-                              #:repository-catalog-data-not-found-exception
                               #:repository-description #:repository-list
                               #:repository-name #:repository-name-list
-                              #:repository-not-empty-exception
-                              #:repository-not-found-exception
-                              #:repository-policy-not-found-exception
                               #:repository-policy-text #:resource-url
-                              #:server-exception #:set-repository-policy
-                              #:set-repository-policy-request
-                              #:set-repository-policy-response
+                              #:set-repository-policy
                               #:spencer-frontend-service #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:too-many-tags-exception
-                              #:unsupported-command-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:upload-id
-                              #:upload-layer-part #:upload-layer-part-request
-                              #:upload-layer-part-response
-                              #:upload-not-found-exception #:url #:usage-text))
+                              #:tag-value #:untag-resource #:upload-id
+                              #:upload-layer-part #:url #:usage-text))
 (common-lisp:in-package #:pira/ecr-public)
 
 (smithy/sdk/service:define-service spencer-frontend-service :shape-name

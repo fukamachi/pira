@@ -9,73 +9,30 @@
                               #:backend-auth-apple-provider-config
                               #:backend-auth-social-provider-config
                               #:backend-job-resp-obj
-                              #:backend-storage-permissions
-                              #:bad-request-exception #:clone-backend
-                              #:clone-backend-request #:clone-backend-response
+                              #:backend-storage-permissions #:clone-backend
                               #:create-backend #:create-backend-api
-                              #:create-backend-apirequest
-                              #:create-backend-apiresponse
                               #:create-backend-auth
                               #:create-backend-auth-forgot-password-config
                               #:create-backend-auth-identity-pool-config
                               #:create-backend-auth-mfaconfig
                               #:create-backend-auth-oauth-config
                               #:create-backend-auth-password-policy-config
-                              #:create-backend-auth-request
                               #:create-backend-auth-resource-config
-                              #:create-backend-auth-response
                               #:create-backend-auth-user-pool-config
                               #:create-backend-auth-verification-message-config
-                              #:create-backend-config
-                              #:create-backend-config-request
-                              #:create-backend-config-response
-                              #:create-backend-request
-                              #:create-backend-response
-                              #:create-backend-storage
-                              #:create-backend-storage-request
+                              #:create-backend-config #:create-backend-storage
                               #:create-backend-storage-resource-config
-                              #:create-backend-storage-response #:create-token
-                              #:create-token-request #:create-token-response
-                              #:delete-backend #:delete-backend-api
-                              #:delete-backend-apirequest
-                              #:delete-backend-apiresponse
-                              #:delete-backend-auth
-                              #:delete-backend-auth-request
-                              #:delete-backend-auth-response
-                              #:delete-backend-request
-                              #:delete-backend-response
-                              #:delete-backend-storage
-                              #:delete-backend-storage-request
-                              #:delete-backend-storage-response #:delete-token
-                              #:delete-token-request #:delete-token-response
+                              #:create-token #:delete-backend
+                              #:delete-backend-api #:delete-backend-auth
+                              #:delete-backend-storage #:delete-token
                               #:delivery-method #:email-settings
-                              #:gateway-timeout-exception
-                              #:generate-backend-apimodels
-                              #:generate-backend-apimodels-request
-                              #:generate-backend-apimodels-response
-                              #:get-backend #:get-backend-api
-                              #:get-backend-apimodels
-                              #:get-backend-apimodels-request
-                              #:get-backend-apimodels-response
-                              #:get-backend-apirequest
-                              #:get-backend-apiresponse #:get-backend-auth
-                              #:get-backend-auth-request
-                              #:get-backend-auth-response #:get-backend-job
-                              #:get-backend-job-request
-                              #:get-backend-job-response #:get-backend-request
-                              #:get-backend-response #:get-backend-storage
-                              #:get-backend-storage-request
-                              #:get-backend-storage-resource-config
-                              #:get-backend-storage-response #:get-token
-                              #:get-token-request #:get-token-response
-                              #:import-backend-auth
-                              #:import-backend-auth-request
-                              #:import-backend-auth-response
-                              #:import-backend-storage
-                              #:import-backend-storage-request
-                              #:import-backend-storage-response
-                              #:list-backend-jobs #:list-backend-jobs-request
-                              #:list-backend-jobs-response
+                              #:generate-backend-apimodels #:get-backend
+                              #:get-backend-api #:get-backend-apimodels
+                              #:get-backend-auth #:get-backend-job
+                              #:get-backend-storage
+                              #:get-backend-storage-resource-config #:get-token
+                              #:import-backend-auth #:import-backend-storage
+                              #:list-backend-jobs
                               #:list-of-additional-constraints-element
                               #:list-of-authenticated-element
                               #:list-of-backend-apiauth-type
@@ -86,47 +43,29 @@
                               #:list-of-s3bucket-info
                               #:list-of-un-authenticated-element
                               #:list-of-string #:list-s3buckets
-                              #:list-s3buckets-request
-                              #:list-s3buckets-response
                               #:login-auth-config-req-obj #:mfamode
-                              #:mfa-types-element #:mode #:not-found-exception
-                              #:oauth-grant-type #:oauth-scopes-element
-                              #:remove-all-backends
-                              #:remove-all-backends-request
-                              #:remove-all-backends-response
+                              #:mfa-types-element #:mode #:oauth-grant-type
+                              #:oauth-scopes-element #:remove-all-backends
                               #:remove-backend-config
-                              #:remove-backend-config-request
-                              #:remove-backend-config-response
                               #:required-sign-up-attributes-element
                               #:resolution-strategy #:resource-config
                               #:s3bucket-info #:service #:service-name
                               #:settings #:sign-in-method #:sms-settings
                               #:social-provider-settings #:status
-                              #:too-many-requests-exception
                               #:un-authenticated-element #:update-backend-api
-                              #:update-backend-apirequest
-                              #:update-backend-apiresponse
                               #:update-backend-auth
                               #:update-backend-auth-forgot-password-config
                               #:update-backend-auth-identity-pool-config
                               #:update-backend-auth-mfaconfig
                               #:update-backend-auth-oauth-config
                               #:update-backend-auth-password-policy-config
-                              #:update-backend-auth-request
                               #:update-backend-auth-resource-config
-                              #:update-backend-auth-response
                               #:update-backend-auth-user-pool-config
                               #:update-backend-auth-verification-message-config
-                              #:update-backend-config
-                              #:update-backend-config-request
-                              #:update-backend-config-response
-                              #:update-backend-job #:update-backend-job-request
-                              #:update-backend-job-response
+                              #:update-backend-config #:update-backend-job
                               #:update-backend-storage
-                              #:update-backend-storage-request
                               #:update-backend-storage-resource-config
-                              #:update-backend-storage-response #:boolean
-                              #:double #:integer-min1max25 #:string))
+                              #:boolean #:double #:integer-min1max25 #:string))
 (common-lisp:in-package #:pira/amplifybackend)
 
 (smithy/sdk/service:define-service amplify-backend :shape-name "AmplifyBackend"

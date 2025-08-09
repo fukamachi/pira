@@ -5,14 +5,8 @@
                               #:application-dpusizes-list #:athena-error
                               #:auth-token #:authentication-type
                               #:aws-account-id #:batch-get-named-query
-                              #:batch-get-named-query-input
-                              #:batch-get-named-query-output
                               #:batch-get-prepared-statement
-                              #:batch-get-prepared-statement-input
-                              #:batch-get-prepared-statement-output
-                              #:batch-get-query-execution
-                              #:batch-get-query-execution-input
-                              #:batch-get-query-execution-output #:boolean
+                              #:batch-get-query-execution #:boolean
                               #:boxed-boolean #:bytes-scanned-cutoff-value
                               #:calculation-configuration
                               #:calculation-execution-id
@@ -21,8 +15,6 @@
                               #:calculation-statistics #:calculation-status
                               #:calculation-summary #:calculations-list
                               #:cancel-capacity-reservation
-                              #:cancel-capacity-reservation-input
-                              #:cancel-capacity-reservation-output
                               #:capacity-allocation
                               #:capacity-allocation-status
                               #:capacity-assignment
@@ -38,21 +30,10 @@
                               #:column-nullable #:comment-string
                               #:connection-type #:coordinator-dpu-size
                               #:create-capacity-reservation
-                              #:create-capacity-reservation-input
-                              #:create-capacity-reservation-output
-                              #:create-data-catalog #:create-data-catalog-input
-                              #:create-data-catalog-output #:create-named-query
-                              #:create-named-query-input
-                              #:create-named-query-output #:create-notebook
-                              #:create-notebook-input #:create-notebook-output
-                              #:create-prepared-statement
-                              #:create-prepared-statement-input
-                              #:create-prepared-statement-output
+                              #:create-data-catalog #:create-named-query
+                              #:create-notebook #:create-prepared-statement
                               #:create-presigned-notebook-url
-                              #:create-presigned-notebook-url-request
-                              #:create-presigned-notebook-url-response
-                              #:create-work-group #:create-work-group-input
-                              #:create-work-group-output
+                              #:create-work-group
                               #:customer-content-encryption-configuration
                               #:data-catalog #:data-catalog-status
                               #:data-catalog-summary
@@ -60,18 +41,9 @@
                               #:database #:database-list #:database-string
                               #:date #:datum #:default-executor-dpu-size
                               #:delete-capacity-reservation
-                              #:delete-capacity-reservation-input
-                              #:delete-capacity-reservation-output
-                              #:delete-data-catalog #:delete-data-catalog-input
-                              #:delete-data-catalog-output #:delete-named-query
-                              #:delete-named-query-input
-                              #:delete-named-query-output #:delete-notebook
-                              #:delete-notebook-input #:delete-notebook-output
-                              #:delete-prepared-statement
-                              #:delete-prepared-statement-input
-                              #:delete-prepared-statement-output
-                              #:delete-work-group #:delete-work-group-input
-                              #:delete-work-group-output #:description-string
+                              #:delete-data-catalog #:delete-named-query
+                              #:delete-notebook #:delete-prepared-statement
+                              #:delete-work-group #:description-string
                               #:encryption-configuration #:encryption-option
                               #:engine-configuration #:engine-version
                               #:engine-versions-list #:error-category
@@ -79,93 +51,32 @@
                               #:execution-parameter #:execution-parameters
                               #:executor-id #:executor-state #:executor-type
                               #:executors-summary #:executors-summary-list
-                              #:export-notebook #:export-notebook-input
-                              #:export-notebook-output #:expression-string
+                              #:export-notebook #:expression-string
                               #:filter-definition #:get-calculation-execution
                               #:get-calculation-execution-code
-                              #:get-calculation-execution-code-request
-                              #:get-calculation-execution-code-response
-                              #:get-calculation-execution-request
-                              #:get-calculation-execution-response
                               #:get-calculation-execution-status
-                              #:get-calculation-execution-status-request
-                              #:get-calculation-execution-status-response
                               #:get-capacity-assignment-configuration
-                              #:get-capacity-assignment-configuration-input
-                              #:get-capacity-assignment-configuration-output
-                              #:get-capacity-reservation
-                              #:get-capacity-reservation-input
-                              #:get-capacity-reservation-output
-                              #:get-data-catalog #:get-data-catalog-input
-                              #:get-data-catalog-output #:get-database
-                              #:get-database-input #:get-database-output
-                              #:get-named-query #:get-named-query-input
-                              #:get-named-query-output #:get-notebook-metadata
-                              #:get-notebook-metadata-input
-                              #:get-notebook-metadata-output
-                              #:get-prepared-statement
-                              #:get-prepared-statement-input
-                              #:get-prepared-statement-output
-                              #:get-query-execution #:get-query-execution-input
-                              #:get-query-execution-output #:get-query-results
-                              #:get-query-results-input
-                              #:get-query-results-output
-                              #:get-query-runtime-statistics
-                              #:get-query-runtime-statistics-input
-                              #:get-query-runtime-statistics-output
-                              #:get-session #:get-session-request
-                              #:get-session-response #:get-session-status
-                              #:get-session-status-request
-                              #:get-session-status-response
-                              #:get-table-metadata #:get-table-metadata-input
-                              #:get-table-metadata-output #:get-work-group
-                              #:get-work-group-input #:get-work-group-output
-                              #:idempotency-token
+                              #:get-capacity-reservation #:get-data-catalog
+                              #:get-database #:get-named-query
+                              #:get-notebook-metadata #:get-prepared-statement
+                              #:get-query-execution #:get-query-results
+                              #:get-query-runtime-statistics #:get-session
+                              #:get-session-status #:get-table-metadata
+                              #:get-work-group #:idempotency-token
                               #:identity-center-application-arn
                               #:identity-center-configuration
                               #:identity-center-instance-arn #:import-notebook
-                              #:import-notebook-input #:import-notebook-output
-                              #:integer #:internal-server-exception
-                              #:invalid-request-exception #:key-string
-                              #:kms-key #:list-application-dpusizes
-                              #:list-application-dpusizes-input
-                              #:list-application-dpusizes-output
+                              #:integer #:key-string #:kms-key
+                              #:list-application-dpusizes
                               #:list-calculation-executions
-                              #:list-calculation-executions-request
-                              #:list-calculation-executions-response
-                              #:list-capacity-reservations
-                              #:list-capacity-reservations-input
-                              #:list-capacity-reservations-output
-                              #:list-data-catalogs #:list-data-catalogs-input
-                              #:list-data-catalogs-output #:list-databases
-                              #:list-databases-input #:list-databases-output
-                              #:list-engine-versions
-                              #:list-engine-versions-input
-                              #:list-engine-versions-output #:list-executors
-                              #:list-executors-request
-                              #:list-executors-response #:list-named-queries
-                              #:list-named-queries-input
-                              #:list-named-queries-output
-                              #:list-notebook-metadata
-                              #:list-notebook-metadata-input
-                              #:list-notebook-metadata-output
-                              #:list-notebook-sessions
-                              #:list-notebook-sessions-request
-                              #:list-notebook-sessions-response
+                              #:list-capacity-reservations #:list-data-catalogs
+                              #:list-databases #:list-engine-versions
+                              #:list-executors #:list-named-queries
+                              #:list-notebook-metadata #:list-notebook-sessions
                               #:list-prepared-statements
-                              #:list-prepared-statements-input
-                              #:list-prepared-statements-output
-                              #:list-query-executions
-                              #:list-query-executions-input
-                              #:list-query-executions-output #:list-sessions
-                              #:list-sessions-request #:list-sessions-response
-                              #:list-table-metadata #:list-table-metadata-input
-                              #:list-table-metadata-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
-                              #:list-work-groups #:list-work-groups-input
-                              #:list-work-groups-output #:long
+                              #:list-query-executions #:list-sessions
+                              #:list-table-metadata #:list-tags-for-resource
+                              #:list-work-groups #:long
                               #:managed-query-results-configuration
                               #:managed-query-results-configuration-updates
                               #:managed-query-results-encryption-configuration
@@ -180,7 +91,7 @@
                               #:max-query-executions-count #:max-query-results
                               #:max-sessions-count #:max-table-metadata-count
                               #:max-tags-count #:max-work-groups-count
-                              #:metadata-exception #:name-string #:named-query
+                              #:name-string #:named-query
                               #:named-query-description-string #:named-query-id
                               #:named-query-id-list #:named-query-list
                               #:notebook-id #:notebook-metadata
@@ -194,8 +105,6 @@
                               #:prepared-statement-summary
                               #:prepared-statements-list
                               #:put-capacity-assignment-configuration
-                              #:put-capacity-assignment-configuration-input
-                              #:put-capacity-assignment-configuration-output
                               #:query-execution #:query-execution-context
                               #:query-execution-id #:query-execution-id-list
                               #:query-execution-list #:query-execution-state
@@ -207,7 +116,6 @@
                               #:query-runtime-statistics-timeline #:query-stage
                               #:query-stage-plan-node #:query-stage-plan-nodes
                               #:query-stages #:query-string
-                              #:resource-not-found-exception
                               #:result-configuration
                               #:result-configuration-updates
                               #:result-output-location
@@ -215,62 +123,33 @@
                               #:result-reuse-configuration
                               #:result-reuse-information #:result-set
                               #:result-set-metadata #:role-arn #:row #:row-list
-                              #:s3acl-option #:s3uri
-                              #:session-already-exists-exception
-                              #:session-configuration #:session-id
-                              #:session-idle-timeout-in-minutes
+                              #:s3acl-option #:s3uri #:session-configuration
+                              #:session-id #:session-idle-timeout-in-minutes
                               #:session-manager-token #:session-state
                               #:session-statistics #:session-status
                               #:session-summary #:sessions-list
                               #:start-calculation-execution
-                              #:start-calculation-execution-request
-                              #:start-calculation-execution-response
-                              #:start-query-execution
-                              #:start-query-execution-input
-                              #:start-query-execution-output #:start-session
-                              #:start-session-request #:start-session-response
+                              #:start-query-execution #:start-session
                               #:statement-name #:statement-type
                               #:stop-calculation-execution
-                              #:stop-calculation-execution-request
-                              #:stop-calculation-execution-response
-                              #:stop-query-execution
-                              #:stop-query-execution-input
-                              #:stop-query-execution-output #:string
-                              #:string-list #:supported-dpusize-list
-                              #:table-metadata #:table-metadata-list
-                              #:table-type-string #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-input #:tag-resource-output
-                              #:tag-value #:target-dpus-integer
-                              #:terminate-session #:terminate-session-request
-                              #:terminate-session-response #:throttle-reason
-                              #:timestamp #:token #:too-many-requests-exception
-                              #:type-string #:unprocessed-named-query-id
+                              #:stop-query-execution #:string #:string-list
+                              #:supported-dpusize-list #:table-metadata
+                              #:table-metadata-list #:table-type-string #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:target-dpus-integer
+                              #:terminate-session #:throttle-reason #:timestamp
+                              #:token #:type-string
+                              #:unprocessed-named-query-id
                               #:unprocessed-named-query-id-list
                               #:unprocessed-prepared-statement-name
                               #:unprocessed-prepared-statement-name-list
                               #:unprocessed-query-execution-id
                               #:unprocessed-query-execution-id-list
-                              #:untag-resource #:untag-resource-input
-                              #:untag-resource-output
-                              #:update-capacity-reservation
-                              #:update-capacity-reservation-input
-                              #:update-capacity-reservation-output
-                              #:update-data-catalog #:update-data-catalog-input
-                              #:update-data-catalog-output #:update-named-query
-                              #:update-named-query-input
-                              #:update-named-query-output #:update-notebook
-                              #:update-notebook-input
-                              #:update-notebook-metadata
-                              #:update-notebook-metadata-input
-                              #:update-notebook-metadata-output
-                              #:update-notebook-output
-                              #:update-prepared-statement
-                              #:update-prepared-statement-input
-                              #:update-prepared-statement-output
-                              #:update-work-group #:update-work-group-input
-                              #:update-work-group-output #:work-group
-                              #:work-group-configuration
+                              #:untag-resource #:update-capacity-reservation
+                              #:update-data-catalog #:update-named-query
+                              #:update-notebook #:update-notebook-metadata
+                              #:update-prepared-statement #:update-work-group
+                              #:work-group #:work-group-configuration
                               #:work-group-configuration-updates
                               #:work-group-description-string #:work-group-name
                               #:work-group-names-list #:work-group-state

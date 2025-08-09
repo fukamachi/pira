@@ -2,51 +2,31 @@
                              (:export #:approximate-seconds-before-timed-out
                               #:binary-blob #:binary-parameter-value
                               #:boolean-parameter-value
-                              #:certificate-validation-exception
                               #:client-request-token-v2 #:command-arn
                               #:command-execution-id
                               #:command-execution-parameter-map
                               #:command-execution-timeout-in-seconds
                               #:command-parameter-name
-                              #:command-parameter-value #:conflict-exception
+                              #:command-parameter-value
                               #:describe-job-execution
-                              #:describe-job-execution-job-id
-                              #:describe-job-execution-request
-                              #:describe-job-execution-response #:details-key
+                              #:describe-job-execution-job-id #:details-key
                               #:details-map #:details-value
                               #:double-parameter-value #:execution-number
                               #:expected-version #:get-pending-job-executions
-                              #:get-pending-job-executions-request
-                              #:get-pending-job-executions-response
                               #:include-execution-state #:include-job-document
                               #:integer-parameter-value
-                              #:internal-server-exception
-                              #:invalid-request-exception
-                              #:invalid-state-transition-exception
                               #:iot-laser-thing-job-manager-external-service
                               #:job-document #:job-execution
                               #:job-execution-state #:job-execution-status
                               #:job-execution-summary
                               #:job-execution-summary-list #:job-id
                               #:last-updated-at #:long-parameter-value
-                              #:queued-at #:resource-not-found-exception
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception
-                              #:start-command-execution
-                              #:start-command-execution-request
-                              #:start-command-execution-response
-                              #:start-next-pending-job-execution
-                              #:start-next-pending-job-execution-request
-                              #:start-next-pending-job-execution-response
-                              #:started-at #:step-timeout-in-minutes
+                              #:queued-at #:start-command-execution
+                              #:start-next-pending-job-execution #:started-at
+                              #:step-timeout-in-minutes
                               #:string-parameter-value #:target-arn
-                              #:terminal-state-exception #:thing-name
-                              #:throttling-exception
-                              #:unsigned-long-parameter-value
-                              #:update-job-execution
-                              #:update-job-execution-request
-                              #:update-job-execution-response
-                              #:validation-exception #:version-number
+                              #:thing-name #:unsigned-long-parameter-value
+                              #:update-job-execution #:version-number
                               #:error-message #:resource-id))
 (common-lisp:in-package #:pira/iot-jobs-data-plane)
 

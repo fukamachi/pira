@@ -3,19 +3,11 @@
                               #:aimloptions-status #:arn #:awsaccount
                               #:awsdomain-information #:awsservice-principal
                               #:accept-inbound-connection
-                              #:accept-inbound-connection-request
-                              #:accept-inbound-connection-response
-                              #:access-denied-exception
                               #:access-policies-status #:action-severity
                               #:action-status #:action-type #:add-data-source
-                              #:add-data-source-request
-                              #:add-data-source-response
-                              #:add-direct-query-data-source
-                              #:add-direct-query-data-source-request
-                              #:add-direct-query-data-source-response
-                              #:add-tags #:add-tags-request #:additional-limit
-                              #:additional-limit-list #:advanced-options
-                              #:advanced-options-status
+                              #:add-direct-query-data-source #:add-tags
+                              #:additional-limit #:additional-limit-list
+                              #:advanced-options #:advanced-options-status
                               #:advanced-security-options
                               #:advanced-security-options-input
                               #:advanced-security-options-status
@@ -24,13 +16,8 @@
                               #:app-configs #:application-name
                               #:application-status #:application-statuses
                               #:application-summaries #:application-summary
-                              #:associate-package #:associate-package-request
-                              #:associate-package-response #:associate-packages
-                              #:associate-packages-request
-                              #:associate-packages-response
+                              #:associate-package #:associate-packages
                               #:authorize-vpc-endpoint-access
-                              #:authorize-vpc-endpoint-access-request
-                              #:authorize-vpc-endpoint-access-response
                               #:authorized-principal
                               #:authorized-principal-list #:auto-tune
                               #:auto-tune-date #:auto-tune-desired-state
@@ -43,14 +30,9 @@
                               #:auto-tune-status #:auto-tune-type
                               #:availability-zone #:availability-zone-info
                               #:availability-zone-info-list
-                              #:availability-zone-list #:backend-role
-                              #:base-exception #:boolean
+                              #:availability-zone-list #:backend-role #:boolean
                               #:cancel-domain-config-change
-                              #:cancel-domain-config-change-request
-                              #:cancel-domain-config-change-response
                               #:cancel-service-software-update
-                              #:cancel-service-software-update-request
-                              #:cancel-service-software-update-response
                               #:cancelled-change-property
                               #:cancelled-change-property-list
                               #:change-progress-details #:change-progress-stage
@@ -64,93 +46,40 @@
                               #:cognito-options-status #:cold-storage-options
                               #:commit-message #:compatible-versions-list
                               #:compatible-versions-map #:config-change-status
-                              #:conflict-exception #:connection-alias
-                              #:connection-id #:connection-mode
-                              #:connection-properties
+                              #:connection-alias #:connection-id
+                              #:connection-mode #:connection-properties
                               #:connection-status-message #:create-application
-                              #:create-application-request
-                              #:create-application-response #:create-domain
-                              #:create-domain-request #:create-domain-response
-                              #:create-outbound-connection
-                              #:create-outbound-connection-request
-                              #:create-outbound-connection-response
-                              #:create-package #:create-package-request
-                              #:create-package-response #:create-vpc-endpoint
-                              #:create-vpc-endpoint-request
-                              #:create-vpc-endpoint-response #:created-at
+                              #:create-domain #:create-outbound-connection
+                              #:create-package #:create-vpc-endpoint
+                              #:created-at
                               #:cross-cluster-search-connection-properties
                               #:data-source #:data-source-description
                               #:data-source-details #:data-source-list
                               #:data-source-name #:data-source-status
                               #:data-source-type #:data-sources
-                              #:delete-application #:delete-application-request
-                              #:delete-application-response
-                              #:delete-data-source #:delete-data-source-request
-                              #:delete-data-source-response
-                              #:delete-direct-query-data-source
-                              #:delete-direct-query-data-source-request
-                              #:delete-domain #:delete-domain-request
-                              #:delete-domain-response
+                              #:delete-application #:delete-data-source
+                              #:delete-direct-query-data-source #:delete-domain
                               #:delete-inbound-connection
-                              #:delete-inbound-connection-request
-                              #:delete-inbound-connection-response
-                              #:delete-outbound-connection
-                              #:delete-outbound-connection-request
-                              #:delete-outbound-connection-response
-                              #:delete-package #:delete-package-request
-                              #:delete-package-response #:delete-vpc-endpoint
-                              #:delete-vpc-endpoint-request
-                              #:delete-vpc-endpoint-response
-                              #:dependency-failure-exception
+                              #:delete-outbound-connection #:delete-package
+                              #:delete-vpc-endpoint
                               #:deployment-close-date-time-stamp
                               #:deployment-status #:deployment-type
                               #:describe-domain #:describe-domain-auto-tunes
-                              #:describe-domain-auto-tunes-request
-                              #:describe-domain-auto-tunes-response
                               #:describe-domain-change-progress
-                              #:describe-domain-change-progress-request
-                              #:describe-domain-change-progress-response
-                              #:describe-domain-config
-                              #:describe-domain-config-request
-                              #:describe-domain-config-response
-                              #:describe-domain-health
-                              #:describe-domain-health-request
-                              #:describe-domain-health-response
-                              #:describe-domain-nodes
-                              #:describe-domain-nodes-request
-                              #:describe-domain-nodes-response
-                              #:describe-domain-request
-                              #:describe-domain-response #:describe-domains
-                              #:describe-domains-request
-                              #:describe-domains-response
+                              #:describe-domain-config #:describe-domain-health
+                              #:describe-domain-nodes #:describe-domains
                               #:describe-dry-run-progress
-                              #:describe-dry-run-progress-request
-                              #:describe-dry-run-progress-response
                               #:describe-inbound-connections
-                              #:describe-inbound-connections-request
-                              #:describe-inbound-connections-response
                               #:describe-instance-type-limits
-                              #:describe-instance-type-limits-request
-                              #:describe-instance-type-limits-response
                               #:describe-outbound-connections
-                              #:describe-outbound-connections-request
-                              #:describe-outbound-connections-response
                               #:describe-packages #:describe-packages-filter
                               #:describe-packages-filter-list
                               #:describe-packages-filter-name
                               #:describe-packages-filter-value
                               #:describe-packages-filter-values
-                              #:describe-packages-request
-                              #:describe-packages-response
                               #:describe-reserved-instance-offerings
-                              #:describe-reserved-instance-offerings-request
-                              #:describe-reserved-instance-offerings-response
                               #:describe-reserved-instances
-                              #:describe-reserved-instances-request
-                              #:describe-reserved-instances-response
-                              #:describe-vpc-endpoints
-                              #:describe-vpc-endpoints-request
-                              #:describe-vpc-endpoints-response #:description
+                              #:describe-vpc-endpoints #:description
                               #:direct-query-data-source
                               #:direct-query-data-source-description
                               #:direct-query-data-source-list
@@ -158,13 +87,8 @@
                               #:direct-query-data-source-role-arn
                               #:direct-query-data-source-type
                               #:direct-query-open-search-arnlist
-                              #:disable-timestamp
-                              #:disabled-operation-exception
-                              #:dissociate-package #:dissociate-package-request
-                              #:dissociate-package-response
-                              #:dissociate-packages
-                              #:dissociate-packages-request
-                              #:dissociate-packages-response #:domain-arn
+                              #:disable-timestamp #:dissociate-package
+                              #:dissociate-packages #:domain-arn
                               #:domain-config #:domain-endpoint-options
                               #:domain-endpoint-options-status #:domain-health
                               #:domain-id #:domain-info #:domain-info-list
@@ -187,28 +111,12 @@
                               #:environment-info #:environment-info-list
                               #:error-details #:error-message #:error-type
                               #:filter #:filter-list #:guid #:guidlist
-                              #:get-application #:get-application-request
-                              #:get-application-response
-                              #:get-compatible-versions
-                              #:get-compatible-versions-request
-                              #:get-compatible-versions-response
-                              #:get-data-source #:get-data-source-request
-                              #:get-data-source-response
-                              #:get-direct-query-data-source
-                              #:get-direct-query-data-source-request
-                              #:get-direct-query-data-source-response
+                              #:get-application #:get-compatible-versions
+                              #:get-data-source #:get-direct-query-data-source
                               #:get-domain-maintenance-status
-                              #:get-domain-maintenance-status-request
-                              #:get-domain-maintenance-status-response
                               #:get-package-version-history
-                              #:get-package-version-history-request
-                              #:get-package-version-history-response
-                              #:get-upgrade-history
-                              #:get-upgrade-history-request
-                              #:get-upgrade-history-response
-                              #:get-upgrade-status #:get-upgrade-status-request
-                              #:get-upgrade-status-response #:hosted-zone-id
-                              #:iamfederation-options-input
+                              #:get-upgrade-history #:get-upgrade-status
+                              #:hosted-zone-id #:iamfederation-options-input
                               #:iamfederation-options-output
                               #:iamfederation-roles-key
                               #:iamfederation-subject-key #:ipaddress-type
@@ -229,51 +137,21 @@
                               #:instance-role-list #:instance-type-details
                               #:instance-type-details-list
                               #:instance-type-string #:integer #:integer-class
-                              #:internal-exception
-                              #:invalid-pagination-token-exception
-                              #:invalid-type-exception #:issue #:issues
-                              #:jwtoptions-input #:jwtoptions-output
-                              #:key-store-access-option #:kms-key-id
-                              #:last-updated #:license-filepath
-                              #:limit-exceeded-exception #:limit-name
-                              #:limit-value #:limit-value-list #:limits
-                              #:limits-by-role #:list-applications
-                              #:list-applications-request
-                              #:list-applications-response #:list-data-sources
-                              #:list-data-sources-request
-                              #:list-data-sources-response
+                              #:issue #:issues #:jwtoptions-input
+                              #:jwtoptions-output #:key-store-access-option
+                              #:kms-key-id #:last-updated #:license-filepath
+                              #:limit-name #:limit-value #:limit-value-list
+                              #:limits #:limits-by-role #:list-applications
+                              #:list-data-sources
                               #:list-direct-query-data-sources
-                              #:list-direct-query-data-sources-request
-                              #:list-direct-query-data-sources-response
-                              #:list-domain-maintenances
-                              #:list-domain-maintenances-request
-                              #:list-domain-maintenances-response
-                              #:list-domain-names #:list-domain-names-request
-                              #:list-domain-names-response
+                              #:list-domain-maintenances #:list-domain-names
                               #:list-domains-for-package
-                              #:list-domains-for-package-request
-                              #:list-domains-for-package-response
                               #:list-instance-type-details
-                              #:list-instance-type-details-request
-                              #:list-instance-type-details-response
                               #:list-packages-for-domain
-                              #:list-packages-for-domain-request
-                              #:list-packages-for-domain-response
-                              #:list-scheduled-actions
-                              #:list-scheduled-actions-request
-                              #:list-scheduled-actions-response #:list-tags
-                              #:list-tags-request #:list-tags-response
-                              #:list-versions #:list-versions-request
-                              #:list-versions-response
-                              #:list-vpc-endpoint-access
-                              #:list-vpc-endpoint-access-request
-                              #:list-vpc-endpoint-access-response
+                              #:list-scheduled-actions #:list-tags
+                              #:list-versions #:list-vpc-endpoint-access
                               #:list-vpc-endpoints
                               #:list-vpc-endpoints-for-domain
-                              #:list-vpc-endpoints-for-domain-request
-                              #:list-vpc-endpoints-for-domain-response
-                              #:list-vpc-endpoints-request
-                              #:list-vpc-endpoints-response
                               #:log-publishing-option #:log-publishing-options
                               #:log-publishing-options-status #:log-type #:long
                               #:maintenance-status #:maintenance-status-message
@@ -320,24 +198,16 @@
                               #:plugin-version #:policy-document
                               #:principal-type #:property-value-type
                               #:purchase-reserved-instance-offering
-                              #:purchase-reserved-instance-offering-request
-                              #:purchase-reserved-instance-offering-response
                               #:recurring-charge #:recurring-charge-list
                               #:reference-path #:region
-                              #:reject-inbound-connection
-                              #:reject-inbound-connection-request
-                              #:reject-inbound-connection-response
-                              #:remove-tags #:remove-tags-request #:request-id
-                              #:requirement-level #:reservation-token
-                              #:reserved-instance #:reserved-instance-list
+                              #:reject-inbound-connection #:remove-tags
+                              #:request-id #:requirement-level
+                              #:reservation-token #:reserved-instance
+                              #:reserved-instance-list
                               #:reserved-instance-offering
                               #:reserved-instance-offering-list
                               #:reserved-instance-payment-option
-                              #:resource-already-exists-exception
-                              #:resource-not-found-exception
-                              #:revoke-vpc-endpoint-access
-                              #:revoke-vpc-endpoint-access-request
-                              #:revoke-vpc-endpoint-access-response #:role-arn
+                              #:revoke-vpc-endpoint-access #:role-arn
                               #:roles-key #:roles-key-id-coption
                               #:rollback-on-disable #:s3bucket-name
                               #:s3glue-data-catalog #:s3key #:s3vectors-engine
@@ -353,16 +223,11 @@
                               #:security-lake-direct-query-data-source
                               #:service-software-options #:service-url
                               #:skip-unavailable-status #:slot-list
-                              #:slot-not-available-exception #:snapshot-options
-                              #:snapshot-options-status
+                              #:snapshot-options #:snapshot-options-status
                               #:software-update-options
                               #:software-update-options-status #:start-at
                               #:start-domain-maintenance
-                              #:start-domain-maintenance-request
-                              #:start-domain-maintenance-response
                               #:start-service-software-update
-                              #:start-service-software-update-request
-                              #:start-service-software-update-response
                               #:start-time-hours #:start-time-minutes
                               #:start-timestamp #:storage-sub-type-name
                               #:storage-type #:storage-type-limit
@@ -373,38 +238,22 @@
                               #:tag-value #:time-unit #:timestamp
                               #:total-number-of-stages #:uint-value
                               #:uncompressed-plugin-size-in-bytes
-                              #:update-application #:update-application-request
-                              #:update-application-response
-                              #:update-data-source #:update-data-source-request
-                              #:update-data-source-response
+                              #:update-application #:update-data-source
                               #:update-direct-query-data-source
-                              #:update-direct-query-data-source-request
-                              #:update-direct-query-data-source-response
-                              #:update-domain-config
-                              #:update-domain-config-request
-                              #:update-domain-config-response #:update-package
-                              #:update-package-request
-                              #:update-package-response #:update-package-scope
-                              #:update-package-scope-request
-                              #:update-package-scope-response
-                              #:update-scheduled-action
-                              #:update-scheduled-action-request
-                              #:update-scheduled-action-response
+                              #:update-domain-config #:update-package
+                              #:update-package-scope #:update-scheduled-action
                               #:update-timestamp #:update-vpc-endpoint
-                              #:update-vpc-endpoint-request
-                              #:update-vpc-endpoint-response #:upgrade-domain
-                              #:upgrade-domain-request
-                              #:upgrade-domain-response #:upgrade-history
+                              #:upgrade-domain #:upgrade-history
                               #:upgrade-history-list #:upgrade-name
                               #:upgrade-status #:upgrade-step
                               #:upgrade-step-item #:upgrade-steps-list
                               #:user-pool-id #:username #:vpcderived-info
                               #:vpcderived-info-status #:vpcoptions
-                              #:validation-exception #:validation-failure
-                              #:validation-failures #:value-string-list
-                              #:version-list #:version-status #:version-string
-                              #:volume-size #:volume-type #:vpc-endpoint
-                              #:vpc-endpoint-error #:vpc-endpoint-error-code
+                              #:validation-failure #:validation-failures
+                              #:value-string-list #:version-list
+                              #:version-status #:version-string #:volume-size
+                              #:volume-type #:vpc-endpoint #:vpc-endpoint-error
+                              #:vpc-endpoint-error-code
                               #:vpc-endpoint-error-list #:vpc-endpoint-id
                               #:vpc-endpoint-id-list #:vpc-endpoint-status
                               #:vpc-endpoint-summary

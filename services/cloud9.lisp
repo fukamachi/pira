@@ -1,63 +1,32 @@
 (uiop/package:define-package #:pira/cloud9 (:use)
                              (:export #:awscloud9workspace-management-service
                               #:automatic-stop-time-minutes
-                              #:bad-request-exception
                               #:bounded-environment-id-list
-                              #:client-request-token
-                              #:concurrent-access-exception
-                              #:conflict-exception #:connection-type
+                              #:client-request-token #:connection-type
                               #:create-environment-ec2
-                              #:create-environment-ec2request
-                              #:create-environment-ec2result
                               #:create-environment-membership
-                              #:create-environment-membership-request
-                              #:create-environment-membership-result
                               #:delete-environment
                               #:delete-environment-membership
-                              #:delete-environment-membership-request
-                              #:delete-environment-membership-result
-                              #:delete-environment-request
-                              #:delete-environment-result
                               #:describe-environment-memberships
-                              #:describe-environment-memberships-request
-                              #:describe-environment-memberships-result
                               #:describe-environment-status
-                              #:describe-environment-status-request
-                              #:describe-environment-status-result
-                              #:describe-environments
-                              #:describe-environments-request
-                              #:describe-environments-result #:environment
+                              #:describe-environments #:environment
                               #:environment-arn #:environment-description
                               #:environment-id #:environment-id-list
                               #:environment-lifecycle
                               #:environment-lifecycle-status #:environment-list
                               #:environment-member #:environment-members-list
                               #:environment-name #:environment-status
-                              #:environment-type #:forbidden-exception
-                              #:image-id #:instance-type #:integer
-                              #:internal-server-error-exception
-                              #:limit-exceeded-exception #:list-environments
-                              #:list-environments-request
-                              #:list-environments-result
+                              #:environment-type #:image-id #:instance-type
+                              #:integer #:list-environments
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:managed-credentials-action
                               #:managed-credentials-status #:max-results
-                              #:member-permissions #:not-found-exception
-                              #:nullable-boolean #:permissions
-                              #:permissions-list #:string #:subnet-id #:tag
-                              #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:timestamp
-                              #:too-many-requests-exception #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-environment
-                              #:update-environment-membership
-                              #:update-environment-membership-request
-                              #:update-environment-membership-result
-                              #:update-environment-request
-                              #:update-environment-result #:user-arn))
+                              #:member-permissions #:nullable-boolean
+                              #:permissions #:permissions-list #:string
+                              #:subnet-id #:tag #:tag-key #:tag-key-list
+                              #:tag-list #:tag-resource #:tag-value #:timestamp
+                              #:untag-resource #:update-environment
+                              #:update-environment-membership #:user-arn))
 (common-lisp:in-package #:pira/cloud9)
 
 (smithy/sdk/service:define-service awscloud9workspace-management-service

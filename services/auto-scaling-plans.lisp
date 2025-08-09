@@ -2,36 +2,21 @@
                              (:export
                               #:any-scale-scaling-planner-frontend-service
                               #:application-source #:application-sources
-                              #:concurrent-update-exception #:cooldown
-                              #:create-scaling-plan
-                              #:create-scaling-plan-request
-                              #:create-scaling-plan-response
+                              #:cooldown #:create-scaling-plan
                               #:customized-load-metric-specification
                               #:customized-scaling-metric-specification
                               #:datapoint #:datapoints #:delete-scaling-plan
-                              #:delete-scaling-plan-request
-                              #:delete-scaling-plan-response
                               #:describe-scaling-plan-resources
-                              #:describe-scaling-plan-resources-request
-                              #:describe-scaling-plan-resources-response
                               #:describe-scaling-plans
-                              #:describe-scaling-plans-request
-                              #:describe-scaling-plans-response
                               #:disable-dynamic-scaling #:disable-scale-in
                               #:error-message #:forecast-data-type
                               #:get-scaling-plan-resource-forecast-data
-                              #:get-scaling-plan-resource-forecast-data-request
-                              #:get-scaling-plan-resource-forecast-data-response
-                              #:internal-service-exception
-                              #:invalid-next-token-exception
-                              #:limit-exceeded-exception #:load-metric-type
-                              #:max-results #:metric-dimension
-                              #:metric-dimension-name #:metric-dimension-value
-                              #:metric-dimensions #:metric-name
-                              #:metric-namespace #:metric-scale
+                              #:load-metric-type #:max-results
+                              #:metric-dimension #:metric-dimension-name
+                              #:metric-dimension-value #:metric-dimensions
+                              #:metric-name #:metric-namespace #:metric-scale
                               #:metric-statistic #:metric-unit #:next-token
-                              #:object-not-found-exception #:policy-name
-                              #:policy-type
+                              #:policy-name #:policy-type
                               #:predefined-load-metric-specification
                               #:predefined-scaling-metric-specification
                               #:predictive-scaling-max-capacity-behavior
@@ -50,10 +35,7 @@
                               #:service-namespace #:tag-filter #:tag-filters
                               #:tag-values #:target-tracking-configuration
                               #:target-tracking-configurations #:timestamp-type
-                              #:update-scaling-plan
-                              #:update-scaling-plan-request
-                              #:update-scaling-plan-response
-                              #:validation-exception #:xml-string
+                              #:update-scaling-plan #:xml-string
                               #:xml-string-max-len128 #:xml-string-max-len256))
 (common-lisp:in-package #:pira/auto-scaling-plans)
 

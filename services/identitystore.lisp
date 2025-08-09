@@ -1,11 +1,9 @@
 (uiop/package:define-package #:pira/identitystore (:use)
-                             (:export #:awsidentity-store
-                              #:access-denied-exception #:address #:addresses
+                             (:export #:awsidentity-store #:address #:addresses
                               #:alternate-identifier #:attribute-operation
                               #:attribute-operations #:attribute-path
-                              #:attribute-value #:conflict-exception
-                              #:conflict-exception-reason #:create-group
-                              #:create-group-membership
+                              #:attribute-value #:conflict-exception-reason
+                              #:create-group #:create-group-membership
                               #:create-group-membership-request
                               #:create-group-membership-response
                               #:create-group-request #:create-group-response
@@ -37,7 +35,7 @@
                               #:group-membership-existence-results
                               #:group-membership-resource #:group-memberships
                               #:group-resource #:groups #:identity-store-id
-                              #:internal-server-exception #:is-member-in-groups
+                              #:is-member-in-groups
                               #:is-member-in-groups-request
                               #:is-member-in-groups-response
                               #:list-group-memberships
@@ -51,16 +49,13 @@
                               #:list-users-response #:max-results #:member-id
                               #:name #:next-token #:phone-number
                               #:phone-numbers #:request-id #:resource-id
-                              #:resource-not-found-exception #:resource-type
-                              #:retry-after-seconds #:sensitive-boolean-type
-                              #:sensitive-string-type
-                              #:service-quota-exceeded-exception
-                              #:throttling-exception #:unique-attribute
-                              #:update-group #:update-group-request
-                              #:update-group-response #:update-user
-                              #:update-user-request #:update-user-response
-                              #:user #:user-name #:user-resource #:users
-                              #:validation-exception))
+                              #:resource-type #:retry-after-seconds
+                              #:sensitive-boolean-type #:sensitive-string-type
+                              #:unique-attribute #:update-group
+                              #:update-group-request #:update-group-response
+                              #:update-user #:update-user-request
+                              #:update-user-response #:user #:user-name
+                              #:user-resource #:users))
 (common-lisp:in-package #:pira/identitystore)
 
 (smithy/sdk/service:define-service awsidentity-store :shape-name

@@ -1,72 +1,33 @@
 (uiop/package:define-package #:pira/mq (:use)
                              (:export #:action-required
                               #:authentication-strategy #:availability-zone
-                              #:bad-request-exception #:broker-engine-type
-                              #:broker-instance #:broker-instance-option
-                              #:broker-state #:broker-storage-type
-                              #:broker-summary #:change-type #:configuration
-                              #:configuration-id #:configuration-revision
-                              #:configurations #:conflict-exception
-                              #:create-broker #:create-broker-request
-                              #:create-broker-response #:create-configuration
-                              #:create-configuration-request
-                              #:create-configuration-response #:create-tags
-                              #:create-tags-request #:create-user
-                              #:create-user-request #:create-user-response
+                              #:broker-engine-type #:broker-instance
+                              #:broker-instance-option #:broker-state
+                              #:broker-storage-type #:broker-summary
+                              #:change-type #:configuration #:configuration-id
+                              #:configuration-revision #:configurations
+                              #:create-broker #:create-configuration
+                              #:create-tags #:create-user
                               #:data-replication-counterpart
                               #:data-replication-metadata-output
                               #:data-replication-mode #:day-of-week
-                              #:delete-broker #:delete-broker-request
-                              #:delete-broker-response #:delete-configuration
-                              #:delete-configuration-request
-                              #:delete-configuration-response #:delete-tags
-                              #:delete-tags-request #:delete-user
-                              #:delete-user-request #:delete-user-response
-                              #:deployment-mode #:describe-broker
-                              #:describe-broker-engine-types
-                              #:describe-broker-engine-types-request
-                              #:describe-broker-engine-types-response
+                              #:delete-broker #:delete-configuration
+                              #:delete-tags #:delete-user #:deployment-mode
+                              #:describe-broker #:describe-broker-engine-types
                               #:describe-broker-instance-options
-                              #:describe-broker-instance-options-request
-                              #:describe-broker-instance-options-response
-                              #:describe-broker-request
-                              #:describe-broker-response
                               #:describe-configuration
-                              #:describe-configuration-request
-                              #:describe-configuration-response
-                              #:describe-configuration-revision
-                              #:describe-configuration-revision-request
-                              #:describe-configuration-revision-response
-                              #:describe-user #:describe-user-request
-                              #:describe-user-response #:encryption-options
-                              #:engine-type #:engine-version
-                              #:forbidden-exception
-                              #:internal-server-error-exception
-                              #:ldap-server-metadata-input
+                              #:describe-configuration-revision #:describe-user
+                              #:encryption-options #:engine-type
+                              #:engine-version #:ldap-server-metadata-input
                               #:ldap-server-metadata-output #:list-brokers
-                              #:list-brokers-request #:list-brokers-response
                               #:list-configuration-revisions
-                              #:list-configuration-revisions-request
-                              #:list-configuration-revisions-response
-                              #:list-configurations
-                              #:list-configurations-request
-                              #:list-configurations-response #:list-tags
-                              #:list-tags-request #:list-tags-response
-                              #:list-users #:list-users-request
-                              #:list-users-response #:logs #:logs-summary
-                              #:max-results #:not-found-exception
+                              #:list-configurations #:list-tags #:list-users
+                              #:logs #:logs-summary #:max-results
                               #:pending-logs #:promote #:promote-mode
-                              #:promote-request #:promote-response
-                              #:reboot-broker #:reboot-broker-request
-                              #:reboot-broker-response #:sanitization-warning
-                              #:sanitization-warning-reason
-                              #:unauthorized-exception #:update-broker
-                              #:update-broker-request #:update-broker-response
-                              #:update-configuration
-                              #:update-configuration-request
-                              #:update-configuration-response #:update-user
-                              #:update-user-request #:update-user-response
-                              #:user #:user-pending-changes #:user-summary
+                              #:reboot-broker #:sanitization-warning
+                              #:sanitization-warning-reason #:update-broker
+                              #:update-configuration #:update-user #:user
+                              #:user-pending-changes #:user-summary
                               #:weekly-start-time #:boolean #:integer
                               #:integer-min5max100 #:list-of-action-required
                               #:list-of-availability-zone

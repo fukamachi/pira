@@ -3,35 +3,19 @@
                               #:awsregion #:additional-artifact
                               #:additional-artifact-list #:billing-view-arn
                               #:compression-format #:delete-report-definition
-                              #:delete-report-definition-request
-                              #:delete-report-definition-response
                               #:delete-response-message
-                              #:describe-report-definitions
-                              #:describe-report-definitions-request
-                              #:describe-report-definitions-response
-                              #:duplicate-report-name-exception #:error-message
-                              #:generic-string #:internal-error-exception
-                              #:last-delivery #:last-status
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:describe-report-definitions #:error-message
+                              #:generic-string #:last-delivery #:last-status
+                              #:list-tags-for-resource #:max-results
                               #:modify-report-definition
-                              #:modify-report-definition-request
-                              #:modify-report-definition-response
-                              #:put-report-definition
-                              #:put-report-definition-request
-                              #:put-report-definition-response
-                              #:refresh-closed-reports #:report-definition
-                              #:report-definition-list #:report-format
-                              #:report-limit-reached-exception #:report-name
-                              #:report-status #:report-versioning
-                              #:resource-not-found-exception #:s3bucket
-                              #:s3prefix #:schema-element #:schema-element-list
-                              #:tag #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:time-unit
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:validation-exception))
+                              #:put-report-definition #:refresh-closed-reports
+                              #:report-definition #:report-definition-list
+                              #:report-format #:report-name #:report-status
+                              #:report-versioning #:s3bucket #:s3prefix
+                              #:schema-element #:schema-element-list #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:time-unit
+                              #:untag-resource))
 (common-lisp:in-package #:pira/cost-and-usage-report-service)
 
 (smithy/sdk/service:define-service awsorigami-service-gateway-service

@@ -2,49 +2,20 @@
                              (:export #:amazon-resource-name #:arn #:attr-key
                               #:attr-value #:attributes #:code
                               #:create-http-namespace
-                              #:create-http-namespace-request
-                              #:create-http-namespace-response
                               #:create-private-dns-namespace
-                              #:create-private-dns-namespace-request
-                              #:create-private-dns-namespace-response
-                              #:create-public-dns-namespace
-                              #:create-public-dns-namespace-request
-                              #:create-public-dns-namespace-response
-                              #:create-service #:create-service-request
-                              #:create-service-response
-                              #:custom-health-not-found #:custom-health-status
-                              #:delete-namespace #:delete-namespace-request
-                              #:delete-namespace-response #:delete-service
-                              #:delete-service-attributes
-                              #:delete-service-attributes-request
-                              #:delete-service-attributes-response
-                              #:delete-service-request
-                              #:delete-service-response #:deregister-instance
-                              #:deregister-instance-request
-                              #:deregister-instance-response
-                              #:discover-instances #:discover-instances-request
-                              #:discover-instances-response
+                              #:create-public-dns-namespace #:create-service
+                              #:custom-health-status #:delete-namespace
+                              #:delete-service #:delete-service-attributes
+                              #:deregister-instance #:discover-instances
                               #:discover-instances-revision
-                              #:discover-instances-revision-request
-                              #:discover-instances-revision-response
                               #:discover-max-results #:dns-config
                               #:dns-config-change #:dns-properties #:dns-record
-                              #:dns-record-list #:duplicate-request
-                              #:error-message #:failure-threshold
-                              #:filter-condition #:filter-value #:filter-values
-                              #:get-instance #:get-instance-request
-                              #:get-instance-response
-                              #:get-instances-health-status
-                              #:get-instances-health-status-request
-                              #:get-instances-health-status-response
-                              #:get-namespace #:get-namespace-request
-                              #:get-namespace-response #:get-operation
-                              #:get-operation-request #:get-operation-response
-                              #:get-service #:get-service-attributes
-                              #:get-service-attributes-request
-                              #:get-service-attributes-response
-                              #:get-service-request #:get-service-response
-                              #:health-check-config
+                              #:dns-record-list #:error-message
+                              #:failure-threshold #:filter-condition
+                              #:filter-value #:filter-values #:get-instance
+                              #:get-instances-health-status #:get-namespace
+                              #:get-operation #:get-service
+                              #:get-service-attributes #:health-check-config
                               #:health-check-custom-config #:health-check-type
                               #:health-status #:health-status-filter
                               #:http-instance-summary
@@ -52,32 +23,22 @@
                               #:http-namespace-change #:http-properties
                               #:instance #:instance-health-status-map
                               #:instance-id #:instance-id-list
-                              #:instance-not-found #:instance-summary
-                              #:instance-summary-list #:invalid-input
-                              #:list-instances #:list-instances-request
-                              #:list-instances-response #:list-namespaces
-                              #:list-namespaces-request
-                              #:list-namespaces-response #:list-operations
-                              #:list-operations-request
-                              #:list-operations-response #:list-services
-                              #:list-services-request #:list-services-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
-                              #:message #:namespace #:namespace-already-exists
-                              #:namespace-filter #:namespace-filter-name
-                              #:namespace-filters #:namespace-name
-                              #:namespace-name-http #:namespace-name-private
-                              #:namespace-name-public #:namespace-not-found
+                              #:instance-summary #:instance-summary-list
+                              #:list-instances #:list-namespaces
+                              #:list-operations #:list-services
+                              #:list-tags-for-resource #:max-results #:message
+                              #:namespace #:namespace-filter
+                              #:namespace-filter-name #:namespace-filters
+                              #:namespace-name #:namespace-name-http
+                              #:namespace-name-private #:namespace-name-public
                               #:namespace-properties #:namespace-summaries-list
                               #:namespace-summary #:namespace-type #:next-token
                               #:operation #:operation-filter
                               #:operation-filter-name #:operation-filters
-                              #:operation-id #:operation-not-found
-                              #:operation-status #:operation-summary
-                              #:operation-summary-list #:operation-target-type
-                              #:operation-targets-map #:operation-type
-                              #:private-dns-namespace-change
+                              #:operation-id #:operation-status
+                              #:operation-summary #:operation-summary-list
+                              #:operation-target-type #:operation-targets-map
+                              #:operation-type #:private-dns-namespace-change
                               #:private-dns-namespace-properties
                               #:private-dns-namespace-properties-change
                               #:private-dns-properties-mutable
@@ -88,44 +49,25 @@
                               #:public-dns-properties-mutable
                               #:public-dns-properties-mutable-change
                               #:record-ttl #:record-type #:register-instance
-                              #:register-instance-request
-                              #:register-instance-response
-                              #:request-limit-exceeded #:resource-count
-                              #:resource-description #:resource-id
-                              #:resource-in-use #:resource-limit-exceeded
-                              #:resource-not-found-exception #:resource-path
-                              #:revision #:route53auto-naming-v20170314
-                              #:routing-policy #:soa #:soachange #:service
-                              #:service-already-exists #:service-attribute-key
+                              #:resource-count #:resource-description
+                              #:resource-id #:resource-path #:revision
+                              #:route53auto-naming-v20170314 #:routing-policy
+                              #:soa #:soachange #:service
+                              #:service-attribute-key
                               #:service-attribute-key-list
                               #:service-attribute-value #:service-attributes
-                              #:service-attributes-limit-exceeded-exception
                               #:service-attributes-map #:service-change
                               #:service-filter #:service-filter-name
                               #:service-filters #:service-name
-                              #:service-not-found #:service-summaries-list
-                              #:service-summary #:service-type
-                              #:service-type-option #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:timestamp #:too-many-tags-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-http-namespace
-                              #:update-http-namespace-request
-                              #:update-http-namespace-response
+                              #:service-summaries-list #:service-summary
+                              #:service-type #:service-type-option #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:timestamp
+                              #:untag-resource #:update-http-namespace
                               #:update-instance-custom-health-status
-                              #:update-instance-custom-health-status-request
                               #:update-private-dns-namespace
-                              #:update-private-dns-namespace-request
-                              #:update-private-dns-namespace-response
-                              #:update-public-dns-namespace
-                              #:update-public-dns-namespace-request
-                              #:update-public-dns-namespace-response
-                              #:update-service #:update-service-attributes
-                              #:update-service-attributes-request
-                              #:update-service-attributes-response
-                              #:update-service-request
-                              #:update-service-response))
+                              #:update-public-dns-namespace #:update-service
+                              #:update-service-attributes))
 (common-lisp:in-package #:pira/servicediscovery)
 
 (smithy/sdk/service:define-service route53auto-naming-v20170314 :shape-name

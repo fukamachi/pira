@@ -4,14 +4,9 @@
                               #:data-set-type #:destination-s3bucket-name
                               #:destination-s3prefix #:exception-message
                               #:from-date #:generate-data-set
-                              #:generate-data-set-request
-                              #:generate-data-set-result
                               #:marketplace-commerce-analytics20150701
-                              #:marketplace-commerce-analytics-exception
                               #:optional-key #:optional-value #:role-name-arn
                               #:sns-topic-arn #:start-support-data-export
-                              #:start-support-data-export-request
-                              #:start-support-data-export-result
                               #:support-data-set-type))
 (common-lisp:in-package #:pira/marketplace-commerce-analytics)
 

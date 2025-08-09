@@ -6,28 +6,15 @@
                               #:attribute-key #:attribute-map #:attribute-value
                               #:availability-zone-detail
                               #:backend-connection-errors #:batch-get-traces
-                              #:batch-get-traces-request
-                              #:batch-get-traces-result #:boolean
-                              #:borrow-count #:cancel-trace-retrieval
-                              #:cancel-trace-retrieval-request
-                              #:cancel-trace-retrieval-result #:client-id
-                              #:create-group #:create-group-request
-                              #:create-group-result #:create-sampling-rule
-                              #:create-sampling-rule-request
-                              #:create-sampling-rule-result #:delete-group
-                              #:delete-group-request #:delete-group-result
-                              #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-result
-                              #:delete-sampling-rule
-                              #:delete-sampling-rule-request
-                              #:delete-sampling-rule-result #:double
-                              #:ec2instance-id #:edge #:edge-list
-                              #:edge-statistics #:encryption-config
-                              #:encryption-key-id #:encryption-status
-                              #:encryption-type #:entity-selector-expression
-                              #:error-message #:error-root-cause
-                              #:error-root-cause-entity
+                              #:boolean #:borrow-count #:cancel-trace-retrieval
+                              #:client-id #:create-group #:create-sampling-rule
+                              #:delete-group #:delete-resource-policy
+                              #:delete-sampling-rule #:double #:ec2instance-id
+                              #:edge #:edge-list #:edge-statistics
+                              #:encryption-config #:encryption-key-id
+                              #:encryption-status #:encryption-type
+                              #:entity-selector-expression #:error-message
+                              #:error-root-cause #:error-root-cause-entity
                               #:error-root-cause-entity-path
                               #:error-root-cause-service
                               #:error-root-cause-services #:error-root-causes
@@ -38,50 +25,19 @@
                               #:fault-root-cause-services #:fault-root-causes
                               #:fault-statistics #:filter-expression
                               #:fixed-rate #:forecast-statistics
-                              #:get-encryption-config
-                              #:get-encryption-config-request
-                              #:get-encryption-config-result #:get-group
-                              #:get-group-request #:get-group-result
-                              #:get-groups #:get-groups-next-token
-                              #:get-groups-request #:get-groups-result
-                              #:get-indexing-rules #:get-indexing-rules-request
-                              #:get-indexing-rules-result #:get-insight
-                              #:get-insight-events
+                              #:get-encryption-config #:get-group #:get-groups
+                              #:get-groups-next-token #:get-indexing-rules
+                              #:get-insight #:get-insight-events
                               #:get-insight-events-max-results
-                              #:get-insight-events-request
-                              #:get-insight-events-result
                               #:get-insight-impact-graph
-                              #:get-insight-impact-graph-request
-                              #:get-insight-impact-graph-result
-                              #:get-insight-request #:get-insight-result
                               #:get-insight-summaries
                               #:get-insight-summaries-max-results
-                              #:get-insight-summaries-request
-                              #:get-insight-summaries-result
-                              #:get-retrieved-traces-graph
-                              #:get-retrieved-traces-graph-request
-                              #:get-retrieved-traces-graph-result
-                              #:get-sampling-rules #:get-sampling-rules-request
-                              #:get-sampling-rules-result
+                              #:get-retrieved-traces-graph #:get-sampling-rules
                               #:get-sampling-statistic-summaries
-                              #:get-sampling-statistic-summaries-request
-                              #:get-sampling-statistic-summaries-result
-                              #:get-sampling-targets
-                              #:get-sampling-targets-request
-                              #:get-sampling-targets-result #:get-service-graph
-                              #:get-service-graph-request
-                              #:get-service-graph-result
+                              #:get-sampling-targets #:get-service-graph
                               #:get-time-series-service-statistics
-                              #:get-time-series-service-statistics-request
-                              #:get-time-series-service-statistics-result
-                              #:get-trace-graph #:get-trace-graph-request
-                              #:get-trace-graph-result
-                              #:get-trace-segment-destination
-                              #:get-trace-segment-destination-request
-                              #:get-trace-segment-destination-result
-                              #:get-trace-summaries
-                              #:get-trace-summaries-request
-                              #:get-trace-summaries-result #:graph-link #:group
+                              #:get-trace-graph #:get-trace-segment-destination
+                              #:get-trace-summaries #:graph-link #:group
                               #:group-arn #:group-name #:group-summary
                               #:group-summary-list #:httpmethod #:histogram
                               #:histogram-entry #:host #:hostname #:http
@@ -97,42 +53,19 @@
                               #:insight-state #:insight-state-list
                               #:insight-summary #:insight-summary-list
                               #:insight-summary-text #:insights-configuration
-                              #:instance-id-detail #:integer
-                              #:invalid-policy-revision-id-exception
-                              #:invalid-request-exception #:links-list
-                              #:list-resource-policies
-                              #:list-resource-policies-request
-                              #:list-resource-policies-result
-                              #:list-retrieved-traces
-                              #:list-retrieved-traces-request
-                              #:list-retrieved-traces-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:lockout-prevention-exception
-                              #:malformed-policy-document-exception
-                              #:nullable-boolean #:nullable-double
-                              #:nullable-integer #:nullable-long
-                              #:policy-count-limit-exceeded-exception
-                              #:policy-document #:policy-name
-                              #:policy-revision-id
-                              #:policy-size-limit-exceeded-exception #:priority
+                              #:instance-id-detail #:integer #:links-list
+                              #:list-resource-policies #:list-retrieved-traces
+                              #:list-tags-for-resource #:nullable-boolean
+                              #:nullable-double #:nullable-integer
+                              #:nullable-long #:policy-document #:policy-name
+                              #:policy-revision-id #:priority
                               #:probabilistic-rule-value
                               #:probabilistic-rule-value-update
-                              #:put-encryption-config
-                              #:put-encryption-config-request
-                              #:put-encryption-config-result
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-result
-                              #:put-telemetry-records
-                              #:put-telemetry-records-request
-                              #:put-telemetry-records-result
-                              #:put-trace-segments #:put-trace-segments-request
-                              #:put-trace-segments-result #:request-count
-                              #:request-impact-statistics #:reservoir-size
-                              #:resource-arn #:resource-arndetail
-                              #:resource-not-found-exception #:resource-policy
+                              #:put-encryption-config #:put-resource-policy
+                              #:put-telemetry-records #:put-trace-segments
+                              #:request-count #:request-impact-statistics
+                              #:reservoir-size #:resource-arn
+                              #:resource-arndetail #:resource-policy
                               #:resource-policy-list
                               #:resource-policy-next-token
                               #:response-time-root-cause
@@ -144,8 +77,7 @@
                               #:retrieval-token #:retrieved-service
                               #:retrieved-services-list #:retrieved-trace
                               #:root-cause-exception #:root-cause-exceptions
-                              #:rule-limit-exceeded-exception #:rule-name
-                              #:sampled-count #:sampling-rule
+                              #:rule-name #:sampled-count #:sampling-rule
                               #:sampling-rule-record
                               #:sampling-rule-record-list
                               #:sampling-rule-update
@@ -161,19 +93,14 @@
                               #:service-list #:service-name #:service-names
                               #:service-statistics #:service-type #:span
                               #:span-document #:span-id #:span-list
-                              #:start-trace-retrieval
-                              #:start-trace-retrieval-request
-                              #:start-trace-retrieval-result #:string #:tag
-                              #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:telemetry-record #:telemetry-record-list
-                              #:throttled-exception #:time-range-type
+                              #:start-trace-retrieval #:string #:tag #:tag-key
+                              #:tag-key-list #:tag-list #:tag-resource
+                              #:tag-value #:telemetry-record
+                              #:telemetry-record-list #:time-range-type
                               #:time-series-service-statistics
                               #:time-series-service-statistics-list #:timestamp
-                              #:token #:too-many-tags-exception #:trace
-                              #:trace-availability-zones #:trace-format-type
-                              #:trace-id #:trace-id-list
+                              #:token #:trace #:trace-availability-zones
+                              #:trace-format-type #:trace-id #:trace-id-list
                               #:trace-id-list-for-retrieval
                               #:trace-instance-ids #:trace-list
                               #:trace-resource-arns #:trace-segment-destination
@@ -186,18 +113,9 @@
                               #:unprocessed-trace-id-list
                               #:unprocessed-trace-segment
                               #:unprocessed-trace-segment-list #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-group
-                              #:update-group-request #:update-group-result
-                              #:update-indexing-rule
-                              #:update-indexing-rule-request
-                              #:update-indexing-rule-result
+                              #:update-group #:update-indexing-rule
                               #:update-sampling-rule
-                              #:update-sampling-rule-request
-                              #:update-sampling-rule-result
                               #:update-trace-segment-destination
-                              #:update-trace-segment-destination-request
-                              #:update-trace-segment-destination-result
                               #:value-with-service-ids
                               #:values-with-service-ids #:version))
 (common-lisp:in-package #:pira/xray)

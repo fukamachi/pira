@@ -1,132 +1,70 @@
 (uiop/package:define-package #:pira/efs (:use)
-                             (:export #:access-point-already-exists
-                              #:access-point-arn #:access-point-description
+                             (:export #:access-point-arn
+                              #:access-point-description
                               #:access-point-descriptions #:access-point-id
-                              #:access-point-limit-exceeded
-                              #:access-point-not-found #:availability-zone-id
-                              #:availability-zone-name
-                              #:availability-zones-mismatch #:aws-account-id
-                              #:backup #:backup-policy
-                              #:backup-policy-description #:bad-request
+                              #:availability-zone-id #:availability-zone-name
+                              #:aws-account-id #:backup #:backup-policy
+                              #:backup-policy-description
                               #:bypass-policy-lockout-safety-check
-                              #:client-token #:conflict-exception
-                              #:create-access-point
-                              #:create-access-point-request
-                              #:create-file-system #:create-file-system-request
-                              #:create-mount-target
-                              #:create-mount-target-request
-                              #:create-replication-configuration
-                              #:create-replication-configuration-request
-                              #:create-tags #:create-tags-request
+                              #:client-token #:create-access-point
+                              #:create-file-system #:create-mount-target
+                              #:create-replication-configuration #:create-tags
                               #:creation-info #:creation-token
-                              #:delete-access-point
-                              #:delete-access-point-request
-                              #:delete-file-system #:delete-file-system-policy
-                              #:delete-file-system-policy-request
-                              #:delete-file-system-request
-                              #:delete-mount-target
-                              #:delete-mount-target-request
-                              #:delete-replication-configuration
-                              #:delete-replication-configuration-request
-                              #:delete-tags #:delete-tags-request
-                              #:deletion-mode #:dependency-timeout
-                              #:describe-access-points
-                              #:describe-access-points-request
-                              #:describe-access-points-response
+                              #:delete-access-point #:delete-file-system
+                              #:delete-file-system-policy #:delete-mount-target
+                              #:delete-replication-configuration #:delete-tags
+                              #:deletion-mode #:describe-access-points
                               #:describe-account-preferences
-                              #:describe-account-preferences-request
-                              #:describe-account-preferences-response
                               #:describe-backup-policy
-                              #:describe-backup-policy-request
                               #:describe-file-system-policy
-                              #:describe-file-system-policy-request
                               #:describe-file-systems
-                              #:describe-file-systems-request
-                              #:describe-file-systems-response
                               #:describe-lifecycle-configuration
-                              #:describe-lifecycle-configuration-request
                               #:describe-mount-target-security-groups
-                              #:describe-mount-target-security-groups-request
-                              #:describe-mount-target-security-groups-response
                               #:describe-mount-targets
-                              #:describe-mount-targets-request
-                              #:describe-mount-targets-response
                               #:describe-replication-configurations
-                              #:describe-replication-configurations-request
-                              #:describe-replication-configurations-response
-                              #:describe-tags #:describe-tags-request
-                              #:describe-tags-response #:destination
+                              #:describe-tags #:destination
                               #:destination-to-create #:destinations
                               #:destinations-to-create #:encrypted #:error-code
-                              #:error-message #:file-system-already-exists
-                              #:file-system-arn #:file-system-description
+                              #:error-message #:file-system-arn
+                              #:file-system-description
                               #:file-system-descriptions #:file-system-id
-                              #:file-system-in-use #:file-system-limit-exceeded
-                              #:file-system-not-found
                               #:file-system-nullable-size-value
                               #:file-system-policy-description
                               #:file-system-protection-description
                               #:file-system-size #:file-system-size-value #:gid
-                              #:incorrect-file-system-life-cycle-state
-                              #:incorrect-mount-target-state
-                              #:insufficient-throughput-capacity
-                              #:internal-server-error
-                              #:invalid-policy-exception #:ip-address
-                              #:ip-address-in-use #:ip-address-type
-                              #:ipv6address #:kms-key-id #:life-cycle-state
+                              #:ip-address #:ip-address-type #:ipv6address
+                              #:kms-key-id #:life-cycle-state
                               #:lifecycle-configuration-description
                               #:lifecycle-policies #:lifecycle-policy
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:magnolio-apiservice-v20150201 #:marker
                               #:max-items #:max-results
                               #:modify-mount-target-security-groups
-                              #:modify-mount-target-security-groups-request
-                              #:mount-target-conflict #:mount-target-count
-                              #:mount-target-description
+                              #:mount-target-count #:mount-target-description
                               #:mount-target-descriptions #:mount-target-id
-                              #:mount-target-not-found #:name
-                              #:network-interface-id
-                              #:network-interface-limit-exceeded
-                              #:no-free-addresses-in-subnet #:owner-gid
+                              #:name #:network-interface-id #:owner-gid
                               #:owner-uid #:path #:performance-mode
-                              #:permissions #:policy #:policy-not-found
-                              #:posix-user #:provisioned-throughput-in-mibps
-                              #:put-account-preferences
-                              #:put-account-preferences-request
-                              #:put-account-preferences-response
-                              #:put-backup-policy #:put-backup-policy-request
+                              #:permissions #:policy #:posix-user
+                              #:provisioned-throughput-in-mibps
+                              #:put-account-preferences #:put-backup-policy
                               #:put-file-system-policy
-                              #:put-file-system-policy-request
-                              #:put-lifecycle-configuration
-                              #:put-lifecycle-configuration-request
-                              #:region-name #:replication-already-exists
+                              #:put-lifecycle-configuration #:region-name
                               #:replication-configuration-description
                               #:replication-configuration-descriptions
-                              #:replication-not-found
                               #:replication-overwrite-protection
                               #:replication-status #:resource #:resource-id
                               #:resource-id-preference #:resource-id-type
                               #:resources #:role-arn #:root-directory
                               #:secondary-gids #:security-group
-                              #:security-group-limit-exceeded
-                              #:security-group-not-found #:security-groups
-                              #:status #:status-message #:subnet-id
-                              #:subnet-not-found #:tag #:tag-key #:tag-keys
-                              #:tag-resource #:tag-resource-request #:tag-value
-                              #:tags #:throttling-exception
-                              #:throughput-limit-exceeded #:throughput-mode
-                              #:timestamp #:token #:too-many-requests
+                              #:security-groups #:status #:status-message
+                              #:subnet-id #:tag #:tag-key #:tag-keys
+                              #:tag-resource #:tag-value #:tags
+                              #:throughput-mode #:timestamp #:token
                               #:transition-to-archive-rules
                               #:transition-to-iarules
                               #:transition-to-primary-storage-class-rules #:uid
-                              #:unsupported-availability-zone #:untag-resource
-                              #:untag-resource-request #:update-file-system
-                              #:update-file-system-protection
-                              #:update-file-system-protection-request
-                              #:update-file-system-request
-                              #:validation-exception #:vpc-id))
+                              #:untag-resource #:update-file-system
+                              #:update-file-system-protection #:vpc-id))
 (common-lisp:in-package #:pira/efs)
 
 (smithy/sdk/service:define-service magnolio-apiservice-v20150201 :shape-name

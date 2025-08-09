@@ -1,8 +1,6 @@
 (uiop/package:define-package #:pira/network-firewall (:use)
                              (:export #:awsaccount-id #:azsync-state
                               #:accept-network-firewall-transit-gateway-attachment
-                              #:accept-network-firewall-transit-gateway-attachment-request
-                              #:accept-network-firewall-transit-gateway-attachment-response
                               #:action-definition #:action-name #:address
                               #:address-definition #:addresses #:age
                               #:analysis-report #:analysis-report-id
@@ -11,13 +9,7 @@
                               #:analysis-result #:analysis-result-list
                               #:analysis-type-report-result
                               #:associate-availability-zones
-                              #:associate-availability-zones-request
-                              #:associate-availability-zones-response
-                              #:associate-firewall-policy
-                              #:associate-firewall-policy-request
-                              #:associate-firewall-policy-response
-                              #:associate-subnets #:associate-subnets-request
-                              #:associate-subnets-response
+                              #:associate-firewall-policy #:associate-subnets
                               #:association-sync-state #:attachment
                               #:attachment-id #:attachment-status
                               #:availability-zone #:availability-zone-mapping
@@ -31,79 +23,27 @@
                               #:collection-member-string
                               #:configuration-sync-state #:count
                               #:create-firewall #:create-firewall-policy
-                              #:create-firewall-policy-request
-                              #:create-firewall-policy-response
-                              #:create-firewall-request
-                              #:create-firewall-response #:create-rule-group
-                              #:create-rule-group-request
-                              #:create-rule-group-response
+                              #:create-rule-group
                               #:create-tlsinspection-configuration
-                              #:create-tlsinspection-configuration-request
-                              #:create-tlsinspection-configuration-response
-                              #:create-vpc-endpoint-association
-                              #:create-vpc-endpoint-association-request
-                              #:create-vpc-endpoint-association-response
-                              #:custom-action #:custom-actions
-                              #:deep-threat-inspection #:delete-firewall
-                              #:delete-firewall-policy
-                              #:delete-firewall-policy-request
-                              #:delete-firewall-policy-response
-                              #:delete-firewall-request
-                              #:delete-firewall-response
+                              #:create-vpc-endpoint-association #:custom-action
+                              #:custom-actions #:deep-threat-inspection
+                              #:delete-firewall #:delete-firewall-policy
                               #:delete-network-firewall-transit-gateway-attachment
-                              #:delete-network-firewall-transit-gateway-attachment-request
-                              #:delete-network-firewall-transit-gateway-attachment-response
-                              #:delete-resource-policy
-                              #:delete-resource-policy-request
-                              #:delete-resource-policy-response
-                              #:delete-rule-group #:delete-rule-group-request
-                              #:delete-rule-group-response
+                              #:delete-resource-policy #:delete-rule-group
                               #:delete-tlsinspection-configuration
-                              #:delete-tlsinspection-configuration-request
-                              #:delete-tlsinspection-configuration-response
                               #:delete-vpc-endpoint-association
-                              #:delete-vpc-endpoint-association-request
-                              #:delete-vpc-endpoint-association-response
                               #:describe-firewall #:describe-firewall-metadata
-                              #:describe-firewall-metadata-request
-                              #:describe-firewall-metadata-response
                               #:describe-firewall-policy
-                              #:describe-firewall-policy-request
-                              #:describe-firewall-policy-response
-                              #:describe-firewall-request
-                              #:describe-firewall-response
                               #:describe-flow-operation
-                              #:describe-flow-operation-request
-                              #:describe-flow-operation-response
                               #:describe-logging-configuration
-                              #:describe-logging-configuration-request
-                              #:describe-logging-configuration-response
-                              #:describe-resource-policy
-                              #:describe-resource-policy-request
-                              #:describe-resource-policy-response
-                              #:describe-rule-group
+                              #:describe-resource-policy #:describe-rule-group
                               #:describe-rule-group-metadata
-                              #:describe-rule-group-metadata-request
-                              #:describe-rule-group-metadata-response
-                              #:describe-rule-group-request
-                              #:describe-rule-group-response
                               #:describe-rule-group-summary
-                              #:describe-rule-group-summary-request
-                              #:describe-rule-group-summary-response
                               #:describe-tlsinspection-configuration
-                              #:describe-tlsinspection-configuration-request
-                              #:describe-tlsinspection-configuration-response
-                              #:describe-vpc-endpoint-association
-                              #:describe-vpc-endpoint-association-request
-                              #:describe-vpc-endpoint-association-response
-                              #:description #:destination #:dimension
-                              #:dimension-value #:dimensions
-                              #:disassociate-availability-zones
-                              #:disassociate-availability-zones-request
-                              #:disassociate-availability-zones-response
-                              #:disassociate-subnets
-                              #:disassociate-subnets-request
-                              #:disassociate-subnets-response #:domain
+                              #:describe-vpc-endpoint-association #:description
+                              #:destination #:dimension #:dimension-value
+                              #:dimensions #:disassociate-availability-zones
+                              #:disassociate-subnets #:domain
                               #:enable-monitoring-dashboard
                               #:enabled-analysis-type #:enabled-analysis-types
                               #:encryption-configuration #:encryption-type
@@ -119,50 +59,21 @@
                               #:flow-operation-status #:flow-operation-type
                               #:flow-operations #:flow-request-timestamp
                               #:flow-timeouts #:flows #:generated-rules-type
-                              #:get-analysis-report-results
-                              #:get-analysis-report-results-request
-                              #:get-analysis-report-results-response
-                              #:hash-map-key #:hash-map-value #:header #:hits
-                              #:ipaddress-type #:ipset #:ipset-arn
-                              #:ipset-metadata #:ipset-metadata-map
-                              #:ipset-reference #:ipset-reference-map
-                              #:ipset-reference-name #:ipsets #:identified-type
-                              #:insufficient-capacity-exception
-                              #:internal-server-error
-                              #:invalid-operation-exception
-                              #:invalid-request-exception
-                              #:invalid-resource-policy-exception
-                              #:invalid-token-exception #:key-id #:keyword
+                              #:get-analysis-report-results #:hash-map-key
+                              #:hash-map-value #:header #:hits #:ipaddress-type
+                              #:ipset #:ipset-arn #:ipset-metadata
+                              #:ipset-metadata-map #:ipset-reference
+                              #:ipset-reference-map #:ipset-reference-name
+                              #:ipsets #:identified-type #:key-id #:keyword
                               #:last-accessed #:last-update-time
-                              #:limit-exceeded-exception
-                              #:list-analysis-reports
-                              #:list-analysis-reports-request
-                              #:list-analysis-reports-response
-                              #:list-firewall-policies
-                              #:list-firewall-policies-request
-                              #:list-firewall-policies-response
-                              #:list-firewalls #:list-firewalls-request
-                              #:list-firewalls-response
-                              #:list-flow-operation-results
-                              #:list-flow-operation-results-request
-                              #:list-flow-operation-results-response
-                              #:list-flow-operations
-                              #:list-flow-operations-request
-                              #:list-flow-operations-response
-                              #:list-rule-groups #:list-rule-groups-request
-                              #:list-rule-groups-response
+                              #:list-analysis-reports #:list-firewall-policies
+                              #:list-firewalls #:list-flow-operation-results
+                              #:list-flow-operations #:list-rule-groups
                               #:list-tlsinspection-configurations
-                              #:list-tlsinspection-configurations-request
-                              #:list-tlsinspection-configurations-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
                               #:list-vpc-endpoint-associations
-                              #:list-vpc-endpoint-associations-request
-                              #:list-vpc-endpoint-associations-response
                               #:log-destination-config
                               #:log-destination-configs #:log-destination-map
-                              #:log-destination-permission-exception
                               #:log-destination-type #:log-type
                               #:logging-configuration #:match-attributes
                               #:network-firewall-20201112
@@ -175,18 +86,13 @@
                               #:port-sets #:priority #:protocol-number
                               #:protocol-numbers #:protocol-string
                               #:protocol-strings #:publish-metric-action
-                              #:put-resource-policy
-                              #:put-resource-policy-request
-                              #:put-resource-policy-response #:reference-sets
+                              #:put-resource-policy #:reference-sets
                               #:reject-network-firewall-transit-gateway-attachment
-                              #:reject-network-firewall-transit-gateway-attachment-request
-                              #:reject-network-firewall-transit-gateway-attachment-response
                               #:report-time #:resource-arn #:resource-id
                               #:resource-managed-status #:resource-managed-type
-                              #:resource-name #:resource-not-found-exception
-                              #:resource-owner-check-exception
-                              #:resource-status #:revocation-check-action
-                              #:rule-capacity #:rule-definition #:rule-group
+                              #:resource-name #:resource-status
+                              #:revocation-check-action #:rule-capacity
+                              #:rule-definition #:rule-group
                               #:rule-group-metadata #:rule-group-response
                               #:rule-group-type #:rule-groups #:rule-id-list
                               #:rule-option #:rule-options #:rule-order
@@ -199,16 +105,10 @@
                               #:server-certificate-scope
                               #:server-certificate-scopes #:server-certificates
                               #:setting #:settings #:source #:source-metadata
-                              #:start-analysis-report
-                              #:start-analysis-report-request
-                              #:start-analysis-report-response
-                              #:start-flow-capture #:start-flow-capture-request
-                              #:start-flow-capture-response #:start-flow-flush
-                              #:start-flow-flush-request
-                              #:start-flow-flush-response #:start-time
-                              #:stateful-action #:stateful-actions
-                              #:stateful-engine-options #:stateful-rule
-                              #:stateful-rule-direction
+                              #:start-analysis-report #:start-flow-capture
+                              #:start-flow-flush #:start-time #:stateful-action
+                              #:stateful-actions #:stateful-engine-options
+                              #:stateful-rule #:stateful-rule-direction
                               #:stateful-rule-group-override
                               #:stateful-rule-group-reference
                               #:stateful-rule-group-references
@@ -231,51 +131,27 @@
                               #:tlsinspection-configuration-response
                               #:tlsinspection-configurations #:tag #:tag-key
                               #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:tags-pagination-max-results
                               #:target-type #:target-types
                               #:tcp-idle-timeout-range-bound
-                              #:throttling-exception #:tls-certificate-data
+                              #:tls-certificate-data
                               #:transit-gateway-attachment-id
                               #:transit-gateway-attachment-status
                               #:transit-gateway-attachment-sync-state
                               #:transit-gateway-attachment-sync-state-message
                               #:transit-gateway-id #:unique-sources
-                              #:unsupported-operation-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
+                              #:untag-resource
                               #:update-availability-zone-change-protection
-                              #:update-availability-zone-change-protection-request
-                              #:update-availability-zone-change-protection-response
                               #:update-firewall-analysis-settings
-                              #:update-firewall-analysis-settings-request
-                              #:update-firewall-analysis-settings-response
                               #:update-firewall-delete-protection
-                              #:update-firewall-delete-protection-request
-                              #:update-firewall-delete-protection-response
                               #:update-firewall-description
-                              #:update-firewall-description-request
-                              #:update-firewall-description-response
                               #:update-firewall-encryption-configuration
-                              #:update-firewall-encryption-configuration-request
-                              #:update-firewall-encryption-configuration-response
                               #:update-firewall-policy
                               #:update-firewall-policy-change-protection
-                              #:update-firewall-policy-change-protection-request
-                              #:update-firewall-policy-change-protection-response
-                              #:update-firewall-policy-request
-                              #:update-firewall-policy-response
                               #:update-logging-configuration
-                              #:update-logging-configuration-request
-                              #:update-logging-configuration-response
-                              #:update-rule-group #:update-rule-group-request
-                              #:update-rule-group-response
+                              #:update-rule-group
                               #:update-subnet-change-protection
-                              #:update-subnet-change-protection-request
-                              #:update-subnet-change-protection-response
                               #:update-tlsinspection-configuration
-                              #:update-tlsinspection-configuration-request
-                              #:update-tlsinspection-configuration-response
                               #:update-token #:variable-definition
                               #:variable-definition-list
                               #:vpc-endpoint-association

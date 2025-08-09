@@ -1,13 +1,8 @@
 (uiop/package:define-package #:pira/apigatewaymanagementapi (:use)
                              (:export #:api-gateway-management-api #:data
-                              #:delete-connection #:delete-connection-request
-                              #:forbidden-exception #:get-connection
-                              #:get-connection-request
-                              #:get-connection-response #:gone-exception
-                              #:identity #:limit-exceeded-exception
-                              #:payload-too-large-exception
-                              #:post-to-connection #:post-to-connection-request
-                              #:string #:timestamp-iso8601))
+                              #:delete-connection #:get-connection #:identity
+                              #:post-to-connection #:string
+                              #:timestamp-iso8601))
 (common-lisp:in-package #:pira/apigatewaymanagementapi)
 
 (smithy/sdk/service:define-service api-gateway-management-api :shape-name

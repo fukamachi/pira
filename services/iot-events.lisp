@@ -31,32 +31,13 @@
                               #:attribute-json-path #:attributes
                               #:clear-timer-action #:comparison-operator
                               #:condition #:content-expression
-                              #:create-alarm-model #:create-alarm-model-request
-                              #:create-alarm-model-response
-                              #:create-detector-model
-                              #:create-detector-model-request
-                              #:create-detector-model-response #:create-input
-                              #:create-input-request #:create-input-response
-                              #:delete-alarm-model #:delete-alarm-model-request
-                              #:delete-alarm-model-response
-                              #:delete-detector-model
-                              #:delete-detector-model-request
-                              #:delete-detector-model-response #:delete-input
-                              #:delete-input-request #:delete-input-response
+                              #:create-alarm-model #:create-detector-model
+                              #:create-input #:delete-alarm-model
+                              #:delete-detector-model #:delete-input
                               #:delivery-stream-name #:describe-alarm-model
-                              #:describe-alarm-model-request
-                              #:describe-alarm-model-response
                               #:describe-detector-model
                               #:describe-detector-model-analysis
-                              #:describe-detector-model-analysis-request
-                              #:describe-detector-model-analysis-response
-                              #:describe-detector-model-request
-                              #:describe-detector-model-response
-                              #:describe-input #:describe-input-request
-                              #:describe-input-response
-                              #:describe-logging-options
-                              #:describe-logging-options-request
-                              #:describe-logging-options-response
+                              #:describe-input #:describe-logging-options
                               #:detector-debug-option #:detector-debug-options
                               #:detector-model #:detector-model-arn
                               #:detector-model-configuration
@@ -77,40 +58,23 @@
                               #:event-name #:events #:firehose-action
                               #:firehose-separator #:from-email
                               #:get-detector-model-analysis-results
-                              #:get-detector-model-analysis-results-request
-                              #:get-detector-model-analysis-results-response
                               #:identity-store-id
                               #:initialization-configuration #:input
                               #:input-arn #:input-configuration
                               #:input-definition #:input-description
                               #:input-identifier #:input-name #:input-property
                               #:input-status #:input-summaries #:input-summary
-                              #:internal-failure-exception
-                              #:invalid-request-exception #:iot-columbo-service
-                              #:iot-events-action #:iot-events-input-identifier
+                              #:iot-columbo-service #:iot-events-action
+                              #:iot-events-input-identifier
                               #:iot-site-wise-action
                               #:iot-site-wise-asset-model-property-identifier
                               #:iot-site-wise-input-identifier
                               #:iot-topic-publish-action #:key-value
-                              #:lambda-action #:limit-exceeded-exception
-                              #:list-alarm-model-versions
-                              #:list-alarm-model-versions-request
-                              #:list-alarm-model-versions-response
-                              #:list-alarm-models #:list-alarm-models-request
-                              #:list-alarm-models-response
+                              #:lambda-action #:list-alarm-model-versions
+                              #:list-alarm-models
                               #:list-detector-model-versions
-                              #:list-detector-model-versions-request
-                              #:list-detector-model-versions-response
-                              #:list-detector-models
-                              #:list-detector-models-request
-                              #:list-detector-models-response
-                              #:list-input-routings
-                              #:list-input-routings-request
-                              #:list-input-routings-response #:list-inputs
-                              #:list-inputs-request #:list-inputs-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
+                              #:list-detector-models #:list-input-routings
+                              #:list-inputs #:list-tags-for-resource
                               #:logging-enabled #:logging-level
                               #:logging-options #:mqtttopic
                               #:max-analysis-results #:max-results #:next-token
@@ -119,38 +83,22 @@
                               #:notification-target-actions
                               #:on-enter-lifecycle #:on-exit-lifecycle
                               #:on-input-lifecycle #:payload #:payload-type
-                              #:put-logging-options
-                              #:put-logging-options-request #:queue-url
+                              #:put-logging-options #:queue-url
                               #:recipient-detail #:recipient-details
-                              #:reset-timer-action
-                              #:resource-already-exists-exception
-                              #:resource-in-use-exception #:resource-name
-                              #:resource-not-found-exception #:routed-resource
-                              #:routed-resources #:smsconfiguration
-                              #:smsconfigurations #:smssender-id
-                              #:snstopic-publish-action #:ssoidentity
-                              #:ssoreference-id #:seconds
-                              #:service-unavailable-exception
+                              #:reset-timer-action #:resource-name
+                              #:routed-resource #:routed-resources
+                              #:smsconfiguration #:smsconfigurations
+                              #:smssender-id #:snstopic-publish-action
+                              #:ssoidentity #:ssoreference-id #:seconds
                               #:set-timer-action #:set-variable-action
                               #:severity #:simple-rule #:sqs-action
-                              #:start-detector-model-analysis
-                              #:start-detector-model-analysis-request
-                              #:start-detector-model-analysis-response #:state
+                              #:start-detector-model-analysis #:state
                               #:state-name #:states #:status-message #:tag
-                              #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags #:threshold
-                              #:throttling-exception #:timer-name #:timestamp
+                              #:tag-key #:tag-keys #:tag-resource #:tag-value
+                              #:tags #:threshold #:timer-name #:timestamp
                               #:transition-event #:transition-events
-                              #:unsupported-operation-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-alarm-model
-                              #:update-alarm-model-request
-                              #:update-alarm-model-response
-                              #:update-detector-model
-                              #:update-detector-model-request
-                              #:update-detector-model-response #:update-input
-                              #:update-input-request #:update-input-response
+                              #:untag-resource #:update-alarm-model
+                              #:update-detector-model #:update-input
                               #:use-base64 #:variable-name #:variable-value
                               #:error-message #:resource-arn #:resource-id))
 (common-lisp:in-package #:pira/iot-events)

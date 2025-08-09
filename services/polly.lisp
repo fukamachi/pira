@@ -1,60 +1,27 @@
 (uiop/package:define-package #:pira/polly (:use)
                              (:export #:alphabet #:audio-stream #:content-type
-                              #:date-time #:delete-lexicon
-                              #:delete-lexicon-input #:delete-lexicon-output
-                              #:describe-voices #:describe-voices-input
-                              #:describe-voices-output #:engine #:engine-list
-                              #:engine-not-supported-exception #:error-message
-                              #:gender #:get-lexicon #:get-lexicon-input
-                              #:get-lexicon-output #:get-speech-synthesis-task
-                              #:get-speech-synthesis-task-input
-                              #:get-speech-synthesis-task-output
+                              #:date-time #:delete-lexicon #:describe-voices
+                              #:engine #:engine-list #:error-message #:gender
+                              #:get-lexicon #:get-speech-synthesis-task
                               #:include-additional-language-codes
-                              #:invalid-lexicon-exception
-                              #:invalid-next-token-exception
-                              #:invalid-s3bucket-exception
-                              #:invalid-s3key-exception
-                              #:invalid-sample-rate-exception
-                              #:invalid-sns-topic-arn-exception
-                              #:invalid-ssml-exception
-                              #:invalid-task-id-exception #:language-code
-                              #:language-code-list #:language-name
-                              #:language-not-supported-exception
-                              #:last-modified #:lexemes-count #:lexicon
-                              #:lexicon-arn #:lexicon-attributes
+                              #:language-code #:language-code-list
+                              #:language-name #:last-modified #:lexemes-count
+                              #:lexicon #:lexicon-arn #:lexicon-attributes
                               #:lexicon-content #:lexicon-description
                               #:lexicon-description-list #:lexicon-name
-                              #:lexicon-name-list #:lexicon-not-found-exception
-                              #:lexicon-size-exceeded-exception #:list-lexicons
-                              #:list-lexicons-input #:list-lexicons-output
-                              #:list-speech-synthesis-tasks
-                              #:list-speech-synthesis-tasks-input
-                              #:list-speech-synthesis-tasks-output
-                              #:marks-not-supported-for-format-exception
-                              #:max-lexeme-length-exceeded-exception
-                              #:max-lexicons-number-exceeded-exception
-                              #:max-results #:next-token #:output-format
+                              #:lexicon-name-list #:list-lexicons
+                              #:list-speech-synthesis-tasks #:max-results
+                              #:next-token #:output-format
                               #:output-s3bucket-name #:output-s3key-prefix
                               #:output-uri #:parrot-v1 #:put-lexicon
-                              #:put-lexicon-input #:put-lexicon-output
-                              #:request-characters #:sample-rate
-                              #:service-failure-exception #:size
+                              #:request-characters #:sample-rate #:size
                               #:sns-topic-arn #:speech-mark-type
                               #:speech-mark-type-list
-                              #:ssml-marks-not-supported-for-text-type-exception
-                              #:start-speech-synthesis-task
-                              #:start-speech-synthesis-task-input
-                              #:start-speech-synthesis-task-output
-                              #:synthesis-task
-                              #:synthesis-task-not-found-exception
-                              #:synthesis-tasks #:synthesize-speech
-                              #:synthesize-speech-input
-                              #:synthesize-speech-output #:task-id
+                              #:start-speech-synthesis-task #:synthesis-task
+                              #:synthesis-tasks #:synthesize-speech #:task-id
                               #:task-status #:task-status-reason #:text
-                              #:text-length-exceeded-exception #:text-type
-                              #:unsupported-pls-alphabet-exception
-                              #:unsupported-pls-language-exception #:voice
-                              #:voice-id #:voice-list #:voice-name))
+                              #:text-type #:voice #:voice-id #:voice-list
+                              #:voice-name))
 (common-lisp:in-package #:pira/polly)
 
 (smithy/sdk/service:define-service parrot-v1 :shape-name "Parrot_v1" :version

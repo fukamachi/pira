@@ -1,7 +1,5 @@
 (uiop/package:define-package #:pira/acm (:use)
-                             (:export #:access-denied-exception
-                              #:add-tags-to-certificate
-                              #:add-tags-to-certificate-request #:arn
+                             (:export #:add-tags-to-certificate #:arn
                               #:availability-error-message #:certificate-body
                               #:certificate-body-blob #:certificate-chain
                               #:certificate-chain-blob #:certificate-detail
@@ -10,69 +8,40 @@
                               #:certificate-status #:certificate-statuses
                               #:certificate-summary #:certificate-summary-list
                               #:certificate-transparency-logging-preference
-                              #:certificate-type #:conflict-exception
-                              #:delete-certificate #:delete-certificate-request
-                              #:describe-certificate
-                              #:describe-certificate-request
-                              #:describe-certificate-response #:domain-list
+                              #:certificate-type #:delete-certificate
+                              #:describe-certificate #:domain-list
                               #:domain-name-string #:domain-status
                               #:domain-validation #:domain-validation-list
                               #:domain-validation-option
                               #:domain-validation-option-list
                               #:expiry-events-configuration
-                              #:export-certificate #:export-certificate-request
-                              #:export-certificate-response
-                              #:extended-key-usage
+                              #:export-certificate #:extended-key-usage
                               #:extended-key-usage-filter-list
                               #:extended-key-usage-list
                               #:extended-key-usage-name
                               #:extended-key-usage-names #:failure-reason
                               #:filters #:get-account-configuration
-                              #:get-account-configuration-response
-                              #:get-certificate #:get-certificate-request
-                              #:get-certificate-response #:http-redirect
+                              #:get-certificate #:http-redirect
                               #:idempotency-token #:import-certificate
-                              #:import-certificate-request
-                              #:import-certificate-response #:in-use-list
-                              #:invalid-args-exception #:invalid-arn-exception
-                              #:invalid-domain-validation-options-exception
-                              #:invalid-parameter-exception
-                              #:invalid-state-exception #:invalid-tag-exception
-                              #:key-algorithm #:key-algorithm-list #:key-usage
+                              #:in-use-list #:key-algorithm
+                              #:key-algorithm-list #:key-usage
                               #:key-usage-filter-list #:key-usage-list
                               #:key-usage-name #:key-usage-names
-                              #:limit-exceeded-exception #:list-certificates
-                              #:list-certificates-request
-                              #:list-certificates-response
-                              #:list-tags-for-certificate
-                              #:list-tags-for-certificate-request
-                              #:list-tags-for-certificate-response #:max-items
-                              #:next-token #:nullable-boolean #:passphrase-blob
-                              #:pca-arn #:positive-integer #:private-key
-                              #:private-key-blob #:put-account-configuration
-                              #:put-account-configuration-request #:record-type
+                              #:list-certificates #:list-tags-for-certificate
+                              #:max-items #:next-token #:nullable-boolean
+                              #:passphrase-blob #:pca-arn #:positive-integer
+                              #:private-key #:private-key-blob
+                              #:put-account-configuration #:record-type
                               #:remove-tags-from-certificate
-                              #:remove-tags-from-certificate-request
-                              #:renew-certificate #:renew-certificate-request
-                              #:renewal-eligibility #:renewal-status
-                              #:renewal-summary #:request-certificate
-                              #:request-certificate-request
-                              #:request-certificate-response
-                              #:request-in-progress-exception
-                              #:resend-validation-email
-                              #:resend-validation-email-request
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception #:resource-record
-                              #:revocation-reason #:revoke-certificate
-                              #:revoke-certificate-request
-                              #:revoke-certificate-response
-                              #:service-error-message #:sort-by #:sort-order
-                              #:string #:tstamp #:tag #:tag-key #:tag-list
-                              #:tag-policy-exception #:tag-value
-                              #:throttling-exception #:too-many-tags-exception
+                              #:renew-certificate #:renewal-eligibility
+                              #:renewal-status #:renewal-summary
+                              #:request-certificate #:resend-validation-email
+                              #:resource-record #:revocation-reason
+                              #:revoke-certificate #:service-error-message
+                              #:sort-by #:sort-order #:string #:tstamp #:tag
+                              #:tag-key #:tag-list #:tag-value
                               #:update-certificate-options
-                              #:update-certificate-options-request
-                              #:validation-email-list #:validation-exception
+                              #:validation-email-list
                               #:validation-exception-message
                               #:validation-method))
 (common-lisp:in-package #:pira/acm)

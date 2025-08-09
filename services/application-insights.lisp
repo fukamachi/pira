@@ -1,13 +1,11 @@
 (uiop/package:define-package #:pira/application-insights (:use)
-                             (:export #:access-denied-exception #:account-id
-                              #:add-workload #:add-workload-request
-                              #:add-workload-response #:affected-resource
-                              #:amazon-resource-name #:application-component
+                             (:export #:account-id #:add-workload
+                              #:affected-resource #:amazon-resource-name
+                              #:application-component
                               #:application-component-list #:application-info
                               #:application-info-list
                               #:attach-missing-permission #:auto-config-enabled
-                              #:auto-create #:bad-request-exception
-                              #:cwemonitor-enabled
+                              #:auto-create #:cwemonitor-enabled
                               #:cloud-watch-event-detail-type
                               #:cloud-watch-event-id #:cloud-watch-event-source
                               #:code-deploy-application
@@ -23,45 +21,16 @@
                               #:configuration-event-resource-type
                               #:configuration-event-status
                               #:configuration-event-time #:create-application
-                              #:create-application-request
-                              #:create-application-response #:create-component
-                              #:create-component-request
-                              #:create-component-response #:create-log-pattern
-                              #:create-log-pattern-request
-                              #:create-log-pattern-response
+                              #:create-component #:create-log-pattern
                               #:custom-component-name #:delete-application
-                              #:delete-application-request
-                              #:delete-application-response #:delete-component
-                              #:delete-component-request
-                              #:delete-component-response #:delete-log-pattern
-                              #:delete-log-pattern-request
-                              #:delete-log-pattern-response
-                              #:describe-application
-                              #:describe-application-request
-                              #:describe-application-response
-                              #:describe-component
+                              #:delete-component #:delete-log-pattern
+                              #:describe-application #:describe-component
                               #:describe-component-configuration
                               #:describe-component-configuration-recommendation
-                              #:describe-component-configuration-recommendation-request
-                              #:describe-component-configuration-recommendation-response
-                              #:describe-component-configuration-request
-                              #:describe-component-configuration-response
-                              #:describe-component-request
-                              #:describe-component-response
-                              #:describe-log-pattern
-                              #:describe-log-pattern-request
-                              #:describe-log-pattern-response
-                              #:describe-observation
-                              #:describe-observation-request
-                              #:describe-observation-response
+                              #:describe-log-pattern #:describe-observation
                               #:describe-problem
                               #:describe-problem-observations
-                              #:describe-problem-observations-request
-                              #:describe-problem-observations-response
-                              #:describe-problem-request
-                              #:describe-problem-response #:describe-workload
-                              #:describe-workload-request
-                              #:describe-workload-response #:detected-workload
+                              #:describe-workload #:detected-workload
                               #:discovery-type #:ec2windows-barley-service
                               #:ebs-cause #:ebs-event #:ebs-request-id
                               #:ebs-result #:ec2state #:end-time #:error-msg
@@ -70,27 +39,13 @@
                               #:health-event-arn #:health-event-description
                               #:health-event-type-category
                               #:health-event-type-code #:health-service
-                              #:insights #:internal-server-exception
-                              #:last-recurrence-time #:life-cycle #:line-time
-                              #:list-applications #:list-applications-request
-                              #:list-applications-response #:list-components
-                              #:list-components-request
-                              #:list-components-response
+                              #:insights #:last-recurrence-time #:life-cycle
+                              #:line-time #:list-applications #:list-components
                               #:list-configuration-history
-                              #:list-configuration-history-request
-                              #:list-configuration-history-response
-                              #:list-log-pattern-sets
-                              #:list-log-pattern-sets-request
-                              #:list-log-pattern-sets-response
-                              #:list-log-patterns #:list-log-patterns-request
-                              #:list-log-patterns-response #:list-problems
-                              #:list-problems-request #:list-problems-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-workloads #:list-workloads-request
-                              #:list-workloads-response #:log-filter
-                              #:log-group #:log-pattern #:log-pattern-list
+                              #:list-log-pattern-sets #:list-log-patterns
+                              #:list-problems #:list-tags-for-resource
+                              #:list-workloads #:log-filter #:log-group
+                              #:log-pattern #:log-pattern-list
                               #:log-pattern-name #:log-pattern-rank
                               #:log-pattern-regex #:log-pattern-set-list
                               #:log-pattern-set-name #:log-text #:max-entities
@@ -104,41 +59,26 @@
                               #:rds-event-message #:recommendation-type
                               #:recurring-count #:related-observations
                               #:remarks #:remove-snstopic #:remove-workload
-                              #:remove-workload-request
-                              #:remove-workload-response #:resolution-method
-                              #:resource-arn #:resource-group-name
-                              #:resource-in-use-exception #:resource-list
-                              #:resource-not-found-exception #:resource-type
-                              #:s3event-name #:snsnotification-arn
-                              #:severity-level #:short-name #:source-arn
-                              #:source-type #:start-time #:states-arn
-                              #:states-execution-arn #:states-input
-                              #:states-status #:status #:tag #:tag-key
-                              #:tag-key-list #:tag-list #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
-                              #:tag-value #:tags-already-exist-exception #:tier
-                              #:title #:too-many-tags-exception #:unit
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-application
-                              #:update-application-request
-                              #:update-application-response #:update-component
+                              #:resolution-method #:resource-arn
+                              #:resource-group-name #:resource-list
+                              #:resource-type #:s3event-name
+                              #:snsnotification-arn #:severity-level
+                              #:short-name #:source-arn #:source-type
+                              #:start-time #:states-arn #:states-execution-arn
+                              #:states-input #:states-status #:status #:tag
+                              #:tag-key #:tag-key-list #:tag-list
+                              #:tag-resource #:tag-value #:tier #:title #:unit
+                              #:untag-resource #:update-application
+                              #:update-component
                               #:update-component-configuration
-                              #:update-component-configuration-request
-                              #:update-component-configuration-response
-                              #:update-component-request
-                              #:update-component-response #:update-log-pattern
-                              #:update-log-pattern-request
-                              #:update-log-pattern-response #:update-problem
-                              #:update-problem-request
-                              #:update-problem-response #:update-status
-                              #:update-workload #:update-workload-request
-                              #:update-workload-response #:validation-exception
-                              #:value #:visibility #:workload
-                              #:workload-configuration #:workload-id
-                              #:workload-list #:workload-meta-data
-                              #:workload-name #:xray-error-percent
-                              #:xray-fault-percent #:xray-node-name
-                              #:xray-node-type #:xray-request-average-latency
+                              #:update-log-pattern #:update-problem
+                              #:update-status #:update-workload #:value
+                              #:visibility #:workload #:workload-configuration
+                              #:workload-id #:workload-list
+                              #:workload-meta-data #:workload-name
+                              #:xray-error-percent #:xray-fault-percent
+                              #:xray-node-name #:xray-node-type
+                              #:xray-request-average-latency
                               #:xray-request-count #:xray-throttle-percent))
 (common-lisp:in-package #:pira/application-insights)
 

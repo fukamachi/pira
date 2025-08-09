@@ -1,48 +1,20 @@
 (uiop/package:define-package #:pira/global-accelerator (:use)
                              (:export #:accelerator #:accelerator-attributes
                               #:accelerator-event #:accelerator-events
-                              #:accelerator-not-disabled-exception
-                              #:accelerator-not-found-exception
                               #:accelerator-status #:accelerators
-                              #:access-denied-exception
-                              #:add-custom-routing-endpoints
-                              #:add-custom-routing-endpoints-request
-                              #:add-custom-routing-endpoints-response
-                              #:add-endpoints #:add-endpoints-request
-                              #:add-endpoints-response #:advertise-byoip-cidr
-                              #:advertise-byoip-cidr-request
-                              #:advertise-byoip-cidr-response
-                              #:allow-custom-routing-traffic
-                              #:allow-custom-routing-traffic-request
-                              #:associated-endpoint-group-found-exception
-                              #:associated-listener-found-exception
-                              #:attachment #:attachment-name
-                              #:attachment-not-found-exception #:attachments
-                              #:aws-account-id #:aws-account-ids #:byoip-cidr
-                              #:byoip-cidr-event #:byoip-cidr-events
-                              #:byoip-cidr-not-found-exception
-                              #:byoip-cidr-state #:byoip-cidrs
-                              #:cidr-authorization-context #:client-affinity
-                              #:conflict-exception #:create-accelerator
-                              #:create-accelerator-request
-                              #:create-accelerator-response
+                              #:add-custom-routing-endpoints #:add-endpoints
+                              #:advertise-byoip-cidr
+                              #:allow-custom-routing-traffic #:attachment
+                              #:attachment-name #:attachments #:aws-account-id
+                              #:aws-account-ids #:byoip-cidr #:byoip-cidr-event
+                              #:byoip-cidr-events #:byoip-cidr-state
+                              #:byoip-cidrs #:cidr-authorization-context
+                              #:client-affinity #:create-accelerator
                               #:create-cross-account-attachment
-                              #:create-cross-account-attachment-request
-                              #:create-cross-account-attachment-response
                               #:create-custom-routing-accelerator
-                              #:create-custom-routing-accelerator-request
-                              #:create-custom-routing-accelerator-response
                               #:create-custom-routing-endpoint-group
-                              #:create-custom-routing-endpoint-group-request
-                              #:create-custom-routing-endpoint-group-response
                               #:create-custom-routing-listener
-                              #:create-custom-routing-listener-request
-                              #:create-custom-routing-listener-response
-                              #:create-endpoint-group
-                              #:create-endpoint-group-request
-                              #:create-endpoint-group-response
-                              #:create-listener #:create-listener-request
-                              #:create-listener-response
+                              #:create-endpoint-group #:create-listener
                               #:cross-account-resource
                               #:cross-account-resources
                               #:custom-routing-accelerator
@@ -64,155 +36,67 @@
                               #:custom-routing-listeners
                               #:custom-routing-protocol
                               #:custom-routing-protocols #:delete-accelerator
-                              #:delete-accelerator-request
                               #:delete-cross-account-attachment
-                              #:delete-cross-account-attachment-request
                               #:delete-custom-routing-accelerator
-                              #:delete-custom-routing-accelerator-request
                               #:delete-custom-routing-endpoint-group
-                              #:delete-custom-routing-endpoint-group-request
                               #:delete-custom-routing-listener
-                              #:delete-custom-routing-listener-request
-                              #:delete-endpoint-group
-                              #:delete-endpoint-group-request #:delete-listener
-                              #:delete-listener-request
+                              #:delete-endpoint-group #:delete-listener
                               #:deny-custom-routing-traffic
-                              #:deny-custom-routing-traffic-request
-                              #:deprovision-byoip-cidr
-                              #:deprovision-byoip-cidr-request
-                              #:deprovision-byoip-cidr-response
-                              #:describe-accelerator
+                              #:deprovision-byoip-cidr #:describe-accelerator
                               #:describe-accelerator-attributes
-                              #:describe-accelerator-attributes-request
-                              #:describe-accelerator-attributes-response
-                              #:describe-accelerator-request
-                              #:describe-accelerator-response
                               #:describe-cross-account-attachment
-                              #:describe-cross-account-attachment-request
-                              #:describe-cross-account-attachment-response
                               #:describe-custom-routing-accelerator
                               #:describe-custom-routing-accelerator-attributes
-                              #:describe-custom-routing-accelerator-attributes-request
-                              #:describe-custom-routing-accelerator-attributes-response
-                              #:describe-custom-routing-accelerator-request
-                              #:describe-custom-routing-accelerator-response
                               #:describe-custom-routing-endpoint-group
-                              #:describe-custom-routing-endpoint-group-request
-                              #:describe-custom-routing-endpoint-group-response
                               #:describe-custom-routing-listener
-                              #:describe-custom-routing-listener-request
-                              #:describe-custom-routing-listener-response
-                              #:describe-endpoint-group
-                              #:describe-endpoint-group-request
-                              #:describe-endpoint-group-response
-                              #:describe-listener #:describe-listener-request
-                              #:describe-listener-response
+                              #:describe-endpoint-group #:describe-listener
                               #:destination-addresses
                               #:destination-port-mapping
                               #:destination-port-mappings #:destination-ports
-                              #:endpoint-already-exists-exception
                               #:endpoint-configuration
                               #:endpoint-configurations #:endpoint-description
                               #:endpoint-descriptions #:endpoint-group
-                              #:endpoint-group-already-exists-exception
-                              #:endpoint-group-not-found-exception
                               #:endpoint-groups #:endpoint-identifier
                               #:endpoint-identifiers #:endpoint-ids
-                              #:endpoint-not-found-exception #:endpoint-weight
-                              #:error-message #:generic-boolean
-                              #:generic-string #:global-accelerator-v20180706
+                              #:endpoint-weight #:error-message
+                              #:generic-boolean #:generic-string
+                              #:global-accelerator-v20180706
                               #:health-check-interval-seconds
                               #:health-check-path #:health-check-port
                               #:health-check-protocol #:health-state
-                              #:idempotency-token
-                              #:incorrect-cidr-state-exception
-                              #:internal-service-error-exception
-                              #:invalid-argument-exception
-                              #:invalid-next-token-exception
-                              #:invalid-port-range-exception #:ip-address
+                              #:idempotency-token #:ip-address
                               #:ip-address-family #:ip-address-type
                               #:ip-addresses #:ip-set #:ip-sets
-                              #:limit-exceeded-exception #:list-accelerators
-                              #:list-accelerators-request
-                              #:list-accelerators-response #:list-byoip-cidrs
-                              #:list-byoip-cidrs-request
-                              #:list-byoip-cidrs-response
+                              #:list-accelerators #:list-byoip-cidrs
                               #:list-cross-account-attachments
-                              #:list-cross-account-attachments-request
-                              #:list-cross-account-attachments-response
                               #:list-cross-account-resource-accounts
-                              #:list-cross-account-resource-accounts-request
-                              #:list-cross-account-resource-accounts-response
                               #:list-cross-account-resources
-                              #:list-cross-account-resources-request
-                              #:list-cross-account-resources-response
                               #:list-custom-routing-accelerators
-                              #:list-custom-routing-accelerators-request
-                              #:list-custom-routing-accelerators-response
                               #:list-custom-routing-endpoint-groups
-                              #:list-custom-routing-endpoint-groups-request
-                              #:list-custom-routing-endpoint-groups-response
                               #:list-custom-routing-listeners
-                              #:list-custom-routing-listeners-request
-                              #:list-custom-routing-listeners-response
                               #:list-custom-routing-port-mappings
                               #:list-custom-routing-port-mappings-by-destination
-                              #:list-custom-routing-port-mappings-by-destination-request
-                              #:list-custom-routing-port-mappings-by-destination-response
-                              #:list-custom-routing-port-mappings-request
-                              #:list-custom-routing-port-mappings-response
-                              #:list-endpoint-groups
-                              #:list-endpoint-groups-request
-                              #:list-endpoint-groups-response #:list-listeners
-                              #:list-listeners-request
-                              #:list-listeners-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:listener
-                              #:listener-not-found-exception #:listeners
+                              #:list-endpoint-groups #:list-listeners
+                              #:list-tags-for-resource #:listener #:listeners
                               #:max-results #:port-mapping #:port-mappings
                               #:port-mappings-max-results #:port-number
                               #:port-override #:port-overrides #:port-range
                               #:port-ranges #:principal #:principals #:protocol
                               #:protocols #:provision-byoip-cidr
-                              #:provision-byoip-cidr-request
-                              #:provision-byoip-cidr-response
                               #:remove-custom-routing-endpoints
-                              #:remove-custom-routing-endpoints-request
-                              #:remove-endpoints #:remove-endpoints-request
-                              #:resource #:resource-arn #:resources
-                              #:socket-address #:socket-addresses #:tag
-                              #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
+                              #:remove-endpoints #:resource #:resource-arn
+                              #:resources #:socket-address #:socket-addresses
+                              #:tag #:tag-key #:tag-keys #:tag-resource
                               #:tag-value #:tags #:threshold-count #:timestamp
-                              #:traffic-dial-percentage
-                              #:transaction-in-progress-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-accelerator
+                              #:traffic-dial-percentage #:untag-resource
+                              #:update-accelerator
                               #:update-accelerator-attributes
-                              #:update-accelerator-attributes-request
-                              #:update-accelerator-attributes-response
-                              #:update-accelerator-request
-                              #:update-accelerator-response
                               #:update-cross-account-attachment
-                              #:update-cross-account-attachment-request
-                              #:update-cross-account-attachment-response
                               #:update-custom-routing-accelerator
                               #:update-custom-routing-accelerator-attributes
-                              #:update-custom-routing-accelerator-attributes-request
-                              #:update-custom-routing-accelerator-attributes-response
-                              #:update-custom-routing-accelerator-request
-                              #:update-custom-routing-accelerator-response
                               #:update-custom-routing-listener
-                              #:update-custom-routing-listener-request
-                              #:update-custom-routing-listener-response
-                              #:update-endpoint-group
-                              #:update-endpoint-group-request
-                              #:update-endpoint-group-response
-                              #:update-listener #:update-listener-request
-                              #:update-listener-response #:withdraw-byoip-cidr
-                              #:withdraw-byoip-cidr-request
-                              #:withdraw-byoip-cidr-response))
+                              #:update-endpoint-group #:update-listener
+                              #:withdraw-byoip-cidr))
 (common-lisp:in-package #:pira/global-accelerator)
 
 (smithy/sdk/service:define-service global-accelerator-v20180706 :shape-name

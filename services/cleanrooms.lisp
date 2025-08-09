@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/cleanrooms (:use)
                              (:export #:awsbastion-control-plane-service-lambda
-                              #:access-denied-exception
                               #:access-denied-exception-reason #:account-id
                               #:additional-analyses
                               #:additional-analyses-resource-arn
@@ -55,8 +54,6 @@
                               #:batch-get-schema-analysis-rule
                               #:batch-get-schema-analysis-rule-error
                               #:batch-get-schema-analysis-rule-error-list
-                              #:batch-get-schema-analysis-rule-input
-                              #:batch-get-schema-analysis-rule-output
                               #:batch-get-schema-error
                               #:batch-get-schema-error-list
                               #:batch-get-schema-input
@@ -121,8 +118,7 @@
                               #:configured-table-resource
                               #:configured-table-summary
                               #:configured-table-summary-list
-                              #:conflict-exception #:conflict-exception-reason
-                              #:consolidated-policy
+                              #:conflict-exception-reason #:consolidated-policy
                               #:consolidated-policy-aggregation
                               #:consolidated-policy-custom
                               #:consolidated-policy-list
@@ -134,31 +130,21 @@
                               #:create-collaboration-input
                               #:create-collaboration-output
                               #:create-configured-audience-model-association
-                              #:create-configured-audience-model-association-input
-                              #:create-configured-audience-model-association-output
                               #:create-configured-table
                               #:create-configured-table-analysis-rule
                               #:create-configured-table-analysis-rule-input
                               #:create-configured-table-analysis-rule-output
                               #:create-configured-table-association
                               #:create-configured-table-association-analysis-rule
-                              #:create-configured-table-association-analysis-rule-input
-                              #:create-configured-table-association-analysis-rule-output
                               #:create-configured-table-association-input
                               #:create-configured-table-association-output
                               #:create-configured-table-input
                               #:create-configured-table-output
                               #:create-id-mapping-table
-                              #:create-id-mapping-table-input
-                              #:create-id-mapping-table-output
                               #:create-id-namespace-association
-                              #:create-id-namespace-association-input
-                              #:create-id-namespace-association-output
                               #:create-membership #:create-membership-input
                               #:create-membership-output
                               #:create-privacy-budget-template
-                              #:create-privacy-budget-template-input
-                              #:create-privacy-budget-template-output
                               #:custom-mlmember-abilities
                               #:custom-mlmember-ability
                               #:data-encryption-metadata
@@ -169,33 +155,22 @@
                               #:delete-collaboration-input
                               #:delete-collaboration-output
                               #:delete-configured-audience-model-association
-                              #:delete-configured-audience-model-association-input
-                              #:delete-configured-audience-model-association-output
                               #:delete-configured-table
                               #:delete-configured-table-analysis-rule
                               #:delete-configured-table-analysis-rule-input
                               #:delete-configured-table-analysis-rule-output
                               #:delete-configured-table-association
                               #:delete-configured-table-association-analysis-rule
-                              #:delete-configured-table-association-analysis-rule-input
-                              #:delete-configured-table-association-analysis-rule-output
                               #:delete-configured-table-association-input
                               #:delete-configured-table-association-output
                               #:delete-configured-table-input
                               #:delete-configured-table-output
                               #:delete-id-mapping-table
-                              #:delete-id-mapping-table-input
-                              #:delete-id-mapping-table-output
-                              #:delete-id-namespace-association
-                              #:delete-id-namespace-association-input
-                              #:delete-id-namespace-association-output
-                              #:delete-member #:delete-member-input
-                              #:delete-member-output #:delete-membership
-                              #:delete-membership-input
+                              #:delete-id-namespace-association #:delete-member
+                              #:delete-member-input #:delete-member-output
+                              #:delete-membership #:delete-membership-input
                               #:delete-membership-output
                               #:delete-privacy-budget-template
-                              #:delete-privacy-budget-template-input
-                              #:delete-privacy-budget-template-output
                               #:differential-privacy-aggregation-expression
                               #:differential-privacy-aggregation-type
                               #:differential-privacy-column
@@ -225,45 +200,26 @@
                               #:get-collaboration-analysis-template-input
                               #:get-collaboration-analysis-template-output
                               #:get-collaboration-configured-audience-model-association
-                              #:get-collaboration-configured-audience-model-association-input
-                              #:get-collaboration-configured-audience-model-association-output
                               #:get-collaboration-id-namespace-association
-                              #:get-collaboration-id-namespace-association-input
-                              #:get-collaboration-id-namespace-association-output
                               #:get-collaboration-input
                               #:get-collaboration-output
                               #:get-collaboration-privacy-budget-template
-                              #:get-collaboration-privacy-budget-template-input
-                              #:get-collaboration-privacy-budget-template-output
                               #:get-configured-audience-model-association
-                              #:get-configured-audience-model-association-input
-                              #:get-configured-audience-model-association-output
                               #:get-configured-table
                               #:get-configured-table-analysis-rule
                               #:get-configured-table-analysis-rule-input
                               #:get-configured-table-analysis-rule-output
                               #:get-configured-table-association
                               #:get-configured-table-association-analysis-rule
-                              #:get-configured-table-association-analysis-rule-input
-                              #:get-configured-table-association-analysis-rule-output
                               #:get-configured-table-association-input
                               #:get-configured-table-association-output
                               #:get-configured-table-input
                               #:get-configured-table-output
                               #:get-id-mapping-table
-                              #:get-id-mapping-table-input
-                              #:get-id-mapping-table-output
-                              #:get-id-namespace-association
-                              #:get-id-namespace-association-input
-                              #:get-id-namespace-association-output
-                              #:get-membership #:get-membership-input
-                              #:get-membership-output
-                              #:get-privacy-budget-template
-                              #:get-privacy-budget-template-input
-                              #:get-privacy-budget-template-output
-                              #:get-protected-job #:get-protected-job-input
-                              #:get-protected-job-output #:get-protected-query
-                              #:get-protected-query-input
+                              #:get-id-namespace-association #:get-membership
+                              #:get-membership-input #:get-membership-output
+                              #:get-privacy-budget-template #:get-protected-job
+                              #:get-protected-query #:get-protected-query-input
                               #:get-protected-query-output #:get-schema
                               #:get-schema-analysis-rule
                               #:get-schema-analysis-rule-input
@@ -293,10 +249,9 @@
                               #:id-namespace-association-resource
                               #:id-namespace-association-summary
                               #:id-namespace-association-summary-list
-                              #:id-namespace-type #:internal-server-exception
-                              #:job-compute-payment-config #:join-operator
-                              #:join-operators-list #:join-required-option
-                              #:kmskey-arn #:key-prefix
+                              #:id-namespace-type #:job-compute-payment-config
+                              #:join-operator #:join-operators-list
+                              #:join-required-option #:kmskey-arn #:key-prefix
                               #:list-analysis-templates
                               #:list-analysis-templates-input
                               #:list-analysis-templates-output
@@ -304,22 +259,12 @@
                               #:list-collaboration-analysis-templates-input
                               #:list-collaboration-analysis-templates-output
                               #:list-collaboration-configured-audience-model-associations
-                              #:list-collaboration-configured-audience-model-associations-input
-                              #:list-collaboration-configured-audience-model-associations-output
                               #:list-collaboration-id-namespace-associations
-                              #:list-collaboration-id-namespace-associations-input
-                              #:list-collaboration-id-namespace-associations-output
                               #:list-collaboration-privacy-budget-templates
-                              #:list-collaboration-privacy-budget-templates-input
-                              #:list-collaboration-privacy-budget-templates-output
                               #:list-collaboration-privacy-budgets
-                              #:list-collaboration-privacy-budgets-input
-                              #:list-collaboration-privacy-budgets-output
                               #:list-collaborations #:list-collaborations-input
                               #:list-collaborations-output
                               #:list-configured-audience-model-associations
-                              #:list-configured-audience-model-associations-input
-                              #:list-configured-audience-model-associations-output
                               #:list-configured-table-associations
                               #:list-configured-table-associations-input
                               #:list-configured-table-associations-output
@@ -327,36 +272,23 @@
                               #:list-configured-tables-input
                               #:list-configured-tables-output
                               #:list-id-mapping-tables
-                              #:list-id-mapping-tables-input
-                              #:list-id-mapping-tables-output
-                              #:list-id-namespace-associations
-                              #:list-id-namespace-associations-input
-                              #:list-id-namespace-associations-output
-                              #:list-members #:list-members-input
-                              #:list-members-output #:list-memberships
-                              #:list-memberships-input
+                              #:list-id-namespace-associations #:list-members
+                              #:list-members-input #:list-members-output
+                              #:list-memberships #:list-memberships-input
                               #:list-memberships-output
                               #:list-privacy-budget-templates
-                              #:list-privacy-budget-templates-input
-                              #:list-privacy-budget-templates-output
-                              #:list-privacy-budgets
-                              #:list-privacy-budgets-input
-                              #:list-privacy-budgets-output
-                              #:list-protected-jobs #:list-protected-jobs-input
-                              #:list-protected-jobs-output
+                              #:list-privacy-budgets #:list-protected-jobs
                               #:list-protected-queries
                               #:list-protected-queries-input
                               #:list-protected-queries-output #:list-schemas
                               #:list-schemas-input #:list-schemas-output
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-input
-                              #:list-tags-for-resource-output
-                              #:mlmember-abilities #:mlpayment-config
-                              #:max-results #:member-abilities #:member-ability
-                              #:member-list #:member-specification
-                              #:member-status #:member-summary
-                              #:member-summary-list #:membership
-                              #:membership-arn #:membership-identifier
+                              #:list-tags-for-resource #:mlmember-abilities
+                              #:mlpayment-config #:max-results
+                              #:member-abilities #:member-ability #:member-list
+                              #:member-specification #:member-status
+                              #:member-summary #:member-summary-list
+                              #:membership #:membership-arn
+                              #:membership-identifier
                               #:membership-job-compute-payment-config
                               #:membership-job-log-status
                               #:membership-mlpayment-config
@@ -377,11 +309,7 @@
                               #:parameter-name #:parameter-type
                               #:parameter-value #:payment-configuration
                               #:populate-id-mapping-table
-                              #:populate-id-mapping-table-input
-                              #:populate-id-mapping-table-output
                               #:preview-privacy-impact
-                              #:preview-privacy-impact-input
-                              #:preview-privacy-impact-output
                               #:preview-privacy-impact-parameters-input
                               #:privacy-budget #:privacy-budget-summary
                               #:privacy-budget-summary-list
@@ -447,8 +375,7 @@
                               #:query-constraint-require-overlap #:query-tables
                               #:receiver-account-ids #:receiver-configuration
                               #:receiver-configurations-list #:resource-alias
-                              #:resource-description
-                              #:resource-not-found-exception #:resource-type
+                              #:resource-description #:resource-type
                               #:result-format #:role-arn #:s3location
                               #:scalar-functions #:scalar-functions-list
                               #:schema #:schema-analysis-rule-list
@@ -465,7 +392,6 @@
                               #:schema-type-properties #:secrets-manager-arn
                               #:selected-analysis-method
                               #:selected-analysis-methods
-                              #:service-quota-exceeded-exception
                               #:snowflake-account-identifier
                               #:snowflake-database-name #:snowflake-schema-name
                               #:snowflake-table-name
@@ -473,58 +399,40 @@
                               #:snowflake-table-schema
                               #:snowflake-table-schema-list
                               #:snowflake-table-schema-v1 #:start-protected-job
-                              #:start-protected-job-input
-                              #:start-protected-job-output
                               #:start-protected-query
                               #:start-protected-query-input
                               #:start-protected-query-output #:table-alias
                               #:table-alias-list #:table-description
                               #:table-reference #:tag-key #:tag-keys #:tag-map
-                              #:tag-resource #:tag-resource-input
-                              #:tag-resource-output #:tag-value
+                              #:tag-resource #:tag-value
                               #:target-protected-job-status
-                              #:target-protected-query-status
-                              #:throttling-exception #:uuid #:untag-resource
-                              #:untag-resource-input #:untag-resource-output
-                              #:update-analysis-template
+                              #:target-protected-query-status #:uuid
+                              #:untag-resource #:update-analysis-template
                               #:update-analysis-template-input
                               #:update-analysis-template-output
                               #:update-collaboration
                               #:update-collaboration-input
                               #:update-collaboration-output
                               #:update-configured-audience-model-association
-                              #:update-configured-audience-model-association-input
-                              #:update-configured-audience-model-association-output
                               #:update-configured-table
                               #:update-configured-table-analysis-rule
                               #:update-configured-table-analysis-rule-input
                               #:update-configured-table-analysis-rule-output
                               #:update-configured-table-association
                               #:update-configured-table-association-analysis-rule
-                              #:update-configured-table-association-analysis-rule-input
-                              #:update-configured-table-association-analysis-rule-output
                               #:update-configured-table-association-input
                               #:update-configured-table-association-output
                               #:update-configured-table-input
                               #:update-configured-table-output
                               #:update-id-mapping-table
-                              #:update-id-mapping-table-input
-                              #:update-id-mapping-table-output
                               #:update-id-namespace-association
-                              #:update-id-namespace-association-input
-                              #:update-id-namespace-association-output
                               #:update-membership #:update-membership-input
                               #:update-membership-output
                               #:update-privacy-budget-template
-                              #:update-privacy-budget-template-input
-                              #:update-privacy-budget-template-output
-                              #:update-protected-job
-                              #:update-protected-job-input
-                              #:update-protected-job-output
-                              #:update-protected-query
+                              #:update-protected-job #:update-protected-query
                               #:update-protected-query-input
                               #:update-protected-query-output
-                              #:users-noise-per-query #:validation-exception
+                              #:users-noise-per-query
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason

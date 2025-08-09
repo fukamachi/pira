@@ -1,40 +1,14 @@
 (uiop/package:define-package #:pira/sts (:use)
                              (:export #:awssecurity-token-service-v20110615
-                              #:assume-role #:assume-role-request
-                              #:assume-role-response #:assume-role-with-saml
-                              #:assume-role-with-samlrequest
-                              #:assume-role-with-samlresponse
-                              #:assume-role-with-web-identity
-                              #:assume-role-with-web-identity-request
-                              #:assume-role-with-web-identity-response
-                              #:assume-root #:assume-root-request
-                              #:assume-root-response #:assumed-role-user
-                              #:audience #:credentials
-                              #:decode-authorization-message
-                              #:decode-authorization-message-request
-                              #:decode-authorization-message-response
-                              #:expired-token-exception #:federated-user
-                              #:get-access-key-info
-                              #:get-access-key-info-request
-                              #:get-access-key-info-response
-                              #:get-caller-identity
-                              #:get-caller-identity-request
-                              #:get-caller-identity-response
-                              #:get-federation-token
-                              #:get-federation-token-request
-                              #:get-federation-token-response
-                              #:get-session-token #:get-session-token-request
-                              #:get-session-token-response
-                              #:idpcommunication-error-exception
-                              #:idprejected-claim-exception
-                              #:invalid-authorization-message-exception
-                              #:invalid-identity-token-exception #:issuer
-                              #:malformed-policy-document-exception
-                              #:name-qualifier
-                              #:packed-policy-too-large-exception
+                              #:assume-role #:assume-role-with-saml
+                              #:assume-role-with-web-identity #:assume-root
+                              #:assumed-role-user #:audience #:credentials
+                              #:decode-authorization-message #:federated-user
+                              #:get-access-key-info #:get-caller-identity
+                              #:get-federation-token #:get-session-token
+                              #:issuer #:name-qualifier
                               #:policy-descriptor-type #:provided-context
                               #:provided-contexts-list-type
-                              #:region-disabled-exception
                               #:root-duration-seconds-type #:samlassertion-type
                               #:subject #:subject-type #:tag
                               #:target-principal-type #:access-key-id-type

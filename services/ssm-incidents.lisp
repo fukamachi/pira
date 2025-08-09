@@ -1,17 +1,14 @@
 (uiop/package:define-package #:pira/ssm-incidents (:use)
-                             (:export #:access-denied-exception #:action
-                              #:actions-list #:add-region-action #:arn
-                              #:attribute-value-list #:automation-execution
-                              #:automation-execution-set
+                             (:export #:action #:actions-list
+                              #:add-region-action #:arn #:attribute-value-list
+                              #:automation-execution #:automation-execution-set
                               #:batch-get-incident-findings
                               #:batch-get-incident-findings-error
                               #:batch-get-incident-findings-error-list
-                              #:batch-get-incident-findings-input
-                              #:batch-get-incident-findings-output
                               #:chat-channel #:chatbot-sns-configuration-set
                               #:client-token #:cloud-formation-stack-update
                               #:code-deploy-deployment #:condition
-                              #:conflict-exception #:create-replication-set
+                              #:create-replication-set
                               #:create-replication-set-input
                               #:create-replication-set-output
                               #:create-response-plan
@@ -61,11 +58,8 @@
                               #:incident-record-summary-list #:incident-source
                               #:incident-summary #:incident-template
                               #:incident-title #:integer-list #:integration
-                              #:integrations #:internal-server-exception
-                              #:item-identifier #:item-type #:item-value
-                              #:list-incident-findings
-                              #:list-incident-findings-input
-                              #:list-incident-findings-output
+                              #:integrations #:item-identifier #:item-type
+                              #:item-value #:list-incident-findings
                               #:list-incident-records
                               #:list-incident-records-input
                               #:list-incident-records-output
@@ -95,23 +89,21 @@
                               #:region-name #:region-status #:related-item
                               #:related-item-list #:related-items-update
                               #:replication-set #:replication-set-arn-list
-                              #:replication-set-status
-                              #:resource-not-found-exception #:resource-policy
+                              #:replication-set-status #:resource-policy
                               #:resource-policy-list #:resource-type
                               #:response-plan-display-name #:response-plan-name
                               #:response-plan-summary
                               #:response-plan-summary-list #:role-arn
                               #:ssmincidents #:service-code #:service-principal
-                              #:service-quota-exceeded-exception #:sns-arn
-                              #:sort-order #:sse-kms-key #:ssm-automation
-                              #:ssm-contacts-arn #:ssm-parameter-values
-                              #:ssm-parameters #:ssm-target-account
-                              #:start-incident #:start-incident-input
-                              #:start-incident-output #:string-list #:tag-key
-                              #:tag-key-list #:tag-map #:tag-map-update
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:throttling-exception #:timeline-event
+                              #:sns-arn #:sort-order #:sse-kms-key
+                              #:ssm-automation #:ssm-contacts-arn
+                              #:ssm-parameter-values #:ssm-parameters
+                              #:ssm-target-account #:start-incident
+                              #:start-incident-input #:start-incident-output
+                              #:string-list #:tag-key #:tag-key-list #:tag-map
+                              #:tag-map-update #:tag-resource
+                              #:tag-resource-request #:tag-resource-response
+                              #:tag-value #:timeline-event
                               #:timeline-event-sort #:timeline-event-type
                               #:trigger-details #:uuid #:untag-resource
                               #:untag-resource-request
@@ -135,7 +127,7 @@
                               #:update-timeline-event
                               #:update-timeline-event-input
                               #:update-timeline-event-output #:url
-                              #:validation-exception #:variable-type))
+                              #:variable-type))
 (common-lisp:in-package #:pira/ssm-incidents)
 
 (smithy/sdk/service:define-service ssmincidents :shape-name "SSMIncidents"

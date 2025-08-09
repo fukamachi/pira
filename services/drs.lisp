@@ -1,14 +1,10 @@
 (uiop/package:define-package #:pira/drs (:use)
-                             (:export #:arn #:access-denied-exception #:account
-                              #:account-id #:account-ids #:account-resource
-                              #:accounts #:agent-version
-                              #:associate-source-network-stack
-                              #:associate-source-network-stack-request
-                              #:associate-source-network-stack-response
+                             (:export #:arn #:account #:account-id
+                              #:account-ids #:account-resource #:accounts
+                              #:agent-version #:associate-source-network-stack
                               #:aws-availability-zone #:aws-region
                               #:bounded-string #:cpu #:cfn-stack-name
-                              #:conflict-exception #:conversion-map
-                              #:conversion-properties #:cpus
+                              #:conversion-map #:conversion-properties #:cpus
                               #:create-extended-source-server
                               #:create-extended-source-server-request
                               #:create-extended-source-server-response
@@ -17,10 +13,7 @@
                               #:create-launch-configuration-template-response
                               #:create-replication-configuration-template
                               #:create-replication-configuration-template-request
-                              #:create-source-network
-                              #:create-source-network-request
-                              #:create-source-network-response
-                              #:data-replication-error
+                              #:create-source-network #:data-replication-error
                               #:data-replication-error-string
                               #:data-replication-info
                               #:data-replication-info-replicated-disk
@@ -33,8 +26,6 @@
                               #:data-replication-state #:delete-job
                               #:delete-job-request #:delete-job-response
                               #:delete-launch-action
-                              #:delete-launch-action-request
-                              #:delete-launch-action-response
                               #:delete-launch-configuration-template
                               #:delete-launch-configuration-template-request
                               #:delete-launch-configuration-template-response
@@ -43,10 +34,7 @@
                               #:delete-replication-configuration-template
                               #:delete-replication-configuration-template-request
                               #:delete-replication-configuration-template-response
-                              #:delete-source-network
-                              #:delete-source-network-request
-                              #:delete-source-network-response
-                              #:delete-source-server
+                              #:delete-source-network #:delete-source-server
                               #:delete-source-server-request
                               #:delete-source-server-response
                               #:describe-job-log-items
@@ -72,10 +60,8 @@
                               #:describe-replication-configuration-templates-request
                               #:describe-replication-configuration-templates-response
                               #:describe-source-networks
-                              #:describe-source-networks-request
                               #:describe-source-networks-request-filters
                               #:describe-source-networks-request-filters-ids
-                              #:describe-source-networks-response
                               #:describe-source-servers
                               #:describe-source-servers-request
                               #:describe-source-servers-request-filters
@@ -91,8 +77,6 @@
                               #:elastic-disaster-recovery-service
                               #:event-resource-data
                               #:export-source-network-cfn-template
-                              #:export-source-network-cfn-template-request
-                              #:export-source-network-cfn-template-response
                               #:extension-status #:failback-launch-type
                               #:failback-replication-error #:failback-state
                               #:failure-reason
@@ -107,12 +91,12 @@
                               #:iso8601duration-string #:identification-hints
                               #:initialize-service #:initialize-service-request
                               #:initialize-service-response #:initiated-by
-                              #:internal-server-exception #:job #:job-id
-                              #:job-log #:job-log-event #:job-log-event-data
-                              #:job-logs #:job-resource #:job-status #:job-type
-                              #:jobs-list #:large-bounded-string
-                              #:last-launch-result #:last-launch-type
-                              #:launch-action #:launch-action-category
+                              #:job #:job-id #:job-log #:job-log-event
+                              #:job-log-event-data #:job-logs #:job-resource
+                              #:job-status #:job-type #:jobs-list
+                              #:large-bounded-string #:last-launch-result
+                              #:last-launch-type #:launch-action
+                              #:launch-action-category
                               #:launch-action-description #:launch-action-id
                               #:launch-action-ids #:launch-action-name
                               #:launch-action-order #:launch-action-parameter
@@ -138,10 +122,7 @@
                               #:list-extensible-source-servers
                               #:list-extensible-source-servers-request
                               #:list-extensible-source-servers-response
-                              #:list-launch-actions
-                              #:list-launch-actions-request
-                              #:list-launch-actions-response
-                              #:list-staging-accounts
+                              #:list-launch-actions #:list-staging-accounts
                               #:list-staging-accounts-request
                               #:list-staging-accounts-response
                               #:list-tags-for-resource
@@ -158,8 +139,7 @@
                               #:participating-servers #:positive-integer
                               #:product-code #:product-code-id
                               #:product-code-mode #:product-codes
-                              #:put-launch-action #:put-launch-action-request
-                              #:put-launch-action-response #:recovery-instance
+                              #:put-launch-action #:recovery-instance
                               #:recovery-instance-data-replication-error
                               #:recovery-instance-data-replication-info
                               #:recovery-instance-data-replication-info-replicated-disk
@@ -195,15 +175,12 @@
                               #:replication-configuration-templates
                               #:replication-direction
                               #:replication-servers-security-groups-ids
-                              #:replication-status
-                              #:resource-not-found-exception
-                              #:retry-data-replication
+                              #:replication-status #:retry-data-replication
                               #:retry-data-replication-request
                               #:reverse-replication
                               #:reverse-replication-request
                               #:reverse-replication-response
                               #:security-group-id #:sensitive-bounded-string
-                              #:service-quota-exceeded-exception
                               #:small-bounded-string #:source-cloud-properties
                               #:source-network #:source-network-data
                               #:source-network-id #:source-network-resource
@@ -225,19 +202,13 @@
                               #:start-replication-request
                               #:start-replication-response
                               #:start-source-network-recovery
-                              #:start-source-network-recovery-request
                               #:start-source-network-recovery-request-network-entries
                               #:start-source-network-recovery-request-network-entry
-                              #:start-source-network-recovery-response
                               #:start-source-network-replication
-                              #:start-source-network-replication-request
-                              #:start-source-network-replication-response
                               #:stop-failback #:stop-failback-request
                               #:stop-replication #:stop-replication-request
                               #:stop-replication-response
                               #:stop-source-network-replication
-                              #:stop-source-network-replication-request
-                              #:stop-source-network-replication-response
                               #:strictly-positive-integer #:subnet-id #:tag-key
                               #:tag-keys #:tag-resource #:tag-resource-request
                               #:tag-value #:tags-map
@@ -245,8 +216,6 @@
                               #:terminate-recovery-instances
                               #:terminate-recovery-instances-request
                               #:terminate-recovery-instances-response
-                              #:throttling-exception
-                              #:uninitialized-account-exception
                               #:untag-resource #:untag-resource-request
                               #:update-failback-replication-configuration
                               #:update-failback-replication-configuration-request
@@ -259,7 +228,6 @@
                               #:update-replication-configuration-request
                               #:update-replication-configuration-template
                               #:update-replication-configuration-template-request
-                              #:validation-exception
                               #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason #:volume-status

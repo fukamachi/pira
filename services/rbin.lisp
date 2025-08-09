@@ -1,20 +1,11 @@
 (uiop/package:define-package #:pira/rbin (:use)
-                             (:export #:amazon-recycle-bin #:conflict-exception
+                             (:export #:amazon-recycle-bin
                               #:conflict-exception-reason #:create-rule
-                              #:create-rule-request #:create-rule-response
-                              #:delete-rule #:delete-rule-request
-                              #:delete-rule-response #:description
-                              #:error-message #:exclude-resource-tags
-                              #:get-rule #:get-rule-request #:get-rule-response
-                              #:internal-server-exception #:list-rules
-                              #:list-rules-request #:list-rules-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:lock-configuration #:lock-rule
-                              #:lock-rule-request #:lock-rule-response
-                              #:lock-state #:max-results #:next-token
-                              #:resource-not-found-exception
+                              #:delete-rule #:description #:error-message
+                              #:exclude-resource-tags #:get-rule #:list-rules
+                              #:list-tags-for-resource #:lock-configuration
+                              #:lock-rule #:lock-state #:max-results
+                              #:next-token
                               #:resource-not-found-exception-reason
                               #:resource-tag #:resource-tag-key
                               #:resource-tag-value #:resource-tags
@@ -22,18 +13,12 @@
                               #:retention-period-unit #:retention-period-value
                               #:rule-arn #:rule-identifier #:rule-status
                               #:rule-summary #:rule-summary-list
-                              #:service-quota-exceeded-exception
                               #:service-quota-exceeded-exception-reason #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:time-stamp
+                              #:tag-resource #:tag-value #:time-stamp
                               #:unlock-delay #:unlock-delay-unit
                               #:unlock-delay-value #:unlock-rule
-                              #:unlock-rule-request #:unlock-rule-response
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-rule
-                              #:update-rule-request #:update-rule-response
-                              #:validation-exception
+                              #:untag-resource #:update-rule
                               #:validation-exception-reason))
 (common-lisp:in-package #:pira/rbin)
 

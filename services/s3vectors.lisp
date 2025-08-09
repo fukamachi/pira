@@ -1,67 +1,35 @@
 (uiop/package:define-package #:pira/s3vectors (:use)
-                             (:export #:access-denied-exception
-                              #:conflict-exception #:create-index
-                              #:create-index-input #:create-index-output
-                              #:create-vector-bucket
-                              #:create-vector-bucket-input
-                              #:create-vector-bucket-output #:data-type
-                              #:delete-index #:delete-index-input
-                              #:delete-index-output #:delete-vector-bucket
-                              #:delete-vector-bucket-input
-                              #:delete-vector-bucket-output
-                              #:delete-vector-bucket-policy
-                              #:delete-vector-bucket-policy-input
-                              #:delete-vector-bucket-policy-output
-                              #:delete-vectors #:delete-vectors-input
-                              #:delete-vectors-input-list
-                              #:delete-vectors-output #:dimension
+                             (:export #:create-index #:create-vector-bucket
+                              #:data-type #:delete-index #:delete-vector-bucket
+                              #:delete-vector-bucket-policy #:delete-vectors
+                              #:delete-vectors-input-list #:dimension
                               #:distance-metric #:encryption-configuration
                               #:exception-message #:float32vector-data
-                              #:get-index #:get-index-input #:get-index-output
-                              #:get-output-vector #:get-vector-bucket
-                              #:get-vector-bucket-input
-                              #:get-vector-bucket-output
-                              #:get-vector-bucket-policy
-                              #:get-vector-bucket-policy-input
-                              #:get-vector-bucket-policy-output #:get-vectors
-                              #:get-vectors-input #:get-vectors-input-list
-                              #:get-vectors-output #:get-vectors-output-list
-                              #:index #:index-arn #:index-name #:index-resource
-                              #:index-summary #:internal-server-exception
-                              #:kms-disabled-exception
-                              #:kms-invalid-key-usage-exception
-                              #:kms-invalid-state-exception #:kms-key-arn
-                              #:kms-not-found-exception #:list-indexes
-                              #:list-indexes-input #:list-indexes-max-results
-                              #:list-indexes-next-token #:list-indexes-output
+                              #:get-index #:get-output-vector
+                              #:get-vector-bucket #:get-vector-bucket-policy
+                              #:get-vectors #:get-vectors-input-list
+                              #:get-vectors-output-list #:index #:index-arn
+                              #:index-name #:index-resource #:index-summary
+                              #:kms-key-arn #:list-indexes
+                              #:list-indexes-max-results
+                              #:list-indexes-next-token
                               #:list-indexes-output-list #:list-indexes-prefix
                               #:list-output-vector #:list-vector-buckets
-                              #:list-vector-buckets-input
                               #:list-vector-buckets-max-results
                               #:list-vector-buckets-next-token
-                              #:list-vector-buckets-output
                               #:list-vector-buckets-output-list
                               #:list-vector-buckets-prefix #:list-vectors
-                              #:list-vectors-input #:list-vectors-max-results
-                              #:list-vectors-next-token #:list-vectors-output
+                              #:list-vectors-max-results
+                              #:list-vectors-next-token
                               #:list-vectors-output-list
                               #:list-vectors-segment-count
                               #:list-vectors-segment-index
                               #:metadata-configuration #:metadata-key
-                              #:non-filterable-metadata-keys
-                              #:not-found-exception #:put-input-vector
-                              #:put-vector-bucket-policy
-                              #:put-vector-bucket-policy-input
-                              #:put-vector-bucket-policy-output #:put-vectors
-                              #:put-vectors-input #:put-vectors-input-list
-                              #:put-vectors-output #:query-output-vector
-                              #:query-vectors #:query-vectors-input
-                              #:query-vectors-output
-                              #:query-vectors-output-list #:s3vectors
-                              #:service-quota-exceeded-exception
-                              #:service-unavailable-exception #:sse-type
-                              #:too-many-requests-exception #:top-k
-                              #:validation-exception
+                              #:non-filterable-metadata-keys #:put-input-vector
+                              #:put-vector-bucket-policy #:put-vectors
+                              #:put-vectors-input-list #:query-output-vector
+                              #:query-vectors #:query-vectors-output-list
+                              #:s3vectors #:sse-type #:top-k
                               #:validation-exception-field
                               #:validation-exception-field-list #:vector-bucket
                               #:vector-bucket-arn #:vector-bucket-name

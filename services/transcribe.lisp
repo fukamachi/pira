@@ -1,6 +1,5 @@
 (uiop/package:define-package #:pira/transcribe (:use)
-                             (:export #:absolute-time-range
-                              #:bad-request-exception #:base-model-name
+                             (:export #:absolute-time-range #:base-model-name
                               #:boolean #:clmlanguage-code
                               #:call-analytics-feature #:call-analytics-job
                               #:call-analytics-job-details
@@ -16,107 +15,43 @@
                               #:category-properties-list #:channel-definition
                               #:channel-definitions #:channel-id
                               #:clinical-note-generation-settings
-                              #:conflict-exception #:content-redaction
+                              #:content-redaction
                               #:create-call-analytics-category
-                              #:create-call-analytics-category-request
-                              #:create-call-analytics-category-response
                               #:create-language-model
-                              #:create-language-model-request
-                              #:create-language-model-response
-                              #:create-medical-vocabulary
-                              #:create-medical-vocabulary-request
-                              #:create-medical-vocabulary-response
-                              #:create-vocabulary #:create-vocabulary-filter
-                              #:create-vocabulary-filter-request
-                              #:create-vocabulary-filter-response
-                              #:create-vocabulary-request
-                              #:create-vocabulary-response
-                              #:data-access-role-arn #:date-time
-                              #:delete-call-analytics-category
-                              #:delete-call-analytics-category-request
-                              #:delete-call-analytics-category-response
+                              #:create-medical-vocabulary #:create-vocabulary
+                              #:create-vocabulary-filter #:data-access-role-arn
+                              #:date-time #:delete-call-analytics-category
                               #:delete-call-analytics-job
-                              #:delete-call-analytics-job-request
-                              #:delete-call-analytics-job-response
                               #:delete-language-model
-                              #:delete-language-model-request
                               #:delete-medical-scribe-job
-                              #:delete-medical-scribe-job-request
                               #:delete-medical-transcription-job
-                              #:delete-medical-transcription-job-request
                               #:delete-medical-vocabulary
-                              #:delete-medical-vocabulary-request
-                              #:delete-transcription-job
-                              #:delete-transcription-job-request
-                              #:delete-vocabulary #:delete-vocabulary-filter
-                              #:delete-vocabulary-filter-request
-                              #:delete-vocabulary-request
-                              #:describe-language-model
-                              #:describe-language-model-request
-                              #:describe-language-model-response
-                              #:duration-in-seconds #:failure-reason
-                              #:get-call-analytics-category
-                              #:get-call-analytics-category-request
-                              #:get-call-analytics-category-response
-                              #:get-call-analytics-job
-                              #:get-call-analytics-job-request
-                              #:get-call-analytics-job-response
-                              #:get-medical-scribe-job
-                              #:get-medical-scribe-job-request
-                              #:get-medical-scribe-job-response
+                              #:delete-transcription-job #:delete-vocabulary
+                              #:delete-vocabulary-filter
+                              #:describe-language-model #:duration-in-seconds
+                              #:failure-reason #:get-call-analytics-category
+                              #:get-call-analytics-job #:get-medical-scribe-job
                               #:get-medical-transcription-job
-                              #:get-medical-transcription-job-request
-                              #:get-medical-transcription-job-response
-                              #:get-medical-vocabulary
-                              #:get-medical-vocabulary-request
-                              #:get-medical-vocabulary-response
-                              #:get-transcription-job
-                              #:get-transcription-job-request
-                              #:get-transcription-job-response #:get-vocabulary
-                              #:get-vocabulary-filter
-                              #:get-vocabulary-filter-request
-                              #:get-vocabulary-filter-response
-                              #:get-vocabulary-request
-                              #:get-vocabulary-response
+                              #:get-medical-vocabulary #:get-transcription-job
+                              #:get-vocabulary #:get-vocabulary-filter
                               #:identified-language-score #:input-data-config
-                              #:input-type #:internal-failure-exception
-                              #:interruption-filter #:job-execution-settings
+                              #:input-type #:interruption-filter
+                              #:job-execution-settings
                               #:kmsencryption-context-map #:kmskey-id
                               #:language-code #:language-code-item
                               #:language-code-list #:language-id-settings
                               #:language-id-settings-map #:language-model
-                              #:language-options #:limit-exceeded-exception
+                              #:language-options
                               #:list-call-analytics-categories
-                              #:list-call-analytics-categories-request
-                              #:list-call-analytics-categories-response
-                              #:list-call-analytics-jobs
-                              #:list-call-analytics-jobs-request
-                              #:list-call-analytics-jobs-response
-                              #:list-language-models
-                              #:list-language-models-request
-                              #:list-language-models-response
+                              #:list-call-analytics-jobs #:list-language-models
                               #:list-medical-scribe-jobs
-                              #:list-medical-scribe-jobs-request
-                              #:list-medical-scribe-jobs-response
                               #:list-medical-transcription-jobs
-                              #:list-medical-transcription-jobs-request
-                              #:list-medical-transcription-jobs-response
                               #:list-medical-vocabularies
-                              #:list-medical-vocabularies-request
-                              #:list-medical-vocabularies-response
                               #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-transcription-jobs
-                              #:list-transcription-jobs-request
-                              #:list-transcription-jobs-response
-                              #:list-vocabularies #:list-vocabularies-request
-                              #:list-vocabularies-response
-                              #:list-vocabulary-filters
-                              #:list-vocabulary-filters-request
-                              #:list-vocabulary-filters-response
-                              #:max-alternatives #:max-results #:max-speakers
-                              #:media #:media-format #:media-sample-rate-hertz
+                              #:list-transcription-jobs #:list-vocabularies
+                              #:list-vocabulary-filters #:max-alternatives
+                              #:max-results #:max-speakers #:media
+                              #:media-format #:media-sample-rate-hertz
                               #:medical-content-identification-type
                               #:medical-media-sample-rate-hertz
                               #:medical-scribe-channel-definition
@@ -136,33 +71,24 @@
                               #:medical-transcription-setting #:model-name
                               #:model-settings #:model-status #:models
                               #:next-token #:non-empty-string
-                              #:non-talk-time-filter #:not-found-exception
-                              #:output-bucket-name #:output-key
-                              #:output-location-type #:participant-role
-                              #:percentage #:phrase #:phrases #:pii-entity-type
-                              #:pii-entity-types #:redaction-output
-                              #:redaction-type #:relative-time-range #:rule
-                              #:rule-list #:sentiment-filter #:sentiment-value
+                              #:non-talk-time-filter #:output-bucket-name
+                              #:output-key #:output-location-type
+                              #:participant-role #:percentage #:phrase
+                              #:phrases #:pii-entity-type #:pii-entity-types
+                              #:redaction-output #:redaction-type
+                              #:relative-time-range #:rule #:rule-list
+                              #:sentiment-filter #:sentiment-value
                               #:sentiment-value-list #:settings #:specialty
                               #:start-call-analytics-job
-                              #:start-call-analytics-job-request
-                              #:start-call-analytics-job-response
                               #:start-medical-scribe-job
-                              #:start-medical-scribe-job-request
-                              #:start-medical-scribe-job-response
                               #:start-medical-transcription-job
-                              #:start-medical-transcription-job-request
-                              #:start-medical-transcription-job-response
-                              #:start-transcription-job
-                              #:start-transcription-job-request
-                              #:start-transcription-job-response #:string
+                              #:start-transcription-job #:string
                               #:string-target-list #:subtitle-file-uris
                               #:subtitle-format #:subtitle-formats
                               #:subtitle-output-start-index #:subtitles
                               #:subtitles-output #:summarization #:tag
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
+                              #:tag-resource #:tag-value
                               #:timestamp-milliseconds #:toxicity-categories
                               #:toxicity-category #:toxicity-detection
                               #:toxicity-detection-settings #:transcribe
@@ -172,19 +98,9 @@
                               #:transcription-job-status
                               #:transcription-job-summaries
                               #:transcription-job-summary #:type
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response
-                              #:update-call-analytics-category
-                              #:update-call-analytics-category-request
-                              #:update-call-analytics-category-response
-                              #:update-medical-vocabulary
-                              #:update-medical-vocabulary-request
-                              #:update-medical-vocabulary-response
-                              #:update-vocabulary #:update-vocabulary-filter
-                              #:update-vocabulary-filter-request
-                              #:update-vocabulary-filter-response
-                              #:update-vocabulary-request
-                              #:update-vocabulary-response #:uri #:vocabularies
+                              #:untag-resource #:update-call-analytics-category
+                              #:update-medical-vocabulary #:update-vocabulary
+                              #:update-vocabulary-filter #:uri #:vocabularies
                               #:vocabulary-filter-info
                               #:vocabulary-filter-method
                               #:vocabulary-filter-name #:vocabulary-filters

@@ -2,18 +2,9 @@
                              (:export #:amazon-forecast-runtime #:arn
                               #:attribute-name #:attribute-value #:data-point
                               #:date-time #:double #:error-message #:filters
-                              #:forecast #:invalid-input-exception
-                              #:invalid-next-token-exception
-                              #:limit-exceeded-exception #:long-arn
-                              #:next-token #:predictions #:query-forecast
-                              #:query-forecast-request
-                              #:query-forecast-response
-                              #:query-what-if-forecast
-                              #:query-what-if-forecast-request
-                              #:query-what-if-forecast-response
-                              #:resource-in-use-exception
-                              #:resource-not-found-exception #:statistic
-                              #:time-series #:timestamp))
+                              #:forecast #:long-arn #:next-token #:predictions
+                              #:query-forecast #:query-what-if-forecast
+                              #:statistic #:time-series #:timestamp))
 (common-lisp:in-package #:pira/forecastquery)
 
 (smithy/sdk/service:define-service amazon-forecast-runtime :shape-name

@@ -1,85 +1,43 @@
 (uiop/package:define-package #:pira/transfer (:use)
                              (:export #:cfn-ssh-public-keys
-                              #:cfn-user-properties #:access-denied-exception
-                              #:address-allocation-id #:address-allocation-ids
-                              #:agreement-id #:agreement-resource
-                              #:agreement-status-type #:arn
-                              #:as2connector-config #:as2connector-secret-id
-                              #:as2id #:as2transport #:as2transports
-                              #:callback-token #:cert-date #:cert-serial
-                              #:certificate #:certificate-body-type
-                              #:certificate-chain-type #:certificate-id
-                              #:certificate-ids #:certificate-resource
-                              #:certificate-status-type #:certificate-type
-                              #:certificate-usage-type #:compression-enum
-                              #:conflict-exception
+                              #:cfn-user-properties #:address-allocation-id
+                              #:address-allocation-ids #:agreement-id
+                              #:agreement-resource #:agreement-status-type
+                              #:arn #:as2connector-config
+                              #:as2connector-secret-id #:as2id #:as2transport
+                              #:as2transports #:callback-token #:cert-date
+                              #:cert-serial #:certificate
+                              #:certificate-body-type #:certificate-chain-type
+                              #:certificate-id #:certificate-ids
+                              #:certificate-resource #:certificate-status-type
+                              #:certificate-type #:certificate-usage-type
+                              #:compression-enum
                               #:connector-file-transfer-result
                               #:connector-file-transfer-results #:connector-id
                               #:connector-resource
                               #:connector-security-policy-name
                               #:copy-step-details #:create-access
-                              #:create-access-request #:create-access-response
-                              #:create-agreement #:create-agreement-request
-                              #:create-agreement-response #:create-connector
-                              #:create-connector-request
-                              #:create-connector-response #:create-profile
-                              #:create-profile-request
-                              #:create-profile-response #:create-server
-                              #:create-server-request #:create-server-response
-                              #:create-user #:create-user-request
-                              #:create-user-response #:create-web-app
-                              #:create-web-app-request
-                              #:create-web-app-response #:create-workflow
-                              #:create-workflow-request
-                              #:create-workflow-response
+                              #:create-agreement #:create-connector
+                              #:create-profile #:create-server #:create-user
+                              #:create-web-app #:create-workflow
                               #:custom-directories-type #:custom-step-details
                               #:custom-step-status #:custom-step-target
                               #:custom-step-timeout-seconds #:date-imported
                               #:decrypt-step-details #:delete-access
-                              #:delete-access-request #:delete-agreement
-                              #:delete-agreement-request #:delete-certificate
-                              #:delete-certificate-request #:delete-connector
-                              #:delete-connector-request #:delete-host-key
-                              #:delete-host-key-request #:delete-id
-                              #:delete-profile #:delete-profile-request
-                              #:delete-server #:delete-server-request
-                              #:delete-ssh-public-key
-                              #:delete-ssh-public-key-request
-                              #:delete-step-details #:delete-user
-                              #:delete-user-request #:delete-web-app
-                              #:delete-web-app-customization
-                              #:delete-web-app-customization-request
-                              #:delete-web-app-request #:delete-workflow
-                              #:delete-workflow-request #:describe-access
-                              #:describe-access-request
-                              #:describe-access-response #:describe-agreement
-                              #:describe-agreement-request
-                              #:describe-agreement-response
-                              #:describe-certificate
-                              #:describe-certificate-request
-                              #:describe-certificate-response
-                              #:describe-connector #:describe-connector-request
-                              #:describe-connector-response
-                              #:describe-execution #:describe-execution-request
-                              #:describe-execution-response #:describe-host-key
-                              #:describe-host-key-request
-                              #:describe-host-key-response #:describe-profile
-                              #:describe-profile-request
-                              #:describe-profile-response
-                              #:describe-security-policy
-                              #:describe-security-policy-request
-                              #:describe-security-policy-response
-                              #:describe-server #:describe-server-request
-                              #:describe-server-response #:describe-user
-                              #:describe-user-request #:describe-user-response
+                              #:delete-agreement #:delete-certificate
+                              #:delete-connector #:delete-host-key #:delete-id
+                              #:delete-profile #:delete-server
+                              #:delete-ssh-public-key #:delete-step-details
+                              #:delete-user #:delete-web-app
+                              #:delete-web-app-customization #:delete-workflow
+                              #:describe-access #:describe-agreement
+                              #:describe-certificate #:describe-connector
+                              #:describe-execution #:describe-host-key
+                              #:describe-profile #:describe-security-policy
+                              #:describe-server #:describe-user
                               #:describe-web-app
                               #:describe-web-app-customization
-                              #:describe-web-app-customization-request
-                              #:describe-web-app-customization-response
-                              #:describe-web-app-request
-                              #:describe-web-app-response #:describe-workflow
-                              #:describe-workflow-request
-                              #:describe-workflow-response #:described-access
+                              #:describe-workflow #:described-access
                               #:described-agreement #:described-certificate
                               #:described-connector #:described-execution
                               #:described-host-key
@@ -110,44 +68,15 @@
                               #:identity-center-instance-arn
                               #:identity-provider-details
                               #:identity-provider-type #:import-certificate
-                              #:import-certificate-request
-                              #:import-certificate-response #:import-host-key
-                              #:import-host-key-request
-                              #:import-host-key-response
-                              #:import-ssh-public-key
-                              #:import-ssh-public-key-request
-                              #:import-ssh-public-key-response
-                              #:input-file-location #:internal-service-error
-                              #:invalid-next-token-exception
-                              #:invalid-request-exception #:ip-address-type
-                              #:list-accesses #:list-accesses-request
-                              #:list-accesses-response #:list-agreements
-                              #:list-agreements-request
-                              #:list-agreements-response #:list-certificates
-                              #:list-certificates-request
-                              #:list-certificates-response #:list-connectors
-                              #:list-connectors-request
-                              #:list-connectors-response #:list-executions
-                              #:list-executions-request
-                              #:list-executions-response
-                              #:list-file-transfer-results
-                              #:list-file-transfer-results-request
-                              #:list-file-transfer-results-response
-                              #:list-host-keys #:list-host-keys-request
-                              #:list-host-keys-response #:list-profiles
-                              #:list-profiles-request #:list-profiles-response
-                              #:list-security-policies
-                              #:list-security-policies-request
-                              #:list-security-policies-response #:list-servers
-                              #:list-servers-request #:list-servers-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-users
-                              #:list-users-request #:list-users-response
-                              #:list-web-apps #:list-web-apps-request
-                              #:list-web-apps-response #:list-workflows
-                              #:list-workflows-request
-                              #:list-workflows-response #:listed-access
+                              #:import-host-key #:import-ssh-public-key
+                              #:input-file-location #:ip-address-type
+                              #:list-accesses #:list-agreements
+                              #:list-certificates #:list-connectors
+                              #:list-executions #:list-file-transfer-results
+                              #:list-host-keys #:list-profiles
+                              #:list-security-policies #:list-servers
+                              #:list-tags-for-resource #:list-users
+                              #:list-web-apps #:list-workflows #:listed-access
                               #:listed-accesses #:listed-agreement
                               #:listed-agreements #:listed-certificate
                               #:listed-certificates #:listed-connector
@@ -174,10 +103,8 @@
                               #:private-key-type #:profile-id
                               #:profile-resource #:profile-type #:protocol
                               #:protocol-details #:protocols #:resource
-                              #:resource-exists-exception
-                              #:resource-not-found-exception #:resource-type
-                              #:response #:retry-after-seconds #:role
-                              #:s3bucket #:s3etag #:s3file-location
+                              #:resource-type #:response #:retry-after-seconds
+                              #:role #:s3bucket #:s3etag #:s3file-location
                               #:s3input-file-location #:s3key
                               #:s3storage-options #:s3tag #:s3tag-key
                               #:s3tag-value #:s3tags #:s3version-id
@@ -188,15 +115,12 @@
                               #:security-policy-protocol
                               #:security-policy-protocols
                               #:security-policy-resource-type
-                              #:send-workflow-step-state
-                              #:send-workflow-step-state-request
-                              #:send-workflow-step-state-response #:server-id
+                              #:send-workflow-step-state #:server-id
                               #:server-resource #:service-error-message
                               #:service-managed-egress-ip-address
                               #:service-managed-egress-ip-addresses
-                              #:service-metadata
-                              #:service-unavailable-exception #:session-id
-                              #:set-stat-option #:sftp-authentication-methods
+                              #:service-metadata #:session-id #:set-stat-option
+                              #:sftp-authentication-methods
                               #:sftp-connector-config
                               #:sftp-connector-connection-details
                               #:sftp-connector-host-key
@@ -206,57 +130,26 @@
                               #:ssh-public-key #:ssh-public-key-body
                               #:ssh-public-key-count #:ssh-public-key-id
                               #:ssh-public-keys #:start-directory-listing
-                              #:start-directory-listing-request
-                              #:start-directory-listing-response
-                              #:start-file-transfer
-                              #:start-file-transfer-request
-                              #:start-file-transfer-response
-                              #:start-remote-delete
-                              #:start-remote-delete-request
-                              #:start-remote-delete-response
-                              #:start-remote-move #:start-remote-move-request
-                              #:start-remote-move-response #:start-server
-                              #:start-server-request #:state #:status
-                              #:status-code #:step-result-outputs-json
-                              #:stop-server #:stop-server-request
-                              #:structured-log-destinations #:subnet-id
-                              #:subnet-ids #:tag #:tag-key #:tag-keys
-                              #:tag-resource #:tag-resource-request
-                              #:tag-step-details #:tag-value #:tags
-                              #:test-connection #:test-connection-request
-                              #:test-connection-response
+                              #:start-file-transfer #:start-remote-delete
+                              #:start-remote-move #:start-server #:state
+                              #:status #:status-code #:step-result-outputs-json
+                              #:stop-server #:structured-log-destinations
+                              #:subnet-id #:subnet-ids #:tag #:tag-key
+                              #:tag-keys #:tag-resource #:tag-step-details
+                              #:tag-value #:tags #:test-connection
                               #:test-identity-provider
-                              #:test-identity-provider-request
-                              #:test-identity-provider-response
-                              #:throttling-exception
                               #:tls-session-resumption-mode #:transfer-id
                               #:transfer-service #:transfer-table-status
-                              #:untag-resource #:untag-resource-request
-                              #:update-access #:update-access-request
-                              #:update-access-response #:update-agreement
-                              #:update-agreement-request
-                              #:update-agreement-response #:update-certificate
-                              #:update-certificate-request
-                              #:update-certificate-response #:update-connector
-                              #:update-connector-request
-                              #:update-connector-response #:update-host-key
-                              #:update-host-key-request
-                              #:update-host-key-response #:update-profile
-                              #:update-profile-request
-                              #:update-profile-response #:update-server
-                              #:update-server-request #:update-server-response
-                              #:update-user #:update-user-request
-                              #:update-user-response #:update-web-app
-                              #:update-web-app-customization
-                              #:update-web-app-customization-request
-                              #:update-web-app-customization-response
+                              #:untag-resource #:update-access
+                              #:update-agreement #:update-certificate
+                              #:update-connector #:update-host-key
+                              #:update-profile #:update-server #:update-user
+                              #:update-web-app #:update-web-app-customization
                               #:update-web-app-identity-center-config
-                              #:update-web-app-identity-provider-details
-                              #:update-web-app-request
-                              #:update-web-app-response #:url #:user-count
-                              #:user-details #:user-name #:user-password
-                              #:user-resource #:vpc-endpoint-id #:vpc-id
-                              #:web-app-access-endpoint
+                              #:update-web-app-identity-provider-details #:url
+                              #:user-count #:user-details #:user-name
+                              #:user-password #:user-resource #:vpc-endpoint-id
+                              #:vpc-id #:web-app-access-endpoint
                               #:web-app-customization-resource
                               #:web-app-endpoint #:web-app-endpoint-policy
                               #:web-app-favicon-file #:web-app-id

@@ -8,88 +8,28 @@
                               #:azure-blob-sas-configuration
                               #:azure-blob-sas-token #:azure-blob-subdirectory
                               #:azure-blob-type #:bytes-per-second
-                              #:cancel-task-execution
-                              #:cancel-task-execution-request
-                              #:cancel-task-execution-response
-                              #:cmk-secret-config #:create-agent
-                              #:create-agent-request #:create-agent-response
-                              #:create-location-azure-blob
-                              #:create-location-azure-blob-request
-                              #:create-location-azure-blob-response
+                              #:cancel-task-execution #:cmk-secret-config
+                              #:create-agent #:create-location-azure-blob
                               #:create-location-efs
-                              #:create-location-efs-request
-                              #:create-location-efs-response
                               #:create-location-fsx-lustre
-                              #:create-location-fsx-lustre-request
-                              #:create-location-fsx-lustre-response
                               #:create-location-fsx-ontap
-                              #:create-location-fsx-ontap-request
-                              #:create-location-fsx-ontap-response
                               #:create-location-fsx-open-zfs
-                              #:create-location-fsx-open-zfs-request
-                              #:create-location-fsx-open-zfs-response
                               #:create-location-fsx-windows
-                              #:create-location-fsx-windows-request
-                              #:create-location-fsx-windows-response
-                              #:create-location-hdfs
-                              #:create-location-hdfs-request
-                              #:create-location-hdfs-response
-                              #:create-location-nfs
-                              #:create-location-nfs-request
-                              #:create-location-nfs-response
+                              #:create-location-hdfs #:create-location-nfs
                               #:create-location-object-storage
-                              #:create-location-object-storage-request
-                              #:create-location-object-storage-response
-                              #:create-location-s3 #:create-location-s3request
-                              #:create-location-s3response
-                              #:create-location-smb
-                              #:create-location-smb-request
-                              #:create-location-smb-response #:create-task
-                              #:create-task-request #:create-task-response
-                              #:custom-secret-config #:delete-agent
-                              #:delete-agent-request #:delete-agent-response
-                              #:delete-location #:delete-location-request
-                              #:delete-location-response #:delete-task
-                              #:delete-task-request #:delete-task-response
-                              #:describe-agent #:describe-agent-request
-                              #:describe-agent-response
-                              #:describe-location-azure-blob
-                              #:describe-location-azure-blob-request
-                              #:describe-location-azure-blob-response
+                              #:create-location-s3 #:create-location-smb
+                              #:create-task #:custom-secret-config
+                              #:delete-agent #:delete-location #:delete-task
+                              #:describe-agent #:describe-location-azure-blob
                               #:describe-location-efs
-                              #:describe-location-efs-request
-                              #:describe-location-efs-response
                               #:describe-location-fsx-lustre
-                              #:describe-location-fsx-lustre-request
-                              #:describe-location-fsx-lustre-response
                               #:describe-location-fsx-ontap
-                              #:describe-location-fsx-ontap-request
-                              #:describe-location-fsx-ontap-response
                               #:describe-location-fsx-open-zfs
-                              #:describe-location-fsx-open-zfs-request
-                              #:describe-location-fsx-open-zfs-response
                               #:describe-location-fsx-windows
-                              #:describe-location-fsx-windows-request
-                              #:describe-location-fsx-windows-response
-                              #:describe-location-hdfs
-                              #:describe-location-hdfs-request
-                              #:describe-location-hdfs-response
-                              #:describe-location-nfs
-                              #:describe-location-nfs-request
-                              #:describe-location-nfs-response
+                              #:describe-location-hdfs #:describe-location-nfs
                               #:describe-location-object-storage
-                              #:describe-location-object-storage-request
-                              #:describe-location-object-storage-response
-                              #:describe-location-s3
-                              #:describe-location-s3request
-                              #:describe-location-s3response
-                              #:describe-location-smb
-                              #:describe-location-smb-request
-                              #:describe-location-smb-response #:describe-task
-                              #:describe-task-execution
-                              #:describe-task-execution-request
-                              #:describe-task-execution-response
-                              #:describe-task-request #:describe-task-response
+                              #:describe-location-s3 #:describe-location-smb
+                              #:describe-task #:describe-task-execution
                               #:destination-network-interface-arns
                               #:dns-ip-list #:duration #:ec2config
                               #:ec2security-group-arn
@@ -113,20 +53,11 @@
                               #:hdfs-server-port #:hdfs-subdirectory
                               #:hdfs-user #:iam-role-arn
                               #:iam-role-arn-or-empty-string #:input-tag-list
-                              #:internal-exception #:invalid-request-exception
                               #:kerberos-keytab-file #:kerberos-krb5conf-file
                               #:kerberos-principal #:kms-key-arn
                               #:kms-key-provider-uri #:list-agents
-                              #:list-agents-request #:list-agents-response
-                              #:list-locations #:list-locations-request
-                              #:list-locations-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response
-                              #:list-task-executions
-                              #:list-task-executions-request
-                              #:list-task-executions-response #:list-tasks
-                              #:list-tasks-request #:list-tasks-response
+                              #:list-locations #:list-tags-for-resource
+                              #:list-task-executions #:list-tasks
                               #:location-arn #:location-filter
                               #:location-filter-name #:location-filters
                               #:location-list #:location-list-entry
@@ -163,11 +94,8 @@
                               #:source-manifest-config
                               #:source-network-interface-arns
                               #:start-task-execution
-                              #:start-task-execution-request
-                              #:start-task-execution-response
                               #:storage-virtual-machine-arn #:tag-key
                               #:tag-key-list #:tag-list-entry #:tag-resource
-                              #:tag-resource-request #:tag-resource-response
                               #:tag-value #:taggable-resource-arn #:task-arn
                               #:task-execution-arn
                               #:task-execution-files-failed-detail
@@ -180,46 +108,17 @@
                               #:task-report-config #:task-schedule
                               #:task-schedule-details #:task-status #:time
                               #:transfer-mode #:uid #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-agent
-                              #:update-agent-request #:update-agent-response
-                              #:update-location-azure-blob
-                              #:update-location-azure-blob-request
-                              #:update-location-azure-blob-response
+                              #:update-agent #:update-location-azure-blob
                               #:update-location-efs
-                              #:update-location-efs-request
-                              #:update-location-efs-response
                               #:update-location-fsx-lustre
-                              #:update-location-fsx-lustre-request
-                              #:update-location-fsx-lustre-response
                               #:update-location-fsx-ontap
-                              #:update-location-fsx-ontap-request
-                              #:update-location-fsx-ontap-response
                               #:update-location-fsx-open-zfs
-                              #:update-location-fsx-open-zfs-request
-                              #:update-location-fsx-open-zfs-response
                               #:update-location-fsx-windows
-                              #:update-location-fsx-windows-request
-                              #:update-location-fsx-windows-response
-                              #:update-location-hdfs
-                              #:update-location-hdfs-request
-                              #:update-location-hdfs-response
-                              #:update-location-nfs
-                              #:update-location-nfs-request
-                              #:update-location-nfs-response
+                              #:update-location-hdfs #:update-location-nfs
                               #:update-location-object-storage
-                              #:update-location-object-storage-request
-                              #:update-location-object-storage-response
-                              #:update-location-s3 #:update-location-s3request
-                              #:update-location-s3response
-                              #:update-location-smb
-                              #:update-location-smb-request
-                              #:update-location-smb-response
+                              #:update-location-s3 #:update-location-smb
                               #:update-smb-domain #:update-task
                               #:update-task-execution
-                              #:update-task-execution-request
-                              #:update-task-execution-response
-                              #:update-task-request #:update-task-response
                               #:updated-efs-access-point-arn
                               #:updated-efs-iam-role-arn #:verify-mode
                               #:vpc-endpoint-id #:long #:string))

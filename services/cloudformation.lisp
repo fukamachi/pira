@@ -5,23 +5,16 @@
                               #:account-gate-status-reason #:account-limit
                               #:account-limit-list #:account-list
                               #:accounts-url #:activate-organizations-access
-                              #:activate-organizations-access-input
-                              #:activate-organizations-access-output
-                              #:activate-type #:activate-type-input
-                              #:activate-type-output #:after-context
-                              #:after-value #:allowed-value #:allowed-values
-                              #:already-exists-exception #:arn
+                              #:activate-type #:after-context #:after-value
+                              #:allowed-value #:allowed-values #:arn
                               #:attribute-change-type #:auto-deployment
                               #:auto-deployment-nullable #:auto-update
                               #:batch-describe-type-configurations
                               #:batch-describe-type-configurations-error
                               #:batch-describe-type-configurations-errors
-                              #:batch-describe-type-configurations-input
-                              #:batch-describe-type-configurations-output
                               #:before-context #:before-value #:boxed-integer
-                              #:boxed-max-results #:cfnregistry-exception
-                              #:call-as #:cancel-update-stack
-                              #:cancel-update-stack-input #:capabilities
+                              #:boxed-max-results #:call-as
+                              #:cancel-update-stack #:capabilities
                               #:capabilities-reason #:capability #:category
                               #:causing-entity #:change #:change-action
                               #:change-set-hook
@@ -29,221 +22,93 @@
                               #:change-set-hook-target-details
                               #:change-set-hooks #:change-set-hooks-status
                               #:change-set-id #:change-set-name
-                              #:change-set-name-or-id
-                              #:change-set-not-found-exception
-                              #:change-set-status #:change-set-status-reason
-                              #:change-set-summaries #:change-set-summary
-                              #:change-set-type #:change-source #:change-type
-                              #:changes #:client-request-token #:client-token
+                              #:change-set-name-or-id #:change-set-status
+                              #:change-set-status-reason #:change-set-summaries
+                              #:change-set-summary #:change-set-type
+                              #:change-source #:change-type #:changes
+                              #:client-request-token #:client-token
                               #:cloud-formation #:concurrency-mode
-                              #:concurrent-resources-limit-exceeded-exception
                               #:configuration-schema #:connection-arn
-                              #:continue-update-rollback
-                              #:continue-update-rollback-input
-                              #:continue-update-rollback-output
-                              #:create-change-set #:create-change-set-input
-                              #:create-change-set-output
-                              #:create-generated-template
-                              #:create-generated-template-input
-                              #:create-generated-template-output #:create-stack
-                              #:create-stack-input #:create-stack-instances
-                              #:create-stack-instances-input
-                              #:create-stack-instances-output
-                              #:create-stack-output #:create-stack-refactor
-                              #:create-stack-refactor-input
-                              #:create-stack-refactor-output #:create-stack-set
-                              #:create-stack-set-input
-                              #:create-stack-set-output
-                              #:created-but-modified-exception #:creation-time
+                              #:continue-update-rollback #:create-change-set
+                              #:create-generated-template #:create-stack
+                              #:create-stack-instances #:create-stack-refactor
+                              #:create-stack-set #:creation-time
                               #:deactivate-organizations-access
-                              #:deactivate-organizations-access-input
-                              #:deactivate-organizations-access-output
-                              #:deactivate-type #:deactivate-type-input
-                              #:deactivate-type-output #:delete-change-set
-                              #:delete-change-set-input
-                              #:delete-change-set-output
-                              #:delete-generated-template
-                              #:delete-generated-template-input #:delete-stack
-                              #:delete-stack-input #:delete-stack-instances
-                              #:delete-stack-instances-input
-                              #:delete-stack-instances-output
-                              #:delete-stack-set #:delete-stack-set-input
-                              #:delete-stack-set-output #:deletion-mode
-                              #:deletion-time #:deployment-targets
-                              #:deprecated-status #:deregister-type
-                              #:deregister-type-input #:deregister-type-output
-                              #:describe-account-limits
-                              #:describe-account-limits-input
-                              #:describe-account-limits-output
+                              #:deactivate-type #:delete-change-set
+                              #:delete-generated-template #:delete-stack
+                              #:delete-stack-instances #:delete-stack-set
+                              #:deletion-mode #:deletion-time
+                              #:deployment-targets #:deprecated-status
+                              #:deregister-type #:describe-account-limits
                               #:describe-change-set #:describe-change-set-hooks
-                              #:describe-change-set-hooks-input
-                              #:describe-change-set-hooks-output
-                              #:describe-change-set-input
-                              #:describe-change-set-output
                               #:describe-generated-template
-                              #:describe-generated-template-input
-                              #:describe-generated-template-output
                               #:describe-organizations-access
-                              #:describe-organizations-access-input
-                              #:describe-organizations-access-output
-                              #:describe-publisher #:describe-publisher-input
-                              #:describe-publisher-output
-                              #:describe-resource-scan
-                              #:describe-resource-scan-input
-                              #:describe-resource-scan-output
+                              #:describe-publisher #:describe-resource-scan
                               #:describe-stack-drift-detection-status
-                              #:describe-stack-drift-detection-status-input
-                              #:describe-stack-drift-detection-status-output
-                              #:describe-stack-events
-                              #:describe-stack-events-input
-                              #:describe-stack-events-output
-                              #:describe-stack-instance
-                              #:describe-stack-instance-input
-                              #:describe-stack-instance-output
+                              #:describe-stack-events #:describe-stack-instance
                               #:describe-stack-refactor
-                              #:describe-stack-refactor-input
-                              #:describe-stack-refactor-output
                               #:describe-stack-resource
                               #:describe-stack-resource-drifts
-                              #:describe-stack-resource-drifts-input
-                              #:describe-stack-resource-drifts-output
-                              #:describe-stack-resource-input
-                              #:describe-stack-resource-output
-                              #:describe-stack-resources
-                              #:describe-stack-resources-input
-                              #:describe-stack-resources-output
-                              #:describe-stack-set #:describe-stack-set-input
-                              #:describe-stack-set-operation
-                              #:describe-stack-set-operation-input
-                              #:describe-stack-set-operation-output
-                              #:describe-stack-set-output #:describe-stacks
-                              #:describe-stacks-input #:describe-stacks-output
-                              #:describe-type #:describe-type-input
-                              #:describe-type-output
-                              #:describe-type-registration
-                              #:describe-type-registration-input
-                              #:describe-type-registration-output #:description
-                              #:detailed-status #:detect-stack-drift
-                              #:detect-stack-drift-input
-                              #:detect-stack-drift-output
+                              #:describe-stack-resources #:describe-stack-set
+                              #:describe-stack-set-operation #:describe-stacks
+                              #:describe-type #:describe-type-registration
+                              #:description #:detailed-status
+                              #:detect-stack-drift
                               #:detect-stack-resource-drift
-                              #:detect-stack-resource-drift-input
-                              #:detect-stack-resource-drift-output
-                              #:detect-stack-set-drift
-                              #:detect-stack-set-drift-input
-                              #:detect-stack-set-drift-output
-                              #:detection-reason #:difference-type
-                              #:disable-rollback
+                              #:detect-stack-set-drift #:detection-reason
+                              #:difference-type #:disable-rollback
                               #:drifted-stack-instances-count
                               #:enable-stack-creation
                               #:enable-termination-protection #:error-code
                               #:error-message #:estimate-template-cost
-                              #:estimate-template-cost-input
-                              #:estimate-template-cost-output #:evaluation-type
-                              #:event-id #:execute-change-set
-                              #:execute-change-set-input
-                              #:execute-change-set-output
-                              #:execute-stack-refactor
-                              #:execute-stack-refactor-input
-                              #:execution-role-name #:execution-status
-                              #:execution-status-reason #:export #:export-name
-                              #:export-value #:exports
+                              #:evaluation-type #:event-id #:execute-change-set
+                              #:execute-stack-refactor #:execution-role-name
+                              #:execution-status #:execution-status-reason
+                              #:export #:export-name #:export-value #:exports
                               #:failed-stack-instances-count
                               #:failure-tolerance-count
                               #:failure-tolerance-percentage
                               #:generated-template-deletion-policy
                               #:generated-template-id #:generated-template-name
-                              #:generated-template-not-found-exception
                               #:generated-template-resource-status
                               #:generated-template-status
                               #:generated-template-update-replace-policy
-                              #:get-generated-template
-                              #:get-generated-template-input
-                              #:get-generated-template-output
-                              #:get-stack-policy #:get-stack-policy-input
-                              #:get-stack-policy-output #:get-template
-                              #:get-template-input #:get-template-output
-                              #:get-template-summary
-                              #:get-template-summary-input
-                              #:get-template-summary-output
+                              #:get-generated-template #:get-stack-policy
+                              #:get-template #:get-template-summary
                               #:handler-error-code #:hook-failure-mode
                               #:hook-invocation-count #:hook-invocation-point
-                              #:hook-result-id
-                              #:hook-result-not-found-exception
-                              #:hook-result-summaries #:hook-result-summary
-                              #:hook-status #:hook-status-reason
-                              #:hook-target-type #:hook-target-type-name
-                              #:hook-type #:hook-type-configuration-version-id
+                              #:hook-result-id #:hook-result-summaries
+                              #:hook-result-summary #:hook-status
+                              #:hook-status-reason #:hook-target-type
+                              #:hook-target-type-name #:hook-type
+                              #:hook-type-configuration-version-id
                               #:hook-type-name #:hook-type-version-id
                               #:identity-provider #:import-existing-resources
-                              #:import-stacks-to-stack-set
-                              #:import-stacks-to-stack-set-input
-                              #:import-stacks-to-stack-set-output #:imports
+                              #:import-stacks-to-stack-set #:imports
                               #:in-progress-stack-instances-count
                               #:in-sync-stack-instances-count
                               #:include-nested-stacks #:include-property-values
-                              #:insufficient-capabilities-exception
-                              #:invalid-change-set-status-exception
-                              #:invalid-operation-exception
-                              #:invalid-state-transition-exception
                               #:is-activated #:is-default-configuration
                               #:is-default-version #:jazz-logical-resource-ids
                               #:jazz-resource-identifier-properties
                               #:jazz-resource-identifier-property-key
                               #:jazz-resource-identifier-property-value #:key
-                              #:last-updated-time #:limit-exceeded-exception
-                              #:limit-name #:limit-value #:list-change-sets
-                              #:list-change-sets-input
-                              #:list-change-sets-output #:list-exports
-                              #:list-exports-input #:list-exports-output
-                              #:list-generated-templates
-                              #:list-generated-templates-input
-                              #:list-generated-templates-output
-                              #:list-hook-results #:list-hook-results-input
-                              #:list-hook-results-output
+                              #:last-updated-time #:limit-name #:limit-value
+                              #:list-change-sets #:list-exports
+                              #:list-generated-templates #:list-hook-results
                               #:list-hook-results-target-type #:list-imports
-                              #:list-imports-input #:list-imports-output
                               #:list-resource-scan-related-resources
-                              #:list-resource-scan-related-resources-input
-                              #:list-resource-scan-related-resources-output
                               #:list-resource-scan-resources
-                              #:list-resource-scan-resources-input
-                              #:list-resource-scan-resources-output
-                              #:list-resource-scans #:list-resource-scans-input
-                              #:list-resource-scans-output
+                              #:list-resource-scans
                               #:list-stack-instance-resource-drifts
-                              #:list-stack-instance-resource-drifts-input
-                              #:list-stack-instance-resource-drifts-output
                               #:list-stack-instances
-                              #:list-stack-instances-input
-                              #:list-stack-instances-output
                               #:list-stack-refactor-actions
-                              #:list-stack-refactor-actions-input
-                              #:list-stack-refactor-actions-output
-                              #:list-stack-refactors
-                              #:list-stack-refactors-input
-                              #:list-stack-refactors-output
-                              #:list-stack-resources
-                              #:list-stack-resources-input
-                              #:list-stack-resources-output
+                              #:list-stack-refactors #:list-stack-resources
                               #:list-stack-set-auto-deployment-targets
-                              #:list-stack-set-auto-deployment-targets-input
-                              #:list-stack-set-auto-deployment-targets-output
                               #:list-stack-set-operation-results
-                              #:list-stack-set-operation-results-input
-                              #:list-stack-set-operation-results-output
-                              #:list-stack-set-operations
-                              #:list-stack-set-operations-input
-                              #:list-stack-set-operations-output
-                              #:list-stack-sets #:list-stack-sets-input
-                              #:list-stack-sets-output #:list-stacks
-                              #:list-stacks-input #:list-stacks-output
-                              #:list-type-registrations
-                              #:list-type-registrations-input
-                              #:list-type-registrations-output
-                              #:list-type-versions #:list-type-versions-input
-                              #:list-type-versions-output #:list-types
-                              #:list-types-input #:list-types-output
+                              #:list-stack-set-operations #:list-stack-sets
+                              #:list-stacks #:list-type-registrations
+                              #:list-type-versions #:list-types
                               #:log-group-name #:logging-config
                               #:logical-id-hierarchy #:logical-resource-id
                               #:logical-resource-ids #:major-version
@@ -252,19 +117,13 @@
                               #:max-concurrent-count
                               #:max-concurrent-percentage #:max-results
                               #:metadata #:module-info
-                              #:monitoring-time-in-minutes
-                              #:name-already-exists-exception #:next-token
+                              #:monitoring-time-in-minutes #:next-token
                               #:no-echo #:notification-arn #:notification-arns
                               #:number-of-resources #:on-failure
-                              #:on-stack-failure
-                              #:operation-id-already-exists-exception
-                              #:operation-in-progress-exception
-                              #:operation-not-found-exception
-                              #:operation-result-filter
+                              #:on-stack-failure #:operation-result-filter
                               #:operation-result-filter-name
                               #:operation-result-filter-values
                               #:operation-result-filters #:operation-status
-                              #:operation-status-check-failed-exception
                               #:optional-secure-url #:organization-status
                               #:organizational-unit-id
                               #:organizational-unit-id-list #:output
@@ -281,18 +140,11 @@
                               #:property-differences #:property-name
                               #:property-path #:property-value
                               #:provisioning-type #:public-version-number
-                              #:publish-type #:publish-type-input
-                              #:publish-type-output #:publisher-id
-                              #:publisher-name #:publisher-profile
-                              #:publisher-status #:reason
-                              #:record-handler-progress
-                              #:record-handler-progress-input
-                              #:record-handler-progress-output
-                              #:refresh-all-resources #:region
-                              #:region-concurrency-type #:region-list
-                              #:register-publisher #:register-publisher-input
-                              #:register-publisher-output #:register-type
-                              #:register-type-input #:register-type-output
+                              #:publish-type #:publisher-id #:publisher-name
+                              #:publisher-profile #:publisher-status #:reason
+                              #:record-handler-progress #:refresh-all-resources
+                              #:region #:region-concurrency-type #:region-list
+                              #:register-publisher #:register-type
                               #:registration-status #:registration-token
                               #:registration-token-list #:registry-type
                               #:related-resources #:replacement #:request-token
@@ -312,9 +164,6 @@
                               #:resource-mapping #:resource-mappings
                               #:resource-model #:resource-properties
                               #:resource-property-path #:resource-scan-id
-                              #:resource-scan-in-progress-exception
-                              #:resource-scan-limit-exceeded-exception
-                              #:resource-scan-not-found-exception
                               #:resource-scan-status
                               #:resource-scan-status-reason
                               #:resource-scan-summaries #:resource-scan-summary
@@ -334,21 +183,15 @@
                               #:retain-stacks #:retain-stacks-nullable
                               #:retain-stacks-on-account-removal-nullable
                               #:role-arn #:role-arn2 #:rollback-configuration
-                              #:rollback-stack #:rollback-stack-input
-                              #:rollback-stack-output #:rollback-trigger
+                              #:rollback-stack #:rollback-trigger
                               #:rollback-triggers #:s3bucket #:s3url
                               #:scan-filter #:scan-filters #:scan-type
                               #:scanned-resource #:scanned-resource-identifier
                               #:scanned-resource-identifiers
                               #:scanned-resources #:scope #:set-stack-policy
-                              #:set-stack-policy-input #:set-type-configuration
-                              #:set-type-configuration-input
-                              #:set-type-configuration-output
-                              #:set-type-default-version
-                              #:set-type-default-version-input
-                              #:set-type-default-version-output
-                              #:signal-resource #:signal-resource-input #:stack
-                              #:stack-definition #:stack-definitions
+                              #:set-type-configuration
+                              #:set-type-default-version #:signal-resource
+                              #:stack #:stack-definition #:stack-definitions
                               #:stack-drift-detection-id
                               #:stack-drift-detection-status
                               #:stack-drift-detection-status-reason
@@ -363,14 +206,12 @@
                               #:stack-instance-filter-name
                               #:stack-instance-filter-values
                               #:stack-instance-filters
-                              #:stack-instance-not-found-exception
                               #:stack-instance-resource-drifts-summaries
                               #:stack-instance-resource-drifts-summary
                               #:stack-instance-status
                               #:stack-instance-summaries
                               #:stack-instance-summary #:stack-name
-                              #:stack-name-or-id #:stack-not-found-exception
-                              #:stack-policy-body
+                              #:stack-name-or-id #:stack-policy-body
                               #:stack-policy-during-update-body
                               #:stack-policy-during-update-url
                               #:stack-policy-url #:stack-refactor-action
@@ -381,7 +222,6 @@
                               #:stack-refactor-execution-status
                               #:stack-refactor-execution-status-filter
                               #:stack-refactor-id
-                              #:stack-refactor-not-found-exception
                               #:stack-refactor-resource-identifier
                               #:stack-refactor-status
                               #:stack-refactor-status-reason
@@ -405,8 +245,6 @@
                               #:stack-set-drift-detection-status
                               #:stack-set-drift-status #:stack-set-id
                               #:stack-set-name #:stack-set-name-or-id
-                              #:stack-set-not-empty-exception
-                              #:stack-set-not-found-exception
                               #:stack-set-operation
                               #:stack-set-operation-action
                               #:stack-set-operation-preferences
@@ -422,12 +260,8 @@
                               #:stack-status #:stack-status-filter
                               #:stack-status-reason #:stack-summaries
                               #:stack-summary #:stacks #:stage-list
-                              #:stale-request-exception #:start-resource-scan
-                              #:start-resource-scan-input
-                              #:start-resource-scan-output #:status-message
+                              #:start-resource-scan #:status-message
                               #:stop-stack-set-operation
-                              #:stop-stack-set-operation-input
-                              #:stop-stack-set-operation-output
                               #:supported-major-version
                               #:supported-major-versions #:tag #:tag-key
                               #:tag-value #:tags #:template-body
@@ -437,12 +271,11 @@
                               #:template-stage #:template-status-reason
                               #:template-summaries #:template-summary
                               #:template-summary-config #:template-url
-                              #:test-type #:test-type-input #:test-type-output
-                              #:third-party-type #:third-party-type-arn
-                              #:timeout-minutes #:timestamp
-                              #:token-already-exists-exception
-                              #:total-stack-instances-count #:total-warnings
-                              #:transform-name #:transforms-list
+                              #:test-type #:third-party-type
+                              #:third-party-type-arn #:timeout-minutes
+                              #:timestamp #:total-stack-instances-count
+                              #:total-warnings #:transform-name
+                              #:transforms-list
                               #:treat-unrecognized-resource-types-as-warnings
                               #:type #:type-arn #:type-configuration
                               #:type-configuration-alias
@@ -450,30 +283,18 @@
                               #:type-configuration-details
                               #:type-configuration-details-list
                               #:type-configuration-identifier
-                              #:type-configuration-identifiers
-                              #:type-configuration-not-found-exception
-                              #:type-filters #:type-hierarchy #:type-name
-                              #:type-name-prefix #:type-not-found-exception
+                              #:type-configuration-identifiers #:type-filters
+                              #:type-hierarchy #:type-name #:type-name-prefix
                               #:type-schema #:type-summaries #:type-summary
                               #:type-tests-status
                               #:type-tests-status-description #:type-version-id
                               #:type-version-summaries #:type-version-summary
                               #:unprocessed-type-configurations
-                              #:update-generated-template
-                              #:update-generated-template-input
-                              #:update-generated-template-output #:update-stack
-                              #:update-stack-input #:update-stack-instances
-                              #:update-stack-instances-input
-                              #:update-stack-instances-output
-                              #:update-stack-output #:update-stack-set
-                              #:update-stack-set-input
-                              #:update-stack-set-output
-                              #:update-termination-protection
-                              #:update-termination-protection-input
-                              #:update-termination-protection-output #:url
+                              #:update-generated-template #:update-stack
+                              #:update-stack-instances #:update-stack-set
+                              #:update-termination-protection #:url
                               #:use-previous-template #:use-previous-value
-                              #:validate-template #:validate-template-input
-                              #:validate-template-output #:value #:version
+                              #:validate-template #:value #:version
                               #:version-bump #:visibility #:warning-detail
                               #:warning-details #:warning-properties
                               #:warning-property #:warning-type #:warnings))

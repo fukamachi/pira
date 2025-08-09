@@ -1,119 +1,46 @@
 (uiop/package:define-package #:pira/chime (:use)
-                             (:export #:access-denied-exception #:account
-                              #:account-list #:account-name #:account-settings
-                              #:account-status #:account-type
-                              #:alexa-for-business-metadata
+                             (:export #:account #:account-list #:account-name
+                              #:account-settings #:account-status
+                              #:account-type #:alexa-for-business-metadata
                               #:alpha2country-code
                               #:associate-phone-number-with-user
-                              #:associate-phone-number-with-user-request
-                              #:associate-phone-number-with-user-response
                               #:associate-signin-delegate-groups-with-account
-                              #:associate-signin-delegate-groups-with-account-request
-                              #:associate-signin-delegate-groups-with-account-response
-                              #:bad-request-exception
                               #:batch-create-room-membership
-                              #:batch-create-room-membership-request
-                              #:batch-create-room-membership-response
-                              #:batch-delete-phone-number
-                              #:batch-delete-phone-number-request
-                              #:batch-delete-phone-number-response
-                              #:batch-suspend-user #:batch-suspend-user-request
-                              #:batch-suspend-user-response
+                              #:batch-delete-phone-number #:batch-suspend-user
                               #:batch-unsuspend-user
-                              #:batch-unsuspend-user-request
-                              #:batch-unsuspend-user-response
-                              #:batch-update-phone-number
-                              #:batch-update-phone-number-request
-                              #:batch-update-phone-number-response
-                              #:batch-update-user #:batch-update-user-request
-                              #:batch-update-user-response #:boolean #:bot
-                              #:bot-list #:bot-type #:business-calling-settings
-                              #:calling-name #:calling-name-status
-                              #:client-request-token #:conflict-exception
+                              #:batch-update-phone-number #:batch-update-user
+                              #:boolean #:bot #:bot-list #:bot-type
+                              #:business-calling-settings #:calling-name
+                              #:calling-name-status #:client-request-token
                               #:conversation-retention-settings
-                              #:create-account #:create-account-request
-                              #:create-account-response #:create-bot
-                              #:create-bot-request #:create-bot-response
+                              #:create-account #:create-bot
                               #:create-meeting-dial-out
-                              #:create-meeting-dial-out-request
-                              #:create-meeting-dial-out-response
-                              #:create-phone-number-order
-                              #:create-phone-number-order-request
-                              #:create-phone-number-order-response
-                              #:create-room #:create-room-membership
-                              #:create-room-membership-request
-                              #:create-room-membership-response
-                              #:create-room-request #:create-room-response
-                              #:create-user #:create-user-request
-                              #:create-user-response #:delete-account
-                              #:delete-account-request
-                              #:delete-account-response
-                              #:delete-events-configuration
-                              #:delete-events-configuration-request
-                              #:delete-phone-number
-                              #:delete-phone-number-request #:delete-room
+                              #:create-phone-number-order #:create-room
+                              #:create-room-membership #:create-user
+                              #:delete-account #:delete-events-configuration
+                              #:delete-phone-number #:delete-room
                               #:delete-room-membership
-                              #:delete-room-membership-request
-                              #:delete-room-request
                               #:disassociate-phone-number-from-user
-                              #:disassociate-phone-number-from-user-request
-                              #:disassociate-phone-number-from-user-response
                               #:disassociate-signin-delegate-groups-from-account
-                              #:disassociate-signin-delegate-groups-from-account-request
-                              #:disassociate-signin-delegate-groups-from-account-response
                               #:e164phone-number #:e164phone-number-list
                               #:email-address #:email-status #:error-code
-                              #:events-configuration #:forbidden-exception
-                              #:get-account #:get-account-request
-                              #:get-account-response #:get-account-settings
-                              #:get-account-settings-request
-                              #:get-account-settings-response #:get-bot
-                              #:get-bot-request #:get-bot-response
-                              #:get-events-configuration
-                              #:get-events-configuration-request
-                              #:get-events-configuration-response
-                              #:get-global-settings
-                              #:get-global-settings-response #:get-phone-number
-                              #:get-phone-number-order
-                              #:get-phone-number-order-request
-                              #:get-phone-number-order-response
-                              #:get-phone-number-request
-                              #:get-phone-number-response
+                              #:events-configuration #:get-account
+                              #:get-account-settings #:get-bot
+                              #:get-events-configuration #:get-global-settings
+                              #:get-phone-number #:get-phone-number-order
                               #:get-phone-number-settings
-                              #:get-phone-number-settings-response
-                              #:get-retention-settings
-                              #:get-retention-settings-request
-                              #:get-retention-settings-response #:get-room
-                              #:get-room-request #:get-room-response #:get-user
-                              #:get-user-request #:get-user-response
-                              #:get-user-settings #:get-user-settings-request
-                              #:get-user-settings-response #:guid-string
-                              #:invite #:invite-list #:invite-status
-                              #:invite-users #:invite-users-request
-                              #:invite-users-response #:iso8601timestamp
-                              #:join-token-string #:license #:license-list
-                              #:list-accounts #:list-accounts-request
-                              #:list-accounts-response #:list-bots
-                              #:list-bots-request #:list-bots-response
-                              #:list-phone-number-orders
-                              #:list-phone-number-orders-request
-                              #:list-phone-number-orders-response
-                              #:list-phone-numbers #:list-phone-numbers-request
-                              #:list-phone-numbers-response
-                              #:list-room-memberships
-                              #:list-room-memberships-request
-                              #:list-room-memberships-response #:list-rooms
-                              #:list-rooms-request #:list-rooms-response
+                              #:get-retention-settings #:get-room #:get-user
+                              #:get-user-settings #:guid-string #:invite
+                              #:invite-list #:invite-status #:invite-users
+                              #:iso8601timestamp #:join-token-string #:license
+                              #:license-list #:list-accounts #:list-bots
+                              #:list-phone-number-orders #:list-phone-numbers
+                              #:list-room-memberships #:list-rooms
                               #:list-supported-phone-number-countries
-                              #:list-supported-phone-number-countries-request
-                              #:list-supported-phone-number-countries-response
-                              #:list-users #:list-users-request
-                              #:list-users-response #:logout-user
-                              #:logout-user-request #:logout-user-response
-                              #:member #:member-error #:member-error-list
-                              #:member-type #:membership-item
-                              #:membership-item-list #:non-empty-string
-                              #:non-empty-string-list #:not-found-exception
+                              #:list-users #:logout-user #:member
+                              #:member-error #:member-error-list #:member-type
+                              #:membership-item #:membership-item-list
+                              #:non-empty-string #:non-empty-string-list
                               #:nullable-boolean #:ordered-phone-number
                               #:ordered-phone-number-list
                               #:ordered-phone-number-status #:phone-number
@@ -131,69 +58,32 @@
                               #:phone-number-type #:phone-number-type-list
                               #:profile-service-max-results
                               #:put-events-configuration
-                              #:put-events-configuration-request
-                              #:put-events-configuration-response
                               #:put-retention-settings
-                              #:put-retention-settings-request
-                              #:put-retention-settings-response
                               #:redact-conversation-message
-                              #:redact-conversation-message-request
-                              #:redact-conversation-message-response
-                              #:redact-room-message
-                              #:redact-room-message-request
-                              #:redact-room-message-response
-                              #:regenerate-security-token
-                              #:regenerate-security-token-request
-                              #:regenerate-security-token-response
+                              #:redact-room-message #:regenerate-security-token
                               #:registration-status #:reset-personal-pin
-                              #:reset-personal-pinrequest
-                              #:reset-personal-pinresponse
-                              #:resource-limit-exceeded-exception
-                              #:restore-phone-number
-                              #:restore-phone-number-request
-                              #:restore-phone-number-response #:result-max
+                              #:restore-phone-number #:result-max
                               #:retention-days #:retention-settings #:room
                               #:room-list #:room-membership
                               #:room-membership-list #:room-membership-role
                               #:room-retention-settings
                               #:search-available-phone-numbers
-                              #:search-available-phone-numbers-request
-                              #:search-available-phone-numbers-response
-                              #:sensitive-string #:service-failure-exception
-                              #:service-unavailable-exception
-                              #:signin-delegate-group
+                              #:sensitive-string #:signin-delegate-group
                               #:signin-delegate-group-list #:string
-                              #:telephony-settings #:throttled-client-exception
-                              #:toll-free-prefix #:ucbuzz-console-service
-                              #:unauthorized-client-exception
-                              #:unprocessable-entity-exception #:update-account
-                              #:update-account-request
-                              #:update-account-response
-                              #:update-account-settings
-                              #:update-account-settings-request
-                              #:update-account-settings-response #:update-bot
-                              #:update-bot-request #:update-bot-response
-                              #:update-global-settings
-                              #:update-global-settings-request
-                              #:update-phone-number
-                              #:update-phone-number-request
+                              #:telephony-settings #:toll-free-prefix
+                              #:ucbuzz-console-service #:update-account
+                              #:update-account-settings #:update-bot
+                              #:update-global-settings #:update-phone-number
                               #:update-phone-number-request-item
                               #:update-phone-number-request-item-list
-                              #:update-phone-number-response
-                              #:update-phone-number-settings
-                              #:update-phone-number-settings-request
-                              #:update-room #:update-room-membership
-                              #:update-room-membership-request
-                              #:update-room-membership-response
-                              #:update-room-request #:update-room-response
-                              #:update-user #:update-user-request
+                              #:update-phone-number-settings #:update-room
+                              #:update-room-membership #:update-user
                               #:update-user-request-item
                               #:update-user-request-item-list
-                              #:update-user-response #:update-user-settings
-                              #:update-user-settings-request #:user
-                              #:user-email-list #:user-error #:user-error-list
-                              #:user-id-list #:user-list #:user-settings
-                              #:user-type #:voice-connector-settings))
+                              #:update-user-settings #:user #:user-email-list
+                              #:user-error #:user-error-list #:user-id-list
+                              #:user-list #:user-settings #:user-type
+                              #:voice-connector-settings))
 (common-lisp:in-package #:pira/chime)
 
 (smithy/sdk/service:define-service ucbuzz-console-service :shape-name

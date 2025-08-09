@@ -1,10 +1,9 @@
 (uiop/package:define-package #:pira/pcs (:use)
                              (:export #:awsparallel-computing-service
-                              #:access-denied-exception #:accounting
-                              #:accounting-mode #:accounting-request #:ami-id
-                              #:arn #:bootstrap-id #:cluster
-                              #:cluster-identifier #:cluster-list
-                              #:cluster-name #:cluster-resource
+                              #:accounting #:accounting-mode
+                              #:accounting-request #:ami-id #:arn
+                              #:bootstrap-id #:cluster #:cluster-identifier
+                              #:cluster-list #:cluster-name #:cluster-resource
                               #:cluster-slurm-configuration
                               #:cluster-slurm-configuration-request
                               #:cluster-status #:cluster-summary
@@ -18,68 +17,35 @@
                               #:compute-node-group-slurm-configuration
                               #:compute-node-group-slurm-configuration-request
                               #:compute-node-group-status
-                              #:compute-node-group-summary #:conflict-exception
-                              #:create-cluster #:create-cluster-request
-                              #:create-cluster-response
-                              #:create-compute-node-group
-                              #:create-compute-node-group-request
-                              #:create-compute-node-group-response
-                              #:create-queue #:create-queue-request
-                              #:create-queue-response #:custom-launch-template
-                              #:delete-cluster #:delete-cluster-request
-                              #:delete-cluster-response
-                              #:delete-compute-node-group
-                              #:delete-compute-node-group-request
-                              #:delete-compute-node-group-response
-                              #:delete-queue #:delete-queue-request
-                              #:delete-queue-response #:endpoint
-                              #:endpoint-type #:endpoints #:error-info
-                              #:error-info-list #:get-cluster
-                              #:get-cluster-request #:get-cluster-response
-                              #:get-compute-node-group
-                              #:get-compute-node-group-request
-                              #:get-compute-node-group-response #:get-queue
-                              #:get-queue-request #:get-queue-response
+                              #:compute-node-group-summary #:create-cluster
+                              #:create-compute-node-group #:create-queue
+                              #:custom-launch-template #:delete-cluster
+                              #:delete-compute-node-group #:delete-queue
+                              #:endpoint #:endpoint-type #:endpoints
+                              #:error-info #:error-info-list #:get-cluster
+                              #:get-compute-node-group #:get-queue
                               #:instance-config #:instance-list
-                              #:instance-profile-arn
-                              #:internal-server-exception #:list-clusters
-                              #:list-clusters-request #:list-clusters-response
-                              #:list-compute-node-groups
-                              #:list-compute-node-groups-request
-                              #:list-compute-node-groups-response #:list-queues
-                              #:list-queues-request #:list-queues-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:max-results
+                              #:instance-profile-arn #:list-clusters
+                              #:list-compute-node-groups #:list-queues
+                              #:list-tags-for-resource #:max-results
                               #:network-type #:networking #:networking-request
                               #:purchase-option #:queue #:queue-identifier
                               #:queue-list #:queue-name #:queue-resource
                               #:queue-status #:queue-summary
                               #:register-compute-node-group-instance
-                              #:register-compute-node-group-instance-request
-                              #:register-compute-node-group-instance-response
-                              #:request-tag-map #:resource-not-found-exception
-                              #:response-tag-map #:sbclient-token
-                              #:scaling-configuration
+                              #:request-tag-map #:response-tag-map
+                              #:sbclient-token #:scaling-configuration
                               #:scaling-configuration-request #:scheduler
                               #:scheduler-request #:scheduler-type
                               #:security-group-id #:security-group-id-list
-                              #:service-quota-exceeded-exception
                               #:shared-secret #:size #:slurm-auth-key
                               #:slurm-custom-setting #:slurm-custom-settings
                               #:spot-allocation-strategy #:spot-options
                               #:string-list #:subnet-id #:subnet-id-list
-                              #:tag-key #:tag-keys #:tag-resource
-                              #:tag-resource-request #:tag-value
-                              #:throttling-exception #:untag-resource
-                              #:untag-resource-request
-                              #:update-compute-node-group
-                              #:update-compute-node-group-request
-                              #:update-compute-node-group-response
+                              #:tag-key #:tag-keys #:tag-resource #:tag-value
+                              #:untag-resource #:update-compute-node-group
                               #:update-compute-node-group-slurm-configuration-request
-                              #:update-queue #:update-queue-request
-                              #:update-queue-response #:validation-exception
-                              #:validation-exception-field
+                              #:update-queue #:validation-exception-field
                               #:validation-exception-field-list
                               #:validation-exception-reason))
 (common-lisp:in-package #:pira/pcs)

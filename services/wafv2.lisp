@@ -12,70 +12,38 @@
                               #:and-statement #:application-attribute
                               #:application-attributes #:application-config
                               #:asn-list #:asn-match-statement
-                              #:associate-web-acl #:associate-web-aclrequest
-                              #:associate-web-aclresponse
-                              #:associated-resource-type #:association-config
-                              #:attribute-name #:attribute-value
-                              #:attribute-values #:block-action #:body
+                              #:associate-web-acl #:associated-resource-type
+                              #:association-config #:attribute-name
+                              #:attribute-value #:attribute-values
+                              #:block-action #:body
                               #:body-parsing-fallback-behavior #:boolean
                               #:byte-match-statement #:capacity-unit
                               #:captcha-action #:captcha-config
                               #:captcha-response #:challenge-action
                               #:challenge-config #:challenge-response
-                              #:check-capacity #:check-capacity-request
-                              #:check-capacity-response #:client-side-action
+                              #:check-capacity #:client-side-action
                               #:client-side-action-config #:comparison-operator
                               #:condition #:conditions #:consumed-capacity
                               #:cookie-match-pattern #:cookie-names #:cookies
                               #:count-action #:country #:country-code
-                              #:country-codes #:create-apikey
-                              #:create-apikey-request #:create-apikey-response
-                              #:create-ipset #:create-ipset-request
-                              #:create-ipset-response
-                              #:create-regex-pattern-set
-                              #:create-regex-pattern-set-request
-                              #:create-regex-pattern-set-response
-                              #:create-rule-group #:create-rule-group-request
-                              #:create-rule-group-response #:create-web-acl
-                              #:create-web-aclrequest #:create-web-aclresponse
-                              #:creation-path-string #:custom-httpheader
-                              #:custom-httpheader-name
+                              #:country-codes #:create-apikey #:create-ipset
+                              #:create-regex-pattern-set #:create-rule-group
+                              #:create-web-acl #:creation-path-string
+                              #:custom-httpheader #:custom-httpheader-name
                               #:custom-httpheader-value #:custom-httpheaders
                               #:custom-request-handling #:custom-response
                               #:custom-response-bodies #:custom-response-body
                               #:data-protection #:data-protection-action
                               #:data-protection-config #:data-protections
                               #:default-action #:delete-apikey
-                              #:delete-apikey-request #:delete-apikey-response
                               #:delete-firewall-manager-rule-groups
-                              #:delete-firewall-manager-rule-groups-request
-                              #:delete-firewall-manager-rule-groups-response
-                              #:delete-ipset #:delete-ipset-request
-                              #:delete-ipset-response
-                              #:delete-logging-configuration
-                              #:delete-logging-configuration-request
-                              #:delete-logging-configuration-response
+                              #:delete-ipset #:delete-logging-configuration
                               #:delete-permission-policy
-                              #:delete-permission-policy-request
-                              #:delete-permission-policy-response
-                              #:delete-regex-pattern-set
-                              #:delete-regex-pattern-set-request
-                              #:delete-regex-pattern-set-response
-                              #:delete-rule-group #:delete-rule-group-request
-                              #:delete-rule-group-response #:delete-web-acl
-                              #:delete-web-aclrequest #:delete-web-aclresponse
-                              #:describe-all-managed-products
-                              #:describe-all-managed-products-request
-                              #:describe-all-managed-products-response
+                              #:delete-regex-pattern-set #:delete-rule-group
+                              #:delete-web-acl #:describe-all-managed-products
                               #:describe-managed-products-by-vendor
-                              #:describe-managed-products-by-vendor-request
-                              #:describe-managed-products-by-vendor-response
                               #:describe-managed-rule-group
-                              #:describe-managed-rule-group-request
-                              #:describe-managed-rule-group-response
-                              #:disassociate-web-acl
-                              #:disassociate-web-aclrequest
-                              #:disassociate-web-aclresponse #:download-url
+                              #:disassociate-web-acl #:download-url
                               #:email-field #:enable-machine-learning
                               #:entity-description #:entity-id #:entity-name
                               #:error-message #:error-reason
@@ -92,44 +60,20 @@
                               #:firewall-manager-statement #:forwarded-ipconfig
                               #:forwarded-ipheader-name #:forwarded-ipposition
                               #:generate-mobile-sdk-release-url
-                              #:generate-mobile-sdk-release-url-request
-                              #:generate-mobile-sdk-release-url-response
                               #:geo-match-statement #:get-decrypted-apikey
-                              #:get-decrypted-apikey-request
-                              #:get-decrypted-apikey-response #:get-ipset
-                              #:get-ipset-request #:get-ipset-response
-                              #:get-logging-configuration
-                              #:get-logging-configuration-request
-                              #:get-logging-configuration-response
-                              #:get-managed-rule-set
-                              #:get-managed-rule-set-request
-                              #:get-managed-rule-set-response
-                              #:get-mobile-sdk-release
-                              #:get-mobile-sdk-release-request
-                              #:get-mobile-sdk-release-response
+                              #:get-ipset #:get-logging-configuration
+                              #:get-managed-rule-set #:get-mobile-sdk-release
                               #:get-permission-policy
-                              #:get-permission-policy-request
-                              #:get-permission-policy-response
                               #:get-rate-based-statement-managed-keys
-                              #:get-rate-based-statement-managed-keys-request
-                              #:get-rate-based-statement-managed-keys-response
-                              #:get-regex-pattern-set
-                              #:get-regex-pattern-set-request
-                              #:get-regex-pattern-set-response #:get-rule-group
-                              #:get-rule-group-request
-                              #:get-rule-group-response #:get-sampled-requests
-                              #:get-sampled-requests-request
-                              #:get-sampled-requests-response #:get-web-acl
-                              #:get-web-aclfor-resource
-                              #:get-web-aclfor-resource-request
-                              #:get-web-aclfor-resource-response
-                              #:get-web-aclrequest #:get-web-aclresponse
-                              #:httpheader #:httpheaders #:httpmethod
-                              #:httprequest #:httpversion
-                              #:header-match-pattern #:header-name
-                              #:header-names #:header-order #:header-value
-                              #:headers #:ipaddress #:ipaddress-version
-                              #:ipaddresses #:ipset #:ipset-forwarded-ipconfig
+                              #:get-regex-pattern-set #:get-rule-group
+                              #:get-sampled-requests #:get-web-acl
+                              #:get-web-aclfor-resource #:httpheader
+                              #:httpheaders #:httpmethod #:httprequest
+                              #:httpversion #:header-match-pattern
+                              #:header-name #:header-names #:header-order
+                              #:header-value #:headers #:ipaddress
+                              #:ipaddress-version #:ipaddresses #:ipset
+                              #:ipset-forwarded-ipconfig
                               #:ipset-reference-statement #:ipset-summaries
                               #:ipset-summary #:ipstring
                               #:immunity-time-property #:inspection-level
@@ -140,37 +84,15 @@
                               #:label-match-statement #:label-name
                               #:label-name-condition #:label-namespace
                               #:label-summaries #:label-summary #:labels
-                              #:list-apikeys #:list-apikeys-request
-                              #:list-apikeys-response
+                              #:list-apikeys
                               #:list-available-managed-rule-group-versions
-                              #:list-available-managed-rule-group-versions-request
-                              #:list-available-managed-rule-group-versions-response
                               #:list-available-managed-rule-groups
-                              #:list-available-managed-rule-groups-request
-                              #:list-available-managed-rule-groups-response
-                              #:list-ipsets #:list-ipsets-request
-                              #:list-ipsets-response
-                              #:list-logging-configurations
-                              #:list-logging-configurations-request
-                              #:list-logging-configurations-response
-                              #:list-managed-rule-sets
-                              #:list-managed-rule-sets-request
-                              #:list-managed-rule-sets-response
-                              #:list-max-items #:list-mobile-sdk-releases
-                              #:list-mobile-sdk-releases-request
-                              #:list-mobile-sdk-releases-response
+                              #:list-ipsets #:list-logging-configurations
+                              #:list-managed-rule-sets #:list-max-items
+                              #:list-mobile-sdk-releases
                               #:list-regex-pattern-sets
-                              #:list-regex-pattern-sets-request
-                              #:list-regex-pattern-sets-response
-                              #:list-resources-for-web-acl
-                              #:list-resources-for-web-aclrequest
-                              #:list-resources-for-web-aclresponse
-                              #:list-rule-groups #:list-rule-groups-request
-                              #:list-rule-groups-response
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-web-acls
-                              #:list-web-acls-request #:list-web-acls-response
+                              #:list-resources-for-web-acl #:list-rule-groups
+                              #:list-tags-for-resource #:list-web-acls
                               #:lock-token #:log-destination-configs
                               #:log-scope #:log-type #:logging-configuration
                               #:logging-configurations #:logging-filter
@@ -200,14 +122,8 @@
                               #:product-description #:product-id #:product-link
                               #:product-title #:published-versions
                               #:put-logging-configuration
-                              #:put-logging-configuration-request
-                              #:put-logging-configuration-response
                               #:put-managed-rule-set-versions
-                              #:put-managed-rule-set-versions-request
-                              #:put-managed-rule-set-versions-response
-                              #:put-permission-policy
-                              #:put-permission-policy-request
-                              #:put-permission-policy-response #:query-string
+                              #:put-permission-policy #:query-string
                               #:rate-based-statement
                               #:rate-based-statement-aggregate-key-type
                               #:rate-based-statement-custom-key
@@ -265,49 +181,19 @@
                               #:statements #:string #:success-code
                               #:success-value #:tag #:tag-info-for-resource
                               #:tag-key #:tag-key-list #:tag-list
-                              #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value
-                              #:text-transformation
+                              #:tag-resource #:tag-value #:text-transformation
                               #:text-transformation-priority
                               #:text-transformation-type #:text-transformations
                               #:time-window #:time-window-day
                               #:time-window-second #:timestamp #:token-domain
                               #:token-domains #:uristring #:untag-resource
-                              #:untag-resource-request
-                              #:untag-resource-response #:update-ipset
-                              #:update-ipset-request #:update-ipset-response
+                              #:update-ipset
                               #:update-managed-rule-set-version-expiry-date
-                              #:update-managed-rule-set-version-expiry-date-request
-                              #:update-managed-rule-set-version-expiry-date-response
-                              #:update-regex-pattern-set
-                              #:update-regex-pattern-set-request
-                              #:update-regex-pattern-set-response
-                              #:update-rule-group #:update-rule-group-request
-                              #:update-rule-group-response #:update-web-acl
-                              #:update-web-aclrequest #:update-web-aclresponse
-                              #:uri-fragment #:uri-path #:usage-of-action
-                              #:username-field #:vendor-name
+                              #:update-regex-pattern-set #:update-rule-group
+                              #:update-web-acl #:uri-fragment #:uri-path
+                              #:usage-of-action #:username-field #:vendor-name
                               #:version-key-string #:version-to-publish
                               #:versions-to-publish #:visibility-config
-                              #:wafassociated-item-exception
-                              #:wafconfiguration-warning-exception
-                              #:wafduplicate-item-exception
-                              #:wafexpired-managed-rule-group-version-exception
-                              #:wafinternal-error-exception
-                              #:wafinvalid-operation-exception
-                              #:wafinvalid-parameter-exception
-                              #:wafinvalid-permission-policy-exception
-                              #:wafinvalid-resource-exception
-                              #:waflimits-exceeded-exception
-                              #:waflog-destination-permission-issue-exception
-                              #:wafnonexistent-item-exception
-                              #:wafoptimistic-lock-exception
-                              #:wafservice-linked-role-error-exception
-                              #:wafsubscription-not-found-exception
-                              #:waftag-operation-exception
-                              #:waftag-operation-internal-error-exception
-                              #:wafunavailable-entity-exception
-                              #:wafunsupported-aggregate-key-type-exception
                               #:web-acl #:web-aclsummaries #:web-aclsummary
                               #:xss-match-statement))
 (common-lisp:in-package #:pira/wafv2)

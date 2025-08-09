@@ -11,45 +11,25 @@
                               #:auto-sub-domain-creation-patterns
                               #:auto-sub-domain-iamrole #:backend
                               #:backend-environment #:backend-environment-arn
-                              #:backend-environments #:bad-request-exception
-                              #:basic-auth-credentials #:branch #:branch-arn
-                              #:branch-name #:branches #:build-compute-type
-                              #:build-spec #:cache-config #:cache-config-type
-                              #:certificate #:certificate-arn
-                              #:certificate-settings #:certificate-type
+                              #:backend-environments #:basic-auth-credentials
+                              #:branch #:branch-arn #:branch-name #:branches
+                              #:build-compute-type #:build-spec #:cache-config
+                              #:cache-config-type #:certificate
+                              #:certificate-arn #:certificate-settings
+                              #:certificate-type
                               #:certificate-verification-dnsrecord #:code
                               #:commit-id #:commit-message #:commit-time
                               #:compute-role-arn #:condition #:context
-                              #:create-app #:create-app-request
-                              #:create-app-result #:create-backend-environment
-                              #:create-backend-environment-request
-                              #:create-backend-environment-result
-                              #:create-branch #:create-branch-request
-                              #:create-branch-result #:create-deployment
-                              #:create-deployment-request
-                              #:create-deployment-result
-                              #:create-domain-association
-                              #:create-domain-association-request
-                              #:create-domain-association-result #:create-time
-                              #:create-webhook #:create-webhook-request
-                              #:create-webhook-result #:custom-domain
-                              #:custom-domains #:custom-headers #:custom-rule
-                              #:custom-rules #:dnsrecord #:default-domain
-                              #:delete-app #:delete-app-request
-                              #:delete-app-result #:delete-backend-environment
-                              #:delete-backend-environment-request
-                              #:delete-backend-environment-result
-                              #:delete-branch #:delete-branch-request
-                              #:delete-branch-result
-                              #:delete-domain-association
-                              #:delete-domain-association-request
-                              #:delete-domain-association-result #:delete-job
-                              #:delete-job-request #:delete-job-result
-                              #:delete-webhook #:delete-webhook-request
-                              #:delete-webhook-result
-                              #:dependent-service-failure-exception
-                              #:deployment-artifacts #:description
-                              #:display-name #:domain-association
+                              #:create-app #:create-backend-environment
+                              #:create-branch #:create-deployment
+                              #:create-domain-association #:create-time
+                              #:create-webhook #:custom-domain #:custom-domains
+                              #:custom-headers #:custom-rule #:custom-rules
+                              #:dnsrecord #:default-domain #:delete-app
+                              #:delete-backend-environment #:delete-branch
+                              #:delete-domain-association #:delete-job
+                              #:delete-webhook #:deployment-artifacts
+                              #:description #:display-name #:domain-association
                               #:domain-association-arn #:domain-associations
                               #:domain-name #:domain-prefix #:domain-status
                               #:enable-auto-branch-creation #:enable-auto-build
@@ -62,77 +42,39 @@
                               #:env-value #:environment-name
                               #:environment-variables #:error-message
                               #:file-map #:file-name #:file-upload-urls
-                              #:framework #:generate-access-logs
-                              #:generate-access-logs-request
-                              #:generate-access-logs-result #:get-app
-                              #:get-app-request #:get-app-result
-                              #:get-artifact-url #:get-artifact-url-request
-                              #:get-artifact-url-result
-                              #:get-backend-environment
-                              #:get-backend-environment-request
-                              #:get-backend-environment-result #:get-branch
-                              #:get-branch-request #:get-branch-result
-                              #:get-domain-association
-                              #:get-domain-association-request
-                              #:get-domain-association-result #:get-job
-                              #:get-job-request #:get-job-result #:get-webhook
-                              #:get-webhook-request #:get-webhook-result
-                              #:internal-failure-exception #:job #:job-arn
-                              #:job-config #:job-id #:job-reason #:job-status
+                              #:framework #:generate-access-logs #:get-app
+                              #:get-artifact-url #:get-backend-environment
+                              #:get-branch #:get-domain-association #:get-job
+                              #:get-webhook #:job #:job-arn #:job-config
+                              #:job-id #:job-reason #:job-status
                               #:job-summaries #:job-summary #:job-type
-                              #:last-deploy-time #:limit-exceeded-exception
-                              #:list-apps #:list-apps-request
-                              #:list-apps-result #:list-artifacts
-                              #:list-artifacts-request #:list-artifacts-result
-                              #:list-backend-environments
-                              #:list-backend-environments-request
-                              #:list-backend-environments-result
-                              #:list-branches #:list-branches-request
-                              #:list-branches-result #:list-domain-associations
-                              #:list-domain-associations-request
-                              #:list-domain-associations-result #:list-jobs
-                              #:list-jobs-request #:list-jobs-result
-                              #:list-tags-for-resource
-                              #:list-tags-for-resource-request
-                              #:list-tags-for-resource-response #:list-webhooks
-                              #:list-webhooks-request #:list-webhooks-result
+                              #:last-deploy-time #:list-apps #:list-artifacts
+                              #:list-backend-environments #:list-branches
+                              #:list-domain-associations #:list-jobs
+                              #:list-tags-for-resource #:list-webhooks
                               #:log-url #:md5hash #:max-results
                               #:max-results-for-list-apps #:name #:next-token
-                              #:not-found-exception #:oauth-token #:platform
-                              #:production-branch
+                              #:oauth-token #:platform #:production-branch
                               #:pull-request-environment-name #:repository
                               #:repository-clone-method #:resource-arn
-                              #:resource-not-found-exception #:screenshots
-                              #:service-role-arn #:source #:source-url
-                              #:source-url-type #:stack-arn #:stack-name
-                              #:stage #:start-deployment
-                              #:start-deployment-request
-                              #:start-deployment-result #:start-job
-                              #:start-job-request #:start-job-result
-                              #:start-time #:status #:status-reason #:step
-                              #:step-name #:steps #:stop-job #:stop-job-request
-                              #:stop-job-result #:sub-domain
-                              #:sub-domain-setting #:sub-domain-settings
-                              #:sub-domains #:ttl #:tag-key #:tag-key-list
-                              #:tag-map #:tag-resource #:tag-resource-request
-                              #:tag-resource-response #:tag-value #:target
-                              #:test-artifacts-url #:test-config-url
-                              #:thumbnail-name #:thumbnail-url
-                              #:total-number-of-jobs #:unauthorized-exception
-                              #:untag-resource #:untag-resource-request
-                              #:untag-resource-response #:update-app
-                              #:update-app-request #:update-app-result
-                              #:update-branch #:update-branch-request
-                              #:update-branch-result
-                              #:update-domain-association
-                              #:update-domain-association-request
-                              #:update-domain-association-result
-                              #:update-status #:update-time #:update-webhook
-                              #:update-webhook-request #:update-webhook-result
-                              #:upload-url #:verified #:waf-configuration
-                              #:waf-status #:web-acl-arn #:webhook
-                              #:webhook-arn #:webhook-id #:webhook-url
-                              #:webhooks #:webhook-create-time))
+                              #:screenshots #:service-role-arn #:source
+                              #:source-url #:source-url-type #:stack-arn
+                              #:stack-name #:stage #:start-deployment
+                              #:start-job #:start-time #:status #:status-reason
+                              #:step #:step-name #:steps #:stop-job
+                              #:sub-domain #:sub-domain-setting
+                              #:sub-domain-settings #:sub-domains #:ttl
+                              #:tag-key #:tag-key-list #:tag-map #:tag-resource
+                              #:tag-value #:target #:test-artifacts-url
+                              #:test-config-url #:thumbnail-name
+                              #:thumbnail-url #:total-number-of-jobs
+                              #:untag-resource #:update-app #:update-branch
+                              #:update-domain-association #:update-status
+                              #:update-time #:update-webhook #:upload-url
+                              #:verified #:waf-configuration #:waf-status
+                              #:web-acl-arn #:webhook #:webhook-arn
+                              #:webhook-id #:webhook-url #:webhooks
+                              #:webhook-create-time))
 (common-lisp:in-package #:pira/amplify)
 
 (smithy/sdk/service:define-service amplify :shape-name "Amplify" :version
