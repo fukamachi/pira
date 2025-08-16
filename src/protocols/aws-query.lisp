@@ -121,7 +121,7 @@
 (defmethod protocols:find-error-shape ((query aws-query) operation status headers payload)
   (assert (equal "ErrorResponse" (xml:xml-tag-name payload)))
   (multiple-value-bind (code message)
-      (rest-xml:get-error-info payload)
+      (rest-xml:get-error-info (rest-xml:find-error-tag payload))
     (when code
       (or (find-if (lambda (error-class-name)
                      (equal code (shape:error-name (find-class error-class-name))))

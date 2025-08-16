@@ -17,7 +17,9 @@
 (in-package #:pira/protocols/rest-xml)
 
 (defclass rest-xml (protocols:xml pira:aws-protocol)
-  ()
+  ((no-error-wrapping :initarg :no-error-wrapping
+                      :initform nil
+                      :reader rest-xml-no-error-wrapping-p))
   (:metaclass protocols:protocol-metaclass)
   (:protocol-id :rest-xml))
 
@@ -54,17 +56,20 @@
     (when child
       (first (xml:xml-tag-body child)))))
 
-(defun get-error-info (payload)
-  (let ((error-tag (find-error-tag payload)))
-    (when error-tag
-      (values (get-tag-value error-tag "Code")
-              (get-tag-value error-tag "Message")))))
+(defun get-error-info (error-tag)
+  (when error-tag
+    (values (get-tag-value error-tag "Code")
+            (get-tag-value error-tag "Message"))))
 
-;; TODO: noErrorWrapping
 (defmethod protocols:find-error-shape ((xml rest-xml) operation status headers payload)
-  (assert (equal "ErrorResponse" (xml:xml-tag-name payload)))
   (multiple-value-bind (code message)
-      (get-error-info payload)
+      (cond
+        ((rest-xml-no-error-wrapping-p xml)
+         (assert (equal "Error" (xml:xml-tag-name payload)))
+         (get-error-info payload))
+        (t
+         (assert (equal "ErrorResponse" (xml:xml-tag-name payload)))
+         (get-error-info (find-error-tag payload))))
     (when code
       (or (find (util:shape-name->symbol code
                                          (symbol-package (operation:operation-name operation)))
@@ -75,7 +80,6 @@
                  code)))))
 
 (defmethod protocols:deserialize-output-payload ((xml rest-xml) (output-class shape:smithy-error) payload)
-  (assert (equal "ErrorResponse" (xml:xml-tag-name payload)))
   (append
    (call-next-method xml
                      output-class
