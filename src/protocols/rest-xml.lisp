@@ -39,21 +39,44 @@
                         (otherwise "application/xml")))))))))))
 
 (defmethod protocols:find-error-shape ((xml rest-xml) operation status headers payload)
-  (let* ((code-node
-           (find-if (lambda (node)
-                      (equal (xml:xml-tag-name node) "Code"))
-                    (xml:xml-tag-body payload)))
-         (error-shape-name (and code-node
-                                (first (xml:xml-tag-body code-node)))))
-    (or (and error-shape-name
-             (find (util:shape-name->symbol error-shape-name
-                                            (symbol-package (operation:operation-name operation)))
-                   (operation:operation-errors operation)))
-        (error "~A: ~A (Code: ~A)"
-               (operation:operation-name operation)
-               (first
-                (xml:xml-tag-body
-                 (find-if (lambda (node)
-                            (equal (xml:xml-tag-name node) "Message"))
-                          (xml:xml-tag-body payload))))
-               (first (xml:xml-tag-body code-node))))))
+  (when (equal "ErrorResponse" (xml:xml-tag-name payload))
+    (let ((error-tag
+            (find-if (lambda (tag)
+                       (and (typep tag 'xml:xml-tag)
+                            (equal "Error" (xml:xml-tag-name tag))))
+                     (xml:xml-tag-body payload))))
+      (when error-tag
+        (let* ((error-code-node
+                 (find-if (lambda (tag)
+                            (equal "Code" (xml:xml-tag-name tag)))
+                          (xml:xml-tag-body error-tag)))
+               (error-shape-name (and error-code-node
+                                      (first (xml:xml-tag-body error-code-node)))))
+          (or (and error-shape-name
+                   (find (util:shape-name->symbol error-shape-name
+                                                  (symbol-package (operation:operation-name operation)))
+                         (operation:operation-errors operation)))
+              (error "~A: ~A (Code: ~A)"
+                     (operation:operation-name operation)
+                     (first
+                      (xml:xml-tag-body
+                       (find-if (lambda (node)
+                                  (equal (xml:xml-tag-name node) "Message"))
+                                (xml:xml-tag-body error-tag))))
+                     (first (xml:xml-tag-body error-code-node)))))))))
+
+(defmethod protocols:deserialize-output-payload ((xml rest-xml) (output-class shape:smithy-error) payload)
+  (when (equal "ErrorResponse" (xml:xml-tag-name payload))
+    (append
+     (call-next-method xml
+                       output-class
+                       (find-if (lambda (tag)
+                                  (and (typep tag 'xml:xml-tag)
+                                       (equal "Error" (xml:xml-tag-name tag))))
+                                (xml:xml-tag-body payload)))
+     (let ((request-id (find-if (lambda (tag)
+                                  (and (typep tag 'xml:xml-tag)
+                                       (equal "RequestId" (xml:xml-tag-name tag))))
+                                (xml:xml-tag-body payload))))
+       (when request-id
+         (list (cons "RequestId" (first (xml:xml-tag-body request-id)))))))))

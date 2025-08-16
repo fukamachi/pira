@@ -10,7 +10,8 @@
    (#:operation #:smithy/sdk/operation)
    (#:assoc #:assoc-utils)
    (#:util #:smithy/utils))
-  (:export #:rest-json1))
+  (:export #:rest-json1
+           #:find-aws-json-error-type))
 (in-package #:pira/protocols/rest-json1)
 
 (defclass rest-json1 (protocols:json pira:aws-protocol)
@@ -47,11 +48,28 @@
                         (shape:smithy-union "application/json")
                         (otherwise "application/json")))))))))))
 
-(defmethod protocols:find-error-shape ((json rest-json1) operation status headers payload)
-  (let ((error-shape-name
-          (or (gethash "x-amzn-errortype" headers)
-              (assoc:aget payload "__type")
-              (assoc:aget payload "code"))))
+(defun sanitize-error-code (value)
+  (check-type value string)
+  (flet ((take-after-sharp (value)
+           (let ((pos (position #\# value)))
+             (if pos
+                 (subseq value (1+ pos))
+                 value)))
+         (take-before-colon (value)
+           (let ((pos (position #\: value)))
+             (if pos
+                 (subseq value 0 pos)
+                 value))))
+    (take-before-colon (take-after-sharp value))))
+
+(defun find-aws-json-error-type (operation status headers payload)
+  (let* ((error-shape-name
+           (or (gethash "x-amzn-errortype" headers)
+               (assoc:aget payload "__type")
+               (assoc:aget payload "code")))
+         (error-shape-name
+           (and error-shape-name
+                (sanitize-error-code error-shape-name))))
     (or (and error-shape-name
              (find (util:shape-name->symbol error-shape-name
                                             (symbol-package (operation:operation-name operation)))
@@ -59,3 +77,6 @@
         (error "~A: an HTTP error code ~A returned"
                (operation:operation-name operation)
                status))))
+
+(defmethod protocols:find-error-shape ((json rest-json1) operation status headers payload)
+  (find-aws-json-error-type operation status headers payload))

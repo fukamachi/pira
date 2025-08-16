@@ -2,6 +2,8 @@
   (:use #:cl)
   (:import-from #:alexandria
                 #:ensure-car)
+  (:import-from #:pira/protocols/rest-json1
+                #:find-aws-json-error-type)
   (:local-nicknames
    (#:pira #:pira/protocols/aws)
    (#:protocols #:smithy/sdk/protocols)
@@ -42,3 +44,6 @@
     ((equal content-type "application/x-amz-json-1.1")
      (protocols:parse-payload-as-json payload))
     (t payload)))
+
+(defmethod protocols:find-error-shape ((json aws-json1-1) operation status headers payload)
+  (find-aws-json-error-type operation status headers payload))
