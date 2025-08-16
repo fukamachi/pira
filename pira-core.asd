@@ -38,7 +38,7 @@
     :components
     ((:file "aws")
      (:file "rest-json1")
-     (:file "aws-json1-1")
+     (:file "aws-json")
      (:file "rest-xml")
      (:file "aws-query")))
    (:file "main")))
