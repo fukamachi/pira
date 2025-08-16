@@ -63,6 +63,7 @@
     (take-before-colon (take-after-sharp value))))
 
 (defun find-aws-json-error-type (operation status headers payload)
+  (declare (ignore status))
   (let* ((error-shape-name
            (or (gethash "x-amzn-errortype" headers)
                (assoc:aget payload "__type")
@@ -70,13 +71,10 @@
          (error-shape-name
            (and error-shape-name
                 (sanitize-error-code error-shape-name))))
-    (or (and error-shape-name
-             (find (util:shape-name->symbol error-shape-name
-                                            (symbol-package (operation:operation-name operation)))
-                   (operation:operation-errors operation)))
-        (error "~A: an HTTP error code ~A returned"
-               (operation:operation-name operation)
-               status))))
+    (and error-shape-name
+         (find (util:shape-name->symbol error-shape-name
+                                        (symbol-package (operation:operation-name operation)))
+               (operation:operation-errors operation)))))
 
 (defmethod protocols:find-error-shape ((json rest-json1) operation status headers payload)
   (find-aws-json-error-type operation status headers payload))
