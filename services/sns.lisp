@@ -108,6 +108,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "AuthorizationErrorException")
+                                (:error-name "AuthorizationError")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-error batch-entry-ids-not-distinct-exception
@@ -116,6 +117,7 @@
                                   "message"))
                                 (:shape-name
                                  "BatchEntryIdsNotDistinctException")
+                                (:error-name "BatchEntryIdsNotDistinct")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error batch-request-too-long-exception
@@ -123,6 +125,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "BatchRequestTooLongException")
+                                (:error-name "BatchRequestTooLong")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure batch-result-error-entry common-lisp:nil
@@ -161,6 +164,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ConcurrentAccessException")
+                                (:error-name "ConcurrentAccess")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input confirm-subscription-input common-lisp:nil
@@ -283,6 +287,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "EmptyBatchRequestException")
+                                (:error-name "EmptyBatchRequest")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure endpoint common-lisp:nil
@@ -299,6 +304,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "EndpointDisabledException")
+                                (:error-name "EndpointDisabled")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error filter-policy-limit-exceeded-exception
@@ -307,6 +313,7 @@
                                   "message"))
                                 (:shape-name
                                  "FilterPolicyLimitExceededException")
+                                (:error-name "FilterPolicyLimitExceeded")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-input get-data-protection-policy-input
@@ -399,19 +406,21 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-code 500))
+                                (:error-name "InternalError") (:error-code 500))
 
 (smithy/sdk/shapes:define-error invalid-batch-entry-id-exception
                                 common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidBatchEntryIdException")
+                                (:error-name "InvalidBatchEntryId")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
+                                (:error-name "InvalidParameter")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
@@ -419,19 +428,21 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterValueException")
+                                (:error-name "ParameterValueInvalid")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-security-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidSecurityException")
+                                (:error-name "InvalidSecurity")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-name "InvalidState") (:error-code 400))
 
 (smithy/sdk/shapes:define-type iso2country-code smithy/sdk/smithy-types:string)
 
@@ -439,37 +450,40 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSAccessDeniedException")
+                                (:error-name "KMSAccessDenied")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error kmsdisabled-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSDisabledException")
-                                (:error-code 400))
+                                (:error-name "KMSDisabled") (:error-code 400))
 
 (smithy/sdk/shapes:define-error kmsinvalid-state-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSInvalidStateException")
+                                (:error-name "KMSInvalidState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error kmsnot-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSNotFoundException")
-                                (:error-code 400))
+                                (:error-name "KMSNotFound") (:error-code 400))
 
 (smithy/sdk/shapes:define-error kmsopt-in-required common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSOptInRequired")
+                                (:error-name "KMSOptInRequired")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-error kmsthrottling-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "KMSThrottlingException")
-                                (:error-code 400))
+                                (:error-name "KMSThrottling") (:error-code 400))
 
 (smithy/sdk/shapes:define-enum language-code-string
     common-lisp:nil
@@ -656,7 +670,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "NotFoundException")
-                                (:error-code 404))
+                                (:error-name "NotFound") (:error-code 404))
 
 (smithy/sdk/shapes:define-enum number-capability
     common-lisp:nil
@@ -682,7 +696,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "OptedOutException")
-                                (:error-code 400))
+                                (:error-name "OptedOut") (:error-code 400))
 
 (smithy/sdk/shapes:define-type phone-number smithy/sdk/smithy-types:string)
 
@@ -726,6 +740,7 @@
                                   "message"))
                                 (:shape-name
                                  "PlatformApplicationDisabledException")
+                                (:error-name "PlatformApplicationDisabled")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input publish-batch-input common-lisp:nil
@@ -830,12 +845,14 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ReplayLimitExceededException")
+                                (:error-name "ReplayLimitExceeded")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-enum route-type
@@ -916,7 +933,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "StaleTagException")
-                                (:error-code 400))
+                                (:error-name "StaleTag") (:error-code 400))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
@@ -963,6 +980,7 @@
                                   "message"))
                                 (:shape-name
                                  "SubscriptionLimitExceededException")
+                                (:error-name "SubscriptionLimitExceeded")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-list subscriptions-list :member subscription)
@@ -982,6 +1000,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TagLimitExceededException")
+                                (:error-name "TagLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list tag-list :member tag)
@@ -990,7 +1009,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TagPolicyException")
-                                (:error-code 400))
+                                (:error-name "TagPolicy") (:error-code 400))
 
 (smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
                                 ((resource-arn :target-type
@@ -1010,7 +1029,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "ThrottledException")
-                                (:error-code 429))
+                                (:error-name "Throttled") (:error-code 429))
 
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
@@ -1020,6 +1039,7 @@
                                   "message"))
                                 (:shape-name
                                  "TooManyEntriesInBatchRequestException")
+                                (:error-name "TooManyEntriesInBatchRequest")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure topic common-lisp:nil
@@ -1034,6 +1054,7 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "TopicLimitExceededException")
+                                (:error-name "TopicLimitExceeded")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-list topics-list :member topic)
@@ -1060,12 +1081,13 @@
                                 ((message :target-type string :member-name
                                   "message"))
                                 (:shape-name "UserErrorException")
-                                (:error-code 400))
+                                (:error-name "UserError") (:error-code 400))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "Message"))
                                 (:shape-name "ValidationException")
+                                (:error-name "ValidationException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error verification-exception common-lisp:nil

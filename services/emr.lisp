@@ -1850,6 +1850,7 @@
 (smithy/sdk/shapes:define-error internal-server-error common-lisp:nil
                                 common-lisp:nil
                                 (:shape-name "InternalServerError")
+                                (:error-name "InternalFailure")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-error internal-server-exception common-lisp:nil

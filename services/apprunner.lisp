@@ -902,19 +902,21 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceErrorException")
+                                (:error-name "InternalServiceError")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-error invalid-request-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidRequestException")
+                                (:error-name "InvalidRequest")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-state-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidStateException")
-                                (:error-code 400))
+                                (:error-name "InvalidState") (:error-code 400))
 
 (smithy/sdk/shapes:define-enum ip-address-type
     common-lisp:nil
@@ -1251,6 +1253,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotfound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input resume-service-request common-lisp:nil
@@ -1382,6 +1385,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceQuotaExceededException")
+                                (:error-name "ServiceQuotaExceeded")
                                 (:error-code 402))
 
 (smithy/sdk/shapes:define-enum service-status

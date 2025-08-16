@@ -27,7 +27,8 @@
 (smithy/sdk/shapes:define-error auth-exception common-lisp:nil
                                 ((message :target-type string :member-name
                                   "Message"))
-                                (:shape-name "AuthException") (:error-code 403))
+                                (:shape-name "AuthException")
+                                (:error-name "Forbidden") (:error-code 403))
 
 (smithy/sdk/shapes:define-type availability-zone smithy/sdk/smithy-types:string)
 
@@ -35,6 +36,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EC2InstanceNotFoundException")
+                                (:error-name "EC2InstanceNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error ec2instance-state-invalid-exception
@@ -43,6 +45,7 @@
                                   "Message"))
                                 (:shape-name
                                  "EC2InstanceStateInvalidException")
+                                (:error-name "EC2InstanceStateInvalid")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error ec2instance-type-invalid-exception
@@ -50,6 +53,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EC2InstanceTypeInvalidException")
+                                (:error-name "EC2InstanceTypeInvalid")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error ec2instance-unavailable-exception
@@ -57,6 +61,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "EC2InstanceUnavailableException")
+                                (:error-name "EC2InstanceUnavailable")
                                 (:error-code 503))
 
 (smithy/sdk/shapes:define-type instance-id smithy/sdk/smithy-types:string)
@@ -67,6 +72,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "InvalidArgsException")
+                                (:error-name "InvalidArguments")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type request-id smithy/sdk/smithy-types:string)
@@ -123,6 +129,7 @@
                                   "Message"))
                                 (:shape-name
                                  "SerialConsoleAccessDisabledException")
+                                (:error-name "SerialConsoleAccessDisabled")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-error serial-console-session-limit-exceeded-exception
@@ -131,6 +138,8 @@
                                   "Message"))
                                 (:shape-name
                                  "SerialConsoleSessionLimitExceededException")
+                                (:error-name
+                                 "SerialConsoleSessionLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error serial-console-session-unavailable-exception
@@ -139,6 +148,7 @@
                                   "Message"))
                                 (:shape-name
                                  "SerialConsoleSessionUnavailableException")
+                                (:error-name "SerialConsoleSessionUnavailable")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-error serial-console-session-unsupported-exception
@@ -147,6 +157,7 @@
                                   "Message"))
                                 (:shape-name
                                  "SerialConsoleSessionUnsupportedException")
+                                (:error-name "SerialConsoleSessionUnsupported")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type serial-port smithy/sdk/smithy-types:integer)
@@ -155,6 +166,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ServiceException")
+                                (:error-name "InternalServerError")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
@@ -165,6 +177,7 @@
                                 ((message :target-type string :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
+                                (:error-name "TooManyRequests")
                                 (:error-code 429))
 
 (smithy/sdk/operation:define-operation send-sshpublic-key :shape-name

@@ -63,7 +63,7 @@
                                 ((message :target-type service-error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-name "AccessDenied") (:error-code 403))
 
 (smithy/sdk/shapes:define-input add-tags-to-certificate-request common-lisp:nil
                                 ((certificate-arn :target-type arn :required
@@ -793,7 +793,7 @@
                                   availability-error-message :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-name "Throttling") (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -817,6 +817,7 @@
                                   validation-exception-message :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
+                                (:error-name "ValidationError")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type validation-exception-message

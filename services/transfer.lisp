@@ -188,7 +188,7 @@
                                 ((message :target-type service-error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-name "AccessDenied") (:error-code 403))
 
 (smithy/sdk/shapes:define-type address-allocation-id
                                smithy/sdk/smithy-types:string)
@@ -2282,6 +2282,7 @@ common-lisp:nil
                                 ((message :target-type service-error-message
                                   :member-name "Message"))
                                 (:shape-name "ServiceUnavailableException")
+                                (:error-name "ServiceUnavailable")
                                 (:error-code 503))
 
 (smithy/sdk/shapes:define-type session-id smithy/sdk/smithy-types:string)

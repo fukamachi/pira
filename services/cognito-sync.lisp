@@ -50,6 +50,7 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "AlreadyStreamedException")
+                                (:error-name "AlreadyStreamed")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type application-arn smithy/sdk/smithy-types:string)
@@ -100,6 +101,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ConcurrentModificationException")
+                                (:error-name "ConcurrentModification")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure dataset common-lisp:nil
@@ -201,6 +203,7 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "DuplicateRequestException")
+                                (:error-name "DuplicateRequest")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-map events :key cognito-event-type :value
@@ -307,13 +310,14 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "InternalErrorException")
-                                (:error-code 500))
+                                (:error-name "InternalError") (:error-code 500))
 
 (smithy/sdk/shapes:define-error invalid-configuration-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "InvalidConfigurationException")
+                                (:error-name "InvalidConfiguration")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-lambda-function-output-exception
@@ -323,6 +327,7 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidLambdaFunctionOutputException")
+                                (:error-name "InvalidLambdaFunctionOutput")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
@@ -330,6 +335,7 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "InvalidParameterException")
+                                (:error-name "InvalidParameter")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type lambda-function-arn
@@ -340,6 +346,7 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "LambdaThrottledException")
+                                (:error-name "LambdaThrottled")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
@@ -347,7 +354,7 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-name "LimitExceeded") (:error-code 400))
 
 (smithy/sdk/shapes:define-input list-datasets-request common-lisp:nil
                                 ((identity-pool-id :target-type
@@ -452,6 +459,7 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "NotAuthorizedException")
+                                (:error-name "NotAuthorizedError")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-enum operation
@@ -538,6 +546,7 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "ResourceConflictException")
+                                (:error-name "ResourceConflict")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
@@ -545,6 +554,7 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-input set-cognito-events-request common-lisp:nil
@@ -618,6 +628,7 @@
                                   :required common-lisp:t :member-name
                                   "message"))
                                 (:shape-name "TooManyRequestsException")
+                                (:error-name "TooManyRequests")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-input unsubscribe-from-dataset-request

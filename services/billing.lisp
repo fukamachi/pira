@@ -44,6 +44,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
+                                (:error-name "BillingAccessDenied")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
@@ -136,6 +137,7 @@
                                   :required common-lisp:t :member-name
                                   "resourceType"))
                                 (:shape-name "ConflictException")
+                                (:error-name "BillingConflict")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-input create-billing-view-request common-lisp:nil
@@ -226,6 +228,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
+                                (:error-name "BillingInternalServer")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-input list-billing-views-request common-lisp:nil
@@ -308,6 +311,7 @@
                                   :required common-lisp:t :member-name
                                   "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "BillingResourceNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure resource-tag common-lisp:nil
@@ -347,6 +351,7 @@
                                  (quota-code :target-type quota-code :required
                                   common-lisp:t :member-name "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
+                                (:error-name "BillingServiceQuotaExceeded")
                                 (:error-code 402))
 
 (smithy/sdk/shapes:define-type tag-key smithy/sdk/smithy-types:string)
@@ -375,6 +380,7 @@
                                 ((message :target-type error-message :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
+                                (:error-name "BillingThrottling")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
@@ -421,6 +427,7 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
+                                (:error-name "BillingValidation")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil

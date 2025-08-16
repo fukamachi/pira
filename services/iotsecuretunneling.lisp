@@ -98,6 +98,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
+                                (:error-name "LimitExceededException")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
@@ -166,6 +167,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-input rotate-tunnel-access-token-request

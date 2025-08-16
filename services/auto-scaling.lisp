@@ -408,6 +408,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ActiveInstanceRefreshNotFoundFault")
+                                (:error-name "ActiveInstanceRefreshNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list activities :member activity)
@@ -498,7 +499,7 @@
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "AlreadyExistsFault")
-                                (:error-code 400))
+                                (:error-name "AlreadyExists") (:error-code 400))
 
 (smithy/sdk/shapes:define-type any-printable-ascii-string-max-len4000
                                smithy/sdk/smithy-types:string)
@@ -2009,6 +2010,7 @@
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "InstanceRefreshInProgressFault")
+                                (:error-name "InstanceRefreshInProgress")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure instance-refresh-live-pool-progress
@@ -2189,6 +2191,7 @@
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "InvalidNextToken")
+                                (:error-name "InvalidNextToken")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error irreversible-instance-refresh-fault
@@ -2197,6 +2200,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "IrreversibleInstanceRefreshFault")
+                                (:error-name "IrreversibleInstanceRefresh")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure launch-configuration common-lisp:nil
@@ -2446,7 +2450,7 @@
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "LimitExceededFault")
-                                (:error-code 400))
+                                (:error-name "LimitExceeded") (:error-code 400))
 
 (smithy/sdk/shapes:define-list load-balancer-names :member
                                xml-string-max-len255)
@@ -3165,13 +3169,14 @@
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "ResourceContentionFault")
+                                (:error-name "ResourceContention")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-error resource-in-use-fault common-lisp:nil
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "ResourceInUseFault")
-                                (:error-code 400))
+                                (:error-name "ResourceInUse") (:error-code 400))
 
 (smithy/sdk/shapes:define-type resource-name smithy/sdk/smithy-types:string)
 
@@ -3227,6 +3232,7 @@
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "ScalingActivityInProgressFault")
+                                (:error-name "ScalingActivityInProgress")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum scaling-activity-status-code
@@ -3399,6 +3405,7 @@
                                 ((message :target-type xml-string-max-len255
                                   :member-name "message"))
                                 (:shape-name "ServiceLinkedRoleFailure")
+                                (:error-name "ServiceLinkedRoleFailure")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-structure set-desired-capacity-type common-lisp:nil

@@ -351,6 +351,7 @@
                                 ((message :target-type fault-description
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentModificationException")
+                                (:error-name "ConcurrentModificationException")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
@@ -389,6 +390,7 @@
                                   dashboard-validation-messages :member-name
                                   "dashboardValidationMessages"))
                                 (:shape-name "DashboardInvalidInputError")
+                                (:error-name "InvalidParameterInput")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type dashboard-name smithy/sdk/smithy-types:string)
@@ -402,6 +404,7 @@
                                 ((message :target-type dashboard-error-message
                                   :member-name "message"))
                                 (:shape-name "DashboardNotFoundError")
+                                (:error-name "ResourceNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure dashboard-validation-message
@@ -1096,18 +1099,20 @@
                                 ((message :target-type fault-description
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceFault")
+                                (:error-name "InternalServiceError")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-error invalid-format-fault common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidFormatFault")
-                                (:error-code 400))
+                                (:error-name "InvalidFormat") (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-next-token common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidNextToken")
+                                (:error-name "InvalidNextToken")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-parameter-combination-exception
@@ -1116,6 +1121,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidParameterCombinationException")
+                                (:error-name "InvalidParameterCombination")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-parameter-value-exception
@@ -1123,6 +1129,7 @@
                                 ((message :target-type aws-query-error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterValueException")
+                                (:error-name "InvalidParameterValue")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure label-options common-lisp:nil
@@ -1137,13 +1144,14 @@
                                 ((message :target-type fault-description
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
+                                (:error-name "LimitExceededException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error limit-exceeded-fault common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededFault")
-                                (:error-code 400))
+                                (:error-name "LimitExceeded") (:error-code 400))
 
 (smithy/sdk/shapes:define-input list-dashboards-input common-lisp:nil
                                 ((dashboard-name-prefix :target-type
@@ -1577,6 +1585,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MissingRequiredParameterException")
+                                (:error-name "MissingParameter")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type namespace smithy/sdk/smithy-types:string)
@@ -1834,6 +1843,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFound")
+                                (:error-name "ResourceNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
@@ -1844,6 +1854,7 @@
                                  (message :target-type fault-description
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)

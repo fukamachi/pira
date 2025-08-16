@@ -535,6 +535,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "DisabledOperationException")
+                                (:error-name "DisabledAction")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-structure document-suggester-options common-lisp:nil
@@ -797,6 +798,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalException")
+                                (:error-name "InternalException")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-error invalid-type-exception common-lisp:nil
@@ -805,7 +807,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidTypeException")
-                                (:error-code 409))
+                                (:error-name "InvalidType") (:error-code 409))
 
 (smithy/sdk/shapes:define-structure lat-lon-options common-lisp:nil
                                     ((default-value :target-type field-value
@@ -828,7 +830,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-name "LimitExceeded") (:error-code 409))
 
 (smithy/sdk/shapes:define-structure limits common-lisp:nil
                                     ((maximum-replication-count :target-type
@@ -938,6 +940,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceAlreadyExistsException")
+                                (:error-name "ResourceAlreadyExists")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
@@ -946,6 +949,7 @@
                                  (message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFound")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-structure scaling-parameters common-lisp:nil

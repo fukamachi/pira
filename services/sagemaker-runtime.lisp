@@ -264,6 +264,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ModelNotReadyException")
+                                (:error-name "ModelNotReadyException")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-error model-stream-error common-lisp:nil

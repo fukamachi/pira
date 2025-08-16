@@ -134,6 +134,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
+                                (:error-name "ServiceAccessDenied")
                                 (:error-code 401))
 
 (smithy/sdk/shapes:define-enum activation-override-behavior
@@ -161,6 +162,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "AuthorizationException")
+                                (:error-name "AuthorizationFailure")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-structure automated-discovery-information
@@ -295,6 +297,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ConflictException")
+                                (:error-name "ConflictException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-structure consumed-license-summary common-lisp:nil
@@ -785,6 +788,7 @@
                                  (error-code :target-type string :member-name
                                   "ErrorCode"))
                                 (:shape-name "FailedDependencyException")
+                                (:error-name "FailedDependency")
                                 (:error-code 424))
 
 (smithy/sdk/shapes:define-structure filter common-lisp:nil
@@ -798,6 +802,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "FilterLimitExceededException")
+                                (:error-name "FilterLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list filter-list :member filter)
@@ -1077,6 +1082,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InvalidParameterValueException")
+                                (:error-name "InvalidParameterValueProvided")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-resource-state-exception
@@ -1084,6 +1090,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "InvalidResourceStateException")
+                                (:error-name "InvalidResourceState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure inventory-filter common-lisp:nil
@@ -1364,6 +1371,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "LicenseUsageException")
+                                (:error-name "LicenseUsageFailure")
                                 (:error-code 412))
 
 (smithy/sdk/shapes:define-input
@@ -1785,6 +1793,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "RateLimitExceededException")
+                                (:error-name "RateLimitExceeded")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-structure received-metadata common-lisp:nil
@@ -1928,12 +1937,14 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceLimitExceededException")
+                                (:error-name "ResourceLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "InvalidResource.NotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum resource-type
@@ -1955,7 +1966,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ServerInternalException")
-                                (:error-code 500))
+                                (:error-name "InternalError") (:error-code 500))
 
 (smithy/sdk/shapes:define-type signed-token smithy/sdk/smithy-types:string)
 

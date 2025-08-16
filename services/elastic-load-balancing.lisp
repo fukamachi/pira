@@ -133,6 +133,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "AccessPointNotFoundException")
+                                (:error-name "LoadBalancerNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type access-point-port
@@ -253,6 +254,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "CertificateNotFoundException")
+                                (:error-name "CertificateNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input configure-health-check-input common-lisp:nil
@@ -450,6 +452,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "DependencyThrottleException")
+                                (:error-name "DependencyThrottle")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input deregister-end-points-input common-lisp:nil
@@ -599,24 +602,28 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DuplicateAccessPointNameException")
+                                (:error-name "DuplicateLoadBalancerName")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error duplicate-listener-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "DuplicateListenerException")
+                                (:error-name "DuplicateListener")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error duplicate-policy-name-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "DuplicatePolicyNameException")
+                                (:error-name "DuplicatePolicyName")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error duplicate-tag-keys-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "DuplicateTagKeysException")
+                                (:error-name "DuplicateTagKeys")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type end-point-port smithy/sdk/smithy-types:integer)
@@ -686,32 +693,35 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidConfigurationRequestException")
+                                (:error-name "InvalidConfigurationRequest")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-error invalid-end-point-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidEndPointException")
+                                (:error-name "InvalidInstance")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-scheme-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidSchemeException")
-                                (:error-code 400))
+                                (:error-name "InvalidScheme") (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-security-group-exception
                                 common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidSecurityGroupException")
+                                (:error-name "InvalidSecurityGroup")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-subnet-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidSubnetException")
-                                (:error-code 400))
+                                (:error-name "InvalidSubnet") (:error-code 400))
 
 (smithy/sdk/shapes:define-list lbcookie-stickiness-policies :member
                                lbcookie-stickiness-policy)
@@ -762,6 +772,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "ListenerNotFoundException")
+                                (:error-name "ListenerNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list listeners :member listener)
@@ -772,6 +783,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "LoadBalancerAttributeNotFoundException")
+                                (:error-name "LoadBalancerAttributeNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure load-balancer-attributes common-lisp:nil
@@ -879,6 +891,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "OperationNotPermittedException")
+                                (:error-name "OperationNotPermitted")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type page-size smithy/sdk/smithy-types:integer)
@@ -963,6 +976,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "PolicyNotFoundException")
+                                (:error-name "PolicyNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure policy-type-description common-lisp:nil
@@ -989,6 +1003,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "PolicyTypeNotFoundException")
+                                (:error-name "PolicyTypeNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list ports :member access-point-port)
@@ -1120,6 +1135,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "SubnetNotFoundException")
+                                (:error-name "SubnetNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list subnets :member subnet-id)
@@ -1159,19 +1175,21 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyAccessPointsException")
+                                (:error-name "TooManyLoadBalancers")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-policies-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyPoliciesException")
+                                (:error-name "TooManyPolicies")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-name "TooManyTags") (:error-code 400))
 
 (smithy/sdk/shapes:define-type unhealthy-threshold
                                smithy/sdk/smithy-types:integer)
@@ -1180,6 +1198,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedProtocolException")
+                                (:error-name "UnsupportedProtocol")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type vpcid smithy/sdk/smithy-types:string)

@@ -896,6 +896,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
+                                (:error-name "AccessDeniedException")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-type access-token-duration
@@ -2628,6 +2629,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ContactNotFoundException")
+                                (:error-name "ContactNotFoundException")
                                 (:error-code 410))
 
 (smithy/sdk/shapes:define-enum contact-recording-type
@@ -4649,6 +4651,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "DestinationNotAllowedException")
+                                (:error-name "DestinationNotAllowedException")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-structure device-info common-lisp:nil
@@ -7052,6 +7055,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "LimitExceededException")
+                                (:error-name "LimitExceededException")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-input list-agent-status-request common-lisp:nil
@@ -8656,6 +8660,8 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name
+                                 "OutboundContactNotPermittedException")
+                                (:error-name
                                  "OutboundContactNotPermittedException")
                                 (:error-code 403))
 
@@ -12446,6 +12452,7 @@
                                 ((message :target-type message :member-name
                                   "Message"))
                                 (:shape-name "ThrottlingException")
+                                (:error-name "ThrottlingException")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-type time-zone smithy/sdk/smithy-types:string)

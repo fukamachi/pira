@@ -479,6 +479,7 @@
                                   concurrent-modification-message :member-name
                                   "message"))
                                 (:shape-name "ConcurrentModificationException")
+                                (:error-name "ConcurrentModification")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-type concurrent-modification-message
@@ -781,7 +782,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "CredentialReportExpiredException")
-                                (:error-code 410))
+                                (:error-name "ReportExpired") (:error-code 410))
 
 (smithy/sdk/shapes:define-error credential-report-not-present-exception
                                 common-lisp:nil
@@ -790,6 +791,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "CredentialReportNotPresentException")
+                                (:error-name "ReportNotPresent")
                                 (:error-code 410))
 
 (smithy/sdk/shapes:define-error credential-report-not-ready-exception
@@ -799,6 +801,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "CredentialReportNotReadyException")
+                                (:error-name "ReportInProgress")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-input deactivate-mfadevice-request common-lisp:nil
@@ -829,6 +832,7 @@
                                 ((message :target-type delete-conflict-message
                                   :member-name "message"))
                                 (:shape-name "DeleteConflictException")
+                                (:error-name "DeleteConflict")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-input delete-group-policy-request common-lisp:nil
@@ -1070,6 +1074,7 @@
                                   duplicate-certificate-message :member-name
                                   "message"))
                                 (:shape-name "DuplicateCertificateException")
+                                (:error-name "DuplicateCertificate")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-error duplicate-sshpublic-key-exception
@@ -1078,6 +1083,7 @@
                                   duplicate-sshpublic-key-message :member-name
                                   "message"))
                                 (:shape-name "DuplicateSSHPublicKeyException")
+                                (:error-name "DuplicateSSHPublicKey")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input enable-mfadevice-request common-lisp:nil
@@ -1131,6 +1137,7 @@
                                   entity-already-exists-message :member-name
                                   "message"))
                                 (:shape-name "EntityAlreadyExistsException")
+                                (:error-name "EntityAlreadyExists")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-structure entity-details common-lisp:nil
@@ -1163,6 +1170,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "EntityTemporarilyUnmodifiableException")
+                                (:error-name "EntityTemporarilyUnmodifiable")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-enum entity-type
@@ -1815,6 +1823,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidAuthenticationCodeException")
+                                (:error-name "InvalidAuthenticationCode")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-error invalid-certificate-exception common-lisp:nil
@@ -1822,19 +1831,21 @@
                                   invalid-certificate-message :member-name
                                   "message"))
                                 (:shape-name "InvalidCertificateException")
+                                (:error-name "InvalidCertificate")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-input-exception common-lisp:nil
                                 ((message :target-type invalid-input-message
                                   :member-name "message"))
                                 (:shape-name "InvalidInputException")
-                                (:error-code 400))
+                                (:error-name "InvalidInput") (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-public-key-exception common-lisp:nil
                                 ((message :target-type
                                   invalid-public-key-message :member-name
                                   "message"))
                                 (:shape-name "InvalidPublicKeyException")
+                                (:error-name "InvalidPublicKey")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-user-type-exception common-lisp:nil
@@ -1842,6 +1853,7 @@
                                   invalid-user-type-message :member-name
                                   "message"))
                                 (:shape-name "InvalidUserTypeException")
+                                (:error-name "InvalidUserType")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error key-pair-mismatch-exception common-lisp:nil
@@ -1849,13 +1861,14 @@
                                   key-pair-mismatch-message :member-name
                                   "message"))
                                 (:shape-name "KeyPairMismatchException")
+                                (:error-name "KeyPairMismatch")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type limit-exceeded-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 409))
+                                (:error-name "LimitExceeded") (:error-code 409))
 
 (smithy/sdk/shapes:define-type line-number smithy/sdk/smithy-types:integer)
 
@@ -2638,6 +2651,7 @@
                                   malformed-certificate-message :member-name
                                   "message"))
                                 (:shape-name "MalformedCertificateException")
+                                (:error-name "MalformedCertificate")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error malformed-policy-document-exception
@@ -2647,6 +2661,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MalformedPolicyDocumentException")
+                                (:error-name "MalformedPolicyDocument")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure managed-policy-detail common-lisp:nil
@@ -2689,7 +2704,7 @@
                                 ((message :target-type no-such-entity-message
                                   :member-name "message"))
                                 (:shape-name "NoSuchEntityException")
-                                (:error-code 404))
+                                (:error-name "NoSuchEntity") (:error-code 404))
 
 (smithy/sdk/shapes:define-structure open-idconnect-provider-list-entry
                                     common-lisp:nil
@@ -2711,6 +2726,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "OpenIdIdpCommunicationErrorException")
+                                (:error-name "OpenIdIdpCommunicationError")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type organization-id-type
@@ -2776,6 +2792,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "PasswordPolicyViolationException")
+                                (:error-name "PasswordPolicyViolation")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum permissions-boundary-attachment-type
@@ -2841,6 +2858,7 @@
                                   policy-evaluation-error-message :member-name
                                   "message"))
                                 (:shape-name "PolicyEvaluationException")
+                                (:error-name "PolicyEvaluation")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-structure policy-granting-service-access
@@ -2877,6 +2895,7 @@
                                   policy-not-attachable-message :member-name
                                   "message"))
                                 (:shape-name "PolicyNotAttachableException")
+                                (:error-name "PolicyNotAttachable")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure policy-role common-lisp:nil
@@ -3037,6 +3056,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ReportGenerationLimitExceededException")
+                                (:error-name "ReportGenerationLimitExceeded")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-type report-state-description-type
@@ -3313,6 +3333,7 @@
                                   service-failure-exception-message
                                   :member-name "message"))
                                 (:shape-name "ServiceFailureException")
+                                (:error-name "ServiceFailure")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-structure service-last-accessed common-lisp:nil
@@ -3346,6 +3367,7 @@
                                   service-not-supported-message :member-name
                                   "message"))
                                 (:shape-name "ServiceNotSupportedException")
+                                (:error-name "NotSupportedService")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure service-specific-credential common-lisp:nil
@@ -3648,6 +3670,7 @@
                                   unmodifiable-entity-message :member-name
                                   "message"))
                                 (:shape-name "UnmodifiableEntityException")
+                                (:error-name "UnmodifiableEntity")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error unrecognized-public-key-encoding-exception
@@ -3657,6 +3680,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "UnrecognizedPublicKeyEncodingException")
+                                (:error-name "UnrecognizedPublicKeyEncoding")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input untag-instance-profile-request common-lisp:nil

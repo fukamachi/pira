@@ -1067,7 +1067,8 @@
                                   :member-name "Message")
                                  (turk-error-code :target-type turk-error-code
                                   :member-name "TurkErrorCode"))
-                                (:shape-name "RequestError") (:error-code 400))
+                                (:shape-name "RequestError")
+                                (:error-name "RequestError") (:error-code 400))
 
 (smithy/sdk/shapes:define-type result-size smithy/sdk/smithy-types:integer)
 
@@ -1189,7 +1190,8 @@
                                   :member-name "Message")
                                  (turk-error-code :target-type turk-error-code
                                   :member-name "TurkErrorCode"))
-                                (:shape-name "ServiceFault") (:error-code 500))
+                                (:shape-name "ServiceFault")
+                                (:error-name "ServiceFault") (:error-code 500))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 

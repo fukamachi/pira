@@ -90,7 +90,7 @@
                                 ((message :target-type service-error-message
                                   :member-name "Message"))
                                 (:shape-name "AccessDeniedException")
-                                (:error-code 403))
+                                (:error-name "AccessDenied") (:error-code 403))
 
 (smithy/sdk/shapes:define-structure account-settings-notification-configuration
                                     common-lisp:nil

@@ -215,6 +215,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "ALPNPolicyNotSupportedException")
+                                (:error-name "ALPNPolicyNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure action common-lisp:nil
@@ -321,6 +322,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "AllocationIdNotFoundException")
+                                (:error-name "AllocationIdNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list alpn-policy-name :member alpn-policy-value)
@@ -529,6 +531,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "AvailabilityZoneNotSupportedException")
+                                (:error-name "AvailabilityZoneNotSupported")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list availability-zones :member availability-zone)
@@ -539,6 +542,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CaCertificatesBundleNotFoundException")
+                                (:error-name "CaCertificatesBundleNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type canonical-hosted-zone-id
@@ -548,7 +552,7 @@
  capacity-decrease-requests-limit-exceeded-exception common-lisp:nil
  ((message :target-type error-description :member-name "Message"))
  (:shape-name "CapacityDecreaseRequestsLimitExceededException")
- (:error-code 400))
+ (:error-name "CapacityDecreaseRequestLimitExceeded") (:error-code 400))
 
 (smithy/sdk/shapes:define-error capacity-reservation-pending-exception
                                 common-lisp:nil
@@ -556,6 +560,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CapacityReservationPendingException")
+                                (:error-name "CapacityReservationPending")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum capacity-reservation-state-enum
@@ -584,6 +589,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "CapacityUnitsLimitExceededException")
+                                (:error-name "CapacityUnitsLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure certificate common-lisp:nil
@@ -602,6 +608,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "CertificateNotFoundException")
+                                (:error-name "CertificateNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cipher common-lisp:nil
@@ -789,6 +796,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DeleteAssociationSameAccountException")
+                                (:error-name "DeleteAssociationSameAccount")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input delete-listener-input common-lisp:nil
@@ -1196,6 +1204,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "DuplicateListenerException")
+                                (:error-name "DuplicateListener")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error duplicate-load-balancer-name-exception
@@ -1204,12 +1213,14 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DuplicateLoadBalancerNameException")
+                                (:error-name "DuplicateLoadBalancerName")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error duplicate-tag-keys-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "DuplicateTagKeysException")
+                                (:error-name "DuplicateTagKeys")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error duplicate-target-group-name-exception
@@ -1218,6 +1229,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DuplicateTargetGroupNameException")
+                                (:error-name "DuplicateTargetGroupName")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error duplicate-trust-store-name-exception
@@ -1226,6 +1238,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "DuplicateTrustStoreNameException")
+                                (:error-name "DuplicateTrustStoreName")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum enable-prefix-for-ipv6source-nat-enum
@@ -1342,6 +1355,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "HealthUnavailableException")
+                                (:error-name "HealthUnavailable")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-structure host-header-condition-config
@@ -1381,12 +1395,14 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "IncompatibleProtocolsException")
+                                (:error-name "IncompatibleProtocols")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error insufficient-capacity-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InsufficientCapacityException")
+                                (:error-name "InsufficientCapacity")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-error invalid-ca-certificates-bundle-exception
@@ -1395,6 +1411,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidCaCertificatesBundleException")
+                                (:error-name "InvalidCaCertificatesBundle")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-configuration-request-exception
@@ -1403,6 +1420,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidConfigurationRequestException")
+                                (:error-name "InvalidConfigurationRequest")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-load-balancer-action-exception
@@ -1411,6 +1429,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidLoadBalancerActionException")
+                                (:error-name "InvalidLoadBalancerAction")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-revocation-content-exception
@@ -1419,32 +1438,34 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InvalidRevocationContentException")
+                                (:error-name "InvalidRevocationContent")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-scheme-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidSchemeException")
-                                (:error-code 400))
+                                (:error-name "InvalidScheme") (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-security-group-exception
                                 common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidSecurityGroupException")
+                                (:error-name "InvalidSecurityGroup")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-subnet-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidSubnetException")
-                                (:error-code 400))
+                                (:error-name "InvalidSubnet") (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-target-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "InvalidTargetException")
-                                (:error-code 400))
+                                (:error-name "InvalidTarget") (:error-code 400))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
 
@@ -1529,6 +1550,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "ListenerNotFoundException")
+                                (:error-name "ListenerNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list listeners :member listener)
@@ -1629,6 +1651,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "LoadBalancerNotFoundException")
+                                (:error-name "LoadBalancerNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum load-balancer-scheme-enum
@@ -1919,6 +1942,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "OperationNotPermittedException")
+                                (:error-name "OperationNotPermitted")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type outpost-id smithy/sdk/smithy-types:string)
@@ -1943,13 +1967,14 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "PriorRequestNotCompleteException")
+                                (:error-name "PriorRequestNotComplete")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-error priority-in-use-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "PriorityInUseException")
-                                (:error-code 400))
+                                (:error-name "PriorityInUse") (:error-code 400))
 
 (smithy/sdk/shapes:define-type private-ipv4address
                                smithy/sdk/smithy-types:string)
@@ -2094,12 +2119,13 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "ResourceInUseException")
-                                (:error-code 400))
+                                (:error-name "ResourceInUse") (:error-code 400))
 
 (smithy/sdk/shapes:define-error resource-not-found-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure revocation-content common-lisp:nil
@@ -2121,6 +2147,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "RevocationContentNotFoundException")
+                                (:error-name "RevocationContentNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list revocation-contents :member revocation-content)
@@ -2132,6 +2159,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "RevocationIdNotFoundException")
+                                (:error-name "RevocationIdNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list revocation-ids :member revocation-id)
@@ -2189,7 +2217,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "RuleNotFoundException")
-                                (:error-code 400))
+                                (:error-name "RuleNotFound") (:error-code 400))
 
 (smithy/sdk/shapes:define-type rule-priority smithy/sdk/smithy-types:integer)
 
@@ -2214,6 +2242,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "SSLPolicyNotFoundException")
+                                (:error-name "SSLPolicyNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type security-group-id smithy/sdk/smithy-types:string)
@@ -2360,6 +2389,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "SubnetNotFoundException")
+                                (:error-name "SubnetNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list subnets :member subnet-id)
@@ -2477,6 +2507,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "TargetGroupAssociationLimitException")
+                                (:error-name "TargetGroupAssociationLimit")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure target-group-attribute common-lisp:nil
@@ -2513,6 +2544,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TargetGroupNotFoundException")
+                                (:error-name "TargetGroupNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure target-group-stickiness-config
@@ -2612,18 +2644,21 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyActionsException")
+                                (:error-name "TooManyActions")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-certificates-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyCertificatesException")
+                                (:error-name "TooManyCertificates")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-listeners-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyListenersException")
+                                (:error-name "TooManyListeners")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-load-balancers-exception
@@ -2631,6 +2666,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyLoadBalancersException")
+                                (:error-name "TooManyLoadBalancers")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-registrations-for-target-id-exception
@@ -2639,49 +2675,54 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "TooManyRegistrationsForTargetIdException")
+                                (:error-name "TooManyRegistrationsForTargetId")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-rules-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyRulesException")
-                                (:error-code 400))
+                                (:error-name "TooManyRules") (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyTagsException")
-                                (:error-code 400))
+                                (:error-name "TooManyTags") (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-target-groups-exception
                                 common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyTargetGroupsException")
+                                (:error-name "TooManyTargetGroups")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-targets-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyTargetsException")
+                                (:error-name "TooManyTargets")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error
  too-many-trust-store-revocation-entries-exception common-lisp:nil
  ((message :target-type error-description :member-name "Message"))
- (:shape-name "TooManyTrustStoreRevocationEntriesException") (:error-code 400))
+ (:shape-name "TooManyTrustStoreRevocationEntriesException")
+ (:error-name "TooManyTrustStoreRevocationEntries") (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-trust-stores-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TooManyTrustStoresException")
+                                (:error-name "TooManyTrustStores")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error
  too-many-unique-target-groups-per-load-balancer-exception common-lisp:nil
  ((message :target-type error-description :member-name "Message"))
  (:shape-name "TooManyUniqueTargetGroupsPerLoadBalancerException")
- (:error-code 400))
+ (:error-name "TooManyUniqueTargetGroupsPerLoadBalancer") (:error-code 400))
 
 (smithy/sdk/shapes:define-type total-revoked-entries
                                smithy/sdk/smithy-types:long)
@@ -2718,6 +2759,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "TrustStoreAssociationNotFoundException")
+                                (:error-name "AssociationNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type trust-store-association-resource-arn
@@ -2735,6 +2777,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TrustStoreInUseException")
+                                (:error-name "TrustStoreInUse")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type trust-store-name smithy/sdk/smithy-types:string)
@@ -2745,12 +2788,14 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TrustStoreNotFoundException")
+                                (:error-name "TrustStoreNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error trust-store-not-ready-exception common-lisp:nil
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "TrustStoreNotReadyException")
+                                (:error-name "TrustStoreNotReady")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure trust-store-revocation common-lisp:nil
@@ -2781,6 +2826,7 @@
                                 ((message :target-type error-description
                                   :member-name "Message"))
                                 (:shape-name "UnsupportedProtocolException")
+                                (:error-name "UnsupportedProtocol")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type vpc-id smithy/sdk/smithy-types:string)

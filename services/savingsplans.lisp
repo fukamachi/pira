@@ -284,6 +284,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InternalServerException")
+                                (:error-name "InternalServerException")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-type json-safe-filter-value-string
@@ -334,6 +335,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-input return-savings-plan-request common-lisp:nil
@@ -746,6 +748,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
+                                (:error-name "ServiceQuotaExceededException")
                                 (:error-code 402))
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
@@ -793,6 +796,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ValidationException")
+                                (:error-name "ValidationException")
                                 (:error-code 400))
 
 (smithy/sdk/operation:define-operation create-savings-plan :shape-name

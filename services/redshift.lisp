@@ -339,12 +339,14 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AccessToClusterDeniedFault")
+                                (:error-name "AccessToClusterDenied")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error access-to-snapshot-denied-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AccessToSnapshotDeniedFault")
+                                (:error-name "AccessToSnapshotDenied")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure account-attribute common-lisp:nil
@@ -463,6 +465,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "AuthenticationProfileAlreadyExistsFault")
+                                (:error-name
+                                 "AuthenticationProfileAlreadyExistsFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list authentication-profile-list :member
@@ -477,6 +481,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "AuthenticationProfileNotFoundFault")
+                                (:error-name
+                                 "AuthenticationProfileNotFoundFault")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error authentication-profile-quota-exceeded-fault
@@ -485,6 +491,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "AuthenticationProfileQuotaExceededFault")
+                                (:error-name
+                                 "AuthenticationProfileQuotaExceededFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error authorization-already-exists-fault
@@ -492,12 +500,14 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AuthorizationAlreadyExistsFault")
+                                (:error-name "AuthorizationAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error authorization-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AuthorizationNotFoundFault")
+                                (:error-name "AuthorizationNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error authorization-quota-exceeded-fault
@@ -505,6 +515,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "AuthorizationQuotaExceededFault")
+                                (:error-name "AuthorizationQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum authorization-status
@@ -620,12 +631,14 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "BatchDeleteRequestSizeExceededFault")
+                                (:error-name "BatchDeleteRequestSizeExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error
  batch-modify-cluster-snapshots-limit-exceeded-fault common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
  (:shape-name "BatchModifyClusterSnapshotsLimitExceededFault")
+ (:error-name "BatchModifyClusterSnapshotsLimitExceededFault")
  (:error-code 400))
 
 (smithy/sdk/shapes:define-input batch-modify-cluster-snapshots-message
@@ -669,6 +682,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "BucketNotFoundFault")
+                                (:error-name "BucketNotFoundFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input cancel-resize-message common-lisp:nil
@@ -853,6 +867,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ClusterAlreadyExistsFault")
+                                (:error-name "ClusterAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cluster-associated-to-schedule
@@ -939,6 +954,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ClusterNotFoundFault")
+                                (:error-name "ClusterNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error cluster-on-latest-revision-fault
@@ -946,6 +962,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ClusterOnLatestRevisionFault")
+                                (:error-name "ClusterOnLatestRevision")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cluster-parameter-group common-lisp:nil
@@ -966,6 +983,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterParameterGroupAlreadyExistsFault")
+                                (:error-name
+                                 "ClusterParameterGroupAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cluster-parameter-group-details
@@ -993,6 +1012,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterParameterGroupNotFoundFault")
+                                (:error-name "ClusterParameterGroupNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error cluster-parameter-group-quota-exceeded-fault
@@ -1001,6 +1021,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterParameterGroupQuotaExceededFault")
+                                (:error-name
+                                 "ClusterParameterGroupQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cluster-parameter-group-status
@@ -1048,6 +1070,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ClusterQuotaExceededFault")
+                                (:error-name "ClusterQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cluster-security-group common-lisp:nil
@@ -1071,6 +1094,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterSecurityGroupAlreadyExistsFault")
+                                (:error-name
+                                 "ClusterSecurityGroupAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cluster-security-group-membership
@@ -1104,6 +1129,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterSecurityGroupNotFoundFault")
+                                (:error-name "ClusterSecurityGroupNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error cluster-security-group-quota-exceeded-fault
@@ -1112,6 +1138,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterSecurityGroupQuotaExceededFault")
+                                (:error-name
+                                 "QuotaExceeded.ClusterSecurityGroup")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list cluster-security-groups :member
@@ -1124,6 +1152,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterSnapshotAlreadyExistsFault")
+                                (:error-name "ClusterSnapshotAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cluster-snapshot-copy-status
@@ -1145,6 +1174,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ClusterSnapshotNotFoundFault")
+                                (:error-name "ClusterSnapshotNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error cluster-snapshot-quota-exceeded-fault
@@ -1153,6 +1183,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterSnapshotQuotaExceededFault")
+                                (:error-name "ClusterSnapshotQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cluster-subnet-group common-lisp:nil
@@ -1181,6 +1212,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterSubnetGroupAlreadyExistsFault")
+                                (:error-name "ClusterSubnetGroupAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-output cluster-subnet-group-message common-lisp:nil
@@ -1196,6 +1228,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ClusterSubnetGroupNotFoundFault")
+                                (:error-name "ClusterSubnetGroupNotFoundFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error cluster-subnet-group-quota-exceeded-fault
@@ -1204,6 +1237,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ClusterSubnetGroupQuotaExceededFault")
+                                (:error-name "ClusterSubnetGroupQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list cluster-subnet-groups :member
@@ -1215,6 +1249,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ClusterSubnetQuotaExceededFault")
+                                (:error-name "ClusterSubnetQuotaExceededFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure cluster-version common-lisp:nil
@@ -1249,6 +1284,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ConflictPolicyUpdateFault")
+                                (:error-name "ConflictPolicyUpdateFault")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-list consumer-identifier-list :member string)
@@ -1277,6 +1313,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "CopyToRegionDisabledFault")
+                                (:error-name "CopyToRegionDisabledFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input create-authentication-profile-message
@@ -1758,6 +1795,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "CustomCnameAssociationFault")
+                                (:error-name "CustomCnameAssociationFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error custom-domain-association-not-found-fault
@@ -1765,6 +1803,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "CustomDomainAssociationNotFoundFault")
+                                (:error-name
                                  "CustomDomainAssociationNotFoundFault")
                                 (:error-code 404))
 
@@ -2093,6 +2133,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "DependentServiceAccessDeniedFault")
+                                (:error-name "DependentServiceAccessDenied")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-error dependent-service-request-throttling-fault
@@ -2101,6 +2142,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "DependentServiceRequestThrottlingFault")
+                                (:error-name
+                                 "DependentServiceRequestThrottlingFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error dependent-service-unavailable-fault
@@ -2108,6 +2151,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "DependentServiceUnavailableFault")
+                                (:error-name
                                  "DependentServiceUnavailableFault")
                                 (:error-code 400))
 
@@ -2932,6 +2977,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "EndpointAlreadyExistsFault")
+                                (:error-name "EndpointAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure endpoint-authorization common-lisp:nil
@@ -2962,6 +3008,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "EndpointAuthorizationAlreadyExistsFault")
+                                (:error-name
+                                 "EndpointAuthorizationAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure endpoint-authorization-list common-lisp:nil
@@ -2978,6 +3026,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "EndpointAuthorizationNotFoundFault")
+                                (:error-name "EndpointAuthorizationNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-list endpoint-authorizations :member
@@ -2987,18 +3036,21 @@
  endpoint-authorizations-per-cluster-limit-exceeded-fault common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
  (:shape-name "EndpointAuthorizationsPerClusterLimitExceededFault")
+ (:error-name "EndpointAuthorizationsPerClusterLimitExceeded")
  (:error-code 400))
 
 (smithy/sdk/shapes:define-error endpoint-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "EndpointNotFoundFault")
+                                (:error-name "EndpointNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error
  endpoints-per-authorization-limit-exceeded-fault common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
- (:shape-name "EndpointsPerAuthorizationLimitExceededFault") (:error-code 400))
+ (:shape-name "EndpointsPerAuthorizationLimitExceededFault")
+ (:error-name "EndpointsPerAuthorizationLimitExceeded") (:error-code 400))
 
 (smithy/sdk/shapes:define-error endpoints-per-cluster-limit-exceeded-fault
                                 common-lisp:nil
@@ -3006,6 +3058,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "EndpointsPerClusterLimitExceededFault")
+                                (:error-name
+                                 "EndpointsPerClusterLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure event common-lisp:nil
@@ -3097,6 +3151,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "EventSubscriptionQuotaExceededFault")
+                                (:error-name "EventSubscriptionQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list event-subscriptions-list :member
@@ -3227,6 +3282,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "HsmClientCertificateAlreadyExistsFault")
+                                (:error-name
+                                 "HsmClientCertificateAlreadyExistsFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list hsm-client-certificate-list :member
@@ -3247,6 +3304,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "HsmClientCertificateNotFoundFault")
+                                (:error-name
+                                 "HsmClientCertificateNotFoundFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error hsm-client-certificate-quota-exceeded-fault
@@ -3254,6 +3313,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "HsmClientCertificateQuotaExceededFault")
+                                (:error-name
                                  "HsmClientCertificateQuotaExceededFault")
                                 (:error-code 400))
 
@@ -3277,6 +3338,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "HsmConfigurationAlreadyExistsFault")
+                                (:error-name
+                                 "HsmConfigurationAlreadyExistsFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list hsm-configuration-list :member
@@ -3295,6 +3358,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "HsmConfigurationNotFoundFault")
+                                (:error-name "HsmConfigurationNotFoundFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error hsm-configuration-quota-exceeded-fault
@@ -3302,6 +3366,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "HsmConfigurationQuotaExceededFault")
+                                (:error-name
                                  "HsmConfigurationQuotaExceededFault")
                                 (:error-code 400))
 
@@ -3355,6 +3421,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InProgressTableRestoreQuotaExceededFault")
+                                (:error-name
+                                 "InProgressTableRestoreQuotaExceededFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure inbound-integration common-lisp:nil
@@ -3394,6 +3462,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "IncompatibleOrderableOptions")
+                                (:error-name "IncompatibleOrderableOptions")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error insufficient-cluster-capacity-fault
@@ -3402,6 +3471,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InsufficientClusterCapacityFault")
+                                (:error-name "InsufficientClusterCapacity")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error insufficient-s3bucket-policy-fault
@@ -3409,6 +3479,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InsufficientS3BucketPolicyFault")
+                                (:error-name "InsufficientS3BucketPolicyFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
@@ -3451,6 +3522,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "IntegrationAlreadyExistsFault")
+                                (:error-name "IntegrationAlreadyExistsFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type integration-arn smithy/sdk/smithy-types:string)
@@ -3461,6 +3533,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "IntegrationConflictOperationFault")
+                                (:error-name
+                                 "IntegrationConflictOperationFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error integration-conflict-state-fault
@@ -3468,6 +3542,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "IntegrationConflictStateFault")
+                                (:error-name "IntegrationConflictStateFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type integration-description
@@ -3492,6 +3567,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "IntegrationNotFoundFault")
+                                (:error-name "IntegrationNotFoundFault")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error integration-quota-exceeded-fault
@@ -3499,6 +3575,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "IntegrationQuotaExceededFault")
+                                (:error-name "IntegrationQuotaExceededFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error integration-source-not-found-fault
@@ -3506,6 +3583,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "IntegrationSourceNotFoundFault")
+                                (:error-name "IntegrationSourceNotFoundFault")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error integration-target-not-found-fault
@@ -3513,6 +3591,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "IntegrationTargetNotFoundFault")
+                                (:error-name "IntegrationTargetNotFoundFault")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-output integrations-message common-lisp:nil
@@ -3528,6 +3607,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidAuthenticationProfileRequestFault")
+                                (:error-name
+                                 "InvalidAuthenticationProfileRequestFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-authorization-state-fault
@@ -3535,6 +3616,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidAuthorizationStateFault")
+                                (:error-name "InvalidAuthorizationState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-cluster-parameter-group-state-fault
@@ -3543,6 +3625,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidClusterParameterGroupStateFault")
+                                (:error-name
+                                 "InvalidClusterParameterGroupState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-cluster-security-group-state-fault
@@ -3551,6 +3635,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidClusterSecurityGroupStateFault")
+                                (:error-name
+                                 "InvalidClusterSecurityGroupState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-cluster-snapshot-schedule-state-fault
@@ -3559,6 +3645,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidClusterSnapshotScheduleStateFault")
+                                (:error-name
+                                 "InvalidClusterSnapshotScheduleState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-cluster-snapshot-state-fault
@@ -3567,12 +3655,14 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidClusterSnapshotStateFault")
+                                (:error-name "InvalidClusterSnapshotState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-cluster-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidClusterStateFault")
+                                (:error-name "InvalidClusterState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-cluster-subnet-group-state-fault
@@ -3581,6 +3671,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidClusterSubnetGroupStateFault")
+                                (:error-name
+                                 "InvalidClusterSubnetGroupStateFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-cluster-subnet-state-fault
@@ -3588,30 +3680,35 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidClusterSubnetStateFault")
+                                (:error-name "InvalidClusterSubnetStateFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-cluster-track-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidClusterTrackFault")
+                                (:error-name "InvalidClusterTrack")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-data-share-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidDataShareFault")
+                                (:error-name "InvalidDataShareFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-elastic-ip-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidElasticIpFault")
+                                (:error-name "InvalidElasticIpFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-endpoint-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidEndpointStateFault")
+                                (:error-name "InvalidEndpointState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-hsm-client-certificate-state-fault
@@ -3619,6 +3716,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "InvalidHsmClientCertificateStateFault")
+                                (:error-name
                                  "InvalidHsmClientCertificateStateFault")
                                 (:error-code 400))
 
@@ -3628,18 +3727,22 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidHsmConfigurationStateFault")
+                                (:error-name
+                                 "InvalidHsmConfigurationStateFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-namespace-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidNamespaceFault")
+                                (:error-name "InvalidNamespaceFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-policy-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPolicyFault")
+                                (:error-name "InvalidPolicyFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-reserved-node-state-fault
@@ -3647,42 +3750,49 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidReservedNodeStateFault")
+                                (:error-name "InvalidReservedNodeState")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-restore-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRestoreFault")
+                                (:error-name "InvalidRestore")
                                 (:error-code 406))
 
 (smithy/sdk/shapes:define-error invalid-retention-period-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRetentionPeriodFault")
+                                (:error-name "InvalidRetentionPeriodFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-s3bucket-name-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidS3BucketNameFault")
+                                (:error-name "InvalidS3BucketNameFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-s3key-prefix-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidS3KeyPrefixFault")
+                                (:error-name "InvalidS3KeyPrefixFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-schedule-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidScheduleFault")
+                                (:error-name "InvalidSchedule")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-scheduled-action-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidScheduledActionFault")
+                                (:error-name "InvalidScheduledAction")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-snapshot-copy-grant-state-fault
@@ -3691,18 +3801,22 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidSnapshotCopyGrantStateFault")
+                                (:error-name
+                                 "InvalidSnapshotCopyGrantStateFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-subnet common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
-                                (:shape-name "InvalidSubnet") (:error-code 400))
+                                (:shape-name "InvalidSubnet")
+                                (:error-name "InvalidSubnet") (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-subscription-state-fault
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSubscriptionStateFault")
+                                (:error-name "InvalidSubscriptionStateFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-table-restore-argument-fault
@@ -3711,30 +3825,35 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidTableRestoreArgumentFault")
+                                (:error-name "InvalidTableRestoreArgument")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-tag-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTagFault")
+                                (:error-name "InvalidTagFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-usage-limit-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidUsageLimitFault")
+                                (:error-name "InvalidUsageLimit")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-vpcnetwork-state-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidVPCNetworkStateFault")
+                                (:error-name "InvalidVPCNetworkStateFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error ipv6cidr-block-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "Ipv6CidrBlockNotFoundFault")
+                                (:error-name "Ipv6CidrBlockNotFoundFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure lake-formation-query common-lisp:nil
@@ -3757,6 +3876,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededFault")
+                                (:error-name "LimitExceededFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input list-recommendations-message common-lisp:nil
@@ -4323,13 +4443,15 @@
 (smithy/sdk/shapes:define-error
  number-of-nodes-per-cluster-limit-exceeded-fault common-lisp:nil
  ((message :target-type exception-message :member-name "message"))
- (:shape-name "NumberOfNodesPerClusterLimitExceededFault") (:error-code 400))
+ (:shape-name "NumberOfNodesPerClusterLimitExceededFault")
+ (:error-name "NumberOfNodesPerClusterLimitExceeded") (:error-code 400))
 
 (smithy/sdk/shapes:define-error number-of-nodes-quota-exceeded-fault
                                 common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "NumberOfNodesQuotaExceededFault")
+                                (:error-name "NumberOfNodesQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum operator-type
@@ -4482,6 +4604,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "PartnerNotFoundFault")
+                                (:error-name "PartnerNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure pause-cluster-message common-lisp:nil
@@ -4684,6 +4807,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "RedshiftIdcApplicationAlreadyExistsFault")
+                                (:error-name
+                                 "RedshiftIdcApplicationAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list redshift-idc-application-list :member
@@ -4698,6 +4823,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "RedshiftIdcApplicationNotExistsFault")
+                                (:error-name "RedshiftIdcApplicationNotExists")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error redshift-idc-application-quota-exceeded-fault
@@ -4706,6 +4832,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "RedshiftIdcApplicationQuotaExceededFault")
+                                (:error-name
+                                 "RedshiftIdcApplicationQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure reference-link common-lisp:nil
@@ -4779,6 +4907,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ReservedNodeAlreadyExistsFault")
+                                (:error-name "ReservedNodeAlreadyExists")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error reserved-node-already-migrated-fault
@@ -4787,6 +4916,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ReservedNodeAlreadyMigratedFault")
+                                (:error-name "ReservedNodeAlreadyMigrated")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure reserved-node-configuration-option
@@ -4819,6 +4949,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ReservedNodeExchangeNotFoundFault")
+                                (:error-name "ReservedNodeExchangeNotFond")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure reserved-node-exchange-status
@@ -4871,6 +5002,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ReservedNodeNotFoundFault")
+                                (:error-name "ReservedNodeNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure reserved-node-offering common-lisp:nil
@@ -4907,6 +5039,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ReservedNodeOfferingNotFoundFault")
+                                (:error-name "ReservedNodeOfferingNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-enum reserved-node-offering-type
@@ -4928,6 +5061,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ReservedNodeQuotaExceededFault")
+                                (:error-name "ReservedNodeQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-output reserved-nodes-message common-lisp:nil
@@ -4986,6 +5120,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResizeNotFoundFault")
+                                (:error-name "ResizeNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure resize-progress-message common-lisp:nil
@@ -5038,6 +5173,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundFault")
+                                (:error-name "ResourceNotFoundFault")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure resource-policy common-lisp:nil
@@ -5312,18 +5448,21 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SNSInvalidTopicFault")
+                                (:error-name "SNSInvalidTopic")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error snsno-authorization-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SNSNoAuthorizationFault")
+                                (:error-name "SNSNoAuthorization")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error snstopic-arn-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SNSTopicArnNotFoundFault")
+                                (:error-name "SNSTopicArnNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-list schedule-definition-list :member
@@ -5335,6 +5474,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ScheduleDefinitionTypeUnsupportedFault")
+                                (:error-name
+                                 "ScheduleDefinitionTypeUnsupported")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum schedule-state
@@ -5373,6 +5514,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ScheduledActionAlreadyExistsFault")
+                                (:error-name "ScheduledActionAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure scheduled-action-filter common-lisp:nil
@@ -5401,6 +5543,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ScheduledActionNotFoundFault")
+                                (:error-name "ScheduledActionNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error scheduled-action-quota-exceeded-fault
@@ -5409,6 +5552,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ScheduledActionQuotaExceededFault")
+                                (:error-name "ScheduledActionQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum scheduled-action-state
@@ -5437,6 +5581,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ScheduledActionTypeUnsupportedFault")
+                                (:error-name "ScheduledActionTypeUnsupported")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum scheduled-action-type-values
@@ -5596,6 +5741,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "SnapshotCopyAlreadyDisabledFault")
+                                (:error-name
+                                 "SnapshotCopyAlreadyDisabledFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error snapshot-copy-already-enabled-fault
@@ -5603,12 +5750,14 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SnapshotCopyAlreadyEnabledFault")
+                                (:error-name "SnapshotCopyAlreadyEnabledFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error snapshot-copy-disabled-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SnapshotCopyDisabledFault")
+                                (:error-name "SnapshotCopyDisabledFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure snapshot-copy-grant common-lisp:nil
@@ -5626,6 +5775,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "SnapshotCopyGrantAlreadyExistsFault")
+                                (:error-name
                                  "SnapshotCopyGrantAlreadyExistsFault")
                                 (:error-code 400))
 
@@ -5646,6 +5797,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SnapshotCopyGrantNotFoundFault")
+                                (:error-name "SnapshotCopyGrantNotFoundFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error snapshot-copy-grant-quota-exceeded-fault
@@ -5653,6 +5805,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "SnapshotCopyGrantQuotaExceededFault")
+                                (:error-name
                                  "SnapshotCopyGrantQuotaExceededFault")
                                 (:error-code 400))
 
@@ -5708,6 +5862,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "SnapshotScheduleAlreadyExistsFault")
+                                (:error-name "SnapshotScheduleAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list snapshot-schedule-list :member
@@ -5718,6 +5873,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SnapshotScheduleNotFoundFault")
+                                (:error-name "SnapshotScheduleNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error snapshot-schedule-quota-exceeded-fault
@@ -5726,6 +5882,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "SnapshotScheduleQuotaExceededFault")
+                                (:error-name "SnapshotScheduleQuotaExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error snapshot-schedule-update-in-progress-fault
@@ -5734,6 +5891,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "SnapshotScheduleUpdateInProgressFault")
+                                (:error-name
+                                 "SnapshotScheduleUpdateInProgress")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure snapshot-sorting-entity common-lisp:nil
@@ -5762,6 +5921,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SourceNotFoundFault")
+                                (:error-name "SourceNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-enum source-type
@@ -5788,6 +5948,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubnetAlreadyInUse")
+                                (:error-name "SubnetAlreadyInUse")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list subnet-identifier-list :member
@@ -5800,6 +5961,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubscriptionAlreadyExistFault")
+                                (:error-name "SubscriptionAlreadyExist")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error subscription-category-not-found-fault
@@ -5808,6 +5970,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "SubscriptionCategoryNotFoundFault")
+                                (:error-name "SubscriptionCategoryNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error subscription-event-id-not-found-fault
@@ -5816,12 +5979,14 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "SubscriptionEventIdNotFoundFault")
+                                (:error-name "SubscriptionEventIdNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error subscription-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SubscriptionNotFoundFault")
+                                (:error-name "SubscriptionNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error subscription-severity-not-found-fault
@@ -5830,6 +5995,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "SubscriptionSeverityNotFoundFault")
+                                (:error-name "SubscriptionSeverityNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure supported-operation common-lisp:nil
@@ -5856,12 +6022,14 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TableLimitExceededFault")
+                                (:error-name "TableLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error table-restore-not-found-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TableRestoreNotFoundFault")
+                                (:error-name "TableRestoreNotFoundFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure table-restore-status common-lisp:nil
@@ -5932,6 +6100,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TagLimitExceededFault")
+                                (:error-name "TagLimitExceededFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list tag-list :member (tag :xml-name "Tag"))
@@ -5974,6 +6143,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedOperation")
+                                (:error-name "UnauthorizedOperation")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error unauthorized-partner-integration-fault
@@ -5982,6 +6152,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "UnauthorizedPartnerIntegrationFault")
+                                (:error-name "UnauthorizedPartnerIntegration")
                                 (:error-code 401))
 
 (smithy/sdk/shapes:define-error unknown-snapshot-copy-region-fault
@@ -5989,18 +6160,21 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UnknownSnapshotCopyRegionFault")
+                                (:error-name "UnknownSnapshotCopyRegionFault")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-error unsupported-operation-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedOperationFault")
+                                (:error-name "UnsupportedOperation")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error unsupported-option-fault common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UnsupportedOptionFault")
+                                (:error-name "UnsupportedOptionFault")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input update-partner-status-input-message
@@ -6064,6 +6238,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UsageLimitAlreadyExistsFault")
+                                (:error-name "UsageLimitAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum usage-limit-breach-action
@@ -6094,6 +6269,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "UsageLimitNotFoundFault")
+                                (:error-name "UsageLimitNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-enum usage-limit-period

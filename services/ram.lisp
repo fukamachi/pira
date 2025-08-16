@@ -494,6 +494,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
                                  "IdempotentParameterMismatchException")
+                                (:error-name "IdempotentParameterMismatch")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
@@ -502,36 +503,41 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidClientTokenException")
+                                (:error-name "InvalidClientToken")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-max-results-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidMaxResultsException")
+                                (:error-name "InvalidMaxResults")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidNextTokenException")
+                                (:error-name "InvalidNextToken")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidParameterException")
+                                (:error-name "InvalidParameter")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-policy-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidPolicyException")
-                                (:error-code 400))
+                                (:error-name "InvalidPolicy") (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-resource-type-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidResourceTypeException")
+                                (:error-name "InvalidResourceType.Unknown")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-state-transition-exception
@@ -539,6 +545,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "InvalidStateTransitionException")
+                                (:error-name
+                                 "InvalidStateTransitionException.Unknown")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input list-pending-invitation-resources-request
@@ -755,6 +763,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "MalformedArnException")
+                                (:error-name "InvalidArn.Malformed")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error malformed-policy-template-exception
@@ -762,6 +771,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
+                                 "MalformedPolicyTemplateException")
+                                (:error-name
                                  "MalformedPolicyTemplateException")
                                 (:error-code 400))
 
@@ -773,6 +784,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
                                  "MissingRequiredParameterException")
+                                (:error-name "MissingRequiredParameter")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error operation-not-permitted-exception
@@ -780,6 +792,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "OperationNotPermittedException")
+                                (:error-name "OperationNotPermitted")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error permission-already-exists-exception
@@ -787,6 +800,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
+                                 "PermissionAlreadyExistsException")
+                                (:error-name
                                  "PermissionAlreadyExistsException")
                                 (:error-code 409))
 
@@ -804,6 +819,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
+                                 "PermissionLimitExceededException")
+                                (:error-name
                                  "PermissionLimitExceededException")
                                 (:error-code 400))
 
@@ -832,6 +849,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
+                                 "PermissionVersionsLimitExceededException")
+                                (:error-name
                                  "PermissionVersionsLimitExceededException")
                                 (:error-code 400))
 
@@ -1002,6 +1021,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ResourceArnNotFoundException")
+                                (:error-name "InvalidResourceArn.NotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list resource-list :member
@@ -1125,12 +1145,14 @@
  resource-share-invitation-already-accepted-exception common-lisp:nil
  ((message :target-type string :required common-lisp:t :member-name "message"))
  (:shape-name "ResourceShareInvitationAlreadyAcceptedException")
+ (:error-name "InvalidResourceShareInvitationArn.AlreadyAccepted")
  (:error-code 400))
 
 (smithy/sdk/shapes:define-error
  resource-share-invitation-already-rejected-exception common-lisp:nil
  ((message :target-type string :required common-lisp:t :member-name "message"))
  (:shape-name "ResourceShareInvitationAlreadyRejectedException")
+ (:error-name "InvalidResourceShareInvitationArn.AlreadyRejected")
  (:error-code 400))
 
 (smithy/sdk/shapes:define-list resource-share-invitation-arn-list :member
@@ -1139,7 +1161,8 @@
 (smithy/sdk/shapes:define-error
  resource-share-invitation-arn-not-found-exception common-lisp:nil
  ((message :target-type string :required common-lisp:t :member-name "message"))
- (:shape-name "ResourceShareInvitationArnNotFoundException") (:error-code 400))
+ (:shape-name "ResourceShareInvitationArnNotFoundException")
+ (:error-name "InvalidResourceShareInvitationArn.NotFound") (:error-code 400))
 
 (smithy/sdk/shapes:define-error resource-share-invitation-expired-exception
                                 common-lisp:nil
@@ -1147,6 +1170,8 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
                                  "ResourceShareInvitationExpiredException")
+                                (:error-name
+                                 "InvalidResourceShareInvitationArn.Expired")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list resource-share-invitation-list :member
@@ -1165,6 +1190,7 @@
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
                                  "ResourceShareLimitExceededException")
+                                (:error-name "ResourceShareLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list resource-share-list :member
@@ -1260,7 +1286,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServerInternalException")
-                                (:error-code 500))
+                                (:error-name "InternalError") (:error-code 500))
 
 (smithy/sdk/shapes:define-structure service-name-and-resource-type
                                     common-lisp:nil
@@ -1281,7 +1307,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceUnavailableException")
-                                (:error-code 503))
+                                (:error-name "Unavailable") (:error-code 503))
 
 (smithy/sdk/shapes:define-input set-default-permission-version-request
                                 common-lisp:nil
@@ -1334,6 +1360,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "TagLimitExceededException")
+                                (:error-name "TagLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list tag-list :member tag)
@@ -1342,6 +1369,7 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "TagPolicyViolationException")
+                                (:error-name "TagPolicyViolation")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
@@ -1365,12 +1393,15 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ThrottlingException")
+                                (:error-name "ThrottlingException")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-error unknown-resource-exception common-lisp:nil
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "UnknownResourceException")
+                                (:error-name
+                                 "InvalidResourceShareArn.NotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error unmatched-policy-permission-exception
@@ -1378,6 +1409,8 @@
                                 ((message :target-type string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name
+                                 "UnmatchedPolicyPermissionException")
+                                (:error-name
                                  "UnmatchedPolicyPermissionException")
                                 (:error-code 400))
 

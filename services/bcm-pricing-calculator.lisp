@@ -200,6 +200,7 @@
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "AccessDeniedException")
+                                (:error-name "AccessDeniedCode")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
@@ -1064,7 +1065,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ConflictException")
-                                (:error-code 409))
+                                (:error-name "ConflictCode") (:error-code 409))
 
 (smithy/sdk/shapes:define-structure cost-amount common-lisp:nil
                                     ((amount :target-type
@@ -1808,6 +1809,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :required
                                   common-lisp:t :member-name "resourceType"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFoundCode")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-type resource-tag-key smithy/sdk/smithy-types:string)
@@ -1847,6 +1849,7 @@ common-lisp:nil
                                   smithy/sdk/smithy-types:string :member-name
                                   "quotaCode"))
                                 (:shape-name "ServiceQuotaExceededException")
+                                (:error-name "ServiceQuotaCode")
                                 (:error-code 402))
 
 (smithy/sdk/shapes:define-list string-list :member
@@ -1881,6 +1884,7 @@ common-lisp:nil
                                   "retryAfterSeconds" :http-header
                                   "Retry-After"))
                                 (:shape-name "ThrottlingException")
+                                (:error-name "ThrottlingCode")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil

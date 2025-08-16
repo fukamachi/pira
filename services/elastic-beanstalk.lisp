@@ -508,6 +508,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "CodeBuildNotInServiceRegionException")
+                                (:error-name
+                                 "CodeBuildNotInServiceRegionException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input compose-environments-message common-lisp:nil
@@ -1495,6 +1497,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InsufficientPrivilegesException")
+                                (:error-name "InsufficientPrivilegesException")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
@@ -1503,6 +1506,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "InvalidRequestException")
+                                (:error-name "InvalidRequestException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure latency common-lisp:nil
@@ -1671,6 +1675,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ManagedActionInvalidStateException")
+                                (:error-name
+                                 "ManagedActionInvalidStateException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list managed-actions :member managed-action)
@@ -1721,6 +1727,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "OperationInProgressException")
+                                (:error-name "OperationInProgressFailure")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type operations-role smithy/sdk/smithy-types:string)
@@ -1959,6 +1966,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "PlatformVersionStillReferencedException")
+                                (:error-name
+                                 "PlatformVersionStillReferencedException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure queue common-lisp:nil
@@ -2010,6 +2019,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFoundException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure resource-quota common-lisp:nil
@@ -2048,6 +2058,8 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "ResourceTypeNotSupportedException")
+                                (:error-name
                                  "ResourceTypeNotSupportedException")
                                 (:error-code 400))
 
@@ -2096,6 +2108,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "S3LocationNotInServiceRegionException")
+                                (:error-name
+                                 "S3LocationNotInServiceRegionException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error s3subscription-required-exception
@@ -2103,6 +2117,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "S3SubscriptionRequiredException")
+                                (:error-name "S3SubscriptionRequiredException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type sample-timestamp
@@ -2188,6 +2203,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "SourceBundleDeletionException")
+                                (:error-name "SourceBundleDeletionFailure")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure source-configuration common-lisp:nil
@@ -2313,12 +2329,14 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyApplicationsException")
+                                (:error-name "TooManyApplicationsException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-buckets-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyBucketsException")
+                                (:error-name "TooManyBucketsException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-configuration-templates-exception
@@ -2327,24 +2345,29 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "TooManyConfigurationTemplatesException")
+                                (:error-name
+                                 "TooManyConfigurationTemplatesException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-environments-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyEnvironmentsException")
+                                (:error-name "TooManyEnvironmentsException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-platforms-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyPlatformsException")
+                                (:error-name "TooManyPlatformsException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error too-many-tags-exception common-lisp:nil
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "TooManyTagsException")
+                                (:error-name "TooManyTagsException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure trigger common-lisp:nil

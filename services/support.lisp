@@ -668,7 +668,7 @@
                                   availability-error-message :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
-                                (:error-code 400))
+                                (:error-name "Throttling") (:error-code 400))
 
 (smithy/sdk/shapes:define-type time-created smithy/sdk/smithy-types:string)
 

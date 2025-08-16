@@ -297,6 +297,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ConflictException")
+                                (:error-name "ConflictException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-structure create-experiment-template-action-input
@@ -1633,6 +1634,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-type role-arn smithy/sdk/smithy-types:string)
@@ -1679,6 +1681,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
+                                (:error-name "ServiceQuotaExceededException")
                                 (:error-code 402))
 
 (smithy/sdk/shapes:define-structure start-experiment-experiment-options-input
@@ -2039,6 +2042,7 @@
                                 ((message :target-type exception-message
                                   :member-name "message"))
                                 (:shape-name "ValidationException")
+                                (:error-name "ValidationException")
                                 (:error-code 400))
 
 (smithy/sdk/operation:define-operation create-experiment-template :shape-name

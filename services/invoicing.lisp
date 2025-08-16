@@ -61,6 +61,7 @@
                                   invoice-unit-arn-string :member-name
                                   "resourceName"))
                                 (:shape-name "AccessDeniedException")
+                                (:error-name "InvoicingAccessDenied")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-list account-id-list :member account-id-string)
@@ -263,6 +264,7 @@
                                  (message :target-type basic-string
                                   :member-name "message"))
                                 (:shape-name "InternalServerException")
+                                (:error-name "InvoicingInternalServer")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-structure invoice-currency-amount common-lisp:nil
@@ -502,6 +504,7 @@
                                   invoice-unit-arn-string :member-name
                                   "resourceName"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "InvoicingResourceNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure resource-tag common-lisp:nil
@@ -530,6 +533,7 @@
                                 ((message :target-type basic-string :required
                                   common-lisp:t :member-name "message"))
                                 (:shape-name "ServiceQuotaExceededException")
+                                (:error-name "InvoicingServiceQuotaExceeded")
                                 (:error-code 402))
 
 (smithy/sdk/shapes:define-type string-without-new-line
@@ -577,6 +581,7 @@
                                 ((message :target-type basic-string
                                   :member-name "message"))
                                 (:shape-name "ThrottlingException")
+                                (:error-name "InvoicingThrottling")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
@@ -624,6 +629,7 @@
                                   validation-exception-field-list :member-name
                                   "fieldList"))
                                 (:shape-name "ValidationException")
+                                (:error-name "InvoicingValidation")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure validation-exception-field common-lisp:nil

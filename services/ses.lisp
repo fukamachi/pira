@@ -157,6 +157,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AccountSendingPausedException")
+                                (:error-name "AccountSendingPausedException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure add-header-action common-lisp:nil
@@ -178,7 +179,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "AlreadyExistsException")
-                                (:error-code 400))
+                                (:error-name "AlreadyExists") (:error-code 400))
 
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
@@ -299,7 +300,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "CannotDeleteException")
-                                (:error-code 400))
+                                (:error-name "CannotDelete") (:error-code 400))
 
 (smithy/sdk/shapes:define-type charset smithy/sdk/smithy-types:string)
 
@@ -359,6 +360,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ConfigurationSetAlreadyExistsException")
+                                (:error-name "ConfigurationSetAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum configuration-set-attribute
@@ -380,6 +382,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ConfigurationSetDoesNotExistException")
+                                (:error-name "ConfigurationSetDoesNotExist")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type configuration-set-name
@@ -393,6 +396,8 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "ConfigurationSetSendingPausedException")
+                                (:error-name
                                  "ConfigurationSetSendingPausedException")
                                 (:error-code 400))
 
@@ -526,7 +531,7 @@
  custom-verification-email-invalid-content-exception common-lisp:nil
  ((message :target-type error-message :member-name "message"))
  (:shape-name "CustomVerificationEmailInvalidContentException")
- (:error-code 400))
+ (:error-name "CustomVerificationEmailInvalidContent") (:error-code 400))
 
 (smithy/sdk/shapes:define-structure custom-verification-email-template
                                     common-lisp:nil
@@ -552,7 +557,7 @@
    :member-name "CustomVerificationEmailTemplateName")
   (message :target-type error-message :member-name "message"))
  (:shape-name "CustomVerificationEmailTemplateAlreadyExistsException")
- (:error-code 400))
+ (:error-name "CustomVerificationEmailTemplateAlreadyExists") (:error-code 400))
 
 (smithy/sdk/shapes:define-error
  custom-verification-email-template-does-not-exist-exception common-lisp:nil
@@ -560,7 +565,7 @@
    :member-name "CustomVerificationEmailTemplateName")
   (message :target-type error-message :member-name "message"))
  (:shape-name "CustomVerificationEmailTemplateDoesNotExistException")
- (:error-code 400))
+ (:error-name "CustomVerificationEmailTemplateDoesNotExist") (:error-code 400))
 
 (smithy/sdk/shapes:define-list custom-verification-email-templates :member
                                custom-verification-email-template)
@@ -833,6 +838,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "EventDestinationAlreadyExistsException")
+                                (:error-name "EventDestinationAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error event-destination-does-not-exist-exception
@@ -847,6 +853,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "EventDestinationDoesNotExistException")
+                                (:error-name "EventDestinationDoesNotExist")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type event-destination-name
@@ -899,6 +906,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "FromEmailAddressNotVerifiedException")
+                                (:error-name "FromEmailAddressNotVerified")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-output get-account-sending-enabled-response
@@ -1131,6 +1139,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidCloudWatchDestinationException")
+                                (:error-name "InvalidCloudWatchDestination")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-configuration-set-exception
@@ -1139,6 +1148,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidConfigurationSetException")
+                                (:error-name "InvalidConfigurationSet")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-delivery-options-exception
@@ -1146,6 +1156,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidDeliveryOptionsException")
+                                (:error-name "InvalidDeliveryOptions")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-firehose-destination-exception
@@ -1160,6 +1171,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidFirehoseDestinationException")
+                                (:error-name "InvalidFirehoseDestination")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-lambda-function-exception
@@ -1170,13 +1182,14 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidLambdaFunctionException")
+                                (:error-name "InvalidLambdaFunction")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-policy-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidPolicyException")
-                                (:error-code 400))
+                                (:error-name "InvalidPolicy") (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-rendering-parameter-exception
                                 common-lisp:nil
@@ -1186,6 +1199,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "InvalidRenderingParameterException")
+                                (:error-name "InvalidRenderingParameter")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-s3configuration-exception
@@ -1195,6 +1209,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidS3ConfigurationException")
+                                (:error-name "InvalidS3Configuration")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-snsdestination-exception
@@ -1208,6 +1223,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSNSDestinationException")
+                                (:error-name "InvalidSNSDestination")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-sns-topic-exception common-lisp:nil
@@ -1216,6 +1232,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidSnsTopicException")
+                                (:error-name "InvalidSnsTopic")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-template-exception common-lisp:nil
@@ -1224,6 +1241,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTemplateException")
+                                (:error-name "InvalidTemplate")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-tracking-options-exception
@@ -1231,6 +1249,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidTrackingOptionsException")
+                                (:error-name "InvalidTrackingOptions")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum invocation-type
@@ -1271,7 +1290,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "LimitExceededException")
-                                (:error-code 400))
+                                (:error-name "LimitExceeded") (:error-code 400))
 
 (smithy/sdk/shapes:define-input list-configuration-sets-request common-lisp:nil
                                 ((next-token :target-type next-token
@@ -1390,6 +1409,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MailFromDomainNotVerifiedException")
+                                (:error-name
+                                 "MailFromDomainNotVerifiedException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type max24hour-send smithy/sdk/smithy-types:double)
@@ -1426,6 +1447,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "MessageRejected")
+                                (:error-name "MessageRejected")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure message-tag common-lisp:nil
@@ -1451,6 +1473,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MissingRenderingAttributeException")
+                                (:error-name "MissingRenderingAttribute")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
@@ -1481,6 +1504,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ProductionAccessNotGrantedException")
+                                (:error-name "ProductionAccessNotGranted")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-input put-configuration-set-delivery-options-request
@@ -1669,6 +1693,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "RuleDoesNotExistException")
+                                (:error-name "RuleDoesNotExist")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type rule-or-rule-set-name
@@ -1681,6 +1706,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "RuleSetDoesNotExistException")
+                                (:error-name "RuleSetDoesNotExist")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure s3action common-lisp:nil
@@ -2057,6 +2083,7 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "TemplateDoesNotExistException")
+                                (:error-name "TemplateDoesNotExist")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure template-metadata common-lisp:nil
@@ -2109,6 +2136,8 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "TrackingOptionsAlreadyExistsException")
+                                (:error-name
+                                 "TrackingOptionsAlreadyExistsException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error tracking-options-does-not-exist-exception
@@ -2119,6 +2148,8 @@
                                  (message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name
+                                 "TrackingOptionsDoesNotExistException")
+                                (:error-name
                                  "TrackingOptionsDoesNotExistException")
                                 (:error-code 400))
 

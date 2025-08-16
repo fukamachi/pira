@@ -72,6 +72,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ConcurrentUpdateException")
+                                (:error-name "ConcurrentUpdateException")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-type cooldown smithy/sdk/smithy-types:integer)
@@ -253,18 +254,21 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InternalServiceException")
+                                (:error-name "InternalServiceException")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-error invalid-next-token-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidNextTokenException")
+                                (:error-name "InvalidNextTokenException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error limit-exceeded-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
+                                (:error-name "LimitExceededException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum load-metric-type
@@ -315,6 +319,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ObjectNotFoundException")
+                                (:error-name "ObjectNotFoundException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type policy-name smithy/sdk/smithy-types:string)
@@ -643,6 +648,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ValidationException")
+                                (:error-name "ValidationException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type xml-string smithy/sdk/smithy-types:string)

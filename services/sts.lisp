@@ -263,6 +263,7 @@
                                   expired-identity-token-message :member-name
                                   "message"))
                                 (:shape-name "ExpiredTokenException")
+                                (:error-name "ExpiredTokenException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure federated-user common-lisp:nil
@@ -344,6 +345,7 @@
                                   idp-communication-error-message :member-name
                                   "message"))
                                 (:shape-name "IDPCommunicationErrorException")
+                                (:error-name "IDPCommunicationError")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error idprejected-claim-exception common-lisp:nil
@@ -351,6 +353,7 @@
                                   idp-rejected-claim-message :member-name
                                   "message"))
                                 (:shape-name "IDPRejectedClaimException")
+                                (:error-name "IDPRejectedClaim")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-error invalid-authorization-message-exception
@@ -360,6 +363,8 @@
                                   "message"))
                                 (:shape-name
                                  "InvalidAuthorizationMessageException")
+                                (:error-name
+                                 "InvalidAuthorizationMessageException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-identity-token-exception
@@ -368,6 +373,7 @@
                                   invalid-identity-token-message :member-name
                                   "message"))
                                 (:shape-name "InvalidIdentityTokenException")
+                                (:error-name "InvalidIdentityToken")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type issuer smithy/sdk/smithy-types:string)
@@ -379,6 +385,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MalformedPolicyDocumentException")
+                                (:error-name "MalformedPolicyDocument")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type name-qualifier smithy/sdk/smithy-types:string)
@@ -389,6 +396,7 @@
                                   packed-policy-too-large-message :member-name
                                   "message"))
                                 (:shape-name "PackedPolicyTooLargeException")
+                                (:error-name "PackedPolicyTooLarge")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-structure policy-descriptor-type common-lisp:nil
@@ -411,6 +419,7 @@
                                 ((message :target-type region-disabled-message
                                   :member-name "message"))
                                 (:shape-name "RegionDisabledException")
+                                (:error-name "RegionDisabledException")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-type root-duration-seconds-type

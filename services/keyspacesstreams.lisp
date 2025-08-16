@@ -37,6 +37,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
+                                (:error-name "AccessDeniedException")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-type date smithy/sdk/smithy-types:timestamp)
@@ -118,6 +119,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
+                                (:error-name "InternalServerException")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-type keyspace-name smithy/sdk/smithy-types:string)
@@ -303,6 +305,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-type sequence-number smithy/sdk/smithy-types:string)
@@ -398,6 +401,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ThrottlingException")
+                                (:error-name "ThrottlingException")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
@@ -408,6 +412,7 @@
                                   validation-exception-type :member-name
                                   "errorCode"))
                                 (:shape-name "ValidationException")
+                                (:error-name "ValidationException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum validation-exception-type

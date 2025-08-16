@@ -104,6 +104,7 @@
                                 ((message :target-type error-msg :member-name
                                   "Message"))
                                 (:shape-name "AccessDeniedException")
+                                (:error-name "AccessDeniedException")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
@@ -203,6 +204,7 @@
                                 ((message :target-type error-msg :member-name
                                   "Message"))
                                 (:shape-name "BadRequestException")
+                                (:error-name "BadRequestException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type cwemonitor-enabled
@@ -640,6 +642,7 @@
                                 ((message :target-type error-msg :member-name
                                   "Message"))
                                 (:shape-name "InternalServerException")
+                                (:error-name "InternalServerException")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-type last-recurrence-time
@@ -1122,6 +1125,7 @@
                                 ((message :target-type error-msg :member-name
                                   "Message"))
                                 (:shape-name "ResourceInUseException")
+                                (:error-name "ResourceInUseException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-list resource-list :member resource-arn)
@@ -1130,6 +1134,7 @@
                                 ((message :target-type error-msg :member-name
                                   "Message"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-type resource-type smithy/sdk/smithy-types:string)
@@ -1399,6 +1404,7 @@
                                 ((message :target-type error-msg :member-name
                                   "Message"))
                                 (:shape-name "ValidationException")
+                                (:error-name "ValidationException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type value smithy/sdk/smithy-types:double)

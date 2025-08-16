@@ -411,6 +411,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "AlreadyExistsException")
+                                (:error-name "AlreadyExistsException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
@@ -490,6 +491,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CFNRegistryException")
+                                (:error-name "CFNRegistryException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum call-as
@@ -608,6 +610,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ChangeSetNotFoundException")
+                                (:error-name "ChangeSetNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-enum change-set-status
@@ -698,6 +701,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ConcurrentResourcesLimitExceededException")
+                                (:error-name
+                                 "ConcurrentResourcesLimitExceeded")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-type configuration-schema
@@ -947,6 +952,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "CreatedButModifiedException")
+                                (:error-name "CreatedButModifiedException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp)
@@ -1797,6 +1803,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "GeneratedTemplateNotFoundException")
+                                (:error-name "GeneratedTemplateNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-enum generated-template-resource-status
@@ -1951,6 +1958,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "HookResultNotFoundException")
+                                (:error-name "HookResultNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-list hook-result-summaries :member
@@ -2065,6 +2073,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "InsufficientCapabilitiesException")
+                                (:error-name
+                                 "InsufficientCapabilitiesException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-change-set-status-exception
@@ -2072,12 +2082,14 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidChangeSetStatusException")
+                                (:error-name "InvalidChangeSetStatus")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-operation-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidOperationException")
+                                (:error-name "InvalidOperationException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error invalid-state-transition-exception
@@ -2085,6 +2097,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "InvalidStateTransitionException")
+                                (:error-name "InvalidStateTransition")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type is-activated smithy/sdk/smithy-types:boolean)
@@ -2117,6 +2130,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "LimitExceededException")
+                                (:error-name "LimitExceededException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type limit-name smithy/sdk/smithy-types:string)
@@ -2644,6 +2658,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "NameAlreadyExistsException")
+                                (:error-name "NameAlreadyExistsException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
@@ -2675,18 +2690,22 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "OperationIdAlreadyExistsException")
+                                (:error-name
+                                 "OperationIdAlreadyExistsException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-error operation-in-progress-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "OperationInProgressException")
+                                (:error-name "OperationInProgressException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-error operation-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "OperationNotFoundException")
+                                (:error-name "OperationNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure operation-result-filter common-lisp:nil
@@ -2721,6 +2740,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "OperationStatusCheckFailedException")
+                                (:error-name "ConditionalCheckFailed")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type optional-secure-url
@@ -3189,6 +3209,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceScanInProgressException")
+                                (:error-name "ResourceScanInProgress")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error resource-scan-limit-exceeded-exception
@@ -3197,6 +3218,7 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "ResourceScanLimitExceededException")
+                                (:error-name "ResourceScanLimitExceeded")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-error resource-scan-not-found-exception
@@ -3204,6 +3226,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "ResourceScanNotFoundException")
+                                (:error-name "ResourceScanNotFound")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum resource-scan-status
@@ -3769,6 +3792,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "StackInstanceNotFoundException")
+                                (:error-name "StackInstanceNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-list stack-instance-resource-drifts-summaries :member
@@ -3851,6 +3875,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "StackNotFoundException")
+                                (:error-name "StackNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-type stack-policy-body smithy/sdk/smithy-types:string)
@@ -3935,6 +3960,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "StackRefactorNotFoundException")
+                                (:error-name "StackRefactorNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-type stack-refactor-resource-identifier
@@ -4278,12 +4304,14 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "StackSetNotEmptyException")
+                                (:error-name "StackSetNotEmptyException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-error stack-set-not-found-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "StackSetNotFoundException")
+                                (:error-name "StackSetNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure stack-set-operation common-lisp:nil
@@ -4549,6 +4577,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "StaleRequestException")
+                                (:error-name "StaleRequestException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-input start-resource-scan-input common-lisp:nil
@@ -4726,6 +4755,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TokenAlreadyExistsException")
+                                (:error-name "TokenAlreadyExistsException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type total-stack-instances-count
@@ -4801,6 +4831,8 @@
                                   :member-name "Message"))
                                 (:shape-name
                                  "TypeConfigurationNotFoundException")
+                                (:error-name
+                                 "TypeConfigurationNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure type-filters common-lisp:nil
@@ -4823,6 +4855,7 @@
                                 ((message :target-type error-message
                                   :member-name "Message"))
                                 (:shape-name "TypeNotFoundException")
+                                (:error-name "TypeNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-type type-schema smithy/sdk/smithy-types:string)

@@ -475,6 +475,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "DryRunOperationException")
+                                (:error-name "DryRunOperationException")
                                 (:error-code 412))
 
 (smithy/sdk/shapes:define-type ec2key-name smithy/sdk/smithy-types:string)
@@ -706,12 +707,14 @@
 (smithy/sdk/shapes:define-error internal-error common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
-                                (:shape-name "InternalError") (:error-code 500))
+                                (:shape-name "InternalError")
+                                (:error-name "InternalError") (:error-code 500))
 
 (smithy/sdk/shapes:define-error invalid-parameter-exception common-lisp:nil
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "InvalidParameterException")
+                                (:error-name "InvalidParameter")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type ip-address smithy/sdk/smithy-types:string)
@@ -770,6 +773,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "MissingRequiredParameterException")
+                                (:error-name "MissingRequiredParameter")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
@@ -779,6 +783,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "NoConnectorsAvailableException")
+                                (:error-name "NoConnectorsAvailable")
                                 (:error-code 430))
 
 (smithy/sdk/shapes:define-type non-empty-string-with-max-len255
@@ -817,6 +822,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "OperationNotPermittedException")
+                                (:error-name "OperationNotPermitted")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-enum output-format
@@ -934,6 +940,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ReplicationJobAlreadyExistsException")
+                                (:error-name "ReplicationJobAlreadyExists")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type replication-job-id
@@ -947,6 +954,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "ReplicationJobNotFoundException")
+                                (:error-name "ReplicationJobNotFound")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-enum replication-job-state
@@ -1004,6 +1012,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ReplicationRunLimitExceededException")
+                                (:error-name "ReplicationRunLimitExceeded")
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-list replication-run-list :member
@@ -1107,6 +1116,7 @@
                                   :member-name "message"))
                                 (:shape-name
                                  "ServerCannotBeReplicatedException")
+                                (:error-name "ServerCannotBeReplicated")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-enum server-catalog-status
@@ -1366,6 +1376,7 @@
 (smithy/sdk/shapes:define-error temporarily-unavailable-exception
                                 common-lisp:nil common-lisp:nil
                                 (:shape-name "TemporarilyUnavailableException")
+                                (:error-name "TemporarilyUnavailable")
                                 (:error-code 503))
 
 (smithy/sdk/shapes:define-input terminate-app-request common-lisp:nil
@@ -1389,6 +1400,7 @@
                                 ((message :target-type error-message
                                   :member-name "message"))
                                 (:shape-name "UnauthorizedOperationException")
+                                (:error-name "UnauthorizedOperation")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-input update-app-request common-lisp:nil

@@ -681,6 +681,7 @@
                                  (context :target-type string :member-name
                                   "Context"))
                                 (:shape-name "ConflictException")
+                                (:error-name "ConflictException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-structure control-input-parameter common-lisp:nil

@@ -84,6 +84,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "AccessDeniedException")
+                                (:error-name "AccessDeniedException")
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-structure auto-scaling-policy common-lisp:nil
@@ -215,6 +216,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ConflictException")
+                                (:error-name "ConflictException")
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-structure create-keyspace-request common-lisp:nil
@@ -514,6 +516,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "InternalServerException")
+                                (:error-name "InternalServerException")
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-type keyspace-name smithy/sdk/smithy-types:string)
@@ -706,6 +709,7 @@
                                  (resource-arn :target-type arn :member-name
                                   "resourceArn"))
                                 (:shape-name "ResourceNotFoundException")
+                                (:error-name "ResourceNotFoundException")
                                 (:error-code 404))
 
 (smithy/sdk/shapes:define-structure restore-table-request common-lisp:nil
@@ -773,6 +777,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ServiceQuotaExceededException")
+                                (:error-name "ServiceQuotaExceededException")
                                 (:error-code 402))
 
 (smithy/sdk/shapes:define-type sort-order smithy/sdk/smithy-types:string)
@@ -942,6 +947,7 @@
                                   smithy/sdk/smithy-types:string :member-name
                                   "message"))
                                 (:shape-name "ValidationException")
+                                (:error-name "ValidationException")
                                 (:error-code 400))
 
 (smithy/sdk/shapes:define-type view-type smithy/sdk/smithy-types:string)
