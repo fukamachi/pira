@@ -10,7 +10,10 @@
    (#:operation #:smithy/sdk/operation)
    (#:xml #:smithy/sdk/protocols/xml)
    (#:util #:smithy/utils))
-  (:export #:rest-xml))
+  (:export #:rest-xml
+           #:find-error-tag
+           #:get-tag-value
+           #:get-error-info))
 (in-package #:pira/protocols/rest-xml)
 
 (defclass rest-xml (protocols:xml pira:aws-protocol)
@@ -38,45 +41,45 @@
                         (shape:smithy-union "application/xml")
                         (otherwise "application/xml")))))))))))
 
+(defun find-error-tag (payload)
+  (find-if (lambda (tag)
+             (and (typep tag 'xml:xml-tag)
+                  (equal "Error" (xml:xml-tag-name tag))))
+           (xml:xml-tag-body payload)))
+
+(defun get-tag-value (parent tag-name)
+  (let ((child (find-if (lambda (node)
+                          (equal (xml:xml-tag-name node) tag-name))
+                        (xml:xml-tag-body parent))))
+    (when child
+      (first (xml:xml-tag-body child)))))
+
+(defun get-error-info (payload)
+  (let ((error-tag (find-error-tag payload)))
+    (when error-tag
+      (values (get-tag-value error-tag "Code")
+              (get-tag-value error-tag "Message")))))
+
+;; TODO: noErrorWrapping
 (defmethod protocols:find-error-shape ((xml rest-xml) operation status headers payload)
-  (when (equal "ErrorResponse" (xml:xml-tag-name payload))
-    (let ((error-tag
-            (find-if (lambda (tag)
-                       (and (typep tag 'xml:xml-tag)
-                            (equal "Error" (xml:xml-tag-name tag))))
-                     (xml:xml-tag-body payload))))
-      (when error-tag
-        (let* ((error-code-node
-                 (find-if (lambda (tag)
-                            (equal "Code" (xml:xml-tag-name tag)))
-                          (xml:xml-tag-body error-tag)))
-               (error-shape-name (and error-code-node
-                                      (first (xml:xml-tag-body error-code-node)))))
-          (or (and error-shape-name
-                   (find (util:shape-name->symbol error-shape-name
-                                                  (symbol-package (operation:operation-name operation)))
-                         (operation:operation-errors operation)))
-              (error "~A: ~A (Code: ~A)"
-                     (operation:operation-name operation)
-                     (first
-                      (xml:xml-tag-body
-                       (find-if (lambda (node)
-                                  (equal (xml:xml-tag-name node) "Message"))
-                                (xml:xml-tag-body error-tag))))
-                     (first (xml:xml-tag-body error-code-node)))))))))
+  (assert (equal "ErrorResponse" (xml:xml-tag-name payload)))
+  (multiple-value-bind (code message)
+      (get-error-info payload)
+    (when code
+      (or (find (util:shape-name->symbol code
+                                         (symbol-package (operation:operation-name operation)))
+                (operation:operation-errors operation))
+          (error "~A: ~A (Code: ~A)"
+                 (operation:operation-name operation)
+                 message
+                 code)))))
 
 (defmethod protocols:deserialize-output-payload ((xml rest-xml) (output-class shape:smithy-error) payload)
-  (when (equal "ErrorResponse" (xml:xml-tag-name payload))
-    (append
-     (call-next-method xml
-                       output-class
-                       (find-if (lambda (tag)
-                                  (and (typep tag 'xml:xml-tag)
-                                       (equal "Error" (xml:xml-tag-name tag))))
-                                (xml:xml-tag-body payload)))
-     (let ((request-id (find-if (lambda (tag)
-                                  (and (typep tag 'xml:xml-tag)
-                                       (equal "RequestId" (xml:xml-tag-name tag))))
-                                (xml:xml-tag-body payload))))
-       (when request-id
-         (list (cons "RequestId" (first (xml:xml-tag-body request-id)))))))))
+  (assert (equal "ErrorResponse" (xml:xml-tag-name payload)))
+  (append
+   (call-next-method xml
+                     output-class
+                     (find-error-tag payload))
+   (let ((request-id (get-tag-value payload "RequestId")))
+     (when request-id
+       (list (cons "RequestId" request-id))))))

@@ -39,7 +39,8 @@
     ((:file "aws")
      (:file "rest-json1")
      (:file "aws-json1-1")
-     (:file "rest-xml")))
+     (:file "rest-xml")
+     (:file "aws-query")))
    (:file "main")))
 
 (defsystem "pira-core/codegen"
