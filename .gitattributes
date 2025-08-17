@@ -1,2 +1,1 @@
 assets/aws-models/**/* linguist-vendored
-services/*.lisp binary
