@@ -122,10 +122,10 @@
                                             (("endpoint"
                                               . "https://places.geo-fips.{region}.{dnsSuffix}/v2")
                                              ("fips" . common-lisp:t)
-                                             ("dualStack" . common-lisp:t))
+                                             ("dualStack"))
                                             (("endpoint"
                                               . "https://places.geo.{region}.{dualStackDnsSuffix}/v2")
-                                             ("fips" . common-lisp:t)
+                                             ("fips")
                                              ("dualStack" . common-lisp:t))))
                                        ("aws-us-gov"
                                         . #((("endpoint"
@@ -137,10 +137,10 @@
                                             (("endpoint"
                                               . "https://places.geo-fips.{region}.{dnsSuffix}/v2")
                                              ("fips" . common-lisp:t)
-                                             ("dualStack" . common-lisp:t))
+                                             ("dualStack"))
                                             (("endpoint"
                                               . "https://places.geo.{region}.{dualStackDnsSuffix}/v2")
-                                             ("fips" . common-lisp:t)
+                                             ("fips")
                                              ("dualStack" . common-lisp:t))))))
                                      ("aws.protocols#restJson1")))
 

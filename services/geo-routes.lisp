@@ -303,10 +303,10 @@
                                             (("endpoint"
                                               . "https://routes.geo-fips.{region}.{dnsSuffix}/v2")
                                              ("fips" . common-lisp:t)
-                                             ("dualStack" . common-lisp:t))
+                                             ("dualStack"))
                                             (("endpoint"
                                               . "https://routes.geo.{region}.{dualStackDnsSuffix}/v2")
-                                             ("fips" . common-lisp:t)
+                                             ("fips")
                                              ("dualStack" . common-lisp:t))))
                                        ("aws-us-gov"
                                         . #((("endpoint"
@@ -318,10 +318,10 @@
                                             (("endpoint"
                                               . "https://routes.geo-fips.{region}.us-gov.{dnsSuffix}/v2")
                                              ("fips" . common-lisp:t)
-                                             ("dualStack" . common-lisp:t))
+                                             ("dualStack"))
                                             (("endpoint"
                                               . "https://routes.geo.{region}.us-gov.{dualStackDnsSuffix}/v2")
-                                             ("fips" . common-lisp:t)
+                                             ("fips")
                                              ("dualStack" . common-lisp:t))))))
                                      ("aws.protocols#restJson1")))
 

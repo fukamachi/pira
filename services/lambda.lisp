@@ -216,88 +216,88 @@
                                         . "Filters access by the ID of the VPC configured for the AWS Lambda function")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("lambda:SubnetIds"
                                        ("type" . "ArrayOfString")
                                        ("documentation"
                                         . "Filters access by the ID of subnets configured for the AWS Lambda function")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("lambda:Layer"
                                        ("type" . "ArrayOfString")
                                        ("documentation"
                                         . "Filters access by the ARN of a version of an AWS Lambda layer")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("lambda:EventSourceToken"
                                        ("type" . "String")
                                        ("documentation"
                                         . "Filters access by the ID from a non-AWS event source configured for the AWS Lambda function")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("lambda:FunctionUrlAuthType"
                                        ("type" . "String")
                                        ("documentation"
                                         . "Filters access by authorization type specified in request. Available during CreateFunctionUrlConfig, UpdateFunctionUrlConfig, DeleteFunctionUrlConfig, GetFunctionUrlConfig, ListFunctionUrlConfig, AddPermission and RemovePermission operations")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("aws:RequestTag/${TagKey}"
                                        ("type" . "String")
                                        ("documentation"
                                         . "Filters access by the tags that are passed in the request")
                                        ("externalDocumentation"
                                         . "${DocHomeURL}/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-requesttag")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("aws:ResourceTag/${TagKey}"
                                        ("type" . "String")
                                        ("documentation"
                                         . "Filters access by the tags associated with the resource")
                                        ("externalDocumentation"
                                         . "${DocHomeURL}IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-resourcetag")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("lambda:CodeSigningConfigArn"
                                        ("type" . "ARN")
                                        ("documentation"
                                         . "Filters access by the ARN of an AWS Lambda code signing config")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("lambda:FunctionArn" ("type" . "ARN")
                                        ("documentation"
                                         . "Filters access by the ARN of an AWS Lambda function")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("aws:TagKeys" ("type" . "ArrayOfString")
                                        ("documentation"
                                         . "Filters access by the tag keys that are passed in the request")
                                        ("externalDocumentation"
                                         . "${DocHomeURL}/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-tagkeys")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("lambda:SourceFunctionArn"
                                        ("type" . "ARN")
                                        ("documentation"
                                         . "Filters access by the ARN of the AWS Lambda function from which the request originated")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("lambda:SecurityGroupIds"
                                        ("type" . "ArrayOfString")
                                        ("documentation"
                                         . "Filters access by the ID of security groups configured for the AWS Lambda function")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t))
+                                       ("required"))
                                       ("lambda:Principal" ("type" . "String")
                                        ("documentation"
                                         . "Filters access by restricting the AWS service or account that can invoke a function")
                                        ("relativeDocumentation"
                                         . "lambda-api-permissions-ref.html")
-                                       ("required" . common-lisp:t)))
+                                       ("required")))
                                      ("aws.iam#disableConditionKeyInference")
                                      ("aws.iam#supportedPrincipalTypes"
                                       . #("Root" "IAMUser" "IAMRole"
