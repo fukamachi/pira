@@ -1,7 +1,13 @@
 (defpackage #:pira/codegen
   (:use #:cl)
   (:import-from #:smithy)
-  (:export #:codegen))
+  (:import-from #:alexandria
+                #:mappend
+                #:starts-with-subseq)
+  (:import-from #:assoc-utils
+                #:aget)
+  (:export #:codegen
+           #:codegen-tests))
 (in-package #:pira/codegen)
 
 (defun codegen ()
@@ -30,4 +36,38 @@
       (dolist (service-name
                (mapcar #'pathname-name (uiop:directory-files #P"services/" "*.lisp")))
         (format out "(define-service-system ~S)~%" service-name))))
+  (values))
+
+(defun codegen-tests ()
+  (let* ((*default-pathname-defaults* (asdf:system-source-directory '#:pira))
+         (model.json (merge-pathnames #P"assets/smithy-aws-protocol-tests.json"))
+         (spec (smithy/json:parse model.json))
+         (services (remove-if-not (lambda (shape) (equal (aget (cdr shape) "type") "service"))
+                                  (aget spec "shapes")))
+         (operations (alexandria:mappend
+                      (lambda (service)
+                        (map 'list
+                             (lambda (op) (aget op "target"))
+                             (aget (cdr service) "operations")))
+                      services))
+         (namespaces (remove-duplicates
+                      (mapcar (lambda (name)
+                                (nth-value 1 (smithy/utils:parse-shape-id name)))
+                              operations)
+                      :test 'equal)))
+    (dolist (namespace namespaces)
+      (let ((package-name
+              (format nil "tests/protocols/~A"
+                      (cond
+                        ((starts-with-subseq "aws.protocoltests." namespace)
+                         (subseq namespace (length "aws.protocoltests.")))
+                        ((starts-with-subseq "com.amazonaws." namespace)
+                         (format nil "aws/~A" (subseq namespace (length "com.amazonaws."))))
+                        (t namespace)))))
+        (smithy::codegen-from-json model.json
+                                   :package-name (format nil "pira/~A" package-name)
+                                   :test (lambda (shape-name)
+                                           (equal namespace (nth-value 1 (smithy/utils:parse-shape-id shape-name))))
+                                   :output (make-pathname :defaults (pathname package-name)
+                                                          :type "lisp")))))
   (values))
