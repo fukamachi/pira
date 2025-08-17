@@ -39,7 +39,15 @@
 (smithy/sdk/service:define-service code-star-notifications-20191015 :shape-name
                                    "CodeStarNotifications_20191015" :version
                                    "2019-10-15" :title
-                                   "AWS CodeStar Notifications" :traits
+                                   "AWS CodeStar Notifications" :operations
+                                   '(create-notification-rule
+                                     delete-notification-rule delete-target
+                                     describe-notification-rule
+                                     list-event-types list-notification-rules
+                                     list-tags-for-resource list-targets
+                                     subscribe tag-resource unsubscribe
+                                     untag-resource update-notification-rule)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "codestar notifications")
                                       ("arnNamespace"

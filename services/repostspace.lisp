@@ -35,7 +35,18 @@
 
 (smithy/sdk/service:define-service repost-space :shape-name "RepostSpace"
                                    :version "2022-05-13" :title
-                                   "AWS re:Post Private" :traits
+                                   "AWS re:Post Private" :operations
+                                   '(batch-add-channel-role-to-accessors
+                                     batch-add-role
+                                     batch-remove-channel-role-from-accessors
+                                     batch-remove-role create-channel
+                                     create-space delete-space deregister-admin
+                                     get-channel get-space list-channels
+                                     list-spaces list-tags-for-resource
+                                     register-admin send-invites tag-resource
+                                     untag-resource update-channel
+                                     update-space)
+                                   :traits
                                    '(("aws.api#service"
                                       ("arnNamespace" . "repostspace")
                                       ("sdkId" . "repostspace")

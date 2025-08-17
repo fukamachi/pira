@@ -7,7 +7,8 @@
 
 (smithy/sdk/service:define-service eksauth-frontend :shape-name
                                    "EKSAuthFrontend" :version "2023-11-26"
-                                   :title "Amazon EKS Auth" :traits
+                                   :title "Amazon EKS Auth" :operations
+                                   '(assume-role-for-pod-identity) :traits
                                    '(("aws.api#service" ("sdkId" . "EKS Auth")
                                       ("arnNamespace" . "eks-auth")
                                       ("endpointPrefix" . "eks-auth"))

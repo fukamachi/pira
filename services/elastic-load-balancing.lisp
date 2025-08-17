@@ -84,10 +84,39 @@
 (smithy/sdk/service:define-service elastic-load-balancing-v7 :shape-name
                                    "ElasticLoadBalancing_v7" :version
                                    "2012-06-01" :title "Elastic Load Balancing"
+                                   :operations
+                                   '(add-tags
+                                     apply-security-groups-to-load-balancer
+                                     attach-load-balancer-to-subnets
+                                     configure-health-check
+                                     create-app-cookie-stickiness-policy
+                                     create-lbcookie-stickiness-policy
+                                     create-load-balancer
+                                     create-load-balancer-listeners
+                                     create-load-balancer-policy
+                                     delete-load-balancer
+                                     delete-load-balancer-listeners
+                                     delete-load-balancer-policy
+                                     deregister-instances-from-load-balancer
+                                     describe-account-limits
+                                     describe-instance-health
+                                     describe-load-balancer-attributes
+                                     describe-load-balancer-policies
+                                     describe-load-balancer-policy-types
+                                     describe-load-balancers describe-tags
+                                     detach-load-balancer-from-subnets
+                                     disable-availability-zones-for-load-balancer
+                                     enable-availability-zones-for-load-balancer
+                                     modify-load-balancer-attributes
+                                     register-instances-with-load-balancer
+                                     remove-tags
+                                     set-load-balancer-listener-sslcertificate
+                                     set-load-balancer-policies-for-backend-server
+                                     set-load-balancer-policies-of-listener)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://elasticloadbalancing.amazonaws.com/doc/2012-06-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://elasticloadbalancing.amazonaws.com/doc/2012-06-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elastic Load Balancing")

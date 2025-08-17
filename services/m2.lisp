@@ -135,7 +135,12 @@
                                    :shape-name
                                    "AwsSupernovaControlPlaneService" :version
                                    "2021-04-28" :title
-                                   "AWSMainframeModernization" :traits
+                                   "AWSMainframeModernization" :operations
+                                   '(get-signed-bluinsights-url
+                                     list-engine-versions
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "m2")
                                       ("sdkServiceId" . "M2")
                                       ("serviceName" . "m2")

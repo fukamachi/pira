@@ -277,10 +277,133 @@
                                    "AWSIdentityManagementV20100508" :version
                                    "2010-05-08" :title
                                    "AWS Identity and Access Management"
+                                   :operations
+                                   '(add-client-idto-open-idconnect-provider
+                                     add-role-to-instance-profile
+                                     add-user-to-group attach-group-policy
+                                     attach-role-policy attach-user-policy
+                                     change-password create-access-key
+                                     create-account-alias create-group
+                                     create-instance-profile
+                                     create-login-profile
+                                     create-open-idconnect-provider
+                                     create-policy create-policy-version
+                                     create-role create-samlprovider
+                                     create-service-linked-role
+                                     create-service-specific-credential
+                                     create-user create-virtual-mfadevice
+                                     deactivate-mfadevice delete-access-key
+                                     delete-account-alias
+                                     delete-account-password-policy
+                                     delete-group delete-group-policy
+                                     delete-instance-profile
+                                     delete-login-profile
+                                     delete-open-idconnect-provider
+                                     delete-policy delete-policy-version
+                                     delete-role
+                                     delete-role-permissions-boundary
+                                     delete-role-policy delete-samlprovider
+                                     delete-server-certificate
+                                     delete-service-linked-role
+                                     delete-service-specific-credential
+                                     delete-signing-certificate
+                                     delete-sshpublic-key delete-user
+                                     delete-user-permissions-boundary
+                                     delete-user-policy
+                                     delete-virtual-mfadevice
+                                     detach-group-policy detach-role-policy
+                                     detach-user-policy
+                                     disable-organizations-root-credentials-management
+                                     disable-organizations-root-sessions
+                                     enable-mfadevice
+                                     enable-organizations-root-credentials-management
+                                     enable-organizations-root-sessions
+                                     generate-credential-report
+                                     generate-organizations-access-report
+                                     generate-service-last-accessed-details
+                                     get-access-key-last-used
+                                     get-account-authorization-details
+                                     get-account-password-policy
+                                     get-account-summary
+                                     get-context-keys-for-custom-policy
+                                     get-context-keys-for-principal-policy
+                                     get-credential-report get-group
+                                     get-group-policy get-instance-profile
+                                     get-login-profile get-mfadevice
+                                     get-open-idconnect-provider
+                                     get-organizations-access-report get-policy
+                                     get-policy-version get-role
+                                     get-role-policy get-samlprovider
+                                     get-server-certificate
+                                     get-service-last-accessed-details
+                                     get-service-last-accessed-details-with-entities
+                                     get-service-linked-role-deletion-status
+                                     get-sshpublic-key get-user get-user-policy
+                                     list-access-keys list-account-aliases
+                                     list-attached-group-policies
+                                     list-attached-role-policies
+                                     list-attached-user-policies
+                                     list-entities-for-policy
+                                     list-group-policies list-groups
+                                     list-groups-for-user
+                                     list-instance-profiles
+                                     list-instance-profiles-for-role
+                                     list-instance-profile-tags list-mfadevices
+                                     list-mfadevice-tags
+                                     list-open-idconnect-providers
+                                     list-open-idconnect-provider-tags
+                                     list-organizations-features list-policies
+                                     list-policies-granting-service-access
+                                     list-policy-tags list-policy-versions
+                                     list-role-policies list-roles
+                                     list-role-tags list-samlproviders
+                                     list-samlprovider-tags
+                                     list-server-certificates
+                                     list-server-certificate-tags
+                                     list-service-specific-credentials
+                                     list-signing-certificates
+                                     list-sshpublic-keys list-user-policies
+                                     list-users list-user-tags
+                                     list-virtual-mfadevices put-group-policy
+                                     put-role-permissions-boundary
+                                     put-role-policy
+                                     put-user-permissions-boundary
+                                     put-user-policy
+                                     remove-client-idfrom-open-idconnect-provider
+                                     remove-role-from-instance-profile
+                                     remove-user-from-group
+                                     reset-service-specific-credential
+                                     resync-mfadevice
+                                     set-default-policy-version
+                                     set-security-token-service-preferences
+                                     simulate-custom-policy
+                                     simulate-principal-policy
+                                     tag-instance-profile tag-mfadevice
+                                     tag-open-idconnect-provider tag-policy
+                                     tag-role tag-samlprovider
+                                     tag-server-certificate tag-user
+                                     untag-instance-profile untag-mfadevice
+                                     untag-open-idconnect-provider untag-policy
+                                     untag-role untag-samlprovider
+                                     untag-server-certificate untag-user
+                                     update-access-key
+                                     update-account-password-policy
+                                     update-assume-role-policy update-group
+                                     update-login-profile
+                                     update-open-idconnect-provider-thumbprint
+                                     update-role update-role-description
+                                     update-samlprovider
+                                     update-server-certificate
+                                     update-service-specific-credential
+                                     update-signing-certificate
+                                     update-sshpublic-key update-user
+                                     upload-server-certificate
+                                     upload-signing-certificate
+                                     upload-sshpublic-key)
                                    :xml-namespace
-                                   '(:uri
-                                     "https://iam.amazonaws.com/doc/2010-05-08/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "https://iam.amazonaws.com/doc/2010-05-08/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "IAM")
                                       ("arnNamespace" . "iam")

@@ -136,7 +136,10 @@
 
 (smithy/sdk/service:define-service amazon-connect-cases :shape-name
                                    "AmazonConnectCases" :version "2022-10-03"
-                                   :title "Amazon Connect Cases" :traits
+                                   :title "Amazon Connect Cases" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ConnectCases")
                                       ("arnNamespace" . "cases")

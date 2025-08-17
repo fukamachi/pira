@@ -106,7 +106,39 @@
 
 (smithy/sdk/service:define-service inspector-service :shape-name
                                    "InspectorService" :version "2016-02-16"
-                                   :title "Amazon Inspector" :traits
+                                   :title "Amazon Inspector" :operations
+                                   '(add-attributes-to-findings
+                                     create-assessment-target
+                                     create-assessment-template
+                                     create-exclusions-preview
+                                     create-resource-group
+                                     delete-assessment-run
+                                     delete-assessment-target
+                                     delete-assessment-template
+                                     describe-assessment-runs
+                                     describe-assessment-targets
+                                     describe-assessment-templates
+                                     describe-cross-account-access-role
+                                     describe-exclusions describe-findings
+                                     describe-resource-groups
+                                     describe-rules-packages
+                                     get-assessment-report
+                                     get-exclusions-preview
+                                     get-telemetry-metadata
+                                     list-assessment-run-agents
+                                     list-assessment-runs
+                                     list-assessment-targets
+                                     list-assessment-templates
+                                     list-event-subscriptions list-exclusions
+                                     list-findings list-rules-packages
+                                     list-tags-for-resource preview-agents
+                                     register-cross-account-access-role
+                                     remove-attributes-from-findings
+                                     set-tags-for-resource start-assessment-run
+                                     stop-assessment-run subscribe-to-event
+                                     unsubscribe-from-event
+                                     update-assessment-target)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Inspector")
                                       ("arnNamespace" . "inspector")
                                       ("cloudFormationName" . "Inspector")

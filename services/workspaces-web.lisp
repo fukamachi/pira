@@ -145,6 +145,10 @@
 (smithy/sdk/service:define-service awsermine-control-plane-service :shape-name
                                    "AWSErmineControlPlaneService" :version
                                    "2020-07-08" :title "Amazon WorkSpaces Web"
+                                   :operations
+                                   '(expire-session get-session list-sessions
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "WorkSpaces Web")

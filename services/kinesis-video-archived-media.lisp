@@ -35,6 +35,11 @@
                                    "AWSAcuityReader" :version "2017-09-30"
                                    :title
                                    "Amazon Kinesis Video Streams Archived Media"
+                                   :operations
+                                   '(get-clip get-dashstreaming-session-url
+                                     get-hlsstreaming-session-url get-images
+                                     get-media-for-fragment-list
+                                     list-fragments)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId"

@@ -224,7 +224,65 @@
 (smithy/sdk/service:define-service customer-profiles-20200815 :shape-name
                                    "CustomerProfiles_20200815" :version
                                    "2020-08-15" :title
-                                   "Amazon Connect Customer Profiles" :traits
+                                   "Amazon Connect Customer Profiles"
+                                   :operations
+                                   '(add-profile-key
+                                     batch-get-calculated-attribute-for-profile
+                                     batch-get-profile
+                                     create-calculated-attribute-definition
+                                     create-domain create-domain-layout
+                                     create-event-stream create-event-trigger
+                                     create-integration-workflow create-profile
+                                     create-segment-definition
+                                     create-segment-estimate
+                                     create-segment-snapshot create-upload-job
+                                     delete-calculated-attribute-definition
+                                     delete-domain delete-domain-layout
+                                     delete-event-stream delete-event-trigger
+                                     delete-integration delete-profile
+                                     delete-profile-key delete-profile-object
+                                     delete-profile-object-type
+                                     delete-segment-definition delete-workflow
+                                     detect-profile-object-type
+                                     get-auto-merging-preview
+                                     get-calculated-attribute-definition
+                                     get-calculated-attribute-for-profile
+                                     get-domain get-domain-layout
+                                     get-event-stream get-event-trigger
+                                     get-identity-resolution-job
+                                     get-integration get-matches
+                                     get-profile-object-type
+                                     get-profile-object-type-template
+                                     get-segment-definition
+                                     get-segment-estimate
+                                     get-segment-membership
+                                     get-segment-snapshot get-similar-profiles
+                                     get-upload-job get-upload-job-path
+                                     get-workflow get-workflow-steps
+                                     list-account-integrations
+                                     list-calculated-attribute-definitions
+                                     list-calculated-attributes-for-profile
+                                     list-domain-layouts list-domains
+                                     list-event-streams list-event-triggers
+                                     list-identity-resolution-jobs
+                                     list-integrations
+                                     list-object-type-attributes
+                                     list-profile-attribute-values
+                                     list-profile-objects
+                                     list-profile-object-types
+                                     list-profile-object-type-templates
+                                     list-rule-based-matches
+                                     list-segment-definitions
+                                     list-tags-for-resource list-upload-jobs
+                                     list-workflows merge-profiles
+                                     put-integration put-profile-object
+                                     put-profile-object-type search-profiles
+                                     start-upload-job stop-upload-job
+                                     tag-resource untag-resource
+                                     update-calculated-attribute-definition
+                                     update-domain update-domain-layout
+                                     update-event-trigger update-profile)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Customer Profiles")
                                       ("arnNamespace" . "profile")

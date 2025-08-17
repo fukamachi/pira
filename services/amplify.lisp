@@ -79,9 +79,27 @@
 
 (smithy/sdk/service:define-service amplify :shape-name "Amplify" :version
                                    "2017-07-25" :title "AWS Amplify"
+                                   :operations
+                                   '(create-app create-backend-environment
+                                     create-branch create-deployment
+                                     create-domain-association create-webhook
+                                     delete-app delete-backend-environment
+                                     delete-branch delete-domain-association
+                                     delete-job delete-webhook
+                                     generate-access-logs get-app
+                                     get-artifact-url get-backend-environment
+                                     get-branch get-domain-association get-job
+                                     get-webhook list-apps list-artifacts
+                                     list-backend-environments list-branches
+                                     list-domain-associations list-jobs
+                                     list-tags-for-resource list-webhooks
+                                     start-deployment start-job stop-job
+                                     tag-resource untag-resource update-app
+                                     update-branch update-domain-association
+                                     update-webhook)
                                    :xml-namespace
-                                   '(:uri "http://amplify.amazonaws.com"
-                                     :prefix common-lisp:nil)
+                                   (:uri "http://amplify.amazonaws.com" :prefix
+                                    common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Amplify")
                                       ("arnNamespace" . "amplify")

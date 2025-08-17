@@ -33,7 +33,11 @@
 
 (smithy/sdk/service:define-service rds-data-service :shape-name
                                    "RdsDataService" :version "2018-08-01"
-                                   :title "AWS RDS DataService" :traits
+                                   :title "AWS RDS DataService" :operations
+                                   '(batch-execute-statement begin-transaction
+                                     commit-transaction execute-sql
+                                     execute-statement rollback-transaction)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "RDS Data")
                                       ("arnNamespace" . "rds-data"))
                                      ("aws.auth#sigv4" ("name" . "rds-data"))

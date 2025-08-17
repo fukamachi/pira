@@ -53,7 +53,10 @@
 (smithy/sdk/service:define-service security-incident-response :shape-name
                                    "SecurityIncidentResponse" :version
                                    "2018-05-10" :title
-                                   "Security Incident Response" :errors
+                                   "Security Incident Response" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :errors
                                    '(access-denied-exception conflict-exception
                                      internal-server-exception
                                      invalid-token-exception

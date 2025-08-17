@@ -102,6 +102,54 @@
 (smithy/sdk/service:define-service global-accelerator-v20180706 :shape-name
                                    "GlobalAccelerator_V20180706" :version
                                    "2018-08-08" :title "AWS Global Accelerator"
+                                   :operations
+                                   '(add-custom-routing-endpoints add-endpoints
+                                     advertise-byoip-cidr
+                                     allow-custom-routing-traffic
+                                     create-accelerator
+                                     create-cross-account-attachment
+                                     create-custom-routing-accelerator
+                                     create-custom-routing-endpoint-group
+                                     create-custom-routing-listener
+                                     create-endpoint-group create-listener
+                                     delete-accelerator
+                                     delete-cross-account-attachment
+                                     delete-custom-routing-accelerator
+                                     delete-custom-routing-endpoint-group
+                                     delete-custom-routing-listener
+                                     delete-endpoint-group delete-listener
+                                     deny-custom-routing-traffic
+                                     deprovision-byoip-cidr
+                                     describe-accelerator
+                                     describe-accelerator-attributes
+                                     describe-cross-account-attachment
+                                     describe-custom-routing-accelerator
+                                     describe-custom-routing-accelerator-attributes
+                                     describe-custom-routing-endpoint-group
+                                     describe-custom-routing-listener
+                                     describe-endpoint-group describe-listener
+                                     list-accelerators list-byoip-cidrs
+                                     list-cross-account-attachments
+                                     list-cross-account-resource-accounts
+                                     list-cross-account-resources
+                                     list-custom-routing-accelerators
+                                     list-custom-routing-endpoint-groups
+                                     list-custom-routing-listeners
+                                     list-custom-routing-port-mappings
+                                     list-custom-routing-port-mappings-by-destination
+                                     list-endpoint-groups list-listeners
+                                     list-tags-for-resource
+                                     provision-byoip-cidr
+                                     remove-custom-routing-endpoints
+                                     remove-endpoints tag-resource
+                                     untag-resource update-accelerator
+                                     update-accelerator-attributes
+                                     update-cross-account-attachment
+                                     update-custom-routing-accelerator
+                                     update-custom-routing-accelerator-attributes
+                                     update-custom-routing-listener
+                                     update-endpoint-group update-listener
+                                     withdraw-byoip-cidr)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Global Accelerator")

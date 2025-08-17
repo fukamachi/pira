@@ -34,10 +34,22 @@
 (smithy/sdk/service:define-service ops-works-cm-v2016-11-01 :shape-name
                                    "OpsWorksCM_V2016_11_01" :version
                                    "2016-11-01" :title "AWS OpsWorks CM"
+                                   :operations
+                                   '(associate-node create-backup create-server
+                                     delete-backup delete-server
+                                     describe-account-attributes
+                                     describe-backups describe-events
+                                     describe-node-association-status
+                                     describe-servers disassociate-node
+                                     export-server-engine-attribute
+                                     list-tags-for-resource restore-server
+                                     start-maintenance tag-resource
+                                     untag-resource update-server
+                                     update-server-engine-attributes)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://opsworks-cm.amazonaws.com/doc/2016-11-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://opsworks-cm.amazonaws.com/doc/2016-11-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "OpsWorksCM")

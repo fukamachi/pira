@@ -72,10 +72,44 @@
                                    "AmazonSimpleNotificationService" :version
                                    "2010-03-31" :title
                                    "Amazon Simple Notification Service"
+                                   :operations
+                                   '(add-permission
+                                     check-if-phone-number-is-opted-out
+                                     confirm-subscription
+                                     create-platform-application
+                                     create-platform-endpoint
+                                     create-smssandbox-phone-number
+                                     create-topic delete-endpoint
+                                     delete-platform-application
+                                     delete-smssandbox-phone-number
+                                     delete-topic get-data-protection-policy
+                                     get-endpoint-attributes
+                                     get-platform-application-attributes
+                                     get-smsattributes
+                                     get-smssandbox-account-status
+                                     get-subscription-attributes
+                                     get-topic-attributes
+                                     list-endpoints-by-platform-application
+                                     list-origination-numbers
+                                     list-phone-numbers-opted-out
+                                     list-platform-applications
+                                     list-smssandbox-phone-numbers
+                                     list-subscriptions
+                                     list-subscriptions-by-topic
+                                     list-tags-for-resource list-topics
+                                     opt-in-phone-number publish publish-batch
+                                     put-data-protection-policy
+                                     remove-permission set-endpoint-attributes
+                                     set-platform-application-attributes
+                                     set-smsattributes
+                                     set-subscription-attributes
+                                     set-topic-attributes subscribe
+                                     tag-resource unsubscribe untag-resource
+                                     verify-smssandbox-phone-number)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://sns.amazonaws.com/doc/2010-03-31/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://sns.amazonaws.com/doc/2010-03-31/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SNS")
                                       ("arnNamespace" . "sns")

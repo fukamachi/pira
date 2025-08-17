@@ -61,10 +61,19 @@
 (smithy/sdk/service:define-service ets-customer-service :shape-name
                                    "EtsCustomerService" :version "2012-09-25"
                                    :title "Amazon Elastic Transcoder"
+                                   :operations
+                                   '(cancel-job create-job create-pipeline
+                                     create-preset delete-pipeline
+                                     delete-preset list-jobs-by-pipeline
+                                     list-jobs-by-status list-pipelines
+                                     list-presets read-job read-pipeline
+                                     read-preset test-role update-pipeline
+                                     update-pipeline-notifications
+                                     update-pipeline-status)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://elastictranscoder.amazonaws.com/doc/2012-09-25/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://elastictranscoder.amazonaws.com/doc/2012-09-25/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elastic Transcoder")

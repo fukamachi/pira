@@ -10,7 +10,10 @@
 (smithy/sdk/service:define-service awsec2instance-connect-service :shape-name
                                    "AWSEC2InstanceConnectService" :version
                                    "2018-04-02" :title
-                                   "AWS EC2 Instance Connect" :traits
+                                   "AWS EC2 Instance Connect" :operations
+                                   '(send-serial-console-sshpublic-key
+                                     send-sshpublic-key)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "EC2 Instance Connect")
                                       ("arnNamespace" . "ec2-instance-connect")

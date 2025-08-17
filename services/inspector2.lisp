@@ -447,7 +447,69 @@
 (common-lisp:in-package #:pira/inspector2)
 
 (smithy/sdk/service:define-service inspector2 :shape-name "Inspector2" :version
-                                   "2020-06-08" :title "Inspector2" :traits
+                                   "2020-06-08" :title "Inspector2" :operations
+                                   '(associate-member
+                                     batch-associate-code-security-scan-configuration
+                                     batch-disassociate-code-security-scan-configuration
+                                     batch-get-account-status
+                                     batch-get-code-snippet
+                                     batch-get-finding-details
+                                     batch-get-free-trial-info
+                                     batch-get-member-ec2deep-inspection-status
+                                     batch-update-member-ec2deep-inspection-status
+                                     cancel-findings-report cancel-sbom-export
+                                     create-cis-scan-configuration
+                                     create-code-security-integration
+                                     create-code-security-scan-configuration
+                                     create-filter create-findings-report
+                                     create-sbom-export
+                                     delete-cis-scan-configuration
+                                     delete-code-security-integration
+                                     delete-code-security-scan-configuration
+                                     delete-filter
+                                     describe-organization-configuration
+                                     disable disable-delegated-admin-account
+                                     disassociate-member enable
+                                     enable-delegated-admin-account
+                                     get-cis-scan-report
+                                     get-cis-scan-result-details
+                                     get-clusters-for-image
+                                     get-code-security-integration
+                                     get-code-security-scan
+                                     get-code-security-scan-configuration
+                                     get-configuration
+                                     get-delegated-admin-account
+                                     get-ec2deep-inspection-configuration
+                                     get-encryption-key
+                                     get-findings-report-status get-member
+                                     get-sbom-export list-account-permissions
+                                     list-cis-scan-configurations
+                                     list-cis-scan-results-aggregated-by-checks
+                                     list-cis-scan-results-aggregated-by-target-resource
+                                     list-cis-scans
+                                     list-code-security-integrations
+                                     list-code-security-scan-configuration-associations
+                                     list-code-security-scan-configurations
+                                     list-coverage list-coverage-statistics
+                                     list-delegated-admin-accounts list-filters
+                                     list-finding-aggregations list-findings
+                                     list-members list-tags-for-resource
+                                     list-usage-totals reset-encryption-key
+                                     search-vulnerabilities
+                                     send-cis-session-health
+                                     send-cis-session-telemetry
+                                     start-cis-session start-code-security-scan
+                                     stop-cis-session tag-resource
+                                     untag-resource
+                                     update-cis-scan-configuration
+                                     update-code-security-integration
+                                     update-code-security-scan-configuration
+                                     update-configuration
+                                     update-ec2deep-inspection-configuration
+                                     update-encryption-key update-filter
+                                     update-organization-configuration
+                                     update-org-ec2deep-inspection-configuration)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Inspector2")
                                       ("arnNamespace" . "inspector2")

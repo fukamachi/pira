@@ -309,9 +309,97 @@
 
 (smithy/sdk/service:define-service game-lift :shape-name "GameLift" :version
                                    "2015-10-01" :title "Amazon GameLift"
+                                   :operations
+                                   '(accept-match claim-game-server
+                                     create-alias create-build
+                                     create-container-fleet
+                                     create-container-group-definition
+                                     create-fleet create-fleet-locations
+                                     create-game-server-group
+                                     create-game-session
+                                     create-game-session-queue create-location
+                                     create-matchmaking-configuration
+                                     create-matchmaking-rule-set
+                                     create-player-session
+                                     create-player-sessions create-script
+                                     create-vpc-peering-authorization
+                                     create-vpc-peering-connection delete-alias
+                                     delete-build delete-container-fleet
+                                     delete-container-group-definition
+                                     delete-fleet delete-fleet-locations
+                                     delete-game-server-group
+                                     delete-game-session-queue delete-location
+                                     delete-matchmaking-configuration
+                                     delete-matchmaking-rule-set
+                                     delete-scaling-policy delete-script
+                                     delete-vpc-peering-authorization
+                                     delete-vpc-peering-connection
+                                     deregister-compute deregister-game-server
+                                     describe-alias describe-build
+                                     describe-compute describe-container-fleet
+                                     describe-container-group-definition
+                                     describe-ec2instance-limits
+                                     describe-fleet-attributes
+                                     describe-fleet-capacity
+                                     describe-fleet-deployment
+                                     describe-fleet-events
+                                     describe-fleet-location-attributes
+                                     describe-fleet-location-capacity
+                                     describe-fleet-location-utilization
+                                     describe-fleet-port-settings
+                                     describe-fleet-utilization
+                                     describe-game-server
+                                     describe-game-server-group
+                                     describe-game-server-instances
+                                     describe-game-session-details
+                                     describe-game-session-placement
+                                     describe-game-session-queues
+                                     describe-game-sessions describe-instances
+                                     describe-matchmaking
+                                     describe-matchmaking-configurations
+                                     describe-matchmaking-rule-sets
+                                     describe-player-sessions
+                                     describe-runtime-configuration
+                                     describe-scaling-policies describe-script
+                                     describe-vpc-peering-authorizations
+                                     describe-vpc-peering-connections
+                                     get-compute-access get-compute-auth-token
+                                     get-game-session-log-url
+                                     get-instance-access list-aliases
+                                     list-builds list-compute
+                                     list-container-fleets
+                                     list-container-group-definitions
+                                     list-container-group-definition-versions
+                                     list-fleet-deployments list-fleets
+                                     list-game-server-groups list-game-servers
+                                     list-locations list-scripts
+                                     list-tags-for-resource put-scaling-policy
+                                     register-compute register-game-server
+                                     request-upload-credentials resolve-alias
+                                     resume-game-server-group
+                                     search-game-sessions start-fleet-actions
+                                     start-game-session-placement
+                                     start-match-backfill start-matchmaking
+                                     stop-fleet-actions
+                                     stop-game-session-placement
+                                     stop-matchmaking suspend-game-server-group
+                                     tag-resource terminate-game-session
+                                     untag-resource update-alias update-build
+                                     update-container-fleet
+                                     update-container-group-definition
+                                     update-fleet-attributes
+                                     update-fleet-capacity
+                                     update-fleet-port-settings
+                                     update-game-server
+                                     update-game-server-group
+                                     update-game-session
+                                     update-game-session-queue
+                                     update-matchmaking-configuration
+                                     update-runtime-configuration update-script
+                                     validate-matchmaking-rule-set)
                                    :xml-namespace
-                                   '(:uri "http://gamelift.amazonaws.com/doc/"
-                                     :prefix common-lisp:nil)
+                                   (:uri "http://gamelift.amazonaws.com/doc/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "GameLift")
                                       ("arnNamespace" . "gamelift")

@@ -156,6 +156,10 @@
                                    "AWSBCMPricingCalculator" :version
                                    "2024-06-19" :title
                                    "AWS Billing and Cost Management Pricing Calculator"
+                                   :operations
+                                   '(get-preferences list-tags-for-resource
+                                     tag-resource untag-resource
+                                     update-preferences)
                                    :errors
                                    '(access-denied-exception
                                      internal-server-exception

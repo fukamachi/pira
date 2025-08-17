@@ -77,6 +77,13 @@
 (smithy/sdk/service:define-service cost-optimization-hub-service :shape-name
                                    "CostOptimizationHubService" :version
                                    "2022-07-26" :title "Cost Optimization Hub"
+                                   :operations
+                                   '(get-preferences get-recommendation
+                                     list-enrollment-statuses
+                                     list-recommendations
+                                     list-recommendation-summaries
+                                     update-enrollment-status
+                                     update-preferences)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Cost Optimization Hub")

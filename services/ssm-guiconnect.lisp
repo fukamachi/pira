@@ -16,7 +16,8 @@
 
 (smithy/sdk/service:define-service ssmgui-connect :shape-name "SSMGuiConnect"
                                    :version "2021-05-01" :title
-                                   "AWS SSM-GUIConnect" :traits
+                                   "AWS SSM-GUIConnect" :operations
+                                   'common-lisp:nil :traits
                                    '(("aws.api#controlPlane")
                                      ("aws.api#service"
                                       ("sdkId" . "SSM GuiConnect")

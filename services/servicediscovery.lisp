@@ -72,7 +72,27 @@
 
 (smithy/sdk/service:define-service route53auto-naming-v20170314 :shape-name
                                    "Route53AutoNaming_v20170314" :version
-                                   "2017-03-14" :title "AWS Cloud Map" :traits
+                                   "2017-03-14" :title "AWS Cloud Map"
+                                   :operations
+                                   '(create-http-namespace
+                                     create-private-dns-namespace
+                                     create-public-dns-namespace create-service
+                                     delete-namespace delete-service
+                                     delete-service-attributes
+                                     deregister-instance discover-instances
+                                     discover-instances-revision get-instance
+                                     get-instances-health-status get-namespace
+                                     get-operation get-service
+                                     get-service-attributes list-instances
+                                     list-namespaces list-operations
+                                     list-services list-tags-for-resource
+                                     register-instance tag-resource
+                                     untag-resource update-http-namespace
+                                     update-instance-custom-health-status
+                                     update-private-dns-namespace
+                                     update-public-dns-namespace update-service
+                                     update-service-attributes)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ServiceDiscovery")
                                       ("arnNamespace" . "servicediscovery")

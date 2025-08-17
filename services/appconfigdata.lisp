@@ -16,7 +16,8 @@
 
 (smithy/sdk/service:define-service app-config-data :shape-name "AppConfigData"
                                    :version "2021-11-11" :title
-                                   "AWS AppConfig Data" :traits
+                                   "AWS AppConfig Data" :operations
+                                   '(get-latest-configuration) :traits
                                    '(("aws.api#dataPlane")
                                      ("aws.api#service"
                                       ("sdkId" . "AppConfigData")

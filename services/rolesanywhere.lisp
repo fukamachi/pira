@@ -58,7 +58,12 @@
 
 (smithy/sdk/service:define-service roles-anywhere :shape-name "RolesAnywhere"
                                    :version "2018-05-10" :title
-                                   "IAM Roles Anywhere" :traits
+                                   "IAM Roles Anywhere" :operations
+                                   '(list-tags-for-resource
+                                     put-notification-settings
+                                     reset-notification-settings tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "RolesAnywhere")
                                       ("arnNamespace" . "rolesanywhere")

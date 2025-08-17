@@ -178,7 +178,39 @@
 (smithy/sdk/service:define-service chime-sdkmedia-pipelines-service :shape-name
                                    "ChimeSDKMediaPipelinesService" :version
                                    "2021-07-15" :title
-                                   "Amazon Chime SDK Media Pipelines" :traits
+                                   "Amazon Chime SDK Media Pipelines"
+                                   :operations
+                                   '(create-media-capture-pipeline
+                                     create-media-concatenation-pipeline
+                                     create-media-insights-pipeline
+                                     create-media-insights-pipeline-configuration
+                                     create-media-live-connector-pipeline
+                                     create-media-pipeline-kinesis-video-stream-pool
+                                     create-media-stream-pipeline
+                                     delete-media-capture-pipeline
+                                     delete-media-insights-pipeline-configuration
+                                     delete-media-pipeline
+                                     delete-media-pipeline-kinesis-video-stream-pool
+                                     get-media-capture-pipeline
+                                     get-media-insights-pipeline-configuration
+                                     get-media-pipeline
+                                     get-media-pipeline-kinesis-video-stream-pool
+                                     get-speaker-search-task
+                                     get-voice-tone-analysis-task
+                                     list-media-capture-pipelines
+                                     list-media-insights-pipeline-configurations
+                                     list-media-pipeline-kinesis-video-stream-pools
+                                     list-media-pipelines
+                                     list-tags-for-resource
+                                     start-speaker-search-task
+                                     start-voice-tone-analysis-task
+                                     stop-speaker-search-task
+                                     stop-voice-tone-analysis-task tag-resource
+                                     untag-resource
+                                     update-media-insights-pipeline-configuration
+                                     update-media-insights-pipeline-status
+                                     update-media-pipeline-kinesis-video-stream-pool)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Chime SDK Media Pipelines")
                                       ("arnNamespace" . "chime")

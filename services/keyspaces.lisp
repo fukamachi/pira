@@ -67,7 +67,16 @@
 
 (smithy/sdk/service:define-service keyspaces-service :shape-name
                                    "KeyspacesService" :version "2022-02-10"
-                                   :title "Amazon Keyspaces" :traits
+                                   :title "Amazon Keyspaces" :operations
+                                   '(create-keyspace create-table create-type
+                                     delete-keyspace delete-table delete-type
+                                     get-keyspace get-table
+                                     get-table-auto-scaling-settings get-type
+                                     list-keyspaces list-tables
+                                     list-tags-for-resource list-types
+                                     restore-table tag-resource untag-resource
+                                     update-keyspace update-table)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Keyspaces")
                                       ("cloudFormationName" . "Cassandra")
                                       ("arnNamespace" . "cassandra")

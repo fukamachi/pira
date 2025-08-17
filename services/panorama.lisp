@@ -175,7 +175,35 @@
 
 (smithy/sdk/service:define-service omni-cloud-service-lambda :shape-name
                                    "OmniCloudServiceLambda" :version
-                                   "2019-07-24" :title "AWS Panorama" :traits
+                                   "2019-07-24" :title "AWS Panorama"
+                                   :operations
+                                   '(create-application-instance
+                                     create-job-for-devices
+                                     create-node-from-template-job
+                                     create-package create-package-import-job
+                                     delete-device delete-package
+                                     deregister-package-version
+                                     describe-application-instance
+                                     describe-application-instance-details
+                                     describe-device describe-device-job
+                                     describe-node
+                                     describe-node-from-template-job
+                                     describe-package
+                                     describe-package-import-job
+                                     describe-package-version
+                                     list-application-instance-dependencies
+                                     list-application-instance-node-instances
+                                     list-application-instances list-devices
+                                     list-devices-jobs
+                                     list-node-from-template-jobs list-nodes
+                                     list-package-import-jobs list-packages
+                                     list-tags-for-resource provision-device
+                                     register-package-version
+                                     remove-application-instance
+                                     signal-application-instance-node-instances
+                                     tag-resource untag-resource
+                                     update-device-metadata)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Panorama")
                                       ("arnNamespace" . "panorama")
                                       ("awsProductName" . "AWSPanorama"))

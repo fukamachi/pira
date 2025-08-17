@@ -124,7 +124,27 @@
 
 (smithy/sdk/service:define-service lookout-metrics :shape-name "LookoutMetrics"
                                    :version "2017-07-25" :title
-                                   "Amazon Lookout for Metrics" :traits
+                                   "Amazon Lookout for Metrics" :operations
+                                   '(activate-anomaly-detector
+                                     back-test-anomaly-detector create-alert
+                                     create-anomaly-detector create-metric-set
+                                     deactivate-anomaly-detector delete-alert
+                                     delete-anomaly-detector describe-alert
+                                     describe-anomaly-detection-executions
+                                     describe-anomaly-detector
+                                     describe-metric-set
+                                     detect-metric-set-config get-anomaly-group
+                                     get-data-quality-metrics get-feedback
+                                     get-sample-data list-alerts
+                                     list-anomaly-detectors
+                                     list-anomaly-group-related-metrics
+                                     list-anomaly-group-summaries
+                                     list-anomaly-group-time-series
+                                     list-metric-sets list-tags-for-resource
+                                     put-feedback tag-resource untag-resource
+                                     update-alert update-anomaly-detector
+                                     update-metric-set)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "LookoutMetrics")
                                       ("arnNamespace" . "lookoutmetrics")

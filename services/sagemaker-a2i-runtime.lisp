@@ -15,7 +15,11 @@
 (smithy/sdk/service:define-service amazon-sage-maker-a2iruntime :shape-name
                                    "AmazonSageMakerA2IRuntime" :version
                                    "2019-11-07" :title
-                                   "Amazon Augmented AI Runtime" :traits
+                                   "Amazon Augmented AI Runtime" :operations
+                                   '(delete-human-loop describe-human-loop
+                                     list-human-loops start-human-loop
+                                     stop-human-loop)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SageMaker A2I Runtime")
                                       ("arnNamespace" . "sagemaker")

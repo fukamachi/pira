@@ -20,7 +20,8 @@
 
 (smithy/sdk/service:define-service qldbsession :shape-name "QLDBSession"
                                    :version "2019-07-11" :title
-                                   "Amazon QLDB Session" :traits
+                                   "Amazon QLDB Session" :operations
+                                   '(send-command) :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "QLDB Session")
                                       ("arnNamespace" . "qldb")

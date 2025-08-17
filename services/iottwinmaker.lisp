@@ -185,7 +185,29 @@
 
 (smithy/sdk/service:define-service awsio-ttwin-maker :shape-name
                                    "AWSIoTTwinMaker" :version "2021-11-29"
-                                   :title "AWS IoT TwinMaker" :traits
+                                   :title "AWS IoT TwinMaker" :operations
+                                   '(batch-put-property-values
+                                     cancel-metadata-transfer-job
+                                     create-component-type create-entity
+                                     create-metadata-transfer-job create-scene
+                                     create-sync-job create-workspace
+                                     delete-component-type delete-entity
+                                     delete-scene delete-sync-job
+                                     delete-workspace execute-query
+                                     get-component-type get-entity
+                                     get-metadata-transfer-job get-pricing-plan
+                                     get-property-value
+                                     get-property-value-history get-scene
+                                     get-sync-job get-workspace list-components
+                                     list-component-types list-entities
+                                     list-metadata-transfer-jobs
+                                     list-properties list-scenes list-sync-jobs
+                                     list-sync-resources list-tags-for-resource
+                                     list-workspaces tag-resource
+                                     untag-resource update-component-type
+                                     update-entity update-pricing-plan
+                                     update-scene update-workspace)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoTTwinMaker")
                                       ("endpointPrefix" . "iottwinmaker"))

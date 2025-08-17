@@ -255,7 +255,15 @@
 
 (smithy/sdk/service:define-service mercury-control-plane :shape-name
                                    "MercuryControlPlane" :version "2022-11-30"
-                                   :title "Amazon VPC Lattice" :traits
+                                   :title "Amazon VPC Lattice" :operations
+                                   '(batch-update-rule delete-auth-policy
+                                     delete-resource-policy get-auth-policy
+                                     get-resource-policy
+                                     list-service-network-vpc-endpoint-associations
+                                     list-tags-for-resource put-auth-policy
+                                     put-resource-policy tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "VPC Lattice")
                                       ("arnNamespace" . "vpc-lattice")

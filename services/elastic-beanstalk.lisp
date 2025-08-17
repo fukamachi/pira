@@ -181,10 +181,52 @@
 (smithy/sdk/service:define-service awselastic-beanstalk-service :shape-name
                                    "AWSElasticBeanstalkService" :version
                                    "2010-12-01" :title "AWS Elastic Beanstalk"
+                                   :operations
+                                   '(abort-environment-update
+                                     apply-environment-managed-action
+                                     associate-environment-operations-role
+                                     check-dnsavailability compose-environments
+                                     create-application
+                                     create-application-version
+                                     create-configuration-template
+                                     create-environment create-platform-version
+                                     create-storage-location delete-application
+                                     delete-application-version
+                                     delete-configuration-template
+                                     delete-environment-configuration
+                                     delete-platform-version
+                                     describe-account-attributes
+                                     describe-applications
+                                     describe-application-versions
+                                     describe-configuration-options
+                                     describe-configuration-settings
+                                     describe-environment-health
+                                     describe-environment-managed-action-history
+                                     describe-environment-managed-actions
+                                     describe-environment-resources
+                                     describe-environments describe-events
+                                     describe-instances-health
+                                     describe-platform-version
+                                     disassociate-environment-operations-role
+                                     list-available-solution-stacks
+                                     list-platform-branches
+                                     list-platform-versions
+                                     list-tags-for-resource rebuild-environment
+                                     request-environment-info
+                                     restart-app-server
+                                     retrieve-environment-info
+                                     swap-environment-cnames
+                                     terminate-environment update-application
+                                     update-application-resource-lifecycle
+                                     update-application-version
+                                     update-configuration-template
+                                     update-environment
+                                     update-tags-for-resource
+                                     validate-configuration-settings)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://elasticbeanstalk.amazonaws.com/docs/2010-12-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://elasticbeanstalk.amazonaws.com/docs/2010-12-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elastic Beanstalk")

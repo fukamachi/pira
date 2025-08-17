@@ -62,7 +62,8 @@
 
 (smithy/sdk/service:define-service s3table-buckets :shape-name "S3TableBuckets"
                                    :version "2018-05-10" :title
-                                   "Amazon S3 Tables" :traits
+                                   "Amazon S3 Tables" :operations
+                                   'common-lisp:nil :traits
                                    '(("aws.api#service" ("sdkId" . "S3Tables")
                                       ("arnNamespace" . "s3tables")
                                       ("cloudTrailEventSource"

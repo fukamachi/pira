@@ -87,10 +87,26 @@
 (smithy/sdk/service:define-service kinesis-analytics-20150814 :shape-name
                                    "KinesisAnalytics_20150814" :version
                                    "2015-08-14" :title
-                                   "Amazon Kinesis Analytics" :xml-namespace
-                                   '(:uri
-                                     "http://analytics.kinesis.amazonaws.com/doc/2015-08-14"
-                                     :prefix common-lisp:nil)
+                                   "Amazon Kinesis Analytics" :operations
+                                   '(add-application-cloud-watch-logging-option
+                                     add-application-input
+                                     add-application-input-processing-configuration
+                                     add-application-output
+                                     add-application-reference-data-source
+                                     create-application delete-application
+                                     delete-application-cloud-watch-logging-option
+                                     delete-application-input-processing-configuration
+                                     delete-application-output
+                                     delete-application-reference-data-source
+                                     describe-application discover-input-schema
+                                     list-applications list-tags-for-resource
+                                     start-application stop-application
+                                     tag-resource untag-resource
+                                     update-application)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://analytics.kinesis.amazonaws.com/doc/2015-08-14"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Kinesis Analytics")

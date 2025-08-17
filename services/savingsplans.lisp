@@ -71,7 +71,16 @@
 
 (smithy/sdk/service:define-service awssavings-plan :shape-name "AWSSavingsPlan"
                                    :version "2019-06-28" :title
-                                   "AWS Savings Plans" :traits
+                                   "AWS Savings Plans" :operations
+                                   '(create-savings-plan
+                                     delete-queued-savings-plan
+                                     describe-savings-plan-rates
+                                     describe-savings-plans
+                                     describe-savings-plans-offering-rates
+                                     describe-savings-plans-offerings
+                                     list-tags-for-resource return-savings-plan
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "savingsplans")
                                       ("arnNamespace" . "savingsplans")

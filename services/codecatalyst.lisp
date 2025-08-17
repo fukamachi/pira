@@ -81,7 +81,8 @@
 
 (smithy/sdk/service:define-service code-catalyst :shape-name "CodeCatalyst"
                                    :version "2022-09-28" :title
-                                   "Amazon CodeCatalyst" :errors
+                                   "Amazon CodeCatalyst" :operations
+                                   '(get-user-details verify-session) :errors
                                    '(access-denied-exception conflict-exception
                                      resource-not-found-exception
                                      service-quota-exceeded-exception

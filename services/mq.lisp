@@ -46,7 +46,21 @@
 (common-lisp:in-package #:pira/mq)
 
 (smithy/sdk/service:define-service mq :shape-name "mq" :version "2017-11-27"
-                                   :title "AmazonMQ" :traits
+                                   :title "AmazonMQ" :operations
+                                   '(create-broker create-configuration
+                                     create-tags create-user delete-broker
+                                     delete-configuration delete-tags
+                                     delete-user describe-broker
+                                     describe-broker-engine-types
+                                     describe-broker-instance-options
+                                     describe-configuration
+                                     describe-configuration-revision
+                                     describe-user list-brokers
+                                     list-configuration-revisions
+                                     list-configurations list-tags list-users
+                                     promote reboot-broker update-broker
+                                     update-configuration update-user)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "mq")
                                       ("arnNamespace" . "mq")
                                       ("cloudFormationName" . "AmazonMQ")

@@ -878,7 +878,239 @@
 
 (smithy/sdk/service:define-service amazon-connect-service :shape-name
                                    "AmazonConnectService" :version "2017-08-08"
-                                   :title "Amazon Connect Service" :traits
+                                   :title "Amazon Connect Service" :operations
+                                   '(activate-evaluation-form
+                                     associate-analytics-data-set
+                                     associate-approved-origin associate-bot
+                                     associate-default-vocabulary
+                                     associate-flow
+                                     associate-instance-storage-config
+                                     associate-lambda-function
+                                     associate-lex-bot
+                                     associate-phone-number-contact-flow
+                                     associate-queue-quick-connects
+                                     associate-routing-profile-queues
+                                     associate-security-key
+                                     associate-traffic-distribution-group-user
+                                     associate-user-proficiencies
+                                     batch-associate-analytics-data-set
+                                     batch-disassociate-analytics-data-set
+                                     batch-get-attached-file-metadata
+                                     batch-get-flow-association
+                                     batch-put-contact claim-phone-number
+                                     complete-attached-file-upload
+                                     create-agent-status create-contact
+                                     create-contact-flow
+                                     create-contact-flow-module
+                                     create-contact-flow-version
+                                     create-email-address
+                                     create-evaluation-form
+                                     create-hours-of-operation
+                                     create-hours-of-operation-override
+                                     create-instance
+                                     create-integration-association
+                                     create-participant
+                                     create-persistent-contact-association
+                                     create-predefined-attribute create-prompt
+                                     create-push-notification-registration
+                                     create-queue create-quick-connect
+                                     create-routing-profile create-rule
+                                     create-security-profile
+                                     create-task-template
+                                     create-traffic-distribution-group
+                                     create-use-case create-user
+                                     create-user-hierarchy-group create-view
+                                     create-view-version create-vocabulary
+                                     deactivate-evaluation-form
+                                     delete-attached-file
+                                     delete-contact-evaluation
+                                     delete-contact-flow
+                                     delete-contact-flow-module
+                                     delete-contact-flow-version
+                                     delete-email-address
+                                     delete-evaluation-form
+                                     delete-hours-of-operation
+                                     delete-hours-of-operation-override
+                                     delete-instance
+                                     delete-integration-association
+                                     delete-predefined-attribute delete-prompt
+                                     delete-push-notification-registration
+                                     delete-queue delete-quick-connect
+                                     delete-routing-profile delete-rule
+                                     delete-security-profile
+                                     delete-task-template
+                                     delete-traffic-distribution-group
+                                     delete-use-case delete-user
+                                     delete-user-hierarchy-group delete-view
+                                     delete-view-version delete-vocabulary
+                                     describe-agent-status
+                                     describe-authentication-profile
+                                     describe-contact
+                                     describe-contact-evaluation
+                                     describe-contact-flow
+                                     describe-contact-flow-module
+                                     describe-email-address
+                                     describe-evaluation-form
+                                     describe-hours-of-operation
+                                     describe-hours-of-operation-override
+                                     describe-instance
+                                     describe-instance-attribute
+                                     describe-instance-storage-config
+                                     describe-phone-number
+                                     describe-predefined-attribute
+                                     describe-prompt describe-queue
+                                     describe-quick-connect
+                                     describe-routing-profile describe-rule
+                                     describe-security-profile
+                                     describe-traffic-distribution-group
+                                     describe-user
+                                     describe-user-hierarchy-group
+                                     describe-user-hierarchy-structure
+                                     describe-view describe-vocabulary
+                                     disassociate-analytics-data-set
+                                     disassociate-approved-origin
+                                     disassociate-bot disassociate-flow
+                                     disassociate-instance-storage-config
+                                     disassociate-lambda-function
+                                     disassociate-lex-bot
+                                     disassociate-phone-number-contact-flow
+                                     disassociate-queue-quick-connects
+                                     disassociate-routing-profile-queues
+                                     disassociate-security-key
+                                     disassociate-traffic-distribution-group-user
+                                     disassociate-user-proficiencies
+                                     dismiss-user-contact get-attached-file
+                                     get-contact-attributes
+                                     get-current-metric-data
+                                     get-current-user-data
+                                     get-effective-hours-of-operations
+                                     get-federation-token get-flow-association
+                                     get-metric-data get-metric-data-v2
+                                     get-prompt-file get-task-template
+                                     get-traffic-distribution
+                                     import-phone-number list-agent-statuses
+                                     list-analytics-data-associations
+                                     list-analytics-data-lake-data-sets
+                                     list-approved-origins
+                                     list-associated-contacts
+                                     list-authentication-profiles list-bots
+                                     list-contact-evaluations
+                                     list-contact-flow-modules
+                                     list-contact-flows
+                                     list-contact-flow-versions
+                                     list-contact-references
+                                     list-default-vocabularies
+                                     list-evaluation-forms
+                                     list-evaluation-form-versions
+                                     list-flow-associations
+                                     list-hours-of-operation-overrides
+                                     list-hours-of-operations
+                                     list-instance-attributes list-instances
+                                     list-instance-storage-configs
+                                     list-integration-associations
+                                     list-lambda-functions list-lex-bots
+                                     list-phone-numbers list-phone-numbers-v2
+                                     list-predefined-attributes list-prompts
+                                     list-queue-quick-connects list-queues
+                                     list-quick-connects
+                                     list-realtime-contact-analysis-segments-v2
+                                     list-routing-profile-queues
+                                     list-routing-profiles list-rules
+                                     list-security-keys
+                                     list-security-profile-applications
+                                     list-security-profile-permissions
+                                     list-security-profiles
+                                     list-tags-for-resource list-task-templates
+                                     list-traffic-distribution-groups
+                                     list-traffic-distribution-group-users
+                                     list-use-cases list-user-hierarchy-groups
+                                     list-user-proficiencies list-users
+                                     list-views list-view-versions
+                                     monitor-contact pause-contact
+                                     put-user-status release-phone-number
+                                     replicate-instance resume-contact
+                                     resume-contact-recording
+                                     search-agent-statuses
+                                     search-available-phone-numbers
+                                     search-contact-flow-modules
+                                     search-contact-flows search-contacts
+                                     search-email-addresses
+                                     search-hours-of-operation-overrides
+                                     search-hours-of-operations
+                                     search-predefined-attributes
+                                     search-prompts search-queues
+                                     search-quick-connects search-resource-tags
+                                     search-routing-profiles
+                                     search-security-profiles
+                                     search-user-hierarchy-groups search-users
+                                     search-vocabularies
+                                     send-chat-integration-event
+                                     send-outbound-email
+                                     start-attached-file-upload
+                                     start-chat-contact
+                                     start-contact-evaluation
+                                     start-contact-recording
+                                     start-contact-streaming
+                                     start-email-contact
+                                     start-outbound-chat-contact
+                                     start-outbound-email-contact
+                                     start-outbound-voice-contact
+                                     start-screen-sharing start-task-contact
+                                     start-web-rtccontact stop-contact
+                                     stop-contact-recording
+                                     stop-contact-streaming
+                                     submit-contact-evaluation
+                                     suspend-contact-recording tag-contact
+                                     tag-resource transfer-contact
+                                     untag-contact untag-resource
+                                     update-agent-status
+                                     update-authentication-profile
+                                     update-contact update-contact-attributes
+                                     update-contact-evaluation
+                                     update-contact-flow-content
+                                     update-contact-flow-metadata
+                                     update-contact-flow-module-content
+                                     update-contact-flow-module-metadata
+                                     update-contact-flow-name
+                                     update-contact-routing-data
+                                     update-contact-schedule
+                                     update-email-address-metadata
+                                     update-evaluation-form
+                                     update-hours-of-operation
+                                     update-hours-of-operation-override
+                                     update-instance-attribute
+                                     update-instance-storage-config
+                                     update-participant-authentication
+                                     update-participant-role-config
+                                     update-phone-number
+                                     update-phone-number-metadata
+                                     update-predefined-attribute update-prompt
+                                     update-queue-hours-of-operation
+                                     update-queue-max-contacts
+                                     update-queue-name
+                                     update-queue-outbound-caller-config
+                                     update-queue-outbound-email-config
+                                     update-queue-status
+                                     update-quick-connect-config
+                                     update-quick-connect-name
+                                     update-routing-profile-agent-availability-timer
+                                     update-routing-profile-concurrency
+                                     update-routing-profile-default-outbound-queue
+                                     update-routing-profile-name
+                                     update-routing-profile-queues update-rule
+                                     update-security-profile
+                                     update-task-template
+                                     update-traffic-distribution
+                                     update-user-hierarchy
+                                     update-user-hierarchy-group-name
+                                     update-user-hierarchy-structure
+                                     update-user-identity-info
+                                     update-user-phone-config
+                                     update-user-proficiencies
+                                     update-user-routing-profile
+                                     update-user-security-profiles
+                                     update-view-content update-view-metadata)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Connect")
                                       ("arnNamespace" . "connect")
                                       ("cloudFormationName" . "Connect")

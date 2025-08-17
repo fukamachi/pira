@@ -137,10 +137,33 @@
 (smithy/sdk/service:define-service granite-service-version20100801 :shape-name
                                    "GraniteServiceVersion20100801" :version
                                    "2010-08-01" :title "Amazon CloudWatch"
+                                   :operations
+                                   '(delete-alarms delete-anomaly-detector
+                                     delete-dashboards delete-insight-rules
+                                     delete-metric-stream
+                                     describe-alarm-history describe-alarms
+                                     describe-alarms-for-metric
+                                     describe-anomaly-detectors
+                                     describe-insight-rules
+                                     disable-alarm-actions
+                                     disable-insight-rules enable-alarm-actions
+                                     enable-insight-rules get-dashboard
+                                     get-insight-rule-report get-metric-data
+                                     get-metric-statistics get-metric-stream
+                                     get-metric-widget-image list-dashboards
+                                     list-managed-insight-rules list-metrics
+                                     list-metric-streams list-tags-for-resource
+                                     put-anomaly-detector put-composite-alarm
+                                     put-dashboard put-insight-rule
+                                     put-managed-insight-rules put-metric-alarm
+                                     put-metric-data put-metric-stream
+                                     set-alarm-state start-metric-streams
+                                     stop-metric-streams tag-resource
+                                     untag-resource)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://monitoring.amazonaws.com/doc/2010-08-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://monitoring.amazonaws.com/doc/2010-08-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudWatch")

@@ -49,7 +49,21 @@
 (smithy/sdk/service:define-service chimera-db-lionfish-service-lambda
                                    :shape-name "ChimeraDbLionfishServiceLambda"
                                    :version "2022-11-28" :title
-                                   "Amazon DocumentDB Elastic Clusters" :traits
+                                   "Amazon DocumentDB Elastic Clusters"
+                                   :operations
+                                   '(apply-pending-maintenance-action
+                                     copy-cluster-snapshot create-cluster
+                                     create-cluster-snapshot delete-cluster
+                                     delete-cluster-snapshot get-cluster
+                                     get-cluster-snapshot
+                                     get-pending-maintenance-action
+                                     list-clusters list-cluster-snapshots
+                                     list-pending-maintenance-actions
+                                     list-tags-for-resource
+                                     restore-cluster-from-snapshot
+                                     start-cluster stop-cluster tag-resource
+                                     untag-resource update-cluster)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "DocDB Elastic")
                                       ("arnNamespace" . "docdb-elastic")

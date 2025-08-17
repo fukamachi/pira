@@ -136,10 +136,65 @@
 
 (smithy/sdk/service:define-service overture-service :shape-name
                                    "OvertureService" :version "2012-10-25"
-                                   :title "AWS Direct Connect" :xml-namespace
-                                   '(:uri
-                                     "http://directconnect.amazonaws.com/doc/2012-10-25/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS Direct Connect" :operations
+                                   '(accept-direct-connect-gateway-association-proposal
+                                     allocate-connection-on-interconnect
+                                     allocate-hosted-connection
+                                     allocate-private-virtual-interface
+                                     allocate-public-virtual-interface
+                                     allocate-transit-virtual-interface
+                                     associate-connection-with-lag
+                                     associate-hosted-connection
+                                     associate-mac-sec-key
+                                     associate-virtual-interface
+                                     confirm-connection
+                                     confirm-customer-agreement
+                                     confirm-private-virtual-interface
+                                     confirm-public-virtual-interface
+                                     confirm-transit-virtual-interface
+                                     create-bgppeer create-connection
+                                     create-direct-connect-gateway
+                                     create-direct-connect-gateway-association
+                                     create-direct-connect-gateway-association-proposal
+                                     create-interconnect create-lag
+                                     create-private-virtual-interface
+                                     create-public-virtual-interface
+                                     create-transit-virtual-interface
+                                     delete-bgppeer delete-connection
+                                     delete-direct-connect-gateway
+                                     delete-direct-connect-gateway-association
+                                     delete-direct-connect-gateway-association-proposal
+                                     delete-interconnect delete-lag
+                                     delete-virtual-interface
+                                     describe-connection-loa
+                                     describe-connections
+                                     describe-connections-on-interconnect
+                                     describe-customer-metadata
+                                     describe-direct-connect-gateway-association-proposals
+                                     describe-direct-connect-gateway-associations
+                                     describe-direct-connect-gateway-attachments
+                                     describe-direct-connect-gateways
+                                     describe-hosted-connections
+                                     describe-interconnect-loa
+                                     describe-interconnects describe-lags
+                                     describe-loa describe-locations
+                                     describe-router-configuration
+                                     describe-tags describe-virtual-gateways
+                                     describe-virtual-interfaces
+                                     disassociate-connection-from-lag
+                                     disassociate-mac-sec-key
+                                     list-virtual-interface-test-history
+                                     start-bgp-failover-test
+                                     stop-bgp-failover-test tag-resource
+                                     untag-resource update-connection
+                                     update-direct-connect-gateway
+                                     update-direct-connect-gateway-association
+                                     update-lag
+                                     update-virtual-interface-attributes)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://directconnect.amazonaws.com/doc/2012-10-25/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Direct Connect")

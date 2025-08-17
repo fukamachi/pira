@@ -76,7 +76,25 @@
 
 (smithy/sdk/service:define-service aws-chicago-web-service :shape-name
                                    "AwsChicagoWebService" :version "2020-10-01"
-                                   :title "Amazon EMR Containers" :traits
+                                   :title "Amazon EMR Containers" :operations
+                                   '(cancel-job-run create-job-template
+                                     create-managed-endpoint
+                                     create-security-configuration
+                                     create-virtual-cluster delete-job-template
+                                     delete-managed-endpoint
+                                     delete-virtual-cluster describe-job-run
+                                     describe-job-template
+                                     describe-managed-endpoint
+                                     describe-security-configuration
+                                     describe-virtual-cluster
+                                     get-managed-endpoint-session-credentials
+                                     list-job-runs list-job-templates
+                                     list-managed-endpoints
+                                     list-security-configurations
+                                     list-tags-for-resource
+                                     list-virtual-clusters start-job-run
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "EMR containers")
                                       ("arnNamespace" . "emr-containers")

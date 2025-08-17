@@ -625,7 +625,22 @@
 
 (smithy/sdk/service:define-service media-convert :shape-name "MediaConvert"
                                    :version "2017-08-29" :title
-                                   "AWS Elemental MediaConvert" :traits
+                                   "AWS Elemental MediaConvert" :operations
+                                   '(associate-certificate cancel-job
+                                     create-job create-job-template
+                                     create-preset create-queue
+                                     delete-job-template delete-policy
+                                     delete-preset delete-queue
+                                     describe-endpoints
+                                     disassociate-certificate get-job
+                                     get-job-template get-policy get-preset
+                                     get-queue list-jobs list-job-templates
+                                     list-presets list-queues
+                                     list-tags-for-resource list-versions probe
+                                     put-policy search-jobs tag-resource
+                                     untag-resource update-job-template
+                                     update-preset update-queue)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MediaConvert")
                                       ("arnNamespace" . "mediaconvert")

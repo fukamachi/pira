@@ -18,6 +18,9 @@
 (smithy/sdk/service:define-service amazon-sage-maker-edge :shape-name
                                    "AmazonSageMakerEdge" :version "2020-09-23"
                                    :title "Amazon Sagemaker Edge Manager"
+                                   :operations
+                                   '(get-deployments get-device-registration
+                                     send-heartbeat)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Sagemaker Edge")

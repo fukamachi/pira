@@ -29,7 +29,20 @@
 
 (smithy/sdk/service:define-service quick-setup :shape-name "QuickSetup"
                                    :version "2018-05-10" :title
-                                   "AWS Systems Manager QuickSetup" :traits
+                                   "AWS Systems Manager QuickSetup" :operations
+                                   '(create-configuration-manager
+                                     delete-configuration-manager
+                                     get-configuration
+                                     get-configuration-manager
+                                     get-service-settings
+                                     list-configuration-managers
+                                     list-configurations list-quick-setup-types
+                                     list-tags-for-resource tag-resource
+                                     untag-resource
+                                     update-configuration-definition
+                                     update-configuration-manager
+                                     update-service-settings)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SSM QuickSetup")
                                       ("arnNamespace" . "ssm-quicksetup")

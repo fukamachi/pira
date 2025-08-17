@@ -135,7 +135,72 @@
 
 (smithy/sdk/service:define-service route53resolver :shape-name
                                    "Route53Resolver" :version "2018-04-01"
-                                   :title "Amazon Route 53 Resolver" :traits
+                                   :title "Amazon Route 53 Resolver"
+                                   :operations
+                                   '(associate-firewall-rule-group
+                                     associate-resolver-endpoint-ip-address
+                                     associate-resolver-query-log-config
+                                     associate-resolver-rule
+                                     create-firewall-domain-list
+                                     create-firewall-rule
+                                     create-firewall-rule-group
+                                     create-outpost-resolver
+                                     create-resolver-endpoint
+                                     create-resolver-query-log-config
+                                     create-resolver-rule
+                                     delete-firewall-domain-list
+                                     delete-firewall-rule
+                                     delete-firewall-rule-group
+                                     delete-outpost-resolver
+                                     delete-resolver-endpoint
+                                     delete-resolver-query-log-config
+                                     delete-resolver-rule
+                                     disassociate-firewall-rule-group
+                                     disassociate-resolver-endpoint-ip-address
+                                     disassociate-resolver-query-log-config
+                                     disassociate-resolver-rule
+                                     get-firewall-config
+                                     get-firewall-domain-list
+                                     get-firewall-rule-group
+                                     get-firewall-rule-group-association
+                                     get-firewall-rule-group-policy
+                                     get-outpost-resolver get-resolver-config
+                                     get-resolver-dnssec-config
+                                     get-resolver-endpoint
+                                     get-resolver-query-log-config
+                                     get-resolver-query-log-config-association
+                                     get-resolver-query-log-config-policy
+                                     get-resolver-rule
+                                     get-resolver-rule-association
+                                     get-resolver-rule-policy
+                                     import-firewall-domains
+                                     list-firewall-configs
+                                     list-firewall-domain-lists
+                                     list-firewall-domains
+                                     list-firewall-rule-group-associations
+                                     list-firewall-rule-groups
+                                     list-firewall-rules list-outpost-resolvers
+                                     list-resolver-configs
+                                     list-resolver-dnssec-configs
+                                     list-resolver-endpoint-ip-addresses
+                                     list-resolver-endpoints
+                                     list-resolver-query-log-config-associations
+                                     list-resolver-query-log-configs
+                                     list-resolver-rule-associations
+                                     list-resolver-rules list-tags-for-resource
+                                     put-firewall-rule-group-policy
+                                     put-resolver-query-log-config-policy
+                                     put-resolver-rule-policy tag-resource
+                                     untag-resource update-firewall-config
+                                     update-firewall-domains
+                                     update-firewall-rule
+                                     update-firewall-rule-group-association
+                                     update-outpost-resolver
+                                     update-resolver-config
+                                     update-resolver-dnssec-config
+                                     update-resolver-endpoint
+                                     update-resolver-rule)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Route53Resolver")
                                       ("arnNamespace" . "route53resolver")

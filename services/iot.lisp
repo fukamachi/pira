@@ -716,6 +716,208 @@
 
 (smithy/sdk/service:define-service awsiot-service :shape-name "AWSIotService"
                                    :version "2015-05-28" :title "AWS IoT"
+                                   :operations
+                                   '(accept-certificate-transfer
+                                     add-thing-to-billing-group
+                                     add-thing-to-thing-group
+                                     associate-sbom-with-package-version
+                                     associate-targets-with-job attach-policy
+                                     attach-principal-policy
+                                     attach-security-profile
+                                     attach-thing-principal
+                                     cancel-audit-mitigation-actions-task
+                                     cancel-audit-task
+                                     cancel-certificate-transfer
+                                     cancel-detect-mitigation-actions-task
+                                     cancel-job cancel-job-execution
+                                     clear-default-authorizer
+                                     confirm-topic-rule-destination
+                                     create-audit-suppression create-authorizer
+                                     create-billing-group
+                                     create-certificate-from-csr
+                                     create-certificate-provider create-command
+                                     create-custom-metric create-dimension
+                                     create-domain-configuration
+                                     create-dynamic-thing-group
+                                     create-fleet-metric create-job
+                                     create-job-template
+                                     create-keys-and-certificate
+                                     create-mitigation-action create-otaupdate
+                                     create-package create-package-version
+                                     create-policy create-policy-version
+                                     create-provisioning-claim
+                                     create-provisioning-template
+                                     create-provisioning-template-version
+                                     create-role-alias create-scheduled-audit
+                                     create-security-profile create-stream
+                                     create-thing create-thing-group
+                                     create-thing-type create-topic-rule
+                                     create-topic-rule-destination
+                                     delete-account-audit-configuration
+                                     delete-audit-suppression delete-authorizer
+                                     delete-billing-group delete-cacertificate
+                                     delete-certificate
+                                     delete-certificate-provider delete-command
+                                     delete-command-execution
+                                     delete-custom-metric delete-dimension
+                                     delete-domain-configuration
+                                     delete-dynamic-thing-group
+                                     delete-fleet-metric delete-job
+                                     delete-job-execution delete-job-template
+                                     delete-mitigation-action delete-otaupdate
+                                     delete-package delete-package-version
+                                     delete-policy delete-policy-version
+                                     delete-provisioning-template
+                                     delete-provisioning-template-version
+                                     delete-registration-code delete-role-alias
+                                     delete-scheduled-audit
+                                     delete-security-profile delete-stream
+                                     delete-thing delete-thing-group
+                                     delete-thing-type delete-topic-rule
+                                     delete-topic-rule-destination
+                                     delete-v2logging-level
+                                     deprecate-thing-type
+                                     describe-account-audit-configuration
+                                     describe-audit-finding
+                                     describe-audit-mitigation-actions-task
+                                     describe-audit-suppression
+                                     describe-audit-task describe-authorizer
+                                     describe-billing-group
+                                     describe-cacertificate
+                                     describe-certificate
+                                     describe-certificate-provider
+                                     describe-custom-metric
+                                     describe-default-authorizer
+                                     describe-detect-mitigation-actions-task
+                                     describe-dimension
+                                     describe-domain-configuration
+                                     describe-encryption-configuration
+                                     describe-endpoint
+                                     describe-event-configurations
+                                     describe-fleet-metric describe-index
+                                     describe-job describe-job-execution
+                                     describe-job-template
+                                     describe-managed-job-template
+                                     describe-mitigation-action
+                                     describe-provisioning-template
+                                     describe-provisioning-template-version
+                                     describe-role-alias
+                                     describe-scheduled-audit
+                                     describe-security-profile describe-stream
+                                     describe-thing describe-thing-group
+                                     describe-thing-registration-task
+                                     describe-thing-type detach-policy
+                                     detach-principal-policy
+                                     detach-security-profile
+                                     detach-thing-principal disable-topic-rule
+                                     disassociate-sbom-from-package-version
+                                     enable-topic-rule
+                                     get-behavior-model-training-summaries
+                                     get-buckets-aggregation get-cardinality
+                                     get-command get-command-execution
+                                     get-effective-policies
+                                     get-indexing-configuration
+                                     get-job-document get-logging-options
+                                     get-otaupdate get-package
+                                     get-package-configuration
+                                     get-package-version get-percentiles
+                                     get-policy get-policy-version
+                                     get-registration-code get-statistics
+                                     get-thing-connectivity-data get-topic-rule
+                                     get-topic-rule-destination
+                                     get-v2logging-options
+                                     list-active-violations
+                                     list-attached-policies list-audit-findings
+                                     list-audit-mitigation-actions-executions
+                                     list-audit-mitigation-actions-tasks
+                                     list-audit-suppressions list-audit-tasks
+                                     list-authorizers list-billing-groups
+                                     list-cacertificates
+                                     list-certificate-providers
+                                     list-certificates list-certificates-by-ca
+                                     list-command-executions list-commands
+                                     list-custom-metrics
+                                     list-detect-mitigation-actions-executions
+                                     list-detect-mitigation-actions-tasks
+                                     list-dimensions list-domain-configurations
+                                     list-fleet-metrics list-indices
+                                     list-job-executions-for-job
+                                     list-job-executions-for-thing list-jobs
+                                     list-job-templates
+                                     list-managed-job-templates
+                                     list-metric-values list-mitigation-actions
+                                     list-otaupdates list-outgoing-certificates
+                                     list-packages list-package-versions
+                                     list-policies list-policy-principals
+                                     list-policy-versions
+                                     list-principal-policies
+                                     list-principal-things
+                                     list-principal-things-v2
+                                     list-provisioning-templates
+                                     list-provisioning-template-versions
+                                     list-related-resources-for-audit-finding
+                                     list-role-aliases
+                                     list-sbom-validation-results
+                                     list-scheduled-audits
+                                     list-security-profiles
+                                     list-security-profiles-for-target
+                                     list-streams list-tags-for-resource
+                                     list-targets-for-policy
+                                     list-targets-for-security-profile
+                                     list-thing-groups
+                                     list-thing-groups-for-thing
+                                     list-thing-principals
+                                     list-thing-principals-v2
+                                     list-thing-registration-task-reports
+                                     list-thing-registration-tasks list-things
+                                     list-things-in-billing-group
+                                     list-things-in-thing-group
+                                     list-thing-types
+                                     list-topic-rule-destinations
+                                     list-topic-rules list-v2logging-levels
+                                     list-violation-events
+                                     put-verification-state-on-violation
+                                     register-cacertificate
+                                     register-certificate
+                                     register-certificate-without-ca
+                                     register-thing reject-certificate-transfer
+                                     remove-thing-from-billing-group
+                                     remove-thing-from-thing-group
+                                     replace-topic-rule search-index
+                                     set-default-authorizer
+                                     set-default-policy-version
+                                     set-logging-options set-v2logging-level
+                                     set-v2logging-options
+                                     start-audit-mitigation-actions-task
+                                     start-detect-mitigation-actions-task
+                                     start-on-demand-audit-task
+                                     start-thing-registration-task
+                                     stop-thing-registration-task tag-resource
+                                     test-authorization test-invoke-authorizer
+                                     transfer-certificate untag-resource
+                                     update-account-audit-configuration
+                                     update-audit-suppression update-authorizer
+                                     update-billing-group update-cacertificate
+                                     update-certificate
+                                     update-certificate-provider update-command
+                                     update-custom-metric update-dimension
+                                     update-domain-configuration
+                                     update-dynamic-thing-group
+                                     update-encryption-configuration
+                                     update-event-configurations
+                                     update-fleet-metric
+                                     update-indexing-configuration update-job
+                                     update-mitigation-action update-package
+                                     update-package-configuration
+                                     update-package-version
+                                     update-provisioning-template
+                                     update-role-alias update-scheduled-audit
+                                     update-security-profile update-stream
+                                     update-thing update-thing-group
+                                     update-thing-groups-for-thing
+                                     update-thing-type
+                                     update-topic-rule-destination
+                                     validate-security-profile-behaviors)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "IoT")
                                       ("arnNamespace" . "iot")

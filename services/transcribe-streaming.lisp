@@ -81,6 +81,12 @@
 (smithy/sdk/service:define-service transcribe :shape-name "Transcribe" :version
                                    "2017-10-26" :title
                                    "Amazon Transcribe Streaming Service"
+                                   :operations
+                                   '(get-medical-scribe-stream
+                                     start-call-analytics-stream-transcription
+                                     start-medical-scribe-stream
+                                     start-medical-stream-transcription
+                                     start-stream-transcription)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Transcribe Streaming")

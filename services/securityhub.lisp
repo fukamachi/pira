@@ -1033,6 +1033,91 @@
 (smithy/sdk/service:define-service security-hub-apiservice :shape-name
                                    "SecurityHubAPIService" :version
                                    "2018-10-26" :title "AWS SecurityHub"
+                                   :operations
+                                   '(accept-administrator-invitation
+                                     accept-invitation
+                                     batch-delete-automation-rules
+                                     batch-disable-standards
+                                     batch-enable-standards
+                                     batch-get-automation-rules
+                                     batch-get-configuration-policy-associations
+                                     batch-get-security-controls
+                                     batch-get-standards-control-associations
+                                     batch-import-findings
+                                     batch-update-automation-rules
+                                     batch-update-findings
+                                     batch-update-findings-v2
+                                     batch-update-standards-control-associations
+                                     connector-registrations-v2
+                                     create-action-target create-aggregator-v2
+                                     create-automation-rule
+                                     create-automation-rule-v2
+                                     create-configuration-policy
+                                     create-connector-v2
+                                     create-finding-aggregator create-insight
+                                     create-members create-ticket-v2
+                                     decline-invitations delete-action-target
+                                     delete-aggregator-v2
+                                     delete-automation-rule-v2
+                                     delete-configuration-policy
+                                     delete-connector-v2
+                                     delete-finding-aggregator delete-insight
+                                     delete-invitations delete-members
+                                     describe-action-targets describe-hub
+                                     describe-organization-configuration
+                                     describe-products describe-products-v2
+                                     describe-security-hub-v2
+                                     describe-standards
+                                     describe-standards-controls
+                                     disable-import-findings-for-product
+                                     disable-organization-admin-account
+                                     disable-security-hub
+                                     disable-security-hub-v2
+                                     disassociate-from-administrator-account
+                                     disassociate-from-master-account
+                                     disassociate-members
+                                     enable-import-findings-for-product
+                                     enable-organization-admin-account
+                                     enable-security-hub enable-security-hub-v2
+                                     get-administrator-account
+                                     get-aggregator-v2 get-automation-rule-v2
+                                     get-configuration-policy
+                                     get-configuration-policy-association
+                                     get-connector-v2 get-enabled-standards
+                                     get-finding-aggregator get-finding-history
+                                     get-findings get-finding-statistics-v2
+                                     get-findings-v2 get-insight-results
+                                     get-insights get-invitations-count
+                                     get-master-account get-members
+                                     get-resources-statistics-v2
+                                     get-resources-v2
+                                     get-security-control-definition
+                                     invite-members list-aggregators-v2
+                                     list-automation-rules
+                                     list-automation-rules-v2
+                                     list-configuration-policies
+                                     list-configuration-policy-associations
+                                     list-connectors-v2
+                                     list-enabled-products-for-import
+                                     list-finding-aggregators list-invitations
+                                     list-members
+                                     list-organization-admin-accounts
+                                     list-security-control-definitions
+                                     list-standards-control-associations
+                                     list-tags-for-resource
+                                     start-configuration-policy-association
+                                     start-configuration-policy-disassociation
+                                     tag-resource untag-resource
+                                     update-action-target update-aggregator-v2
+                                     update-automation-rule-v2
+                                     update-configuration-policy
+                                     update-connector-v2
+                                     update-finding-aggregator update-findings
+                                     update-insight
+                                     update-organization-configuration
+                                     update-security-control
+                                     update-security-hub-configuration
+                                     update-standards-control)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SecurityHub")

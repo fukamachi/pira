@@ -69,6 +69,43 @@
 (smithy/sdk/service:define-service amazon-neptune-dataplane :shape-name
                                    "AmazonNeptuneDataplane" :version
                                    "2023-08-01" :title "Amazon NeptuneData"
+                                   :operations
+                                   '(cancel-gremlin-query cancel-loader-job
+                                     cancel-mldata-processing-job
+                                     cancel-mlmodel-training-job
+                                     cancel-mlmodel-transform-job
+                                     cancel-open-cypher-query create-mlendpoint
+                                     delete-mlendpoint
+                                     delete-propertygraph-statistics
+                                     delete-sparql-statistics
+                                     execute-fast-reset
+                                     execute-gremlin-explain-query
+                                     execute-gremlin-profile-query
+                                     execute-gremlin-query
+                                     execute-open-cypher-explain-query
+                                     execute-open-cypher-query
+                                     get-engine-status get-gremlin-query-status
+                                     get-loader-job-status
+                                     get-mldata-processing-job get-mlendpoint
+                                     get-mlmodel-training-job
+                                     get-mlmodel-transform-job
+                                     get-open-cypher-query-status
+                                     get-propertygraph-statistics
+                                     get-propertygraph-stream
+                                     get-propertygraph-summary
+                                     get-rdfgraph-summary get-sparql-statistics
+                                     get-sparql-stream list-gremlin-queries
+                                     list-loader-jobs
+                                     list-mldata-processing-jobs
+                                     list-mlendpoints
+                                     list-mlmodel-training-jobs
+                                     list-mlmodel-transform-jobs
+                                     list-open-cypher-queries
+                                     manage-propertygraph-statistics
+                                     manage-sparql-statistics start-loader-job
+                                     start-mldata-processing-job
+                                     start-mlmodel-training-job
+                                     start-mlmodel-transform-job)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "neptunedata")

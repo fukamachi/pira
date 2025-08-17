@@ -130,7 +130,52 @@
 (common-lisp:in-package #:pira/robomaker)
 
 (smithy/sdk/service:define-service robomaker :shape-name "robomaker" :version
-                                   "2018-06-29" :title "AWS RoboMaker" :traits
+                                   "2018-06-29" :title "AWS RoboMaker"
+                                   :operations
+                                   '(batch-delete-worlds
+                                     batch-describe-simulation-job
+                                     cancel-deployment-job
+                                     cancel-simulation-job
+                                     cancel-simulation-job-batch
+                                     cancel-world-export-job
+                                     cancel-world-generation-job
+                                     create-deployment-job create-fleet
+                                     create-robot create-robot-application
+                                     create-robot-application-version
+                                     create-simulation-application
+                                     create-simulation-application-version
+                                     create-simulation-job
+                                     create-world-export-job
+                                     create-world-generation-job
+                                     create-world-template delete-fleet
+                                     delete-robot delete-robot-application
+                                     delete-simulation-application
+                                     delete-world-template deregister-robot
+                                     describe-deployment-job describe-fleet
+                                     describe-robot describe-robot-application
+                                     describe-simulation-application
+                                     describe-simulation-job
+                                     describe-simulation-job-batch
+                                     describe-world describe-world-export-job
+                                     describe-world-generation-job
+                                     describe-world-template
+                                     get-world-template-body
+                                     list-deployment-jobs list-fleets
+                                     list-robot-applications list-robots
+                                     list-simulation-applications
+                                     list-simulation-job-batches
+                                     list-simulation-jobs
+                                     list-tags-for-resource
+                                     list-world-export-jobs
+                                     list-world-generation-jobs list-worlds
+                                     list-world-templates register-robot
+                                     restart-simulation-job
+                                     start-simulation-job-batch
+                                     sync-deployment-job tag-resource
+                                     untag-resource update-robot-application
+                                     update-simulation-application
+                                     update-world-template)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "RoboMaker")
                                       ("arnNamespace" . "robomaker")
                                       ("cloudFormationName" . "RoboMaker")

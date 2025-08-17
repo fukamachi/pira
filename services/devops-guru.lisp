@@ -221,6 +221,32 @@
 (smithy/sdk/service:define-service capstone-control-plane-service :shape-name
                                    "CapstoneControlPlaneService" :version
                                    "2020-12-01" :title "Amazon DevOps Guru"
+                                   :operations
+                                   '(add-notification-channel delete-insight
+                                     describe-account-health
+                                     describe-account-overview describe-anomaly
+                                     describe-event-sources-config
+                                     describe-feedback describe-insight
+                                     describe-organization-health
+                                     describe-organization-overview
+                                     describe-organization-resource-collection-health
+                                     describe-resource-collection-health
+                                     describe-service-integration
+                                     get-cost-estimation
+                                     get-resource-collection
+                                     list-anomalies-for-insight
+                                     list-anomalous-log-groups list-events
+                                     list-insights list-monitored-resources
+                                     list-notification-channels
+                                     list-organization-insights
+                                     list-recommendations put-feedback
+                                     remove-notification-channel
+                                     search-insights
+                                     search-organization-insights
+                                     start-cost-estimation
+                                     update-event-sources-config
+                                     update-resource-collection
+                                     update-service-integration)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "DevOps Guru")

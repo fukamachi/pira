@@ -287,6 +287,11 @@
                                    "IotManagedIntegrations" :version
                                    "2025-03-03" :title
                                    "Managed integrations for AWS IoT Device Management"
+                                   :operations
+                                   '(get-custom-endpoint list-tags-for-resource
+                                     register-custom-endpoint
+                                     send-connector-event tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoT Managed Integrations")

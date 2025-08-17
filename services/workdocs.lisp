@@ -103,9 +103,36 @@
 
 (smithy/sdk/service:define-service awsgorilla-boy-service :shape-name
                                    "AWSGorillaBoyService" :version "2016-05-01"
-                                   :title "Amazon WorkDocs" :xml-namespace
-                                   '(:uri "https://aws.amazon.com/api/v1/"
-                                     :prefix common-lisp:nil)
+                                   :title "Amazon WorkDocs" :operations
+                                   '(abort-document-version-upload
+                                     activate-user add-resource-permissions
+                                     create-comment create-custom-metadata
+                                     create-folder create-labels
+                                     create-notification-subscription
+                                     create-user deactivate-user delete-comment
+                                     delete-custom-metadata delete-document
+                                     delete-document-version delete-folder
+                                     delete-folder-contents delete-labels
+                                     delete-notification-subscription
+                                     delete-user describe-activities
+                                     describe-comments
+                                     describe-document-versions
+                                     describe-folder-contents describe-groups
+                                     describe-notification-subscriptions
+                                     describe-resource-permissions
+                                     describe-root-folders describe-users
+                                     get-current-user get-document
+                                     get-document-path get-document-version
+                                     get-folder get-folder-path get-resources
+                                     initiate-document-version-upload
+                                     remove-all-resource-permissions
+                                     remove-resource-permission
+                                     restore-document-versions search-resources
+                                     update-document update-document-version
+                                     update-folder update-user)
+                                   :xml-namespace
+                                   (:uri "https://aws.amazon.com/api/v1/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "WorkDocs")
                                       ("arnNamespace" . "workdocs")

@@ -69,6 +69,21 @@
 (smithy/sdk/service:define-service awshealth-20160804 :shape-name
                                    "AWSHealth_20160804" :version "2016-08-04"
                                    :title "AWS Health APIs and Notifications"
+                                   :operations
+                                   '(describe-affected-accounts-for-organization
+                                     describe-affected-entities
+                                     describe-affected-entities-for-organization
+                                     describe-entity-aggregates
+                                     describe-entity-aggregates-for-organization
+                                     describe-event-aggregates
+                                     describe-event-details
+                                     describe-event-details-for-organization
+                                     describe-events
+                                     describe-events-for-organization
+                                     describe-event-types
+                                     describe-health-service-status-for-organization
+                                     disable-health-service-access-for-organization
+                                     enable-health-service-access-for-organization)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Health")
                                       ("arnNamespace" . "health")

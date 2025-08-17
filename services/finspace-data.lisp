@@ -68,7 +68,27 @@
 
 (smithy/sdk/service:define-service awshabanero-public-api :shape-name
                                    "AWSHabaneroPublicAPI" :version "2020-07-13"
-                                   :title "FinSpace Public API" :traits
+                                   :title "FinSpace Public API" :operations
+                                   '(associate-user-to-permission-group
+                                     create-changeset create-dataset
+                                     create-data-view create-permission-group
+                                     create-user delete-dataset
+                                     delete-permission-group disable-user
+                                     disassociate-user-from-permission-group
+                                     enable-user get-changeset get-dataset
+                                     get-data-view
+                                     get-external-data-view-access-details
+                                     get-permission-group
+                                     get-programmatic-access-credentials
+                                     get-user get-working-location
+                                     list-changesets list-datasets
+                                     list-data-views list-permission-groups
+                                     list-permission-groups-by-user list-users
+                                     list-users-by-permission-group
+                                     reset-user-password update-changeset
+                                     update-dataset update-permission-group
+                                     update-user)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "finspace data")
                                       ("arnNamespace" . "finspace-api")

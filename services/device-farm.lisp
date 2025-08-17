@@ -124,10 +124,56 @@
 
 (smithy/sdk/service:define-service device-farm-20150623 :shape-name
                                    "DeviceFarm_20150623" :version "2015-06-23"
-                                   :title "AWS Device Farm" :xml-namespace
-                                   '(:uri
-                                     "http://devicefarm.amazonaws.com/doc/2015-06-23/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS Device Farm" :operations
+                                   '(create-device-pool create-instance-profile
+                                     create-network-profile create-project
+                                     create-remote-access-session
+                                     create-test-grid-project
+                                     create-test-grid-url create-upload
+                                     create-vpceconfiguration
+                                     delete-device-pool delete-instance-profile
+                                     delete-network-profile delete-project
+                                     delete-remote-access-session delete-run
+                                     delete-test-grid-project delete-upload
+                                     delete-vpceconfiguration
+                                     get-account-settings get-device
+                                     get-device-instance get-device-pool
+                                     get-device-pool-compatibility
+                                     get-instance-profile get-job
+                                     get-network-profile get-offering-status
+                                     get-project get-remote-access-session
+                                     get-run get-suite get-test
+                                     get-test-grid-project
+                                     get-test-grid-session get-upload
+                                     get-vpceconfiguration
+                                     install-to-remote-access-session
+                                     list-artifacts list-device-instances
+                                     list-device-pools list-devices
+                                     list-instance-profiles list-jobs
+                                     list-network-profiles
+                                     list-offering-promotions list-offerings
+                                     list-offering-transactions list-projects
+                                     list-remote-access-sessions list-runs
+                                     list-samples list-suites
+                                     list-tags-for-resource
+                                     list-test-grid-projects
+                                     list-test-grid-session-actions
+                                     list-test-grid-session-artifacts
+                                     list-test-grid-sessions list-tests
+                                     list-unique-problems list-uploads
+                                     list-vpceconfigurations purchase-offering
+                                     renew-offering schedule-run stop-job
+                                     stop-remote-access-session stop-run
+                                     tag-resource untag-resource
+                                     update-device-instance update-device-pool
+                                     update-instance-profile
+                                     update-network-profile update-project
+                                     update-test-grid-project update-upload
+                                     update-vpceconfiguration)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://devicefarm.amazonaws.com/doc/2015-06-23/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Device Farm")

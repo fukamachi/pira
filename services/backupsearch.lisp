@@ -36,6 +36,11 @@
 (smithy/sdk/service:define-service cryo-backup-search-service :shape-name
                                    "CryoBackupSearchService" :version
                                    "2018-05-10" :title "AWS Backup Search"
+                                   :operations
+                                   '(list-search-job-backups
+                                     list-search-job-results
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :errors
                                    '(access-denied-exception
                                      internal-server-exception

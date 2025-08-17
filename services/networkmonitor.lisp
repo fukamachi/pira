@@ -19,7 +19,11 @@
 
 (smithy/sdk/service:define-service network-monitor :shape-name "NetworkMonitor"
                                    :version "2023-08-01" :title
-                                   "Amazon CloudWatch Network Monitor" :traits
+                                   "Amazon CloudWatch Network Monitor"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "NetworkMonitor")
                                       ("arnNamespace" . "networkmonitor")

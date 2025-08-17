@@ -155,10 +155,13 @@
 
 (smithy/sdk/service:define-service pipes :shape-name "Pipes" :version
                                    "2015-10-07" :title
-                                   "Amazon EventBridge Pipes" :xml-namespace
-                                   '(:uri
-                                     "http://events.amazonaws.com/doc/2015-10-07"
-                                     :prefix common-lisp:nil)
+                                   "Amazon EventBridge Pipes" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://events.amazonaws.com/doc/2015-10-07"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Pipes")
                                       ("arnNamespace" . "pipes")

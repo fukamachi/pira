@@ -164,7 +164,26 @@
 
 (smithy/sdk/service:define-service mail-manager-svc :shape-name
                                    "MailManagerSvc" :version "2023-10-17"
-                                   :title "MailManager" :traits
+                                   :title "MailManager" :operations
+                                   '(create-address-list-import-job
+                                     deregister-member-from-address-list
+                                     get-address-list-import-job
+                                     get-archive-export get-archive-message
+                                     get-archive-message-content
+                                     get-archive-search
+                                     get-archive-search-results
+                                     get-member-of-address-list
+                                     list-address-list-import-jobs
+                                     list-archive-exports list-archive-searches
+                                     list-members-of-address-list
+                                     list-tags-for-resource
+                                     register-member-to-address-list
+                                     start-address-list-import-job
+                                     start-archive-export start-archive-search
+                                     stop-address-list-import-job
+                                     stop-archive-export stop-archive-search
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MailManager")
                                       ("cloudFormationName" . "SES")

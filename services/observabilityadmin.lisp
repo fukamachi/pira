@@ -46,6 +46,27 @@
                                    "ObservabilityAdmin" :version "2018-05-10"
                                    :title
                                    "CloudWatch Observability Admin Service"
+                                   :operations
+                                   '(create-telemetry-rule
+                                     create-telemetry-rule-for-organization
+                                     delete-telemetry-rule
+                                     delete-telemetry-rule-for-organization
+                                     get-telemetry-evaluation-status
+                                     get-telemetry-evaluation-status-for-organization
+                                     get-telemetry-rule
+                                     get-telemetry-rule-for-organization
+                                     list-resource-telemetry
+                                     list-resource-telemetry-for-organization
+                                     list-tags-for-resource
+                                     list-telemetry-rules
+                                     list-telemetry-rules-for-organization
+                                     start-telemetry-evaluation
+                                     start-telemetry-evaluation-for-organization
+                                     stop-telemetry-evaluation
+                                     stop-telemetry-evaluation-for-organization
+                                     tag-resource untag-resource
+                                     update-telemetry-rule
+                                     update-telemetry-rule-for-organization)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ObservabilityAdmin")

@@ -20,7 +20,11 @@
 
 (smithy/sdk/service:define-service keyspaces-streams :shape-name
                                    "KeyspacesStreams" :version "2024-09-09"
-                                   :title "Amazon Keyspaces Streams" :traits
+                                   :title "Amazon Keyspaces Streams"
+                                   :operations
+                                   '(get-records get-shard-iterator get-stream
+                                     list-streams)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "KeyspacesStreams")
                                       ("arnNamespace" . "cassandra")

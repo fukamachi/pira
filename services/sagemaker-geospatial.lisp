@@ -113,6 +113,9 @@
                                    "SageMakerGeospatial" :version "2020-05-27"
                                    :title
                                    "Amazon SageMaker geospatial capabilities"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SageMaker Geospatial")

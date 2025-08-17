@@ -7,7 +7,8 @@
 (smithy/sdk/service:define-service awsmarketplace-reporting :shape-name
                                    "AWSMarketplaceReporting" :version
                                    "2018-05-10" :title
-                                   "AWS Marketplace Reporting Service" :traits
+                                   "AWS Marketplace Reporting Service"
+                                   :operations 'common-lisp:nil :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Marketplace Reporting")
                                       ("cloudTrailEventSource"

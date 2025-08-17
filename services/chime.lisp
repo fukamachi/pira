@@ -88,7 +88,49 @@
 
 (smithy/sdk/service:define-service ucbuzz-console-service :shape-name
                                    "UCBuzzConsoleService" :version "2018-05-01"
-                                   :title "Amazon Chime" :traits
+                                   :title "Amazon Chime" :operations
+                                   '(associate-phone-number-with-user
+                                     associate-signin-delegate-groups-with-account
+                                     batch-create-room-membership
+                                     batch-delete-phone-number
+                                     batch-suspend-user batch-unsuspend-user
+                                     batch-update-phone-number
+                                     batch-update-user create-account
+                                     create-bot create-meeting-dial-out
+                                     create-phone-number-order create-room
+                                     create-room-membership create-user
+                                     delete-account delete-events-configuration
+                                     delete-phone-number delete-room
+                                     delete-room-membership
+                                     disassociate-phone-number-from-user
+                                     disassociate-signin-delegate-groups-from-account
+                                     get-account get-account-settings get-bot
+                                     get-events-configuration
+                                     get-global-settings get-phone-number
+                                     get-phone-number-order
+                                     get-phone-number-settings
+                                     get-retention-settings get-room get-user
+                                     get-user-settings invite-users
+                                     list-accounts list-bots
+                                     list-phone-number-orders
+                                     list-phone-numbers list-room-memberships
+                                     list-rooms
+                                     list-supported-phone-number-countries
+                                     list-users logout-user
+                                     put-events-configuration
+                                     put-retention-settings
+                                     redact-conversation-message
+                                     redact-room-message
+                                     regenerate-security-token
+                                     reset-personal-pin restore-phone-number
+                                     search-available-phone-numbers
+                                     update-account update-account-settings
+                                     update-bot update-global-settings
+                                     update-phone-number
+                                     update-phone-number-settings update-room
+                                     update-room-membership update-user
+                                     update-user-settings)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Chime")
                                       ("arnNamespace" . "chime")
                                       ("cloudFormationName" . "Chime")

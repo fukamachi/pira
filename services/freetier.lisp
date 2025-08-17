@@ -17,7 +17,12 @@
 
 (smithy/sdk/service:define-service awsfree-tier-service :shape-name
                                    "AWSFreeTierService" :version "2023-09-07"
-                                   :title "AWS Free Tier" :traits
+                                   :title "AWS Free Tier" :operations
+                                   '(get-account-activity
+                                     get-account-plan-state get-free-tier-usage
+                                     list-account-activities
+                                     upgrade-account-plan)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "FreeTier")
                                       ("endpointPrefix" . "freetier"))
                                      ("aws.auth#sigv4" ("name" . "freetier"))

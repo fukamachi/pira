@@ -93,10 +93,53 @@
 
 (smithy/sdk/service:define-service ops-works-20130218 :shape-name
                                    "OpsWorks_20130218" :version "2013-02-18"
-                                   :title "AWS OpsWorks" :xml-namespace
-                                   '(:uri
-                                     "http://opsworks.amazonaws.com/doc/2013-02-18/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS OpsWorks" :operations
+                                   '(assign-instance assign-volume
+                                     associate-elastic-ip
+                                     attach-elastic-load-balancer clone-stack
+                                     create-app create-deployment
+                                     create-instance create-layer create-stack
+                                     create-user-profile delete-app
+                                     delete-instance delete-layer delete-stack
+                                     delete-user-profile deregister-ecs-cluster
+                                     deregister-elastic-ip deregister-instance
+                                     deregister-rds-db-instance
+                                     deregister-volume describe-agent-versions
+                                     describe-apps describe-commands
+                                     describe-deployments describe-ecs-clusters
+                                     describe-elastic-ips
+                                     describe-elastic-load-balancers
+                                     describe-instances describe-layers
+                                     describe-load-based-auto-scaling
+                                     describe-my-user-profile
+                                     describe-operating-systems
+                                     describe-permissions describe-raid-arrays
+                                     describe-rds-db-instances
+                                     describe-service-errors
+                                     describe-stack-provisioning-parameters
+                                     describe-stacks describe-stack-summary
+                                     describe-time-based-auto-scaling
+                                     describe-user-profiles describe-volumes
+                                     detach-elastic-load-balancer
+                                     disassociate-elastic-ip
+                                     get-hostname-suggestion grant-access
+                                     list-tags reboot-instance
+                                     register-ecs-cluster register-elastic-ip
+                                     register-instance register-rds-db-instance
+                                     register-volume
+                                     set-load-based-auto-scaling set-permission
+                                     set-time-based-auto-scaling start-instance
+                                     start-stack stop-instance stop-stack
+                                     tag-resource unassign-instance
+                                     unassign-volume untag-resource update-app
+                                     update-elastic-ip update-instance
+                                     update-layer update-my-user-profile
+                                     update-rds-db-instance update-stack
+                                     update-user-profile update-volume)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://opsworks.amazonaws.com/doc/2013-02-18/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "OpsWorks")
                                       ("arnNamespace" . "opsworks")

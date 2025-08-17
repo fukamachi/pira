@@ -182,11 +182,53 @@
 (smithy/sdk/service:define-service amazon-elasticsearch-service2015 :shape-name
                                    "AmazonElasticsearchService2015" :version
                                    "2015-01-01" :title
-                                   "Amazon Elasticsearch Service"
+                                   "Amazon Elasticsearch Service" :operations
+                                   '(accept-inbound-cross-cluster-search-connection
+                                     add-tags associate-package
+                                     authorize-vpc-endpoint-access
+                                     cancel-domain-config-change
+                                     cancel-elasticsearch-service-software-update
+                                     create-elasticsearch-domain
+                                     create-outbound-cross-cluster-search-connection
+                                     create-package create-vpc-endpoint
+                                     delete-elasticsearch-domain
+                                     delete-elasticsearch-service-role
+                                     delete-inbound-cross-cluster-search-connection
+                                     delete-outbound-cross-cluster-search-connection
+                                     delete-package delete-vpc-endpoint
+                                     describe-domain-auto-tunes
+                                     describe-domain-change-progress
+                                     describe-elasticsearch-domain
+                                     describe-elasticsearch-domain-config
+                                     describe-elasticsearch-domains
+                                     describe-elasticsearch-instance-type-limits
+                                     describe-inbound-cross-cluster-search-connections
+                                     describe-outbound-cross-cluster-search-connections
+                                     describe-packages
+                                     describe-reserved-elasticsearch-instance-offerings
+                                     describe-reserved-elasticsearch-instances
+                                     describe-vpc-endpoints dissociate-package
+                                     get-compatible-elasticsearch-versions
+                                     get-package-version-history
+                                     get-upgrade-history get-upgrade-status
+                                     list-domain-names list-domains-for-package
+                                     list-elasticsearch-instance-types
+                                     list-elasticsearch-versions
+                                     list-packages-for-domain list-tags
+                                     list-vpc-endpoint-access
+                                     list-vpc-endpoints
+                                     list-vpc-endpoints-for-domain
+                                     purchase-reserved-elasticsearch-instance-offering
+                                     reject-inbound-cross-cluster-search-connection
+                                     remove-tags revoke-vpc-endpoint-access
+                                     start-elasticsearch-service-software-update
+                                     update-elasticsearch-domain-config
+                                     update-package update-vpc-endpoint
+                                     upgrade-elasticsearch-domain)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://es.amazonaws.com/doc/2015-01-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://es.amazonaws.com/doc/2015-01-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elasticsearch Service")

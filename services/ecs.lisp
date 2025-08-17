@@ -224,11 +224,51 @@
                                    :shape-name
                                    "AmazonEC2ContainerServiceV20141113"
                                    :version "2014-11-13" :title
-                                   "Amazon EC2 Container Service"
+                                   "Amazon EC2 Container Service" :operations
+                                   '(create-capacity-provider create-cluster
+                                     create-service create-task-set
+                                     delete-account-setting delete-attributes
+                                     delete-capacity-provider delete-cluster
+                                     delete-service delete-task-definitions
+                                     delete-task-set
+                                     deregister-container-instance
+                                     deregister-task-definition
+                                     describe-capacity-providers
+                                     describe-clusters
+                                     describe-container-instances
+                                     describe-service-deployments
+                                     describe-service-revisions
+                                     describe-services describe-task-definition
+                                     describe-tasks describe-task-sets
+                                     discover-poll-endpoint execute-command
+                                     get-task-protection list-account-settings
+                                     list-attributes list-clusters
+                                     list-container-instances
+                                     list-service-deployments list-services
+                                     list-services-by-namespace
+                                     list-tags-for-resource
+                                     list-task-definition-families
+                                     list-task-definitions list-tasks
+                                     put-account-setting
+                                     put-account-setting-default put-attributes
+                                     put-cluster-capacity-providers
+                                     register-container-instance
+                                     register-task-definition run-task
+                                     start-task stop-service-deployment
+                                     stop-task submit-attachment-state-changes
+                                     submit-container-state-change
+                                     submit-task-state-change tag-resource
+                                     untag-resource update-capacity-provider
+                                     update-cluster update-cluster-settings
+                                     update-container-agent
+                                     update-container-instances-state
+                                     update-service
+                                     update-service-primary-task-set
+                                     update-task-protection update-task-set)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://ecs.amazonaws.com/doc/2014-11-13/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://ecs.amazonaws.com/doc/2014-11-13/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "ECS")
                                       ("arnNamespace" . "ecs")

@@ -339,10 +339,148 @@
 (smithy/sdk/service:define-service amazon-rdsv19 :shape-name "AmazonRDSv19"
                                    :version "2014-10-31" :title
                                    "Amazon Relational Database Service"
+                                   :operations
+                                   '(add-role-to-dbcluster
+                                     add-role-to-dbinstance
+                                     add-source-identifier-to-subscription
+                                     add-tags-to-resource
+                                     apply-pending-maintenance-action
+                                     authorize-dbsecurity-group-ingress
+                                     backtrack-dbcluster cancel-export-task
+                                     copy-dbcluster-parameter-group
+                                     copy-dbcluster-snapshot
+                                     copy-dbparameter-group copy-dbsnapshot
+                                     copy-option-group
+                                     create-blue-green-deployment
+                                     create-custom-dbengine-version
+                                     create-dbcluster create-dbcluster-endpoint
+                                     create-dbcluster-parameter-group
+                                     create-dbcluster-snapshot
+                                     create-dbinstance
+                                     create-dbinstance-read-replica
+                                     create-dbparameter-group create-dbproxy
+                                     create-dbproxy-endpoint
+                                     create-dbsecurity-group
+                                     create-dbshard-group create-dbsnapshot
+                                     create-dbsubnet-group
+                                     create-event-subscription
+                                     create-global-cluster create-integration
+                                     create-option-group create-tenant-database
+                                     delete-blue-green-deployment
+                                     delete-custom-dbengine-version
+                                     delete-dbcluster
+                                     delete-dbcluster-automated-backup
+                                     delete-dbcluster-endpoint
+                                     delete-dbcluster-parameter-group
+                                     delete-dbcluster-snapshot
+                                     delete-dbinstance
+                                     delete-dbinstance-automated-backup
+                                     delete-dbparameter-group delete-dbproxy
+                                     delete-dbproxy-endpoint
+                                     delete-dbsecurity-group
+                                     delete-dbshard-group delete-dbsnapshot
+                                     delete-dbsubnet-group
+                                     delete-event-subscription
+                                     delete-global-cluster delete-integration
+                                     delete-option-group delete-tenant-database
+                                     deregister-dbproxy-targets
+                                     describe-account-attributes
+                                     describe-blue-green-deployments
+                                     describe-certificates
+                                     describe-dbcluster-automated-backups
+                                     describe-dbcluster-backtracks
+                                     describe-dbcluster-endpoints
+                                     describe-dbcluster-parameter-groups
+                                     describe-dbcluster-parameters
+                                     describe-dbclusters
+                                     describe-dbcluster-snapshot-attributes
+                                     describe-dbcluster-snapshots
+                                     describe-dbengine-versions
+                                     describe-dbinstance-automated-backups
+                                     describe-dbinstances describe-dblog-files
+                                     describe-dbmajor-engine-versions
+                                     describe-dbparameter-groups
+                                     describe-dbparameters describe-dbproxies
+                                     describe-dbproxy-endpoints
+                                     describe-dbproxy-target-groups
+                                     describe-dbproxy-targets
+                                     describe-dbrecommendations
+                                     describe-dbsecurity-groups
+                                     describe-dbshard-groups
+                                     describe-dbsnapshot-attributes
+                                     describe-dbsnapshots
+                                     describe-dbsnapshot-tenant-databases
+                                     describe-dbsubnet-groups
+                                     describe-engine-default-cluster-parameters
+                                     describe-engine-default-parameters
+                                     describe-event-categories describe-events
+                                     describe-event-subscriptions
+                                     describe-export-tasks
+                                     describe-global-clusters
+                                     describe-integrations
+                                     describe-option-group-options
+                                     describe-option-groups
+                                     describe-orderable-dbinstance-options
+                                     describe-pending-maintenance-actions
+                                     describe-reserved-dbinstances
+                                     describe-reserved-dbinstances-offerings
+                                     describe-source-regions
+                                     describe-tenant-databases
+                                     describe-valid-dbinstance-modifications
+                                     disable-http-endpoint
+                                     download-dblog-file-portion
+                                     enable-http-endpoint failover-dbcluster
+                                     failover-global-cluster
+                                     list-tags-for-resource
+                                     modify-activity-stream modify-certificates
+                                     modify-current-dbcluster-capacity
+                                     modify-custom-dbengine-version
+                                     modify-dbcluster modify-dbcluster-endpoint
+                                     modify-dbcluster-parameter-group
+                                     modify-dbcluster-snapshot-attribute
+                                     modify-dbinstance modify-dbparameter-group
+                                     modify-dbproxy modify-dbproxy-endpoint
+                                     modify-dbproxy-target-group
+                                     modify-dbrecommendation
+                                     modify-dbshard-group modify-dbsnapshot
+                                     modify-dbsnapshot-attribute
+                                     modify-dbsubnet-group
+                                     modify-event-subscription
+                                     modify-global-cluster modify-integration
+                                     modify-option-group modify-tenant-database
+                                     promote-read-replica
+                                     promote-read-replica-dbcluster
+                                     purchase-reserved-dbinstances-offering
+                                     reboot-dbcluster reboot-dbinstance
+                                     reboot-dbshard-group
+                                     register-dbproxy-targets
+                                     remove-from-global-cluster
+                                     remove-role-from-dbcluster
+                                     remove-role-from-dbinstance
+                                     remove-source-identifier-from-subscription
+                                     remove-tags-from-resource
+                                     reset-dbcluster-parameter-group
+                                     reset-dbparameter-group
+                                     restore-dbcluster-from-s3
+                                     restore-dbcluster-from-snapshot
+                                     restore-dbcluster-to-point-in-time
+                                     restore-dbinstance-from-dbsnapshot
+                                     restore-dbinstance-from-s3
+                                     restore-dbinstance-to-point-in-time
+                                     revoke-dbsecurity-group-ingress
+                                     start-activity-stream start-dbcluster
+                                     start-dbinstance
+                                     start-dbinstance-automated-backups-replication
+                                     start-export-task stop-activity-stream
+                                     stop-dbcluster stop-dbinstance
+                                     stop-dbinstance-automated-backups-replication
+                                     switchover-blue-green-deployment
+                                     switchover-global-cluster
+                                     switchover-read-replica)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://rds.amazonaws.com/doc/2014-10-31/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://rds.amazonaws.com/doc/2014-10-31/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "RDS")
                                       ("arnNamespace" . "rds")

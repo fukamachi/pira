@@ -302,10 +302,73 @@
 
 (smithy/sdk/service:define-service cloud-formation :shape-name "CloudFormation"
                                    :version "2010-05-15" :title
-                                   "AWS CloudFormation" :xml-namespace
-                                   '(:uri
-                                     "http://cloudformation.amazonaws.com/doc/2010-05-15/"
-                                     :prefix common-lisp:nil)
+                                   "AWS CloudFormation" :operations
+                                   '(activate-organizations-access
+                                     activate-type
+                                     batch-describe-type-configurations
+                                     cancel-update-stack
+                                     continue-update-rollback create-change-set
+                                     create-generated-template create-stack
+                                     create-stack-instances
+                                     create-stack-refactor create-stack-set
+                                     deactivate-organizations-access
+                                     deactivate-type delete-change-set
+                                     delete-generated-template delete-stack
+                                     delete-stack-instances delete-stack-set
+                                     deregister-type describe-account-limits
+                                     describe-change-set
+                                     describe-change-set-hooks
+                                     describe-generated-template
+                                     describe-organizations-access
+                                     describe-publisher describe-resource-scan
+                                     describe-stack-drift-detection-status
+                                     describe-stack-events
+                                     describe-stack-instance
+                                     describe-stack-refactor
+                                     describe-stack-resource
+                                     describe-stack-resource-drifts
+                                     describe-stack-resources describe-stacks
+                                     describe-stack-set
+                                     describe-stack-set-operation describe-type
+                                     describe-type-registration
+                                     detect-stack-drift
+                                     detect-stack-resource-drift
+                                     detect-stack-set-drift
+                                     estimate-template-cost execute-change-set
+                                     execute-stack-refactor
+                                     get-generated-template get-stack-policy
+                                     get-template get-template-summary
+                                     import-stacks-to-stack-set
+                                     list-change-sets list-exports
+                                     list-generated-templates list-hook-results
+                                     list-imports
+                                     list-resource-scan-related-resources
+                                     list-resource-scan-resources
+                                     list-resource-scans
+                                     list-stack-instance-resource-drifts
+                                     list-stack-instances
+                                     list-stack-refactor-actions
+                                     list-stack-refactors list-stack-resources
+                                     list-stacks
+                                     list-stack-set-auto-deployment-targets
+                                     list-stack-set-operation-results
+                                     list-stack-set-operations list-stack-sets
+                                     list-type-registrations list-types
+                                     list-type-versions publish-type
+                                     record-handler-progress register-publisher
+                                     register-type rollback-stack
+                                     set-stack-policy set-type-configuration
+                                     set-type-default-version signal-resource
+                                     start-resource-scan
+                                     stop-stack-set-operation test-type
+                                     update-generated-template update-stack
+                                     update-stack-instances update-stack-set
+                                     update-termination-protection
+                                     validate-template)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://cloudformation.amazonaws.com/doc/2010-05-15/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudFormation")

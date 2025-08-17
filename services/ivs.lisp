@@ -150,7 +150,34 @@
 (smithy/sdk/service:define-service amazon-interactive-video-service :shape-name
                                    "AmazonInteractiveVideoService" :version
                                    "2020-07-14" :title
-                                   "Amazon Interactive Video Service" :traits
+                                   "Amazon Interactive Video Service"
+                                   :operations
+                                   '(batch-get-channel batch-get-stream-key
+                                     batch-start-viewer-session-revocation
+                                     create-channel
+                                     create-playback-restriction-policy
+                                     create-recording-configuration
+                                     create-stream-key delete-channel
+                                     delete-playback-key-pair
+                                     delete-playback-restriction-policy
+                                     delete-recording-configuration
+                                     delete-stream-key get-channel
+                                     get-playback-key-pair
+                                     get-playback-restriction-policy
+                                     get-recording-configuration get-stream
+                                     get-stream-key get-stream-session
+                                     import-playback-key-pair list-channels
+                                     list-playback-key-pairs
+                                     list-playback-restriction-policies
+                                     list-recording-configurations
+                                     list-stream-keys list-streams
+                                     list-stream-sessions
+                                     list-tags-for-resource put-metadata
+                                     start-viewer-session-revocation
+                                     stop-stream tag-resource untag-resource
+                                     update-channel
+                                     update-playback-restriction-policy)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "ivs")
                                       ("arnNamespace" . "ivs")
                                       ("cloudFormationName" . "IVS")

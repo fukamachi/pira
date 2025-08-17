@@ -101,7 +101,26 @@
 
 (smithy/sdk/service:define-service outposts-olaf-service :shape-name
                                    "OutpostsOlafService" :version "2019-12-03"
-                                   :title "AWS Outposts" :traits
+                                   :title "AWS Outposts" :operations
+                                   '(cancel-capacity-task cancel-order
+                                     create-order create-outpost create-site
+                                     delete-outpost delete-site
+                                     get-capacity-task get-catalog-item
+                                     get-connection get-order get-outpost
+                                     get-outpost-billing-information
+                                     get-outpost-instance-types
+                                     get-outpost-supported-instance-types
+                                     get-site get-site-address
+                                     list-asset-instances list-assets
+                                     list-blocking-instances-for-capacity-task
+                                     list-capacity-tasks list-catalog-items
+                                     list-orders list-outposts list-sites
+                                     list-tags-for-resource start-capacity-task
+                                     start-connection tag-resource
+                                     untag-resource update-outpost update-site
+                                     update-site-address
+                                     update-site-rack-physical-properties)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Outposts")
                                       ("arnNamespace" . "outposts")
                                       ("cloudFormationName" . "Outposts")

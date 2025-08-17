@@ -163,6 +163,24 @@
                                    "AWSMigrationHubStrategyRecommendation"
                                    :version "2020-02-19" :title
                                    "Migration Hub Strategy Recommendations"
+                                   :operations
+                                   '(get-application-component-details
+                                     get-application-component-strategies
+                                     get-assessment get-import-file-task
+                                     get-latest-assessment-id
+                                     get-portfolio-preferences
+                                     get-portfolio-summary
+                                     get-recommendation-report-details
+                                     get-server-details get-server-strategies
+                                     list-analyzable-servers
+                                     list-application-components
+                                     list-collectors list-import-file-task
+                                     list-servers put-portfolio-preferences
+                                     start-assessment start-import-file-task
+                                     start-recommendation-report-generation
+                                     stop-assessment
+                                     update-application-component-config
+                                     update-server-config)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MigrationHubStrategy")

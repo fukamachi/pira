@@ -223,7 +223,50 @@
 (smithy/sdk/service:define-service awsinsights-index-service :shape-name
                                    "AWSInsightsIndexService" :version
                                    "2017-10-25" :title
-                                   "AWS Cost Explorer Service" :traits
+                                   "AWS Cost Explorer Service" :operations
+                                   '(create-anomaly-monitor
+                                     create-anomaly-subscription
+                                     create-cost-category-definition
+                                     delete-anomaly-monitor
+                                     delete-anomaly-subscription
+                                     delete-cost-category-definition
+                                     describe-cost-category-definition
+                                     get-anomalies get-anomaly-monitors
+                                     get-anomaly-subscriptions
+                                     get-approximate-usage-records
+                                     get-commitment-purchase-analysis
+                                     get-cost-and-usage
+                                     get-cost-and-usage-comparisons
+                                     get-cost-and-usage-with-resources
+                                     get-cost-categories
+                                     get-cost-comparison-drivers
+                                     get-cost-forecast get-dimension-values
+                                     get-reservation-coverage
+                                     get-reservation-purchase-recommendation
+                                     get-reservation-utilization
+                                     get-rightsizing-recommendation
+                                     get-savings-plan-purchase-recommendation-details
+                                     get-savings-plans-coverage
+                                     get-savings-plans-purchase-recommendation
+                                     get-savings-plans-utilization
+                                     get-savings-plans-utilization-details
+                                     get-tags get-usage-forecast
+                                     list-commitment-purchase-analyses
+                                     list-cost-allocation-tag-backfill-history
+                                     list-cost-allocation-tags
+                                     list-cost-category-definitions
+                                     list-savings-plans-purchase-recommendation-generation
+                                     list-tags-for-resource
+                                     provide-anomaly-feedback
+                                     start-commitment-purchase-analysis
+                                     start-cost-allocation-tag-backfill
+                                     start-savings-plans-purchase-recommendation-generation
+                                     tag-resource untag-resource
+                                     update-anomaly-monitor
+                                     update-anomaly-subscription
+                                     update-cost-allocation-tags-status
+                                     update-cost-category-definition)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Cost Explorer")
                                       ("arnNamespace" . "ce")

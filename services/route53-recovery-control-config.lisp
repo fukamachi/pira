@@ -41,6 +41,21 @@
                                    "Route53RecoveryControlConfig" :version
                                    "2020-11-02" :title
                                    "AWS Route53 Recovery Control Config"
+                                   :operations
+                                   '(create-cluster create-control-panel
+                                     create-routing-control create-safety-rule
+                                     delete-cluster delete-control-panel
+                                     delete-routing-control delete-safety-rule
+                                     describe-cluster describe-control-panel
+                                     describe-routing-control
+                                     describe-safety-rule get-resource-policy
+                                     list-associated-route53health-checks
+                                     list-clusters list-control-panels
+                                     list-routing-controls list-safety-rules
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-cluster
+                                     update-control-panel
+                                     update-routing-control update-safety-rule)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId"

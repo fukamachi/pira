@@ -170,7 +170,82 @@
 
 (smithy/sdk/service:define-service work-mail-service :shape-name
                                    "WorkMailService" :version "2017-10-01"
-                                   :title "Amazon WorkMail" :traits
+                                   :title "Amazon WorkMail" :operations
+                                   '(associate-delegate-to-resource
+                                     associate-member-to-group
+                                     assume-impersonation-role
+                                     cancel-mailbox-export-job create-alias
+                                     create-availability-configuration
+                                     create-group
+                                     create-identity-center-application
+                                     create-impersonation-role
+                                     create-mobile-device-access-rule
+                                     create-organization create-resource
+                                     create-user delete-access-control-rule
+                                     delete-alias
+                                     delete-availability-configuration
+                                     delete-email-monitoring-configuration
+                                     delete-group
+                                     delete-identity-center-application
+                                     delete-identity-provider-configuration
+                                     delete-impersonation-role
+                                     delete-mailbox-permissions
+                                     delete-mobile-device-access-override
+                                     delete-mobile-device-access-rule
+                                     delete-organization
+                                     delete-personal-access-token
+                                     delete-resource delete-retention-policy
+                                     delete-user deregister-from-work-mail
+                                     deregister-mail-domain
+                                     describe-email-monitoring-configuration
+                                     describe-entity describe-group
+                                     describe-identity-provider-configuration
+                                     describe-inbound-dmarc-settings
+                                     describe-mailbox-export-job
+                                     describe-organization describe-resource
+                                     describe-user
+                                     disassociate-delegate-from-resource
+                                     disassociate-member-from-group
+                                     get-access-control-effect
+                                     get-default-retention-policy
+                                     get-impersonation-role
+                                     get-impersonation-role-effect
+                                     get-mailbox-details get-mail-domain
+                                     get-mobile-device-access-effect
+                                     get-mobile-device-access-override
+                                     get-personal-access-token-metadata
+                                     list-access-control-rules list-aliases
+                                     list-availability-configurations
+                                     list-group-members list-groups
+                                     list-groups-for-entity
+                                     list-impersonation-roles
+                                     list-mailbox-export-jobs
+                                     list-mailbox-permissions list-mail-domains
+                                     list-mobile-device-access-overrides
+                                     list-mobile-device-access-rules
+                                     list-organizations
+                                     list-personal-access-tokens
+                                     list-resource-delegates list-resources
+                                     list-tags-for-resource list-users
+                                     put-access-control-rule
+                                     put-email-monitoring-configuration
+                                     put-identity-provider-configuration
+                                     put-inbound-dmarc-settings
+                                     put-mailbox-permissions
+                                     put-mobile-device-access-override
+                                     put-retention-policy register-mail-domain
+                                     register-to-work-mail reset-password
+                                     start-mailbox-export-job tag-resource
+                                     test-availability-configuration
+                                     untag-resource
+                                     update-availability-configuration
+                                     update-default-mail-domain update-group
+                                     update-impersonation-role
+                                     update-mailbox-quota
+                                     update-mobile-device-access-rule
+                                     update-primary-email-address
+                                     update-resource update-user)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "WorkMail")
                                       ("arnNamespace" . "workmail")
                                       ("cloudFormationName" . "WorkMail")

@@ -113,7 +113,47 @@
 (smithy/sdk/service:define-service chime-messaging-service :shape-name
                                    "ChimeMessagingService" :version
                                    "2021-05-15" :title
-                                   "Amazon Chime SDK Messaging" :traits
+                                   "Amazon Chime SDK Messaging" :operations
+                                   '(associate-channel-flow
+                                     batch-create-channel-membership
+                                     channel-flow-callback create-channel
+                                     create-channel-ban create-channel-flow
+                                     create-channel-membership
+                                     create-channel-moderator delete-channel
+                                     delete-channel-ban delete-channel-flow
+                                     delete-channel-membership
+                                     delete-channel-message
+                                     delete-channel-moderator
+                                     delete-messaging-streaming-configurations
+                                     describe-channel describe-channel-ban
+                                     describe-channel-flow
+                                     describe-channel-membership
+                                     describe-channel-membership-for-app-instance-user
+                                     describe-channel-moderated-by-app-instance-user
+                                     describe-channel-moderator
+                                     disassociate-channel-flow
+                                     get-channel-membership-preferences
+                                     get-channel-message
+                                     get-channel-message-status
+                                     get-messaging-session-endpoint
+                                     get-messaging-streaming-configurations
+                                     list-channel-bans list-channel-flows
+                                     list-channel-memberships
+                                     list-channel-memberships-for-app-instance-user
+                                     list-channel-messages
+                                     list-channel-moderators list-channels
+                                     list-channels-associated-with-channel-flow
+                                     list-channels-moderated-by-app-instance-user
+                                     list-sub-channels list-tags-for-resource
+                                     put-channel-expiration-settings
+                                     put-channel-membership-preferences
+                                     put-messaging-streaming-configurations
+                                     redact-channel-message search-channels
+                                     send-channel-message tag-resource
+                                     untag-resource update-channel
+                                     update-channel-flow update-channel-message
+                                     update-channel-read-marker)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Chime SDK Messaging")
                                       ("arnNamespace" . "chime")

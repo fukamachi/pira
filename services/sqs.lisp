@@ -51,7 +51,22 @@
 
 (smithy/sdk/service:define-service amazon-sqs :shape-name "AmazonSQS" :version
                                    "2012-11-05" :title
-                                   "Amazon Simple Queue Service" :traits
+                                   "Amazon Simple Queue Service" :operations
+                                   '(add-permission cancel-message-move-task
+                                     change-message-visibility
+                                     change-message-visibility-batch
+                                     create-queue delete-message
+                                     delete-message-batch delete-queue
+                                     get-queue-attributes get-queue-url
+                                     list-dead-letter-source-queues
+                                     list-message-move-tasks list-queues
+                                     list-queue-tags purge-queue
+                                     receive-message remove-permission
+                                     send-message send-message-batch
+                                     set-queue-attributes
+                                     start-message-move-task tag-queue
+                                     untag-queue)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "SQS")
                                       ("arnNamespace" . "sqs")
                                       ("cloudFormationName" . "SQS")

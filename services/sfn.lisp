@@ -125,10 +125,35 @@
 
 (smithy/sdk/service:define-service awsstep-functions :shape-name
                                    "AWSStepFunctions" :version "2016-11-23"
-                                   :title "AWS Step Functions" :xml-namespace
-                                   '(:uri
-                                     "http://swf.amazonaws.com/doc/2015-07-20/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS Step Functions" :operations
+                                   '(create-activity create-state-machine
+                                     create-state-machine-alias delete-activity
+                                     delete-state-machine
+                                     delete-state-machine-alias
+                                     delete-state-machine-version
+                                     describe-activity describe-execution
+                                     describe-map-run describe-state-machine
+                                     describe-state-machine-alias
+                                     describe-state-machine-for-execution
+                                     get-activity-task get-execution-history
+                                     list-activities list-executions
+                                     list-map-runs list-state-machine-aliases
+                                     list-state-machines
+                                     list-state-machine-versions
+                                     list-tags-for-resource
+                                     publish-state-machine-version
+                                     redrive-execution send-task-failure
+                                     send-task-heartbeat send-task-success
+                                     start-execution start-sync-execution
+                                     stop-execution tag-resource test-state
+                                     untag-resource update-map-run
+                                     update-state-machine
+                                     update-state-machine-alias
+                                     validate-state-machine-definition)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://swf.amazonaws.com/doc/2015-07-20/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SFN")
                                       ("arnNamespace" . "states")

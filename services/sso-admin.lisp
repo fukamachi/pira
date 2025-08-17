@@ -162,7 +162,68 @@
 
 (smithy/sdk/service:define-service swbexternal-service :shape-name
                                    "SWBExternalService" :version "2020-07-20"
-                                   :title "AWS Single Sign-On Admin" :traits
+                                   :title "AWS Single Sign-On Admin"
+                                   :operations
+                                   '(attach-customer-managed-policy-reference-to-permission-set
+                                     attach-managed-policy-to-permission-set
+                                     create-account-assignment
+                                     create-application
+                                     create-application-assignment
+                                     create-instance
+                                     create-instance-access-control-attribute-configuration
+                                     create-permission-set
+                                     create-trusted-token-issuer
+                                     delete-account-assignment
+                                     delete-application
+                                     delete-application-assignment
+                                     delete-inline-policy-from-permission-set
+                                     delete-instance
+                                     delete-instance-access-control-attribute-configuration
+                                     delete-permissions-boundary-from-permission-set
+                                     delete-permission-set
+                                     delete-trusted-token-issuer
+                                     describe-account-assignment-creation-status
+                                     describe-account-assignment-deletion-status
+                                     describe-application
+                                     describe-application-assignment
+                                     describe-application-provider
+                                     describe-instance
+                                     describe-instance-access-control-attribute-configuration
+                                     describe-permission-set
+                                     describe-permission-set-provisioning-status
+                                     describe-trusted-token-issuer
+                                     detach-customer-managed-policy-reference-from-permission-set
+                                     detach-managed-policy-from-permission-set
+                                     get-application-assignment-configuration
+                                     get-inline-policy-for-permission-set
+                                     get-permissions-boundary-for-permission-set
+                                     list-account-assignment-creation-status
+                                     list-account-assignment-deletion-status
+                                     list-account-assignments
+                                     list-account-assignments-for-principal
+                                     list-accounts-for-provisioned-permission-set
+                                     list-application-assignments
+                                     list-application-assignments-for-principal
+                                     list-application-providers
+                                     list-applications
+                                     list-customer-managed-policy-references-in-permission-set
+                                     list-instances
+                                     list-managed-policies-in-permission-set
+                                     list-permission-set-provisioning-status
+                                     list-permission-sets
+                                     list-permission-sets-provisioned-to-account
+                                     list-tags-for-resource
+                                     list-trusted-token-issuers
+                                     provision-permission-set
+                                     put-application-assignment-configuration
+                                     put-inline-policy-to-permission-set
+                                     put-permissions-boundary-to-permission-set
+                                     tag-resource untag-resource
+                                     update-application update-instance
+                                     update-instance-access-control-attribute-configuration
+                                     update-permission-set
+                                     update-trusted-token-issuer)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "SSO Admin")
                                       ("arnNamespace" . "sso")
                                       ("cloudFormationName" . "SSO")

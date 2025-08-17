@@ -182,7 +182,7 @@
 (smithy/sdk/service:define-service amazon-bedrock-frontend-service :shape-name
                                    "AmazonBedrockFrontendService" :version
                                    "2023-09-30" :title "Amazon Bedrock Runtime"
-                                   :traits
+                                   :operations 'common-lisp:nil :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Bedrock Runtime")
                                       ("endpointPrefix" . "bedrock-runtime")

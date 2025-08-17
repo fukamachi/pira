@@ -43,7 +43,13 @@
                                    :shape-name
                                    "AnyScaleScalingPlannerFrontendService"
                                    :version "2018-01-06" :title
-                                   "AWS Auto Scaling Plans" :traits
+                                   "AWS Auto Scaling Plans" :operations
+                                   '(create-scaling-plan delete-scaling-plan
+                                     describe-scaling-plan-resources
+                                     describe-scaling-plans
+                                     get-scaling-plan-resource-forecast-data
+                                     update-scaling-plan)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Auto Scaling Plans")
                                       ("arnNamespace" . "autoscaling-plans")

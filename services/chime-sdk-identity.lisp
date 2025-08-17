@@ -58,7 +58,37 @@
 
 (smithy/sdk/service:define-service chime-identity-service :shape-name
                                    "ChimeIdentityService" :version "2021-04-20"
-                                   :title "Amazon Chime SDK Identity" :traits
+                                   :title "Amazon Chime SDK Identity"
+                                   :operations
+                                   '(create-app-instance
+                                     create-app-instance-admin
+                                     create-app-instance-bot
+                                     create-app-instance-user
+                                     delete-app-instance
+                                     delete-app-instance-admin
+                                     delete-app-instance-bot
+                                     delete-app-instance-user
+                                     deregister-app-instance-user-endpoint
+                                     describe-app-instance
+                                     describe-app-instance-admin
+                                     describe-app-instance-bot
+                                     describe-app-instance-user
+                                     describe-app-instance-user-endpoint
+                                     get-app-instance-retention-settings
+                                     list-app-instance-admins
+                                     list-app-instance-bots list-app-instances
+                                     list-app-instance-user-endpoints
+                                     list-app-instance-users
+                                     list-tags-for-resource
+                                     put-app-instance-retention-settings
+                                     put-app-instance-user-expiration-settings
+                                     register-app-instance-user-endpoint
+                                     tag-resource untag-resource
+                                     update-app-instance
+                                     update-app-instance-bot
+                                     update-app-instance-user
+                                     update-app-instance-user-endpoint)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Chime SDK Identity")
                                       ("arnNamespace" . "chime")

@@ -264,6 +264,15 @@
 (smithy/sdk/service:define-service io-tautobahn-control-plane :shape-name
                                    "IoTAutobahnControlPlane" :version
                                    "2021-06-17" :title "AWS IoT FleetWise"
+                                   :operations
+                                   '(batch-create-vehicle batch-update-vehicle
+                                     get-encryption-configuration
+                                     get-logging-options
+                                     get-register-account-status
+                                     get-vehicle-status list-tags-for-resource
+                                     put-encryption-configuration
+                                     put-logging-options register-account
+                                     tag-resource untag-resource)
                                    :errors '(internal-server-exception) :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoTFleetWise")

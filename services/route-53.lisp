@@ -154,10 +154,69 @@
 
 (smithy/sdk/service:define-service awsdns-v20130401 :shape-name
                                    "AWSDnsV20130401" :version "2013-04-01"
-                                   :title "Amazon Route 53" :xml-namespace
-                                   '(:uri
-                                     "https://route53.amazonaws.com/doc/2013-04-01/"
-                                     :prefix common-lisp:nil)
+                                   :title "Amazon Route 53" :operations
+                                   '(activate-key-signing-key
+                                     associate-vpcwith-hosted-zone
+                                     change-cidr-collection
+                                     change-resource-record-sets
+                                     change-tags-for-resource
+                                     create-cidr-collection create-health-check
+                                     create-hosted-zone create-key-signing-key
+                                     create-query-logging-config
+                                     create-reusable-delegation-set
+                                     create-traffic-policy
+                                     create-traffic-policy-instance
+                                     create-traffic-policy-version
+                                     create-vpcassociation-authorization
+                                     deactivate-key-signing-key
+                                     delete-cidr-collection delete-health-check
+                                     delete-hosted-zone delete-key-signing-key
+                                     delete-query-logging-config
+                                     delete-reusable-delegation-set
+                                     delete-traffic-policy
+                                     delete-traffic-policy-instance
+                                     delete-vpcassociation-authorization
+                                     disable-hosted-zone-dnssec
+                                     disassociate-vpcfrom-hosted-zone
+                                     enable-hosted-zone-dnssec
+                                     get-account-limit get-change
+                                     get-checker-ip-ranges get-dnssec
+                                     get-geo-location get-health-check
+                                     get-health-check-count
+                                     get-health-check-last-failure-reason
+                                     get-health-check-status get-hosted-zone
+                                     get-hosted-zone-count
+                                     get-hosted-zone-limit
+                                     get-query-logging-config
+                                     get-reusable-delegation-set
+                                     get-reusable-delegation-set-limit
+                                     get-traffic-policy
+                                     get-traffic-policy-instance
+                                     get-traffic-policy-instance-count
+                                     list-cidr-blocks list-cidr-collections
+                                     list-cidr-locations list-geo-locations
+                                     list-health-checks list-hosted-zones
+                                     list-hosted-zones-by-name
+                                     list-hosted-zones-by-vpc
+                                     list-query-logging-configs
+                                     list-resource-record-sets
+                                     list-reusable-delegation-sets
+                                     list-tags-for-resource
+                                     list-tags-for-resources
+                                     list-traffic-policies
+                                     list-traffic-policy-instances
+                                     list-traffic-policy-instances-by-hosted-zone
+                                     list-traffic-policy-instances-by-policy
+                                     list-traffic-policy-versions
+                                     list-vpcassociation-authorizations
+                                     test-dnsanswer update-health-check
+                                     update-hosted-zone-comment
+                                     update-traffic-policy-comment
+                                     update-traffic-policy-instance)
+                                   :xml-namespace
+                                   (:uri
+                                    "https://route53.amazonaws.com/doc/2013-04-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Route 53")
                                       ("arnNamespace" . "route53")

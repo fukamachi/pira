@@ -193,7 +193,52 @@
                                    :shape-name
                                    "WellArchitectedApiServiceLambda" :version
                                    "2020-03-31" :title
-                                   "AWS Well-Architected Tool" :traits
+                                   "AWS Well-Architected Tool" :operations
+                                   '(associate-lenses associate-profiles
+                                     create-lens-share create-lens-version
+                                     create-milestone create-profile
+                                     create-profile-share
+                                     create-review-template
+                                     create-template-share create-workload
+                                     create-workload-share delete-lens
+                                     delete-lens-share delete-profile
+                                     delete-profile-share
+                                     delete-review-template
+                                     delete-template-share delete-workload
+                                     delete-workload-share disassociate-lenses
+                                     disassociate-profiles export-lens
+                                     get-answer get-consolidated-report
+                                     get-global-settings get-lens
+                                     get-lens-review get-lens-review-report
+                                     get-lens-version-difference get-milestone
+                                     get-profile get-profile-template
+                                     get-review-template
+                                     get-review-template-answer
+                                     get-review-template-lens-review
+                                     get-workload import-lens list-answers
+                                     list-check-details list-check-summaries
+                                     list-lenses list-lens-review-improvements
+                                     list-lens-reviews list-lens-shares
+                                     list-milestones list-notifications
+                                     list-profile-notifications list-profiles
+                                     list-profile-shares
+                                     list-review-template-answers
+                                     list-review-templates
+                                     list-share-invitations
+                                     list-tags-for-resource
+                                     list-template-shares list-workloads
+                                     list-workload-shares tag-resource
+                                     untag-resource update-answer
+                                     update-global-settings update-integration
+                                     update-lens-review update-profile
+                                     update-review-template
+                                     update-review-template-answer
+                                     update-review-template-lens-review
+                                     update-share-invitation update-workload
+                                     update-workload-share upgrade-lens-review
+                                     upgrade-profile-version
+                                     upgrade-review-template-lens-review)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "WellArchitected")
                                       ("arnNamespace" . "wellarchitected")

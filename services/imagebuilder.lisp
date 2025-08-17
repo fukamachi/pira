@@ -254,7 +254,66 @@
 
 (smithy/sdk/service:define-service imagebuilder :shape-name "imagebuilder"
                                    :version "2019-12-02" :title
-                                   "EC2 Image Builder" :traits
+                                   "EC2 Image Builder" :operations
+                                   '(cancel-image-creation
+                                     cancel-lifecycle-execution
+                                     create-component create-container-recipe
+                                     create-distribution-configuration
+                                     create-image create-image-pipeline
+                                     create-image-recipe
+                                     create-infrastructure-configuration
+                                     create-lifecycle-policy create-workflow
+                                     delete-component delete-container-recipe
+                                     delete-distribution-configuration
+                                     delete-image delete-image-pipeline
+                                     delete-image-recipe
+                                     delete-infrastructure-configuration
+                                     delete-lifecycle-policy delete-workflow
+                                     get-component get-component-policy
+                                     get-container-recipe
+                                     get-container-recipe-policy
+                                     get-distribution-configuration get-image
+                                     get-image-pipeline get-image-policy
+                                     get-image-recipe get-image-recipe-policy
+                                     get-infrastructure-configuration
+                                     get-lifecycle-execution
+                                     get-lifecycle-policy
+                                     get-marketplace-resource get-workflow
+                                     get-workflow-execution
+                                     get-workflow-step-execution
+                                     import-component import-disk-image
+                                     import-vm-image
+                                     list-component-build-versions
+                                     list-components list-container-recipes
+                                     list-distribution-configurations
+                                     list-image-build-versions
+                                     list-image-packages
+                                     list-image-pipeline-images
+                                     list-image-pipelines list-image-recipes
+                                     list-images
+                                     list-image-scan-finding-aggregations
+                                     list-image-scan-findings
+                                     list-infrastructure-configurations
+                                     list-lifecycle-execution-resources
+                                     list-lifecycle-executions
+                                     list-lifecycle-policies
+                                     list-tags-for-resource
+                                     list-waiting-workflow-steps
+                                     list-workflow-build-versions
+                                     list-workflow-executions list-workflows
+                                     list-workflow-step-executions
+                                     put-component-policy
+                                     put-container-recipe-policy
+                                     put-image-policy put-image-recipe-policy
+                                     send-workflow-step-action
+                                     start-image-pipeline-execution
+                                     start-resource-state-update tag-resource
+                                     untag-resource
+                                     update-distribution-configuration
+                                     update-image-pipeline
+                                     update-infrastructure-configuration
+                                     update-lifecycle-policy)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "imagebuilder")
                                       ("arnNamespace" . "imagebuilder")

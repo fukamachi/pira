@@ -259,10 +259,49 @@
 
 (smithy/sdk/service:define-service dynamo-db-20120810 :shape-name
                                    "DynamoDB_20120810" :version "2012-08-10"
-                                   :title "Amazon DynamoDB" :xml-namespace
-                                   '(:uri
-                                     "http://dynamodb.amazonaws.com/doc/2012-08-10/"
-                                     :prefix common-lisp:nil)
+                                   :title "Amazon DynamoDB" :operations
+                                   '(batch-execute-statement batch-get-item
+                                     batch-write-item create-backup
+                                     create-global-table create-table
+                                     delete-backup delete-item
+                                     delete-resource-policy delete-table
+                                     describe-backup
+                                     describe-continuous-backups
+                                     describe-contributor-insights
+                                     describe-endpoints describe-export
+                                     describe-global-table
+                                     describe-global-table-settings
+                                     describe-import
+                                     describe-kinesis-streaming-destination
+                                     describe-limits describe-table
+                                     describe-table-replica-auto-scaling
+                                     describe-time-to-live
+                                     disable-kinesis-streaming-destination
+                                     enable-kinesis-streaming-destination
+                                     execute-statement execute-transaction
+                                     export-table-to-point-in-time get-item
+                                     get-resource-policy import-table
+                                     list-backups list-contributor-insights
+                                     list-exports list-global-tables
+                                     list-imports list-tables
+                                     list-tags-of-resource put-item
+                                     put-resource-policy query
+                                     restore-table-from-backup
+                                     restore-table-to-point-in-time scan
+                                     tag-resource transact-get-items
+                                     transact-write-items untag-resource
+                                     update-continuous-backups
+                                     update-contributor-insights
+                                     update-global-table
+                                     update-global-table-settings update-item
+                                     update-kinesis-streaming-destination
+                                     update-table
+                                     update-table-replica-auto-scaling
+                                     update-time-to-live)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://dynamodb.amazonaws.com/doc/2012-08-10/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#clientEndpointDiscovery"
                                       ("operation"

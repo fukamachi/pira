@@ -75,6 +75,16 @@
                                    "AmazonInteractiveVideoServiceChat" :version
                                    "2020-07-14" :title
                                    "Amazon Interactive Video Service Chat"
+                                   :operations
+                                   '(create-chat-token
+                                     create-logging-configuration create-room
+                                     delete-logging-configuration
+                                     delete-message delete-room disconnect-user
+                                     get-logging-configuration get-room
+                                     list-logging-configurations list-rooms
+                                     list-tags-for-resource send-event
+                                     tag-resource untag-resource
+                                     update-logging-configuration update-room)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "ivschat")
                                       ("arnNamespace" . "ivschat")

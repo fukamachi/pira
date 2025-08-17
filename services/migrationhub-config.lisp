@@ -15,7 +15,12 @@
                                    :shape-name
                                    "AWSMigrationHubMultiAccountService"
                                    :version "2019-06-30" :title
-                                   "AWS Migration Hub Config" :traits
+                                   "AWS Migration Hub Config" :operations
+                                   '(create-home-region-control
+                                     delete-home-region-control
+                                     describe-home-region-controls
+                                     get-home-region)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MigrationHub Config")
                                       ("arnNamespace" . "mgh")

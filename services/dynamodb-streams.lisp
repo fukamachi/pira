@@ -27,10 +27,13 @@
 (smithy/sdk/service:define-service dynamo-dbstreams-20120810 :shape-name
                                    "DynamoDBStreams_20120810" :version
                                    "2012-08-10" :title
-                                   "Amazon DynamoDB Streams" :xml-namespace
-                                   '(:uri
-                                     "http://dynamodb.amazonaws.com/doc/2012-08-10/"
-                                     :prefix common-lisp:nil)
+                                   "Amazon DynamoDB Streams" :operations
+                                   '(describe-stream get-records
+                                     get-shard-iterator list-streams)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://dynamodb.amazonaws.com/doc/2012-08-10/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "DynamoDB Streams")

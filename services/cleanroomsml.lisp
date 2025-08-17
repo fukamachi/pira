@@ -187,6 +187,14 @@
 (smithy/sdk/service:define-service awsstark-control-service :shape-name
                                    "AWSStarkControlService" :version
                                    "2023-09-06" :title "AWS Clean Rooms ML"
+                                   :operations
+                                   '(list-collaboration-configured-model-algorithm-associations
+                                     list-collaboration-mlinput-channels
+                                     list-collaboration-trained-model-export-jobs
+                                     list-collaboration-trained-model-inference-jobs
+                                     list-collaboration-trained-models
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CleanRoomsML")

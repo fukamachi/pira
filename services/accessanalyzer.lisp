@@ -219,7 +219,27 @@
 
 (smithy/sdk/service:define-service access-analyzer :shape-name "AccessAnalyzer"
                                    :version "2019-11-01" :title
-                                   "Access Analyzer" :traits
+                                   "Access Analyzer" :operations
+                                   '(apply-archive-rule
+                                     cancel-policy-generation
+                                     check-access-not-granted
+                                     check-no-new-access check-no-public-access
+                                     create-access-preview
+                                     generate-finding-recommendation
+                                     get-access-preview get-analyzed-resource
+                                     get-finding get-finding-recommendation
+                                     get-findings-statistics get-finding-v2
+                                     get-generated-policy
+                                     list-access-preview-findings
+                                     list-access-previews
+                                     list-analyzed-resources list-findings
+                                     list-findings-v2 list-policy-generations
+                                     list-tags-for-resource
+                                     start-policy-generation
+                                     start-resource-scan tag-resource
+                                     untag-resource update-findings
+                                     validate-policy)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "AccessAnalyzer")
                                       ("arnNamespace" . "access-analyzer")

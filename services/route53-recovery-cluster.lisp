@@ -17,7 +17,13 @@
 
 (smithy/sdk/service:define-service toggle-customer-api :shape-name
                                    "ToggleCustomerAPI" :version "2019-12-02"
-                                   :title "Route53 Recovery Cluster" :traits
+                                   :title "Route53 Recovery Cluster"
+                                   :operations
+                                   '(get-routing-control-state
+                                     list-routing-controls
+                                     update-routing-control-state
+                                     update-routing-control-states)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Route53 Recovery Cluster")
                                       ("arnNamespace"

@@ -89,10 +89,49 @@
 (smithy/sdk/service:define-service awsorganizations-v20161128 :shape-name
                                    "AWSOrganizationsV20161128" :version
                                    "2016-11-28" :title "AWS Organizations"
+                                   :operations
+                                   '(accept-handshake attach-policy
+                                     cancel-handshake close-account
+                                     create-account create-gov-cloud-account
+                                     create-organization
+                                     create-organizational-unit create-policy
+                                     decline-handshake delete-organization
+                                     delete-organizational-unit delete-policy
+                                     delete-resource-policy
+                                     deregister-delegated-administrator
+                                     describe-account
+                                     describe-create-account-status
+                                     describe-effective-policy
+                                     describe-handshake describe-organization
+                                     describe-organizational-unit
+                                     describe-policy describe-resource-policy
+                                     detach-policy disable-awsservice-access
+                                     disable-policy-type enable-all-features
+                                     enable-awsservice-access
+                                     enable-policy-type
+                                     invite-account-to-organization
+                                     leave-organization list-accounts
+                                     list-accounts-for-parent
+                                     list-awsservice-access-for-organization
+                                     list-children list-create-account-status
+                                     list-delegated-administrators
+                                     list-delegated-services-for-account
+                                     list-handshakes-for-account
+                                     list-handshakes-for-organization
+                                     list-organizational-units-for-parent
+                                     list-parents list-policies
+                                     list-policies-for-target list-roots
+                                     list-tags-for-resource
+                                     list-targets-for-policy move-account
+                                     put-resource-policy
+                                     register-delegated-administrator
+                                     remove-account-from-organization
+                                     tag-resource untag-resource
+                                     update-organizational-unit update-policy)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://organizations.amazonaws.com/doc/2016-11-28/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://organizations.amazonaws.com/doc/2016-11-28/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Organizations")

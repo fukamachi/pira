@@ -83,7 +83,10 @@
 (common-lisp:in-package #:pira/rum)
 
 (smithy/sdk/service:define-service rum :shape-name "RUM" :version "2018-05-10"
-                                   :title "CloudWatch RUM" :traits
+                                   :title "CloudWatch RUM" :operations
+                                   '(list-tags-for-resource put-rum-events
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "RUM")
                                       ("arnNamespace" . "rum")
                                       ("serviceName" . "rum"))

@@ -48,7 +48,18 @@
 
 (smithy/sdk/service:define-service certificate-manager :shape-name
                                    "CertificateManager" :version "2015-12-08"
-                                   :title "AWS Certificate Manager" :traits
+                                   :title "AWS Certificate Manager" :operations
+                                   '(add-tags-to-certificate delete-certificate
+                                     describe-certificate export-certificate
+                                     get-account-configuration get-certificate
+                                     import-certificate list-certificates
+                                     list-tags-for-certificate
+                                     put-account-configuration
+                                     remove-tags-from-certificate
+                                     renew-certificate request-certificate
+                                     resend-validation-email revoke-certificate
+                                     update-certificate-options)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "ACM")
                                       ("endpointPrefix" . "acm")
                                       ("arnNamespace" . "acm")

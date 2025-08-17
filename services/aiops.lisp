@@ -30,7 +30,10 @@
 (common-lisp:in-package #:pira/aiops)
 
 (smithy/sdk/service:define-service aiops :shape-name "AIOps" :version
-                                   "2018-05-10" :title "AWS AI Ops" :errors
+                                   "2018-05-10" :title "AWS AI Ops" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :errors
                                    '(access-denied-exception conflict-exception
                                      forbidden-exception
                                      internal-server-exception

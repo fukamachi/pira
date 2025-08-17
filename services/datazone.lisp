@@ -484,6 +484,84 @@
 
 (smithy/sdk/service:define-service data-zone :shape-name "DataZone" :version
                                    "2018-05-10" :title "Amazon DataZone"
+                                   :operations
+                                   '(accept-predictions
+                                     accept-subscription-request
+                                     add-entity-owner add-policy-grant
+                                     associate-environment-role
+                                     cancel-subscription create-asset-filter
+                                     create-connection create-environment
+                                     create-environment-action
+                                     create-environment-profile
+                                     create-group-profile
+                                     create-listing-change-set create-project
+                                     create-project-membership
+                                     create-project-profile
+                                     create-subscription-grant
+                                     create-subscription-request
+                                     create-subscription-target
+                                     create-user-profile delete-asset-filter
+                                     delete-connection delete-environment
+                                     delete-environment-action
+                                     delete-environment-profile delete-project
+                                     delete-project-membership
+                                     delete-project-profile
+                                     delete-subscription-grant
+                                     delete-subscription-request
+                                     delete-subscription-target
+                                     delete-time-series-data-points
+                                     disassociate-environment-role
+                                     get-asset-filter get-connection
+                                     get-environment get-environment-action
+                                     get-environment-blueprint
+                                     get-environment-credentials
+                                     get-environment-profile get-group-profile
+                                     get-iam-portal-login-url get-job-run
+                                     get-lineage-event get-lineage-node
+                                     get-project get-project-profile
+                                     get-subscription get-subscription-grant
+                                     get-subscription-request-details
+                                     get-subscription-target
+                                     get-time-series-data-point
+                                     get-user-profile list-asset-filters
+                                     list-asset-revisions list-connections
+                                     list-data-product-revisions
+                                     list-data-source-run-activities
+                                     list-entity-owners
+                                     list-environment-actions
+                                     list-environment-blueprints
+                                     list-environment-profiles
+                                     list-environments list-job-runs
+                                     list-lineage-events
+                                     list-lineage-node-history
+                                     list-notifications list-policy-grants
+                                     list-project-memberships
+                                     list-project-profiles list-projects
+                                     list-subscription-grants
+                                     list-subscription-requests
+                                     list-subscriptions
+                                     list-subscription-targets
+                                     list-tags-for-resource
+                                     list-time-series-data-points
+                                     post-lineage-event
+                                     post-time-series-data-points
+                                     reject-predictions
+                                     reject-subscription-request
+                                     remove-entity-owner remove-policy-grant
+                                     revoke-subscription search
+                                     search-group-profiles search-listings
+                                     search-types search-user-profiles
+                                     tag-resource untag-resource
+                                     update-asset-filter update-connection
+                                     update-environment
+                                     update-environment-action
+                                     update-environment-profile
+                                     update-group-profile update-project
+                                     update-project-profile
+                                     update-subscription-grant-status
+                                     update-subscription-request
+                                     update-subscription-target
+                                     update-user-profile)
                                    :errors
                                    '(access-denied-exception
                                      throttling-exception

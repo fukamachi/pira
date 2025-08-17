@@ -13,7 +13,7 @@
                                    "AWSMPEntitlementService" :version
                                    "2017-01-11" :title
                                    "AWS Marketplace Entitlement Service"
-                                   :traits
+                                   :operations '(get-entitlements) :traits
                                    '(("aws.api#service"
                                       ("sdkId"
                                        . "Marketplace Entitlement Service")

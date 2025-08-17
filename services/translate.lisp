@@ -52,6 +52,19 @@
                                    :shape-name
                                    "AWSShineFrontendService_20170701" :version
                                    "2017-07-01" :title "Amazon Translate"
+                                   :operations
+                                   '(create-parallel-data delete-parallel-data
+                                     delete-terminology
+                                     describe-text-translation-job
+                                     get-parallel-data get-terminology
+                                     import-terminology list-languages
+                                     list-parallel-data list-tags-for-resource
+                                     list-terminologies
+                                     list-text-translation-jobs
+                                     start-text-translation-job
+                                     stop-text-translation-job tag-resource
+                                     translate-document translate-text
+                                     untag-resource update-parallel-data)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Translate")
                                       ("arnNamespace" . "translate")

@@ -58,10 +58,27 @@
                                    "SpencerFrontendService" :version
                                    "2020-10-30" :title
                                    "Amazon Elastic Container Registry Public"
+                                   :operations
+                                   '(batch-check-layer-availability
+                                     batch-delete-image complete-layer-upload
+                                     create-repository delete-repository
+                                     delete-repository-policy describe-images
+                                     describe-image-tags describe-registries
+                                     describe-repositories
+                                     get-authorization-token
+                                     get-registry-catalog-data
+                                     get-repository-catalog-data
+                                     get-repository-policy
+                                     initiate-layer-upload
+                                     list-tags-for-resource put-image
+                                     put-registry-catalog-data
+                                     put-repository-catalog-data
+                                     set-repository-policy tag-resource
+                                     untag-resource upload-layer-part)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://ecr-public.amazonaws.com/doc/2020-12-02/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://ecr-public.amazonaws.com/doc/2020-12-02/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ECR PUBLIC")

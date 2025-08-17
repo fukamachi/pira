@@ -14,7 +14,14 @@
 (smithy/sdk/service:define-service awsapplication-cost-profiler :shape-name
                                    "AWSApplicationCostProfiler" :version
                                    "2020-09-10" :title
-                                   "AWS Application Cost Profiler" :traits
+                                   "AWS Application Cost Profiler" :operations
+                                   '(delete-report-definition
+                                     get-report-definition
+                                     import-application-usage
+                                     list-report-definitions
+                                     put-report-definition
+                                     update-report-definition)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ApplicationCostProfiler")
                                       ("arnNamespace"

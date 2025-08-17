@@ -77,10 +77,37 @@
 
 (smithy/sdk/service:define-service amazon-memory-db :shape-name
                                    "AmazonMemoryDB" :version "2021-01-01"
-                                   :title "Amazon MemoryDB" :xml-namespace
-                                   '(:uri
-                                     "http://memorydb.amazonaws.com/doc/2021-01-01/"
-                                     :prefix common-lisp:nil)
+                                   :title "Amazon MemoryDB" :operations
+                                   '(batch-update-cluster copy-snapshot
+                                     create-acl create-cluster
+                                     create-multi-region-cluster
+                                     create-parameter-group create-snapshot
+                                     create-subnet-group create-user delete-acl
+                                     delete-cluster delete-multi-region-cluster
+                                     delete-parameter-group delete-snapshot
+                                     delete-subnet-group delete-user
+                                     describe-acls describe-clusters
+                                     describe-engine-versions describe-events
+                                     describe-multi-region-clusters
+                                     describe-parameter-groups
+                                     describe-parameters
+                                     describe-reserved-nodes
+                                     describe-reserved-nodes-offerings
+                                     describe-service-updates
+                                     describe-snapshots describe-subnet-groups
+                                     describe-users failover-shard
+                                     list-allowed-multi-region-cluster-updates
+                                     list-allowed-node-type-updates list-tags
+                                     purchase-reserved-nodes-offering
+                                     reset-parameter-group tag-resource
+                                     untag-resource update-acl update-cluster
+                                     update-multi-region-cluster
+                                     update-parameter-group update-subnet-group
+                                     update-user)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://memorydb.amazonaws.com/doc/2021-01-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "MemoryDB")
                                       ("arnNamespace" . "memorydb")

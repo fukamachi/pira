@@ -187,7 +187,16 @@
 
 (smithy/sdk/service:define-service awsmpseymour :shape-name "AWSMPSeymour"
                                    :version "2018-09-17" :title
-                                   "AWS Marketplace Catalog Service" :traits
+                                   "AWS Marketplace Catalog Service"
+                                   :operations
+                                   '(batch-describe-entities cancel-change-set
+                                     delete-resource-policy describe-change-set
+                                     describe-entity get-resource-policy
+                                     list-change-sets list-entities
+                                     list-tags-for-resource put-resource-policy
+                                     start-change-set tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Marketplace Catalog")
                                       ("arnNamespace" . "aws-marketplace")

@@ -51,7 +51,16 @@
 
 (smithy/sdk/service:define-service resource-explorer :shape-name
                                    "ResourceExplorer" :version "2022-07-28"
-                                   :title "AWS Resource Explorer" :traits
+                                   :title "AWS Resource Explorer" :operations
+                                   '(batch-get-view disassociate-default-view
+                                     get-account-level-service-configuration
+                                     get-default-view get-index
+                                     get-managed-view list-indexes-for-members
+                                     list-managed-views list-resources
+                                     list-supported-resource-types
+                                     list-tags-for-resource search tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Resource Explorer 2")
                                       ("endpointPrefix"

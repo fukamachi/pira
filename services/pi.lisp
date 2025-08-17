@@ -57,10 +57,22 @@
 (smithy/sdk/service:define-service performance-insightsv20180227 :shape-name
                                    "PerformanceInsightsv20180227" :version
                                    "2018-02-27" :title
-                                   "AWS Performance Insights" :xml-namespace
-                                   '(:uri
-                                     "http://pi.amazonaws.com/doc/2018-02-27/"
-                                     :prefix common-lisp:nil)
+                                   "AWS Performance Insights" :operations
+                                   '(create-performance-analysis-report
+                                     delete-performance-analysis-report
+                                     describe-dimension-keys
+                                     get-dimension-key-details
+                                     get-performance-analysis-report
+                                     get-resource-metadata get-resource-metrics
+                                     list-available-resource-dimensions
+                                     list-available-resource-metrics
+                                     list-performance-analysis-reports
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://pi.amazonaws.com/doc/2018-02-27/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "PI")
                                       ("arnNamespace" . "pi")

@@ -239,7 +239,15 @@
 (smithy/sdk/service:define-service elastic-disaster-recovery-service
                                    :shape-name "ElasticDisasterRecoveryService"
                                    :version "2020-02-26" :title
-                                   "Elastic Disaster Recovery Service" :traits
+                                   "Elastic Disaster Recovery Service"
+                                   :operations
+                                   '(create-extended-source-server
+                                     delete-launch-action initialize-service
+                                     list-extensible-source-servers
+                                     list-launch-actions list-staging-accounts
+                                     list-tags-for-resource put-launch-action
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "drs")
                                       ("arnNamespace" . "drs")
                                       ("awsProductName" . "drs")

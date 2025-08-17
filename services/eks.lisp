@@ -165,6 +165,50 @@
 (smithy/sdk/service:define-service awswesley-frontend :shape-name
                                    "AWSWesleyFrontend" :version "2017-11-01"
                                    :title "Amazon Elastic Kubernetes Service"
+                                   :operations
+                                   '(associate-access-policy
+                                     associate-encryption-config
+                                     associate-identity-provider-config
+                                     create-access-entry create-addon
+                                     create-cluster
+                                     create-eks-anywhere-subscription
+                                     create-fargate-profile create-nodegroup
+                                     create-pod-identity-association
+                                     delete-access-entry delete-addon
+                                     delete-cluster
+                                     delete-eks-anywhere-subscription
+                                     delete-fargate-profile delete-nodegroup
+                                     delete-pod-identity-association
+                                     deregister-cluster describe-access-entry
+                                     describe-addon
+                                     describe-addon-configuration
+                                     describe-addon-versions describe-cluster
+                                     describe-cluster-versions
+                                     describe-eks-anywhere-subscription
+                                     describe-fargate-profile
+                                     describe-identity-provider-config
+                                     describe-insight describe-nodegroup
+                                     describe-pod-identity-association
+                                     describe-update disassociate-access-policy
+                                     disassociate-identity-provider-config
+                                     list-access-entries list-access-policies
+                                     list-addons
+                                     list-associated-access-policies
+                                     list-clusters
+                                     list-eks-anywhere-subscriptions
+                                     list-fargate-profiles
+                                     list-identity-provider-configs
+                                     list-insights list-nodegroups
+                                     list-pod-identity-associations
+                                     list-tags-for-resource list-updates
+                                     register-cluster tag-resource
+                                     untag-resource update-access-entry
+                                     update-addon update-cluster-config
+                                     update-cluster-version
+                                     update-eks-anywhere-subscription
+                                     update-nodegroup-config
+                                     update-nodegroup-version
+                                     update-pod-identity-association)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "EKS")
                                       ("arnNamespace" . "eks")

@@ -347,7 +347,56 @@
 (smithy/sdk/service:define-service awskendra-frontend-service :shape-name
                                    "AWSKendraFrontendService" :version
                                    "2019-02-03" :title
-                                   "AWSKendraFrontendService" :traits
+                                   "AWSKendraFrontendService" :operations
+                                   '(associate-entities-to-experience
+                                     associate-personas-to-entities
+                                     batch-delete-document
+                                     batch-delete-featured-results-set
+                                     batch-get-document-status
+                                     batch-put-document clear-query-suggestions
+                                     create-access-control-configuration
+                                     create-data-source create-experience
+                                     create-faq create-featured-results-set
+                                     create-index
+                                     create-query-suggestions-block-list
+                                     create-thesaurus
+                                     delete-access-control-configuration
+                                     delete-data-source delete-experience
+                                     delete-faq delete-index
+                                     delete-principal-mapping
+                                     delete-query-suggestions-block-list
+                                     delete-thesaurus
+                                     describe-access-control-configuration
+                                     describe-data-source describe-experience
+                                     describe-faq describe-featured-results-set
+                                     describe-index describe-principal-mapping
+                                     describe-query-suggestions-block-list
+                                     describe-query-suggestions-config
+                                     describe-thesaurus
+                                     disassociate-entities-from-experience
+                                     disassociate-personas-from-entities
+                                     get-query-suggestions get-snapshots
+                                     list-access-control-configurations
+                                     list-data-sources
+                                     list-data-source-sync-jobs
+                                     list-entity-personas
+                                     list-experience-entities list-experiences
+                                     list-faqs list-featured-results-sets
+                                     list-groups-older-than-ordering-id
+                                     list-indices
+                                     list-query-suggestions-block-lists
+                                     list-tags-for-resource list-thesauri
+                                     put-principal-mapping query retrieve
+                                     start-data-source-sync-job
+                                     stop-data-source-sync-job submit-feedback
+                                     tag-resource untag-resource
+                                     update-access-control-configuration
+                                     update-data-source update-experience
+                                     update-featured-results-set update-index
+                                     update-query-suggestions-block-list
+                                     update-query-suggestions-config
+                                     update-thesaurus)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "kendra")
                                       ("arnNamespace" . "kendra")
                                       ("cloudFormationName" . "Kendra")

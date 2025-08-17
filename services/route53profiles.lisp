@@ -25,7 +25,20 @@
 
 (smithy/sdk/service:define-service route53profiles :shape-name
                                    "Route53Profiles" :version "2018-05-10"
-                                   :title "Route 53 Profiles" :traits
+                                   :title "Route 53 Profiles" :operations
+                                   '(associate-profile
+                                     associate-resource-to-profile
+                                     create-profile delete-profile
+                                     disassociate-profile
+                                     disassociate-resource-from-profile
+                                     get-profile get-profile-association
+                                     get-profile-resource-association
+                                     list-profile-associations
+                                     list-profile-resource-associations
+                                     list-profiles list-tags-for-resource
+                                     tag-resource untag-resource
+                                     update-profile-resource-association)
+                                   :traits
                                    '(("aws.api#service"
                                       ("cloudTrailEventSource"
                                        . "route53profiles.amazonaws.com")

@@ -45,10 +45,18 @@
                                    :shape-name
                                    "AmazonOpenSearchIngestionService" :version
                                    "2022-01-01" :title
-                                   "Amazon OpenSearch Ingestion" :xml-namespace
-                                   '(:uri
-                                     "http://osis.amazonaws.com/doc/2022-01-01"
-                                     :prefix common-lisp:nil)
+                                   "Amazon OpenSearch Ingestion" :operations
+                                   '(create-pipeline delete-pipeline
+                                     get-pipeline get-pipeline-blueprint
+                                     get-pipeline-change-progress
+                                     list-pipeline-blueprints list-pipelines
+                                     list-tags-for-resource start-pipeline
+                                     stop-pipeline tag-resource untag-resource
+                                     update-pipeline validate-pipeline)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://osis.amazonaws.com/doc/2022-01-01"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "OSIS")
                                       ("arnNamespace" . "osis")

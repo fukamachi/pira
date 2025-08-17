@@ -59,6 +59,14 @@
 (smithy/sdk/service:define-service iot-columbo-data-service :shape-name
                                    "IotColumboDataService" :version
                                    "2018-10-23" :title "AWS IoT Events Data"
+                                   :operations
+                                   '(batch-acknowledge-alarm
+                                     batch-delete-detector batch-disable-alarm
+                                     batch-enable-alarm batch-put-message
+                                     batch-reset-alarm batch-snooze-alarm
+                                     batch-update-detector describe-alarm
+                                     describe-detector list-alarms
+                                     list-detectors)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoT Events Data")

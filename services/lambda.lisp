@@ -196,7 +196,10 @@
 
 (smithy/sdk/service:define-service awsgir-api-service :shape-name
                                    "AWSGirApiService" :version "2015-03-31"
-                                   :title "AWS Lambda" :traits
+                                   :title "AWS Lambda" :operations
+                                   '(get-account-settings list-tags
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Lambda")
                                       ("arnNamespace" . "lambda")
                                       ("cloudFormationName" . "Lambda")

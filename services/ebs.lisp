@@ -20,7 +20,12 @@
 (common-lisp:in-package #:pira/ebs)
 
 (smithy/sdk/service:define-service ebs :shape-name "Ebs" :version "2019-11-02"
-                                   :title "Amazon Elastic Block Store" :traits
+                                   :title "Amazon Elastic Block Store"
+                                   :operations
+                                   '(complete-snapshot get-snapshot-block
+                                     list-changed-blocks list-snapshot-blocks
+                                     put-snapshot-block start-snapshot)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "EBS")
                                       ("arnNamespace" . "ebs")
                                       ("cloudFormationName" . "EBS")

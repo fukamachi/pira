@@ -164,6 +164,56 @@
 (smithy/sdk/service:define-service network-firewall-20201112 :shape-name
                                    "NetworkFirewall_20201112" :version
                                    "2020-11-12" :title "AWS Network Firewall"
+                                   :operations
+                                   '(accept-network-firewall-transit-gateway-attachment
+                                     associate-availability-zones
+                                     associate-firewall-policy
+                                     associate-subnets create-firewall
+                                     create-firewall-policy create-rule-group
+                                     create-tlsinspection-configuration
+                                     create-vpc-endpoint-association
+                                     delete-firewall delete-firewall-policy
+                                     delete-network-firewall-transit-gateway-attachment
+                                     delete-resource-policy delete-rule-group
+                                     delete-tlsinspection-configuration
+                                     delete-vpc-endpoint-association
+                                     describe-firewall
+                                     describe-firewall-metadata
+                                     describe-firewall-policy
+                                     describe-flow-operation
+                                     describe-logging-configuration
+                                     describe-resource-policy
+                                     describe-rule-group
+                                     describe-rule-group-metadata
+                                     describe-rule-group-summary
+                                     describe-tlsinspection-configuration
+                                     describe-vpc-endpoint-association
+                                     disassociate-availability-zones
+                                     disassociate-subnets
+                                     get-analysis-report-results
+                                     list-analysis-reports
+                                     list-firewall-policies list-firewalls
+                                     list-flow-operation-results
+                                     list-flow-operations list-rule-groups
+                                     list-tags-for-resource
+                                     list-tlsinspection-configurations
+                                     list-vpc-endpoint-associations
+                                     put-resource-policy
+                                     reject-network-firewall-transit-gateway-attachment
+                                     start-analysis-report start-flow-capture
+                                     start-flow-flush tag-resource
+                                     untag-resource
+                                     update-availability-zone-change-protection
+                                     update-firewall-analysis-settings
+                                     update-firewall-delete-protection
+                                     update-firewall-description
+                                     update-firewall-encryption-configuration
+                                     update-firewall-policy
+                                     update-firewall-policy-change-protection
+                                     update-logging-configuration
+                                     update-rule-group
+                                     update-subnet-change-protection
+                                     update-tlsinspection-configuration)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Network Firewall")

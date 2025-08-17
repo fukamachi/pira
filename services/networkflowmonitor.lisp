@@ -52,7 +52,10 @@
 
 (smithy/sdk/service:define-service network-flow-monitor :shape-name
                                    "NetworkFlowMonitor" :version "2023-04-19"
-                                   :title "Network Flow Monitor" :traits
+                                   :title "Network Flow Monitor" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "NetworkFlowMonitor")
                                       ("arnNamespace" . "networkflowmonitor")

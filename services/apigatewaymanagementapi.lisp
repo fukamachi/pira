@@ -8,7 +8,10 @@
 (smithy/sdk/service:define-service api-gateway-management-api :shape-name
                                    "ApiGatewayManagementApi" :version
                                    "2018-11-29" :title
-                                   "AmazonApiGatewayManagementApi" :traits
+                                   "AmazonApiGatewayManagementApi" :operations
+                                   '(delete-connection get-connection
+                                     post-to-connection)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ApiGatewayManagementApi")
                                       ("arnNamespace" . "apigateway")

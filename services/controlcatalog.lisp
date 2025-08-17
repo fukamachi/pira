@@ -47,7 +47,8 @@
 
 (smithy/sdk/service:define-service control-catalog :shape-name "ControlCatalog"
                                    :version "2018-05-10" :title
-                                   "AWS Control Catalog" :traits
+                                   "AWS Control Catalog" :operations
+                                   '(list-control-mappings) :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ControlCatalog")
                                       ("arnNamespace" . "controlcatalog")

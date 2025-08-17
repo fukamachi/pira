@@ -148,6 +148,34 @@
                                    "AmazonInteractiveVideoServiceRealTime"
                                    :version "2020-07-14" :title
                                    "Amazon Interactive Video Service RealTime"
+                                   :operations
+                                   '(create-encoder-configuration
+                                     create-ingest-configuration
+                                     create-participant-token create-stage
+                                     create-storage-configuration
+                                     delete-encoder-configuration
+                                     delete-ingest-configuration
+                                     delete-public-key delete-stage
+                                     delete-storage-configuration
+                                     disconnect-participant get-composition
+                                     get-encoder-configuration
+                                     get-ingest-configuration get-participant
+                                     get-public-key get-stage get-stage-session
+                                     get-storage-configuration
+                                     import-public-key list-compositions
+                                     list-encoder-configurations
+                                     list-ingest-configurations
+                                     list-participant-events
+                                     list-participant-replicas
+                                     list-participants list-public-keys
+                                     list-stages list-stage-sessions
+                                     list-storage-configurations
+                                     list-tags-for-resource start-composition
+                                     start-participant-replication
+                                     stop-composition
+                                     stop-participant-replication tag-resource
+                                     untag-resource update-ingest-configuration
+                                     update-stage)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IVS RealTime")

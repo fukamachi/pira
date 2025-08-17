@@ -117,7 +117,11 @@
 (smithy/sdk/service:define-service amazon-prometheus-service :shape-name
                                    "AmazonPrometheusService" :version
                                    "2020-08-01" :title
-                                   "Amazon Prometheus Service" :traits
+                                   "Amazon Prometheus Service" :operations
+                                   '(get-default-scraper-configuration
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "amp")
                                       ("arnNamespace" . "aps")
                                       ("cloudTrailEventSource"

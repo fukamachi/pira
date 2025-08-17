@@ -291,10 +291,86 @@
 
 (smithy/sdk/service:define-service workspaces-service :shape-name
                                    "WorkspacesService" :version "2015-04-08"
-                                   :title "Amazon WorkSpaces" :xml-namespace
-                                   '(:uri
-                                     "http://workspaces.amazonaws.com/api/v1"
-                                     :prefix common-lisp:nil)
+                                   :title "Amazon WorkSpaces" :operations
+                                   '(accept-account-link-invitation
+                                     associate-connection-alias
+                                     associate-ip-groups
+                                     associate-workspace-application
+                                     authorize-ip-rules copy-workspace-image
+                                     create-account-link-invitation
+                                     create-connect-client-add-in
+                                     create-connection-alias create-ip-group
+                                     create-standby-workspaces create-tags
+                                     create-updated-workspace-image
+                                     create-workspace-bundle
+                                     create-workspace-image create-workspaces
+                                     create-workspaces-pool
+                                     delete-account-link-invitation
+                                     delete-client-branding
+                                     delete-connect-client-add-in
+                                     delete-connection-alias delete-ip-group
+                                     delete-tags delete-workspace-bundle
+                                     delete-workspace-image
+                                     deploy-workspace-applications
+                                     deregister-workspace-directory
+                                     describe-account
+                                     describe-account-modifications
+                                     describe-application-associations
+                                     describe-applications
+                                     describe-bundle-associations
+                                     describe-client-branding
+                                     describe-client-properties
+                                     describe-connect-client-add-ins
+                                     describe-connection-aliases
+                                     describe-connection-alias-permissions
+                                     describe-image-associations
+                                     describe-ip-groups describe-tags
+                                     describe-workspace-associations
+                                     describe-workspace-bundles
+                                     describe-workspace-directories
+                                     describe-workspace-image-permissions
+                                     describe-workspace-images
+                                     describe-workspaces
+                                     describe-workspaces-connection-status
+                                     describe-workspace-snapshots
+                                     describe-workspaces-pools
+                                     describe-workspaces-pool-sessions
+                                     disassociate-connection-alias
+                                     disassociate-ip-groups
+                                     disassociate-workspace-application
+                                     get-account-link import-client-branding
+                                     import-workspace-image list-account-links
+                                     list-available-management-cidr-ranges
+                                     migrate-workspace modify-account
+                                     modify-certificate-based-auth-properties
+                                     modify-client-properties
+                                     modify-endpoint-encryption-mode
+                                     modify-saml-properties
+                                     modify-selfservice-permissions
+                                     modify-streaming-properties
+                                     modify-workspace-access-properties
+                                     modify-workspace-creation-properties
+                                     modify-workspace-properties
+                                     modify-workspace-state reboot-workspaces
+                                     rebuild-workspaces
+                                     register-workspace-directory
+                                     reject-account-link-invitation
+                                     restore-workspace revoke-ip-rules
+                                     start-workspaces start-workspaces-pool
+                                     stop-workspaces stop-workspaces-pool
+                                     terminate-workspaces
+                                     terminate-workspaces-pool
+                                     terminate-workspaces-pool-session
+                                     update-connect-client-add-in
+                                     update-connection-alias-permission
+                                     update-rules-of-ip-group
+                                     update-workspace-bundle
+                                     update-workspace-image-permission
+                                     update-workspaces-pool)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://workspaces.amazonaws.com/api/v1"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "WorkSpaces")

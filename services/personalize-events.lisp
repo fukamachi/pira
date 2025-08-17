@@ -20,7 +20,10 @@
 (smithy/sdk/service:define-service amazon-personalize-events :shape-name
                                    "AmazonPersonalizeEvents" :version
                                    "2018-03-22" :title
-                                   "Amazon Personalize Events" :traits
+                                   "Amazon Personalize Events" :operations
+                                   '(put-action-interactions put-actions
+                                     put-events put-items put-users)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Personalize Events")
                                       ("arnNamespace" . "personalize")

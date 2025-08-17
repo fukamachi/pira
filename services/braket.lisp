@@ -63,7 +63,10 @@
 (common-lisp:in-package #:pira/braket)
 
 (smithy/sdk/service:define-service braket :shape-name "Braket" :version
-                                   "2019-09-01" :title "Braket" :traits
+                                   "2019-09-01" :title "Braket" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Braket")
                                       ("cloudTrailEventSource"
                                        . "braket.amazonaws.com"))

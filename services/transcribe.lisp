@@ -110,7 +110,46 @@
 
 (smithy/sdk/service:define-service transcribe :shape-name "Transcribe" :version
                                    "2017-10-26" :title
-                                   "Amazon Transcribe Service" :traits
+                                   "Amazon Transcribe Service" :operations
+                                   '(create-call-analytics-category
+                                     create-language-model
+                                     create-medical-vocabulary
+                                     create-vocabulary create-vocabulary-filter
+                                     delete-call-analytics-category
+                                     delete-call-analytics-job
+                                     delete-language-model
+                                     delete-medical-scribe-job
+                                     delete-medical-transcription-job
+                                     delete-medical-vocabulary
+                                     delete-transcription-job delete-vocabulary
+                                     delete-vocabulary-filter
+                                     describe-language-model
+                                     get-call-analytics-category
+                                     get-call-analytics-job
+                                     get-medical-scribe-job
+                                     get-medical-transcription-job
+                                     get-medical-vocabulary
+                                     get-transcription-job get-vocabulary
+                                     get-vocabulary-filter
+                                     list-call-analytics-categories
+                                     list-call-analytics-jobs
+                                     list-language-models
+                                     list-medical-scribe-jobs
+                                     list-medical-transcription-jobs
+                                     list-medical-vocabularies
+                                     list-tags-for-resource
+                                     list-transcription-jobs list-vocabularies
+                                     list-vocabulary-filters
+                                     start-call-analytics-job
+                                     start-medical-scribe-job
+                                     start-medical-transcription-job
+                                     start-transcription-job tag-resource
+                                     untag-resource
+                                     update-call-analytics-category
+                                     update-medical-vocabulary
+                                     update-vocabulary
+                                     update-vocabulary-filter)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Transcribe")
                                       ("arnNamespace" . "transcribe")

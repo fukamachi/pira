@@ -128,7 +128,29 @@
 
 (smithy/sdk/service:define-service greengrass-v2 :shape-name "GreengrassV2"
                                    :version "2020-11-30" :title
-                                   "AWS IoT Greengrass V2" :traits
+                                   "AWS IoT Greengrass V2" :operations
+                                   '(associate-service-role-to-account
+                                     batch-associate-client-device-with-core-device
+                                     batch-disassociate-client-device-from-core-device
+                                     cancel-deployment create-component-version
+                                     create-deployment delete-component
+                                     delete-core-device delete-deployment
+                                     describe-component
+                                     disassociate-service-role-from-account
+                                     get-component
+                                     get-component-version-artifact
+                                     get-connectivity-info get-core-device
+                                     get-deployment
+                                     get-service-role-for-account
+                                     list-client-devices-associated-with-core-device
+                                     list-components list-component-versions
+                                     list-core-devices list-deployments
+                                     list-effective-deployments
+                                     list-installed-components
+                                     list-tags-for-resource
+                                     resolve-component-candidates tag-resource
+                                     untag-resource update-connectivity-info)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "GreengrassV2")
                                       ("arnNamespace" . "greengrass")

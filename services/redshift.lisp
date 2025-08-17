@@ -302,10 +302,133 @@
 (smithy/sdk/service:define-service redshift-service-version20121201 :shape-name
                                    "RedshiftServiceVersion20121201" :version
                                    "2012-12-01" :title "Amazon Redshift"
+                                   :operations
+                                   '(accept-reserved-node-exchange add-partner
+                                     associate-data-share-consumer
+                                     authorize-cluster-security-group-ingress
+                                     authorize-data-share
+                                     authorize-endpoint-access
+                                     authorize-snapshot-access
+                                     batch-delete-cluster-snapshots
+                                     batch-modify-cluster-snapshots
+                                     cancel-resize copy-cluster-snapshot
+                                     create-authentication-profile
+                                     create-cluster
+                                     create-cluster-parameter-group
+                                     create-cluster-security-group
+                                     create-cluster-snapshot
+                                     create-cluster-subnet-group
+                                     create-custom-domain-association
+                                     create-endpoint-access
+                                     create-event-subscription
+                                     create-hsm-client-certificate
+                                     create-hsm-configuration
+                                     create-integration
+                                     create-redshift-idc-application
+                                     create-scheduled-action
+                                     create-snapshot-copy-grant
+                                     create-snapshot-schedule create-tags
+                                     create-usage-limit deauthorize-data-share
+                                     delete-authentication-profile
+                                     delete-cluster
+                                     delete-cluster-parameter-group
+                                     delete-cluster-security-group
+                                     delete-cluster-snapshot
+                                     delete-cluster-subnet-group
+                                     delete-custom-domain-association
+                                     delete-endpoint-access
+                                     delete-event-subscription
+                                     delete-hsm-client-certificate
+                                     delete-hsm-configuration
+                                     delete-integration delete-partner
+                                     delete-redshift-idc-application
+                                     delete-resource-policy
+                                     delete-scheduled-action
+                                     delete-snapshot-copy-grant
+                                     delete-snapshot-schedule delete-tags
+                                     delete-usage-limit deregister-namespace
+                                     describe-account-attributes
+                                     describe-authentication-profiles
+                                     describe-cluster-db-revisions
+                                     describe-cluster-parameter-groups
+                                     describe-cluster-parameters
+                                     describe-clusters
+                                     describe-cluster-security-groups
+                                     describe-cluster-snapshots
+                                     describe-cluster-subnet-groups
+                                     describe-cluster-tracks
+                                     describe-cluster-versions
+                                     describe-custom-domain-associations
+                                     describe-data-shares
+                                     describe-data-shares-for-consumer
+                                     describe-data-shares-for-producer
+                                     describe-default-cluster-parameters
+                                     describe-endpoint-access
+                                     describe-endpoint-authorization
+                                     describe-event-categories describe-events
+                                     describe-event-subscriptions
+                                     describe-hsm-client-certificates
+                                     describe-hsm-configurations
+                                     describe-inbound-integrations
+                                     describe-integrations
+                                     describe-logging-status
+                                     describe-node-configuration-options
+                                     describe-orderable-cluster-options
+                                     describe-partners
+                                     describe-redshift-idc-applications
+                                     describe-reserved-node-exchange-status
+                                     describe-reserved-node-offerings
+                                     describe-reserved-nodes describe-resize
+                                     describe-scheduled-actions
+                                     describe-snapshot-copy-grants
+                                     describe-snapshot-schedules
+                                     describe-storage
+                                     describe-table-restore-status
+                                     describe-tags describe-usage-limits
+                                     disable-logging disable-snapshot-copy
+                                     disassociate-data-share-consumer
+                                     enable-logging enable-snapshot-copy
+                                     failover-primary-compute
+                                     get-cluster-credentials
+                                     get-cluster-credentials-with-iam
+                                     get-reserved-node-exchange-configuration-options
+                                     get-reserved-node-exchange-offerings
+                                     get-resource-policy list-recommendations
+                                     modify-aqua-configuration
+                                     modify-authentication-profile
+                                     modify-cluster modify-cluster-db-revision
+                                     modify-cluster-iam-roles
+                                     modify-cluster-maintenance
+                                     modify-cluster-parameter-group
+                                     modify-cluster-snapshot
+                                     modify-cluster-snapshot-schedule
+                                     modify-cluster-subnet-group
+                                     modify-custom-domain-association
+                                     modify-endpoint-access
+                                     modify-event-subscription
+                                     modify-integration
+                                     modify-redshift-idc-application
+                                     modify-scheduled-action
+                                     modify-snapshot-copy-retention-period
+                                     modify-snapshot-schedule
+                                     modify-usage-limit pause-cluster
+                                     purchase-reserved-node-offering
+                                     put-resource-policy reboot-cluster
+                                     register-namespace reject-data-share
+                                     reset-cluster-parameter-group
+                                     resize-cluster
+                                     restore-from-cluster-snapshot
+                                     restore-table-from-cluster-snapshot
+                                     resume-cluster
+                                     revoke-cluster-security-group-ingress
+                                     revoke-endpoint-access
+                                     revoke-snapshot-access
+                                     rotate-encryption-key
+                                     update-partner-status)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://redshift.amazonaws.com/doc/2012-12-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://redshift.amazonaws.com/doc/2012-12-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Redshift")
                                       ("arnNamespace" . "redshift")

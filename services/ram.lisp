@@ -68,7 +68,38 @@
 (smithy/sdk/service:define-service amazon-resource-sharing :shape-name
                                    "AmazonResourceSharing" :version
                                    "2018-01-04" :title
-                                   "AWS Resource Access Manager" :traits
+                                   "AWS Resource Access Manager" :operations
+                                   '(accept-resource-share-invitation
+                                     associate-resource-share
+                                     associate-resource-share-permission
+                                     create-permission
+                                     create-permission-version
+                                     create-resource-share delete-permission
+                                     delete-permission-version
+                                     delete-resource-share
+                                     disassociate-resource-share
+                                     disassociate-resource-share-permission
+                                     enable-sharing-with-aws-organization
+                                     get-permission get-resource-policies
+                                     get-resource-share-associations
+                                     get-resource-share-invitations
+                                     get-resource-shares
+                                     list-pending-invitation-resources
+                                     list-permission-associations
+                                     list-permissions list-permission-versions
+                                     list-principals
+                                     list-replace-permission-associations-work
+                                     list-resources
+                                     list-resource-share-permissions
+                                     list-resource-types
+                                     promote-permission-created-from-policy
+                                     promote-resource-share-created-from-policy
+                                     reject-resource-share-invitation
+                                     replace-permission-associations
+                                     set-default-permission-version
+                                     tag-resource untag-resource
+                                     update-resource-share)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "RAM")
                                       ("arnNamespace" . "ram")
                                       ("cloudFormationName" . "RAM")

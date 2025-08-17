@@ -139,6 +139,78 @@
 (smithy/sdk/service:define-service backplane-control-service :shape-name
                                    "BackplaneControlService" :version
                                    "2015-07-09" :title "Amazon API Gateway"
+                                   :operations
+                                   '(create-api-key create-authorizer
+                                     create-base-path-mapping create-deployment
+                                     create-documentation-part
+                                     create-documentation-version
+                                     create-domain-name
+                                     create-domain-name-access-association
+                                     create-model create-request-validator
+                                     create-resource create-rest-api
+                                     create-stage create-usage-plan
+                                     create-usage-plan-key create-vpc-link
+                                     delete-api-key delete-authorizer
+                                     delete-base-path-mapping
+                                     delete-client-certificate
+                                     delete-deployment
+                                     delete-documentation-part
+                                     delete-documentation-version
+                                     delete-domain-name
+                                     delete-domain-name-access-association
+                                     delete-gateway-response delete-integration
+                                     delete-integration-response delete-method
+                                     delete-method-response delete-model
+                                     delete-request-validator delete-resource
+                                     delete-rest-api delete-stage
+                                     delete-usage-plan delete-usage-plan-key
+                                     delete-vpc-link
+                                     flush-stage-authorizers-cache
+                                     flush-stage-cache
+                                     generate-client-certificate get-account
+                                     get-api-key get-api-keys get-authorizer
+                                     get-authorizers get-base-path-mapping
+                                     get-base-path-mappings
+                                     get-client-certificate
+                                     get-client-certificates get-deployment
+                                     get-deployments get-documentation-part
+                                     get-documentation-parts
+                                     get-documentation-version
+                                     get-documentation-versions get-domain-name
+                                     get-domain-name-access-associations
+                                     get-domain-names get-export
+                                     get-gateway-response get-gateway-responses
+                                     get-integration get-integration-response
+                                     get-method get-method-response get-model
+                                     get-models get-model-template
+                                     get-request-validator
+                                     get-request-validators get-resource
+                                     get-resources get-rest-api get-rest-apis
+                                     get-sdk get-sdk-type get-sdk-types
+                                     get-stage get-stages get-tags get-usage
+                                     get-usage-plan get-usage-plan-key
+                                     get-usage-plan-keys get-usage-plans
+                                     get-vpc-link get-vpc-links import-api-keys
+                                     import-documentation-parts import-rest-api
+                                     put-gateway-response put-integration
+                                     put-integration-response put-method
+                                     put-method-response put-rest-api
+                                     reject-domain-name-access-association
+                                     tag-resource test-invoke-authorizer
+                                     test-invoke-method untag-resource
+                                     update-account update-api-key
+                                     update-authorizer update-base-path-mapping
+                                     update-client-certificate
+                                     update-deployment
+                                     update-documentation-part
+                                     update-documentation-version
+                                     update-domain-name update-gateway-response
+                                     update-integration
+                                     update-integration-response update-method
+                                     update-method-response update-model
+                                     update-request-validator update-resource
+                                     update-rest-api update-stage update-usage
+                                     update-usage-plan update-vpc-link)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "API Gateway")

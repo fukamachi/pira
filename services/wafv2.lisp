@@ -200,10 +200,49 @@
 
 (smithy/sdk/service:define-service awswaf-20190729 :shape-name
                                    "AWSWAF_20190729" :version "2019-07-29"
-                                   :title "AWS WAFV2" :xml-namespace
-                                   '(:uri
-                                     "http://waf.amazonaws.com/doc/2019-07-29/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS WAFV2" :operations
+                                   '(associate-web-acl check-capacity
+                                     create-apikey create-ipset
+                                     create-regex-pattern-set create-rule-group
+                                     create-web-acl delete-apikey
+                                     delete-firewall-manager-rule-groups
+                                     delete-ipset delete-logging-configuration
+                                     delete-permission-policy
+                                     delete-regex-pattern-set delete-rule-group
+                                     delete-web-acl
+                                     describe-all-managed-products
+                                     describe-managed-products-by-vendor
+                                     describe-managed-rule-group
+                                     disassociate-web-acl
+                                     generate-mobile-sdk-release-url
+                                     get-decrypted-apikey get-ipset
+                                     get-logging-configuration
+                                     get-managed-rule-set
+                                     get-mobile-sdk-release
+                                     get-permission-policy
+                                     get-rate-based-statement-managed-keys
+                                     get-regex-pattern-set get-rule-group
+                                     get-sampled-requests get-web-acl
+                                     get-web-aclfor-resource list-apikeys
+                                     list-available-managed-rule-groups
+                                     list-available-managed-rule-group-versions
+                                     list-ipsets list-logging-configurations
+                                     list-managed-rule-sets
+                                     list-mobile-sdk-releases
+                                     list-regex-pattern-sets
+                                     list-resources-for-web-acl
+                                     list-rule-groups list-tags-for-resource
+                                     list-web-acls put-logging-configuration
+                                     put-managed-rule-set-versions
+                                     put-permission-policy tag-resource
+                                     untag-resource update-ipset
+                                     update-managed-rule-set-version-expiry-date
+                                     update-regex-pattern-set update-rule-group
+                                     update-web-acl)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://waf.amazonaws.com/doc/2019-07-29/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "WAFV2")
                                       ("arnNamespace" . "wafv2")

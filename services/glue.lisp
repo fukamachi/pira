@@ -745,7 +745,179 @@
 (common-lisp:in-package #:pira/glue)
 
 (smithy/sdk/service:define-service awsglue :shape-name "AWSGlue" :version
-                                   "2017-03-31" :title "AWS Glue" :traits
+                                   "2017-03-31" :title "AWS Glue" :operations
+                                   '(batch-create-partition
+                                     batch-delete-connection
+                                     batch-delete-partition batch-delete-table
+                                     batch-delete-table-version
+                                     batch-get-blueprints batch-get-crawlers
+                                     batch-get-custom-entity-types
+                                     batch-get-data-quality-result
+                                     batch-get-dev-endpoints batch-get-jobs
+                                     batch-get-partition
+                                     batch-get-table-optimizer
+                                     batch-get-triggers batch-get-workflows
+                                     batch-put-data-quality-statistic-annotation
+                                     batch-stop-job-run batch-update-partition
+                                     cancel-data-quality-rule-recommendation-run
+                                     cancel-data-quality-ruleset-evaluation-run
+                                     cancel-mltask-run cancel-statement
+                                     check-schema-version-validity
+                                     create-blueprint create-catalog
+                                     create-classifier
+                                     create-column-statistics-task-settings
+                                     create-connection create-crawler
+                                     create-custom-entity-type create-database
+                                     create-data-quality-ruleset
+                                     create-dev-endpoint create-integration
+                                     create-integration-resource-property
+                                     create-integration-table-properties
+                                     create-job create-mltransform
+                                     create-partition create-partition-index
+                                     create-registry create-schema
+                                     create-script
+                                     create-security-configuration
+                                     create-session create-table
+                                     create-table-optimizer create-trigger
+                                     create-usage-profile
+                                     create-user-defined-function
+                                     create-workflow delete-blueprint
+                                     delete-catalog delete-classifier
+                                     delete-column-statistics-for-partition
+                                     delete-column-statistics-for-table
+                                     delete-column-statistics-task-settings
+                                     delete-connection delete-crawler
+                                     delete-custom-entity-type delete-database
+                                     delete-data-quality-ruleset
+                                     delete-dev-endpoint delete-integration
+                                     delete-integration-table-properties
+                                     delete-job delete-mltransform
+                                     delete-partition delete-partition-index
+                                     delete-registry delete-resource-policy
+                                     delete-schema delete-schema-versions
+                                     delete-security-configuration
+                                     delete-session delete-table
+                                     delete-table-optimizer
+                                     delete-table-version delete-trigger
+                                     delete-usage-profile
+                                     delete-user-defined-function
+                                     delete-workflow describe-connection-type
+                                     describe-entity
+                                     describe-inbound-integrations
+                                     describe-integrations get-blueprint
+                                     get-blueprint-run get-blueprint-runs
+                                     get-catalog get-catalog-import-status
+                                     get-catalogs get-classifier
+                                     get-classifiers
+                                     get-column-statistics-for-partition
+                                     get-column-statistics-for-table
+                                     get-column-statistics-task-run
+                                     get-column-statistics-task-runs
+                                     get-column-statistics-task-settings
+                                     get-connection get-connections get-crawler
+                                     get-crawler-metrics get-crawlers
+                                     get-custom-entity-type get-database
+                                     get-databases
+                                     get-data-catalog-encryption-settings
+                                     get-dataflow-graph get-data-quality-model
+                                     get-data-quality-model-result
+                                     get-data-quality-result
+                                     get-data-quality-rule-recommendation-run
+                                     get-data-quality-ruleset
+                                     get-data-quality-ruleset-evaluation-run
+                                     get-dev-endpoint get-dev-endpoints
+                                     get-entity-records
+                                     get-integration-resource-property
+                                     get-integration-table-properties get-job
+                                     get-job-bookmark get-job-run get-job-runs
+                                     get-jobs get-mapping get-mltask-run
+                                     get-mltask-runs get-mltransform
+                                     get-mltransforms get-partition
+                                     get-partition-indexes get-partitions
+                                     get-plan get-registry
+                                     get-resource-policies get-resource-policy
+                                     get-schema get-schema-by-definition
+                                     get-schema-version
+                                     get-schema-versions-diff
+                                     get-security-configuration
+                                     get-security-configurations get-session
+                                     get-statement get-table
+                                     get-table-optimizer get-tables
+                                     get-table-version get-table-versions
+                                     get-tags get-trigger get-triggers
+                                     get-unfiltered-partition-metadata
+                                     get-unfiltered-partitions-metadata
+                                     get-unfiltered-table-metadata
+                                     get-usage-profile
+                                     get-user-defined-function
+                                     get-user-defined-functions get-workflow
+                                     get-workflow-run
+                                     get-workflow-run-properties
+                                     get-workflow-runs import-catalog-to-glue
+                                     list-blueprints
+                                     list-column-statistics-task-runs
+                                     list-connection-types list-crawlers
+                                     list-crawls list-custom-entity-types
+                                     list-data-quality-results
+                                     list-data-quality-rule-recommendation-runs
+                                     list-data-quality-ruleset-evaluation-runs
+                                     list-data-quality-rulesets
+                                     list-data-quality-statistic-annotations
+                                     list-data-quality-statistics
+                                     list-dev-endpoints list-entities list-jobs
+                                     list-mltransforms list-registries
+                                     list-schemas list-schema-versions
+                                     list-sessions list-statements
+                                     list-table-optimizer-runs list-triggers
+                                     list-usage-profiles list-workflows
+                                     modify-integration
+                                     put-data-catalog-encryption-settings
+                                     put-data-quality-profile-annotation
+                                     put-resource-policy
+                                     put-schema-version-metadata
+                                     put-workflow-run-properties
+                                     query-schema-version-metadata
+                                     register-schema-version
+                                     remove-schema-version-metadata
+                                     reset-job-bookmark resume-workflow-run
+                                     run-statement search-tables
+                                     start-blueprint-run
+                                     start-column-statistics-task-run
+                                     start-column-statistics-task-run-schedule
+                                     start-crawler start-crawler-schedule
+                                     start-data-quality-rule-recommendation-run
+                                     start-data-quality-ruleset-evaluation-run
+                                     start-export-labels-task-run
+                                     start-import-labels-task-run start-job-run
+                                     start-mlevaluation-task-run
+                                     start-mllabeling-set-generation-task-run
+                                     start-trigger start-workflow-run
+                                     stop-column-statistics-task-run
+                                     stop-column-statistics-task-run-schedule
+                                     stop-crawler stop-crawler-schedule
+                                     stop-session stop-trigger
+                                     stop-workflow-run tag-resource
+                                     test-connection untag-resource
+                                     update-blueprint update-catalog
+                                     update-classifier
+                                     update-column-statistics-for-partition
+                                     update-column-statistics-for-table
+                                     update-column-statistics-task-settings
+                                     update-connection update-crawler
+                                     update-crawler-schedule update-database
+                                     update-data-quality-ruleset
+                                     update-dev-endpoint
+                                     update-integration-resource-property
+                                     update-integration-table-properties
+                                     update-job update-job-from-source-control
+                                     update-mltransform update-partition
+                                     update-registry update-schema
+                                     update-source-control-from-job
+                                     update-table update-table-optimizer
+                                     update-trigger update-usage-profile
+                                     update-user-defined-function
+                                     update-workflow)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Glue")
                                       ("arnNamespace" . "glue")
                                       ("cloudFormationName" . "Glue")

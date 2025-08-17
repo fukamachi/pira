@@ -53,7 +53,17 @@
 
 (smithy/sdk/service:define-service timestream-20181101 :shape-name
                                    "Timestream_20181101" :version "2018-11-01"
-                                   :title "Amazon Timestream Write" :traits
+                                   :title "Amazon Timestream Write" :operations
+                                   '(create-batch-load-task create-database
+                                     create-table delete-database delete-table
+                                     describe-batch-load-task describe-database
+                                     describe-endpoints describe-table
+                                     list-batch-load-tasks list-databases
+                                     list-tables list-tags-for-resource
+                                     resume-batch-load-task tag-resource
+                                     untag-resource update-database
+                                     update-table write-records)
+                                   :traits
                                    '(("aws.api#clientEndpointDiscovery"
                                       ("operation"
                                        . "com.amazonaws.timestreamwrite#DescribeEndpoints")

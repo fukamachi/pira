@@ -353,10 +353,104 @@
 
 (smithy/sdk/service:define-service starling-dove-service :shape-name
                                    "StarlingDoveService" :version "2014-11-12"
-                                   :title "AWS Config" :xml-namespace
-                                   '(:uri
-                                     "http://config.amazonaws.com/doc/2014-11-12/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS Config" :operations
+                                   '(associate-resource-types
+                                     batch-get-aggregate-resource-config
+                                     batch-get-resource-config
+                                     delete-aggregation-authorization
+                                     delete-config-rule
+                                     delete-configuration-aggregator
+                                     delete-configuration-recorder
+                                     delete-conformance-pack
+                                     delete-delivery-channel
+                                     delete-evaluation-results
+                                     delete-organization-config-rule
+                                     delete-organization-conformance-pack
+                                     delete-pending-aggregation-request
+                                     delete-remediation-configuration
+                                     delete-remediation-exceptions
+                                     delete-resource-config
+                                     delete-retention-configuration
+                                     delete-service-linked-configuration-recorder
+                                     delete-stored-query
+                                     deliver-config-snapshot
+                                     describe-aggregate-compliance-by-config-rules
+                                     describe-aggregate-compliance-by-conformance-packs
+                                     describe-aggregation-authorizations
+                                     describe-compliance-by-config-rule
+                                     describe-compliance-by-resource
+                                     describe-config-rule-evaluation-status
+                                     describe-config-rules
+                                     describe-configuration-aggregators
+                                     describe-configuration-aggregator-sources-status
+                                     describe-configuration-recorders
+                                     describe-configuration-recorder-status
+                                     describe-conformance-pack-compliance
+                                     describe-conformance-packs
+                                     describe-conformance-pack-status
+                                     describe-delivery-channels
+                                     describe-delivery-channel-status
+                                     describe-organization-config-rules
+                                     describe-organization-config-rule-statuses
+                                     describe-organization-conformance-packs
+                                     describe-organization-conformance-pack-statuses
+                                     describe-pending-aggregation-requests
+                                     describe-remediation-configurations
+                                     describe-remediation-exceptions
+                                     describe-remediation-execution-status
+                                     describe-retention-configurations
+                                     disassociate-resource-types
+                                     get-aggregate-compliance-details-by-config-rule
+                                     get-aggregate-config-rule-compliance-summary
+                                     get-aggregate-conformance-pack-compliance-summary
+                                     get-aggregate-discovered-resource-counts
+                                     get-aggregate-resource-config
+                                     get-compliance-details-by-config-rule
+                                     get-compliance-details-by-resource
+                                     get-compliance-summary-by-config-rule
+                                     get-compliance-summary-by-resource-type
+                                     get-conformance-pack-compliance-details
+                                     get-conformance-pack-compliance-summary
+                                     get-custom-rule-policy
+                                     get-discovered-resource-counts
+                                     get-organization-config-rule-detailed-status
+                                     get-organization-conformance-pack-detailed-status
+                                     get-organization-custom-rule-policy
+                                     get-resource-config-history
+                                     get-resource-evaluation-summary
+                                     get-stored-query
+                                     list-aggregate-discovered-resources
+                                     list-configuration-recorders
+                                     list-conformance-pack-compliance-scores
+                                     list-discovered-resources
+                                     list-resource-evaluations
+                                     list-stored-queries list-tags-for-resource
+                                     put-aggregation-authorization
+                                     put-config-rule
+                                     put-configuration-aggregator
+                                     put-configuration-recorder
+                                     put-conformance-pack put-delivery-channel
+                                     put-evaluations put-external-evaluation
+                                     put-organization-config-rule
+                                     put-organization-conformance-pack
+                                     put-remediation-configurations
+                                     put-remediation-exceptions
+                                     put-resource-config
+                                     put-retention-configuration
+                                     put-service-linked-configuration-recorder
+                                     put-stored-query
+                                     select-aggregate-resource-config
+                                     select-resource-config
+                                     start-config-rules-evaluation
+                                     start-configuration-recorder
+                                     start-remediation-execution
+                                     start-resource-evaluation
+                                     stop-configuration-recorder tag-resource
+                                     untag-resource)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://config.amazonaws.com/doc/2014-11-12/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Config Service")

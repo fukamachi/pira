@@ -21,6 +21,9 @@
 
 (smithy/sdk/service:define-service dsql :shape-name "DSQL" :version
                                    "2018-05-10" :title "Amazon Aurora DSQL"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :errors
                                    '(access-denied-exception
                                      internal-server-exception

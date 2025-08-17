@@ -63,6 +63,18 @@
 
 (smithy/sdk/service:define-service ardi :shape-name "Ardi" :version
                                    "2017-11-27" :title "AWS Resource Groups"
+                                   :operations
+                                   '(cancel-tag-sync-task create-group
+                                     delete-group get-account-settings
+                                     get-group get-group-configuration
+                                     get-group-query get-tags get-tag-sync-task
+                                     group-resources list-grouping-statuses
+                                     list-group-resources list-groups
+                                     list-tag-sync-tasks
+                                     put-group-configuration search-resources
+                                     start-tag-sync-task tag ungroup-resources
+                                     untag update-account-settings update-group
+                                     update-group-query)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Resource Groups")

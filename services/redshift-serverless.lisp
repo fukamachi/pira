@@ -100,7 +100,18 @@
 
 (smithy/sdk/service:define-service redshift-serverless :shape-name
                                    "RedshiftServerless" :version "2021-04-21"
-                                   :title "Redshift Serverless" :traits
+                                   :title "Redshift Serverless" :operations
+                                   '(create-custom-domain-association
+                                     delete-custom-domain-association
+                                     delete-resource-policy get-credentials
+                                     get-custom-domain-association
+                                     get-resource-policy get-track
+                                     list-custom-domain-associations
+                                     list-tags-for-resource list-tracks
+                                     put-resource-policy tag-resource
+                                     untag-resource
+                                     update-custom-domain-association)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Redshift Serverless")
                                       ("arnNamespace" . "redshift-serverless"))

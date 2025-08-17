@@ -59,7 +59,20 @@
 (common-lisp:in-package #:pira/synthetics)
 
 (smithy/sdk/service:define-service synthetics :shape-name "Synthetics" :version
-                                   "2017-10-11" :title "Synthetics" :traits
+                                   "2017-10-11" :title "Synthetics" :operations
+                                   '(associate-resource create-canary
+                                     create-group delete-canary delete-group
+                                     describe-canaries
+                                     describe-canaries-last-run
+                                     describe-runtime-versions
+                                     disassociate-resource get-canary
+                                     get-canary-runs get-group
+                                     list-associated-groups
+                                     list-group-resources list-groups
+                                     list-tags-for-resource start-canary
+                                     start-canary-dry-run stop-canary
+                                     tag-resource untag-resource update-canary)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "synthetics")
                                       ("arnNamespace" . "synthetics")

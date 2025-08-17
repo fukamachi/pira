@@ -24,6 +24,9 @@
 (smithy/sdk/service:define-service pca-connector-scep :shape-name
                                    "PcaConnectorScep" :version "2018-05-10"
                                    :title "Private CA Connector for SCEP"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service"
                                       ("arnNamespace" . "pca-connector-scep")

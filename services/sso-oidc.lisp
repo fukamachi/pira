@@ -17,7 +17,11 @@
 
 (smithy/sdk/service:define-service awsssooidcservice :shape-name
                                    "AWSSSOOIDCService" :version "2019-06-10"
-                                   :title "AWS SSO OIDC" :traits
+                                   :title "AWS SSO OIDC" :operations
+                                   '(create-token create-token-with-iam
+                                     register-client
+                                     start-device-authorization)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "SSO OIDC")
                                       ("arnNamespace" . "sso-oauth")
                                       ("cloudFormationName" . "SSOOIDC")

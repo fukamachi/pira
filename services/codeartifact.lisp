@@ -114,7 +114,48 @@
 (smithy/sdk/service:define-service code-artifact-control-plane-service
                                    :shape-name
                                    "CodeArtifactControlPlaneService" :version
-                                   "2018-09-22" :title "CodeArtifact" :traits
+                                   "2018-09-22" :title "CodeArtifact"
+                                   :operations
+                                   '(associate-external-connection
+                                     copy-package-versions create-domain
+                                     create-package-group create-repository
+                                     delete-domain
+                                     delete-domain-permissions-policy
+                                     delete-package delete-package-group
+                                     delete-package-versions delete-repository
+                                     delete-repository-permissions-policy
+                                     describe-domain describe-package
+                                     describe-package-group
+                                     describe-package-version
+                                     describe-repository
+                                     disassociate-external-connection
+                                     dispose-package-versions
+                                     get-associated-package-group
+                                     get-authorization-token
+                                     get-domain-permissions-policy
+                                     get-package-version-asset
+                                     get-package-version-readme
+                                     get-repository-endpoint
+                                     get-repository-permissions-policy
+                                     list-allowed-repositories-for-group
+                                     list-associated-packages list-domains
+                                     list-package-groups list-packages
+                                     list-package-version-assets
+                                     list-package-version-dependencies
+                                     list-package-versions list-repositories
+                                     list-repositories-in-domain
+                                     list-sub-package-groups
+                                     list-tags-for-resource
+                                     publish-package-version
+                                     put-domain-permissions-policy
+                                     put-package-origin-configuration
+                                     put-repository-permissions-policy
+                                     tag-resource untag-resource
+                                     update-package-group
+                                     update-package-group-origin-configuration
+                                     update-package-versions-status
+                                     update-repository)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "codeartifact")
                                       ("arnNamespace" . "codeartifact")

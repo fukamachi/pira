@@ -60,7 +60,19 @@
 (smithy/sdk/service:define-service awsguru-frontend-service :shape-name
                                    "AWSGuruFrontendService" :version
                                    "2019-09-19" :title
-                                   "Amazon CodeGuru Reviewer" :traits
+                                   "Amazon CodeGuru Reviewer" :operations
+                                   '(associate-repository create-code-review
+                                     describe-code-review
+                                     describe-recommendation-feedback
+                                     describe-repository-association
+                                     disassociate-repository list-code-reviews
+                                     list-recommendation-feedback
+                                     list-recommendations
+                                     list-repository-associations
+                                     list-tags-for-resource
+                                     put-recommendation-feedback tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodeGuru Reviewer")
                                       ("arnNamespace" . "codeguru-reviewer")

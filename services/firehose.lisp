@@ -211,11 +211,21 @@
 
 (smithy/sdk/service:define-service firehose-20150804 :shape-name
                                    "Firehose_20150804" :version "2015-08-04"
-                                   :title "Amazon Kinesis Firehose"
+                                   :title "Amazon Kinesis Firehose" :operations
+                                   '(create-delivery-stream
+                                     delete-delivery-stream
+                                     describe-delivery-stream
+                                     list-delivery-streams
+                                     list-tags-for-delivery-stream put-record
+                                     put-record-batch
+                                     start-delivery-stream-encryption
+                                     stop-delivery-stream-encryption
+                                     tag-delivery-stream untag-delivery-stream
+                                     update-destination)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://firehose.amazonaws.com/doc/2015-08-04"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://firehose.amazonaws.com/doc/2015-08-04"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Firehose")
                                       ("arnNamespace" . "firehose")

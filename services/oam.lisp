@@ -24,6 +24,13 @@
 (smithy/sdk/service:define-service oamservice :shape-name "oamservice" :version
                                    "2022-06-10" :title
                                    "CloudWatch Observability Access Manager"
+                                   :operations
+                                   '(create-link create-sink delete-link
+                                     delete-sink get-link get-sink
+                                     get-sink-policy list-attached-links
+                                     list-links list-sinks
+                                     list-tags-for-resource put-sink-policy
+                                     tag-resource untag-resource update-link)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "OAM")
                                       ("arnNamespace" . "oam")

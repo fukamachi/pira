@@ -12,7 +12,11 @@
 (smithy/sdk/service:define-service cloud-front-key-value-store :shape-name
                                    "CloudFrontKeyValueStore" :version
                                    "2022-07-26" :title
-                                   "Amazon CloudFront KeyValueStore" :traits
+                                   "Amazon CloudFront KeyValueStore"
+                                   :operations
+                                   '(delete-key describe-key-value-store
+                                     get-key list-keys put-key update-keys)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudFront KeyValueStore")
                                       ("arnNamespace" . "key-value-store")

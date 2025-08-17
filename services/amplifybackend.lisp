@@ -70,7 +70,24 @@
 
 (smithy/sdk/service:define-service amplify-backend :shape-name "AmplifyBackend"
                                    :version "2020-08-11" :title
-                                   "AmplifyBackend" :traits
+                                   "AmplifyBackend" :operations
+                                   '(clone-backend create-backend
+                                     create-backend-api create-backend-auth
+                                     create-backend-config
+                                     create-backend-storage create-token
+                                     delete-backend delete-backend-api
+                                     delete-backend-auth delete-backend-storage
+                                     delete-token generate-backend-apimodels
+                                     get-backend get-backend-api
+                                     get-backend-apimodels get-backend-auth
+                                     get-backend-job get-backend-storage
+                                     get-token import-backend-auth
+                                     import-backend-storage list-backend-jobs
+                                     list-s3buckets remove-all-backends
+                                     remove-backend-config update-backend-api
+                                     update-backend-auth update-backend-config
+                                     update-backend-job update-backend-storage)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "AmplifyBackend")
                                       ("arnNamespace" . "amplifybackend")

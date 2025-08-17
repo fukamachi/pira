@@ -182,7 +182,38 @@
 
 (smithy/sdk/service:define-service awsfms-20180101 :shape-name
                                    "AWSFMS_20180101" :version "2018-01-01"
-                                   :title "Firewall Management Service" :traits
+                                   :title "Firewall Management Service"
+                                   :operations
+                                   '(associate-admin-account
+                                     associate-third-party-firewall
+                                     batch-associate-resource
+                                     batch-disassociate-resource
+                                     delete-apps-list
+                                     delete-notification-channel delete-policy
+                                     delete-protocols-list delete-resource-set
+                                     disassociate-admin-account
+                                     disassociate-third-party-firewall
+                                     get-admin-account get-admin-scope
+                                     get-apps-list get-compliance-detail
+                                     get-notification-channel get-policy
+                                     get-protection-status get-protocols-list
+                                     get-resource-set
+                                     get-third-party-firewall-association-status
+                                     get-violation-details
+                                     list-admin-accounts-for-organization
+                                     list-admins-managing-account
+                                     list-apps-lists list-compliance-status
+                                     list-discovered-resources
+                                     list-member-accounts list-policies
+                                     list-protocols-lists
+                                     list-resource-set-resources
+                                     list-resource-sets list-tags-for-resource
+                                     list-third-party-firewall-firewall-policies
+                                     put-admin-account put-apps-list
+                                     put-notification-channel put-policy
+                                     put-protocols-list put-resource-set
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "FMS")
                                       ("arnNamespace" . "fms")
                                       ("cloudFormationName" . "FMS")

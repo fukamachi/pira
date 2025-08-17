@@ -154,10 +154,39 @@
 
 (smithy/sdk/service:define-service awsevents :shape-name "AWSEvents" :version
                                    "2015-10-07" :title
-                                   "Amazon CloudWatch Events" :xml-namespace
-                                   '(:uri
-                                     "http://events.amazonaws.com/doc/2015-10-07"
-                                     :prefix common-lisp:nil)
+                                   "Amazon CloudWatch Events" :operations
+                                   '(activate-event-source cancel-replay
+                                     create-api-destination create-archive
+                                     create-connection create-event-bus
+                                     create-partner-event-source
+                                     deactivate-event-source
+                                     deauthorize-connection
+                                     delete-api-destination delete-archive
+                                     delete-connection delete-event-bus
+                                     delete-partner-event-source delete-rule
+                                     describe-api-destination describe-archive
+                                     describe-connection describe-event-bus
+                                     describe-event-source
+                                     describe-partner-event-source
+                                     describe-replay describe-rule disable-rule
+                                     enable-rule list-api-destinations
+                                     list-archives list-connections
+                                     list-event-buses list-event-sources
+                                     list-partner-event-source-accounts
+                                     list-partner-event-sources list-replays
+                                     list-rule-names-by-target list-rules
+                                     list-tags-for-resource
+                                     list-targets-by-rule put-events
+                                     put-partner-events put-permission put-rule
+                                     put-targets remove-permission
+                                     remove-targets start-replay tag-resource
+                                     test-event-pattern untag-resource
+                                     update-api-destination update-archive
+                                     update-connection)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://events.amazonaws.com/doc/2015-10-07"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudWatch Events")

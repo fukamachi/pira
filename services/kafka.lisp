@@ -120,7 +120,42 @@
 
 (smithy/sdk/service:define-service kafka :shape-name "Kafka" :version
                                    "2018-11-14" :title
-                                   "Managed Streaming for Kafka" :traits
+                                   "Managed Streaming for Kafka" :operations
+                                   '(batch-associate-scram-secret
+                                     batch-disassociate-scram-secret
+                                     create-cluster create-cluster-v2
+                                     create-configuration create-replicator
+                                     create-vpc-connection delete-cluster
+                                     delete-cluster-policy delete-configuration
+                                     delete-replicator delete-vpc-connection
+                                     describe-cluster
+                                     describe-cluster-operation
+                                     describe-cluster-operation-v2
+                                     describe-cluster-v2 describe-configuration
+                                     describe-configuration-revision
+                                     describe-replicator
+                                     describe-vpc-connection
+                                     get-bootstrap-brokers get-cluster-policy
+                                     get-compatible-kafka-versions
+                                     list-client-vpc-connections
+                                     list-cluster-operations
+                                     list-cluster-operations-v2 list-clusters
+                                     list-clusters-v2
+                                     list-configuration-revisions
+                                     list-configurations list-kafka-versions
+                                     list-nodes list-replicators
+                                     list-scram-secrets list-tags-for-resource
+                                     list-vpc-connections put-cluster-policy
+                                     reboot-broker reject-client-vpc-connection
+                                     tag-resource untag-resource
+                                     update-broker-count update-broker-storage
+                                     update-broker-type
+                                     update-cluster-configuration
+                                     update-cluster-kafka-version
+                                     update-configuration update-connectivity
+                                     update-monitoring update-replication-info
+                                     update-security update-storage)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Kafka")
                                       ("arnNamespace" . "kafka")
                                       ("cloudFormationName" . "MSK")

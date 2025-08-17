@@ -65,6 +65,26 @@
 (smithy/sdk/service:define-service acmprivate-ca :shape-name "ACMPrivateCA"
                                    :version "2017-08-22" :title
                                    "AWS Certificate Manager Private Certificate Authority"
+                                   :operations
+                                   '(create-certificate-authority
+                                     create-certificate-authority-audit-report
+                                     create-permission
+                                     delete-certificate-authority
+                                     delete-permission delete-policy
+                                     describe-certificate-authority
+                                     describe-certificate-authority-audit-report
+                                     get-certificate
+                                     get-certificate-authority-certificate
+                                     get-certificate-authority-csr get-policy
+                                     import-certificate-authority-certificate
+                                     issue-certificate
+                                     list-certificate-authorities
+                                     list-permissions list-tags put-policy
+                                     restore-certificate-authority
+                                     revoke-certificate
+                                     tag-certificate-authority
+                                     untag-certificate-authority
+                                     update-certificate-authority)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "ACM PCA")
                                       ("arnNamespace" . "acm-pca")

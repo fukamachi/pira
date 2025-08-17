@@ -55,7 +55,10 @@
 
 (smithy/sdk/service:define-service sim-space-weaver :shape-name
                                    "SimSpaceWeaver" :version "2022-10-28"
-                                   :title "AWS SimSpace Weaver" :traits
+                                   :title "AWS SimSpace Weaver" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SimSpaceWeaver")
                                       ("arnNamespace" . "simspaceweaver")

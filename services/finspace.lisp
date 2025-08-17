@@ -129,6 +129,35 @@
                                    "AWSHabaneroManagementService" :version
                                    "2021-03-12" :title
                                    "FinSpace User Environment Management service"
+                                   :operations
+                                   '(create-environment create-kx-changeset
+                                     create-kx-cluster create-kx-database
+                                     create-kx-dataview create-kx-environment
+                                     create-kx-scaling-group create-kx-user
+                                     create-kx-volume delete-environment
+                                     delete-kx-cluster delete-kx-cluster-node
+                                     delete-kx-database delete-kx-dataview
+                                     delete-kx-environment
+                                     delete-kx-scaling-group delete-kx-user
+                                     delete-kx-volume get-environment
+                                     get-kx-changeset get-kx-cluster
+                                     get-kx-connection-string get-kx-database
+                                     get-kx-dataview get-kx-environment
+                                     get-kx-scaling-group get-kx-user
+                                     get-kx-volume list-environments
+                                     list-kx-changesets list-kx-cluster-nodes
+                                     list-kx-clusters list-kx-databases
+                                     list-kx-dataviews list-kx-environments
+                                     list-kx-scaling-groups list-kx-users
+                                     list-kx-volumes list-tags-for-resource
+                                     tag-resource untag-resource
+                                     update-environment
+                                     update-kx-cluster-code-configuration
+                                     update-kx-cluster-databases
+                                     update-kx-database update-kx-dataview
+                                     update-kx-environment
+                                     update-kx-environment-network
+                                     update-kx-user update-kx-volume)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "finspace")
                                       ("arnNamespace" . "finspace")

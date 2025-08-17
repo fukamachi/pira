@@ -165,6 +165,17 @@
 (smithy/sdk/service:define-service open-search-serverless :shape-name
                                    "OpenSearchServerless" :version "2021-11-01"
                                    :title "OpenSearch Service Serverless"
+                                   :operations
+                                   '(batch-get-collection
+                                     batch-get-effective-lifecycle-policy
+                                     batch-get-lifecycle-policy
+                                     batch-get-vpc-endpoint
+                                     create-lifecycle-policy
+                                     create-security-policy
+                                     get-account-settings get-policies-stats
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-account-settings
+                                     update-vpc-endpoint)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "OpenSearchServerless")

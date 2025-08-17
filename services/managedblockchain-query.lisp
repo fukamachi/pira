@@ -43,7 +43,15 @@
 (smithy/sdk/service:define-service tieton-chain-query-service :shape-name
                                    "TietonChainQueryService" :version
                                    "2023-05-04" :title
-                                   "Amazon Managed Blockchain Query" :traits
+                                   "Amazon Managed Blockchain Query"
+                                   :operations
+                                   '(batch-get-token-balance get-asset-contract
+                                     get-token-balance get-transaction
+                                     list-asset-contracts
+                                     list-filtered-transaction-events
+                                     list-token-balances
+                                     list-transaction-events list-transactions)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ManagedBlockchain Query")
                                       ("arnNamespace"

@@ -24,6 +24,14 @@
                                    "PinpointSMSVoice" :version "2018-09-05"
                                    :title
                                    "Amazon Pinpoint SMS and Voice Service"
+                                   :operations
+                                   '(create-configuration-set
+                                     create-configuration-set-event-destination
+                                     delete-configuration-set
+                                     delete-configuration-set-event-destination
+                                     get-configuration-set-event-destinations
+                                     list-configuration-sets send-voice-message
+                                     update-configuration-set-event-destination)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Pinpoint SMS Voice")

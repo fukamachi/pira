@@ -17,7 +17,11 @@
 
 (smithy/sdk/service:define-service awsprice-list-service :shape-name
                                    "AWSPriceListService" :version "2017-10-15"
-                                   :title "AWS Price List Service" :traits
+                                   :title "AWS Price List Service" :operations
+                                   '(describe-services get-attribute-values
+                                     get-price-list-file-url get-products
+                                     list-price-lists)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Pricing")
                                       ("arnNamespace" . "pricing")
                                       ("cloudFormationName" . "Pricing")

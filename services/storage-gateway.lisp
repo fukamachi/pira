@@ -177,10 +177,80 @@
 (smithy/sdk/service:define-service storage-gateway-20130630 :shape-name
                                    "StorageGateway_20130630" :version
                                    "2013-06-30" :title "AWS Storage Gateway"
+                                   :operations
+                                   '(activate-gateway add-cache
+                                     add-tags-to-resource add-upload-buffer
+                                     add-working-storage assign-tape-pool
+                                     associate-file-system attach-volume
+                                     cancel-archival cancel-cache-report
+                                     cancel-retrieval create-cachedi-scsivolume
+                                     create-nfsfile-share create-smbfile-share
+                                     create-snapshot
+                                     create-snapshot-from-volume-recovery-point
+                                     create-storedi-scsivolume create-tape-pool
+                                     create-tapes create-tape-with-barcode
+                                     delete-automatic-tape-creation-policy
+                                     delete-bandwidth-rate-limit
+                                     delete-cache-report
+                                     delete-chap-credentials delete-file-share
+                                     delete-gateway delete-snapshot-schedule
+                                     delete-tape delete-tape-archive
+                                     delete-tape-pool delete-volume
+                                     describe-availability-monitor-test
+                                     describe-bandwidth-rate-limit
+                                     describe-bandwidth-rate-limit-schedule
+                                     describe-cache
+                                     describe-cachedi-scsivolumes
+                                     describe-cache-report
+                                     describe-chap-credentials
+                                     describe-file-system-associations
+                                     describe-gateway-information
+                                     describe-maintenance-start-time
+                                     describe-nfsfile-shares
+                                     describe-smbfile-shares
+                                     describe-smbsettings
+                                     describe-snapshot-schedule
+                                     describe-storedi-scsivolumes
+                                     describe-tape-archives
+                                     describe-tape-recovery-points
+                                     describe-tapes describe-upload-buffer
+                                     describe-vtldevices
+                                     describe-working-storage detach-volume
+                                     disable-gateway disassociate-file-system
+                                     evict-files-failing-upload join-domain
+                                     list-automatic-tape-creation-policies
+                                     list-cache-reports list-file-shares
+                                     list-file-system-associations
+                                     list-gateways list-local-disks
+                                     list-tags-for-resource list-tape-pools
+                                     list-tapes list-volume-initiators
+                                     list-volume-recovery-points list-volumes
+                                     notify-when-uploaded refresh-cache
+                                     remove-tags-from-resource reset-cache
+                                     retrieve-tape-archive
+                                     retrieve-tape-recovery-point
+                                     set-local-console-password
+                                     set-smbguest-password shutdown-gateway
+                                     start-availability-monitor-test
+                                     start-cache-report start-gateway
+                                     update-automatic-tape-creation-policy
+                                     update-bandwidth-rate-limit
+                                     update-bandwidth-rate-limit-schedule
+                                     update-chap-credentials
+                                     update-file-system-association
+                                     update-gateway-information
+                                     update-gateway-software-now
+                                     update-maintenance-start-time
+                                     update-nfsfile-share update-smbfile-share
+                                     update-smbfile-share-visibility
+                                     update-smblocal-groups
+                                     update-smbsecurity-strategy
+                                     update-snapshot-schedule
+                                     update-vtldevice-type)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://storagegateway.amazonaws.com/doc/2013-06-30"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://storagegateway.amazonaws.com/doc/2013-06-30"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Storage Gateway")

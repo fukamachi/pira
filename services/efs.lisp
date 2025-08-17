@@ -70,7 +70,32 @@
 (smithy/sdk/service:define-service magnolio-apiservice-v20150201 :shape-name
                                    "MagnolioAPIService_v20150201" :version
                                    "2015-02-01" :title
-                                   "Amazon Elastic File System" :traits
+                                   "Amazon Elastic File System" :operations
+                                   '(create-access-point create-file-system
+                                     create-mount-target
+                                     create-replication-configuration
+                                     create-tags delete-access-point
+                                     delete-file-system
+                                     delete-file-system-policy
+                                     delete-mount-target
+                                     delete-replication-configuration
+                                     delete-tags describe-access-points
+                                     describe-account-preferences
+                                     describe-backup-policy
+                                     describe-file-system-policy
+                                     describe-file-systems
+                                     describe-lifecycle-configuration
+                                     describe-mount-targets
+                                     describe-mount-target-security-groups
+                                     describe-replication-configurations
+                                     describe-tags list-tags-for-resource
+                                     modify-mount-target-security-groups
+                                     put-account-preferences put-backup-policy
+                                     put-file-system-policy
+                                     put-lifecycle-configuration tag-resource
+                                     untag-resource update-file-system
+                                     update-file-system-protection)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "EFS")
                                       ("arnNamespace" . "elasticfilesystem")
                                       ("cloudFormationName" . "EFS")

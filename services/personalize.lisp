@@ -135,7 +135,57 @@
 
 (smithy/sdk/service:define-service amazon-personalize :shape-name
                                    "AmazonPersonalize" :version "2018-05-22"
-                                   :title "Amazon Personalize" :traits
+                                   :title "Amazon Personalize" :operations
+                                   '(create-batch-inference-job
+                                     create-batch-segment-job create-campaign
+                                     create-data-deletion-job create-dataset
+                                     create-dataset-export-job
+                                     create-dataset-group
+                                     create-dataset-import-job
+                                     create-event-tracker create-filter
+                                     create-metric-attribution
+                                     create-recommender create-schema
+                                     create-solution create-solution-version
+                                     delete-campaign delete-dataset
+                                     delete-dataset-group delete-event-tracker
+                                     delete-filter delete-metric-attribution
+                                     delete-recommender delete-schema
+                                     delete-solution describe-algorithm
+                                     describe-batch-inference-job
+                                     describe-batch-segment-job
+                                     describe-campaign
+                                     describe-data-deletion-job
+                                     describe-dataset
+                                     describe-dataset-export-job
+                                     describe-dataset-group
+                                     describe-dataset-import-job
+                                     describe-event-tracker
+                                     describe-feature-transformation
+                                     describe-filter
+                                     describe-metric-attribution
+                                     describe-recipe describe-recommender
+                                     describe-schema describe-solution
+                                     describe-solution-version
+                                     get-solution-metrics
+                                     list-batch-inference-jobs
+                                     list-batch-segment-jobs list-campaigns
+                                     list-data-deletion-jobs
+                                     list-dataset-export-jobs
+                                     list-dataset-groups
+                                     list-dataset-import-jobs list-datasets
+                                     list-event-trackers list-filters
+                                     list-metric-attribution-metrics
+                                     list-metric-attributions list-recipes
+                                     list-recommenders list-schemas
+                                     list-solutions list-solution-versions
+                                     list-tags-for-resource start-recommender
+                                     stop-recommender
+                                     stop-solution-version-creation
+                                     tag-resource untag-resource
+                                     update-campaign update-dataset
+                                     update-metric-attribution
+                                     update-recommender update-solution)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Personalize")
                                       ("arnNamespace" . "personalize")

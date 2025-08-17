@@ -171,10 +171,39 @@
 
 (smithy/sdk/service:define-service awsbatch-v20160810 :shape-name
                                    "AWSBatchV20160810" :version "2016-08-10"
-                                   :title "AWS Batch" :xml-namespace
-                                   '(:uri
-                                     "http://batch.amazonaws.com/doc/2016-08-10/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS Batch" :operations
+                                   '(cancel-job create-compute-environment
+                                     create-consumable-resource
+                                     create-job-queue create-scheduling-policy
+                                     create-service-environment
+                                     delete-compute-environment
+                                     delete-consumable-resource
+                                     delete-job-queue delete-scheduling-policy
+                                     delete-service-environment
+                                     deregister-job-definition
+                                     describe-compute-environments
+                                     describe-consumable-resource
+                                     describe-job-definitions
+                                     describe-job-queues describe-jobs
+                                     describe-scheduling-policies
+                                     describe-service-environments
+                                     describe-service-job
+                                     get-job-queue-snapshot
+                                     list-consumable-resources list-jobs
+                                     list-jobs-by-consumable-resource
+                                     list-scheduling-policies list-service-jobs
+                                     list-tags-for-resource
+                                     register-job-definition submit-job
+                                     submit-service-job tag-resource
+                                     terminate-job terminate-service-job
+                                     untag-resource update-compute-environment
+                                     update-consumable-resource
+                                     update-job-queue update-scheduling-policy
+                                     update-service-environment)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://batch.amazonaws.com/doc/2016-08-10/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Batch")
                                       ("arnNamespace" . "batch")

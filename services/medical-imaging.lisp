@@ -54,7 +54,16 @@
 
 (smithy/sdk/service:define-service ahigateway-service :shape-name
                                    "AHIGatewayService" :version "2023-07-19"
-                                   :title "AWS Health Imaging" :traits
+                                   :title "AWS Health Imaging" :operations
+                                   '(copy-image-set delete-image-set
+                                     get-dicomimport-job get-image-frame
+                                     get-image-set get-image-set-metadata
+                                     list-dicomimport-jobs
+                                     list-image-set-versions
+                                     list-tags-for-resource search-image-sets
+                                     start-dicomimport-job tag-resource
+                                     untag-resource update-image-set-metadata)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Medical Imaging")
                                       ("arnNamespace" . "medical-imaging")

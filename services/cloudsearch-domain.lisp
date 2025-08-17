@@ -18,10 +18,12 @@
 (smithy/sdk/service:define-service amazon-cloud-search2013 :shape-name
                                    "AmazonCloudSearch2013" :version
                                    "2013-01-01" :title
-                                   "Amazon CloudSearch Domain" :xml-namespace
-                                   '(:uri
-                                     "http://cloudsearch.amazonaws.com/doc/2013-01-01/"
-                                     :prefix common-lisp:nil)
+                                   "Amazon CloudSearch Domain" :operations
+                                   '(search suggest upload-documents)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://cloudsearch.amazonaws.com/doc/2013-01-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudSearch Domain")

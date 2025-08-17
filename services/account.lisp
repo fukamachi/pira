@@ -28,7 +28,8 @@
 (common-lisp:in-package #:pira/account)
 
 (smithy/sdk/service:define-service account :shape-name "Account" :version
-                                   "2021-02-01" :title "AWS Account" :traits
+                                   "2021-02-01" :title "AWS Account"
+                                   :operations 'common-lisp:nil :traits
                                    '(("aws.api#service" ("sdkId" . "Account")
                                       ("arnNamespace" . "account")
                                       ("cloudTrailEventSource"

@@ -97,7 +97,29 @@
 
 (smithy/sdk/service:define-service awsglue-data-brew :shape-name
                                    "AWSGlueDataBrew" :version "2017-07-25"
-                                   :title "AWS Glue DataBrew" :traits
+                                   :title "AWS Glue DataBrew" :operations
+                                   '(batch-delete-recipe-version create-dataset
+                                     create-profile-job create-project
+                                     create-recipe create-recipe-job
+                                     create-ruleset create-schedule
+                                     delete-dataset delete-job delete-project
+                                     delete-recipe-version delete-ruleset
+                                     delete-schedule describe-dataset
+                                     describe-job describe-job-run
+                                     describe-project describe-recipe
+                                     describe-ruleset describe-schedule
+                                     list-datasets list-job-runs list-jobs
+                                     list-projects list-recipes
+                                     list-recipe-versions list-rulesets
+                                     list-schedules list-tags-for-resource
+                                     publish-recipe send-project-session-action
+                                     start-job-run start-project-session
+                                     stop-job-run tag-resource untag-resource
+                                     update-dataset update-profile-job
+                                     update-project update-recipe
+                                     update-recipe-job update-ruleset
+                                     update-schedule)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "DataBrew")
                                       ("arnNamespace" . "databrew")
                                       ("cloudFormationName" . "DataBrew")

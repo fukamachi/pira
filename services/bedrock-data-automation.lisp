@@ -88,7 +88,12 @@
                                    :shape-name
                                    "AmazonBedrockKeystoneBuildTimeService"
                                    :version "2023-07-26" :title
-                                   "Data Automation for Amazon Bedrock" :traits
+                                   "Data Automation for Amazon Bedrock"
+                                   :operations
+                                   '(create-blueprint-version
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Bedrock Data Automation")
                                       ("arnNamespace" . "bedrock")

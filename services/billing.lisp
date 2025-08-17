@@ -27,7 +27,15 @@
 (common-lisp:in-package #:pira/billing)
 
 (smithy/sdk/service:define-service awsbilling :shape-name "AWSBilling" :version
-                                   "2023-09-07" :title "AWS Billing" :traits
+                                   "2023-09-07" :title "AWS Billing"
+                                   :operations
+                                   '(create-billing-view delete-billing-view
+                                     get-billing-view get-resource-policy
+                                     list-billing-views
+                                     list-source-views-for-billing-view
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-billing-view)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Billing")
                                       ("endpointPrefix" . "billing")
                                       ("arnNamespace" . "billing")

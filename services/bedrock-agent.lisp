@@ -412,7 +412,8 @@
                                    :shape-name
                                    "AmazonBedrockAgentBuildTimeLambda" :version
                                    "2023-06-05" :title
-                                   "Agents for Amazon Bedrock" :traits
+                                   "Agents for Amazon Bedrock" :operations
+                                   '(validate-flow-definition) :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Bedrock Agent")
                                       ("arnNamespace" . "bedrock")

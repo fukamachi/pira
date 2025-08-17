@@ -305,10 +305,94 @@
 (smithy/sdk/service:define-service awss3control-service-v20180820 :shape-name
                                    "AWSS3ControlServiceV20180820" :version
                                    "2018-08-20" :title "AWS S3 Control"
+                                   :operations
+                                   '(associate-access-grants-identity-center
+                                     create-access-grant
+                                     create-access-grants-instance
+                                     create-access-grants-location
+                                     create-access-point
+                                     create-access-point-for-object-lambda
+                                     create-bucket create-job
+                                     create-multi-region-access-point
+                                     create-storage-lens-group
+                                     delete-access-grant
+                                     delete-access-grants-instance
+                                     delete-access-grants-instance-resource-policy
+                                     delete-access-grants-location
+                                     delete-access-point
+                                     delete-access-point-for-object-lambda
+                                     delete-access-point-policy
+                                     delete-access-point-policy-for-object-lambda
+                                     delete-access-point-scope delete-bucket
+                                     delete-bucket-lifecycle-configuration
+                                     delete-bucket-policy
+                                     delete-bucket-replication
+                                     delete-bucket-tagging delete-job-tagging
+                                     delete-multi-region-access-point
+                                     delete-public-access-block
+                                     delete-storage-lens-configuration
+                                     delete-storage-lens-configuration-tagging
+                                     delete-storage-lens-group describe-job
+                                     describe-multi-region-access-point-operation
+                                     dissociate-access-grants-identity-center
+                                     get-access-grant
+                                     get-access-grants-instance
+                                     get-access-grants-instance-for-prefix
+                                     get-access-grants-instance-resource-policy
+                                     get-access-grants-location
+                                     get-access-point
+                                     get-access-point-configuration-for-object-lambda
+                                     get-access-point-for-object-lambda
+                                     get-access-point-policy
+                                     get-access-point-policy-for-object-lambda
+                                     get-access-point-policy-status
+                                     get-access-point-policy-status-for-object-lambda
+                                     get-access-point-scope get-bucket
+                                     get-bucket-lifecycle-configuration
+                                     get-bucket-policy get-bucket-replication
+                                     get-bucket-tagging get-bucket-versioning
+                                     get-data-access get-job-tagging
+                                     get-multi-region-access-point
+                                     get-multi-region-access-point-policy
+                                     get-multi-region-access-point-policy-status
+                                     get-multi-region-access-point-routes
+                                     get-public-access-block
+                                     get-storage-lens-configuration
+                                     get-storage-lens-configuration-tagging
+                                     get-storage-lens-group list-access-grants
+                                     list-access-grants-instances
+                                     list-access-grants-locations
+                                     list-access-points
+                                     list-access-points-for-directory-buckets
+                                     list-access-points-for-object-lambda
+                                     list-caller-access-grants list-jobs
+                                     list-multi-region-access-points
+                                     list-regional-buckets
+                                     list-storage-lens-configurations
+                                     list-storage-lens-groups
+                                     list-tags-for-resource
+                                     put-access-grants-instance-resource-policy
+                                     put-access-point-configuration-for-object-lambda
+                                     put-access-point-policy
+                                     put-access-point-policy-for-object-lambda
+                                     put-access-point-scope
+                                     put-bucket-lifecycle-configuration
+                                     put-bucket-policy put-bucket-replication
+                                     put-bucket-tagging put-bucket-versioning
+                                     put-job-tagging
+                                     put-multi-region-access-point-policy
+                                     put-public-access-block
+                                     put-storage-lens-configuration
+                                     put-storage-lens-configuration-tagging
+                                     submit-multi-region-access-point-routes
+                                     tag-resource untag-resource
+                                     update-access-grants-location
+                                     update-job-priority update-job-status
+                                     update-storage-lens-group)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://awss3control.amazonaws.com/doc/2018-08-20/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://awss3control.amazonaws.com/doc/2018-08-20/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "S3 Control")

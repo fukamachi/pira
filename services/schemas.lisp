@@ -35,7 +35,24 @@
 (common-lisp:in-package #:pira/schemas)
 
 (smithy/sdk/service:define-service schemas :shape-name "schemas" :version
-                                   "2019-12-02" :title "Schemas" :traits
+                                   "2019-12-02" :title "Schemas" :operations
+                                   '(create-discoverer create-registry
+                                     create-schema delete-discoverer
+                                     delete-registry delete-resource-policy
+                                     delete-schema delete-schema-version
+                                     describe-code-binding describe-discoverer
+                                     describe-registry describe-schema
+                                     export-schema get-code-binding-source
+                                     get-discovered-schema get-resource-policy
+                                     list-discoverers list-registries
+                                     list-schemas list-schema-versions
+                                     list-tags-for-resource put-code-binding
+                                     put-resource-policy search-schemas
+                                     start-discoverer stop-discoverer
+                                     tag-resource untag-resource
+                                     update-discoverer update-registry
+                                     update-schema)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "schemas")
                                       ("arnNamespace" . "schemas")
                                       ("cloudFormationName" . "EventSchemas")

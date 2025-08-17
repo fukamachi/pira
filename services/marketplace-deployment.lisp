@@ -15,7 +15,11 @@
                                    :shape-name
                                    "AWSMPDeploymentParametersService" :version
                                    "2023-01-25" :title
-                                   "AWS Marketplace Deployment Service" :traits
+                                   "AWS Marketplace Deployment Service"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Marketplace Deployment")
                                       ("arnNamespace" . "aws-marketplace")

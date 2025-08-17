@@ -162,10 +162,51 @@
                                    "AmazonEC2ContainerRegistry_V20150921"
                                    :version "2015-09-21" :title
                                    "Amazon Elastic Container Registry"
+                                   :operations
+                                   '(batch-check-layer-availability
+                                     batch-delete-image batch-get-image
+                                     batch-get-repository-scanning-configuration
+                                     complete-layer-upload
+                                     create-pull-through-cache-rule
+                                     create-repository
+                                     create-repository-creation-template
+                                     delete-lifecycle-policy
+                                     delete-pull-through-cache-rule
+                                     delete-registry-policy delete-repository
+                                     delete-repository-creation-template
+                                     delete-repository-policy
+                                     describe-image-replication-status
+                                     describe-images
+                                     describe-image-scan-findings
+                                     describe-pull-through-cache-rules
+                                     describe-registry describe-repositories
+                                     describe-repository-creation-templates
+                                     get-account-setting
+                                     get-authorization-token
+                                     get-download-url-for-layer
+                                     get-lifecycle-policy
+                                     get-lifecycle-policy-preview
+                                     get-registry-policy
+                                     get-registry-scanning-configuration
+                                     get-repository-policy
+                                     initiate-layer-upload list-images
+                                     list-tags-for-resource put-account-setting
+                                     put-image put-image-scanning-configuration
+                                     put-image-tag-mutability
+                                     put-lifecycle-policy put-registry-policy
+                                     put-registry-scanning-configuration
+                                     put-replication-configuration
+                                     set-repository-policy start-image-scan
+                                     start-lifecycle-policy-preview
+                                     tag-resource untag-resource
+                                     update-pull-through-cache-rule
+                                     update-repository-creation-template
+                                     upload-layer-part
+                                     validate-pull-through-cache-rule)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://ecr.amazonaws.com/doc/2015-09-21/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://ecr.amazonaws.com/doc/2015-09-21/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "ECR")
                                       ("arnNamespace" . "ecr")

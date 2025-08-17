@@ -52,10 +52,27 @@
 (smithy/sdk/service:define-service awscognito-identity-service :shape-name
                                    "AWSCognitoIdentityService" :version
                                    "2014-06-30" :title
-                                   "Amazon Cognito Identity" :xml-namespace
-                                   '(:uri
-                                     "http://cognito-identity.amazonaws.com/doc/2014-06-30/"
-                                     :prefix common-lisp:nil)
+                                   "Amazon Cognito Identity" :operations
+                                   '(create-identity-pool delete-identities
+                                     delete-identity-pool describe-identity
+                                     describe-identity-pool
+                                     get-credentials-for-identity get-id
+                                     get-identity-pool-roles get-open-id-token
+                                     get-open-id-token-for-developer-identity
+                                     get-principal-tag-attribute-map
+                                     list-identities list-identity-pools
+                                     list-tags-for-resource
+                                     lookup-developer-identity
+                                     merge-developer-identities
+                                     set-identity-pool-roles
+                                     set-principal-tag-attribute-map
+                                     tag-resource unlink-developer-identity
+                                     unlink-identity untag-resource
+                                     update-identity-pool)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://cognito-identity.amazonaws.com/doc/2014-06-30/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Cognito Identity")

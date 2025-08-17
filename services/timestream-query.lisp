@@ -69,7 +69,19 @@
 
 (smithy/sdk/service:define-service timestream-20181101 :shape-name
                                    "Timestream_20181101" :version "2018-11-01"
-                                   :title "Amazon Timestream Query" :traits
+                                   :title "Amazon Timestream Query" :operations
+                                   '(cancel-query create-scheduled-query
+                                     delete-scheduled-query
+                                     describe-account-settings
+                                     describe-endpoints
+                                     describe-scheduled-query
+                                     execute-scheduled-query
+                                     list-scheduled-queries
+                                     list-tags-for-resource prepare-query query
+                                     tag-resource untag-resource
+                                     update-account-settings
+                                     update-scheduled-query)
+                                   :traits
                                    '(("aws.api#clientEndpointDiscovery"
                                       ("operation"
                                        . "com.amazonaws.timestreamquery#DescribeEndpoints")

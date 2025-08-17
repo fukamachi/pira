@@ -33,6 +33,18 @@
                                    :shape-name
                                    "AWSCloud9WorkspaceManagementService"
                                    :version "2017-09-23" :title "AWS Cloud9"
+                                   :operations
+                                   '(create-environment-ec2
+                                     create-environment-membership
+                                     delete-environment
+                                     delete-environment-membership
+                                     describe-environment-memberships
+                                     describe-environments
+                                     describe-environment-status
+                                     list-environments list-tags-for-resource
+                                     tag-resource untag-resource
+                                     update-environment
+                                     update-environment-membership)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Cloud9")
                                       ("arnNamespace" . "cloud9")

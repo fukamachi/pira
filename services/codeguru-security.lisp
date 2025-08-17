@@ -36,7 +36,17 @@
 
 (smithy/sdk/service:define-service aws-code-guru-security :shape-name
                                    "AwsCodeGuruSecurity" :version "2018-05-10"
-                                   :title "Amazon CodeGuru Security" :traits
+                                   :title "Amazon CodeGuru Security"
+                                   :operations
+                                   '(batch-get-findings create-scan
+                                     create-upload-url
+                                     get-account-configuration get-findings
+                                     get-metrics-summary get-scan
+                                     list-findings-metrics list-scans
+                                     list-tags-for-resource tag-resource
+                                     untag-resource
+                                     update-account-configuration)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodeGuru Security")
                                       ("arnNamespace" . "codeguru-security")

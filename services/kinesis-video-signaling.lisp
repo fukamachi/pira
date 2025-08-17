@@ -11,6 +11,9 @@
                                    "AWSAcuitySignalingService" :version
                                    "2019-12-04" :title
                                    "Amazon Kinesis Video Signaling Channels"
+                                   :operations
+                                   '(get-ice-server-config
+                                     send-alexa-offer-to-master)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Kinesis Video Signaling")

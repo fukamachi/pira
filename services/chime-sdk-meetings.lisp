@@ -54,7 +54,19 @@
 (smithy/sdk/service:define-service chime-meetings-sdkservice :shape-name
                                    "ChimeMeetingsSDKService" :version
                                    "2021-07-15" :title
-                                   "Amazon Chime SDK Meetings" :traits
+                                   "Amazon Chime SDK Meetings" :operations
+                                   '(batch-create-attendee
+                                     batch-update-attendee-capabilities-except
+                                     create-attendee create-meeting
+                                     create-meeting-with-attendees
+                                     delete-attendee delete-meeting
+                                     get-attendee get-meeting list-attendees
+                                     list-tags-for-resource
+                                     start-meeting-transcription
+                                     stop-meeting-transcription tag-resource
+                                     untag-resource
+                                     update-attendee-capabilities)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Chime SDK Meetings")
                                       ("arnNamespace" . "chime")

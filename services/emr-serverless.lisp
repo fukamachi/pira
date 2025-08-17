@@ -89,7 +89,10 @@
 
 (smithy/sdk/service:define-service aws-toledo-web-service :shape-name
                                    "AwsToledoWebService" :version "2021-07-13"
-                                   :title "EMR Serverless" :traits
+                                   :title "EMR Serverless" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "EMR Serverless")
                                       ("arnNamespace" . "emr-serverless")

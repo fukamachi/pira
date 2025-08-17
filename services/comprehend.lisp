@@ -242,7 +242,80 @@
 
 (smithy/sdk/service:define-service comprehend-20171127 :shape-name
                                    "Comprehend_20171127" :version "2017-11-27"
-                                   :title "Amazon Comprehend" :traits
+                                   :title "Amazon Comprehend" :operations
+                                   '(batch-detect-dominant-language
+                                     batch-detect-entities
+                                     batch-detect-key-phrases
+                                     batch-detect-sentiment batch-detect-syntax
+                                     batch-detect-targeted-sentiment
+                                     classify-document contains-pii-entities
+                                     create-dataset create-document-classifier
+                                     create-endpoint create-entity-recognizer
+                                     create-flywheel delete-document-classifier
+                                     delete-endpoint delete-entity-recognizer
+                                     delete-flywheel delete-resource-policy
+                                     describe-dataset
+                                     describe-document-classification-job
+                                     describe-document-classifier
+                                     describe-dominant-language-detection-job
+                                     describe-endpoint
+                                     describe-entities-detection-job
+                                     describe-entity-recognizer
+                                     describe-events-detection-job
+                                     describe-flywheel
+                                     describe-flywheel-iteration
+                                     describe-key-phrases-detection-job
+                                     describe-pii-entities-detection-job
+                                     describe-resource-policy
+                                     describe-sentiment-detection-job
+                                     describe-targeted-sentiment-detection-job
+                                     describe-topics-detection-job
+                                     detect-dominant-language detect-entities
+                                     detect-key-phrases detect-pii-entities
+                                     detect-sentiment detect-syntax
+                                     detect-targeted-sentiment
+                                     detect-toxic-content import-model
+                                     list-datasets
+                                     list-document-classification-jobs
+                                     list-document-classifiers
+                                     list-document-classifier-summaries
+                                     list-dominant-language-detection-jobs
+                                     list-endpoints
+                                     list-entities-detection-jobs
+                                     list-entity-recognizers
+                                     list-entity-recognizer-summaries
+                                     list-events-detection-jobs
+                                     list-flywheel-iteration-history
+                                     list-flywheels
+                                     list-key-phrases-detection-jobs
+                                     list-pii-entities-detection-jobs
+                                     list-sentiment-detection-jobs
+                                     list-tags-for-resource
+                                     list-targeted-sentiment-detection-jobs
+                                     list-topics-detection-jobs
+                                     put-resource-policy
+                                     start-document-classification-job
+                                     start-dominant-language-detection-job
+                                     start-entities-detection-job
+                                     start-events-detection-job
+                                     start-flywheel-iteration
+                                     start-key-phrases-detection-job
+                                     start-pii-entities-detection-job
+                                     start-sentiment-detection-job
+                                     start-targeted-sentiment-detection-job
+                                     start-topics-detection-job
+                                     stop-dominant-language-detection-job
+                                     stop-entities-detection-job
+                                     stop-events-detection-job
+                                     stop-key-phrases-detection-job
+                                     stop-pii-entities-detection-job
+                                     stop-sentiment-detection-job
+                                     stop-targeted-sentiment-detection-job
+                                     stop-training-document-classifier
+                                     stop-training-entity-recognizer
+                                     tag-resource untag-resource
+                                     update-endpoint update-flywheel)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Comprehend")
                                       ("arnNamespace" . "comprehend")

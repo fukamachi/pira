@@ -97,7 +97,45 @@
 (smithy/sdk/service:define-service amazon-pinpoint-email-service :shape-name
                                    "AmazonPinpointEmailService" :version
                                    "2018-07-26" :title
-                                   "Amazon Pinpoint Email Service" :traits
+                                   "Amazon Pinpoint Email Service" :operations
+                                   '(create-configuration-set
+                                     create-configuration-set-event-destination
+                                     create-dedicated-ip-pool
+                                     create-deliverability-test-report
+                                     create-email-identity
+                                     delete-configuration-set
+                                     delete-configuration-set-event-destination
+                                     delete-dedicated-ip-pool
+                                     delete-email-identity get-account
+                                     get-blacklist-reports
+                                     get-configuration-set
+                                     get-configuration-set-event-destinations
+                                     get-dedicated-ip get-dedicated-ips
+                                     get-deliverability-dashboard-options
+                                     get-deliverability-test-report
+                                     get-domain-deliverability-campaign
+                                     get-domain-statistics-report
+                                     get-email-identity list-configuration-sets
+                                     list-dedicated-ip-pools
+                                     list-deliverability-test-reports
+                                     list-domain-deliverability-campaigns
+                                     list-email-identities
+                                     list-tags-for-resource
+                                     put-account-dedicated-ip-warmup-attributes
+                                     put-account-sending-attributes
+                                     put-configuration-set-delivery-options
+                                     put-configuration-set-reputation-options
+                                     put-configuration-set-sending-options
+                                     put-configuration-set-tracking-options
+                                     put-dedicated-ip-in-pool
+                                     put-dedicated-ip-warmup-attributes
+                                     put-deliverability-dashboard-option
+                                     put-email-identity-dkim-attributes
+                                     put-email-identity-feedback-attributes
+                                     put-email-identity-mail-from-attributes
+                                     send-email tag-resource untag-resource
+                                     update-configuration-set-event-destination)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Pinpoint Email")
                                       ("arnNamespace" . "ses")

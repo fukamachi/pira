@@ -105,7 +105,36 @@
 
 (smithy/sdk/service:define-service awsvenice-service :shape-name
                                    "AWSVeniceService" :version "2018-05-10"
-                                   :title "AWS EntityResolution" :traits
+                                   :title "AWS EntityResolution" :operations
+                                   '(add-policy-statement
+                                     batch-delete-unique-id
+                                     create-id-mapping-workflow
+                                     create-id-namespace
+                                     create-matching-workflow
+                                     create-schema-mapping
+                                     delete-id-mapping-workflow
+                                     delete-id-namespace
+                                     delete-matching-workflow
+                                     delete-policy-statement
+                                     delete-schema-mapping generate-match-id
+                                     get-id-mapping-job get-id-mapping-workflow
+                                     get-id-namespace get-match-id
+                                     get-matching-job get-matching-workflow
+                                     get-policy get-provider-service
+                                     get-schema-mapping list-id-mapping-jobs
+                                     list-id-mapping-workflows
+                                     list-id-namespaces list-matching-jobs
+                                     list-matching-workflows
+                                     list-provider-services
+                                     list-schema-mappings
+                                     list-tags-for-resource put-policy
+                                     start-id-mapping-job start-matching-job
+                                     tag-resource untag-resource
+                                     update-id-mapping-workflow
+                                     update-id-namespace
+                                     update-matching-workflow
+                                     update-schema-mapping)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "EntityResolution")
                                       ("arnNamespace" . "entityresolution")

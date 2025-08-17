@@ -157,7 +157,58 @@
 (smithy/sdk/service:define-service bedrock-assessment-manager-lambda
                                    :shape-name "BedrockAssessmentManagerLambda"
                                    :version "2017-07-25" :title
-                                   "AWS Audit Manager" :traits
+                                   "AWS Audit Manager" :operations
+                                   '(associate-assessment-report-evidence-folder
+                                     batch-associate-assessment-report-evidence
+                                     batch-create-delegation-by-assessment
+                                     batch-delete-delegation-by-assessment
+                                     batch-disassociate-assessment-report-evidence
+                                     batch-import-evidence-to-assessment-control
+                                     create-assessment
+                                     create-assessment-framework
+                                     create-assessment-report create-control
+                                     delete-assessment
+                                     delete-assessment-framework
+                                     delete-assessment-framework-share
+                                     delete-assessment-report delete-control
+                                     deregister-account
+                                     deregister-organization-admin-account
+                                     disassociate-assessment-report-evidence-folder
+                                     get-account-status get-assessment
+                                     get-assessment-framework
+                                     get-assessment-report-url get-change-logs
+                                     get-control get-delegations get-evidence
+                                     get-evidence-by-evidence-folder
+                                     get-evidence-file-upload-url
+                                     get-evidence-folder
+                                     get-evidence-folders-by-assessment
+                                     get-evidence-folders-by-assessment-control
+                                     get-insights get-insights-by-assessment
+                                     get-organization-admin-account
+                                     get-services-in-scope get-settings
+                                     list-assessment-control-insights-by-control-domain
+                                     list-assessment-frameworks
+                                     list-assessment-framework-share-requests
+                                     list-assessment-reports list-assessments
+                                     list-control-domain-insights
+                                     list-control-domain-insights-by-assessment
+                                     list-control-insights-by-control-domain
+                                     list-controls
+                                     list-keywords-for-data-source
+                                     list-notifications list-tags-for-resource
+                                     register-account
+                                     register-organization-admin-account
+                                     start-assessment-framework-share
+                                     tag-resource untag-resource
+                                     update-assessment
+                                     update-assessment-control
+                                     update-assessment-control-set-status
+                                     update-assessment-framework
+                                     update-assessment-framework-share
+                                     update-assessment-status update-control
+                                     update-settings
+                                     validate-assessment-report-integrity)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "AuditManager")
                                       ("arnNamespace" . "auditmanager")

@@ -24,7 +24,12 @@
 
 (smithy/sdk/service:define-service amazon-recycle-bin :shape-name
                                    "AmazonRecycleBin" :version "2021-06-15"
-                                   :title "Amazon Recycle Bin" :traits
+                                   :title "Amazon Recycle Bin" :operations
+                                   '(create-rule delete-rule get-rule
+                                     list-rules list-tags-for-resource
+                                     lock-rule tag-resource unlock-rule
+                                     untag-resource update-rule)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "rbin")
                                       ("arnNamespace" . "rbin")
                                       ("cloudFormationName" . "Rbin")

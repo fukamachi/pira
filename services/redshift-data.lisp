@@ -26,7 +26,13 @@
 
 (smithy/sdk/service:define-service redshift-data :shape-name "RedshiftData"
                                    :version "2019-12-20" :title
-                                   "Redshift Data API Service" :traits
+                                   "Redshift Data API Service" :operations
+                                   '(batch-execute-statement cancel-statement
+                                     describe-statement describe-table
+                                     execute-statement get-statement-result
+                                     get-statement-result-v2 list-databases
+                                     list-schemas list-statements list-tables)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Redshift Data")
                                       ("arnNamespace" . "redshift-data"))

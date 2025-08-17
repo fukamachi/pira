@@ -174,6 +174,48 @@
 (smithy/sdk/service:define-service amazon-cloud-directory-20170111 :shape-name
                                    "AmazonCloudDirectory_20170111" :version
                                    "2017-01-11" :title "Amazon CloudDirectory"
+                                   :operations
+                                   '(add-facet-to-object apply-schema
+                                     attach-object attach-policy
+                                     attach-to-index attach-typed-link
+                                     batch-read batch-write create-directory
+                                     create-facet create-index create-object
+                                     create-schema create-typed-link-facet
+                                     delete-directory delete-facet
+                                     delete-object delete-schema
+                                     delete-typed-link-facet detach-from-index
+                                     detach-object detach-policy
+                                     detach-typed-link disable-directory
+                                     enable-directory
+                                     get-applied-schema-version get-directory
+                                     get-facet get-link-attributes
+                                     get-object-attributes
+                                     get-object-information get-schema-as-json
+                                     get-typed-link-facet-information
+                                     list-applied-schema-arns
+                                     list-attached-indices
+                                     list-development-schema-arns
+                                     list-directories list-facet-attributes
+                                     list-facet-names list-incoming-typed-links
+                                     list-index list-managed-schema-arns
+                                     list-object-attributes
+                                     list-object-children
+                                     list-object-parent-paths
+                                     list-object-parents list-object-policies
+                                     list-outgoing-typed-links
+                                     list-policy-attachments
+                                     list-published-schema-arns
+                                     list-tags-for-resource
+                                     list-typed-link-facet-attributes
+                                     list-typed-link-facet-names lookup-policy
+                                     publish-schema put-schema-from-json
+                                     remove-facet-from-object tag-resource
+                                     untag-resource update-facet
+                                     update-link-attributes
+                                     update-object-attributes update-schema
+                                     update-typed-link-facet
+                                     upgrade-applied-schema
+                                     upgrade-published-schema)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudDirectory")

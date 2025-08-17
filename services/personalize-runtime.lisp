@@ -18,7 +18,11 @@
 (smithy/sdk/service:define-service amazon-personalize-runtime :shape-name
                                    "AmazonPersonalizeRuntime" :version
                                    "2018-05-22" :title
-                                   "Amazon Personalize Runtime" :traits
+                                   "Amazon Personalize Runtime" :operations
+                                   '(get-action-recommendations
+                                     get-personalized-ranking
+                                     get-recommendations)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Personalize Runtime")
                                       ("arnNamespace" . "personalize")

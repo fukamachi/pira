@@ -31,7 +31,21 @@
                                    :shape-name
                                    "ServerlessApplicationRepository" :version
                                    "2017-09-08" :title
-                                   "AWSServerlessApplicationRepository" :traits
+                                   "AWSServerlessApplicationRepository"
+                                   :operations
+                                   '(create-application
+                                     create-application-version
+                                     create-cloud-formation-change-set
+                                     create-cloud-formation-template
+                                     delete-application get-application
+                                     get-application-policy
+                                     get-cloud-formation-template
+                                     list-application-dependencies
+                                     list-applications
+                                     list-application-versions
+                                     put-application-policy unshare-application
+                                     update-application)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId"
                                        . "ServerlessApplicationRepository")

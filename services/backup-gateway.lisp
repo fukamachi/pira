@@ -89,6 +89,9 @@
 (smithy/sdk/service:define-service backup-on-premises-v20210101 :shape-name
                                    "BackupOnPremises_v20210101" :version
                                    "2021-01-01" :title "AWS Backup Gateway"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :errors
                                    '(internal-server-exception
                                      throttling-exception validation-exception)

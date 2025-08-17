@@ -58,7 +58,25 @@
 (smithy/sdk/service:define-service amazon-app-integration-service :shape-name
                                    "AmazonAppIntegrationService" :version
                                    "2020-07-29" :title
-                                   "Amazon AppIntegrations Service" :traits
+                                   "Amazon AppIntegrations Service" :operations
+                                   '(create-application create-data-integration
+                                     create-data-integration-association
+                                     create-event-integration
+                                     delete-application delete-data-integration
+                                     delete-event-integration get-application
+                                     get-data-integration get-event-integration
+                                     list-application-associations
+                                     list-applications
+                                     list-data-integration-associations
+                                     list-data-integrations
+                                     list-event-integration-associations
+                                     list-event-integrations
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-application
+                                     update-data-integration
+                                     update-data-integration-association
+                                     update-event-integration)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "AppIntegrations")
                                       ("arnNamespace" . "app-integrations")

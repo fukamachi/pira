@@ -335,10 +335,66 @@
 (smithy/sdk/service:define-service auto-scaling-2011-01-01 :shape-name
                                    "AutoScaling_2011_01_01" :version
                                    "2011-01-01" :title "Auto Scaling"
+                                   :operations
+                                   '(attach-instances attach-load-balancers
+                                     attach-load-balancer-target-groups
+                                     attach-traffic-sources
+                                     batch-delete-scheduled-action
+                                     batch-put-scheduled-update-group-action
+                                     cancel-instance-refresh
+                                     complete-lifecycle-action
+                                     create-auto-scaling-group
+                                     create-launch-configuration
+                                     create-or-update-tags
+                                     delete-auto-scaling-group
+                                     delete-launch-configuration
+                                     delete-lifecycle-hook
+                                     delete-notification-configuration
+                                     delete-policy delete-scheduled-action
+                                     delete-tags delete-warm-pool
+                                     describe-account-limits
+                                     describe-adjustment-types
+                                     describe-auto-scaling-groups
+                                     describe-auto-scaling-instances
+                                     describe-auto-scaling-notification-types
+                                     describe-instance-refreshes
+                                     describe-launch-configurations
+                                     describe-lifecycle-hooks
+                                     describe-lifecycle-hook-types
+                                     describe-load-balancers
+                                     describe-load-balancer-target-groups
+                                     describe-metric-collection-types
+                                     describe-notification-configurations
+                                     describe-policies
+                                     describe-scaling-activities
+                                     describe-scaling-process-types
+                                     describe-scheduled-actions describe-tags
+                                     describe-termination-policy-types
+                                     describe-traffic-sources
+                                     describe-warm-pool detach-instances
+                                     detach-load-balancers
+                                     detach-load-balancer-target-groups
+                                     detach-traffic-sources
+                                     disable-metrics-collection
+                                     enable-metrics-collection enter-standby
+                                     execute-policy exit-standby
+                                     get-predictive-scaling-forecast
+                                     put-lifecycle-hook
+                                     put-notification-configuration
+                                     put-scaling-policy
+                                     put-scheduled-update-group-action
+                                     put-warm-pool
+                                     record-lifecycle-action-heartbeat
+                                     resume-processes rollback-instance-refresh
+                                     set-desired-capacity set-instance-health
+                                     set-instance-protection
+                                     start-instance-refresh suspend-processes
+                                     terminate-instance-in-auto-scaling-group
+                                     update-auto-scaling-group)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://autoscaling.amazonaws.com/doc/2011-01-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://autoscaling.amazonaws.com/doc/2011-01-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Auto Scaling")

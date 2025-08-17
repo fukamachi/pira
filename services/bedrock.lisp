@@ -533,7 +533,8 @@
 (smithy/sdk/service:define-service amazon-bedrock-control-plane-service
                                    :shape-name
                                    "AmazonBedrockControlPlaneService" :version
-                                   "2023-04-20" :title "Amazon Bedrock" :traits
+                                   "2023-04-20" :title "Amazon Bedrock"
+                                   :operations 'common-lisp:nil :traits
                                    '(("aws.api#service" ("sdkId" . "Bedrock")
                                       ("endpointPrefix" . "bedrock"))
                                      ("aws.auth#sigv4" ("name" . "bedrock"))

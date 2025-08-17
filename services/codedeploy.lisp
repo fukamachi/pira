@@ -140,10 +140,49 @@
 
 (smithy/sdk/service:define-service code-deploy-20141006 :shape-name
                                    "CodeDeploy_20141006" :version "2014-10-06"
-                                   :title "AWS CodeDeploy" :xml-namespace
-                                   '(:uri
-                                     "http://codedeploy.amazonaws.com/doc/2014-10-06/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS CodeDeploy" :operations
+                                   '(add-tags-to-on-premises-instances
+                                     batch-get-application-revisions
+                                     batch-get-applications
+                                     batch-get-deployment-groups
+                                     batch-get-deployment-instances
+                                     batch-get-deployments
+                                     batch-get-deployment-targets
+                                     batch-get-on-premises-instances
+                                     continue-deployment create-application
+                                     create-deployment create-deployment-config
+                                     create-deployment-group delete-application
+                                     delete-deployment-config
+                                     delete-deployment-group
+                                     delete-git-hub-account-token
+                                     delete-resources-by-external-id
+                                     deregister-on-premises-instance
+                                     get-application get-application-revision
+                                     get-deployment get-deployment-config
+                                     get-deployment-group
+                                     get-deployment-instance
+                                     get-deployment-target
+                                     get-on-premises-instance
+                                     list-application-revisions
+                                     list-applications list-deployment-configs
+                                     list-deployment-groups
+                                     list-deployment-instances list-deployments
+                                     list-deployment-targets
+                                     list-git-hub-account-token-names
+                                     list-on-premises-instances
+                                     list-tags-for-resource
+                                     put-lifecycle-event-hook-execution-status
+                                     register-application-revision
+                                     register-on-premises-instance
+                                     remove-tags-from-on-premises-instances
+                                     skip-wait-time-for-instance-termination
+                                     stop-deployment tag-resource
+                                     untag-resource update-application
+                                     update-deployment-group)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://codedeploy.amazonaws.com/doc/2014-10-06/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodeDeploy")

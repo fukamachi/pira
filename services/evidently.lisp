@@ -154,7 +154,10 @@
 
 (smithy/sdk/service:define-service evidently :shape-name "Evidently" :version
                                    "2021-02-01" :title
-                                   "Amazon CloudWatch Evidently" :traits
+                                   "Amazon CloudWatch Evidently" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     test-segment-pattern untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Evidently")
                                       ("arnNamespace" . "evidently"))
                                      ("aws.auth#sigv4" ("name" . "evidently"))

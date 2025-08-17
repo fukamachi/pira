@@ -105,7 +105,25 @@
 
 (smithy/sdk/service:define-service iot-columbo-service :shape-name
                                    "IotColumboService" :version "2018-07-27"
-                                   :title "AWS IoT Events" :traits
+                                   :title "AWS IoT Events" :operations
+                                   '(create-alarm-model create-detector-model
+                                     create-input delete-alarm-model
+                                     delete-detector-model delete-input
+                                     describe-alarm-model
+                                     describe-detector-model
+                                     describe-detector-model-analysis
+                                     describe-input describe-logging-options
+                                     get-detector-model-analysis-results
+                                     list-alarm-models
+                                     list-alarm-model-versions
+                                     list-detector-models
+                                     list-detector-model-versions
+                                     list-input-routings list-inputs
+                                     list-tags-for-resource put-logging-options
+                                     start-detector-model-analysis tag-resource
+                                     untag-resource update-alarm-model
+                                     update-detector-model update-input)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoT Events")
                                       ("arnNamespace" . "iotevents")

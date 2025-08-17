@@ -136,7 +136,10 @@
 
 (smithy/sdk/service:define-service ground-station :shape-name "GroundStation"
                                    :version "2019-05-23" :title
-                                   "AWS Ground Station" :traits
+                                   "AWS Ground Station" :operations
+                                   '(get-minute-usage list-tags-for-resource
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "GroundStation")
                                       ("cloudFormationName"

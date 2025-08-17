@@ -98,7 +98,10 @@
 
 (smithy/sdk/service:define-service mediapackagev2 :shape-name "mediapackagev2"
                                    :version "2022-12-25" :title
-                                   "AWS Elemental MediaPackage v2" :traits
+                                   "AWS Elemental MediaPackage v2" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MediaPackageV2")
                                       ("arnNamespace" . "mediapackagev2")

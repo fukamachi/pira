@@ -312,7 +312,8 @@
                                    :shape-name
                                    "AmazonBedrockAgentRunTimeService" :version
                                    "2023-07-26" :title
-                                   "Agents for Amazon Bedrock Runtime" :traits
+                                   "Agents for Amazon Bedrock Runtime"
+                                   :operations 'common-lisp:nil :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Bedrock Agent Runtime")
                                       ("arnNamespace" . "bedrock")

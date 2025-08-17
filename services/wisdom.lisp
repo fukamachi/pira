@@ -160,7 +160,10 @@
 
 (smithy/sdk/service:define-service wisdom-service :shape-name "WisdomService"
                                    :version "2020-10-19" :title
-                                   "Amazon Connect Wisdom Service" :traits
+                                   "Amazon Connect Wisdom Service" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Wisdom")
                                       ("arnNamespace" . "wisdom")
                                       ("cloudFormationName" . "Wisdom"))

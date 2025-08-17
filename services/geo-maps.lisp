@@ -15,7 +15,8 @@
 
 (smithy/sdk/service:define-service maps-service :shape-name "MapsService"
                                    :version "2020-11-19" :title
-                                   "Amazon Location Service Maps V2" :traits
+                                   "Amazon Location Service Maps V2"
+                                   :operations 'common-lisp:nil :traits
                                    '(("aws.api#service" ("sdkId" . "Geo Maps")
                                       ("arnNamespace" . "geo-maps")
                                       ("cloudTrailEventSource"

@@ -353,7 +353,105 @@
 
 (smithy/sdk/service:define-service iotwireless :shape-name "iotwireless"
                                    :version "2020-11-22" :title
-                                   "AWS IoT Wireless" :traits
+                                   "AWS IoT Wireless" :operations
+                                   '(associate-aws-account-with-partner-account
+                                     associate-multicast-group-with-fuota-task
+                                     associate-wireless-device-with-fuota-task
+                                     associate-wireless-device-with-multicast-group
+                                     associate-wireless-device-with-thing
+                                     associate-wireless-gateway-with-certificate
+                                     associate-wireless-gateway-with-thing
+                                     cancel-multicast-group-session
+                                     create-destination create-device-profile
+                                     create-fuota-task create-multicast-group
+                                     create-network-analyzer-configuration
+                                     create-service-profile
+                                     create-wireless-device
+                                     create-wireless-gateway
+                                     create-wireless-gateway-task
+                                     create-wireless-gateway-task-definition
+                                     delete-destination delete-device-profile
+                                     delete-fuota-task delete-multicast-group
+                                     delete-network-analyzer-configuration
+                                     delete-queued-messages
+                                     delete-service-profile
+                                     delete-wireless-device
+                                     delete-wireless-device-import-task
+                                     delete-wireless-gateway
+                                     delete-wireless-gateway-task
+                                     delete-wireless-gateway-task-definition
+                                     deregister-wireless-device
+                                     disassociate-aws-account-from-partner-account
+                                     disassociate-multicast-group-from-fuota-task
+                                     disassociate-wireless-device-from-fuota-task
+                                     disassociate-wireless-device-from-multicast-group
+                                     disassociate-wireless-device-from-thing
+                                     disassociate-wireless-gateway-from-certificate
+                                     disassociate-wireless-gateway-from-thing
+                                     get-destination get-device-profile
+                                     get-event-configuration-by-resource-types
+                                     get-fuota-task
+                                     get-log-levels-by-resource-types
+                                     get-metric-configuration get-metrics
+                                     get-multicast-group
+                                     get-multicast-group-session
+                                     get-network-analyzer-configuration
+                                     get-partner-account get-position
+                                     get-position-configuration
+                                     get-position-estimate
+                                     get-resource-event-configuration
+                                     get-resource-log-level
+                                     get-resource-position get-service-endpoint
+                                     get-service-profile get-wireless-device
+                                     get-wireless-device-import-task
+                                     get-wireless-device-statistics
+                                     get-wireless-gateway
+                                     get-wireless-gateway-certificate
+                                     get-wireless-gateway-firmware-information
+                                     get-wireless-gateway-statistics
+                                     get-wireless-gateway-task
+                                     get-wireless-gateway-task-definition
+                                     list-destinations list-device-profiles
+                                     list-devices-for-wireless-device-import-task
+                                     list-event-configurations list-fuota-tasks
+                                     list-multicast-groups
+                                     list-multicast-groups-by-fuota-task
+                                     list-network-analyzer-configurations
+                                     list-partner-accounts
+                                     list-position-configurations
+                                     list-queued-messages list-service-profiles
+                                     list-tags-for-resource
+                                     list-wireless-device-import-tasks
+                                     list-wireless-devices
+                                     list-wireless-gateways
+                                     list-wireless-gateway-task-definitions
+                                     put-position-configuration
+                                     put-resource-log-level
+                                     reset-all-resource-log-levels
+                                     reset-resource-log-level
+                                     send-data-to-multicast-group
+                                     send-data-to-wireless-device
+                                     start-bulk-associate-wireless-device-with-multicast-group
+                                     start-bulk-disassociate-wireless-device-from-multicast-group
+                                     start-fuota-task
+                                     start-multicast-group-session
+                                     start-single-wireless-device-import-task
+                                     start-wireless-device-import-task
+                                     tag-resource test-wireless-device
+                                     untag-resource update-destination
+                                     update-event-configuration-by-resource-types
+                                     update-fuota-task
+                                     update-log-levels-by-resource-types
+                                     update-metric-configuration
+                                     update-multicast-group
+                                     update-network-analyzer-configuration
+                                     update-partner-account update-position
+                                     update-resource-event-configuration
+                                     update-resource-position
+                                     update-wireless-device
+                                     update-wireless-device-import-task
+                                     update-wireless-gateway)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoT Wireless")
                                       ("arnNamespace" . "iotwireless")

@@ -137,10 +137,68 @@
 (smithy/sdk/service:define-service simple-email-service :shape-name
                                    "SimpleEmailService" :version "2010-12-01"
                                    :title "Amazon Simple Email Service"
+                                   :operations
+                                   '(clone-receipt-rule-set
+                                     create-configuration-set
+                                     create-configuration-set-event-destination
+                                     create-configuration-set-tracking-options
+                                     create-custom-verification-email-template
+                                     create-receipt-filter create-receipt-rule
+                                     create-receipt-rule-set create-template
+                                     delete-configuration-set
+                                     delete-configuration-set-event-destination
+                                     delete-configuration-set-tracking-options
+                                     delete-custom-verification-email-template
+                                     delete-identity delete-identity-policy
+                                     delete-receipt-filter delete-receipt-rule
+                                     delete-receipt-rule-set delete-template
+                                     delete-verified-email-address
+                                     describe-active-receipt-rule-set
+                                     describe-configuration-set
+                                     describe-receipt-rule
+                                     describe-receipt-rule-set
+                                     get-account-sending-enabled
+                                     get-custom-verification-email-template
+                                     get-identity-dkim-attributes
+                                     get-identity-mail-from-domain-attributes
+                                     get-identity-notification-attributes
+                                     get-identity-policies
+                                     get-identity-verification-attributes
+                                     get-send-quota get-send-statistics
+                                     get-template list-configuration-sets
+                                     list-custom-verification-email-templates
+                                     list-identities list-identity-policies
+                                     list-receipt-filters
+                                     list-receipt-rule-sets list-templates
+                                     list-verified-email-addresses
+                                     put-configuration-set-delivery-options
+                                     put-identity-policy
+                                     reorder-receipt-rule-set send-bounce
+                                     send-bulk-templated-email
+                                     send-custom-verification-email send-email
+                                     send-raw-email send-templated-email
+                                     set-active-receipt-rule-set
+                                     set-identity-dkim-enabled
+                                     set-identity-feedback-forwarding-enabled
+                                     set-identity-headers-in-notifications-enabled
+                                     set-identity-mail-from-domain
+                                     set-identity-notification-topic
+                                     set-receipt-rule-position
+                                     test-render-template
+                                     update-account-sending-enabled
+                                     update-configuration-set-event-destination
+                                     update-configuration-set-reputation-metrics-enabled
+                                     update-configuration-set-sending-enabled
+                                     update-configuration-set-tracking-options
+                                     update-custom-verification-email-template
+                                     update-receipt-rule update-template
+                                     verify-domain-dkim verify-domain-identity
+                                     verify-email-address
+                                     verify-email-identity)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://ses.amazonaws.com/doc/2010-12-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://ses.amazonaws.com/doc/2010-12-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SES")
                                       ("arnNamespace" . "ses")

@@ -196,10 +196,78 @@
 
 (smithy/sdk/service:define-service amazon-elasti-cache-v9 :shape-name
                                    "AmazonElastiCacheV9" :version "2015-02-02"
-                                   :title "Amazon ElastiCache" :xml-namespace
-                                   '(:uri
-                                     "http://elasticache.amazonaws.com/doc/2015-02-02/"
-                                     :prefix common-lisp:nil)
+                                   :title "Amazon ElastiCache" :operations
+                                   '(add-tags-to-resource
+                                     authorize-cache-security-group-ingress
+                                     batch-apply-update-action
+                                     batch-stop-update-action
+                                     complete-migration
+                                     copy-serverless-cache-snapshot
+                                     copy-snapshot create-cache-cluster
+                                     create-cache-parameter-group
+                                     create-cache-security-group
+                                     create-cache-subnet-group
+                                     create-global-replication-group
+                                     create-replication-group
+                                     create-serverless-cache
+                                     create-serverless-cache-snapshot
+                                     create-snapshot create-user
+                                     create-user-group
+                                     decrease-node-groups-in-global-replication-group
+                                     decrease-replica-count
+                                     delete-cache-cluster
+                                     delete-cache-parameter-group
+                                     delete-cache-security-group
+                                     delete-cache-subnet-group
+                                     delete-global-replication-group
+                                     delete-replication-group
+                                     delete-serverless-cache
+                                     delete-serverless-cache-snapshot
+                                     delete-snapshot delete-user
+                                     delete-user-group describe-cache-clusters
+                                     describe-cache-engine-versions
+                                     describe-cache-parameter-groups
+                                     describe-cache-parameters
+                                     describe-cache-security-groups
+                                     describe-cache-subnet-groups
+                                     describe-engine-default-parameters
+                                     describe-events
+                                     describe-global-replication-groups
+                                     describe-replication-groups
+                                     describe-reserved-cache-nodes
+                                     describe-reserved-cache-nodes-offerings
+                                     describe-serverless-caches
+                                     describe-serverless-cache-snapshots
+                                     describe-service-updates
+                                     describe-snapshots describe-update-actions
+                                     describe-user-groups describe-users
+                                     disassociate-global-replication-group
+                                     export-serverless-cache-snapshot
+                                     failover-global-replication-group
+                                     increase-node-groups-in-global-replication-group
+                                     increase-replica-count
+                                     list-allowed-node-type-modifications
+                                     list-tags-for-resource
+                                     modify-cache-cluster
+                                     modify-cache-parameter-group
+                                     modify-cache-subnet-group
+                                     modify-global-replication-group
+                                     modify-replication-group
+                                     modify-replication-group-shard-configuration
+                                     modify-serverless-cache modify-user
+                                     modify-user-group
+                                     purchase-reserved-cache-nodes-offering
+                                     rebalance-slots-in-global-replication-group
+                                     reboot-cache-cluster
+                                     remove-tags-from-resource
+                                     reset-cache-parameter-group
+                                     revoke-cache-security-group-ingress
+                                     start-migration test-failover
+                                     test-migration)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://elasticache.amazonaws.com/doc/2015-02-02/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ElastiCache")

@@ -87,6 +87,17 @@
 (smithy/sdk/service:define-service social-messaging :shape-name
                                    "SocialMessaging" :version "2024-01-01"
                                    :title "AWS End User Messaging Social"
+                                   :operations
+                                   '(create-whats-app-message-template
+                                     create-whats-app-message-template-from-library
+                                     create-whats-app-message-template-media
+                                     delete-whats-app-message-template
+                                     get-whats-app-message-template
+                                     list-tags-for-resource
+                                     list-whats-app-message-templates
+                                     list-whats-app-template-library
+                                     tag-resource untag-resource
+                                     update-whats-app-message-template)
                                    :errors
                                    '(access-denied-exception
                                      validation-exception)

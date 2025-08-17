@@ -279,7 +279,49 @@
 
 (smithy/sdk/service:define-service awssimba-apiservice-v20180301 :shape-name
                                    "AWSSimbaAPIService_v20180301" :version
-                                   "2018-03-01" :title "Amazon FSx" :traits
+                                   "2018-03-01" :title "Amazon FSx" :operations
+                                   '(associate-file-system-aliases
+                                     cancel-data-repository-task copy-backup
+                                     copy-snapshot-and-update-volume
+                                     create-and-attach-s3access-point
+                                     create-backup
+                                     create-data-repository-association
+                                     create-data-repository-task
+                                     create-file-cache create-file-system
+                                     create-file-system-from-backup
+                                     create-snapshot
+                                     create-storage-virtual-machine
+                                     create-volume create-volume-from-backup
+                                     delete-backup
+                                     delete-data-repository-association
+                                     delete-file-cache delete-file-system
+                                     delete-snapshot
+                                     delete-storage-virtual-machine
+                                     delete-volume describe-backups
+                                     describe-data-repository-associations
+                                     describe-data-repository-tasks
+                                     describe-file-caches
+                                     describe-file-system-aliases
+                                     describe-file-systems
+                                     describe-s3access-point-attachments
+                                     describe-shared-vpc-configuration
+                                     describe-snapshots
+                                     describe-storage-virtual-machines
+                                     describe-volumes
+                                     detach-and-delete-s3access-point
+                                     disassociate-file-system-aliases
+                                     list-tags-for-resource
+                                     release-file-system-nfs-v3locks
+                                     restore-volume-from-snapshot
+                                     start-misconfigured-state-recovery
+                                     tag-resource untag-resource
+                                     update-data-repository-association
+                                     update-file-cache update-file-system
+                                     update-shared-vpc-configuration
+                                     update-snapshot
+                                     update-storage-virtual-machine
+                                     update-volume)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "FSx")
                                       ("arnNamespace" . "fsx")
                                       ("cloudFormationName" . "FSx")

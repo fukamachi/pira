@@ -164,7 +164,12 @@
 (smithy/sdk/service:define-service awspartner-central-selling :shape-name
                                    "AWSPartnerCentralSelling" :version
                                    "2022-07-26" :title
-                                   "Partner Central Selling API" :traits
+                                   "Partner Central Selling API" :operations
+                                   '(get-selling-system-settings
+                                     list-tags-for-resource
+                                     put-selling-system-settings tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "PartnerCentral Selling")
                                       ("endpointPrefix"

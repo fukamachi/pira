@@ -38,7 +38,17 @@
 
 (smithy/sdk/service:define-service iot-senate-service :shape-name
                                    "IotSenateService" :version "2020-09-18"
-                                   :title "AWS IoT Core Device Advisor" :traits
+                                   :title "AWS IoT Core Device Advisor"
+                                   :operations
+                                   '(create-suite-definition
+                                     delete-suite-definition get-endpoint
+                                     get-suite-definition get-suite-run
+                                     get-suite-run-report
+                                     list-suite-definitions list-suite-runs
+                                     list-tags-for-resource start-suite-run
+                                     stop-suite-run tag-resource untag-resource
+                                     update-suite-definition)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IotDeviceAdvisor")
                                       ("arnNamespace" . "iotdeviceadvisor")

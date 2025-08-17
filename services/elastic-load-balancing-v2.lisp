@@ -190,10 +190,46 @@
 (smithy/sdk/service:define-service elastic-load-balancing-v10 :shape-name
                                    "ElasticLoadBalancing_v10" :version
                                    "2015-12-01" :title "Elastic Load Balancing"
+                                   :operations
+                                   '(add-listener-certificates add-tags
+                                     add-trust-store-revocations
+                                     create-listener create-load-balancer
+                                     create-rule create-target-group
+                                     create-trust-store delete-listener
+                                     delete-load-balancer delete-rule
+                                     delete-shared-trust-store-association
+                                     delete-target-group delete-trust-store
+                                     deregister-targets describe-account-limits
+                                     describe-capacity-reservation
+                                     describe-listener-attributes
+                                     describe-listener-certificates
+                                     describe-listeners
+                                     describe-load-balancer-attributes
+                                     describe-load-balancers describe-rules
+                                     describe-sslpolicies describe-tags
+                                     describe-target-group-attributes
+                                     describe-target-groups
+                                     describe-target-health
+                                     describe-trust-store-associations
+                                     describe-trust-store-revocations
+                                     describe-trust-stores get-resource-policy
+                                     get-trust-store-ca-certificates-bundle
+                                     get-trust-store-revocation-content
+                                     modify-capacity-reservation
+                                     modify-ip-pools modify-listener
+                                     modify-listener-attributes
+                                     modify-load-balancer-attributes
+                                     modify-rule modify-target-group
+                                     modify-target-group-attributes
+                                     modify-trust-store register-targets
+                                     remove-listener-certificates remove-tags
+                                     remove-trust-store-revocations
+                                     set-ip-address-type set-rule-priorities
+                                     set-security-groups set-subnets)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://elasticloadbalancing.amazonaws.com/doc/2015-12-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://elasticloadbalancing.amazonaws.com/doc/2015-12-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elastic Load Balancing v2")

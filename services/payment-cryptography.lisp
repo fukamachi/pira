@@ -51,7 +51,14 @@
                                    :shape-name
                                    "PaymentCryptographyControlPlane" :version
                                    "2021-09-14" :title
-                                   "Payment Cryptography Control Plane" :traits
+                                   "Payment Cryptography Control Plane"
+                                   :operations
+                                   '(export-key get-parameters-for-export
+                                     get-parameters-for-import
+                                     get-public-key-certificate import-key
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Payment Cryptography")
                                       ("arnNamespace" . "payment-cryptography")

@@ -82,7 +82,23 @@
 (smithy/sdk/service:define-service amazon-connect-campaign-service :shape-name
                                    "AmazonConnectCampaignService" :version
                                    "2021-01-30" :title
-                                   "AmazonConnectCampaignService" :traits
+                                   "AmazonConnectCampaignService" :operations
+                                   '(create-campaign delete-campaign
+                                     delete-connect-instance-config
+                                     delete-instance-onboarding-job
+                                     describe-campaign get-campaign-state
+                                     get-campaign-state-batch
+                                     get-connect-instance-config
+                                     get-instance-onboarding-job-status
+                                     list-campaigns list-tags-for-resource
+                                     pause-campaign put-dial-request-batch
+                                     resume-campaign start-campaign
+                                     start-instance-onboarding-job
+                                     stop-campaign tag-resource untag-resource
+                                     update-campaign-dialer-config
+                                     update-campaign-name
+                                     update-campaign-outbound-call-config)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ConnectCampaigns")
                                       ("arnNamespace" . "connect-campaigns")

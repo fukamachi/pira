@@ -20,7 +20,10 @@
 (smithy/sdk/service:define-service amazon-sage-maker-runtime :shape-name
                                    "AmazonSageMakerRuntime" :version
                                    "2017-05-13" :title
-                                   "Amazon SageMaker Runtime" :traits
+                                   "Amazon SageMaker Runtime" :operations
+                                   '(invoke-endpoint invoke-endpoint-async
+                                     invoke-endpoint-with-response-stream)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SageMaker Runtime")
                                       ("arnNamespace" . "sagemaker")

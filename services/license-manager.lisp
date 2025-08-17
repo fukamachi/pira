@@ -100,10 +100,48 @@
 
 (smithy/sdk/service:define-service awslicense-manager :shape-name
                                    "AWSLicenseManager" :version "2018-08-01"
-                                   :title "AWS License Manager" :xml-namespace
-                                   '(:uri
-                                     "https://license-manager.amazonaws.com/doc/2018_08_01"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS License Manager" :operations
+                                   '(accept-grant check-in-license
+                                     checkout-borrow-license checkout-license
+                                     create-grant create-grant-version
+                                     create-license
+                                     create-license-configuration
+                                     create-license-conversion-task-for-resource
+                                     create-license-manager-report-generator
+                                     create-license-version create-token
+                                     delete-grant delete-license
+                                     delete-license-configuration
+                                     delete-license-manager-report-generator
+                                     delete-token extend-license-consumption
+                                     get-access-token get-grant get-license
+                                     get-license-configuration
+                                     get-license-conversion-task
+                                     get-license-manager-report-generator
+                                     get-license-usage get-service-settings
+                                     list-associations-for-license-configuration
+                                     list-distributed-grants
+                                     list-failures-for-license-configuration-operations
+                                     list-license-configurations
+                                     list-license-conversion-tasks
+                                     list-license-manager-report-generators
+                                     list-licenses
+                                     list-license-specifications-for-resource
+                                     list-license-versions list-received-grants
+                                     list-received-grants-for-organization
+                                     list-received-licenses
+                                     list-received-licenses-for-organization
+                                     list-resource-inventory
+                                     list-tags-for-resource list-tokens
+                                     list-usage-for-license-configuration
+                                     reject-grant tag-resource untag-resource
+                                     update-license-configuration
+                                     update-license-manager-report-generator
+                                     update-license-specifications-for-resource
+                                     update-service-settings)
+                                   :xml-namespace
+                                   (:uri
+                                    "https://license-manager.amazonaws.com/doc/2018_08_01"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "License Manager")

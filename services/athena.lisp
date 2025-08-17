@@ -159,6 +159,54 @@
 
 (smithy/sdk/service:define-service amazon-athena :shape-name "AmazonAthena"
                                    :version "2017-05-18" :title "Amazon Athena"
+                                   :operations
+                                   '(batch-get-named-query
+                                     batch-get-prepared-statement
+                                     batch-get-query-execution
+                                     cancel-capacity-reservation
+                                     create-capacity-reservation
+                                     create-data-catalog create-named-query
+                                     create-notebook create-prepared-statement
+                                     create-presigned-notebook-url
+                                     create-work-group
+                                     delete-capacity-reservation
+                                     delete-data-catalog delete-named-query
+                                     delete-notebook delete-prepared-statement
+                                     delete-work-group export-notebook
+                                     get-calculation-execution
+                                     get-calculation-execution-code
+                                     get-calculation-execution-status
+                                     get-capacity-assignment-configuration
+                                     get-capacity-reservation get-database
+                                     get-data-catalog get-named-query
+                                     get-notebook-metadata
+                                     get-prepared-statement get-query-execution
+                                     get-query-results
+                                     get-query-runtime-statistics get-session
+                                     get-session-status get-table-metadata
+                                     get-work-group import-notebook
+                                     list-application-dpusizes
+                                     list-calculation-executions
+                                     list-capacity-reservations list-databases
+                                     list-data-catalogs list-engine-versions
+                                     list-executors list-named-queries
+                                     list-notebook-metadata
+                                     list-notebook-sessions
+                                     list-prepared-statements
+                                     list-query-executions list-sessions
+                                     list-table-metadata list-tags-for-resource
+                                     list-work-groups
+                                     put-capacity-assignment-configuration
+                                     start-calculation-execution
+                                     start-query-execution start-session
+                                     stop-calculation-execution
+                                     stop-query-execution tag-resource
+                                     terminate-session untag-resource
+                                     update-capacity-reservation
+                                     update-data-catalog update-named-query
+                                     update-notebook update-notebook-metadata
+                                     update-prepared-statement
+                                     update-work-group)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Athena")
                                       ("arnNamespace" . "athena")

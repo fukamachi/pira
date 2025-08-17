@@ -278,7 +278,11 @@
 (smithy/sdk/service:define-service application-migration-service :shape-name
                                    "ApplicationMigrationService" :version
                                    "2020-02-26" :title
-                                   "Application Migration Service" :traits
+                                   "Application Migration Service" :operations
+                                   '(initialize-service list-managed-accounts
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "mgn")
                                       ("arnNamespace" . "mgn")
                                       ("awsProductName" . "mgn")

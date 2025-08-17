@@ -115,7 +115,11 @@
 
 (smithy/sdk/service:define-service notifications :shape-name "Notifications"
                                    :version "2018-05-10" :title
-                                   "AWS User Notifications" :traits
+                                   "AWS User Notifications" :operations
+                                   '(list-managed-notification-channel-associations
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Notifications")
                                       ("arnNamespace" . "notifications")

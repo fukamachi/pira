@@ -183,7 +183,11 @@
 
 (smithy/sdk/service:define-service media-tailor :shape-name "MediaTailor"
                                    :version "2018-04-23" :title
-                                   "AWS MediaTailor" :traits
+                                   "AWS MediaTailor" :operations
+                                   '(configure-logs-for-playback-configuration
+                                     list-alerts list-tags-for-resource
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MediaTailor")
                                       ("arnNamespace" . "mediatailor")

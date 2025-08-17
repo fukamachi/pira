@@ -133,7 +133,55 @@
 
 (smithy/sdk/service:define-service amazon-forecast :shape-name "AmazonForecast"
                                    :version "2018-06-26" :title
-                                   "Amazon Forecast Service" :traits
+                                   "Amazon Forecast Service" :operations
+                                   '(create-auto-predictor create-dataset
+                                     create-dataset-group
+                                     create-dataset-import-job
+                                     create-explainability
+                                     create-explainability-export
+                                     create-forecast create-forecast-export-job
+                                     create-monitor create-predictor
+                                     create-predictor-backtest-export-job
+                                     create-what-if-analysis
+                                     create-what-if-forecast
+                                     create-what-if-forecast-export
+                                     delete-dataset delete-dataset-group
+                                     delete-dataset-import-job
+                                     delete-explainability
+                                     delete-explainability-export
+                                     delete-forecast delete-forecast-export-job
+                                     delete-monitor delete-predictor
+                                     delete-predictor-backtest-export-job
+                                     delete-resource-tree
+                                     delete-what-if-analysis
+                                     delete-what-if-forecast
+                                     delete-what-if-forecast-export
+                                     describe-auto-predictor describe-dataset
+                                     describe-dataset-group
+                                     describe-dataset-import-job
+                                     describe-explainability
+                                     describe-explainability-export
+                                     describe-forecast
+                                     describe-forecast-export-job
+                                     describe-monitor describe-predictor
+                                     describe-predictor-backtest-export-job
+                                     describe-what-if-analysis
+                                     describe-what-if-forecast
+                                     describe-what-if-forecast-export
+                                     get-accuracy-metrics list-dataset-groups
+                                     list-dataset-import-jobs list-datasets
+                                     list-explainabilities
+                                     list-explainability-exports
+                                     list-forecast-export-jobs list-forecasts
+                                     list-monitor-evaluations list-monitors
+                                     list-predictor-backtest-export-jobs
+                                     list-predictors list-tags-for-resource
+                                     list-what-if-analyses
+                                     list-what-if-forecast-exports
+                                     list-what-if-forecasts resume-resource
+                                     stop-resource tag-resource untag-resource
+                                     update-dataset-group)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "forecast")
                                       ("arnNamespace" . "forecast")
                                       ("cloudFormationName" . "Forecast")

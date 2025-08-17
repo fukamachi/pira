@@ -41,7 +41,11 @@
 (smithy/sdk/service:define-service awsmpcommerce-service-v20200301 :shape-name
                                    "AWSMPCommerceService_v20200301" :version
                                    "2020-03-01" :title
-                                   "AWS Marketplace Agreement Service" :traits
+                                   "AWS Marketplace Agreement Service"
+                                   :operations
+                                   '(describe-agreement get-agreement-terms
+                                     search-agreements)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Marketplace Agreement")
                                       ("endpointPrefix"

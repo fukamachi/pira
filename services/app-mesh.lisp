@@ -251,7 +251,11 @@
 (common-lisp:in-package #:pira/app-mesh)
 
 (smithy/sdk/service:define-service app-mesh :shape-name "AppMesh" :version
-                                   "2019-01-25" :title "AWS App Mesh" :traits
+                                   "2019-01-25" :title "AWS App Mesh"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "App Mesh")
                                       ("arnNamespace" . "appmesh")
                                       ("cloudFormationName" . "AppMesh")

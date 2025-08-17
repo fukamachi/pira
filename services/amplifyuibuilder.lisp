@@ -124,7 +124,11 @@
 
 (smithy/sdk/service:define-service amplify-uibuilder :shape-name
                                    "AmplifyUIBuilder" :version "2021-08-11"
-                                   :title "AWS Amplify UI Builder" :traits
+                                   :title "AWS Amplify UI Builder" :operations
+                                   '(exchange-code-for-token get-metadata
+                                     list-tags-for-resource put-metadata-flag
+                                     refresh-token tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "AmplifyUIBuilder")
                                       ("arnNamespace" . "amplifyuibuilder")

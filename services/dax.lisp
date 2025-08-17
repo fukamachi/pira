@@ -38,10 +38,23 @@
 (smithy/sdk/service:define-service amazon-daxv3 :shape-name "AmazonDAXV3"
                                    :version "2017-04-19" :title
                                    "Amazon DynamoDB Accelerator (DAX)"
+                                   :operations
+                                   '(create-cluster create-parameter-group
+                                     create-subnet-group
+                                     decrease-replication-factor delete-cluster
+                                     delete-parameter-group delete-subnet-group
+                                     describe-clusters
+                                     describe-default-parameters
+                                     describe-events describe-parameter-groups
+                                     describe-parameters describe-subnet-groups
+                                     increase-replication-factor list-tags
+                                     reboot-node tag-resource untag-resource
+                                     update-cluster update-parameter-group
+                                     update-subnet-group)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://dax.amazonaws.com/doc/2017-04-19/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://dax.amazonaws.com/doc/2017-04-19/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "DAX")
                                       ("arnNamespace" . "dax")

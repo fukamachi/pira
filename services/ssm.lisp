@@ -694,10 +694,125 @@
 (smithy/sdk/service:define-service amazon-ssm :shape-name "AmazonSSM" :version
                                    "2014-11-06" :title
                                    "Amazon Simple Systems Manager (SSM)"
+                                   :operations
+                                   '(add-tags-to-resource
+                                     associate-ops-item-related-item
+                                     cancel-command
+                                     cancel-maintenance-window-execution
+                                     create-activation create-association
+                                     create-association-batch create-document
+                                     create-maintenance-window create-ops-item
+                                     create-ops-metadata create-patch-baseline
+                                     create-resource-data-sync
+                                     delete-activation delete-association
+                                     delete-document delete-inventory
+                                     delete-maintenance-window delete-ops-item
+                                     delete-ops-metadata delete-parameter
+                                     delete-parameters delete-patch-baseline
+                                     delete-resource-data-sync
+                                     delete-resource-policy
+                                     deregister-managed-instance
+                                     deregister-patch-baseline-for-patch-group
+                                     deregister-target-from-maintenance-window
+                                     deregister-task-from-maintenance-window
+                                     describe-activations describe-association
+                                     describe-association-executions
+                                     describe-association-execution-targets
+                                     describe-automation-executions
+                                     describe-automation-step-executions
+                                     describe-available-patches
+                                     describe-document
+                                     describe-document-permission
+                                     describe-effective-instance-associations
+                                     describe-effective-patches-for-patch-baseline
+                                     describe-instance-associations-status
+                                     describe-instance-information
+                                     describe-instance-patches
+                                     describe-instance-patch-states
+                                     describe-instance-patch-states-for-patch-group
+                                     describe-instance-properties
+                                     describe-inventory-deletions
+                                     describe-maintenance-window-executions
+                                     describe-maintenance-window-execution-task-invocations
+                                     describe-maintenance-window-execution-tasks
+                                     describe-maintenance-windows
+                                     describe-maintenance-window-schedule
+                                     describe-maintenance-windows-for-target
+                                     describe-maintenance-window-targets
+                                     describe-maintenance-window-tasks
+                                     describe-ops-items describe-parameters
+                                     describe-patch-baselines
+                                     describe-patch-groups
+                                     describe-patch-group-state
+                                     describe-patch-properties
+                                     describe-sessions
+                                     disassociate-ops-item-related-item
+                                     get-access-token get-automation-execution
+                                     get-calendar-state get-command-invocation
+                                     get-connection-status
+                                     get-default-patch-baseline
+                                     get-deployable-patch-snapshot-for-instance
+                                     get-document get-execution-preview
+                                     get-inventory get-inventory-schema
+                                     get-maintenance-window
+                                     get-maintenance-window-execution
+                                     get-maintenance-window-execution-task
+                                     get-maintenance-window-execution-task-invocation
+                                     get-maintenance-window-task get-ops-item
+                                     get-ops-metadata get-ops-summary
+                                     get-parameter get-parameter-history
+                                     get-parameters get-parameters-by-path
+                                     get-patch-baseline
+                                     get-patch-baseline-for-patch-group
+                                     get-resource-policies get-service-setting
+                                     label-parameter-version list-associations
+                                     list-association-versions
+                                     list-command-invocations list-commands
+                                     list-compliance-items
+                                     list-compliance-summaries
+                                     list-document-metadata-history
+                                     list-documents list-document-versions
+                                     list-inventory-entries list-nodes
+                                     list-nodes-summary list-ops-item-events
+                                     list-ops-item-related-items
+                                     list-ops-metadata
+                                     list-resource-compliance-summaries
+                                     list-resource-data-sync
+                                     list-tags-for-resource
+                                     modify-document-permission
+                                     put-compliance-items put-inventory
+                                     put-parameter put-resource-policy
+                                     register-default-patch-baseline
+                                     register-patch-baseline-for-patch-group
+                                     register-target-with-maintenance-window
+                                     register-task-with-maintenance-window
+                                     remove-tags-from-resource
+                                     reset-service-setting resume-session
+                                     send-automation-signal send-command
+                                     start-access-request
+                                     start-associations-once
+                                     start-automation-execution
+                                     start-change-request-execution
+                                     start-execution-preview start-session
+                                     stop-automation-execution
+                                     terminate-session
+                                     unlabel-parameter-version
+                                     update-association
+                                     update-association-status update-document
+                                     update-document-default-version
+                                     update-document-metadata
+                                     update-maintenance-window
+                                     update-maintenance-window-target
+                                     update-maintenance-window-task
+                                     update-managed-instance-role
+                                     update-ops-item update-ops-metadata
+                                     update-patch-baseline
+                                     update-resource-data-sync
+                                     update-service-setting)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://ssm.amazonaws.com/doc/2014-11-06/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://ssm.amazonaws.com/doc/2014-11-06/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SSM")
                                       ("arnNamespace" . "ssm")

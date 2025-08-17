@@ -253,7 +253,57 @@
 
 (smithy/sdk/service:define-service rekognition-service :shape-name
                                    "RekognitionService" :version "2016-06-27"
-                                   :title "Amazon Rekognition" :traits
+                                   :title "Amazon Rekognition" :operations
+                                   '(associate-faces compare-faces
+                                     copy-project-version create-collection
+                                     create-dataset
+                                     create-face-liveness-session
+                                     create-project create-project-version
+                                     create-stream-processor create-user
+                                     delete-collection delete-dataset
+                                     delete-faces delete-project
+                                     delete-project-policy
+                                     delete-project-version
+                                     delete-stream-processor delete-user
+                                     describe-collection describe-dataset
+                                     describe-projects
+                                     describe-project-versions
+                                     describe-stream-processor
+                                     detect-custom-labels detect-faces
+                                     detect-labels detect-moderation-labels
+                                     detect-protective-equipment detect-text
+                                     disassociate-faces
+                                     distribute-dataset-entries
+                                     get-celebrity-info
+                                     get-celebrity-recognition
+                                     get-content-moderation get-face-detection
+                                     get-face-liveness-session-results
+                                     get-face-search get-label-detection
+                                     get-media-analysis-job get-person-tracking
+                                     get-segment-detection get-text-detection
+                                     index-faces list-collections
+                                     list-dataset-entries list-dataset-labels
+                                     list-faces list-media-analysis-jobs
+                                     list-project-policies
+                                     list-stream-processors
+                                     list-tags-for-resource list-users
+                                     put-project-policy recognize-celebrities
+                                     search-faces search-faces-by-image
+                                     search-users search-users-by-image
+                                     start-celebrity-recognition
+                                     start-content-moderation
+                                     start-face-detection start-face-search
+                                     start-label-detection
+                                     start-media-analysis-job
+                                     start-person-tracking
+                                     start-project-version
+                                     start-segment-detection
+                                     start-stream-processor
+                                     start-text-detection stop-project-version
+                                     stop-stream-processor tag-resource
+                                     untag-resource update-dataset-entries
+                                     update-stream-processor)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Rekognition")
                                       ("arnNamespace" . "rekognition")

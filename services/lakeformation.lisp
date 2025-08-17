@@ -140,7 +140,52 @@
 
 (smithy/sdk/service:define-service awslake-formation :shape-name
                                    "AWSLakeFormation" :version "2017-03-31"
-                                   :title "AWS Lake Formation" :traits
+                                   :title "AWS Lake Formation" :operations
+                                   '(add-lftags-to-resource
+                                     assume-decorated-role-with-saml
+                                     batch-grant-permissions
+                                     batch-revoke-permissions
+                                     cancel-transaction commit-transaction
+                                     create-data-cells-filter
+                                     create-lake-formation-identity-center-configuration
+                                     create-lake-formation-opt-in create-lftag
+                                     create-lftag-expression
+                                     delete-data-cells-filter
+                                     delete-lake-formation-identity-center-configuration
+                                     delete-lake-formation-opt-in delete-lftag
+                                     delete-lftag-expression
+                                     delete-objects-on-cancel
+                                     deregister-resource
+                                     describe-lake-formation-identity-center-configuration
+                                     describe-resource describe-transaction
+                                     extend-transaction get-data-cells-filter
+                                     get-data-lake-principal
+                                     get-data-lake-settings
+                                     get-effective-permissions-for-path
+                                     get-lftag get-lftag-expression
+                                     get-query-state get-query-statistics
+                                     get-resource-lftags get-table-objects
+                                     get-temporary-glue-partition-credentials
+                                     get-temporary-glue-table-credentials
+                                     get-work-unit-results get-work-units
+                                     grant-permissions list-data-cells-filter
+                                     list-lake-formation-opt-ins
+                                     list-lftag-expressions list-lftags
+                                     list-permissions list-resources
+                                     list-table-storage-optimizers
+                                     list-transactions put-data-lake-settings
+                                     register-resource
+                                     remove-lftags-from-resource
+                                     revoke-permissions
+                                     search-databases-by-lftags
+                                     search-tables-by-lftags
+                                     start-query-planning start-transaction
+                                     update-data-cells-filter
+                                     update-lake-formation-identity-center-configuration
+                                     update-lftag update-lftag-expression
+                                     update-resource update-table-objects
+                                     update-table-storage-optimizer)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "LakeFormation")
                                       ("arnNamespace" . "lakeformation")

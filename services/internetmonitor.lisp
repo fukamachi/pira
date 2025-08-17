@@ -47,7 +47,11 @@
 (smithy/sdk/service:define-service internet-monitor20210603 :shape-name
                                    "InternetMonitor20210603" :version
                                    "2021-06-03" :title
-                                   "Amazon CloudWatch Internet Monitor" :traits
+                                   "Amazon CloudWatch Internet Monitor"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "InternetMonitor")
                                       ("arnNamespace" . "internetmonitor")

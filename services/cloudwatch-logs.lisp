@@ -230,10 +230,74 @@
 
 (smithy/sdk/service:define-service logs-20140328 :shape-name "Logs_20140328"
                                    :version "2014-03-28" :title
-                                   "Amazon CloudWatch Logs" :xml-namespace
-                                   '(:uri
-                                     "http://monitoring.amazonaws.com/doc/2014-03-28/"
-                                     :prefix common-lisp:nil)
+                                   "Amazon CloudWatch Logs" :operations
+                                   '(associate-kms-key cancel-export-task
+                                     create-delivery create-export-task
+                                     create-log-anomaly-detector
+                                     create-log-group create-log-stream
+                                     delete-account-policy
+                                     delete-data-protection-policy
+                                     delete-delivery
+                                     delete-delivery-destination
+                                     delete-delivery-destination-policy
+                                     delete-delivery-source delete-destination
+                                     delete-index-policy delete-integration
+                                     delete-log-anomaly-detector
+                                     delete-log-group delete-log-stream
+                                     delete-metric-filter
+                                     delete-query-definition
+                                     delete-resource-policy
+                                     delete-retention-policy
+                                     delete-subscription-filter
+                                     delete-transformer
+                                     describe-account-policies
+                                     describe-configuration-templates
+                                     describe-deliveries
+                                     describe-delivery-destinations
+                                     describe-delivery-sources
+                                     describe-destinations
+                                     describe-export-tasks
+                                     describe-field-indexes
+                                     describe-index-policies
+                                     describe-log-groups describe-log-streams
+                                     describe-metric-filters describe-queries
+                                     describe-query-definitions
+                                     describe-resource-policies
+                                     describe-subscription-filters
+                                     disassociate-kms-key filter-log-events
+                                     get-data-protection-policy get-delivery
+                                     get-delivery-destination
+                                     get-delivery-destination-policy
+                                     get-delivery-source get-integration
+                                     get-log-anomaly-detector get-log-events
+                                     get-log-group-fields get-log-object
+                                     get-log-record get-query-results
+                                     get-transformer list-anomalies
+                                     list-integrations
+                                     list-log-anomaly-detectors list-log-groups
+                                     list-log-groups-for-query
+                                     list-tags-for-resource list-tags-log-group
+                                     put-account-policy
+                                     put-data-protection-policy
+                                     put-delivery-destination
+                                     put-delivery-destination-policy
+                                     put-delivery-source put-destination
+                                     put-destination-policy put-index-policy
+                                     put-integration put-log-events
+                                     put-metric-filter put-query-definition
+                                     put-resource-policy put-retention-policy
+                                     put-subscription-filter put-transformer
+                                     start-live-tail start-query stop-query
+                                     tag-log-group tag-resource
+                                     test-metric-filter test-transformer
+                                     untag-log-group untag-resource
+                                     update-anomaly
+                                     update-delivery-configuration
+                                     update-log-anomaly-detector)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://monitoring.amazonaws.com/doc/2014-03-28/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudWatch Logs")

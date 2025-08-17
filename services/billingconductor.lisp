@@ -193,7 +193,13 @@
 
 (smithy/sdk/service:define-service awsbilling-conductor :shape-name
                                    "AWSBillingConductor" :version "2021-07-30"
-                                   :title "AWSBillingConductor" :traits
+                                   :title "AWSBillingConductor" :operations
+                                   '(get-billing-group-cost-report
+                                     list-account-associations
+                                     list-billing-group-cost-reports
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "billingconductor")
                                       ("arnNamespace" . "billingconductor"))

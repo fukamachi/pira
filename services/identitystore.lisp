@@ -60,7 +60,11 @@
 
 (smithy/sdk/service:define-service awsidentity-store :shape-name
                                    "AWSIdentityStore" :version "2020-06-15"
-                                   :title "AWS SSO Identity Store" :errors
+                                   :title "AWS SSO Identity Store" :operations
+                                   '(get-group-id get-group-membership-id
+                                     get-user-id is-member-in-groups
+                                     list-group-memberships-for-member)
+                                   :errors
                                    '(access-denied-exception
                                      internal-server-exception
                                      throttling-exception)

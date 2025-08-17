@@ -252,7 +252,11 @@
 (common-lisp:in-package #:pira/omics)
 
 (smithy/sdk/service:define-service omics :shape-name "Omics" :version
-                                   "2022-11-28" :title "Amazon Omics" :traits
+                                   "2022-11-28" :title "Amazon Omics"
+                                   :operations
+                                   '(delete-s3access-policy get-s3access-policy
+                                     put-s3access-policy)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Omics")
                                       ("arnNamespace" . "omics")
                                       ("cloudTrailEventSource"

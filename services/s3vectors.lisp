@@ -40,7 +40,7 @@
 
 (smithy/sdk/service:define-service s3vectors :shape-name "S3Vectors" :version
                                    "2025-07-15" :title "Amazon S3 Vectors"
-                                   :errors
+                                   :operations 'common-lisp:nil :errors
                                    '(access-denied-exception
                                      internal-server-exception
                                      service-quota-exceeded-exception

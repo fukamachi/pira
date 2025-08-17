@@ -37,6 +37,18 @@
 (smithy/sdk/service:define-service media-package-vod :shape-name
                                    "MediaPackageVod" :version "2018-11-07"
                                    :title "AWS Elemental MediaPackage VOD"
+                                   :operations
+                                   '(configure-logs create-asset
+                                     create-packaging-configuration
+                                     create-packaging-group delete-asset
+                                     delete-packaging-configuration
+                                     delete-packaging-group describe-asset
+                                     describe-packaging-configuration
+                                     describe-packaging-group list-assets
+                                     list-packaging-configurations
+                                     list-packaging-groups
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-packaging-group)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MediaPackage Vod")

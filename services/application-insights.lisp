@@ -86,6 +86,27 @@
                                    "EC2WindowsBarleyService" :version
                                    "2018-11-25" :title
                                    "Amazon CloudWatch Application Insights"
+                                   :operations
+                                   '(add-workload create-application
+                                     create-component create-log-pattern
+                                     delete-application delete-component
+                                     delete-log-pattern describe-application
+                                     describe-component
+                                     describe-component-configuration
+                                     describe-component-configuration-recommendation
+                                     describe-log-pattern describe-observation
+                                     describe-problem
+                                     describe-problem-observations
+                                     describe-workload list-applications
+                                     list-components list-configuration-history
+                                     list-log-patterns list-log-pattern-sets
+                                     list-problems list-tags-for-resource
+                                     list-workloads remove-workload
+                                     tag-resource untag-resource
+                                     update-application update-component
+                                     update-component-configuration
+                                     update-log-pattern update-problem
+                                     update-workload)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Application Insights")

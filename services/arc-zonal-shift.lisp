@@ -44,7 +44,8 @@
 
 (smithy/sdk/service:define-service perc-data-plane :shape-name "PercDataPlane"
                                    :version "2022-10-30" :title
-                                   "AWS ARC - Zonal Shift" :traits
+                                   "AWS ARC - Zonal Shift" :operations
+                                   'common-lisp:nil :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ARC Zonal Shift")
                                       ("endpointPrefix" . "arc-zonal-shift")

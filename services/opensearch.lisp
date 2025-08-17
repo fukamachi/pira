@@ -265,10 +265,65 @@
 (smithy/sdk/service:define-service amazon-open-search-service :shape-name
                                    "AmazonOpenSearchService" :version
                                    "2021-01-01" :title
-                                   "Amazon OpenSearch Service" :xml-namespace
-                                   '(:uri
-                                     "http://es.amazonaws.com/doc/2021-01-01/"
-                                     :prefix common-lisp:nil)
+                                   "Amazon OpenSearch Service" :operations
+                                   '(accept-inbound-connection add-data-source
+                                     add-direct-query-data-source add-tags
+                                     associate-package associate-packages
+                                     authorize-vpc-endpoint-access
+                                     cancel-domain-config-change
+                                     cancel-service-software-update
+                                     create-application create-domain
+                                     create-outbound-connection create-package
+                                     create-vpc-endpoint delete-application
+                                     delete-data-source
+                                     delete-direct-query-data-source
+                                     delete-domain delete-inbound-connection
+                                     delete-outbound-connection delete-package
+                                     delete-vpc-endpoint describe-domain
+                                     describe-domain-auto-tunes
+                                     describe-domain-change-progress
+                                     describe-domain-config
+                                     describe-domain-health
+                                     describe-domain-nodes describe-domains
+                                     describe-dry-run-progress
+                                     describe-inbound-connections
+                                     describe-instance-type-limits
+                                     describe-outbound-connections
+                                     describe-packages
+                                     describe-reserved-instance-offerings
+                                     describe-reserved-instances
+                                     describe-vpc-endpoints dissociate-package
+                                     dissociate-packages get-application
+                                     get-compatible-versions get-data-source
+                                     get-direct-query-data-source
+                                     get-domain-maintenance-status
+                                     get-package-version-history
+                                     get-upgrade-history get-upgrade-status
+                                     list-applications list-data-sources
+                                     list-direct-query-data-sources
+                                     list-domain-maintenances list-domain-names
+                                     list-domains-for-package
+                                     list-instance-type-details
+                                     list-packages-for-domain
+                                     list-scheduled-actions list-tags
+                                     list-versions list-vpc-endpoint-access
+                                     list-vpc-endpoints
+                                     list-vpc-endpoints-for-domain
+                                     purchase-reserved-instance-offering
+                                     reject-inbound-connection remove-tags
+                                     revoke-vpc-endpoint-access
+                                     start-domain-maintenance
+                                     start-service-software-update
+                                     update-application update-data-source
+                                     update-direct-query-data-source
+                                     update-domain-config update-package
+                                     update-package-scope
+                                     update-scheduled-action
+                                     update-vpc-endpoint upgrade-domain)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://es.amazonaws.com/doc/2021-01-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "OpenSearch")

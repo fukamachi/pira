@@ -75,7 +75,10 @@
 
 (smithy/sdk/service:define-service pca-connector-ad :shape-name
                                    "PcaConnectorAd" :version "2018-05-10"
-                                   :title "PcaConnectorAd" :traits
+                                   :title "PcaConnectorAd" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("arnNamespace" . "pca-connector-ad")
                                       ("cloudFormationName" . "PCAConnectorAD")

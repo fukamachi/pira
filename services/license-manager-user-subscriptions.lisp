@@ -43,6 +43,22 @@
                                    "LicenseManagerUserSubscriptions" :version
                                    "2018-05-10" :title
                                    "AWS License Manager User Subscriptions"
+                                   :operations
+                                   '(associate-user
+                                     create-license-server-endpoint
+                                     delete-license-server-endpoint
+                                     deregister-identity-provider
+                                     disassociate-user list-identity-providers
+                                     list-instances
+                                     list-license-server-endpoints
+                                     list-product-subscriptions
+                                     list-tags-for-resource
+                                     list-user-associations
+                                     register-identity-provider
+                                     start-product-subscription
+                                     stop-product-subscription tag-resource
+                                     untag-resource
+                                     update-identity-provider-settings)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId"

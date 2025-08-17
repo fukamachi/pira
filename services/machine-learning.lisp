@@ -61,11 +61,27 @@
 
 (smithy/sdk/service:define-service amazon-ml-20141212 :shape-name
                                    "AmazonML_20141212" :version "2014-12-12"
-                                   :title "Amazon Machine Learning"
+                                   :title "Amazon Machine Learning" :operations
+                                   '(add-tags create-batch-prediction
+                                     create-data-source-from-rds
+                                     create-data-source-from-redshift
+                                     create-data-source-from-s3
+                                     create-evaluation create-mlmodel
+                                     create-realtime-endpoint
+                                     delete-batch-prediction delete-data-source
+                                     delete-evaluation delete-mlmodel
+                                     delete-realtime-endpoint delete-tags
+                                     describe-batch-predictions
+                                     describe-data-sources describe-evaluations
+                                     describe-mlmodels describe-tags
+                                     get-batch-prediction get-data-source
+                                     get-evaluation get-mlmodel predict
+                                     update-batch-prediction update-data-source
+                                     update-evaluation update-mlmodel)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://machinelearning.amazonaws.com/doc/2014-12-12/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://machinelearning.amazonaws.com/doc/2014-12-12/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Machine Learning")

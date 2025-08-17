@@ -197,7 +197,29 @@
 (smithy/sdk/service:define-service fault-injection-simulator :shape-name
                                    "FaultInjectionSimulator" :version
                                    "2020-12-01" :title
-                                   "AWS Fault Injection Simulator" :traits
+                                   "AWS Fault Injection Simulator" :operations
+                                   '(create-experiment-template
+                                     create-target-account-configuration
+                                     delete-experiment-template
+                                     delete-target-account-configuration
+                                     get-action get-experiment
+                                     get-experiment-target-account-configuration
+                                     get-experiment-template get-safety-lever
+                                     get-target-account-configuration
+                                     get-target-resource-type list-actions
+                                     list-experiment-resolved-targets
+                                     list-experiments
+                                     list-experiment-target-account-configurations
+                                     list-experiment-templates
+                                     list-tags-for-resource
+                                     list-target-account-configurations
+                                     list-target-resource-types
+                                     start-experiment stop-experiment
+                                     tag-resource untag-resource
+                                     update-experiment-template
+                                     update-safety-lever-state
+                                     update-target-account-configuration)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "fis")
                                       ("arnNamespace" . "fis")
                                       ("cloudFormationName" . "Fis")

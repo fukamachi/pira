@@ -134,7 +134,44 @@
 
 (smithy/sdk/service:define-service code-build-20161006 :shape-name
                                    "CodeBuild_20161006" :version "2016-10-06"
-                                   :title "AWS CodeBuild" :traits
+                                   :title "AWS CodeBuild" :operations
+                                   '(batch-delete-builds
+                                     batch-get-build-batches batch-get-builds
+                                     batch-get-command-executions
+                                     batch-get-fleets batch-get-projects
+                                     batch-get-report-groups batch-get-reports
+                                     batch-get-sandboxes create-fleet
+                                     create-project create-report-group
+                                     create-webhook delete-build-batch
+                                     delete-fleet delete-project delete-report
+                                     delete-report-group delete-resource-policy
+                                     delete-source-credentials delete-webhook
+                                     describe-code-coverages
+                                     describe-test-cases get-report-group-trend
+                                     get-resource-policy
+                                     import-source-credentials
+                                     invalidate-project-cache
+                                     list-build-batches
+                                     list-build-batches-for-project list-builds
+                                     list-builds-for-project
+                                     list-command-executions-for-sandbox
+                                     list-curated-environment-images
+                                     list-fleets list-projects
+                                     list-report-groups list-reports
+                                     list-reports-for-report-group
+                                     list-sandboxes list-sandboxes-for-project
+                                     list-shared-projects
+                                     list-shared-report-groups
+                                     list-source-credentials
+                                     put-resource-policy retry-build
+                                     retry-build-batch start-build
+                                     start-build-batch start-command-execution
+                                     start-sandbox start-sandbox-connection
+                                     stop-build stop-build-batch stop-sandbox
+                                     update-fleet update-project
+                                     update-project-visibility
+                                     update-report-group update-webhook)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "CodeBuild")
                                       ("arnNamespace" . "codebuild")
                                       ("cloudFormationName" . "CodeBuild")

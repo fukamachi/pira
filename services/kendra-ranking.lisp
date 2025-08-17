@@ -30,7 +30,16 @@
                                    :shape-name
                                    "AWSKendraRerankingFrontendService" :version
                                    "2022-10-19" :title
-                                   "Amazon Kendra Intelligent Ranking" :traits
+                                   "Amazon Kendra Intelligent Ranking"
+                                   :operations
+                                   '(create-rescore-execution-plan
+                                     delete-rescore-execution-plan
+                                     describe-rescore-execution-plan
+                                     list-rescore-execution-plans
+                                     list-tags-for-resource rescore
+                                     tag-resource untag-resource
+                                     update-rescore-execution-plan)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Kendra Ranking")
                                       ("arnNamespace" . "kendra-ranking")

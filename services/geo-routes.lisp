@@ -283,7 +283,8 @@
 
 (smithy/sdk/service:define-service routes-service :shape-name "RoutesService"
                                    :version "2020-11-19" :title
-                                   "Amazon Location Service Routes V2" :traits
+                                   "Amazon Location Service Routes V2"
+                                   :operations 'common-lisp:nil :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Geo Routes")
                                       ("arnNamespace" . "geo-routes")

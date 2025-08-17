@@ -100,7 +100,29 @@
                                    :shape-name
                                    "AWSDeepSenseModelBuildingService" :version
                                    "2017-04-19" :title
-                                   "Amazon Lex Model Building Service" :traits
+                                   "Amazon Lex Model Building Service"
+                                   :operations
+                                   '(create-bot-version create-intent-version
+                                     create-slot-type-version delete-bot
+                                     delete-bot-alias
+                                     delete-bot-channel-association
+                                     delete-bot-version delete-intent
+                                     delete-intent-version delete-slot-type
+                                     delete-slot-type-version delete-utterances
+                                     get-bot get-bot-alias get-bot-aliases
+                                     get-bot-channel-association
+                                     get-bot-channel-associations get-bots
+                                     get-bot-versions get-builtin-intent
+                                     get-builtin-intents get-builtin-slot-types
+                                     get-export get-import get-intent
+                                     get-intents get-intent-versions
+                                     get-migration get-migrations get-slot-type
+                                     get-slot-types get-slot-type-versions
+                                     get-utterances-view list-tags-for-resource
+                                     put-bot put-bot-alias put-intent
+                                     put-slot-type start-import start-migration
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Lex Model Building Service")
                                       ("arnNamespace" . "lex")

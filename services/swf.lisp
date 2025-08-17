@@ -163,11 +163,42 @@
 (smithy/sdk/service:define-service simple-workflow-service :shape-name
                                    "SimpleWorkflowService" :version
                                    "2012-01-25" :title
-                                   "Amazon Simple Workflow Service"
+                                   "Amazon Simple Workflow Service" :operations
+                                   '(count-closed-workflow-executions
+                                     count-open-workflow-executions
+                                     count-pending-activity-tasks
+                                     count-pending-decision-tasks
+                                     delete-activity-type delete-workflow-type
+                                     deprecate-activity-type deprecate-domain
+                                     deprecate-workflow-type
+                                     describe-activity-type describe-domain
+                                     describe-workflow-execution
+                                     describe-workflow-type
+                                     get-workflow-execution-history
+                                     list-activity-types
+                                     list-closed-workflow-executions
+                                     list-domains list-open-workflow-executions
+                                     list-tags-for-resource list-workflow-types
+                                     poll-for-activity-task
+                                     poll-for-decision-task
+                                     record-activity-task-heartbeat
+                                     register-activity-type register-domain
+                                     register-workflow-type
+                                     request-cancel-workflow-execution
+                                     respond-activity-task-canceled
+                                     respond-activity-task-completed
+                                     respond-activity-task-failed
+                                     respond-decision-task-completed
+                                     signal-workflow-execution
+                                     start-workflow-execution tag-resource
+                                     terminate-workflow-execution
+                                     undeprecate-activity-type
+                                     undeprecate-domain
+                                     undeprecate-workflow-type untag-resource)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://swf.amazonaws.com/doc/2012-01-25"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://swf.amazonaws.com/doc/2012-01-25"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SWF")
                                       ("arnNamespace" . "swf")

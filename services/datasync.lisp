@@ -126,6 +126,45 @@
 
 (smithy/sdk/service:define-service fmrs-service :shape-name "FmrsService"
                                    :version "2018-11-09" :title "AWS DataSync"
+                                   :operations
+                                   '(cancel-task-execution create-agent
+                                     create-location-azure-blob
+                                     create-location-efs
+                                     create-location-fsx-lustre
+                                     create-location-fsx-ontap
+                                     create-location-fsx-open-zfs
+                                     create-location-fsx-windows
+                                     create-location-hdfs create-location-nfs
+                                     create-location-object-storage
+                                     create-location-s3 create-location-smb
+                                     create-task delete-agent delete-location
+                                     delete-task describe-agent
+                                     describe-location-azure-blob
+                                     describe-location-efs
+                                     describe-location-fsx-lustre
+                                     describe-location-fsx-ontap
+                                     describe-location-fsx-open-zfs
+                                     describe-location-fsx-windows
+                                     describe-location-hdfs
+                                     describe-location-nfs
+                                     describe-location-object-storage
+                                     describe-location-s3 describe-location-smb
+                                     describe-task describe-task-execution
+                                     list-agents list-locations
+                                     list-tags-for-resource
+                                     list-task-executions list-tasks
+                                     start-task-execution tag-resource
+                                     untag-resource update-agent
+                                     update-location-azure-blob
+                                     update-location-efs
+                                     update-location-fsx-lustre
+                                     update-location-fsx-ontap
+                                     update-location-fsx-open-zfs
+                                     update-location-fsx-windows
+                                     update-location-hdfs update-location-nfs
+                                     update-location-object-storage
+                                     update-location-s3 update-location-smb
+                                     update-task update-task-execution)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "DataSync")
                                       ("arnNamespace" . "datasync")

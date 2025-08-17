@@ -176,10 +176,60 @@
 (smithy/sdk/service:define-service directory-service-20150416 :shape-name
                                    "DirectoryService_20150416" :version
                                    "2015-04-16" :title "AWS Directory Service"
+                                   :operations
+                                   '(accept-shared-directory add-ip-routes
+                                     add-region add-tags-to-resource
+                                     cancel-schema-extension connect-directory
+                                     create-alias create-computer
+                                     create-conditional-forwarder
+                                     create-directory create-hybrid-ad
+                                     create-log-subscription
+                                     create-microsoft-ad create-snapshot
+                                     create-trust delete-adassessment
+                                     delete-conditional-forwarder
+                                     delete-directory delete-log-subscription
+                                     delete-snapshot delete-trust
+                                     deregister-certificate
+                                     deregister-event-topic
+                                     describe-adassessment describe-certificate
+                                     describe-client-authentication-settings
+                                     describe-conditional-forwarders
+                                     describe-directories
+                                     describe-directory-data-access
+                                     describe-domain-controllers
+                                     describe-event-topics
+                                     describe-hybrid-adupdate
+                                     describe-ldapssettings describe-regions
+                                     describe-settings
+                                     describe-shared-directories
+                                     describe-snapshots describe-trusts
+                                     describe-update-directory
+                                     disable-client-authentication
+                                     disable-directory-data-access
+                                     disable-ldaps disable-radius disable-sso
+                                     enable-client-authentication
+                                     enable-directory-data-access enable-ldaps
+                                     enable-radius enable-sso
+                                     get-directory-limits get-snapshot-limits
+                                     list-adassessments list-certificates
+                                     list-ip-routes list-log-subscriptions
+                                     list-schema-extensions
+                                     list-tags-for-resource
+                                     register-certificate register-event-topic
+                                     reject-shared-directory remove-ip-routes
+                                     remove-region remove-tags-from-resource
+                                     reset-user-password restore-from-snapshot
+                                     share-directory start-adassessment
+                                     start-schema-extension unshare-directory
+                                     update-conditional-forwarder
+                                     update-directory-setup update-hybrid-ad
+                                     update-number-of-domain-controllers
+                                     update-radius update-settings update-trust
+                                     verify-trust)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://directoryservice.amazonaws.com/doc/2015-04-16/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://directoryservice.amazonaws.com/doc/2015-04-16/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Directory Service")

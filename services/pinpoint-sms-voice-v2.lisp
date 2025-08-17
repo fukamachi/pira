@@ -245,6 +245,84 @@
 (smithy/sdk/service:define-service pinpoint-smsvoice-v2 :shape-name
                                    "PinpointSMSVoiceV2" :version "2022-03-31"
                                    :title "Amazon Pinpoint SMS Voice V2"
+                                   :operations
+                                   '(associate-origination-identity
+                                     associate-protect-configuration
+                                     create-configuration-set
+                                     create-event-destination
+                                     create-opt-out-list create-pool
+                                     create-protect-configuration
+                                     create-registration
+                                     create-registration-association
+                                     create-registration-attachment
+                                     create-registration-version
+                                     create-verified-destination-number
+                                     delete-account-default-protect-configuration
+                                     delete-configuration-set
+                                     delete-default-message-type
+                                     delete-default-sender-id
+                                     delete-event-destination delete-keyword
+                                     delete-media-message-spend-limit-override
+                                     delete-opted-out-number
+                                     delete-opt-out-list delete-pool
+                                     delete-protect-configuration
+                                     delete-protect-configuration-rule-set-number-override
+                                     delete-registration
+                                     delete-registration-attachment
+                                     delete-registration-field-value
+                                     delete-resource-policy
+                                     delete-text-message-spend-limit-override
+                                     delete-verified-destination-number
+                                     delete-voice-message-spend-limit-override
+                                     describe-account-attributes
+                                     describe-account-limits
+                                     describe-configuration-sets
+                                     describe-keywords
+                                     describe-opted-out-numbers
+                                     describe-opt-out-lists
+                                     describe-phone-numbers describe-pools
+                                     describe-protect-configurations
+                                     describe-registration-attachments
+                                     describe-registration-field-definitions
+                                     describe-registration-field-values
+                                     describe-registrations
+                                     describe-registration-section-definitions
+                                     describe-registration-type-definitions
+                                     describe-registration-versions
+                                     describe-sender-ids describe-spend-limits
+                                     describe-verified-destination-numbers
+                                     disassociate-origination-identity
+                                     disassociate-protect-configuration
+                                     discard-registration-version
+                                     get-protect-configuration-country-rule-set
+                                     get-resource-policy
+                                     list-pool-origination-identities
+                                     list-protect-configuration-rule-set-number-overrides
+                                     list-registration-associations
+                                     list-tags-for-resource put-keyword
+                                     put-message-feedback put-opted-out-number
+                                     put-protect-configuration-rule-set-number-override
+                                     put-registration-field-value
+                                     put-resource-policy release-phone-number
+                                     release-sender-id request-phone-number
+                                     request-sender-id
+                                     send-destination-number-verification-code
+                                     send-media-message send-text-message
+                                     send-voice-message
+                                     set-account-default-protect-configuration
+                                     set-default-message-feedback-enabled
+                                     set-default-message-type
+                                     set-default-sender-id
+                                     set-media-message-spend-limit-override
+                                     set-text-message-spend-limit-override
+                                     set-voice-message-spend-limit-override
+                                     submit-registration-version tag-resource
+                                     untag-resource update-event-destination
+                                     update-phone-number update-pool
+                                     update-protect-configuration
+                                     update-protect-configuration-country-rule-set
+                                     update-sender-id
+                                     verify-destination-number)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Pinpoint SMS Voice V2")

@@ -159,10 +159,55 @@
 (smithy/sdk/service:define-service awshawks-nest-service-facade :shape-name
                                    "AWSHawksNestServiceFacade" :version
                                    "2019-11-15" :title "Amazon Fraud Detector"
+                                   :operations
+                                   '(batch-create-variable batch-get-variable
+                                     cancel-batch-import-job
+                                     cancel-batch-prediction-job
+                                     create-batch-import-job
+                                     create-batch-prediction-job
+                                     create-detector-version create-list
+                                     create-model create-model-version
+                                     create-rule create-variable
+                                     delete-batch-import-job
+                                     delete-batch-prediction-job
+                                     delete-detector delete-detector-version
+                                     delete-entity-type delete-event
+                                     delete-events-by-event-type
+                                     delete-event-type delete-external-model
+                                     delete-label delete-list delete-model
+                                     delete-model-version delete-outcome
+                                     delete-rule delete-variable
+                                     describe-detector describe-model-versions
+                                     get-batch-import-jobs
+                                     get-batch-prediction-jobs
+                                     get-delete-events-by-event-type-status
+                                     get-detectors get-detector-version
+                                     get-entity-types get-event
+                                     get-event-prediction
+                                     get-event-prediction-metadata
+                                     get-event-types get-external-models
+                                     get-kmsencryption-key get-labels
+                                     get-list-elements get-lists-metadata
+                                     get-models get-model-version get-outcomes
+                                     get-rules get-variables
+                                     list-event-predictions
+                                     list-tags-for-resource put-detector
+                                     put-entity-type put-event-type
+                                     put-external-model put-kmsencryption-key
+                                     put-label put-outcome send-event
+                                     tag-resource untag-resource
+                                     update-detector-version
+                                     update-detector-version-metadata
+                                     update-detector-version-status
+                                     update-event-label update-list
+                                     update-model update-model-version
+                                     update-model-version-status
+                                     update-rule-metadata update-rule-version
+                                     update-variable)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://hawksnest.amazonaws.com/doc/2019-11-15"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://hawksnest.amazonaws.com/doc/2019-11-15"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "FraudDetector")

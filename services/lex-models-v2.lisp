@@ -497,7 +497,76 @@
 (smithy/sdk/service:define-service lex-model-building-service-v2 :shape-name
                                    "LexModelBuildingServiceV2" :version
                                    "2020-08-07" :title
-                                   "Amazon Lex Model Building V2" :traits
+                                   "Amazon Lex Model Building V2" :operations
+                                   '(batch-create-custom-vocabulary-item
+                                     batch-delete-custom-vocabulary-item
+                                     batch-update-custom-vocabulary-item
+                                     build-bot-locale create-bot
+                                     create-bot-alias create-bot-locale
+                                     create-bot-replica create-bot-version
+                                     create-export create-intent
+                                     create-resource-policy
+                                     create-resource-policy-statement
+                                     create-slot create-slot-type
+                                     create-test-set-discrepancy-report
+                                     create-upload-url delete-bot
+                                     delete-bot-alias delete-bot-locale
+                                     delete-bot-replica delete-bot-version
+                                     delete-custom-vocabulary delete-export
+                                     delete-import delete-intent
+                                     delete-resource-policy
+                                     delete-resource-policy-statement
+                                     delete-slot delete-slot-type
+                                     delete-test-set delete-utterances
+                                     describe-bot describe-bot-alias
+                                     describe-bot-locale
+                                     describe-bot-recommendation
+                                     describe-bot-replica
+                                     describe-bot-resource-generation
+                                     describe-bot-version
+                                     describe-custom-vocabulary-metadata
+                                     describe-export describe-import
+                                     describe-intent describe-resource-policy
+                                     describe-slot describe-slot-type
+                                     describe-test-execution describe-test-set
+                                     describe-test-set-discrepancy-report
+                                     describe-test-set-generation
+                                     generate-bot-element
+                                     get-test-execution-artifacts-url
+                                     list-aggregated-utterances
+                                     list-bot-aliases list-bot-alias-replicas
+                                     list-bot-locales list-bot-recommendations
+                                     list-bot-replicas
+                                     list-bot-resource-generations list-bots
+                                     list-bot-version-replicas
+                                     list-bot-versions list-built-in-intents
+                                     list-built-in-slot-types
+                                     list-custom-vocabulary-items list-exports
+                                     list-imports list-intent-metrics
+                                     list-intent-paths list-intents
+                                     list-intent-stage-metrics
+                                     list-recommended-intents
+                                     list-session-analytics-data
+                                     list-session-metrics list-slots
+                                     list-slot-types list-tags-for-resource
+                                     list-test-execution-result-items
+                                     list-test-executions list-test-set-records
+                                     list-test-sets
+                                     list-utterance-analytics-data
+                                     list-utterance-metrics
+                                     search-associated-transcripts
+                                     start-bot-recommendation
+                                     start-bot-resource-generation start-import
+                                     start-test-execution
+                                     start-test-set-generation
+                                     stop-bot-recommendation tag-resource
+                                     untag-resource update-bot update-bot-alias
+                                     update-bot-locale
+                                     update-bot-recommendation update-export
+                                     update-intent update-resource-policy
+                                     update-slot update-slot-type
+                                     update-test-set)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Lex Models V2")
                                       ("arnNamespace" . "lex")

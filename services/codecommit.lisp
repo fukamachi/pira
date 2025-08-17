@@ -171,10 +171,72 @@
 
 (smithy/sdk/service:define-service code-commit-20150413 :shape-name
                                    "CodeCommit_20150413" :version "2015-04-13"
-                                   :title "AWS CodeCommit" :xml-namespace
-                                   '(:uri
-                                     "http://codecommit.amazonaws.com/doc/2015-04-13"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS CodeCommit" :operations
+                                   '(associate-approval-rule-template-with-repository
+                                     batch-associate-approval-rule-template-with-repositories
+                                     batch-describe-merge-conflicts
+                                     batch-disassociate-approval-rule-template-from-repositories
+                                     batch-get-commits batch-get-repositories
+                                     create-approval-rule-template
+                                     create-branch create-commit
+                                     create-pull-request
+                                     create-pull-request-approval-rule
+                                     create-repository
+                                     create-unreferenced-merge-commit
+                                     delete-approval-rule-template
+                                     delete-branch delete-comment-content
+                                     delete-file
+                                     delete-pull-request-approval-rule
+                                     delete-repository describe-merge-conflicts
+                                     describe-pull-request-events
+                                     disassociate-approval-rule-template-from-repository
+                                     evaluate-pull-request-approval-rules
+                                     get-approval-rule-template get-blob
+                                     get-branch get-comment
+                                     get-comment-reactions
+                                     get-comments-for-compared-commit
+                                     get-comments-for-pull-request get-commit
+                                     get-differences get-file get-folder
+                                     get-merge-commit get-merge-conflicts
+                                     get-merge-options get-pull-request
+                                     get-pull-request-approval-states
+                                     get-pull-request-override-state
+                                     get-repository get-repository-triggers
+                                     list-approval-rule-templates
+                                     list-associated-approval-rule-templates-for-repository
+                                     list-branches list-file-commit-history
+                                     list-pull-requests list-repositories
+                                     list-repositories-for-approval-rule-template
+                                     list-tags-for-resource
+                                     merge-branches-by-fast-forward
+                                     merge-branches-by-squash
+                                     merge-branches-by-three-way
+                                     merge-pull-request-by-fast-forward
+                                     merge-pull-request-by-squash
+                                     merge-pull-request-by-three-way
+                                     override-pull-request-approval-rules
+                                     post-comment-for-compared-commit
+                                     post-comment-for-pull-request
+                                     post-comment-reply put-comment-reaction
+                                     put-file put-repository-triggers
+                                     tag-resource test-repository-triggers
+                                     untag-resource
+                                     update-approval-rule-template-content
+                                     update-approval-rule-template-description
+                                     update-approval-rule-template-name
+                                     update-comment update-default-branch
+                                     update-pull-request-approval-rule-content
+                                     update-pull-request-approval-state
+                                     update-pull-request-description
+                                     update-pull-request-status
+                                     update-pull-request-title
+                                     update-repository-description
+                                     update-repository-encryption-key
+                                     update-repository-name)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://codecommit.amazonaws.com/doc/2015-04-13"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodeCommit")

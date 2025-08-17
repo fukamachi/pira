@@ -212,10 +212,41 @@
 (smithy/sdk/service:define-service code-pipeline-20150709 :shape-name
                                    "CodePipeline_20150709" :version
                                    "2015-07-09" :title "AWS CodePipeline"
+                                   :operations
+                                   '(acknowledge-job
+                                     acknowledge-third-party-job
+                                     create-custom-action-type create-pipeline
+                                     delete-custom-action-type delete-pipeline
+                                     delete-webhook
+                                     deregister-webhook-with-third-party
+                                     disable-stage-transition
+                                     enable-stage-transition get-action-type
+                                     get-job-details get-pipeline
+                                     get-pipeline-execution get-pipeline-state
+                                     get-third-party-job-details
+                                     list-action-executions list-action-types
+                                     list-deploy-action-execution-targets
+                                     list-pipeline-executions list-pipelines
+                                     list-rule-executions list-rule-types
+                                     list-tags-for-resource list-webhooks
+                                     override-stage-condition poll-for-jobs
+                                     poll-for-third-party-jobs
+                                     put-action-revision put-approval-result
+                                     put-job-failure-result
+                                     put-job-success-result
+                                     put-third-party-job-failure-result
+                                     put-third-party-job-success-result
+                                     put-webhook
+                                     register-webhook-with-third-party
+                                     retry-stage-execution rollback-stage
+                                     start-pipeline-execution
+                                     stop-pipeline-execution tag-resource
+                                     untag-resource update-action-type
+                                     update-pipeline)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://codepipeline.amazonaws.com/doc/2015-07-09/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://codepipeline.amazonaws.com/doc/2015-07-09/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodePipeline")

@@ -40,7 +40,10 @@
 
 (smithy/sdk/service:define-service launch-wizard :shape-name "LaunchWizard"
                                    :version "2018-05-10" :title
-                                   "AWS Launch Wizard" :traits
+                                   "AWS Launch Wizard" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Launch Wizard")
                                       ("cloudFormationName" . "LaunchWizard")

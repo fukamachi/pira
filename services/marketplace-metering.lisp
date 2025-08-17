@@ -17,7 +17,10 @@
 
 (smithy/sdk/service:define-service awsmpmetering-service :shape-name
                                    "AWSMPMeteringService" :version "2016-01-14"
-                                   :title "AWSMarketplace Metering" :traits
+                                   :title "AWSMarketplace Metering" :operations
+                                   '(batch-meter-usage meter-usage
+                                     register-usage resolve-customer)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Marketplace Metering")
                                       ("arnNamespace" . "aws-marketplace")

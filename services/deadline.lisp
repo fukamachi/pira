@@ -314,6 +314,23 @@
 
 (smithy/sdk/service:define-service deadline :shape-name "Deadline" :version
                                    "2023-10-12" :title "AWSDeadlineCloud"
+                                   :operations
+                                   '(create-queue-fleet-association
+                                     create-queue-limit-association
+                                     delete-queue-fleet-association
+                                     delete-queue-limit-association
+                                     get-queue-fleet-association
+                                     get-queue-limit-association
+                                     get-sessions-statistics-aggregation
+                                     list-available-metered-products
+                                     list-queue-fleet-associations
+                                     list-queue-limit-associations
+                                     list-tags-for-resource search-jobs
+                                     search-steps search-tasks search-workers
+                                     start-sessions-statistics-aggregation
+                                     tag-resource untag-resource
+                                     update-queue-fleet-association
+                                     update-queue-limit-association)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "deadline")
                                       ("arnNamespace" . "deadline"))

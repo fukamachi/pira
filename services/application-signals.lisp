@@ -94,6 +94,15 @@
                                    "ApplicationSignals" :version "2024-04-15"
                                    :title
                                    "Amazon CloudWatch Application Signals"
+                                   :operations
+                                   '(batch-get-service-level-objective-budget-report
+                                     batch-update-exclusion-windows get-service
+                                     list-service-dependencies
+                                     list-service-dependents
+                                     list-service-level-objective-exclusion-windows
+                                     list-service-operations list-services
+                                     list-tags-for-resource start-discovery
+                                     tag-resource untag-resource)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Application Signals")

@@ -74,7 +74,32 @@
 (common-lisp:in-package #:pira/qapps)
 
 (smithy/sdk/service:define-service qapps-service :shape-name "QAppsService"
-                                   :version "2023-11-27" :title "QApps" :traits
+                                   :version "2023-11-27" :title "QApps"
+                                   :operations
+                                   '(associate-library-item-review
+                                     associate-qapp-with-user
+                                     batch-create-category
+                                     batch-delete-category
+                                     batch-update-category create-library-item
+                                     create-presigned-url create-qapp
+                                     delete-library-item delete-qapp
+                                     describe-qapp-permissions
+                                     disassociate-library-item-review
+                                     disassociate-qapp-from-user
+                                     export-qapp-session-data get-library-item
+                                     get-qapp get-qapp-session
+                                     get-qapp-session-metadata import-document
+                                     list-categories list-library-items
+                                     list-qapps list-qapp-session-data
+                                     list-tags-for-resource predict-qapp
+                                     start-qapp-session stop-qapp-session
+                                     tag-resource untag-resource
+                                     update-library-item
+                                     update-library-item-metadata update-qapp
+                                     update-qapp-permissions
+                                     update-qapp-session
+                                     update-qapp-session-metadata)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "QApps")
                                       ("arnNamespace" . "qapps")
                                       ("endpointPrefix" . "data.qapps"))

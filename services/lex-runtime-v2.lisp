@@ -46,6 +46,10 @@
                                    :shape-name
                                    "AWSDeepSenseRunTimeServiceApi2_0" :version
                                    "2020-08-07" :title "Amazon Lex Runtime V2"
+                                   :operations
+                                   '(delete-session get-session put-session
+                                     recognize-text recognize-utterance
+                                     start-conversation)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Lex Runtime V2")

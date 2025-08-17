@@ -64,7 +64,24 @@
                                    :shape-name
                                    "AWSIESnowballJobManagementService" :version
                                    "2016-06-30" :title
-                                   "Amazon Import/Export Snowball" :traits
+                                   "Amazon Import/Export Snowball" :operations
+                                   '(cancel-cluster cancel-job create-address
+                                     create-cluster create-job
+                                     create-long-term-pricing
+                                     create-return-shipping-label
+                                     describe-address describe-addresses
+                                     describe-cluster describe-job
+                                     describe-return-shipping-label
+                                     get-job-manifest get-job-unlock-code
+                                     get-snowball-usage get-software-updates
+                                     list-cluster-jobs list-clusters
+                                     list-compatible-images list-jobs
+                                     list-long-term-pricing
+                                     list-pickup-locations
+                                     list-service-versions update-cluster
+                                     update-job update-job-shipment-state
+                                     update-long-term-pricing)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Snowball")
                                       ("arnNamespace" . "snowball")
                                       ("cloudFormationName" . "Snowball")

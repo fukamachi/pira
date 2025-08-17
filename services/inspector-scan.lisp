@@ -9,7 +9,8 @@
 
 (smithy/sdk/service:define-service inspector-scan :shape-name "InspectorScan"
                                    :version "2023-08-08" :title
-                                   "Inspector Scan" :traits
+                                   "Inspector Scan" :operations '(scan-sbom)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Inspector Scan")
                                       ("arnNamespace" . "inspector-scan")

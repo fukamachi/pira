@@ -201,10 +201,41 @@
 (smithy/sdk/service:define-service kinesis-analytics-20180523 :shape-name
                                    "KinesisAnalytics_20180523" :version
                                    "2018-05-23" :title
-                                   "Amazon Kinesis Analytics" :xml-namespace
-                                   '(:uri
-                                     "http://analytics.kinesis.amazonaws.com/doc/2018-05-23"
-                                     :prefix common-lisp:nil)
+                                   "Amazon Kinesis Analytics" :operations
+                                   '(add-application-cloud-watch-logging-option
+                                     add-application-input
+                                     add-application-input-processing-configuration
+                                     add-application-output
+                                     add-application-reference-data-source
+                                     add-application-vpc-configuration
+                                     create-application
+                                     create-application-presigned-url
+                                     create-application-snapshot
+                                     delete-application
+                                     delete-application-cloud-watch-logging-option
+                                     delete-application-input-processing-configuration
+                                     delete-application-output
+                                     delete-application-reference-data-source
+                                     delete-application-snapshot
+                                     delete-application-vpc-configuration
+                                     describe-application
+                                     describe-application-operation
+                                     describe-application-snapshot
+                                     describe-application-version
+                                     discover-input-schema
+                                     list-application-operations
+                                     list-applications
+                                     list-application-snapshots
+                                     list-application-versions
+                                     list-tags-for-resource
+                                     rollback-application start-application
+                                     stop-application tag-resource
+                                     untag-resource update-application
+                                     update-application-maintenance-configuration)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://analytics.kinesis.amazonaws.com/doc/2018-05-23"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Kinesis Analytics V2")

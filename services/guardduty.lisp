@@ -298,7 +298,61 @@
 
 (smithy/sdk/service:define-service guard-duty-apiservice :shape-name
                                    "GuardDutyAPIService" :version "2017-11-28"
-                                   :title "Amazon GuardDuty" :traits
+                                   :title "Amazon GuardDuty" :operations
+                                   '(accept-administrator-invitation
+                                     accept-invitation archive-findings
+                                     create-detector create-filter create-ipset
+                                     create-malware-protection-plan
+                                     create-members
+                                     create-publishing-destination
+                                     create-sample-findings
+                                     create-threat-intel-set
+                                     decline-invitations delete-detector
+                                     delete-filter delete-invitations
+                                     delete-ipset
+                                     delete-malware-protection-plan
+                                     delete-members
+                                     delete-publishing-destination
+                                     delete-threat-intel-set
+                                     describe-malware-scans
+                                     describe-organization-configuration
+                                     describe-publishing-destination
+                                     disable-organization-admin-account
+                                     disassociate-from-administrator-account
+                                     disassociate-from-master-account
+                                     disassociate-members
+                                     enable-organization-admin-account
+                                     get-administrator-account
+                                     get-coverage-statistics get-detector
+                                     get-filter get-findings
+                                     get-findings-statistics
+                                     get-invitations-count get-ipset
+                                     get-malware-protection-plan
+                                     get-malware-scan-settings
+                                     get-master-account get-member-detectors
+                                     get-members get-organization-statistics
+                                     get-remaining-free-trial-days
+                                     get-threat-intel-set get-usage-statistics
+                                     invite-members list-coverage
+                                     list-detectors list-filters list-findings
+                                     list-invitations list-ipsets
+                                     list-malware-protection-plans list-members
+                                     list-organization-admin-accounts
+                                     list-publishing-destinations
+                                     list-tags-for-resource
+                                     list-threat-intel-sets start-malware-scan
+                                     start-monitoring-members
+                                     stop-monitoring-members tag-resource
+                                     unarchive-findings untag-resource
+                                     update-detector update-filter
+                                     update-findings-feedback update-ipset
+                                     update-malware-protection-plan
+                                     update-malware-scan-settings
+                                     update-member-detectors
+                                     update-organization-configuration
+                                     update-publishing-destination
+                                     update-threat-intel-set)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "GuardDuty")
                                       ("arnNamespace" . "guardduty")
                                       ("cloudFormationName" . "GuardDuty")

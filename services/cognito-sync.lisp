@@ -29,10 +29,24 @@
 (smithy/sdk/service:define-service awscognito-sync-service :shape-name
                                    "AWSCognitoSyncService" :version
                                    "2014-06-30" :title "Amazon Cognito Sync"
+                                   :operations
+                                   '(bulk-publish delete-dataset
+                                     describe-dataset
+                                     describe-identity-pool-usage
+                                     describe-identity-usage
+                                     get-bulk-publish-details
+                                     get-cognito-events
+                                     get-identity-pool-configuration
+                                     list-datasets list-identity-pool-usage
+                                     list-records register-device
+                                     set-cognito-events
+                                     set-identity-pool-configuration
+                                     subscribe-to-dataset
+                                     unsubscribe-from-dataset update-records)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://cognito-sync.amazonaws.com/doc/2014-06-30/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://cognito-sync.amazonaws.com/doc/2014-06-30/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Cognito Sync")

@@ -131,7 +131,10 @@
 
 (smithy/sdk/service:define-service media-connect :shape-name "MediaConnect"
                                    :version "2018-11-14" :title
-                                   "AWS MediaConnect" :traits
+                                   "AWS MediaConnect" :operations
+                                   '(list-entitlements list-tags-for-resource
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MediaConnect")
                                       ("arnNamespace" . "mediaconnect"))

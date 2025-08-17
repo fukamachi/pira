@@ -102,10 +102,56 @@
 (smithy/sdk/service:define-service amazon-rdsv19 :shape-name "AmazonRDSv19"
                                    :version "2014-10-31" :title
                                    "Amazon DocumentDB with MongoDB compatibility"
+                                   :operations
+                                   '(add-source-identifier-to-subscription
+                                     add-tags-to-resource
+                                     apply-pending-maintenance-action
+                                     copy-dbcluster-parameter-group
+                                     copy-dbcluster-snapshot create-dbcluster
+                                     create-dbcluster-parameter-group
+                                     create-dbcluster-snapshot
+                                     create-dbinstance create-dbsubnet-group
+                                     create-event-subscription
+                                     create-global-cluster delete-dbcluster
+                                     delete-dbcluster-parameter-group
+                                     delete-dbcluster-snapshot
+                                     delete-dbinstance delete-dbsubnet-group
+                                     delete-event-subscription
+                                     delete-global-cluster
+                                     describe-certificates
+                                     describe-dbcluster-parameter-groups
+                                     describe-dbcluster-parameters
+                                     describe-dbclusters
+                                     describe-dbcluster-snapshot-attributes
+                                     describe-dbcluster-snapshots
+                                     describe-dbengine-versions
+                                     describe-dbinstances
+                                     describe-dbsubnet-groups
+                                     describe-engine-default-cluster-parameters
+                                     describe-event-categories describe-events
+                                     describe-event-subscriptions
+                                     describe-global-clusters
+                                     describe-orderable-dbinstance-options
+                                     describe-pending-maintenance-actions
+                                     failover-dbcluster failover-global-cluster
+                                     list-tags-for-resource modify-dbcluster
+                                     modify-dbcluster-parameter-group
+                                     modify-dbcluster-snapshot-attribute
+                                     modify-dbinstance modify-dbsubnet-group
+                                     modify-event-subscription
+                                     modify-global-cluster reboot-dbinstance
+                                     remove-from-global-cluster
+                                     remove-source-identifier-from-subscription
+                                     remove-tags-from-resource
+                                     reset-dbcluster-parameter-group
+                                     restore-dbcluster-from-snapshot
+                                     restore-dbcluster-to-point-in-time
+                                     start-dbcluster stop-dbcluster
+                                     switchover-global-cluster)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://rds.amazonaws.com/doc/2014-10-31/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://rds.amazonaws.com/doc/2014-10-31/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "DocDB")
                                       ("arnNamespace" . "rds")

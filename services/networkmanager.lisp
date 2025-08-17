@@ -204,7 +204,73 @@
 
 (smithy/sdk/service:define-service network-manager :shape-name "NetworkManager"
                                    :version "2019-07-05" :title
-                                   "AWS Network Manager" :traits
+                                   "AWS Network Manager" :operations
+                                   '(accept-attachment associate-connect-peer
+                                     associate-customer-gateway associate-link
+                                     associate-transit-gateway-connect-peer
+                                     create-connect-attachment
+                                     create-connection create-connect-peer
+                                     create-core-network create-device
+                                     create-direct-connect-gateway-attachment
+                                     create-global-network create-link
+                                     create-site
+                                     create-site-to-site-vpn-attachment
+                                     create-transit-gateway-peering
+                                     create-transit-gateway-route-table-attachment
+                                     create-vpc-attachment delete-attachment
+                                     delete-connection delete-connect-peer
+                                     delete-core-network
+                                     delete-core-network-policy-version
+                                     delete-device delete-global-network
+                                     delete-link delete-peering
+                                     delete-resource-policy delete-site
+                                     deregister-transit-gateway
+                                     describe-global-networks
+                                     disassociate-connect-peer
+                                     disassociate-customer-gateway
+                                     disassociate-link
+                                     disassociate-transit-gateway-connect-peer
+                                     execute-core-network-change-set
+                                     get-connect-attachment get-connections
+                                     get-connect-peer
+                                     get-connect-peer-associations
+                                     get-core-network
+                                     get-core-network-change-events
+                                     get-core-network-change-set
+                                     get-core-network-policy
+                                     get-customer-gateway-associations
+                                     get-devices
+                                     get-direct-connect-gateway-attachment
+                                     get-link-associations get-links
+                                     get-network-resource-counts
+                                     get-network-resource-relationships
+                                     get-network-resources get-network-routes
+                                     get-network-telemetry get-resource-policy
+                                     get-route-analysis get-sites
+                                     get-site-to-site-vpn-attachment
+                                     get-transit-gateway-connect-peer-associations
+                                     get-transit-gateway-peering
+                                     get-transit-gateway-registrations
+                                     get-transit-gateway-route-table-attachment
+                                     get-vpc-attachment list-attachments
+                                     list-connect-peers
+                                     list-core-network-policy-versions
+                                     list-core-networks
+                                     list-organization-service-access-status
+                                     list-peerings list-tags-for-resource
+                                     put-core-network-policy
+                                     put-resource-policy
+                                     register-transit-gateway reject-attachment
+                                     restore-core-network-policy-version
+                                     start-organization-service-access-update
+                                     start-route-analysis tag-resource
+                                     untag-resource update-connection
+                                     update-core-network update-device
+                                     update-direct-connect-gateway-attachment
+                                     update-global-network update-link
+                                     update-network-resource-metadata
+                                     update-site update-vpc-attachment)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "NetworkManager")
                                       ("arnNamespace" . "networkmanager")

@@ -45,10 +45,32 @@
 
 (smithy/sdk/service:define-service glacier :shape-name "Glacier" :version
                                    "2012-06-01" :title "Amazon Glacier"
+                                   :operations
+                                   '(abort-multipart-upload abort-vault-lock
+                                     add-tags-to-vault
+                                     complete-multipart-upload
+                                     complete-vault-lock create-vault
+                                     delete-archive delete-vault
+                                     delete-vault-access-policy
+                                     delete-vault-notifications describe-job
+                                     describe-vault get-data-retrieval-policy
+                                     get-job-output get-vault-access-policy
+                                     get-vault-lock get-vault-notifications
+                                     initiate-job initiate-multipart-upload
+                                     initiate-vault-lock list-jobs
+                                     list-multipart-uploads list-parts
+                                     list-provisioned-capacity
+                                     list-tags-for-vault list-vaults
+                                     purchase-provisioned-capacity
+                                     remove-tags-from-vault
+                                     set-data-retrieval-policy
+                                     set-vault-access-policy
+                                     set-vault-notifications upload-archive
+                                     upload-multipart-part)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://glacier.amazonaws.com/doc/2012-06-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://glacier.amazonaws.com/doc/2012-06-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Glacier")
                                       ("arnNamespace" . "glacier")

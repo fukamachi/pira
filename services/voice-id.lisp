@@ -110,6 +110,23 @@
 
 (smithy/sdk/service:define-service voice-id :shape-name "VoiceID" :version
                                    "2021-09-27" :title "Amazon Voice ID"
+                                   :operations
+                                   '(associate-fraudster create-watchlist
+                                     delete-fraudster delete-speaker
+                                     delete-watchlist describe-fraudster
+                                     describe-fraudster-registration-job
+                                     describe-speaker
+                                     describe-speaker-enrollment-job
+                                     describe-watchlist disassociate-fraudster
+                                     evaluate-session
+                                     list-fraudster-registration-jobs
+                                     list-fraudsters
+                                     list-speaker-enrollment-jobs list-speakers
+                                     list-tags-for-resource list-watchlists
+                                     opt-out-speaker
+                                     start-fraudster-registration-job
+                                     start-speaker-enrollment-job tag-resource
+                                     untag-resource update-watchlist)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Voice ID")
                                       ("arnNamespace" . "voiceid")

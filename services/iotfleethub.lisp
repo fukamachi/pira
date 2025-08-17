@@ -13,7 +13,12 @@
 
 (smithy/sdk/service:define-service awsio-tfleet-hub :shape-name
                                    "AWSIoTFleetHub" :version "2020-11-03"
-                                   :title "AWS IoT Fleet Hub" :traits
+                                   :title "AWS IoT Fleet Hub" :operations
+                                   '(create-application delete-application
+                                     describe-application list-applications
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-application)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoTFleetHub")
                                       ("arnNamespace" . "iotfleethub")

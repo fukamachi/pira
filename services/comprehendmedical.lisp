@@ -65,6 +65,30 @@
 (smithy/sdk/service:define-service comprehend-medical-20181030 :shape-name
                                    "ComprehendMedical_20181030" :version
                                    "2018-10-30" :title "AWS Comprehend Medical"
+                                   :operations
+                                   '(describe-entities-detection-v2job
+                                     describe-icd10cminference-job
+                                     describe-phidetection-job
+                                     describe-rx-norm-inference-job
+                                     describe-snomedctinference-job
+                                     detect-entities detect-entities-v2
+                                     detect-phi infer-icd10cm infer-rx-norm
+                                     infer-snomedct
+                                     list-entities-detection-v2jobs
+                                     list-icd10cminference-jobs
+                                     list-phidetection-jobs
+                                     list-rx-norm-inference-jobs
+                                     list-snomedctinference-jobs
+                                     start-entities-detection-v2job
+                                     start-icd10cminference-job
+                                     start-phidetection-job
+                                     start-rx-norm-inference-job
+                                     start-snomedctinference-job
+                                     stop-entities-detection-v2job
+                                     stop-icd10cminference-job
+                                     stop-phidetection-job
+                                     stop-rx-norm-inference-job
+                                     stop-snomedctinference-job)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ComprehendMedical")

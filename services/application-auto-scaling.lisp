@@ -81,7 +81,20 @@
 (smithy/sdk/service:define-service any-scale-frontend-service :shape-name
                                    "AnyScaleFrontendService" :version
                                    "2016-02-06" :title
-                                   "Application Auto Scaling" :traits
+                                   "Application Auto Scaling" :operations
+                                   '(delete-scaling-policy
+                                     delete-scheduled-action
+                                     deregister-scalable-target
+                                     describe-scalable-targets
+                                     describe-scaling-activities
+                                     describe-scaling-policies
+                                     describe-scheduled-actions
+                                     get-predictive-scaling-forecast
+                                     list-tags-for-resource put-scaling-policy
+                                     put-scheduled-action
+                                     register-scalable-target tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Application Auto Scaling")
                                       ("arnNamespace"

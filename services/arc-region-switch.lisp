@@ -87,7 +87,17 @@
 
 (smithy/sdk/service:define-service arc-region-switch :shape-name
                                    "ArcRegionSwitch" :version "2022-07-26"
-                                   :title "ARC - Region switch" :traits
+                                   :title "ARC - Region switch" :operations
+                                   '(approve-plan-execution-step
+                                     cancel-plan-execution
+                                     get-plan-evaluation-status
+                                     get-plan-execution get-plan-in-region
+                                     list-plan-execution-events
+                                     list-plan-executions list-plans-in-region
+                                     list-route53health-checks
+                                     start-plan-execution update-plan-execution
+                                     update-plan-execution-step)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ARC Region switch")
                                       ("endpointPrefix" . "arc-region-switch")

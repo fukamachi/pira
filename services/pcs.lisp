@@ -53,7 +53,10 @@
 (smithy/sdk/service:define-service awsparallel-computing-service :shape-name
                                    "AWSParallelComputingService" :version
                                    "2023-02-10" :title
-                                   "AWS Parallel Computing Service" :traits
+                                   "AWS Parallel Computing Service" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "PCS")
                                       ("arnNamespace" . "pcs"))
                                      ("aws.auth#sigv4" ("name" . "pcs"))

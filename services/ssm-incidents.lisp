@@ -133,6 +133,28 @@
 (smithy/sdk/service:define-service ssmincidents :shape-name "SSMIncidents"
                                    :version "2018-05-10" :title
                                    "AWS Systems Manager Incident Manager"
+                                   :operations
+                                   '(batch-get-incident-findings
+                                     create-replication-set
+                                     create-response-plan create-timeline-event
+                                     delete-incident-record
+                                     delete-replication-set
+                                     delete-resource-policy
+                                     delete-response-plan delete-timeline-event
+                                     get-incident-record get-replication-set
+                                     get-resource-policies get-response-plan
+                                     get-timeline-event list-incident-findings
+                                     list-incident-records list-related-items
+                                     list-replication-sets list-response-plans
+                                     list-tags-for-resource
+                                     list-timeline-events put-resource-policy
+                                     start-incident tag-resource untag-resource
+                                     update-deletion-protection
+                                     update-incident-record
+                                     update-related-items
+                                     update-replication-set
+                                     update-response-plan
+                                     update-timeline-event)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SSM Incidents")

@@ -51,7 +51,18 @@
 
 (smithy/sdk/service:define-service trusted-advisor :shape-name "TrustedAdvisor"
                                    :version "2022-09-15" :title
-                                   "TrustedAdvisor Public API" :traits
+                                   "TrustedAdvisor Public API" :operations
+                                   '(batch-update-recommendation-resource-exclusion
+                                     get-organization-recommendation
+                                     get-recommendation list-checks
+                                     list-organization-recommendation-accounts
+                                     list-organization-recommendation-resources
+                                     list-organization-recommendations
+                                     list-recommendation-resources
+                                     list-recommendations
+                                     update-organization-recommendation-lifecycle
+                                     update-recommendation-lifecycle)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "TrustedAdvisor")
                                       ("arnNamespace" . "trustedadvisor")

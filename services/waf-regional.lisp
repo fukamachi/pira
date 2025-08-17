@@ -131,10 +131,68 @@
 (smithy/sdk/service:define-service awswaf-regional-20161128 :shape-name
                                    "AWSWAF_Regional_20161128" :version
                                    "2016-11-28" :title "AWS WAF Regional"
+                                   :operations
+                                   '(associate-web-acl create-byte-match-set
+                                     create-geo-match-set create-ipset
+                                     create-rate-based-rule
+                                     create-regex-match-set
+                                     create-regex-pattern-set create-rule
+                                     create-rule-group
+                                     create-size-constraint-set
+                                     create-sql-injection-match-set
+                                     create-web-acl
+                                     create-web-aclmigration-stack
+                                     create-xss-match-set delete-byte-match-set
+                                     delete-geo-match-set delete-ipset
+                                     delete-logging-configuration
+                                     delete-permission-policy
+                                     delete-rate-based-rule
+                                     delete-regex-match-set
+                                     delete-regex-pattern-set delete-rule
+                                     delete-rule-group
+                                     delete-size-constraint-set
+                                     delete-sql-injection-match-set
+                                     delete-web-acl delete-xss-match-set
+                                     disassociate-web-acl get-byte-match-set
+                                     get-change-token get-change-token-status
+                                     get-geo-match-set get-ipset
+                                     get-logging-configuration
+                                     get-permission-policy get-rate-based-rule
+                                     get-rate-based-rule-managed-keys
+                                     get-regex-match-set get-regex-pattern-set
+                                     get-rule get-rule-group
+                                     get-sampled-requests
+                                     get-size-constraint-set
+                                     get-sql-injection-match-set get-web-acl
+                                     get-web-aclfor-resource get-xss-match-set
+                                     list-activated-rules-in-rule-group
+                                     list-byte-match-sets list-geo-match-sets
+                                     list-ipsets list-logging-configurations
+                                     list-rate-based-rules
+                                     list-regex-match-sets
+                                     list-regex-pattern-sets
+                                     list-resources-for-web-acl
+                                     list-rule-groups list-rules
+                                     list-size-constraint-sets
+                                     list-sql-injection-match-sets
+                                     list-subscribed-rule-groups
+                                     list-tags-for-resource list-web-acls
+                                     list-xss-match-sets
+                                     put-logging-configuration
+                                     put-permission-policy tag-resource
+                                     untag-resource update-byte-match-set
+                                     update-geo-match-set update-ipset
+                                     update-rate-based-rule
+                                     update-regex-match-set
+                                     update-regex-pattern-set update-rule
+                                     update-rule-group
+                                     update-size-constraint-set
+                                     update-sql-injection-match-set
+                                     update-web-acl update-xss-match-set)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://waf.amazonaws.com/doc/2015-08-24/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://waf.amazonaws.com/doc/2015-08-24/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "WAF Regional")

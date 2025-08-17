@@ -29,7 +29,17 @@
 
 (smithy/sdk/service:define-service baldr-api-service :shape-name
                                    "BaldrApiService" :version "2017-04-28"
-                                   :title "AWS CloudHSM V2" :traits
+                                   :title "AWS CloudHSM V2" :operations
+                                   '(copy-backup-to-region create-cluster
+                                     create-hsm delete-backup delete-cluster
+                                     delete-hsm delete-resource-policy
+                                     describe-backups describe-clusters
+                                     get-resource-policy initialize-cluster
+                                     list-tags modify-backup-attributes
+                                     modify-cluster put-resource-policy
+                                     restore-backup tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudHSM V2")
                                       ("arnNamespace" . "cloudhsm")

@@ -303,6 +303,35 @@
 (smithy/sdk/service:define-service compute-optimizer-service :shape-name
                                    "ComputeOptimizerService" :version
                                    "2019-11-01" :title "AWS Compute Optimizer"
+                                   :operations
+                                   '(delete-recommendation-preferences
+                                     describe-recommendation-export-jobs
+                                     export-auto-scaling-group-recommendations
+                                     export-ebsvolume-recommendations
+                                     export-ec2instance-recommendations
+                                     export-ecsservice-recommendations
+                                     export-idle-recommendations
+                                     export-lambda-function-recommendations
+                                     export-license-recommendations
+                                     export-rdsdatabase-recommendations
+                                     get-auto-scaling-group-recommendations
+                                     get-ebsvolume-recommendations
+                                     get-ec2instance-recommendations
+                                     get-ec2recommendation-projected-metrics
+                                     get-ecsservice-recommendation-projected-metrics
+                                     get-ecsservice-recommendations
+                                     get-effective-recommendation-preferences
+                                     get-enrollment-status
+                                     get-enrollment-statuses-for-organization
+                                     get-idle-recommendations
+                                     get-lambda-function-recommendations
+                                     get-license-recommendations
+                                     get-rdsdatabase-recommendation-projected-metrics
+                                     get-rdsdatabase-recommendations
+                                     get-recommendation-preferences
+                                     get-recommendation-summaries
+                                     put-recommendation-preferences
+                                     update-enrollment-status)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Compute Optimizer")

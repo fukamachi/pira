@@ -37,7 +37,10 @@
 (smithy/sdk/service:define-service amazon-elastic-vmware-service :shape-name
                                    "AmazonElasticVMwareService" :version
                                    "2023-07-27" :title
-                                   "Amazon Elastic VMware Service" :traits
+                                   "Amazon Elastic VMware Service" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "evs")
                                       ("arnNamespace" . "evs"))
                                      ("aws.auth#sigv4" ("name" . "evs"))

@@ -59,10 +59,29 @@
 (smithy/sdk/service:define-service a9search-cloud-config-service2013
                                    :shape-name "A9SearchCloudConfigService2013"
                                    :version "2013-01-01" :title
-                                   "Amazon CloudSearch" :xml-namespace
-                                   '(:uri
-                                     "http://cloudsearch.amazonaws.com/doc/2013-01-01/"
-                                     :prefix common-lisp:nil)
+                                   "Amazon CloudSearch" :operations
+                                   '(build-suggesters create-domain
+                                     define-analysis-scheme define-expression
+                                     define-index-field define-suggester
+                                     delete-analysis-scheme delete-domain
+                                     delete-expression delete-index-field
+                                     delete-suggester describe-analysis-schemes
+                                     describe-availability-options
+                                     describe-domain-endpoint-options
+                                     describe-domains describe-expressions
+                                     describe-index-fields
+                                     describe-scaling-parameters
+                                     describe-service-access-policies
+                                     describe-suggesters index-documents
+                                     list-domain-names
+                                     update-availability-options
+                                     update-domain-endpoint-options
+                                     update-scaling-parameters
+                                     update-service-access-policies)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://cloudsearch.amazonaws.com/doc/2013-01-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudSearch")

@@ -32,7 +32,17 @@
 
 (smithy/sdk/service:define-service health-lake :shape-name "HealthLake"
                                    :version "2017-07-01" :title
-                                   "Amazon HealthLake" :traits
+                                   "Amazon HealthLake" :operations
+                                   '(create-fhirdatastore delete-fhirdatastore
+                                     describe-fhirdatastore
+                                     describe-fhirexport-job
+                                     describe-fhirimport-job
+                                     list-fhirdatastores list-fhirexport-jobs
+                                     list-fhirimport-jobs
+                                     list-tags-for-resource
+                                     start-fhirexport-job start-fhirimport-job
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "HealthLake")
                                       ("arnNamespace" . "healthlake")

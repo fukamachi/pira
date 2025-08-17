@@ -78,7 +78,36 @@
 (smithy/sdk/service:define-service iot-things-graph-front-end-service
                                    :shape-name "IotThingsGraphFrontEndService"
                                    :version "2018-09-06" :title
-                                   "AWS IoT Things Graph" :traits
+                                   "AWS IoT Things Graph" :operations
+                                   '(associate-entity-to-thing
+                                     create-flow-template
+                                     create-system-instance
+                                     create-system-template
+                                     delete-flow-template delete-namespace
+                                     delete-system-instance
+                                     delete-system-template
+                                     deploy-system-instance
+                                     deprecate-flow-template
+                                     deprecate-system-template
+                                     describe-namespace
+                                     dissociate-entity-from-thing get-entities
+                                     get-flow-template
+                                     get-flow-template-revisions
+                                     get-namespace-deletion-status
+                                     get-system-instance get-system-template
+                                     get-system-template-revisions
+                                     get-upload-status
+                                     list-flow-execution-messages
+                                     list-tags-for-resource search-entities
+                                     search-flow-executions
+                                     search-flow-templates
+                                     search-system-instances
+                                     search-system-templates search-things
+                                     tag-resource undeploy-system-instance
+                                     untag-resource update-flow-template
+                                     update-system-template
+                                     upload-entity-definitions)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoTThingsGraph")
                                       ("arnNamespace" . "iotthingsgraph")

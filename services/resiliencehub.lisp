@@ -272,7 +272,64 @@
 
 (smithy/sdk/service:define-service aws-resilience-hub :shape-name
                                    "AwsResilienceHub" :version "2020-04-30"
-                                   :title "AWS Resilience Hub" :traits
+                                   :title "AWS Resilience Hub" :operations
+                                   '(accept-resource-grouping-recommendations
+                                     add-draft-app-version-resource-mappings
+                                     batch-update-recommendation-status
+                                     create-app
+                                     create-app-version-app-component
+                                     create-app-version-resource
+                                     create-recommendation-template
+                                     create-resiliency-policy delete-app
+                                     delete-app-assessment
+                                     delete-app-input-source
+                                     delete-app-version-app-component
+                                     delete-app-version-resource
+                                     delete-recommendation-template
+                                     delete-resiliency-policy describe-app
+                                     describe-app-assessment
+                                     describe-app-version
+                                     describe-app-version-app-component
+                                     describe-app-version-resource
+                                     describe-app-version-resources-resolution-status
+                                     describe-app-version-template
+                                     describe-draft-app-version-resources-import-status
+                                     describe-metrics-export
+                                     describe-resiliency-policy
+                                     describe-resource-grouping-recommendation-task
+                                     import-resources-to-draft-app-version
+                                     list-alarm-recommendations
+                                     list-app-assessment-compliance-drifts
+                                     list-app-assessment-resource-drifts
+                                     list-app-assessments
+                                     list-app-component-compliances
+                                     list-app-component-recommendations
+                                     list-app-input-sources list-apps
+                                     list-app-version-app-components
+                                     list-app-version-resource-mappings
+                                     list-app-version-resources
+                                     list-app-versions list-metrics
+                                     list-recommendation-templates
+                                     list-resiliency-policies
+                                     list-resource-grouping-recommendations
+                                     list-sop-recommendations
+                                     list-suggested-resiliency-policies
+                                     list-tags-for-resource
+                                     list-test-recommendations
+                                     list-unsupported-app-version-resources
+                                     publish-app-version
+                                     put-draft-app-version-template
+                                     reject-resource-grouping-recommendations
+                                     remove-draft-app-version-resource-mappings
+                                     resolve-app-version-resources
+                                     start-app-assessment start-metrics-export
+                                     start-resource-grouping-recommendation-task
+                                     tag-resource untag-resource update-app
+                                     update-app-version
+                                     update-app-version-app-component
+                                     update-app-version-resource
+                                     update-resiliency-policy)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "resiliencehub")
                                       ("arnNamespace" . "resiliencehub")

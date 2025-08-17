@@ -275,7 +275,98 @@
 (smithy/sdk/service:define-service simple-email-service-v2 :shape-name
                                    "SimpleEmailService_v2" :version
                                    "2019-09-27" :title
-                                   "Amazon Simple Email Service" :traits
+                                   "Amazon Simple Email Service" :operations
+                                   '(batch-get-metric-data cancel-export-job
+                                     create-configuration-set
+                                     create-configuration-set-event-destination
+                                     create-contact create-contact-list
+                                     create-custom-verification-email-template
+                                     create-dedicated-ip-pool
+                                     create-deliverability-test-report
+                                     create-email-identity
+                                     create-email-identity-policy
+                                     create-email-template create-export-job
+                                     create-import-job
+                                     create-multi-region-endpoint create-tenant
+                                     create-tenant-resource-association
+                                     delete-configuration-set
+                                     delete-configuration-set-event-destination
+                                     delete-contact delete-contact-list
+                                     delete-custom-verification-email-template
+                                     delete-dedicated-ip-pool
+                                     delete-email-identity
+                                     delete-email-identity-policy
+                                     delete-email-template
+                                     delete-multi-region-endpoint
+                                     delete-suppressed-destination
+                                     delete-tenant
+                                     delete-tenant-resource-association
+                                     get-account get-blacklist-reports
+                                     get-configuration-set
+                                     get-configuration-set-event-destinations
+                                     get-contact get-contact-list
+                                     get-custom-verification-email-template
+                                     get-dedicated-ip get-dedicated-ip-pool
+                                     get-dedicated-ips
+                                     get-deliverability-dashboard-options
+                                     get-deliverability-test-report
+                                     get-domain-deliverability-campaign
+                                     get-domain-statistics-report
+                                     get-email-identity
+                                     get-email-identity-policies
+                                     get-email-template get-export-job
+                                     get-import-job get-message-insights
+                                     get-multi-region-endpoint
+                                     get-reputation-entity
+                                     get-suppressed-destination get-tenant
+                                     list-configuration-sets list-contact-lists
+                                     list-contacts
+                                     list-custom-verification-email-templates
+                                     list-dedicated-ip-pools
+                                     list-deliverability-test-reports
+                                     list-domain-deliverability-campaigns
+                                     list-email-identities list-email-templates
+                                     list-export-jobs list-import-jobs
+                                     list-multi-region-endpoints
+                                     list-recommendations
+                                     list-reputation-entities
+                                     list-resource-tenants
+                                     list-suppressed-destinations
+                                     list-tags-for-resource
+                                     list-tenant-resources list-tenants
+                                     put-account-dedicated-ip-warmup-attributes
+                                     put-account-details
+                                     put-account-sending-attributes
+                                     put-account-suppression-attributes
+                                     put-account-vdm-attributes
+                                     put-configuration-set-archiving-options
+                                     put-configuration-set-delivery-options
+                                     put-configuration-set-reputation-options
+                                     put-configuration-set-sending-options
+                                     put-configuration-set-suppression-options
+                                     put-configuration-set-tracking-options
+                                     put-configuration-set-vdm-options
+                                     put-dedicated-ip-in-pool
+                                     put-dedicated-ip-pool-scaling-attributes
+                                     put-dedicated-ip-warmup-attributes
+                                     put-deliverability-dashboard-option
+                                     put-email-identity-configuration-set-attributes
+                                     put-email-identity-dkim-attributes
+                                     put-email-identity-dkim-signing-attributes
+                                     put-email-identity-feedback-attributes
+                                     put-email-identity-mail-from-attributes
+                                     put-suppressed-destination send-bulk-email
+                                     send-custom-verification-email send-email
+                                     tag-resource test-render-email-template
+                                     untag-resource
+                                     update-configuration-set-event-destination
+                                     update-contact update-contact-list
+                                     update-custom-verification-email-template
+                                     update-email-identity-policy
+                                     update-email-template
+                                     update-reputation-entity-customer-managed-status
+                                     update-reputation-entity-policy)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "SESv2")
                                       ("arnNamespace" . "ses")
                                       ("cloudFormationName" . "SESv2")

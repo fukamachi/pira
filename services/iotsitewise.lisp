@@ -315,7 +315,83 @@
 
 (smithy/sdk/service:define-service awsio-tsite-wise :shape-name
                                    "AWSIoTSiteWise" :version "2019-12-02"
-                                   :title "AWS IoT SiteWise" :traits
+                                   :title "AWS IoT SiteWise" :operations
+                                   '(associate-assets
+                                     associate-time-series-to-asset-property
+                                     batch-associate-project-assets
+                                     batch-disassociate-project-assets
+                                     batch-get-asset-property-aggregates
+                                     batch-get-asset-property-value
+                                     batch-get-asset-property-value-history
+                                     batch-put-asset-property-value
+                                     create-access-policy create-asset
+                                     create-asset-model
+                                     create-asset-model-composite-model
+                                     create-bulk-import-job
+                                     create-computation-model create-dashboard
+                                     create-dataset create-gateway
+                                     create-portal create-project
+                                     delete-access-policy delete-asset
+                                     delete-asset-model
+                                     delete-asset-model-composite-model
+                                     delete-asset-model-interface-relationship
+                                     delete-computation-model delete-dashboard
+                                     delete-dataset delete-gateway
+                                     delete-portal delete-project
+                                     delete-time-series describe-access-policy
+                                     describe-action describe-asset
+                                     describe-asset-composite-model
+                                     describe-asset-model
+                                     describe-asset-model-composite-model
+                                     describe-asset-model-interface-relationship
+                                     describe-asset-property
+                                     describe-bulk-import-job
+                                     describe-computation-model
+                                     describe-computation-model-execution-summary
+                                     describe-dashboard describe-dataset
+                                     describe-default-encryption-configuration
+                                     describe-execution describe-gateway
+                                     describe-gateway-capability-configuration
+                                     describe-logging-options describe-portal
+                                     describe-project
+                                     describe-storage-configuration
+                                     describe-time-series disassociate-assets
+                                     disassociate-time-series-from-asset-property
+                                     execute-action execute-query
+                                     get-asset-property-aggregates
+                                     get-asset-property-value
+                                     get-asset-property-value-history
+                                     get-interpolated-asset-property-values
+                                     invoke-assistant list-access-policies
+                                     list-actions
+                                     list-asset-model-composite-models
+                                     list-asset-model-properties
+                                     list-asset-models list-asset-properties
+                                     list-asset-relationships list-assets
+                                     list-associated-assets
+                                     list-bulk-import-jobs
+                                     list-composition-relationships
+                                     list-computation-model-data-binding-usages
+                                     list-computation-model-resolve-to-resources
+                                     list-computation-models list-dashboards
+                                     list-datasets list-executions
+                                     list-gateways list-interface-relationships
+                                     list-portals list-project-assets
+                                     list-projects list-tags-for-resource
+                                     list-time-series
+                                     put-asset-model-interface-relationship
+                                     put-default-encryption-configuration
+                                     put-logging-options
+                                     put-storage-configuration tag-resource
+                                     untag-resource update-access-policy
+                                     update-asset update-asset-model
+                                     update-asset-model-composite-model
+                                     update-asset-property
+                                     update-computation-model update-dashboard
+                                     update-dataset update-gateway
+                                     update-gateway-capability-configuration
+                                     update-portal update-project)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoTSiteWise")
                                       ("arnNamespace" . "iotsitewise")

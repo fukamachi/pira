@@ -48,7 +48,27 @@
 
 (smithy/sdk/service:define-service service-quotas-v20190624 :shape-name
                                    "ServiceQuotasV20190624" :version
-                                   "2019-06-24" :title "Service Quotas" :traits
+                                   "2019-06-24" :title "Service Quotas"
+                                   :operations
+                                   '(associate-service-quota-template
+                                     create-support-case
+                                     delete-service-quota-increase-request-from-template
+                                     disassociate-service-quota-template
+                                     get-association-for-service-quota-template
+                                     get-awsdefault-service-quota
+                                     get-requested-service-quota-change
+                                     get-service-quota
+                                     get-service-quota-increase-request-from-template
+                                     list-awsdefault-service-quotas
+                                     list-requested-service-quota-change-history
+                                     list-requested-service-quota-change-history-by-quota
+                                     list-service-quota-increase-requests-in-template
+                                     list-service-quotas list-services
+                                     list-tags-for-resource
+                                     put-service-quota-increase-request-into-template
+                                     request-service-quota-increase
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Service Quotas")
                                       ("arnNamespace" . "servicequotas")

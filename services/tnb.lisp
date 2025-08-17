@@ -89,7 +89,41 @@
 (common-lisp:in-package #:pira/tnb)
 
 (smithy/sdk/service:define-service tnb :shape-name "TNB" :version "2008-10-21"
-                                   :title "AWS Telco Network Builder" :traits
+                                   :title "AWS Telco Network Builder"
+                                   :operations
+                                   '(cancel-sol-network-operation
+                                     create-sol-function-package
+                                     create-sol-network-instance
+                                     create-sol-network-package
+                                     delete-sol-function-package
+                                     delete-sol-network-instance
+                                     delete-sol-network-package
+                                     get-sol-function-instance
+                                     get-sol-function-package
+                                     get-sol-function-package-content
+                                     get-sol-function-package-descriptor
+                                     get-sol-network-instance
+                                     get-sol-network-operation
+                                     get-sol-network-package
+                                     get-sol-network-package-content
+                                     get-sol-network-package-descriptor
+                                     instantiate-sol-network-instance
+                                     list-sol-function-instances
+                                     list-sol-function-packages
+                                     list-sol-network-instances
+                                     list-sol-network-operations
+                                     list-sol-network-packages
+                                     list-tags-for-resource
+                                     put-sol-function-package-content
+                                     put-sol-network-package-content
+                                     tag-resource
+                                     terminate-sol-network-instance
+                                     untag-resource update-sol-function-package
+                                     update-sol-network-instance
+                                     update-sol-network-package
+                                     validate-sol-function-package-content
+                                     validate-sol-network-package-content)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "tnb")
                                       ("apiVersion" . "v1")
                                       ("arnNamespace" . "tnb"))

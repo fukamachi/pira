@@ -187,6 +187,92 @@
 (smithy/sdk/service:define-service chime-sdktelephony-service :shape-name
                                    "ChimeSDKTelephonyService" :version
                                    "2022-08-03" :title "Amazon Chime SDK Voice"
+                                   :operations
+                                   '(associate-phone-numbers-with-voice-connector
+                                     associate-phone-numbers-with-voice-connector-group
+                                     batch-delete-phone-number
+                                     batch-update-phone-number
+                                     create-phone-number-order
+                                     create-proxy-session
+                                     create-sip-media-application
+                                     create-sip-media-application-call
+                                     create-sip-rule create-voice-connector
+                                     create-voice-connector-group
+                                     create-voice-profile
+                                     create-voice-profile-domain
+                                     delete-phone-number delete-proxy-session
+                                     delete-sip-media-application
+                                     delete-sip-rule delete-voice-connector
+                                     delete-voice-connector-emergency-calling-configuration
+                                     delete-voice-connector-external-systems-configuration
+                                     delete-voice-connector-group
+                                     delete-voice-connector-origination
+                                     delete-voice-connector-proxy
+                                     delete-voice-connector-streaming-configuration
+                                     delete-voice-connector-termination
+                                     delete-voice-connector-termination-credentials
+                                     delete-voice-profile
+                                     delete-voice-profile-domain
+                                     disassociate-phone-numbers-from-voice-connector
+                                     disassociate-phone-numbers-from-voice-connector-group
+                                     get-global-settings get-phone-number
+                                     get-phone-number-order
+                                     get-phone-number-settings
+                                     get-proxy-session
+                                     get-sip-media-application
+                                     get-sip-media-application-alexa-skill-configuration
+                                     get-sip-media-application-logging-configuration
+                                     get-sip-rule get-speaker-search-task
+                                     get-voice-connector
+                                     get-voice-connector-emergency-calling-configuration
+                                     get-voice-connector-external-systems-configuration
+                                     get-voice-connector-group
+                                     get-voice-connector-logging-configuration
+                                     get-voice-connector-origination
+                                     get-voice-connector-proxy
+                                     get-voice-connector-streaming-configuration
+                                     get-voice-connector-termination
+                                     get-voice-connector-termination-health
+                                     get-voice-profile get-voice-profile-domain
+                                     get-voice-tone-analysis-task
+                                     list-available-voice-connector-regions
+                                     list-phone-number-orders
+                                     list-phone-numbers list-proxy-sessions
+                                     list-sip-media-applications list-sip-rules
+                                     list-supported-phone-number-countries
+                                     list-tags-for-resource
+                                     list-voice-connector-groups
+                                     list-voice-connectors
+                                     list-voice-connector-termination-credentials
+                                     list-voice-profile-domains
+                                     list-voice-profiles
+                                     put-sip-media-application-alexa-skill-configuration
+                                     put-sip-media-application-logging-configuration
+                                     put-voice-connector-emergency-calling-configuration
+                                     put-voice-connector-external-systems-configuration
+                                     put-voice-connector-logging-configuration
+                                     put-voice-connector-origination
+                                     put-voice-connector-proxy
+                                     put-voice-connector-streaming-configuration
+                                     put-voice-connector-termination
+                                     put-voice-connector-termination-credentials
+                                     restore-phone-number
+                                     search-available-phone-numbers
+                                     start-speaker-search-task
+                                     start-voice-tone-analysis-task
+                                     stop-speaker-search-task
+                                     stop-voice-tone-analysis-task tag-resource
+                                     untag-resource update-global-settings
+                                     update-phone-number
+                                     update-phone-number-settings
+                                     update-proxy-session
+                                     update-sip-media-application
+                                     update-sip-media-application-call
+                                     update-sip-rule update-voice-connector
+                                     update-voice-connector-group
+                                     update-voice-profile
+                                     update-voice-profile-domain
+                                     validate-e911address)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Chime SDK Voice")

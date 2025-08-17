@@ -66,7 +66,20 @@
 
 (smithy/sdk/service:define-service taiga-web-service :shape-name
                                    "TaigaWebService" :version "2018-09-24"
-                                   :title "Amazon Managed Blockchain" :traits
+                                   :title "Amazon Managed Blockchain"
+                                   :operations
+                                   '(create-accessor create-member
+                                     create-network create-node create-proposal
+                                     delete-accessor delete-member delete-node
+                                     get-accessor get-member get-network
+                                     get-node get-proposal list-accessors
+                                     list-invitations list-members
+                                     list-networks list-nodes list-proposals
+                                     list-proposal-votes list-tags-for-resource
+                                     reject-invitation tag-resource
+                                     untag-resource update-member update-node
+                                     vote-on-proposal)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ManagedBlockchain")
                                       ("arnNamespace" . "managedblockchain")

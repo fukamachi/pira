@@ -303,7 +303,39 @@
 (common-lisp:in-package #:pira/qbusiness)
 
 (smithy/sdk/service:define-service expert-q :shape-name "ExpertQ" :version
-                                   "2023-11-27" :title "QBusiness" :traits
+                                   "2023-11-27" :title "QBusiness" :operations
+                                   '(associate-permission batch-delete-document
+                                     batch-put-document cancel-subscription
+                                     chat chat-sync check-document-access
+                                     create-anonymous-web-experience-url
+                                     create-chat-response-configuration
+                                     create-subscription create-user
+                                     delete-attachment
+                                     delete-chat-controls-configuration
+                                     delete-chat-response-configuration
+                                     delete-conversation delete-group
+                                     delete-user disassociate-permission
+                                     get-chat-controls-configuration
+                                     get-chat-response-configuration get-group
+                                     get-media get-policy get-user
+                                     list-attachments
+                                     list-chat-response-configurations
+                                     list-conversations
+                                     list-data-source-sync-jobs list-documents
+                                     list-groups list-messages
+                                     list-plugin-actions
+                                     list-plugin-type-actions
+                                     list-plugin-type-metadata
+                                     list-subscriptions list-tags-for-resource
+                                     put-feedback put-group
+                                     search-relevant-content
+                                     start-data-source-sync-job
+                                     stop-data-source-sync-job tag-resource
+                                     untag-resource
+                                     update-chat-controls-configuration
+                                     update-chat-response-configuration
+                                     update-subscription update-user)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "QBusiness")
                                       ("cloudFormationName" . "QBusiness")
                                       ("arnNamespace" . "qbusiness")

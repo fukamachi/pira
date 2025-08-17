@@ -14,7 +14,10 @@
 
 (smithy/sdk/service:define-service swbportal-service :shape-name
                                    "SWBPortalService" :version "2019-06-10"
-                                   :title "AWS Single Sign-On" :traits
+                                   :title "AWS Single Sign-On" :operations
+                                   '(get-role-credentials list-account-roles
+                                     list-accounts logout)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "SSO")
                                       ("arnNamespace" . "awsssoportal")
                                       ("cloudFormationName" . "SSO")

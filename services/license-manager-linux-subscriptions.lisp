@@ -39,6 +39,17 @@
                                    "LicenseManagerLinuxSubscriptions" :version
                                    "2018-05-10" :title
                                    "AWS License Manager Linux Subscriptions"
+                                   :operations
+                                   '(deregister-subscription-provider
+                                     get-registered-subscription-provider
+                                     get-service-settings
+                                     list-linux-subscription-instances
+                                     list-linux-subscriptions
+                                     list-registered-subscription-providers
+                                     list-tags-for-resource
+                                     register-subscription-provider
+                                     tag-resource untag-resource
+                                     update-service-settings)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId"

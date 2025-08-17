@@ -49,7 +49,11 @@
 
 (smithy/sdk/service:define-service snow-device-management :shape-name
                                    "SnowDeviceManagement" :version "2021-08-04"
-                                   :title "AWS Snow Device Management" :traits
+                                   :title "AWS Snow Device Management"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("arnNamespace"
                                        . "snow-device-management")

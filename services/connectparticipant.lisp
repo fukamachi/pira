@@ -40,7 +40,16 @@
                                    :shape-name
                                    "AmazonConnectParticipantServiceLambda"
                                    :version "2018-09-07" :title
-                                   "Amazon Connect Participant Service" :traits
+                                   "Amazon Connect Participant Service"
+                                   :operations
+                                   '(cancel-participant-authentication
+                                     complete-attachment-upload
+                                     create-participant-connection
+                                     describe-view disconnect-participant
+                                     get-attachment get-authentication-url
+                                     get-transcript send-event send-message
+                                     start-attachment-upload)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ConnectParticipant")
                                       ("arnNamespace" . "connect")

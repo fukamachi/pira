@@ -346,7 +346,20 @@
 
 (smithy/sdk/service:define-service aws-proton20200720 :shape-name
                                    "AwsProton20200720" :version "2020-07-20"
-                                   :title "AWS Proton" :traits
+                                   :title "AWS Proton" :operations
+                                   '(cancel-component-deployment
+                                     cancel-environment-deployment
+                                     cancel-service-instance-deployment
+                                     cancel-service-pipeline-deployment
+                                     get-repository-sync-status
+                                     get-resources-summary
+                                     get-service-instance-sync-status
+                                     get-template-sync-status
+                                     list-repository-sync-definitions
+                                     list-tags-for-resource
+                                     notify-resource-deployment-status-change
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Proton")
                                       ("endpointPrefix" . "proton"))
                                      ("aws.auth#sigv4" ("name" . "proton"))

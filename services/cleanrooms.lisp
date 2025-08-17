@@ -444,7 +444,10 @@
                                    :shape-name
                                    "AWSBastionControlPlaneServiceLambda"
                                    :version "2022-02-17" :title
-                                   "AWS Clean Rooms Service" :traits
+                                   "AWS Clean Rooms Service" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CleanRooms")
                                       ("arnNamespace" . "cleanrooms")

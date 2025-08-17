@@ -51,7 +51,29 @@
 
 (smithy/sdk/service:define-service awsmigration-hub :shape-name
                                    "AWSMigrationHub" :version "2017-05-31"
-                                   :title "AWS Migration Hub" :traits
+                                   :title "AWS Migration Hub" :operations
+                                   '(associate-created-artifact
+                                     associate-discovered-resource
+                                     associate-source-resource
+                                     create-progress-update-stream
+                                     delete-progress-update-stream
+                                     describe-application-state
+                                     describe-migration-task
+                                     disassociate-created-artifact
+                                     disassociate-discovered-resource
+                                     disassociate-source-resource
+                                     import-migration-task
+                                     list-application-states
+                                     list-created-artifacts
+                                     list-discovered-resources
+                                     list-migration-tasks
+                                     list-migration-task-updates
+                                     list-progress-update-streams
+                                     list-source-resources
+                                     notify-application-state
+                                     notify-migration-task-state
+                                     put-resource-attributes)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Migration Hub")
                                       ("arnNamespace" . "mgh")

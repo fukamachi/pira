@@ -16,6 +16,10 @@
 
 (smithy/sdk/service:define-service s3outposts :shape-name "S3Outposts" :version
                                    "2017-07-25" :title "Amazon S3 on Outposts"
+                                   :operations
+                                   '(create-endpoint delete-endpoint
+                                     list-endpoints list-outposts-with-s3
+                                     list-shared-endpoints)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "S3Outposts")

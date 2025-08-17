@@ -128,9 +128,54 @@
 (smithy/sdk/service:define-service awsdeepdish-control-plane-service
                                    :shape-name "AWSDeepdishControlPlaneService"
                                    :version "2017-07-25" :title "AWS AppSync"
+                                   :operations
+                                   '(associate-api associate-merged-graphql-api
+                                     associate-source-graphql-api create-api
+                                     create-api-cache create-api-key
+                                     create-channel-namespace
+                                     create-data-source create-domain-name
+                                     create-function create-graphql-api
+                                     create-resolver create-type delete-api
+                                     delete-api-cache delete-api-key
+                                     delete-channel-namespace
+                                     delete-data-source delete-domain-name
+                                     delete-function delete-graphql-api
+                                     delete-resolver delete-type
+                                     disassociate-api
+                                     disassociate-merged-graphql-api
+                                     disassociate-source-graphql-api
+                                     evaluate-code evaluate-mapping-template
+                                     flush-api-cache get-api
+                                     get-api-association get-api-cache
+                                     get-channel-namespace get-data-source
+                                     get-data-source-introspection
+                                     get-domain-name get-function
+                                     get-graphql-api
+                                     get-graphql-api-environment-variables
+                                     get-introspection-schema get-resolver
+                                     get-schema-creation-status
+                                     get-source-api-association get-type
+                                     list-api-keys list-apis
+                                     list-channel-namespaces list-data-sources
+                                     list-domain-names list-functions
+                                     list-graphql-apis list-resolvers
+                                     list-resolvers-by-function
+                                     list-source-api-associations
+                                     list-tags-for-resource list-types
+                                     list-types-by-association
+                                     put-graphql-api-environment-variables
+                                     start-data-source-introspection
+                                     start-schema-creation start-schema-merge
+                                     tag-resource untag-resource update-api
+                                     update-api-cache update-api-key
+                                     update-channel-namespace
+                                     update-data-source update-domain-name
+                                     update-function update-graphql-api
+                                     update-resolver
+                                     update-source-api-association update-type)
                                    :xml-namespace
-                                   '(:uri "http://appsync.amazonaws.com"
-                                     :prefix common-lisp:nil)
+                                   (:uri "http://appsync.amazonaws.com" :prefix
+                                    common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "AppSync")
                                       ("arnNamespace" . "appsync")

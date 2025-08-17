@@ -83,7 +83,14 @@
 (common-lisp:in-package #:pira/odb)
 
 (smithy/sdk/service:define-service odb :shape-name "Odb" :version "2024-08-20"
-                                   :title "odb" :traits
+                                   :title "odb" :operations
+                                   '(accept-marketplace-registration
+                                     get-oci-onboarding-status
+                                     initialize-service list-db-system-shapes
+                                     list-gi-versions list-system-versions
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "odb")
                                       ("arnNamespace" . "odb"))
                                      ("aws.auth#sigv4" ("name" . "odb"))

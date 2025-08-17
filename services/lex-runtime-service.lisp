@@ -33,7 +33,10 @@
 (smithy/sdk/service:define-service awsdeep-sense-run-time-service :shape-name
                                    "AWSDeepSenseRunTimeService" :version
                                    "2016-11-28" :title
-                                   "Amazon Lex Runtime Service" :traits
+                                   "Amazon Lex Runtime Service" :operations
+                                   '(delete-session get-session post-content
+                                     post-text put-session)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Lex Runtime Service")
                                       ("arnNamespace" . "lex")

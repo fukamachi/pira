@@ -77,7 +77,20 @@
 
 (smithy/sdk/service:define-service ssm-sap :shape-name "SsmSap" :version
                                    "2018-05-10" :title
-                                   "AWS Systems Manager for SAP" :traits
+                                   "AWS Systems Manager for SAP" :operations
+                                   '(delete-resource-permission
+                                     deregister-application get-application
+                                     get-component get-database get-operation
+                                     get-resource-permission list-applications
+                                     list-components list-databases
+                                     list-operation-events list-operations
+                                     list-tags-for-resource
+                                     put-resource-permission
+                                     register-application start-application
+                                     start-application-refresh stop-application
+                                     tag-resource untag-resource
+                                     update-application-settings)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Ssm Sap")
                                       ("arnNamespace" . "ssm-sap")
                                       ("cloudTrailEventSource"

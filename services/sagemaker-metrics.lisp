@@ -17,7 +17,10 @@
 (smithy/sdk/service:define-service sage-maker-metrics-service :shape-name
                                    "SageMakerMetricsService" :version
                                    "2022-09-30" :title
-                                   "Amazon SageMaker Metrics Service" :traits
+                                   "Amazon SageMaker Metrics Service"
+                                   :operations
+                                   '(batch-get-metrics batch-put-metrics)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SageMaker Metrics")
                                       ("arnNamespace" . "sagemaker")

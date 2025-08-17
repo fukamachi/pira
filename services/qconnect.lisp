@@ -353,7 +353,10 @@
 
 (smithy/sdk/service:define-service wisdom-service :shape-name "WisdomService"
                                    :version "2020-10-19" :title
-                                   "Amazon Q Connect" :traits
+                                   "Amazon Q Connect" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "QConnect")
                                       ("arnNamespace" . "wisdom")
                                       ("cloudFormationName" . "Wisdom"))

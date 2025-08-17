@@ -40,7 +40,15 @@
 (common-lisp:in-package #:pira/invoicing)
 
 (smithy/sdk/service:define-service invoicing :shape-name "Invoicing" :version
-                                   "2024-12-01" :title "AWS Invoicing" :traits
+                                   "2024-12-01" :title "AWS Invoicing"
+                                   :operations
+                                   '(batch-get-invoice-profile
+                                     create-invoice-unit delete-invoice-unit
+                                     get-invoice-unit list-invoice-summaries
+                                     list-invoice-units list-tags-for-resource
+                                     tag-resource untag-resource
+                                     update-invoice-unit)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Invoicing")
                                       ("arnNamespace" . "invoicing")
                                       ("endpointPrefix" . "invoicing")

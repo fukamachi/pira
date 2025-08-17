@@ -26,7 +26,8 @@
 (common-lisp:in-package #:pira/artifact)
 
 (smithy/sdk/service:define-service artifact :shape-name "Artifact" :version
-                                   "2018-05-10" :title "AWS Artifact" :traits
+                                   "2018-05-10" :title "AWS Artifact"
+                                   :operations 'common-lisp:nil :traits
                                    '(("aws.api#service" ("sdkId" . "Artifact")
                                       ("arnNamespace" . "artifact")
                                       ("cloudTrailEventSource"

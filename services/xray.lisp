@@ -121,7 +121,32 @@
 (common-lisp:in-package #:pira/xray)
 
 (smithy/sdk/service:define-service awsxray :shape-name "AWSXRay" :version
-                                   "2016-04-12" :title "AWS X-Ray" :traits
+                                   "2016-04-12" :title "AWS X-Ray" :operations
+                                   '(batch-get-traces cancel-trace-retrieval
+                                     create-group create-sampling-rule
+                                     delete-group delete-resource-policy
+                                     delete-sampling-rule get-encryption-config
+                                     get-group get-groups get-indexing-rules
+                                     get-insight get-insight-events
+                                     get-insight-impact-graph
+                                     get-insight-summaries
+                                     get-retrieved-traces-graph
+                                     get-sampling-rules
+                                     get-sampling-statistic-summaries
+                                     get-sampling-targets get-service-graph
+                                     get-time-series-service-statistics
+                                     get-trace-graph
+                                     get-trace-segment-destination
+                                     get-trace-summaries list-resource-policies
+                                     list-retrieved-traces
+                                     list-tags-for-resource
+                                     put-encryption-config put-resource-policy
+                                     put-telemetry-records put-trace-segments
+                                     start-trace-retrieval tag-resource
+                                     untag-resource update-group
+                                     update-indexing-rule update-sampling-rule
+                                     update-trace-segment-destination)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "XRay")
                                       ("arnNamespace" . "xray")
                                       ("cloudFormationName" . "XRay")

@@ -16,7 +16,13 @@
 
 (smithy/sdk/service:define-service iot-moonraker-service :shape-name
                                    "IotMoonrakerService" :version "2015-05-28"
-                                   :title "AWS IoT Data Plane" :traits
+                                   :title "AWS IoT Data Plane" :operations
+                                   '(delete-thing-shadow get-retained-message
+                                     get-thing-shadow
+                                     list-named-shadows-for-thing
+                                     list-retained-messages publish
+                                     update-thing-shadow)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoT Data Plane")
                                       ("arnNamespace" . "iotdata")

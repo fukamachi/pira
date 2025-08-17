@@ -15,10 +15,13 @@
                                    "MediaStoreObject_20170901" :version
                                    "2017-09-01" :title
                                    "AWS Elemental MediaStore Data Plane"
+                                   :operations
+                                   '(delete-object describe-object get-object
+                                     list-items put-object)
                                    :xml-namespace
-                                   '(:uri
-                                     "https://object.mediastore.amazonaws.com/doc/2017-09-01"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "https://object.mediastore.amazonaws.com/doc/2017-09-01"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MediaStore Data")

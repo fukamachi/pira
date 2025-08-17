@@ -34,10 +34,24 @@
 
 (smithy/sdk/service:define-service amazon-qldb :shape-name "AmazonQLDB"
                                    :version "2019-01-02" :title "Amazon QLDB"
+                                   :operations
+                                   '(cancel-journal-kinesis-stream
+                                     create-ledger delete-ledger
+                                     describe-journal-kinesis-stream
+                                     describe-journal-s3export describe-ledger
+                                     export-journal-to-s3 get-block get-digest
+                                     get-revision
+                                     list-journal-kinesis-streams-for-ledger
+                                     list-journal-s3exports
+                                     list-journal-s3exports-for-ledger
+                                     list-ledgers list-tags-for-resource
+                                     stream-journal-to-kinesis tag-resource
+                                     untag-resource update-ledger
+                                     update-ledger-permissions-mode)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://ledger.amazonaws.com/doc/2019-01-02/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://ledger.amazonaws.com/doc/2019-01-02/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "QLDB")
                                       ("arnNamespace" . "qldb")

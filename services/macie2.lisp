@@ -239,7 +239,73 @@
 (common-lisp:in-package #:pira/macie2)
 
 (smithy/sdk/service:define-service macie2 :shape-name "Macie2" :version
-                                   "2020-01-01" :title "Amazon Macie 2" :traits
+                                   "2020-01-01" :title "Amazon Macie 2"
+                                   :operations
+                                   '(accept-invitation
+                                     batch-get-custom-data-identifiers
+                                     batch-update-automated-discovery-accounts
+                                     create-allow-list
+                                     create-classification-job
+                                     create-custom-data-identifier
+                                     create-findings-filter create-invitations
+                                     create-member create-sample-findings
+                                     decline-invitations delete-allow-list
+                                     delete-custom-data-identifier
+                                     delete-findings-filter delete-invitations
+                                     delete-member describe-buckets
+                                     describe-classification-job
+                                     describe-organization-configuration
+                                     disable-macie
+                                     disable-organization-admin-account
+                                     disassociate-from-administrator-account
+                                     disassociate-from-master-account
+                                     disassociate-member enable-macie
+                                     enable-organization-admin-account
+                                     get-administrator-account get-allow-list
+                                     get-automated-discovery-configuration
+                                     get-bucket-statistics
+                                     get-classification-export-configuration
+                                     get-classification-scope
+                                     get-custom-data-identifier get-findings
+                                     get-findings-filter
+                                     get-findings-publication-configuration
+                                     get-finding-statistics
+                                     get-invitations-count get-macie-session
+                                     get-master-account get-member
+                                     get-resource-profile
+                                     get-reveal-configuration
+                                     get-sensitive-data-occurrences
+                                     get-sensitive-data-occurrences-availability
+                                     get-sensitivity-inspection-template
+                                     get-usage-statistics get-usage-totals
+                                     list-allow-lists
+                                     list-automated-discovery-accounts
+                                     list-classification-jobs
+                                     list-classification-scopes
+                                     list-custom-data-identifiers list-findings
+                                     list-findings-filters list-invitations
+                                     list-managed-data-identifiers list-members
+                                     list-organization-admin-accounts
+                                     list-resource-profile-artifacts
+                                     list-resource-profile-detections
+                                     list-sensitivity-inspection-templates
+                                     list-tags-for-resource
+                                     put-classification-export-configuration
+                                     put-findings-publication-configuration
+                                     search-resources tag-resource
+                                     test-custom-data-identifier untag-resource
+                                     update-allow-list
+                                     update-automated-discovery-configuration
+                                     update-classification-job
+                                     update-classification-scope
+                                     update-findings-filter
+                                     update-macie-session update-member-session
+                                     update-organization-configuration
+                                     update-resource-profile
+                                     update-resource-profile-detections
+                                     update-reveal-configuration
+                                     update-sensitivity-inspection-template)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Macie2")
                                       ("arnNamespace" . "macie2")
                                       ("cloudFormationName" . "Macie2")

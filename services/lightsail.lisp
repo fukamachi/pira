@@ -314,7 +314,122 @@
 
 (smithy/sdk/service:define-service lightsail-20161128 :shape-name
                                    "Lightsail_20161128" :version "2016-11-28"
-                                   :title "Amazon Lightsail" :traits
+                                   :title "Amazon Lightsail" :operations
+                                   '(allocate-static-ip
+                                     attach-certificate-to-distribution
+                                     attach-disk
+                                     attach-instances-to-load-balancer
+                                     attach-load-balancer-tls-certificate
+                                     attach-static-ip
+                                     close-instance-public-ports copy-snapshot
+                                     create-bucket create-bucket-access-key
+                                     create-certificate
+                                     create-cloud-formation-stack
+                                     create-contact-method
+                                     create-container-service
+                                     create-container-service-deployment
+                                     create-container-service-registry-login
+                                     create-disk create-disk-from-snapshot
+                                     create-disk-snapshot create-distribution
+                                     create-domain create-domain-entry
+                                     create-guisession-access-details
+                                     create-instances
+                                     create-instances-from-snapshot
+                                     create-instance-snapshot create-key-pair
+                                     create-load-balancer
+                                     create-load-balancer-tls-certificate
+                                     create-relational-database
+                                     create-relational-database-from-snapshot
+                                     create-relational-database-snapshot
+                                     delete-alarm delete-auto-snapshot
+                                     delete-bucket delete-bucket-access-key
+                                     delete-certificate delete-contact-method
+                                     delete-container-image
+                                     delete-container-service delete-disk
+                                     delete-disk-snapshot delete-distribution
+                                     delete-domain delete-domain-entry
+                                     delete-instance delete-instance-snapshot
+                                     delete-key-pair delete-known-host-keys
+                                     delete-load-balancer
+                                     delete-load-balancer-tls-certificate
+                                     delete-relational-database
+                                     delete-relational-database-snapshot
+                                     detach-certificate-from-distribution
+                                     detach-disk
+                                     detach-instances-from-load-balancer
+                                     detach-static-ip disable-add-on
+                                     download-default-key-pair enable-add-on
+                                     export-snapshot get-active-names
+                                     get-alarms get-auto-snapshots
+                                     get-blueprints get-bucket-access-keys
+                                     get-bucket-bundles get-bucket-metric-data
+                                     get-buckets get-bundles get-certificates
+                                     get-cloud-formation-stack-records
+                                     get-contact-methods
+                                     get-container-apimetadata
+                                     get-container-images get-container-log
+                                     get-container-service-deployments
+                                     get-container-service-metric-data
+                                     get-container-service-powers
+                                     get-container-services get-cost-estimate
+                                     get-disk get-disks get-disk-snapshot
+                                     get-disk-snapshots
+                                     get-distribution-bundles
+                                     get-distribution-latest-cache-reset
+                                     get-distribution-metric-data
+                                     get-distributions get-domain get-domains
+                                     get-export-snapshot-records get-instance
+                                     get-instance-access-details
+                                     get-instance-metric-data
+                                     get-instance-port-states get-instances
+                                     get-instance-snapshot
+                                     get-instance-snapshots get-instance-state
+                                     get-key-pair get-key-pairs
+                                     get-load-balancer
+                                     get-load-balancer-metric-data
+                                     get-load-balancers
+                                     get-load-balancer-tls-certificates
+                                     get-load-balancer-tls-policies
+                                     get-operation get-operations
+                                     get-operations-for-resource get-regions
+                                     get-relational-database
+                                     get-relational-database-blueprints
+                                     get-relational-database-bundles
+                                     get-relational-database-events
+                                     get-relational-database-log-events
+                                     get-relational-database-log-streams
+                                     get-relational-database-master-user-password
+                                     get-relational-database-metric-data
+                                     get-relational-database-parameters
+                                     get-relational-databases
+                                     get-relational-database-snapshot
+                                     get-relational-database-snapshots
+                                     get-setup-history get-static-ip
+                                     get-static-ips import-key-pair
+                                     is-vpc-peered open-instance-public-ports
+                                     peer-vpc put-alarm
+                                     put-instance-public-ports reboot-instance
+                                     reboot-relational-database
+                                     register-container-image release-static-ip
+                                     reset-distribution-cache
+                                     send-contact-method-verification
+                                     set-ip-address-type
+                                     set-resource-access-for-bucket
+                                     setup-instance-https start-guisession
+                                     start-instance start-relational-database
+                                     stop-guisession stop-instance
+                                     stop-relational-database tag-resource
+                                     test-alarm unpeer-vpc untag-resource
+                                     update-bucket update-bucket-bundle
+                                     update-container-service
+                                     update-distribution
+                                     update-distribution-bundle
+                                     update-domain-entry
+                                     update-instance-metadata-options
+                                     update-load-balancer-attribute
+                                     update-relational-database
+                                     update-relational-database-parameters)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Lightsail")
                                       ("arnNamespace" . "lightsail")
                                       ("cloudFormationName" . "Lightsail")

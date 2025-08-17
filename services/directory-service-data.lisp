@@ -29,10 +29,18 @@
 (smithy/sdk/service:define-service directory-service-data :shape-name
                                    "DirectoryServiceData" :version "2023-05-31"
                                    :title "AWS Directory Service Data"
+                                   :operations
+                                   '(add-group-member create-group create-user
+                                     delete-group delete-user describe-group
+                                     describe-user disable-user
+                                     list-group-members list-groups
+                                     list-groups-for-member list-users
+                                     remove-group-member search-groups
+                                     search-users update-group update-user)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://directoryservicedata.amazonaws.com/doc/2023-05-31/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://directoryservicedata.amazonaws.com/doc/2023-05-31/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Directory Service Data")

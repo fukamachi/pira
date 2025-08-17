@@ -352,10 +352,139 @@
 
 (smithy/sdk/service:define-service cloudfront2020-05-31 :shape-name
                                    "Cloudfront2020_05_31" :version "2020-05-31"
-                                   :title "Amazon CloudFront" :xml-namespace
-                                   '(:uri
-                                     "http://cloudfront.amazonaws.com/doc/2020-05-31/"
-                                     :prefix common-lisp:nil)
+                                   :title "Amazon CloudFront" :operations
+                                   '(associate-alias
+                                     associate-distribution-tenant-web-acl
+                                     associate-distribution-web-acl
+                                     copy-distribution create-anycast-ip-list
+                                     create-cache-policy
+                                     create-cloud-front-origin-access-identity
+                                     create-connection-group
+                                     create-continuous-deployment-policy
+                                     create-distribution
+                                     create-distribution-tenant
+                                     create-distribution-with-tags
+                                     create-field-level-encryption-config
+                                     create-field-level-encryption-profile
+                                     create-function create-invalidation
+                                     create-invalidation-for-distribution-tenant
+                                     create-key-group create-key-value-store
+                                     create-monitoring-subscription
+                                     create-origin-access-control
+                                     create-origin-request-policy
+                                     create-public-key
+                                     create-realtime-log-config
+                                     create-response-headers-policy
+                                     create-streaming-distribution
+                                     create-streaming-distribution-with-tags
+                                     create-vpc-origin delete-anycast-ip-list
+                                     delete-cache-policy
+                                     delete-cloud-front-origin-access-identity
+                                     delete-connection-group
+                                     delete-continuous-deployment-policy
+                                     delete-distribution
+                                     delete-distribution-tenant
+                                     delete-field-level-encryption-config
+                                     delete-field-level-encryption-profile
+                                     delete-function delete-key-group
+                                     delete-key-value-store
+                                     delete-monitoring-subscription
+                                     delete-origin-access-control
+                                     delete-origin-request-policy
+                                     delete-public-key
+                                     delete-realtime-log-config
+                                     delete-response-headers-policy
+                                     delete-streaming-distribution
+                                     delete-vpc-origin describe-function
+                                     describe-key-value-store
+                                     disassociate-distribution-tenant-web-acl
+                                     disassociate-distribution-web-acl
+                                     get-anycast-ip-list get-cache-policy
+                                     get-cache-policy-config
+                                     get-cloud-front-origin-access-identity
+                                     get-cloud-front-origin-access-identity-config
+                                     get-connection-group
+                                     get-connection-group-by-routing-endpoint
+                                     get-continuous-deployment-policy
+                                     get-continuous-deployment-policy-config
+                                     get-distribution get-distribution-config
+                                     get-distribution-tenant
+                                     get-distribution-tenant-by-domain
+                                     get-field-level-encryption
+                                     get-field-level-encryption-config
+                                     get-field-level-encryption-profile
+                                     get-field-level-encryption-profile-config
+                                     get-function get-invalidation
+                                     get-invalidation-for-distribution-tenant
+                                     get-key-group get-key-group-config
+                                     get-managed-certificate-details
+                                     get-monitoring-subscription
+                                     get-origin-access-control
+                                     get-origin-access-control-config
+                                     get-origin-request-policy
+                                     get-origin-request-policy-config
+                                     get-public-key get-public-key-config
+                                     get-realtime-log-config
+                                     get-response-headers-policy
+                                     get-response-headers-policy-config
+                                     get-streaming-distribution
+                                     get-streaming-distribution-config
+                                     get-vpc-origin list-anycast-ip-lists
+                                     list-cache-policies
+                                     list-cloud-front-origin-access-identities
+                                     list-conflicting-aliases
+                                     list-connection-groups
+                                     list-continuous-deployment-policies
+                                     list-distributions
+                                     list-distributions-by-anycast-ip-list-id
+                                     list-distributions-by-cache-policy-id
+                                     list-distributions-by-connection-mode
+                                     list-distributions-by-key-group
+                                     list-distributions-by-origin-request-policy-id
+                                     list-distributions-by-realtime-log-config
+                                     list-distributions-by-response-headers-policy-id
+                                     list-distributions-by-vpc-origin-id
+                                     list-distributions-by-web-aclid
+                                     list-distribution-tenants
+                                     list-distribution-tenants-by-customization
+                                     list-domain-conflicts
+                                     list-field-level-encryption-configs
+                                     list-field-level-encryption-profiles
+                                     list-functions list-invalidations
+                                     list-invalidations-for-distribution-tenant
+                                     list-key-groups list-key-value-stores
+                                     list-origin-access-controls
+                                     list-origin-request-policies
+                                     list-public-keys list-realtime-log-configs
+                                     list-response-headers-policies
+                                     list-streaming-distributions
+                                     list-tags-for-resource list-vpc-origins
+                                     publish-function tag-resource
+                                     test-function untag-resource
+                                     update-cache-policy
+                                     update-cloud-front-origin-access-identity
+                                     update-connection-group
+                                     update-continuous-deployment-policy
+                                     update-distribution
+                                     update-distribution-tenant
+                                     update-distribution-with-staging-config
+                                     update-domain-association
+                                     update-field-level-encryption-config
+                                     update-field-level-encryption-profile
+                                     update-function update-key-group
+                                     update-key-value-store
+                                     update-origin-access-control
+                                     update-origin-request-policy
+                                     update-public-key
+                                     update-realtime-log-config
+                                     update-response-headers-policy
+                                     update-streaming-distribution
+                                     update-vpc-origin
+                                     verify-dns-configuration)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://cloudfront.amazonaws.com/doc/2020-05-31/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudFront")

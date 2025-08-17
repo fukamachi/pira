@@ -74,7 +74,16 @@
 (smithy/sdk/service:define-service eucmifrontend-apiservice :shape-name
                                    "EUCMIFrontendAPIService" :version
                                    "2022-07-26" :title
-                                   "Amazon Workspaces Instances" :traits
+                                   "Amazon Workspaces Instances" :operations
+                                   '(associate-volume create-volume
+                                     create-workspace-instance delete-volume
+                                     delete-workspace-instance
+                                     disassociate-volume get-workspace-instance
+                                     list-instance-types list-regions
+                                     list-tags-for-resource
+                                     list-workspace-instances tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Workspaces Instances")
                                       ("arnNamespace" . "workspaces-instances")

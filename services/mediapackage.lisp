@@ -41,7 +41,19 @@
 
 (smithy/sdk/service:define-service media-package :shape-name "MediaPackage"
                                    :version "2017-10-12" :title
-                                   "AWS Elemental MediaPackage" :traits
+                                   "AWS Elemental MediaPackage" :operations
+                                   '(configure-logs create-channel
+                                     create-harvest-job create-origin-endpoint
+                                     delete-channel delete-origin-endpoint
+                                     describe-channel describe-harvest-job
+                                     describe-origin-endpoint list-channels
+                                     list-harvest-jobs list-origin-endpoints
+                                     list-tags-for-resource
+                                     rotate-channel-credentials
+                                     rotate-ingest-endpoint-credentials
+                                     tag-resource untag-resource update-channel
+                                     update-origin-endpoint)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MediaPackage")
                                       ("arnNamespace" . "mediapackage")

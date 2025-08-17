@@ -74,7 +74,17 @@
 
 (smithy/sdk/service:define-service security-lake :shape-name "SecurityLake"
                                    :version "2018-05-10" :title
-                                   "Amazon Security Lake" :traits
+                                   "Amazon Security Lake" :operations
+                                   '(create-data-lake-exception-subscription
+                                     delete-data-lake-exception-subscription
+                                     deregister-data-lake-delegated-administrator
+                                     get-data-lake-exception-subscription
+                                     list-data-lake-exceptions
+                                     list-tags-for-resource
+                                     register-data-lake-delegated-administrator
+                                     tag-resource untag-resource
+                                     update-data-lake-exception-subscription)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SecurityLake")
                                       ("arnNamespace" . "securitylake")

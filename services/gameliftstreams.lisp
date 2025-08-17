@@ -51,7 +51,19 @@
 
 (smithy/sdk/service:define-service game-lift-streams :shape-name
                                    "GameLiftStreams" :version "2018-05-10"
-                                   :title "Amazon GameLift Streams" :traits
+                                   :title "Amazon GameLift Streams" :operations
+                                   '(add-stream-group-locations
+                                     associate-applications
+                                     create-stream-session-connection
+                                     disassociate-applications
+                                     export-stream-session-files
+                                     get-stream-session list-stream-sessions
+                                     list-stream-sessions-by-account
+                                     list-tags-for-resource
+                                     remove-stream-group-locations
+                                     start-stream-session tag-resource
+                                     terminate-stream-session untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "GameLiftStreams")
                                       ("cloudFormationName"

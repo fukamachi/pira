@@ -103,6 +103,20 @@
 
 (smithy/sdk/service:define-service tax-settings :shape-name "TaxSettings"
                                    :version "2018-05-10" :title "Tax Settings"
+                                   :operations
+                                   '(batch-delete-tax-registration
+                                     batch-get-tax-exemptions
+                                     batch-put-tax-registration
+                                     delete-supplemental-tax-registration
+                                     delete-tax-registration
+                                     get-tax-exemption-types
+                                     get-tax-inheritance get-tax-registration
+                                     get-tax-registration-document
+                                     list-supplemental-tax-registrations
+                                     list-tax-exemptions list-tax-registrations
+                                     put-supplemental-tax-registration
+                                     put-tax-exemption put-tax-inheritance
+                                     put-tax-registration)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "TaxSettings")

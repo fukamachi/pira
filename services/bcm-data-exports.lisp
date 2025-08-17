@@ -35,6 +35,12 @@
                                    "AWSBillingAndCostManagementDataExports"
                                    :version "2023-11-26" :title
                                    "AWS Billing and Cost Management Data Exports"
+                                   :operations
+                                   '(create-export delete-export get-execution
+                                     get-export get-table list-executions
+                                     list-exports list-tables
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-export)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "BCM Data Exports")

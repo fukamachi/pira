@@ -86,7 +86,20 @@
 
 (smithy/sdk/service:define-service refactor-spaces :shape-name "RefactorSpaces"
                                    :version "2021-10-26" :title
-                                   "AWS Migration Hub Refactor Spaces" :traits
+                                   "AWS Migration Hub Refactor Spaces"
+                                   :operations
+                                   '(create-application create-environment
+                                     create-route create-service
+                                     delete-application delete-environment
+                                     delete-resource-policy delete-route
+                                     delete-service get-application
+                                     get-environment get-resource-policy
+                                     get-route get-service list-applications
+                                     list-environments list-environment-vpcs
+                                     list-routes list-services
+                                     list-tags-for-resource put-resource-policy
+                                     tag-resource untag-resource update-route)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId"
                                        . "Migration Hub Refactor Spaces")

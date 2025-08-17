@@ -112,7 +112,37 @@
 (smithy/sdk/service:define-service amazon-connect-campaign-service-v2
                                    :shape-name "AmazonConnectCampaignServiceV2"
                                    :version "2024-04-23" :title
-                                   "AmazonConnectCampaignServiceV2" :traits
+                                   "AmazonConnectCampaignServiceV2" :operations
+                                   '(create-campaign delete-campaign
+                                     delete-campaign-channel-subtype-config
+                                     delete-campaign-communication-limits
+                                     delete-campaign-communication-time
+                                     delete-connect-instance-config
+                                     delete-connect-instance-integration
+                                     delete-instance-onboarding-job
+                                     describe-campaign get-campaign-state
+                                     get-campaign-state-batch
+                                     get-connect-instance-config
+                                     get-instance-communication-limits
+                                     get-instance-onboarding-job-status
+                                     list-campaigns
+                                     list-connect-instance-integrations
+                                     list-tags-for-resource pause-campaign
+                                     put-connect-instance-integration
+                                     put-instance-communication-limits
+                                     put-outbound-request-batch
+                                     put-profile-outbound-request-batch
+                                     resume-campaign start-campaign
+                                     start-instance-onboarding-job
+                                     stop-campaign tag-resource untag-resource
+                                     update-campaign-channel-subtype-config
+                                     update-campaign-communication-limits
+                                     update-campaign-communication-time
+                                     update-campaign-flow-association
+                                     update-campaign-name
+                                     update-campaign-schedule
+                                     update-campaign-source)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ConnectCampaignsV2")
                                       ("arnNamespace" . "connect-campaigns")

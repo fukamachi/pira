@@ -81,7 +81,14 @@
 
 (smithy/sdk/service:define-service b2bi :shape-name "B2BI" :version
                                    "2022-06-23" :title
-                                   "AWS B2B Data Interchange" :traits
+                                   "AWS B2B Data Interchange" :operations
+                                   '(create-starter-mapping-template
+                                     generate-mapping get-transformer-job
+                                     list-tags-for-resource
+                                     start-transformer-job tag-resource
+                                     test-conversion test-mapping test-parsing
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "b2bi")
                                       ("endpointPrefix" . "b2bi"))
                                      ("aws.api#tagEnabled")

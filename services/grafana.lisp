@@ -103,6 +103,9 @@
 (smithy/sdk/service:define-service awsgrafana-control-plane :shape-name
                                    "AWSGrafanaControlPlane" :version
                                    "2020-08-18" :title "Amazon Managed Grafana"
+                                   :operations
+                                   '(list-tags-for-resource list-versions
+                                     tag-resource untag-resource)
                                    :traits
                                    '(("aws.api#controlPlane")
                                      ("aws.api#service" ("sdkId" . "grafana")

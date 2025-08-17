@@ -255,10 +255,106 @@
 (smithy/sdk/service:define-service amazon-dmsv20160101 :shape-name
                                    "AmazonDMSv20160101" :version "2016-01-01"
                                    :title "AWS Database Migration Service"
+                                   :operations
+                                   '(add-tags-to-resource
+                                     apply-pending-maintenance-action
+                                     batch-start-recommendations
+                                     cancel-replication-task-assessment-run
+                                     create-data-migration create-data-provider
+                                     create-endpoint create-event-subscription
+                                     create-fleet-advisor-collector
+                                     create-instance-profile
+                                     create-migration-project
+                                     create-replication-config
+                                     create-replication-instance
+                                     create-replication-subnet-group
+                                     create-replication-task delete-certificate
+                                     delete-connection delete-data-migration
+                                     delete-data-provider delete-endpoint
+                                     delete-event-subscription
+                                     delete-fleet-advisor-collector
+                                     delete-fleet-advisor-databases
+                                     delete-instance-profile
+                                     delete-migration-project
+                                     delete-replication-config
+                                     delete-replication-instance
+                                     delete-replication-subnet-group
+                                     delete-replication-task
+                                     delete-replication-task-assessment-run
+                                     describe-account-attributes
+                                     describe-applicable-individual-assessments
+                                     describe-certificates describe-connections
+                                     describe-conversion-configuration
+                                     describe-data-migrations
+                                     describe-data-providers describe-endpoints
+                                     describe-endpoint-settings
+                                     describe-endpoint-types
+                                     describe-engine-versions
+                                     describe-event-categories describe-events
+                                     describe-event-subscriptions
+                                     describe-extension-pack-associations
+                                     describe-fleet-advisor-collectors
+                                     describe-fleet-advisor-databases
+                                     describe-fleet-advisor-lsa-analysis
+                                     describe-fleet-advisor-schema-object-summary
+                                     describe-fleet-advisor-schemas
+                                     describe-instance-profiles
+                                     describe-metadata-model-assessments
+                                     describe-metadata-model-conversions
+                                     describe-metadata-model-exports-as-script
+                                     describe-metadata-model-exports-to-target
+                                     describe-metadata-model-imports
+                                     describe-migration-projects
+                                     describe-orderable-replication-instances
+                                     describe-pending-maintenance-actions
+                                     describe-recommendation-limitations
+                                     describe-recommendations
+                                     describe-refresh-schemas-status
+                                     describe-replication-configs
+                                     describe-replication-instances
+                                     describe-replication-instance-task-logs
+                                     describe-replications
+                                     describe-replication-subnet-groups
+                                     describe-replication-table-statistics
+                                     describe-replication-task-assessment-results
+                                     describe-replication-task-assessment-runs
+                                     describe-replication-task-individual-assessments
+                                     describe-replication-tasks
+                                     describe-schemas describe-table-statistics
+                                     export-metadata-model-assessment
+                                     import-certificate list-tags-for-resource
+                                     modify-conversion-configuration
+                                     modify-data-migration modify-data-provider
+                                     modify-endpoint modify-event-subscription
+                                     modify-instance-profile
+                                     modify-migration-project
+                                     modify-replication-config
+                                     modify-replication-instance
+                                     modify-replication-subnet-group
+                                     modify-replication-task
+                                     move-replication-task
+                                     reboot-replication-instance
+                                     refresh-schemas reload-replication-tables
+                                     reload-tables remove-tags-from-resource
+                                     run-fleet-advisor-lsa-analysis
+                                     start-data-migration
+                                     start-extension-pack-association
+                                     start-metadata-model-assessment
+                                     start-metadata-model-conversion
+                                     start-metadata-model-export-as-script
+                                     start-metadata-model-export-to-target
+                                     start-metadata-model-import
+                                     start-recommendations start-replication
+                                     start-replication-task
+                                     start-replication-task-assessment
+                                     start-replication-task-assessment-run
+                                     stop-data-migration stop-replication
+                                     stop-replication-task test-connection
+                                     update-subscriptions-to-event-bridge)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://dms.amazonaws.com/doc/2016-01-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://dms.amazonaws.com/doc/2016-01-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Database Migration Service")

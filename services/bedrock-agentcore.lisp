@@ -76,6 +76,13 @@
                                    "AmazonBedrockAgentCore" :version
                                    "2024-02-28" :title
                                    "Amazon Bedrock AgentCore Data Plane Fronting Layer"
+                                   :operations
+                                   '(get-resource-api-key
+                                     get-resource-oauth2token
+                                     get-workload-access-token
+                                     get-workload-access-token-for-jwt
+                                     get-workload-access-token-for-user-id
+                                     invoke-code-interpreter)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Bedrock AgentCore")

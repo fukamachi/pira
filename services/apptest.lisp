@@ -94,6 +94,9 @@
                                    :shape-name "AwsApptestControlPlaneService"
                                    :version "2022-12-06" :title
                                    "AWS Mainframe Modernization Application Testing"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "AppTest")
                                       ("cloudFormationName" . "AppTest")

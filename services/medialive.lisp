@@ -680,7 +680,94 @@
 
 (smithy/sdk/service:define-service media-live :shape-name "MediaLive" :version
                                    "2017-10-14" :title
-                                   "AWS Elemental MediaLive" :traits
+                                   "AWS Elemental MediaLive" :operations
+                                   '(accept-input-device-transfer batch-delete
+                                     batch-start batch-stop
+                                     batch-update-schedule
+                                     cancel-input-device-transfer claim-device
+                                     create-channel
+                                     create-channel-placement-group
+                                     create-cloud-watch-alarm-template
+                                     create-cloud-watch-alarm-template-group
+                                     create-cluster
+                                     create-event-bridge-rule-template
+                                     create-event-bridge-rule-template-group
+                                     create-input create-input-security-group
+                                     create-multiplex create-multiplex-program
+                                     create-network create-node
+                                     create-node-registration-script
+                                     create-partner-input create-sdi-source
+                                     create-signal-map create-tags
+                                     delete-channel
+                                     delete-channel-placement-group
+                                     delete-cloud-watch-alarm-template
+                                     delete-cloud-watch-alarm-template-group
+                                     delete-cluster
+                                     delete-event-bridge-rule-template
+                                     delete-event-bridge-rule-template-group
+                                     delete-input delete-input-security-group
+                                     delete-multiplex delete-multiplex-program
+                                     delete-network delete-node
+                                     delete-reservation delete-schedule
+                                     delete-sdi-source delete-signal-map
+                                     delete-tags describe-account-configuration
+                                     describe-channel
+                                     describe-channel-placement-group
+                                     describe-cluster describe-input
+                                     describe-input-device
+                                     describe-input-device-thumbnail
+                                     describe-input-security-group
+                                     describe-multiplex
+                                     describe-multiplex-program
+                                     describe-network describe-node
+                                     describe-offering describe-reservation
+                                     describe-schedule describe-sdi-source
+                                     describe-thumbnails
+                                     get-cloud-watch-alarm-template
+                                     get-cloud-watch-alarm-template-group
+                                     get-event-bridge-rule-template
+                                     get-event-bridge-rule-template-group
+                                     get-signal-map
+                                     list-channel-placement-groups
+                                     list-channels
+                                     list-cloud-watch-alarm-template-groups
+                                     list-cloud-watch-alarm-templates
+                                     list-clusters
+                                     list-event-bridge-rule-template-groups
+                                     list-event-bridge-rule-templates
+                                     list-input-devices
+                                     list-input-device-transfers list-inputs
+                                     list-input-security-groups
+                                     list-multiplexes list-multiplex-programs
+                                     list-networks list-nodes list-offerings
+                                     list-reservations list-sdi-sources
+                                     list-signal-maps list-tags-for-resource
+                                     list-versions purchase-offering
+                                     reboot-input-device
+                                     reject-input-device-transfer
+                                     restart-channel-pipelines start-channel
+                                     start-delete-monitor-deployment
+                                     start-input-device
+                                     start-input-device-maintenance-window
+                                     start-monitor-deployment start-multiplex
+                                     start-update-signal-map stop-channel
+                                     stop-input-device stop-multiplex
+                                     transfer-input-device
+                                     update-account-configuration
+                                     update-channel update-channel-class
+                                     update-channel-placement-group
+                                     update-cloud-watch-alarm-template
+                                     update-cloud-watch-alarm-template-group
+                                     update-cluster
+                                     update-event-bridge-rule-template
+                                     update-event-bridge-rule-template-group
+                                     update-input update-input-device
+                                     update-input-security-group
+                                     update-multiplex update-multiplex-program
+                                     update-network update-node
+                                     update-node-state update-reservation
+                                     update-sdi-source)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "MediaLive")
                                       ("arnNamespace" . "medialive")
                                       ("cloudFormationName" . "MediaLive")

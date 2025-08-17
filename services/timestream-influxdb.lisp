@@ -43,6 +43,9 @@
 (smithy/sdk/service:define-service amazon-timestream-influx-db :shape-name
                                    "AmazonTimestreamInfluxDB" :version
                                    "2023-01-27" :title "Timestream InfluxDB"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Timestream InfluxDB")

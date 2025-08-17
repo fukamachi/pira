@@ -75,6 +75,9 @@
 (smithy/sdk/service:define-service awschronos-service :shape-name
                                    "AWSChronosService" :version "2021-06-30"
                                    :title "Amazon EventBridge Scheduler"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Scheduler")
                                       ("arnNamespace" . "scheduler")

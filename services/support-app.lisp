@@ -41,7 +41,18 @@
 
 (smithy/sdk/service:define-service support-app :shape-name "SupportApp"
                                    :version "2021-08-20" :title
-                                   "AWS Support App" :traits
+                                   "AWS Support App" :operations
+                                   '(create-slack-channel-configuration
+                                     delete-account-alias
+                                     delete-slack-channel-configuration
+                                     delete-slack-workspace-configuration
+                                     get-account-alias
+                                     list-slack-channel-configurations
+                                     list-slack-workspace-configurations
+                                     put-account-alias
+                                     register-slack-workspace-for-organization
+                                     update-slack-channel-configuration)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Support App")
                                       ("arnNamespace" . "supportapp"))

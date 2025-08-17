@@ -261,6 +261,82 @@
 
 (smithy/sdk/service:define-service pinpoint :shape-name "Pinpoint" :version
                                    "2016-12-01" :title "Amazon Pinpoint"
+                                   :operations
+                                   '(create-app create-campaign
+                                     create-email-template create-export-job
+                                     create-import-job create-in-app-template
+                                     create-journey create-push-template
+                                     create-recommender-configuration
+                                     create-segment create-sms-template
+                                     create-voice-template delete-adm-channel
+                                     delete-apns-channel
+                                     delete-apns-sandbox-channel
+                                     delete-apns-voip-channel
+                                     delete-apns-voip-sandbox-channel
+                                     delete-app delete-baidu-channel
+                                     delete-campaign delete-email-channel
+                                     delete-email-template delete-endpoint
+                                     delete-event-stream delete-gcm-channel
+                                     delete-in-app-template delete-journey
+                                     delete-push-template
+                                     delete-recommender-configuration
+                                     delete-segment delete-sms-channel
+                                     delete-sms-template delete-user-endpoints
+                                     delete-voice-channel delete-voice-template
+                                     get-adm-channel get-apns-channel
+                                     get-apns-sandbox-channel
+                                     get-apns-voip-channel
+                                     get-apns-voip-sandbox-channel get-app
+                                     get-application-date-range-kpi
+                                     get-application-settings get-apps
+                                     get-baidu-channel get-campaign
+                                     get-campaign-activities
+                                     get-campaign-date-range-kpi get-campaigns
+                                     get-campaign-version get-campaign-versions
+                                     get-channels get-email-channel
+                                     get-email-template get-endpoint
+                                     get-event-stream get-export-job
+                                     get-export-jobs get-gcm-channel
+                                     get-import-job get-import-jobs
+                                     get-in-app-messages get-in-app-template
+                                     get-journey get-journey-date-range-kpi
+                                     get-journey-execution-activity-metrics
+                                     get-journey-execution-metrics
+                                     get-journey-run-execution-activity-metrics
+                                     get-journey-run-execution-metrics
+                                     get-journey-runs get-push-template
+                                     get-recommender-configuration
+                                     get-recommender-configurations get-segment
+                                     get-segment-export-jobs
+                                     get-segment-import-jobs get-segments
+                                     get-segment-version get-segment-versions
+                                     get-sms-channel get-sms-template
+                                     get-user-endpoints get-voice-channel
+                                     get-voice-template list-journeys
+                                     list-tags-for-resource list-templates
+                                     list-template-versions
+                                     phone-number-validate put-events
+                                     put-event-stream remove-attributes
+                                     send-messages send-otpmessage
+                                     send-users-messages tag-resource
+                                     untag-resource update-adm-channel
+                                     update-apns-channel
+                                     update-apns-sandbox-channel
+                                     update-apns-voip-channel
+                                     update-apns-voip-sandbox-channel
+                                     update-application-settings
+                                     update-baidu-channel update-campaign
+                                     update-email-channel update-email-template
+                                     update-endpoint update-endpoints-batch
+                                     update-gcm-channel update-in-app-template
+                                     update-journey update-journey-state
+                                     update-push-template
+                                     update-recommender-configuration
+                                     update-segment update-sms-channel
+                                     update-sms-template
+                                     update-template-active-version
+                                     update-voice-channel update-voice-template
+                                     verify-otpmessage)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Pinpoint")
                                       ("arnNamespace" . "mobiletargeting")

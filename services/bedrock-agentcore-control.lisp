@@ -198,6 +198,8 @@
                                    :shape-name "AmazonBedrockAgentCoreControl"
                                    :version "2023-06-05" :title
                                    "Amazon Bedrock Agent Core Control Plane Fronting Layer"
+                                   :operations
+                                   '(get-token-vault set-token-vault-cmk)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Bedrock AgentCore Control")

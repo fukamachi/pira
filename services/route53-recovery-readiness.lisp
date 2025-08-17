@@ -48,7 +48,31 @@
 (smithy/sdk/service:define-service route53recovery-readiness :shape-name
                                    "Route53RecoveryReadiness" :version
                                    "2019-12-02" :title
-                                   "AWS Route53 Recovery Readiness" :traits
+                                   "AWS Route53 Recovery Readiness" :operations
+                                   '(create-cell
+                                     create-cross-account-authorization
+                                     create-readiness-check
+                                     create-recovery-group create-resource-set
+                                     delete-cell
+                                     delete-cross-account-authorization
+                                     delete-readiness-check
+                                     delete-recovery-group delete-resource-set
+                                     get-architecture-recommendations get-cell
+                                     get-cell-readiness-summary
+                                     get-readiness-check
+                                     get-readiness-check-resource-status
+                                     get-readiness-check-status
+                                     get-recovery-group
+                                     get-recovery-group-readiness-summary
+                                     get-resource-set list-cells
+                                     list-cross-account-authorizations
+                                     list-readiness-checks list-recovery-groups
+                                     list-resource-sets list-rules
+                                     list-tags-for-resources tag-resource
+                                     untag-resource update-cell
+                                     update-readiness-check
+                                     update-recovery-group update-resource-set)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Route53 Recovery Readiness")
                                       ("arnNamespace"

@@ -22,7 +22,9 @@
 (smithy/sdk/service:define-service amazon-connect-contact-lens :shape-name
                                    "AmazonConnectContactLens" :version
                                    "2020-08-21" :title
-                                   "Amazon Connect Contact Lens" :traits
+                                   "Amazon Connect Contact Lens" :operations
+                                   '(list-realtime-contact-analysis-segments)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Connect Contact Lens")
                                       ("arnNamespace" . "connect")

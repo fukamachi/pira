@@ -114,7 +114,41 @@
                                    :shape-name
                                    "AWSLookoutEquipmentFrontendService"
                                    :version "2020-12-15" :title
-                                   "Amazon Lookout for Equipment" :traits
+                                   "Amazon Lookout for Equipment" :operations
+                                   '(create-dataset create-inference-scheduler
+                                     create-label create-label-group
+                                     create-model create-retraining-scheduler
+                                     delete-dataset delete-inference-scheduler
+                                     delete-label delete-label-group
+                                     delete-model delete-resource-policy
+                                     delete-retraining-scheduler
+                                     describe-data-ingestion-job
+                                     describe-dataset
+                                     describe-inference-scheduler
+                                     describe-label describe-label-group
+                                     describe-model describe-model-version
+                                     describe-resource-policy
+                                     describe-retraining-scheduler
+                                     import-dataset import-model-version
+                                     list-data-ingestion-jobs list-datasets
+                                     list-inference-events
+                                     list-inference-executions
+                                     list-inference-schedulers
+                                     list-label-groups list-labels list-models
+                                     list-model-versions
+                                     list-retraining-schedulers
+                                     list-sensor-statistics
+                                     list-tags-for-resource put-resource-policy
+                                     start-data-ingestion-job
+                                     start-inference-scheduler
+                                     start-retraining-scheduler
+                                     stop-inference-scheduler
+                                     stop-retraining-scheduler tag-resource
+                                     untag-resource update-active-model-version
+                                     update-inference-scheduler
+                                     update-label-group update-model
+                                     update-retraining-scheduler)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "LookoutEquipment")
                                       ("arnNamespace" . "lookoutequipment")

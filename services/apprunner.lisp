@@ -105,10 +105,40 @@
 
 (smithy/sdk/service:define-service app-runner :shape-name "AppRunner" :version
                                    "2020-05-15" :title "AWS App Runner"
+                                   :operations
+                                   '(associate-custom-domain
+                                     create-auto-scaling-configuration
+                                     create-connection
+                                     create-observability-configuration
+                                     create-service create-vpc-connector
+                                     create-vpc-ingress-connection
+                                     delete-auto-scaling-configuration
+                                     delete-connection
+                                     delete-observability-configuration
+                                     delete-service delete-vpc-connector
+                                     delete-vpc-ingress-connection
+                                     describe-auto-scaling-configuration
+                                     describe-custom-domains
+                                     describe-observability-configuration
+                                     describe-service describe-vpc-connector
+                                     describe-vpc-ingress-connection
+                                     disassociate-custom-domain
+                                     list-auto-scaling-configurations
+                                     list-connections
+                                     list-observability-configurations
+                                     list-operations list-services
+                                     list-services-for-auto-scaling-configuration
+                                     list-tags-for-resource list-vpc-connectors
+                                     list-vpc-ingress-connections pause-service
+                                     resume-service start-deployment
+                                     tag-resource untag-resource
+                                     update-default-auto-scaling-configuration
+                                     update-service
+                                     update-vpc-ingress-connection)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://apprunner.amazonaws.com/doc/2020-05-15/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://apprunner.amazonaws.com/doc/2020-05-15/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "AppRunner")
                                       ("arnNamespace" . "apprunner")

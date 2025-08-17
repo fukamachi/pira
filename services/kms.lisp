@@ -90,10 +90,39 @@
 
 (smithy/sdk/service:define-service trent-service :shape-name "TrentService"
                                    :version "2014-11-01" :title
-                                   "AWS Key Management Service" :xml-namespace
-                                   '(:uri
-                                     "https://trent.amazonaws.com/doc/2014-11-01/"
-                                     :prefix common-lisp:nil)
+                                   "AWS Key Management Service" :operations
+                                   '(cancel-key-deletion
+                                     connect-custom-key-store create-alias
+                                     create-custom-key-store create-grant
+                                     create-key decrypt delete-alias
+                                     delete-custom-key-store
+                                     delete-imported-key-material
+                                     derive-shared-secret
+                                     describe-custom-key-stores describe-key
+                                     disable-key disable-key-rotation
+                                     disconnect-custom-key-store enable-key
+                                     enable-key-rotation encrypt
+                                     generate-data-key generate-data-key-pair
+                                     generate-data-key-pair-without-plaintext
+                                     generate-data-key-without-plaintext
+                                     generate-mac generate-random
+                                     get-key-policy get-key-rotation-status
+                                     get-parameters-for-import get-public-key
+                                     import-key-material list-aliases
+                                     list-grants list-key-policies
+                                     list-key-rotations list-keys
+                                     list-resource-tags list-retirable-grants
+                                     put-key-policy re-encrypt replicate-key
+                                     retire-grant revoke-grant
+                                     rotate-key-on-demand schedule-key-deletion
+                                     sign tag-resource untag-resource
+                                     update-alias update-custom-key-store
+                                     update-key-description
+                                     update-primary-region verify verify-mac)
+                                   :xml-namespace
+                                   (:uri
+                                    "https://trent.amazonaws.com/doc/2014-11-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "KMS")
                                       ("arnNamespace" . "kms")

@@ -34,7 +34,13 @@
                                    :shape-name
                                    "IotLaserThingJobManagerExternalService"
                                    :version "2017-09-29" :title
-                                   "AWS IoT Jobs Data Plane" :traits
+                                   "AWS IoT Jobs Data Plane" :operations
+                                   '(describe-job-execution
+                                     get-pending-job-executions
+                                     start-command-execution
+                                     start-next-pending-job-execution
+                                     update-job-execution)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoT Jobs Data Plane")
                                       ("arnNamespace" . "iot-jobs-data")

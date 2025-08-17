@@ -149,7 +149,26 @@
 
 (smithy/sdk/service:define-service data-exchange :shape-name "DataExchange"
                                    :version "2017-07-25" :title
-                                   "AWS Data Exchange" :traits
+                                   "AWS Data Exchange" :operations
+                                   '(accept-data-grant cancel-job
+                                     create-data-grant create-data-set
+                                     create-event-action create-job
+                                     create-revision delete-asset
+                                     delete-data-grant delete-data-set
+                                     delete-event-action delete-revision
+                                     get-asset get-data-grant get-data-set
+                                     get-event-action get-job
+                                     get-received-data-grant get-revision
+                                     list-data-grants list-data-set-revisions
+                                     list-data-sets list-event-actions
+                                     list-jobs list-received-data-grants
+                                     list-revision-assets
+                                     list-tags-for-resource revoke-revision
+                                     send-api-asset send-data-set-notification
+                                     start-job tag-resource untag-resource
+                                     update-asset update-data-set
+                                     update-event-action update-revision)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "DataExchange")
                                       ("arnNamespace" . "dataexchange")

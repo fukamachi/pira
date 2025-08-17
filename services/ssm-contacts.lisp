@@ -68,6 +68,30 @@
 (smithy/sdk/service:define-service ssmcontacts :shape-name "SSMContacts"
                                    :version "2021-05-03" :title
                                    "AWS Systems Manager Incident Manager Contacts"
+                                   :operations
+                                   '(accept-page activate-contact-channel
+                                     create-contact create-contact-channel
+                                     create-rotation create-rotation-override
+                                     deactivate-contact-channel delete-contact
+                                     delete-contact-channel delete-rotation
+                                     delete-rotation-override
+                                     describe-engagement describe-page
+                                     get-contact get-contact-channel
+                                     get-contact-policy get-rotation
+                                     get-rotation-override
+                                     list-contact-channels list-contacts
+                                     list-engagements list-page-receipts
+                                     list-page-resolutions
+                                     list-pages-by-contact
+                                     list-pages-by-engagement
+                                     list-preview-rotation-shifts
+                                     list-rotation-overrides list-rotations
+                                     list-rotation-shifts
+                                     list-tags-for-resource put-contact-policy
+                                     send-activation-code start-engagement
+                                     stop-engagement tag-resource
+                                     untag-resource update-contact
+                                     update-contact-channel update-rotation)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "SSM Contacts")

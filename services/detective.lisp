@@ -65,7 +65,28 @@
 
 (smithy/sdk/service:define-service amazon-detective :shape-name
                                    "AmazonDetective" :version "2018-10-26"
-                                   :title "Amazon Detective" :traits
+                                   :title "Amazon Detective" :operations
+                                   '(accept-invitation
+                                     batch-get-graph-member-datasources
+                                     batch-get-membership-datasources
+                                     create-graph create-members delete-graph
+                                     delete-members
+                                     describe-organization-configuration
+                                     disable-organization-admin-account
+                                     disassociate-membership
+                                     enable-organization-admin-account
+                                     get-investigation get-members
+                                     list-datasource-packages list-graphs
+                                     list-indicators list-investigations
+                                     list-invitations list-members
+                                     list-organization-admin-accounts
+                                     list-tags-for-resource reject-invitation
+                                     start-investigation
+                                     start-monitoring-member tag-resource
+                                     untag-resource update-datasource-packages
+                                     update-investigation-state
+                                     update-organization-configuration)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Detective")
                                       ("arnNamespace" . "detective")
                                       ("cloudFormationName" . "Detective")

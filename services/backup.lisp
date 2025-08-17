@@ -177,7 +177,87 @@
 
 (smithy/sdk/service:define-service cryo-controller-user-manager :shape-name
                                    "CryoControllerUserManager" :version
-                                   "2018-11-15" :title "AWS Backup" :traits
+                                   "2018-11-15" :title "AWS Backup" :operations
+                                   '(associate-backup-vault-mpa-approval-team
+                                     cancel-legal-hold create-backup-plan
+                                     create-backup-selection
+                                     create-backup-vault create-framework
+                                     create-legal-hold
+                                     create-logically-air-gapped-backup-vault
+                                     create-report-plan
+                                     create-restore-access-backup-vault
+                                     create-restore-testing-plan
+                                     create-restore-testing-selection
+                                     delete-backup-plan delete-backup-selection
+                                     delete-backup-vault
+                                     delete-backup-vault-access-policy
+                                     delete-backup-vault-lock-configuration
+                                     delete-backup-vault-notifications
+                                     delete-framework delete-recovery-point
+                                     delete-report-plan
+                                     delete-restore-testing-plan
+                                     delete-restore-testing-selection
+                                     describe-backup-job describe-backup-vault
+                                     describe-copy-job describe-framework
+                                     describe-global-settings
+                                     describe-protected-resource
+                                     describe-recovery-point
+                                     describe-region-settings
+                                     describe-report-job describe-report-plan
+                                     describe-restore-job
+                                     disassociate-backup-vault-mpa-approval-team
+                                     disassociate-recovery-point
+                                     disassociate-recovery-point-from-parent
+                                     export-backup-plan-template
+                                     get-backup-plan get-backup-plan-from-json
+                                     get-backup-plan-from-template
+                                     get-backup-selection
+                                     get-backup-vault-access-policy
+                                     get-backup-vault-notifications
+                                     get-legal-hold
+                                     get-recovery-point-index-details
+                                     get-recovery-point-restore-metadata
+                                     get-restore-job-metadata
+                                     get-restore-testing-inferred-metadata
+                                     get-restore-testing-plan
+                                     get-restore-testing-selection
+                                     get-supported-resource-types
+                                     list-backup-jobs list-backup-job-summaries
+                                     list-backup-plans
+                                     list-backup-plan-templates
+                                     list-backup-plan-versions
+                                     list-backup-selections list-backup-vaults
+                                     list-copy-jobs list-copy-job-summaries
+                                     list-frameworks
+                                     list-indexed-recovery-points
+                                     list-legal-holds list-protected-resources
+                                     list-protected-resources-by-backup-vault
+                                     list-recovery-points-by-backup-vault
+                                     list-recovery-points-by-legal-hold
+                                     list-recovery-points-by-resource
+                                     list-report-jobs list-report-plans
+                                     list-restore-access-backup-vaults
+                                     list-restore-jobs
+                                     list-restore-jobs-by-protected-resource
+                                     list-restore-job-summaries
+                                     list-restore-testing-plans
+                                     list-restore-testing-selections list-tags
+                                     put-backup-vault-access-policy
+                                     put-backup-vault-lock-configuration
+                                     put-backup-vault-notifications
+                                     put-restore-validation-result
+                                     revoke-restore-access-backup-vault
+                                     start-backup-job start-copy-job
+                                     start-report-job start-restore-job
+                                     stop-backup-job tag-resource
+                                     untag-resource update-backup-plan
+                                     update-framework update-global-settings
+                                     update-recovery-point-index-settings
+                                     update-recovery-point-lifecycle
+                                     update-region-settings update-report-plan
+                                     update-restore-testing-plan
+                                     update-restore-testing-selection)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Backup")
                                       ("arnNamespace" . "backup")
                                       ("cloudFormationName" . "Backup")

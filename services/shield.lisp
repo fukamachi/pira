@@ -82,10 +82,40 @@
 
 (smithy/sdk/service:define-service awsshield-20160616 :shape-name
                                    "AWSShield_20160616" :version "2016-06-02"
-                                   :title "AWS Shield" :xml-namespace
-                                   '(:uri
-                                     "http://ddp.amazonaws.com/doc/2016-06-02/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS Shield" :operations
+                                   '(associate-drtlog-bucket associate-drtrole
+                                     associate-health-check
+                                     associate-proactive-engagement-details
+                                     create-protection create-protection-group
+                                     create-subscription delete-protection
+                                     delete-protection-group
+                                     delete-subscription describe-attack
+                                     describe-attack-statistics
+                                     describe-drtaccess
+                                     describe-emergency-contact-settings
+                                     describe-protection
+                                     describe-protection-group
+                                     describe-subscription
+                                     disable-application-layer-automatic-response
+                                     disable-proactive-engagement
+                                     disassociate-drtlog-bucket
+                                     disassociate-drtrole
+                                     disassociate-health-check
+                                     enable-application-layer-automatic-response
+                                     enable-proactive-engagement
+                                     get-subscription-state list-attacks
+                                     list-protection-groups list-protections
+                                     list-resources-in-protection-group
+                                     list-tags-for-resource tag-resource
+                                     untag-resource
+                                     update-application-layer-automatic-response
+                                     update-emergency-contact-settings
+                                     update-protection-group
+                                     update-subscription)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://ddp.amazonaws.com/doc/2016-06-02/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Shield")
                                       ("arnNamespace" . "shield")

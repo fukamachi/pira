@@ -88,7 +88,8 @@
 
 (smithy/sdk/service:define-service awscontrol-tower-apis :shape-name
                                    "AWSControlTowerApis" :version "2018-05-10"
-                                   :title "AWS Control Tower" :traits
+                                   :title "AWS Control Tower" :operations
+                                   '(disable-control) :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ControlTower")
                                       ("cloudFormationName" . "ControlTower")

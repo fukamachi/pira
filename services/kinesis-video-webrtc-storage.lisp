@@ -8,6 +8,9 @@
                                    "AWSAcuityRoutingServiceLambda" :version
                                    "2018-05-10" :title
                                    "Amazon Kinesis Video WebRTC Storage"
+                                   :operations
+                                   '(join-storage-session
+                                     join-storage-session-as-viewer)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId"

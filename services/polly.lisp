@@ -26,9 +26,15 @@
 
 (smithy/sdk/service:define-service parrot-v1 :shape-name "Parrot_v1" :version
                                    "2016-06-10" :title "Amazon Polly"
+                                   :operations
+                                   '(delete-lexicon describe-voices get-lexicon
+                                     get-speech-synthesis-task list-lexicons
+                                     list-speech-synthesis-tasks put-lexicon
+                                     start-speech-synthesis-task
+                                     synthesize-speech)
                                    :xml-namespace
-                                   '(:uri "http://polly.amazonaws.com/doc/v1"
-                                     :prefix common-lisp:nil)
+                                   (:uri "http://polly.amazonaws.com/doc/v1"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Polly")
                                       ("arnNamespace" . "polly")

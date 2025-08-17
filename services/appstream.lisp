@@ -150,6 +150,62 @@
 (smithy/sdk/service:define-service photon-admin-proxy-service :shape-name
                                    "PhotonAdminProxyService" :version
                                    "2016-12-01" :title "Amazon AppStream"
+                                   :operations
+                                   '(associate-app-block-builder-app-block
+                                     associate-application-fleet
+                                     associate-application-to-entitlement
+                                     associate-fleet batch-associate-user-stack
+                                     batch-disassociate-user-stack copy-image
+                                     create-app-block create-app-block-builder
+                                     create-app-block-builder-streaming-url
+                                     create-application create-directory-config
+                                     create-entitlement create-fleet
+                                     create-image-builder
+                                     create-image-builder-streaming-url
+                                     create-stack create-streaming-url
+                                     create-theme-for-stack
+                                     create-updated-image
+                                     create-usage-report-subscription
+                                     create-user delete-app-block
+                                     delete-app-block-builder
+                                     delete-application delete-directory-config
+                                     delete-entitlement delete-fleet
+                                     delete-image delete-image-builder
+                                     delete-image-permissions delete-stack
+                                     delete-theme-for-stack
+                                     delete-usage-report-subscription
+                                     delete-user
+                                     describe-app-block-builder-app-block-associations
+                                     describe-app-block-builders
+                                     describe-app-blocks
+                                     describe-application-fleet-associations
+                                     describe-applications
+                                     describe-directory-configs
+                                     describe-entitlements describe-fleets
+                                     describe-image-builders
+                                     describe-image-permissions describe-images
+                                     describe-sessions describe-stacks
+                                     describe-theme-for-stack
+                                     describe-usage-report-subscriptions
+                                     describe-users
+                                     describe-user-stack-associations
+                                     disable-user
+                                     disassociate-app-block-builder-app-block
+                                     disassociate-application-fleet
+                                     disassociate-application-from-entitlement
+                                     disassociate-fleet enable-user
+                                     expire-session list-associated-fleets
+                                     list-associated-stacks
+                                     list-entitled-applications
+                                     list-tags-for-resource
+                                     start-app-block-builder start-fleet
+                                     start-image-builder stop-app-block-builder
+                                     stop-fleet stop-image-builder tag-resource
+                                     untag-resource update-app-block-builder
+                                     update-application update-directory-config
+                                     update-entitlement update-fleet
+                                     update-image-permissions update-stack
+                                     update-theme-for-stack)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "AppStream")
                                       ("arnNamespace" . "appstream")

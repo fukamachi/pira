@@ -95,7 +95,12 @@
 
 (smithy/sdk/service:define-service code-guru-profiler :shape-name
                                    "CodeGuruProfiler" :version "2019-07-18"
-                                   :title "Amazon CodeGuru Profiler" :traits
+                                   :title "Amazon CodeGuru Profiler"
+                                   :operations
+                                   '(get-findings-report-account-summary
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodeGuruProfiler")
                                       ("arnNamespace" . "codeguru-profiler")

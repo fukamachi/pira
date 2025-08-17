@@ -62,7 +62,27 @@
 
 (smithy/sdk/service:define-service awsbudget-service-gateway :shape-name
                                    "AWSBudgetServiceGateway" :version
-                                   "2016-10-20" :title "AWS Budgets" :traits
+                                   "2016-10-20" :title "AWS Budgets"
+                                   :operations
+                                   '(create-budget create-budget-action
+                                     create-notification create-subscriber
+                                     delete-budget delete-budget-action
+                                     delete-notification delete-subscriber
+                                     describe-budget describe-budget-action
+                                     describe-budget-action-histories
+                                     describe-budget-actions-for-account
+                                     describe-budget-actions-for-budget
+                                     describe-budget-notifications-for-account
+                                     describe-budget-performance-history
+                                     describe-budgets
+                                     describe-notifications-for-budget
+                                     describe-subscribers-for-notification
+                                     execute-budget-action
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-budget
+                                     update-budget-action update-notification
+                                     update-subscriber)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Budgets")
                                       ("arnNamespace" . "budgets")
                                       ("cloudFormationName" . "Budgets")

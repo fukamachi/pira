@@ -1369,7 +1369,163 @@
 
 (smithy/sdk/service:define-service quick-sight-20180401 :shape-name
                                    "QuickSight_20180401" :version "2018-04-01"
-                                   :title "Amazon QuickSight" :traits
+                                   :title "Amazon QuickSight" :operations
+                                   '(batch-create-topic-reviewed-answer
+                                     batch-delete-topic-reviewed-answer
+                                     cancel-ingestion
+                                     create-account-customization
+                                     create-account-subscription
+                                     create-analysis create-brand
+                                     create-custom-permissions create-dashboard
+                                     create-data-set create-data-source
+                                     create-folder create-folder-membership
+                                     create-group create-group-membership
+                                     create-iampolicy-assignment
+                                     create-ingestion create-namespace
+                                     create-refresh-schedule
+                                     create-role-membership create-template
+                                     create-template-alias create-theme
+                                     create-theme-alias create-topic
+                                     create-topic-refresh-schedule
+                                     create-vpcconnection
+                                     delete-account-customization
+                                     delete-account-subscription
+                                     delete-analysis delete-brand
+                                     delete-brand-assignment
+                                     delete-custom-permissions delete-dashboard
+                                     delete-data-set
+                                     delete-data-set-refresh-properties
+                                     delete-data-source
+                                     delete-default-qbusiness-application
+                                     delete-folder delete-folder-membership
+                                     delete-group delete-group-membership
+                                     delete-iampolicy-assignment
+                                     delete-identity-propagation-config
+                                     delete-namespace delete-refresh-schedule
+                                     delete-role-custom-permission
+                                     delete-role-membership delete-template
+                                     delete-template-alias delete-theme
+                                     delete-theme-alias delete-topic
+                                     delete-topic-refresh-schedule delete-user
+                                     delete-user-by-principal-id
+                                     delete-user-custom-permission
+                                     delete-vpcconnection
+                                     describe-account-customization
+                                     describe-account-settings
+                                     describe-account-subscription
+                                     describe-analysis
+                                     describe-analysis-definition
+                                     describe-analysis-permissions
+                                     describe-asset-bundle-export-job
+                                     describe-asset-bundle-import-job
+                                     describe-brand describe-brand-assignment
+                                     describe-brand-published-version
+                                     describe-custom-permissions
+                                     describe-dashboard
+                                     describe-dashboard-definition
+                                     describe-dashboard-permissions
+                                     describe-dashboard-snapshot-job
+                                     describe-dashboard-snapshot-job-result
+                                     describe-dashboards-qaconfiguration
+                                     describe-data-set
+                                     describe-data-set-permissions
+                                     describe-data-set-refresh-properties
+                                     describe-data-source
+                                     describe-data-source-permissions
+                                     describe-default-qbusiness-application
+                                     describe-folder
+                                     describe-folder-permissions
+                                     describe-folder-resolved-permissions
+                                     describe-group describe-group-membership
+                                     describe-iampolicy-assignment
+                                     describe-ingestion describe-ip-restriction
+                                     describe-key-registration
+                                     describe-namespace
+                                     describe-qpersonalization-configuration
+                                     describe-quick-sight-qsearch-configuration
+                                     describe-refresh-schedule
+                                     describe-role-custom-permission
+                                     describe-template describe-template-alias
+                                     describe-template-definition
+                                     describe-template-permissions
+                                     describe-theme describe-theme-alias
+                                     describe-theme-permissions describe-topic
+                                     describe-topic-permissions
+                                     describe-topic-refresh
+                                     describe-topic-refresh-schedule
+                                     describe-user describe-vpcconnection
+                                     generate-embed-url-for-anonymous-user
+                                     generate-embed-url-for-registered-user
+                                     generate-embed-url-for-registered-user-with-identity
+                                     get-dashboard-embed-url
+                                     get-session-embed-url list-analyses
+                                     list-asset-bundle-export-jobs
+                                     list-asset-bundle-import-jobs list-brands
+                                     list-custom-permissions list-dashboards
+                                     list-dashboard-versions list-data-sets
+                                     list-data-sources list-folder-members
+                                     list-folders list-folders-for-resource
+                                     list-group-memberships list-groups
+                                     list-iampolicy-assignments
+                                     list-iampolicy-assignments-for-user
+                                     list-identity-propagation-configs
+                                     list-ingestions list-namespaces
+                                     list-refresh-schedules
+                                     list-role-memberships
+                                     list-tags-for-resource
+                                     list-template-aliases list-templates
+                                     list-template-versions list-theme-aliases
+                                     list-themes list-theme-versions
+                                     list-topic-refresh-schedules
+                                     list-topic-reviewed-answers list-topics
+                                     list-user-groups list-users
+                                     list-vpcconnections predict-qaresults
+                                     put-data-set-refresh-properties
+                                     register-user restore-analysis
+                                     search-analyses search-dashboards
+                                     search-data-sets search-data-sources
+                                     search-folders search-groups search-topics
+                                     start-asset-bundle-export-job
+                                     start-asset-bundle-import-job
+                                     start-dashboard-snapshot-job
+                                     start-dashboard-snapshot-job-schedule
+                                     tag-resource untag-resource
+                                     update-account-customization
+                                     update-account-settings update-analysis
+                                     update-analysis-permissions
+                                     update-application-with-token-exchange-grant
+                                     update-brand update-brand-assignment
+                                     update-brand-published-version
+                                     update-custom-permissions update-dashboard
+                                     update-dashboard-links
+                                     update-dashboard-permissions
+                                     update-dashboard-published-version
+                                     update-dashboards-qaconfiguration
+                                     update-data-set
+                                     update-data-set-permissions
+                                     update-data-source
+                                     update-data-source-permissions
+                                     update-default-qbusiness-application
+                                     update-folder update-folder-permissions
+                                     update-group update-iampolicy-assignment
+                                     update-identity-propagation-config
+                                     update-ip-restriction
+                                     update-key-registration
+                                     update-public-sharing-settings
+                                     update-qpersonalization-configuration
+                                     update-quick-sight-qsearch-configuration
+                                     update-refresh-schedule
+                                     update-role-custom-permission
+                                     update-spicecapacity-configuration
+                                     update-template update-template-alias
+                                     update-template-permissions update-theme
+                                     update-theme-alias
+                                     update-theme-permissions update-topic
+                                     update-topic-permissions
+                                     update-topic-refresh-schedule update-user
+                                     update-user-custom-permission
+                                     update-vpcconnection)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "QuickSight")
                                       ("arnNamespace" . "quicksight")

@@ -98,7 +98,25 @@
 
 (smithy/sdk/service:define-service e5gnetwork-controller-lambda :shape-name
                                    "E5GNetworkControllerLambda" :version
-                                   "2021-12-03" :title "AWS Private 5G" :traits
+                                   "2021-12-03" :title "AWS Private 5G"
+                                   :operations
+                                   '(acknowledge-order-receipt
+                                     activate-device-identifier
+                                     activate-network-site
+                                     configure-access-point create-network
+                                     create-network-site
+                                     deactivate-device-identifier
+                                     delete-network delete-network-site
+                                     get-device-identifier get-network
+                                     get-network-resource get-network-site
+                                     get-order list-device-identifiers
+                                     list-network-resources list-networks
+                                     list-network-sites list-orders
+                                     list-tags-for-resource ping
+                                     start-network-resource-update tag-resource
+                                     untag-resource update-network-site
+                                     update-network-site-plan)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "PrivateNetworks")
                                       ("arnNamespace" . "private-networks"))

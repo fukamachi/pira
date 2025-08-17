@@ -68,10 +68,38 @@
 (smithy/sdk/service:define-service route53domains-v20140515 :shape-name
                                    "Route53Domains_v20140515" :version
                                    "2014-05-15" :title
-                                   "Amazon Route 53 Domains" :xml-namespace
-                                   '(:uri
-                                     "https://route53domains.amazonaws.com/doc/2014-05-15/"
-                                     :prefix common-lisp:nil)
+                                   "Amazon Route 53 Domains" :operations
+                                   '(accept-domain-transfer-from-another-aws-account
+                                     associate-delegation-signer-to-domain
+                                     cancel-domain-transfer-to-another-aws-account
+                                     check-domain-availability
+                                     check-domain-transferability delete-domain
+                                     delete-tags-for-domain
+                                     disable-domain-auto-renew
+                                     disable-domain-transfer-lock
+                                     disassociate-delegation-signer-from-domain
+                                     enable-domain-auto-renew
+                                     enable-domain-transfer-lock
+                                     get-contact-reachability-status
+                                     get-domain-detail get-domain-suggestions
+                                     get-operation-detail list-domains
+                                     list-operations list-prices
+                                     list-tags-for-domain push-domain
+                                     register-domain
+                                     reject-domain-transfer-from-another-aws-account
+                                     renew-domain
+                                     resend-contact-reachability-email
+                                     resend-operation-authorization
+                                     retrieve-domain-auth-code transfer-domain
+                                     transfer-domain-to-another-aws-account
+                                     update-domain-contact
+                                     update-domain-contact-privacy
+                                     update-domain-nameservers
+                                     update-tags-for-domain view-billing)
+                                   :xml-namespace
+                                   (:uri
+                                    "https://route53domains.amazonaws.com/doc/2014-05-15/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Route 53 Domains")

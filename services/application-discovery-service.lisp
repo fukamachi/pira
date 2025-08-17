@@ -97,10 +97,34 @@
                                    "AWSPoseidonService_V2015_11_01" :version
                                    "2015-11-01" :title
                                    "AWS Application Discovery Service"
+                                   :operations
+                                   '(associate-configuration-items-to-application
+                                     batch-delete-agents
+                                     batch-delete-import-data
+                                     create-application create-tags
+                                     delete-applications delete-tags
+                                     describe-agents
+                                     describe-batch-delete-configuration-task
+                                     describe-configurations
+                                     describe-continuous-exports
+                                     describe-export-configurations
+                                     describe-export-tasks
+                                     describe-import-tasks describe-tags
+                                     disassociate-configuration-items-from-application
+                                     export-configurations
+                                     get-discovery-summary list-configurations
+                                     list-server-neighbors
+                                     start-batch-delete-configuration-task
+                                     start-continuous-export
+                                     start-data-collection-by-agent-ids
+                                     start-export-task start-import-task
+                                     stop-continuous-export
+                                     stop-data-collection-by-agent-ids
+                                     update-application)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://ec2.amazon.com/awsposiedon/V2015_11_01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://ec2.amazon.com/awsposiedon/V2015_11_01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId"

@@ -134,7 +134,91 @@
 (common-lisp:in-package #:pira/greengrass)
 
 (smithy/sdk/service:define-service greengrass :shape-name "Greengrass" :version
-                                   "2017-06-07" :title "AWS Greengrass" :traits
+                                   "2017-06-07" :title "AWS Greengrass"
+                                   :operations
+                                   '(associate-role-to-group
+                                     associate-service-role-to-account
+                                     create-connector-definition
+                                     create-connector-definition-version
+                                     create-core-definition
+                                     create-core-definition-version
+                                     create-deployment create-device-definition
+                                     create-device-definition-version
+                                     create-function-definition
+                                     create-function-definition-version
+                                     create-group
+                                     create-group-certificate-authority
+                                     create-group-version
+                                     create-logger-definition
+                                     create-logger-definition-version
+                                     create-resource-definition
+                                     create-resource-definition-version
+                                     create-software-update-job
+                                     create-subscription-definition
+                                     create-subscription-definition-version
+                                     delete-connector-definition
+                                     delete-core-definition
+                                     delete-device-definition
+                                     delete-function-definition delete-group
+                                     delete-logger-definition
+                                     delete-resource-definition
+                                     delete-subscription-definition
+                                     disassociate-role-from-group
+                                     disassociate-service-role-from-account
+                                     get-associated-role
+                                     get-bulk-deployment-status
+                                     get-connectivity-info
+                                     get-connector-definition
+                                     get-connector-definition-version
+                                     get-core-definition
+                                     get-core-definition-version
+                                     get-deployment-status
+                                     get-device-definition
+                                     get-device-definition-version
+                                     get-function-definition
+                                     get-function-definition-version get-group
+                                     get-group-certificate-authority
+                                     get-group-certificate-configuration
+                                     get-group-version get-logger-definition
+                                     get-logger-definition-version
+                                     get-resource-definition
+                                     get-resource-definition-version
+                                     get-service-role-for-account
+                                     get-subscription-definition
+                                     get-subscription-definition-version
+                                     get-thing-runtime-configuration
+                                     list-bulk-deployment-detailed-reports
+                                     list-bulk-deployments
+                                     list-connector-definitions
+                                     list-connector-definition-versions
+                                     list-core-definitions
+                                     list-core-definition-versions
+                                     list-deployments list-device-definitions
+                                     list-device-definition-versions
+                                     list-function-definitions
+                                     list-function-definition-versions
+                                     list-group-certificate-authorities
+                                     list-groups list-group-versions
+                                     list-logger-definitions
+                                     list-logger-definition-versions
+                                     list-resource-definitions
+                                     list-resource-definition-versions
+                                     list-subscription-definitions
+                                     list-subscription-definition-versions
+                                     list-tags-for-resource reset-deployments
+                                     start-bulk-deployment stop-bulk-deployment
+                                     tag-resource untag-resource
+                                     update-connectivity-info
+                                     update-connector-definition
+                                     update-core-definition
+                                     update-device-definition
+                                     update-function-definition update-group
+                                     update-group-certificate-configuration
+                                     update-logger-definition
+                                     update-resource-definition
+                                     update-subscription-definition
+                                     update-thing-runtime-configuration)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Greengrass")
                                       ("arnNamespace" . "greengrass")

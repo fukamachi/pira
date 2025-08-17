@@ -124,6 +124,14 @@
 (smithy/sdk/service:define-service galaxy-public-apigateway :shape-name
                                    "GalaxyPublicAPIGateway" :version
                                    "2024-01-01" :title "AWS Supply Chain"
+                                   :operations
+                                   '(get-data-integration-event
+                                     get-data-integration-flow-execution
+                                     list-data-integration-events
+                                     list-data-integration-flow-executions
+                                     list-tags-for-resource
+                                     send-data-integration-event tag-resource
+                                     untag-resource)
                                    :errors
                                    '(access-denied-exception conflict-exception
                                      internal-server-exception

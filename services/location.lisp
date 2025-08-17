@@ -238,7 +238,8 @@
 
 (smithy/sdk/service:define-service location-service :shape-name
                                    "LocationService" :version "2020-11-19"
-                                   :title "Amazon Location Service" :traits
+                                   :title "Amazon Location Service" :operations
+                                   'common-lisp:nil :traits
                                    '(("aws.api#service" ("sdkId" . "Location")
                                       ("arnNamespace" . "geo"))
                                      ("aws.auth#sigv4" ("name" . "geo"))

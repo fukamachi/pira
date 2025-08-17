@@ -61,10 +61,24 @@
 
 (smithy/sdk/service:define-service awssupport-20130415 :shape-name
                                    "AWSSupport_20130415" :version "2013-04-15"
-                                   :title "AWS Support" :xml-namespace
-                                   '(:uri
-                                     "http://support.amazonaws.com/doc/2013-04-15/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS Support" :operations
+                                   '(add-attachments-to-set
+                                     add-communication-to-case create-case
+                                     describe-attachment describe-cases
+                                     describe-communications
+                                     describe-create-case-options
+                                     describe-services describe-severity-levels
+                                     describe-supported-languages
+                                     describe-trusted-advisor-check-refresh-statuses
+                                     describe-trusted-advisor-check-result
+                                     describe-trusted-advisor-checks
+                                     describe-trusted-advisor-check-summaries
+                                     refresh-trusted-advisor-check
+                                     resolve-case)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://support.amazonaws.com/doc/2013-04-15/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Support")
                                       ("arnNamespace" . "support")

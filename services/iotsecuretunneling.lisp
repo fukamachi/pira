@@ -18,7 +18,13 @@
 
 (smithy/sdk/service:define-service io-tsecured-tunneling :shape-name
                                    "IoTSecuredTunneling" :version "2018-10-05"
-                                   :title "AWS IoT Secure Tunneling" :traits
+                                   :title "AWS IoT Secure Tunneling"
+                                   :operations
+                                   '(close-tunnel describe-tunnel
+                                     list-tags-for-resource list-tunnels
+                                     open-tunnel rotate-tunnel-access-token
+                                     tag-resource untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoTSecureTunneling")
                                       ("arnNamespace" . "iotsecuredtunneling")

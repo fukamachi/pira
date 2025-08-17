@@ -75,11 +75,33 @@
 (smithy/sdk/service:define-service kinesis-video-20170930 :shape-name
                                    "KinesisVideo_20170930" :version
                                    "2017-09-30" :title
-                                   "Amazon Kinesis Video Streams"
+                                   "Amazon Kinesis Video Streams" :operations
+                                   '(create-signaling-channel create-stream
+                                     delete-edge-configuration
+                                     delete-signaling-channel delete-stream
+                                     describe-edge-configuration
+                                     describe-image-generation-configuration
+                                     describe-mapped-resource-configuration
+                                     describe-media-storage-configuration
+                                     describe-notification-configuration
+                                     describe-signaling-channel describe-stream
+                                     get-data-endpoint
+                                     get-signaling-channel-endpoint
+                                     list-edge-agent-configurations
+                                     list-signaling-channels list-streams
+                                     list-tags-for-resource
+                                     list-tags-for-stream
+                                     start-edge-configuration-update
+                                     tag-resource tag-stream untag-resource
+                                     untag-stream update-data-retention
+                                     update-image-generation-configuration
+                                     update-media-storage-configuration
+                                     update-notification-configuration
+                                     update-signaling-channel update-stream)
                                    :xml-namespace
-                                   '(:uri
-                                     "https://kinesisvideo.amazonaws.com/doc/2017-09-30/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "https://kinesisvideo.amazonaws.com/doc/2017-09-30/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Kinesis Video")

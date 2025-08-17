@@ -100,7 +100,17 @@
 (smithy/sdk/service:define-service payment-cryptography-data-plane :shape-name
                                    "PaymentCryptographyDataPlane" :version
                                    "2022-02-03" :title
-                                   "Payment Cryptography Data Plane" :traits
+                                   "Payment Cryptography Data Plane"
+                                   :operations
+                                   '(decrypt-data encrypt-data
+                                     generate-card-validation-data generate-mac
+                                     generate-mac-emv-pin-change
+                                     generate-pin-data re-encrypt-data
+                                     translate-pin-data
+                                     verify-auth-request-cryptogram
+                                     verify-card-validation-data verify-mac
+                                     verify-pin-data)
+                                   :traits
                                    '(("aws.api#dataPlane")
                                      ("aws.api#service"
                                       ("sdkId" . "Payment Cryptography Data")

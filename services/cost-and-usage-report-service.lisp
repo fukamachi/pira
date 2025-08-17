@@ -22,7 +22,15 @@
                                    :shape-name
                                    "AWSOrigamiServiceGatewayService" :version
                                    "2017-01-06" :title
-                                   "AWS Cost and Usage Report Service" :traits
+                                   "AWS Cost and Usage Report Service"
+                                   :operations
+                                   '(delete-report-definition
+                                     describe-report-definitions
+                                     list-tags-for-resource
+                                     modify-report-definition
+                                     put-report-definition tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId"
                                        . "Cost and Usage Report Service")

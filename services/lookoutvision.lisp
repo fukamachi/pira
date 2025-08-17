@@ -61,7 +61,20 @@
 
 (smithy/sdk/service:define-service lookout-vision-service :shape-name
                                    "LookoutVisionService" :version "2020-11-20"
-                                   :title "Amazon Lookout for Vision" :traits
+                                   :title "Amazon Lookout for Vision"
+                                   :operations
+                                   '(create-dataset create-model create-project
+                                     delete-dataset delete-model delete-project
+                                     describe-dataset describe-model
+                                     describe-model-packaging-job
+                                     describe-project detect-anomalies
+                                     list-dataset-entries
+                                     list-model-packaging-jobs list-models
+                                     list-projects list-tags-for-resource
+                                     start-model start-model-packaging-job
+                                     stop-model tag-resource untag-resource
+                                     update-dataset-entries)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "LookoutVision")
                                       ("arnNamespace" . "lookoutvision")

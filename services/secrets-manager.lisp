@@ -64,7 +64,21 @@
 
 (smithy/sdk/service:define-service secretsmanager :shape-name "secretsmanager"
                                    :version "2017-10-17" :title
-                                   "AWS Secrets Manager" :traits
+                                   "AWS Secrets Manager" :operations
+                                   '(batch-get-secret-value
+                                     cancel-rotate-secret create-secret
+                                     delete-resource-policy delete-secret
+                                     describe-secret get-random-password
+                                     get-resource-policy get-secret-value
+                                     list-secrets list-secret-version-ids
+                                     put-resource-policy put-secret-value
+                                     remove-regions-from-replication
+                                     replicate-secret-to-regions restore-secret
+                                     rotate-secret stop-replication-to-replica
+                                     tag-resource untag-resource update-secret
+                                     update-secret-version-stage
+                                     validate-resource-policy)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Secrets Manager")
                                       ("arnNamespace" . "secretsmanager")

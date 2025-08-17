@@ -339,11 +339,90 @@
 
 (smithy/sdk/service:define-service amazon-s3 :shape-name "AmazonS3" :version
                                    "2006-03-01" :title
-                                   "Amazon Simple Storage Service"
+                                   "Amazon Simple Storage Service" :operations
+                                   '(abort-multipart-upload
+                                     complete-multipart-upload copy-object
+                                     create-bucket
+                                     create-bucket-metadata-configuration
+                                     create-bucket-metadata-table-configuration
+                                     create-multipart-upload create-session
+                                     delete-bucket
+                                     delete-bucket-analytics-configuration
+                                     delete-bucket-cors
+                                     delete-bucket-encryption
+                                     delete-bucket-intelligent-tiering-configuration
+                                     delete-bucket-inventory-configuration
+                                     delete-bucket-lifecycle
+                                     delete-bucket-metadata-configuration
+                                     delete-bucket-metadata-table-configuration
+                                     delete-bucket-metrics-configuration
+                                     delete-bucket-ownership-controls
+                                     delete-bucket-policy
+                                     delete-bucket-replication
+                                     delete-bucket-tagging
+                                     delete-bucket-website delete-object
+                                     delete-objects delete-object-tagging
+                                     delete-public-access-block
+                                     get-bucket-accelerate-configuration
+                                     get-bucket-acl
+                                     get-bucket-analytics-configuration
+                                     get-bucket-cors get-bucket-encryption
+                                     get-bucket-intelligent-tiering-configuration
+                                     get-bucket-inventory-configuration
+                                     get-bucket-lifecycle-configuration
+                                     get-bucket-location get-bucket-logging
+                                     get-bucket-metadata-configuration
+                                     get-bucket-metadata-table-configuration
+                                     get-bucket-metrics-configuration
+                                     get-bucket-notification-configuration
+                                     get-bucket-ownership-controls
+                                     get-bucket-policy get-bucket-policy-status
+                                     get-bucket-replication
+                                     get-bucket-request-payment
+                                     get-bucket-tagging get-bucket-versioning
+                                     get-bucket-website get-object
+                                     get-object-acl get-object-attributes
+                                     get-object-legal-hold
+                                     get-object-lock-configuration
+                                     get-object-retention get-object-tagging
+                                     get-object-torrent get-public-access-block
+                                     head-bucket head-object
+                                     list-bucket-analytics-configurations
+                                     list-bucket-intelligent-tiering-configurations
+                                     list-bucket-inventory-configurations
+                                     list-bucket-metrics-configurations
+                                     list-buckets list-directory-buckets
+                                     list-multipart-uploads list-objects
+                                     list-objects-v2 list-object-versions
+                                     list-parts
+                                     put-bucket-accelerate-configuration
+                                     put-bucket-acl
+                                     put-bucket-analytics-configuration
+                                     put-bucket-cors put-bucket-encryption
+                                     put-bucket-intelligent-tiering-configuration
+                                     put-bucket-inventory-configuration
+                                     put-bucket-lifecycle-configuration
+                                     put-bucket-logging
+                                     put-bucket-metrics-configuration
+                                     put-bucket-notification-configuration
+                                     put-bucket-ownership-controls
+                                     put-bucket-policy put-bucket-replication
+                                     put-bucket-request-payment
+                                     put-bucket-tagging put-bucket-versioning
+                                     put-bucket-website put-object
+                                     put-object-acl put-object-legal-hold
+                                     put-object-lock-configuration
+                                     put-object-retention put-object-tagging
+                                     put-public-access-block rename-object
+                                     restore-object select-object-content
+                                     update-bucket-metadata-inventory-table-configuration
+                                     update-bucket-metadata-journal-table-configuration
+                                     upload-part upload-part-copy
+                                     write-get-object-response)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://s3.amazonaws.com/doc/2006-03-01/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://s3.amazonaws.com/doc/2006-03-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "S3")
                                       ("arnNamespace" . "s3")
@@ -2979,9 +3058,9 @@
 (smithy/sdk/shapes:define-structure grant common-lisp:nil
                                     ((grantee :target-type grantee :member-name
                                       "Grantee" :xml-namespace
-                                      '(:uri
-                                        "http://www.w3.org/2001/XMLSchema-instance"
-                                        :prefix "xsi"))
+                                      (:uri
+                                       "http://www.w3.org/2001/XMLSchema-instance"
+                                       :prefix "xsi"))
                                      (permission :target-type permission
                                       :member-name "Permission"))
                                     (:shape-name "Grant"))
@@ -6493,9 +6572,9 @@
 (smithy/sdk/shapes:define-structure target-grant common-lisp:nil
                                     ((grantee :target-type grantee :member-name
                                       "Grantee" :xml-namespace
-                                      '(:uri
-                                        "http://www.w3.org/2001/XMLSchema-instance"
-                                        :prefix "xsi"))
+                                      (:uri
+                                       "http://www.w3.org/2001/XMLSchema-instance"
+                                       :prefix "xsi"))
                                      (permission :target-type
                                       bucket-logs-permission :member-name
                                       "Permission"))

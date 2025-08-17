@@ -99,11 +99,35 @@
                                    :shape-name
                                    "AWSServerMigrationService_V2016_10_24"
                                    :version "2016-10-24" :title
-                                   "AWS Server Migration Service"
+                                   "AWS Server Migration Service" :operations
+                                   '(create-app create-replication-job
+                                     delete-app delete-app-launch-configuration
+                                     delete-app-replication-configuration
+                                     delete-app-validation-configuration
+                                     delete-replication-job
+                                     delete-server-catalog
+                                     disassociate-connector generate-change-set
+                                     generate-template get-app
+                                     get-app-launch-configuration
+                                     get-app-replication-configuration
+                                     get-app-validation-configuration
+                                     get-app-validation-output get-connectors
+                                     get-replication-jobs get-replication-runs
+                                     get-servers import-app-catalog
+                                     import-server-catalog launch-app list-apps
+                                     notify-app-validation-output
+                                     put-app-launch-configuration
+                                     put-app-replication-configuration
+                                     put-app-validation-configuration
+                                     start-app-replication
+                                     start-on-demand-app-replication
+                                     start-on-demand-replication-run
+                                     stop-app-replication terminate-app
+                                     update-app update-replication-job)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://ec2.amazon.com/servermigration/2016-10-24/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://ec2.amazon.com/servermigration/2016-10-24/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SMS")
                                       ("arnNamespace" . "sms")

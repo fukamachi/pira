@@ -49,7 +49,25 @@
 
 (smithy/sdk/service:define-service fabric-front-end-service :shape-name
                                    "FabricFrontEndService" :version
-                                   "2023-05-19" :title "AppFabric" :traits
+                                   "2023-05-19" :title "AppFabric" :operations
+                                   '(batch-get-user-access-tasks
+                                     connect-app-authorization
+                                     create-app-authorization create-app-bundle
+                                     create-ingestion
+                                     create-ingestion-destination
+                                     delete-app-authorization delete-app-bundle
+                                     delete-ingestion
+                                     delete-ingestion-destination
+                                     get-app-authorization get-app-bundle
+                                     get-ingestion get-ingestion-destination
+                                     list-app-authorizations list-app-bundles
+                                     list-ingestion-destinations
+                                     list-ingestions list-tags-for-resource
+                                     start-ingestion start-user-access-tasks
+                                     stop-ingestion tag-resource untag-resource
+                                     update-app-authorization
+                                     update-ingestion-destination)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "AppFabric")
                                       ("arnNamespace" . "appfabric"))
                                      ("aws.auth#sigv4" ("name" . "appfabric"))

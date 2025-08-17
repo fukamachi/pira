@@ -14,7 +14,11 @@
                                    :shape-name
                                    "MarketplaceCommerceAnalytics20150701"
                                    :version "2015-07-01" :title
-                                   "AWS Marketplace Commerce Analytics" :traits
+                                   "AWS Marketplace Commerce Analytics"
+                                   :operations
+                                   '(generate-data-set
+                                     start-support-data-export)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId"
                                        . "Marketplace Commerce Analytics")

@@ -10,7 +10,9 @@
 (smithy/sdk/service:define-service amazon-forecast-runtime :shape-name
                                    "AmazonForecastRuntime" :version
                                    "2018-06-26" :title
-                                   "Amazon Forecast Query Service" :traits
+                                   "Amazon Forecast Query Service" :operations
+                                   '(query-forecast query-what-if-forecast)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "forecastquery")
                                       ("arnNamespace" . "forecast")

@@ -117,7 +117,27 @@
 
 (smithy/sdk/service:define-service awsio-tanalytics :shape-name
                                    "AWSIoTAnalytics" :version "2017-11-27"
-                                   :title "AWS IoT Analytics" :traits
+                                   :title "AWS IoT Analytics" :operations
+                                   '(batch-put-message
+                                     cancel-pipeline-reprocessing
+                                     create-channel create-dataset
+                                     create-dataset-content create-datastore
+                                     create-pipeline delete-channel
+                                     delete-dataset delete-dataset-content
+                                     delete-datastore delete-pipeline
+                                     describe-channel describe-dataset
+                                     describe-datastore
+                                     describe-logging-options describe-pipeline
+                                     get-dataset-content list-channels
+                                     list-dataset-contents list-datasets
+                                     list-datastores list-pipelines
+                                     list-tags-for-resource put-logging-options
+                                     run-pipeline-activity sample-channel-data
+                                     start-pipeline-reprocessing tag-resource
+                                     untag-resource update-channel
+                                     update-dataset update-datastore
+                                     update-pipeline)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "IoTAnalytics")
                                       ("arnNamespace" . "iotanalytics")

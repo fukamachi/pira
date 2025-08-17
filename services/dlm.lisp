@@ -64,7 +64,14 @@
 
 (smithy/sdk/service:define-service dlm-20180112 :shape-name "dlm_20180112"
                                    :version "2018-01-12" :title
-                                   "Amazon Data Lifecycle Manager" :traits
+                                   "Amazon Data Lifecycle Manager" :operations
+                                   '(create-lifecycle-policy
+                                     delete-lifecycle-policy
+                                     get-lifecycle-policies
+                                     get-lifecycle-policy
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-lifecycle-policy)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "DLM")
                                       ("arnNamespace" . "dlm")
                                       ("cloudFormationName" . "DLM")

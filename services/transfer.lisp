@@ -165,7 +165,24 @@
 
 (smithy/sdk/service:define-service transfer-service :shape-name
                                    "TransferService" :version "2018-11-05"
-                                   :title "AWS Transfer Family" :traits
+                                   :title "AWS Transfer Family" :operations
+                                   '(create-access delete-access
+                                     delete-host-key delete-ssh-public-key
+                                     describe-access describe-execution
+                                     describe-host-key describe-security-policy
+                                     import-host-key import-ssh-public-key
+                                     list-accesses list-executions
+                                     list-file-transfer-results list-host-keys
+                                     list-security-policies
+                                     list-tags-for-resource
+                                     send-workflow-step-state
+                                     start-directory-listing
+                                     start-file-transfer start-remote-delete
+                                     start-remote-move start-server stop-server
+                                     tag-resource test-connection
+                                     test-identity-provider untag-resource
+                                     update-access update-host-key)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Transfer")
                                       ("arnNamespace" . "transfer")
                                       ("cloudFormationName" . "Transfer")

@@ -47,6 +47,23 @@
 (smithy/sdk/service:define-service aws242app-registry :shape-name
                                    "AWS242AppRegistry" :version "2020-06-24"
                                    :title "AWS Service Catalog App Registry"
+                                   :operations
+                                   '(associate-attribute-group
+                                     associate-resource create-application
+                                     create-attribute-group delete-application
+                                     delete-attribute-group
+                                     disassociate-attribute-group
+                                     disassociate-resource get-application
+                                     get-associated-resource
+                                     get-attribute-group get-configuration
+                                     list-applications
+                                     list-associated-attribute-groups
+                                     list-associated-resources
+                                     list-attribute-groups
+                                     list-attribute-groups-for-application
+                                     list-tags-for-resource put-configuration
+                                     sync-resource tag-resource untag-resource
+                                     update-application update-attribute-group)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Service Catalog AppRegistry")

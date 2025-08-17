@@ -57,6 +57,13 @@
 
 (smithy/sdk/service:define-service amazon-mwaa :shape-name "AmazonMWAA"
                                    :version "2020-07-01" :title "AmazonMWAA"
+                                   :operations
+                                   '(create-cli-token create-environment
+                                     create-web-login-token delete-environment
+                                     get-environment invoke-rest-api
+                                     list-environments list-tags-for-resource
+                                     publish-metrics tag-resource
+                                     untag-resource update-environment)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "MWAA")
                                       ("arnNamespace" . "airflow"))

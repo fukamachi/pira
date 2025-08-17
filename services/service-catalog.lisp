@@ -262,6 +262,83 @@
 (smithy/sdk/service:define-service aws242service-catalog-service :shape-name
                                    "AWS242ServiceCatalogService" :version
                                    "2015-12-10" :title "AWS Service Catalog"
+                                   :operations
+                                   '(accept-portfolio-share
+                                     associate-budget-with-resource
+                                     associate-principal-with-portfolio
+                                     associate-product-with-portfolio
+                                     associate-service-action-with-provisioning-artifact
+                                     associate-tag-option-with-resource
+                                     batch-associate-service-action-with-provisioning-artifact
+                                     batch-disassociate-service-action-from-provisioning-artifact
+                                     copy-product create-constraint
+                                     create-portfolio create-portfolio-share
+                                     create-product
+                                     create-provisioned-product-plan
+                                     create-provisioning-artifact
+                                     create-service-action create-tag-option
+                                     delete-constraint delete-portfolio
+                                     delete-portfolio-share delete-product
+                                     delete-provisioned-product-plan
+                                     delete-provisioning-artifact
+                                     delete-service-action delete-tag-option
+                                     describe-constraint
+                                     describe-copy-product-status
+                                     describe-portfolio
+                                     describe-portfolio-shares
+                                     describe-portfolio-share-status
+                                     describe-product describe-product-as-admin
+                                     describe-product-view
+                                     describe-provisioned-product
+                                     describe-provisioned-product-plan
+                                     describe-provisioning-artifact
+                                     describe-provisioning-parameters
+                                     describe-record describe-service-action
+                                     describe-service-action-execution-parameters
+                                     describe-tag-option
+                                     disable-awsorganizations-access
+                                     disassociate-budget-from-resource
+                                     disassociate-principal-from-portfolio
+                                     disassociate-product-from-portfolio
+                                     disassociate-service-action-from-provisioning-artifact
+                                     disassociate-tag-option-from-resource
+                                     enable-awsorganizations-access
+                                     execute-provisioned-product-plan
+                                     execute-provisioned-product-service-action
+                                     get-awsorganizations-access-status
+                                     get-provisioned-product-outputs
+                                     import-as-provisioned-product
+                                     list-accepted-portfolio-shares
+                                     list-budgets-for-resource
+                                     list-constraints-for-portfolio
+                                     list-launch-paths
+                                     list-organization-portfolio-access
+                                     list-portfolio-access list-portfolios
+                                     list-portfolios-for-product
+                                     list-principals-for-portfolio
+                                     list-provisioned-product-plans
+                                     list-provisioning-artifacts
+                                     list-provisioning-artifacts-for-service-action
+                                     list-record-history
+                                     list-resources-for-tag-option
+                                     list-service-actions
+                                     list-service-actions-for-provisioning-artifact
+                                     list-stack-instances-for-provisioned-product
+                                     list-tag-options
+                                     notify-provision-product-engine-workflow-result
+                                     notify-terminate-provisioned-product-engine-workflow-result
+                                     notify-update-provisioned-product-engine-workflow-result
+                                     provision-product reject-portfolio-share
+                                     scan-provisioned-products search-products
+                                     search-products-as-admin
+                                     search-provisioned-products
+                                     terminate-provisioned-product
+                                     update-constraint update-portfolio
+                                     update-portfolio-share update-product
+                                     update-provisioned-product
+                                     update-provisioned-product-properties
+                                     update-provisioning-artifact
+                                     update-service-action update-tag-option)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Service Catalog")

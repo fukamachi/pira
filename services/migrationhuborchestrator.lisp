@@ -124,7 +124,10 @@
 (smithy/sdk/service:define-service awsmigration-hub-orchestrator :shape-name
                                    "AWSMigrationHubOrchestrator" :version
                                    "2021-08-28" :title
-                                   "AWS Migration Hub Orchestrator" :traits
+                                   "AWS Migration Hub Orchestrator" :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MigrationHubOrchestrator")
                                       ("arnNamespace"

@@ -30,6 +30,9 @@
                                    "AmazonBedrockKeystoneRuntimeService"
                                    :version "2024-06-13" :title
                                    "Runtime for Amazon Bedrock Data Automation"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId"

@@ -2330,11 +2330,630 @@
 
 (smithy/sdk/service:define-service amazon-ec2 :shape-name "AmazonEC2" :version
                                    "2016-11-15" :title
-                                   "Amazon Elastic Compute Cloud"
+                                   "Amazon Elastic Compute Cloud" :operations
+                                   '(accept-address-transfer
+                                     accept-capacity-reservation-billing-ownership
+                                     accept-reserved-instances-exchange-quote
+                                     accept-transit-gateway-multicast-domain-associations
+                                     accept-transit-gateway-peering-attachment
+                                     accept-transit-gateway-vpc-attachment
+                                     accept-vpc-endpoint-connections
+                                     accept-vpc-peering-connection
+                                     advertise-byoip-cidr allocate-address
+                                     allocate-hosts allocate-ipam-pool-cidr
+                                     apply-security-groups-to-client-vpn-target-network
+                                     assign-ipv6addresses
+                                     assign-private-ip-addresses
+                                     assign-private-nat-gateway-address
+                                     associate-address
+                                     associate-capacity-reservation-billing-owner
+                                     associate-client-vpn-target-network
+                                     associate-dhcp-options
+                                     associate-enclave-certificate-iam-role
+                                     associate-iam-instance-profile
+                                     associate-instance-event-window
+                                     associate-ipam-byoasn
+                                     associate-ipam-resource-discovery
+                                     associate-nat-gateway-address
+                                     associate-route-server
+                                     associate-route-table
+                                     associate-security-group-vpc
+                                     associate-subnet-cidr-block
+                                     associate-transit-gateway-multicast-domain
+                                     associate-transit-gateway-policy-table
+                                     associate-transit-gateway-route-table
+                                     associate-trunk-interface
+                                     associate-vpc-cidr-block
+                                     attach-classic-link-vpc
+                                     attach-internet-gateway
+                                     attach-network-interface
+                                     attach-verified-access-trust-provider
+                                     attach-volume attach-vpn-gateway
+                                     authorize-client-vpn-ingress
+                                     authorize-security-group-egress
+                                     authorize-security-group-ingress
+                                     bundle-instance cancel-bundle-task
+                                     cancel-capacity-reservation
+                                     cancel-capacity-reservation-fleets
+                                     cancel-conversion-task
+                                     cancel-declarative-policies-report
+                                     cancel-export-task
+                                     cancel-image-launch-permission
+                                     cancel-import-task
+                                     cancel-reserved-instances-listing
+                                     cancel-spot-fleet-requests
+                                     cancel-spot-instance-requests
+                                     confirm-product-instance copy-fpga-image
+                                     copy-image copy-snapshot
+                                     create-capacity-reservation
+                                     create-capacity-reservation-by-splitting
+                                     create-capacity-reservation-fleet
+                                     create-carrier-gateway
+                                     create-client-vpn-endpoint
+                                     create-client-vpn-route create-coip-cidr
+                                     create-coip-pool create-customer-gateway
+                                     create-default-subnet create-default-vpc
+                                     create-delegate-mac-volume-ownership-task
+                                     create-dhcp-options
+                                     create-egress-only-internet-gateway
+                                     create-fleet create-flow-logs
+                                     create-fpga-image create-image
+                                     create-instance-connect-endpoint
+                                     create-instance-event-window
+                                     create-instance-export-task
+                                     create-internet-gateway create-ipam
+                                     create-ipam-external-resource-verification-token
+                                     create-ipam-pool
+                                     create-ipam-resource-discovery
+                                     create-ipam-scope create-key-pair
+                                     create-launch-template
+                                     create-launch-template-version
+                                     create-local-gateway-route
+                                     create-local-gateway-route-table
+                                     create-local-gateway-route-table-virtual-interface-group-association
+                                     create-local-gateway-route-table-vpc-association
+                                     create-local-gateway-virtual-interface
+                                     create-local-gateway-virtual-interface-group
+                                     create-mac-system-integrity-protection-modification-task
+                                     create-managed-prefix-list
+                                     create-nat-gateway create-network-acl
+                                     create-network-acl-entry
+                                     create-network-insights-access-scope
+                                     create-network-insights-path
+                                     create-network-interface
+                                     create-network-interface-permission
+                                     create-placement-group
+                                     create-public-ipv4pool
+                                     create-replace-root-volume-task
+                                     create-reserved-instances-listing
+                                     create-restore-image-task create-route
+                                     create-route-server
+                                     create-route-server-endpoint
+                                     create-route-server-peer
+                                     create-route-table create-security-group
+                                     create-snapshot create-snapshots
+                                     create-spot-datafeed-subscription
+                                     create-store-image-task create-subnet
+                                     create-subnet-cidr-reservation create-tags
+                                     create-traffic-mirror-filter
+                                     create-traffic-mirror-filter-rule
+                                     create-traffic-mirror-session
+                                     create-traffic-mirror-target
+                                     create-transit-gateway
+                                     create-transit-gateway-connect
+                                     create-transit-gateway-connect-peer
+                                     create-transit-gateway-multicast-domain
+                                     create-transit-gateway-peering-attachment
+                                     create-transit-gateway-policy-table
+                                     create-transit-gateway-prefix-list-reference
+                                     create-transit-gateway-route
+                                     create-transit-gateway-route-table
+                                     create-transit-gateway-route-table-announcement
+                                     create-transit-gateway-vpc-attachment
+                                     create-verified-access-endpoint
+                                     create-verified-access-group
+                                     create-verified-access-instance
+                                     create-verified-access-trust-provider
+                                     create-volume create-vpc
+                                     create-vpc-block-public-access-exclusion
+                                     create-vpc-endpoint
+                                     create-vpc-endpoint-connection-notification
+                                     create-vpc-endpoint-service-configuration
+                                     create-vpc-peering-connection
+                                     create-vpn-connection
+                                     create-vpn-connection-route
+                                     create-vpn-gateway delete-carrier-gateway
+                                     delete-client-vpn-endpoint
+                                     delete-client-vpn-route delete-coip-cidr
+                                     delete-coip-pool delete-customer-gateway
+                                     delete-dhcp-options
+                                     delete-egress-only-internet-gateway
+                                     delete-fleets delete-flow-logs
+                                     delete-fpga-image
+                                     delete-instance-connect-endpoint
+                                     delete-instance-event-window
+                                     delete-internet-gateway delete-ipam
+                                     delete-ipam-external-resource-verification-token
+                                     delete-ipam-pool
+                                     delete-ipam-resource-discovery
+                                     delete-ipam-scope delete-key-pair
+                                     delete-launch-template
+                                     delete-launch-template-versions
+                                     delete-local-gateway-route
+                                     delete-local-gateway-route-table
+                                     delete-local-gateway-route-table-virtual-interface-group-association
+                                     delete-local-gateway-route-table-vpc-association
+                                     delete-local-gateway-virtual-interface
+                                     delete-local-gateway-virtual-interface-group
+                                     delete-managed-prefix-list
+                                     delete-nat-gateway delete-network-acl
+                                     delete-network-acl-entry
+                                     delete-network-insights-access-scope
+                                     delete-network-insights-access-scope-analysis
+                                     delete-network-insights-analysis
+                                     delete-network-insights-path
+                                     delete-network-interface
+                                     delete-network-interface-permission
+                                     delete-placement-group
+                                     delete-public-ipv4pool
+                                     delete-queued-reserved-instances
+                                     delete-route delete-route-server
+                                     delete-route-server-endpoint
+                                     delete-route-server-peer
+                                     delete-route-table delete-security-group
+                                     delete-snapshot
+                                     delete-spot-datafeed-subscription
+                                     delete-subnet
+                                     delete-subnet-cidr-reservation delete-tags
+                                     delete-traffic-mirror-filter
+                                     delete-traffic-mirror-filter-rule
+                                     delete-traffic-mirror-session
+                                     delete-traffic-mirror-target
+                                     delete-transit-gateway
+                                     delete-transit-gateway-connect
+                                     delete-transit-gateway-connect-peer
+                                     delete-transit-gateway-multicast-domain
+                                     delete-transit-gateway-peering-attachment
+                                     delete-transit-gateway-policy-table
+                                     delete-transit-gateway-prefix-list-reference
+                                     delete-transit-gateway-route
+                                     delete-transit-gateway-route-table
+                                     delete-transit-gateway-route-table-announcement
+                                     delete-transit-gateway-vpc-attachment
+                                     delete-verified-access-endpoint
+                                     delete-verified-access-group
+                                     delete-verified-access-instance
+                                     delete-verified-access-trust-provider
+                                     delete-volume delete-vpc
+                                     delete-vpc-block-public-access-exclusion
+                                     delete-vpc-endpoint-connection-notifications
+                                     delete-vpc-endpoints
+                                     delete-vpc-endpoint-service-configurations
+                                     delete-vpc-peering-connection
+                                     delete-vpn-connection
+                                     delete-vpn-connection-route
+                                     delete-vpn-gateway deprovision-byoip-cidr
+                                     deprovision-ipam-byoasn
+                                     deprovision-ipam-pool-cidr
+                                     deprovision-public-ipv4pool-cidr
+                                     deregister-image
+                                     deregister-instance-event-notification-attributes
+                                     deregister-transit-gateway-multicast-group-members
+                                     deregister-transit-gateway-multicast-group-sources
+                                     describe-account-attributes
+                                     describe-addresses
+                                     describe-addresses-attribute
+                                     describe-address-transfers
+                                     describe-aggregate-id-format
+                                     describe-availability-zones
+                                     describe-aws-network-performance-metric-subscriptions
+                                     describe-bundle-tasks describe-byoip-cidrs
+                                     describe-capacity-block-extension-history
+                                     describe-capacity-block-extension-offerings
+                                     describe-capacity-block-offerings
+                                     describe-capacity-blocks
+                                     describe-capacity-block-status
+                                     describe-capacity-reservation-billing-requests
+                                     describe-capacity-reservation-fleets
+                                     describe-capacity-reservations
+                                     describe-carrier-gateways
+                                     describe-classic-link-instances
+                                     describe-client-vpn-authorization-rules
+                                     describe-client-vpn-connections
+                                     describe-client-vpn-endpoints
+                                     describe-client-vpn-routes
+                                     describe-client-vpn-target-networks
+                                     describe-coip-pools
+                                     describe-conversion-tasks
+                                     describe-customer-gateways
+                                     describe-declarative-policies-reports
+                                     describe-dhcp-options
+                                     describe-egress-only-internet-gateways
+                                     describe-elastic-gpus
+                                     describe-export-image-tasks
+                                     describe-export-tasks
+                                     describe-fast-launch-images
+                                     describe-fast-snapshot-restores
+                                     describe-fleet-history
+                                     describe-fleet-instances describe-fleets
+                                     describe-flow-logs
+                                     describe-fpga-image-attribute
+                                     describe-fpga-images
+                                     describe-host-reservation-offerings
+                                     describe-host-reservations describe-hosts
+                                     describe-iam-instance-profile-associations
+                                     describe-identity-id-format
+                                     describe-id-format
+                                     describe-image-attribute describe-images
+                                     describe-import-image-tasks
+                                     describe-import-snapshot-tasks
+                                     describe-instance-attribute
+                                     describe-instance-connect-endpoints
+                                     describe-instance-credit-specifications
+                                     describe-instance-event-notification-attributes
+                                     describe-instance-event-windows
+                                     describe-instance-image-metadata
+                                     describe-instances
+                                     describe-instance-status
+                                     describe-instance-topology
+                                     describe-instance-type-offerings
+                                     describe-instance-types
+                                     describe-internet-gateways
+                                     describe-ipam-byoasn
+                                     describe-ipam-external-resource-verification-tokens
+                                     describe-ipam-pools
+                                     describe-ipam-resource-discoveries
+                                     describe-ipam-resource-discovery-associations
+                                     describe-ipams describe-ipam-scopes
+                                     describe-ipv6pools describe-key-pairs
+                                     describe-launch-templates
+                                     describe-launch-template-versions
+                                     describe-local-gateway-route-tables
+                                     describe-local-gateway-route-table-virtual-interface-group-associations
+                                     describe-local-gateway-route-table-vpc-associations
+                                     describe-local-gateways
+                                     describe-local-gateway-virtual-interface-groups
+                                     describe-local-gateway-virtual-interfaces
+                                     describe-locked-snapshots
+                                     describe-mac-hosts
+                                     describe-mac-modification-tasks
+                                     describe-managed-prefix-lists
+                                     describe-moving-addresses
+                                     describe-nat-gateways
+                                     describe-network-acls
+                                     describe-network-insights-access-scope-analyses
+                                     describe-network-insights-access-scopes
+                                     describe-network-insights-analyses
+                                     describe-network-insights-paths
+                                     describe-network-interface-attribute
+                                     describe-network-interface-permissions
+                                     describe-network-interfaces
+                                     describe-outpost-lags
+                                     describe-placement-groups
+                                     describe-prefix-lists
+                                     describe-principal-id-format
+                                     describe-public-ipv4pools describe-regions
+                                     describe-replace-root-volume-tasks
+                                     describe-reserved-instances
+                                     describe-reserved-instances-listings
+                                     describe-reserved-instances-modifications
+                                     describe-reserved-instances-offerings
+                                     describe-route-server-endpoints
+                                     describe-route-server-peers
+                                     describe-route-servers
+                                     describe-route-tables
+                                     describe-scheduled-instance-availability
+                                     describe-scheduled-instances
+                                     describe-security-group-references
+                                     describe-security-group-rules
+                                     describe-security-groups
+                                     describe-security-group-vpc-associations
+                                     describe-service-link-virtual-interfaces
+                                     describe-snapshot-attribute
+                                     describe-snapshots
+                                     describe-snapshot-tier-status
+                                     describe-spot-datafeed-subscription
+                                     describe-spot-fleet-instances
+                                     describe-spot-fleet-request-history
+                                     describe-spot-fleet-requests
+                                     describe-spot-instance-requests
+                                     describe-spot-price-history
+                                     describe-stale-security-groups
+                                     describe-store-image-tasks
+                                     describe-subnets describe-tags
+                                     describe-traffic-mirror-filter-rules
+                                     describe-traffic-mirror-filters
+                                     describe-traffic-mirror-sessions
+                                     describe-traffic-mirror-targets
+                                     describe-transit-gateway-attachments
+                                     describe-transit-gateway-connect-peers
+                                     describe-transit-gateway-connects
+                                     describe-transit-gateway-multicast-domains
+                                     describe-transit-gateway-peering-attachments
+                                     describe-transit-gateway-policy-tables
+                                     describe-transit-gateway-route-table-announcements
+                                     describe-transit-gateway-route-tables
+                                     describe-transit-gateways
+                                     describe-transit-gateway-vpc-attachments
+                                     describe-trunk-interface-associations
+                                     describe-verified-access-endpoints
+                                     describe-verified-access-groups
+                                     describe-verified-access-instance-logging-configurations
+                                     describe-verified-access-instances
+                                     describe-verified-access-trust-providers
+                                     describe-volume-attribute describe-volumes
+                                     describe-volumes-modifications
+                                     describe-volume-status
+                                     describe-vpc-attribute
+                                     describe-vpc-block-public-access-exclusions
+                                     describe-vpc-block-public-access-options
+                                     describe-vpc-classic-link
+                                     describe-vpc-classic-link-dns-support
+                                     describe-vpc-endpoint-associations
+                                     describe-vpc-endpoint-connection-notifications
+                                     describe-vpc-endpoint-connections
+                                     describe-vpc-endpoints
+                                     describe-vpc-endpoint-service-configurations
+                                     describe-vpc-endpoint-service-permissions
+                                     describe-vpc-endpoint-services
+                                     describe-vpc-peering-connections
+                                     describe-vpcs describe-vpn-connections
+                                     describe-vpn-gateways
+                                     detach-classic-link-vpc
+                                     detach-internet-gateway
+                                     detach-network-interface
+                                     detach-verified-access-trust-provider
+                                     detach-volume detach-vpn-gateway
+                                     disable-address-transfer
+                                     disable-allowed-images-settings
+                                     disable-aws-network-performance-metric-subscription
+                                     disable-ebs-encryption-by-default
+                                     disable-fast-launch
+                                     disable-fast-snapshot-restores
+                                     disable-image
+                                     disable-image-block-public-access
+                                     disable-image-deprecation
+                                     disable-image-deregistration-protection
+                                     disable-ipam-organization-admin-account
+                                     disable-route-server-propagation
+                                     disable-serial-console-access
+                                     disable-snapshot-block-public-access
+                                     disable-transit-gateway-route-table-propagation
+                                     disable-vgw-route-propagation
+                                     disable-vpc-classic-link
+                                     disable-vpc-classic-link-dns-support
+                                     disassociate-address
+                                     disassociate-capacity-reservation-billing-owner
+                                     disassociate-client-vpn-target-network
+                                     disassociate-enclave-certificate-iam-role
+                                     disassociate-iam-instance-profile
+                                     disassociate-instance-event-window
+                                     disassociate-ipam-byoasn
+                                     disassociate-ipam-resource-discovery
+                                     disassociate-nat-gateway-address
+                                     disassociate-route-server
+                                     disassociate-route-table
+                                     disassociate-security-group-vpc
+                                     disassociate-subnet-cidr-block
+                                     disassociate-transit-gateway-multicast-domain
+                                     disassociate-transit-gateway-policy-table
+                                     disassociate-transit-gateway-route-table
+                                     disassociate-trunk-interface
+                                     disassociate-vpc-cidr-block
+                                     enable-address-transfer
+                                     enable-allowed-images-settings
+                                     enable-aws-network-performance-metric-subscription
+                                     enable-ebs-encryption-by-default
+                                     enable-fast-launch
+                                     enable-fast-snapshot-restores enable-image
+                                     enable-image-block-public-access
+                                     enable-image-deprecation
+                                     enable-image-deregistration-protection
+                                     enable-ipam-organization-admin-account
+                                     enable-reachability-analyzer-organization-sharing
+                                     enable-route-server-propagation
+                                     enable-serial-console-access
+                                     enable-snapshot-block-public-access
+                                     enable-transit-gateway-route-table-propagation
+                                     enable-vgw-route-propagation
+                                     enable-volume-io enable-vpc-classic-link
+                                     enable-vpc-classic-link-dns-support
+                                     export-client-vpn-client-certificate-revocation-list
+                                     export-client-vpn-client-configuration
+                                     export-image export-transit-gateway-routes
+                                     export-verified-access-instance-client-configuration
+                                     get-active-vpn-tunnel-status
+                                     get-allowed-images-settings
+                                     get-associated-enclave-certificate-iam-roles
+                                     get-associated-ipv6pool-cidrs
+                                     get-aws-network-performance-data
+                                     get-capacity-reservation-usage
+                                     get-coip-pool-usage get-console-output
+                                     get-console-screenshot
+                                     get-declarative-policies-report-summary
+                                     get-default-credit-specification
+                                     get-ebs-default-kms-key-id
+                                     get-ebs-encryption-by-default
+                                     get-flow-logs-integration-template
+                                     get-groups-for-capacity-reservation
+                                     get-host-reservation-purchase-preview
+                                     get-image-block-public-access-state
+                                     get-instance-metadata-defaults
+                                     get-instance-tpm-ek-pub
+                                     get-instance-types-from-instance-requirements
+                                     get-instance-uefi-data
+                                     get-ipam-address-history
+                                     get-ipam-discovered-accounts
+                                     get-ipam-discovered-public-addresses
+                                     get-ipam-discovered-resource-cidrs
+                                     get-ipam-pool-allocations
+                                     get-ipam-pool-cidrs
+                                     get-ipam-resource-cidrs
+                                     get-launch-template-data
+                                     get-managed-prefix-list-associations
+                                     get-managed-prefix-list-entries
+                                     get-network-insights-access-scope-analysis-findings
+                                     get-network-insights-access-scope-content
+                                     get-password-data
+                                     get-reserved-instances-exchange-quote
+                                     get-route-server-associations
+                                     get-route-server-propagations
+                                     get-route-server-routing-database
+                                     get-security-groups-for-vpc
+                                     get-serial-console-access-status
+                                     get-snapshot-block-public-access-state
+                                     get-spot-placement-scores
+                                     get-subnet-cidr-reservations
+                                     get-transit-gateway-attachment-propagations
+                                     get-transit-gateway-multicast-domain-associations
+                                     get-transit-gateway-policy-table-associations
+                                     get-transit-gateway-policy-table-entries
+                                     get-transit-gateway-prefix-list-references
+                                     get-transit-gateway-route-table-associations
+                                     get-transit-gateway-route-table-propagations
+                                     get-verified-access-endpoint-policy
+                                     get-verified-access-endpoint-targets
+                                     get-verified-access-group-policy
+                                     get-vpn-connection-device-sample-configuration
+                                     get-vpn-connection-device-types
+                                     get-vpn-tunnel-replacement-status
+                                     import-client-vpn-client-certificate-revocation-list
+                                     import-image import-instance
+                                     import-key-pair import-snapshot
+                                     import-volume list-images-in-recycle-bin
+                                     list-snapshots-in-recycle-bin
+                                     lock-snapshot modify-address-attribute
+                                     modify-availability-zone-group
+                                     modify-capacity-reservation
+                                     modify-capacity-reservation-fleet
+                                     modify-client-vpn-endpoint
+                                     modify-default-credit-specification
+                                     modify-ebs-default-kms-key-id modify-fleet
+                                     modify-fpga-image-attribute modify-hosts
+                                     modify-identity-id-format modify-id-format
+                                     modify-image-attribute
+                                     modify-instance-attribute
+                                     modify-instance-capacity-reservation-attributes
+                                     modify-instance-cpu-options
+                                     modify-instance-credit-specification
+                                     modify-instance-event-start-time
+                                     modify-instance-event-window
+                                     modify-instance-maintenance-options
+                                     modify-instance-metadata-defaults
+                                     modify-instance-metadata-options
+                                     modify-instance-network-performance-options
+                                     modify-instance-placement modify-ipam
+                                     modify-ipam-pool modify-ipam-resource-cidr
+                                     modify-ipam-resource-discovery
+                                     modify-ipam-scope modify-launch-template
+                                     modify-local-gateway-route
+                                     modify-managed-prefix-list
+                                     modify-network-interface-attribute
+                                     modify-private-dns-name-options
+                                     modify-public-ip-dns-name-options
+                                     modify-reserved-instances
+                                     modify-route-server
+                                     modify-security-group-rules
+                                     modify-snapshot-attribute
+                                     modify-snapshot-tier
+                                     modify-spot-fleet-request
+                                     modify-subnet-attribute
+                                     modify-traffic-mirror-filter-network-services
+                                     modify-traffic-mirror-filter-rule
+                                     modify-traffic-mirror-session
+                                     modify-transit-gateway
+                                     modify-transit-gateway-prefix-list-reference
+                                     modify-transit-gateway-vpc-attachment
+                                     modify-verified-access-endpoint
+                                     modify-verified-access-endpoint-policy
+                                     modify-verified-access-group
+                                     modify-verified-access-group-policy
+                                     modify-verified-access-instance
+                                     modify-verified-access-instance-logging-configuration
+                                     modify-verified-access-trust-provider
+                                     modify-volume modify-volume-attribute
+                                     modify-vpc-attribute
+                                     modify-vpc-block-public-access-exclusion
+                                     modify-vpc-block-public-access-options
+                                     modify-vpc-endpoint
+                                     modify-vpc-endpoint-connection-notification
+                                     modify-vpc-endpoint-service-configuration
+                                     modify-vpc-endpoint-service-payer-responsibility
+                                     modify-vpc-endpoint-service-permissions
+                                     modify-vpc-peering-connection-options
+                                     modify-vpc-tenancy modify-vpn-connection
+                                     modify-vpn-connection-options
+                                     modify-vpn-tunnel-certificate
+                                     modify-vpn-tunnel-options
+                                     monitor-instances move-address-to-vpc
+                                     move-byoip-cidr-to-ipam
+                                     move-capacity-reservation-instances
+                                     provision-byoip-cidr provision-ipam-byoasn
+                                     provision-ipam-pool-cidr
+                                     provision-public-ipv4pool-cidr
+                                     purchase-capacity-block
+                                     purchase-capacity-block-extension
+                                     purchase-host-reservation
+                                     purchase-reserved-instances-offering
+                                     purchase-scheduled-instances
+                                     reboot-instances register-image
+                                     register-instance-event-notification-attributes
+                                     register-transit-gateway-multicast-group-members
+                                     register-transit-gateway-multicast-group-sources
+                                     reject-capacity-reservation-billing-ownership
+                                     reject-transit-gateway-multicast-domain-associations
+                                     reject-transit-gateway-peering-attachment
+                                     reject-transit-gateway-vpc-attachment
+                                     reject-vpc-endpoint-connections
+                                     reject-vpc-peering-connection
+                                     release-address release-hosts
+                                     release-ipam-pool-allocation
+                                     replace-iam-instance-profile-association
+                                     replace-image-criteria-in-allowed-images-settings
+                                     replace-network-acl-association
+                                     replace-network-acl-entry replace-route
+                                     replace-route-table-association
+                                     replace-transit-gateway-route
+                                     replace-vpn-tunnel report-instance-status
+                                     request-spot-fleet request-spot-instances
+                                     reset-address-attribute
+                                     reset-ebs-default-kms-key-id
+                                     reset-fpga-image-attribute
+                                     reset-image-attribute
+                                     reset-instance-attribute
+                                     reset-network-interface-attribute
+                                     reset-snapshot-attribute
+                                     restore-address-to-classic
+                                     restore-image-from-recycle-bin
+                                     restore-managed-prefix-list-version
+                                     restore-snapshot-from-recycle-bin
+                                     restore-snapshot-tier
+                                     revoke-client-vpn-ingress
+                                     revoke-security-group-egress
+                                     revoke-security-group-ingress
+                                     run-instances run-scheduled-instances
+                                     search-local-gateway-routes
+                                     search-transit-gateway-multicast-groups
+                                     search-transit-gateway-routes
+                                     send-diagnostic-interrupt
+                                     start-declarative-policies-report
+                                     start-instances
+                                     start-network-insights-access-scope-analysis
+                                     start-network-insights-analysis
+                                     start-vpc-endpoint-service-private-dns-verification
+                                     stop-instances
+                                     terminate-client-vpn-connections
+                                     terminate-instances unassign-ipv6addresses
+                                     unassign-private-ip-addresses
+                                     unassign-private-nat-gateway-address
+                                     unlock-snapshot unmonitor-instances
+                                     update-security-group-rule-descriptions-egress
+                                     update-security-group-rule-descriptions-ingress
+                                     withdraw-byoip-cidr)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://ec2.amazonaws.com/doc/2016-11-15"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://ec2.amazonaws.com/doc/2016-11-15"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "EC2")
                                       ("arnNamespace" . "ec2")

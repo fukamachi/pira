@@ -29,10 +29,22 @@
 (smithy/sdk/service:define-service media-store-20170901 :shape-name
                                    "MediaStore_20170901" :version "2017-09-01"
                                    :title "AWS Elemental MediaStore"
+                                   :operations
+                                   '(create-container delete-container
+                                     delete-container-policy delete-cors-policy
+                                     delete-lifecycle-policy
+                                     delete-metric-policy describe-container
+                                     get-container-policy get-cors-policy
+                                     get-lifecycle-policy get-metric-policy
+                                     list-containers list-tags-for-resource
+                                     put-container-policy put-cors-policy
+                                     put-lifecycle-policy put-metric-policy
+                                     start-access-logging stop-access-logging
+                                     tag-resource untag-resource)
                                    :xml-namespace
-                                   '(:uri
-                                     "https://mediastore.amazonaws.com/doc/2017-09-01"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "https://mediastore.amazonaws.com/doc/2017-09-01"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MediaStore")

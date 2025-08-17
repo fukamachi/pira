@@ -99,7 +99,47 @@
 
 (smithy/sdk/service:define-service api-gateway-v2 :shape-name "ApiGatewayV2"
                                    :version "2018-11-29" :title
-                                   "AmazonApiGatewayV2" :traits
+                                   "AmazonApiGatewayV2" :operations
+                                   '(create-api create-api-mapping
+                                     create-authorizer create-deployment
+                                     create-domain-name create-integration
+                                     create-integration-response create-model
+                                     create-route create-route-response
+                                     create-routing-rule create-stage
+                                     create-vpc-link delete-access-log-settings
+                                     delete-api delete-api-mapping
+                                     delete-authorizer
+                                     delete-cors-configuration
+                                     delete-deployment delete-domain-name
+                                     delete-integration
+                                     delete-integration-response delete-model
+                                     delete-route
+                                     delete-route-request-parameter
+                                     delete-route-response
+                                     delete-route-settings delete-routing-rule
+                                     delete-stage delete-vpc-link export-api
+                                     get-api get-api-mapping get-api-mappings
+                                     get-apis get-authorizer get-authorizers
+                                     get-deployment get-deployments
+                                     get-domain-name get-domain-names
+                                     get-integration get-integration-response
+                                     get-integration-responses get-integrations
+                                     get-model get-models get-model-template
+                                     get-route get-route-response
+                                     get-route-responses get-routes
+                                     get-routing-rule get-stage get-stages
+                                     get-tags get-vpc-link get-vpc-links
+                                     import-api list-routing-rules
+                                     put-routing-rule reimport-api
+                                     reset-authorizers-cache tag-resource
+                                     untag-resource update-api
+                                     update-api-mapping update-authorizer
+                                     update-deployment update-domain-name
+                                     update-integration
+                                     update-integration-response update-model
+                                     update-route update-route-response
+                                     update-stage update-vpc-link)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ApiGatewayV2")
                                       ("arnNamespace" . "apigateway")

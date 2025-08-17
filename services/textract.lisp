@@ -80,6 +80,23 @@
 
 (smithy/sdk/service:define-service textract :shape-name "Textract" :version
                                    "2018-06-27" :title "Amazon Textract"
+                                   :operations
+                                   '(analyze-document analyze-expense
+                                     analyze-id create-adapter
+                                     create-adapter-version delete-adapter
+                                     delete-adapter-version
+                                     detect-document-text get-adapter
+                                     get-adapter-version get-document-analysis
+                                     get-document-text-detection
+                                     get-expense-analysis get-lending-analysis
+                                     get-lending-analysis-summary list-adapters
+                                     list-adapter-versions
+                                     list-tags-for-resource
+                                     start-document-analysis
+                                     start-document-text-detection
+                                     start-expense-analysis
+                                     start-lending-analysis tag-resource
+                                     untag-resource update-adapter)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Textract")
                                       ("arnNamespace" . "textract")

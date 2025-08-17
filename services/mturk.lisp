@@ -67,10 +67,43 @@
 (smithy/sdk/service:define-service mturk-requester-service-v20170117
                                    :shape-name "MTurkRequesterServiceV20170117"
                                    :version "2017-01-17" :title
-                                   "Amazon Mechanical Turk" :xml-namespace
-                                   '(:uri
-                                     "http://requester.mturk.com/2017-01-17/"
-                                     :prefix common-lisp:nil)
+                                   "Amazon Mechanical Turk" :operations
+                                   '(accept-qualification-request
+                                     approve-assignment
+                                     associate-qualification-with-worker
+                                     create-additional-assignments-for-hit
+                                     create-hit create-hittype
+                                     create-hitwith-hittype
+                                     create-qualification-type
+                                     create-worker-block delete-hit
+                                     delete-qualification-type
+                                     delete-worker-block
+                                     disassociate-qualification-from-worker
+                                     get-account-balance get-assignment
+                                     get-file-upload-url get-hit
+                                     get-qualification-score
+                                     get-qualification-type
+                                     list-assignments-for-hit
+                                     list-bonus-payments list-hits
+                                     list-hits-for-qualification-type
+                                     list-qualification-requests
+                                     list-qualification-types
+                                     list-reviewable-hits
+                                     list-review-policy-results-for-hit
+                                     list-worker-blocks
+                                     list-workers-with-qualification-type
+                                     notify-workers reject-assignment
+                                     reject-qualification-request send-bonus
+                                     send-test-event-notification
+                                     update-expiration-for-hit
+                                     update-hitreview-status
+                                     update-hittype-of-hit
+                                     update-notification-settings
+                                     update-qualification-type)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://requester.mturk.com/2017-01-17/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "MTurk")
                                       ("arnNamespace" . "mturk-requester")

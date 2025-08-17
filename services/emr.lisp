@@ -193,10 +193,58 @@
 
 (smithy/sdk/service:define-service elastic-map-reduce :shape-name
                                    "ElasticMapReduce" :version "2009-03-31"
-                                   :title "Amazon EMR" :xml-namespace
-                                   '(:uri
-                                     "http://elasticmapreduce.amazonaws.com/doc/2009-03-31"
-                                     :prefix common-lisp:nil)
+                                   :title "Amazon EMR" :operations
+                                   '(add-instance-fleet add-instance-groups
+                                     add-job-flow-steps add-tags cancel-steps
+                                     create-persistent-app-ui
+                                     create-security-configuration
+                                     create-studio
+                                     create-studio-session-mapping
+                                     delete-security-configuration
+                                     delete-studio
+                                     delete-studio-session-mapping
+                                     describe-cluster describe-job-flows
+                                     describe-notebook-execution
+                                     describe-persistent-app-ui
+                                     describe-release-label
+                                     describe-security-configuration
+                                     describe-step describe-studio
+                                     get-auto-termination-policy
+                                     get-block-public-access-configuration
+                                     get-cluster-session-credentials
+                                     get-managed-scaling-policy
+                                     get-on-cluster-app-uipresigned-url
+                                     get-persistent-app-uipresigned-url
+                                     get-studio-session-mapping
+                                     list-bootstrap-actions list-clusters
+                                     list-instance-fleets list-instance-groups
+                                     list-instances list-notebook-executions
+                                     list-release-labels
+                                     list-security-configurations list-steps
+                                     list-studios list-studio-session-mappings
+                                     list-supported-instance-types
+                                     modify-cluster modify-instance-fleet
+                                     modify-instance-groups
+                                     put-auto-scaling-policy
+                                     put-auto-termination-policy
+                                     put-block-public-access-configuration
+                                     put-managed-scaling-policy
+                                     remove-auto-scaling-policy
+                                     remove-auto-termination-policy
+                                     remove-managed-scaling-policy remove-tags
+                                     run-job-flow
+                                     set-keep-job-flow-alive-when-no-steps
+                                     set-termination-protection
+                                     set-unhealthy-node-replacement
+                                     set-visible-to-all-users
+                                     start-notebook-execution
+                                     stop-notebook-execution
+                                     terminate-job-flows update-studio
+                                     update-studio-session-mapping)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://elasticmapreduce.amazonaws.com/doc/2009-03-31"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "EMR")
                                       ("arnNamespace" . "elasticmapreduce")

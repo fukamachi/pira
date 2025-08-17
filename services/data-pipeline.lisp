@@ -32,10 +32,22 @@
 
 (smithy/sdk/service:define-service data-pipeline :shape-name "DataPipeline"
                                    :version "2012-10-29" :title
-                                   "AWS Data Pipeline" :xml-namespace
-                                   '(:uri
-                                     "http://datapipeline.amazonaws.com/doc/2012-10-29/"
-                                     :prefix common-lisp:nil)
+                                   "AWS Data Pipeline" :operations
+                                   '(activate-pipeline add-tags create-pipeline
+                                     deactivate-pipeline delete-pipeline
+                                     describe-objects describe-pipelines
+                                     evaluate-expression
+                                     get-pipeline-definition list-pipelines
+                                     poll-for-task put-pipeline-definition
+                                     query-objects remove-tags
+                                     report-task-progress
+                                     report-task-runner-heartbeat set-status
+                                     set-task-status
+                                     validate-pipeline-definition)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://datapipeline.amazonaws.com/doc/2012-10-29/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Data Pipeline")

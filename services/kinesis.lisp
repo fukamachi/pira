@@ -58,10 +58,31 @@
 
 (smithy/sdk/service:define-service kinesis-20131202 :shape-name
                                    "Kinesis_20131202" :version "2013-12-02"
-                                   :title "Amazon Kinesis" :xml-namespace
-                                   '(:uri
-                                     "http://kinesis.amazonaws.com/doc/2013-12-02"
-                                     :prefix common-lisp:nil)
+                                   :title "Amazon Kinesis" :operations
+                                   '(add-tags-to-stream create-stream
+                                     decrease-stream-retention-period
+                                     delete-resource-policy delete-stream
+                                     deregister-stream-consumer describe-limits
+                                     describe-stream describe-stream-consumer
+                                     describe-stream-summary
+                                     disable-enhanced-monitoring
+                                     enable-enhanced-monitoring get-records
+                                     get-resource-policy get-shard-iterator
+                                     increase-stream-retention-period
+                                     list-shards list-stream-consumers
+                                     list-streams list-tags-for-resource
+                                     list-tags-for-stream merge-shards
+                                     put-record put-records put-resource-policy
+                                     register-stream-consumer
+                                     remove-tags-from-stream split-shard
+                                     start-stream-encryption
+                                     stop-stream-encryption subscribe-to-shard
+                                     tag-resource untag-resource
+                                     update-shard-count update-stream-mode)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://kinesis.amazonaws.com/doc/2013-12-02"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Kinesis")
                                       ("arnNamespace" . "kinesis")

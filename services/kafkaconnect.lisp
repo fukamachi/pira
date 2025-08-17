@@ -95,6 +95,19 @@
 (smithy/sdk/service:define-service kafka-connect :shape-name "KafkaConnect"
                                    :version "2021-09-14" :title
                                    "Managed Streaming for Kafka Connect"
+                                   :operations
+                                   '(create-connector create-custom-plugin
+                                     create-worker-configuration
+                                     delete-connector delete-custom-plugin
+                                     delete-worker-configuration
+                                     describe-connector
+                                     describe-connector-operation
+                                     describe-custom-plugin
+                                     describe-worker-configuration
+                                     list-connector-operations list-connectors
+                                     list-custom-plugins list-tags-for-resource
+                                     list-worker-configurations tag-resource
+                                     untag-resource update-connector)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "KafkaConnect")

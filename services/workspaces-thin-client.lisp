@@ -40,7 +40,16 @@
 
 (smithy/sdk/service:define-service thin-client :shape-name "ThinClient"
                                    :version "2023-08-22" :title
-                                   "Amazon WorkSpaces Thin Client" :traits
+                                   "Amazon WorkSpaces Thin Client" :operations
+                                   '(create-environment delete-device
+                                     delete-environment deregister-device
+                                     get-device get-environment
+                                     get-software-set list-devices
+                                     list-environments list-software-sets
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-device
+                                     update-environment update-software-set)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "WorkSpaces Thin Client")
                                       ("arnNamespace" . "thinclient")

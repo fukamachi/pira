@@ -252,7 +252,24 @@
                                    :shape-name
                                    "SandstoneConfigurationServiceLambda"
                                    :version "2020-08-23" :title
-                                   "Amazon Appflow" :traits
+                                   "Amazon Appflow" :operations
+                                   '(cancel-flow-executions
+                                     create-connector-profile create-flow
+                                     delete-connector-profile delete-flow
+                                     describe-connector
+                                     describe-connector-entity
+                                     describe-connector-profiles
+                                     describe-connectors describe-flow
+                                     describe-flow-execution-records
+                                     list-connector-entities list-connectors
+                                     list-flows list-tags-for-resource
+                                     register-connector
+                                     reset-connector-metadata-cache start-flow
+                                     stop-flow tag-resource
+                                     unregister-connector untag-resource
+                                     update-connector-profile
+                                     update-connector-registration update-flow)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "Appflow")
                                       ("arnNamespace" . "appflow")
                                       ("cloudFormationName" . "Appflow")

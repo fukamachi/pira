@@ -9,7 +9,8 @@
 (smithy/sdk/service:define-service awsacuity-inlet-service :shape-name
                                    "AWSAcuityInletService" :version
                                    "2017-09-30" :title
-                                   "Amazon Kinesis Video Streams Media" :traits
+                                   "Amazon Kinesis Video Streams Media"
+                                   :operations '(get-media) :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Kinesis Video Media")
                                       ("arnNamespace" . "kinesisvideo")

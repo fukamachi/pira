@@ -11,7 +11,10 @@
 (smithy/sdk/service:define-service giraffe-message-in-transit-service
                                    :shape-name "GiraffeMessageInTransitService"
                                    :version "2019-05-01" :title
-                                   "Amazon WorkMail Message Flow" :traits
+                                   "Amazon WorkMail Message Flow" :operations
+                                   '(get-raw-message-content
+                                     put-raw-message-content)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "WorkMailMessageFlow")
                                       ("arnNamespace" . "workmailmessageflow")

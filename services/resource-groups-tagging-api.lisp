@@ -34,7 +34,14 @@
                                    :shape-name
                                    "ResourceGroupsTaggingAPI_20170126" :version
                                    "2017-01-26" :title
-                                   "AWS Resource Groups Tagging API" :traits
+                                   "AWS Resource Groups Tagging API"
+                                   :operations
+                                   '(describe-report-creation
+                                     get-compliance-summary get-resources
+                                     get-tag-keys get-tag-values
+                                     start-report-creation tag-resources
+                                     untag-resources)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Resource Groups Tagging API")
                                       ("arnNamespace" . "tagging")

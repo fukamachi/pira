@@ -46,6 +46,19 @@
 
 (smithy/sdk/service:define-service wallaby-service :shape-name "WallabyService"
                                    :version "2017-08-25" :title "AWS Signer"
+                                   :operations
+                                   '(add-profile-permission
+                                     cancel-signing-profile
+                                     describe-signing-job get-revocation-status
+                                     get-signing-platform get-signing-profile
+                                     list-profile-permissions list-signing-jobs
+                                     list-signing-platforms
+                                     list-signing-profiles
+                                     list-tags-for-resource put-signing-profile
+                                     remove-profile-permission revoke-signature
+                                     revoke-signing-profile sign-payload
+                                     start-signing-job tag-resource
+                                     untag-resource)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "signer")
                                       ("arnNamespace" . "signer")

@@ -83,7 +83,43 @@
 
 (smithy/sdk/service:define-service amazon-app-config :shape-name
                                    "AmazonAppConfig" :version "2019-10-09"
-                                   :title "Amazon AppConfig" :traits
+                                   :title "Amazon AppConfig" :operations
+                                   '(create-application
+                                     create-configuration-profile
+                                     create-deployment-strategy
+                                     create-environment create-extension
+                                     create-extension-association
+                                     create-hosted-configuration-version
+                                     delete-application
+                                     delete-configuration-profile
+                                     delete-deployment-strategy
+                                     delete-environment delete-extension
+                                     delete-extension-association
+                                     delete-hosted-configuration-version
+                                     get-account-settings get-application
+                                     get-configuration
+                                     get-configuration-profile get-deployment
+                                     get-deployment-strategy get-environment
+                                     get-extension get-extension-association
+                                     get-hosted-configuration-version
+                                     list-applications
+                                     list-configuration-profiles
+                                     list-deployments
+                                     list-deployment-strategies
+                                     list-environments
+                                     list-extension-associations
+                                     list-extensions
+                                     list-hosted-configuration-versions
+                                     list-tags-for-resource start-deployment
+                                     stop-deployment tag-resource
+                                     untag-resource update-account-settings
+                                     update-application
+                                     update-configuration-profile
+                                     update-deployment-strategy
+                                     update-environment update-extension
+                                     update-extension-association
+                                     validate-configuration)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "AppConfig")
                                       ("arnNamespace" . "appconfig")
                                       ("cloudFormationName" . "AppConfig")

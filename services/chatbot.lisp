@@ -73,10 +73,38 @@
 (smithy/sdk/service:define-service wheatley-orchestration-20171011 :shape-name
                                    "WheatleyOrchestration_20171011" :version
                                    "2017-10-11" :title "AWS Chatbot"
+                                   :operations
+                                   '(associate-to-configuration
+                                     create-chime-webhook-configuration
+                                     create-microsoft-teams-channel-configuration
+                                     create-slack-channel-configuration
+                                     delete-chime-webhook-configuration
+                                     delete-microsoft-teams-channel-configuration
+                                     delete-microsoft-teams-configured-team
+                                     delete-microsoft-teams-user-identity
+                                     delete-slack-channel-configuration
+                                     delete-slack-user-identity
+                                     delete-slack-workspace-authorization
+                                     describe-chime-webhook-configurations
+                                     describe-slack-channel-configurations
+                                     describe-slack-user-identities
+                                     describe-slack-workspaces
+                                     disassociate-from-configuration
+                                     get-account-preferences
+                                     get-microsoft-teams-channel-configuration
+                                     list-associations
+                                     list-microsoft-teams-channel-configurations
+                                     list-microsoft-teams-configured-teams
+                                     list-microsoft-teams-user-identities
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-account-preferences
+                                     update-chime-webhook-configuration
+                                     update-microsoft-teams-channel-configuration
+                                     update-slack-channel-configuration)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://wheatley.amazonaws.com/orchestration/2017-10-11/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://wheatley.amazonaws.com/orchestration/2017-10-11/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "chatbot")
                                       ("arnNamespace" . "chatbot")

@@ -32,7 +32,13 @@
 
 (smithy/sdk/service:define-service cloud-api-service :shape-name
                                    "CloudApiService" :version "2021-09-30"
-                                   :title "AWS Cloud Control API" :traits
+                                   :title "AWS Cloud Control API" :operations
+                                   '(cancel-resource-request create-resource
+                                     delete-resource get-resource
+                                     get-resource-request-status
+                                     list-resource-requests list-resources
+                                     update-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudControl")
                                       ("cloudTrailEventSource"

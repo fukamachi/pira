@@ -116,7 +116,11 @@
 
 (smithy/sdk/service:define-service verified-permissions :shape-name
                                    "VerifiedPermissions" :version "2021-12-01"
-                                   :title "Amazon Verified Permissions" :errors
+                                   :title "Amazon Verified Permissions"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :errors
                                    '(access-denied-exception
                                      internal-server-exception
                                      throttling-exception validation-exception)

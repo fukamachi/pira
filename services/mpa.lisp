@@ -62,7 +62,14 @@
 
 (smithy/sdk/service:define-service awsfluffy-core-service :shape-name
                                    "AWSFluffyCoreService" :version "2022-07-26"
-                                   :title "AWS Multi-party Approval" :traits
+                                   :title "AWS Multi-party Approval"
+                                   :operations
+                                   '(get-policy-version get-resource-policy
+                                     list-policies list-policy-versions
+                                     list-resource-policies
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service" ("sdkId" . "MPA")
                                       ("arnNamespace" . "mpa"))
                                      ("aws.auth#sigv4" ("name" . "mpa"))

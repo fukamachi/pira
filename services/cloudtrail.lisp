@@ -116,10 +116,42 @@
 
 (smithy/sdk/service:define-service cloud-trail-20131101 :shape-name
                                    "CloudTrail_20131101" :version "2013-11-01"
-                                   :title "AWS CloudTrail" :xml-namespace
-                                   '(:uri
-                                     "http://cloudtrail.amazonaws.com/doc/2013-11-01/"
-                                     :prefix common-lisp:nil)
+                                   :title "AWS CloudTrail" :operations
+                                   '(add-tags cancel-query create-channel
+                                     create-dashboard create-event-data-store
+                                     create-trail delete-channel
+                                     delete-dashboard delete-event-data-store
+                                     delete-resource-policy delete-trail
+                                     deregister-organization-delegated-admin
+                                     describe-query describe-trails
+                                     disable-federation enable-federation
+                                     generate-query get-channel get-dashboard
+                                     get-event-configuration
+                                     get-event-data-store get-event-selectors
+                                     get-import get-insight-selectors
+                                     get-query-results get-resource-policy
+                                     get-trail get-trail-status list-channels
+                                     list-dashboards list-event-data-stores
+                                     list-import-failures list-imports
+                                     list-insights-metric-data list-public-keys
+                                     list-queries list-tags list-trails
+                                     lookup-events put-event-configuration
+                                     put-event-selectors put-insight-selectors
+                                     put-resource-policy
+                                     register-organization-delegated-admin
+                                     remove-tags restore-event-data-store
+                                     search-sample-queries
+                                     start-dashboard-refresh
+                                     start-event-data-store-ingestion
+                                     start-import start-logging start-query
+                                     stop-event-data-store-ingestion
+                                     stop-import stop-logging update-channel
+                                     update-dashboard update-event-data-store
+                                     update-trail)
+                                   :xml-namespace
+                                   (:uri
+                                    "http://cloudtrail.amazonaws.com/doc/2013-11-01/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudTrail")

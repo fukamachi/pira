@@ -13,7 +13,8 @@
 (smithy/sdk/service:define-service cloud-trail-data-service :shape-name
                                    "CloudTrailDataService" :version
                                    "2021-08-11" :title
-                                   "AWS CloudTrail Data Service" :traits
+                                   "AWS CloudTrail Data Service" :operations
+                                   '(put-audit-events) :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudTrail Data")
                                       ("endpointPrefix" . "cloudtrail-data"))

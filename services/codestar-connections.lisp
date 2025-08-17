@@ -59,7 +59,26 @@
 (smithy/sdk/service:define-service code-star-connections-20191201 :shape-name
                                    "CodeStar_connections_20191201" :version
                                    "2019-12-01" :title
-                                   "AWS CodeStar connections" :traits
+                                   "AWS CodeStar connections" :operations
+                                   '(create-connection create-host
+                                     create-repository-link
+                                     create-sync-configuration
+                                     delete-connection delete-host
+                                     delete-repository-link
+                                     delete-sync-configuration get-connection
+                                     get-host get-repository-link
+                                     get-repository-sync-status
+                                     get-resource-sync-status
+                                     get-sync-blocker-summary
+                                     get-sync-configuration list-connections
+                                     list-hosts list-repository-links
+                                     list-repository-sync-definitions
+                                     list-sync-configurations
+                                     list-tags-for-resource tag-resource
+                                     untag-resource update-host
+                                     update-repository-link update-sync-blocker
+                                     update-sync-configuration)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodeStar connections")
                                       ("arnNamespace" . "codestar-connections")

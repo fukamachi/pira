@@ -22,6 +22,9 @@
                                    "AmazonSageMakerFeatureStoreRuntime"
                                    :version "2020-07-01" :title
                                    "Amazon SageMaker Feature Store Runtime"
+                                   :operations
+                                   '(batch-get-record delete-record get-record
+                                     put-record)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId"

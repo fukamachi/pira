@@ -43,10 +43,16 @@
                                    :shape-name
                                    "AWSSecurityTokenServiceV20110615" :version
                                    "2011-06-15" :title
-                                   "AWS Security Token Service" :xml-namespace
-                                   '(:uri
-                                     "https://sts.amazonaws.com/doc/2011-06-15/"
-                                     :prefix common-lisp:nil)
+                                   "AWS Security Token Service" :operations
+                                   '(assume-role assume-role-with-saml
+                                     assume-role-with-web-identity assume-root
+                                     decode-authorization-message
+                                     get-access-key-info get-caller-identity
+                                     get-federation-token get-session-token)
+                                   :xml-namespace
+                                   (:uri
+                                    "https://sts.amazonaws.com/doc/2011-06-15/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "STS")
                                       ("arnNamespace" . "sts")

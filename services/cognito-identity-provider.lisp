@@ -290,10 +290,97 @@
                                    "AWSCognitoIdentityProviderService" :version
                                    "2016-04-18" :title
                                    "Amazon Cognito Identity Provider"
+                                   :operations
+                                   '(add-custom-attributes
+                                     admin-add-user-to-group
+                                     admin-confirm-sign-up admin-create-user
+                                     admin-delete-user
+                                     admin-delete-user-attributes
+                                     admin-disable-provider-for-user
+                                     admin-disable-user admin-enable-user
+                                     admin-forget-device admin-get-device
+                                     admin-get-user admin-initiate-auth
+                                     admin-link-provider-for-user
+                                     admin-list-devices
+                                     admin-list-groups-for-user
+                                     admin-list-user-auth-events
+                                     admin-remove-user-from-group
+                                     admin-reset-user-password
+                                     admin-respond-to-auth-challenge
+                                     admin-set-user-mfapreference
+                                     admin-set-user-password
+                                     admin-set-user-settings
+                                     admin-update-auth-event-feedback
+                                     admin-update-device-status
+                                     admin-update-user-attributes
+                                     admin-user-global-sign-out
+                                     associate-software-token change-password
+                                     complete-web-authn-registration
+                                     confirm-device confirm-forgot-password
+                                     confirm-sign-up create-group
+                                     create-identity-provider
+                                     create-managed-login-branding
+                                     create-resource-server
+                                     create-user-import-job create-user-pool
+                                     create-user-pool-client
+                                     create-user-pool-domain delete-group
+                                     delete-identity-provider
+                                     delete-managed-login-branding
+                                     delete-resource-server delete-user
+                                     delete-user-attributes delete-user-pool
+                                     delete-user-pool-client
+                                     delete-user-pool-domain
+                                     delete-web-authn-credential
+                                     describe-identity-provider
+                                     describe-managed-login-branding
+                                     describe-managed-login-branding-by-client
+                                     describe-resource-server
+                                     describe-risk-configuration
+                                     describe-user-import-job
+                                     describe-user-pool
+                                     describe-user-pool-client
+                                     describe-user-pool-domain forget-device
+                                     forgot-password get-csvheader get-device
+                                     get-group
+                                     get-identity-provider-by-identifier
+                                     get-log-delivery-configuration
+                                     get-signing-certificate
+                                     get-tokens-from-refresh-token
+                                     get-uicustomization get-user
+                                     get-user-attribute-verification-code
+                                     get-user-auth-factors
+                                     get-user-pool-mfa-config global-sign-out
+                                     initiate-auth list-devices list-groups
+                                     list-identity-providers
+                                     list-resource-servers
+                                     list-tags-for-resource
+                                     list-user-import-jobs
+                                     list-user-pool-clients list-user-pools
+                                     list-users list-users-in-group
+                                     list-web-authn-credentials
+                                     resend-confirmation-code
+                                     respond-to-auth-challenge revoke-token
+                                     set-log-delivery-configuration
+                                     set-risk-configuration set-uicustomization
+                                     set-user-mfapreference
+                                     set-user-pool-mfa-config set-user-settings
+                                     sign-up start-user-import-job
+                                     start-web-authn-registration
+                                     stop-user-import-job tag-resource
+                                     untag-resource update-auth-event-feedback
+                                     update-device-status update-group
+                                     update-identity-provider
+                                     update-managed-login-branding
+                                     update-resource-server
+                                     update-user-attributes update-user-pool
+                                     update-user-pool-client
+                                     update-user-pool-domain
+                                     verify-software-token
+                                     verify-user-attribute)
                                    :xml-namespace
-                                   '(:uri
-                                     "http://cognito-idp.amazonaws.com/doc/2016-04-18/"
-                                     :prefix common-lisp:nil)
+                                   (:uri
+                                    "http://cognito-idp.amazonaws.com/doc/2016-04-18/"
+                                    :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Cognito Identity Provider")

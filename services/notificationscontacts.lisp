@@ -21,7 +21,11 @@
 (smithy/sdk/service:define-service notifications-contacts :shape-name
                                    "NotificationsContacts" :version
                                    "2018-05-10" :title
-                                   "AWS User Notifications Contacts" :traits
+                                   "AWS User Notifications Contacts"
+                                   :operations
+                                   '(list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "NotificationsContacts")
                                       ("arnNamespace"

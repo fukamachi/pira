@@ -71,7 +71,12 @@
 
 (smithy/sdk/service:define-service amazon-neptune-graph :shape-name
                                    "AmazonNeptuneGraph" :version "2023-11-29"
-                                   :title "Amazon Neptune Graph" :traits
+                                   :title "Amazon Neptune Graph" :operations
+                                   '(cancel-query execute-query
+                                     get-graph-summary get-query list-queries
+                                     list-tags-for-resource tag-resource
+                                     untag-resource)
+                                   :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Neptune Graph")
                                       ("arnNamespace" . "neptune-graph")
