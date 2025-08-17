@@ -180,9 +180,9 @@
                                      untag-resource update-application
                                      update-deployment-group)
                                    :xml-namespace
-                                   (:uri
-                                    "http://codedeploy.amazonaws.com/doc/2014-10-06/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://codedeploy.amazonaws.com/doc/2014-10-06/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodeDeploy")

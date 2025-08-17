@@ -70,9 +70,9 @@
                                      list-tags-for-resource tag-resource
                                      untag-resource)
                                    :xml-namespace
-                                   (:uri
-                                    "http://pi.amazonaws.com/doc/2018-02-27/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://pi.amazonaws.com/doc/2018-02-27/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "PI")
                                       ("arnNamespace" . "pi")

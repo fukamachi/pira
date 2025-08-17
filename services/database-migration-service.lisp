@@ -352,9 +352,9 @@
                                      stop-replication-task test-connection
                                      update-subscriptions-to-event-bridge)
                                    :xml-namespace
-                                   (:uri
-                                    "http://dms.amazonaws.com/doc/2016-01-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://dms.amazonaws.com/doc/2016-01-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Database Migration Service")

@@ -122,9 +122,9 @@
                                      stop-data-collection-by-agent-ids
                                      update-application)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ec2.amazon.com/awsposiedon/V2015_11_01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ec2.amazon.com/awsposiedon/V2015_11_01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId"

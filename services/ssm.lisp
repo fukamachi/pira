@@ -810,9 +810,9 @@
                                      update-resource-data-sync
                                      update-service-setting)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ssm.amazonaws.com/doc/2014-11-06/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ssm.amazonaws.com/doc/2014-11-06/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SSM")
                                       ("arnNamespace" . "ssm")

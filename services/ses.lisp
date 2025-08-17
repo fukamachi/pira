@@ -196,9 +196,9 @@
                                      verify-email-address
                                      verify-email-identity)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ses.amazonaws.com/doc/2010-12-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ses.amazonaws.com/doc/2010-12-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SES")
                                       ("arnNamespace" . "ses")

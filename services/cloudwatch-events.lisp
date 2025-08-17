@@ -184,9 +184,9 @@
                                      update-api-destination update-archive
                                      update-connection)
                                    :xml-namespace
-                                   (:uri
-                                    "http://events.amazonaws.com/doc/2015-10-07"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://events.amazonaws.com/doc/2015-10-07"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudWatch Events")

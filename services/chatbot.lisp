@@ -102,9 +102,9 @@
                                      update-microsoft-teams-channel-configuration
                                      update-slack-channel-configuration)
                                    :xml-namespace
-                                   (:uri
-                                    "http://wheatley.amazonaws.com/orchestration/2017-10-11/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://wheatley.amazonaws.com/orchestration/2017-10-11/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "chatbot")
                                       ("arnNamespace" . "chatbot")

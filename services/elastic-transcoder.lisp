@@ -71,9 +71,9 @@
                                      update-pipeline-notifications
                                      update-pipeline-status)
                                    :xml-namespace
-                                   (:uri
-                                    "http://elastictranscoder.amazonaws.com/doc/2012-09-25/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://elastictranscoder.amazonaws.com/doc/2012-09-25/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elastic Transcoder")

@@ -50,9 +50,9 @@
                                      get-access-key-info get-caller-identity
                                      get-federation-token get-session-token)
                                    :xml-namespace
-                                   (:uri
-                                    "https://sts.amazonaws.com/doc/2011-06-15/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "https://sts.amazonaws.com/doc/2011-06-15/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "STS")
                                       ("arnNamespace" . "sts")

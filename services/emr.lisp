@@ -242,9 +242,9 @@
                                      terminate-job-flows update-studio
                                      update-studio-session-mapping)
                                    :xml-namespace
-                                   (:uri
-                                    "http://elasticmapreduce.amazonaws.com/doc/2009-03-31"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://elasticmapreduce.amazonaws.com/doc/2009-03-31"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "EMR")
                                       ("arnNamespace" . "elasticmapreduce")

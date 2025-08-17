@@ -240,9 +240,9 @@
                                      update-regex-pattern-set update-rule-group
                                      update-web-acl)
                                    :xml-namespace
-                                   (:uri
-                                    "http://waf.amazonaws.com/doc/2019-07-29/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://waf.amazonaws.com/doc/2019-07-29/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "WAFV2")
                                       ("arnNamespace" . "wafv2")

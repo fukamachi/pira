@@ -49,9 +49,9 @@
                                      untag-resource update-ledger
                                      update-ledger-permissions-mode)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ledger.amazonaws.com/doc/2019-01-02/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ledger.amazonaws.com/doc/2019-01-02/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "QLDB")
                                       ("arnNamespace" . "qldb")

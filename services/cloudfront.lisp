@@ -482,9 +482,9 @@
                                      update-vpc-origin
                                      verify-dns-configuration)
                                    :xml-namespace
-                                   (:uri
-                                    "http://cloudfront.amazonaws.com/doc/2020-05-31/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://cloudfront.amazonaws.com/doc/2020-05-31/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudFront")

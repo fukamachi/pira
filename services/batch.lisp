@@ -201,9 +201,9 @@
                                      update-job-queue update-scheduling-policy
                                      update-service-environment)
                                    :xml-namespace
-                                   (:uri
-                                    "http://batch.amazonaws.com/doc/2016-08-10/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://batch.amazonaws.com/doc/2016-08-10/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Batch")
                                       ("arnNamespace" . "batch")

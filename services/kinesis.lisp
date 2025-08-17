@@ -80,9 +80,9 @@
                                      tag-resource untag-resource
                                      update-shard-count update-stream-mode)
                                    :xml-namespace
-                                   (:uri
-                                    "http://kinesis.amazonaws.com/doc/2013-12-02"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://kinesis.amazonaws.com/doc/2013-12-02"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Kinesis")
                                       ("arnNamespace" . "kinesis")

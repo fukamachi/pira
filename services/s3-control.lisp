@@ -390,9 +390,9 @@
                                      update-job-priority update-job-status
                                      update-storage-lens-group)
                                    :xml-namespace
-                                   (:uri
-                                    "http://awss3control.amazonaws.com/doc/2018-08-20/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://awss3control.amazonaws.com/doc/2018-08-20/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "S3 Control")

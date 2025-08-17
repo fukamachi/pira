@@ -68,9 +68,9 @@
                                      set-vault-notifications upload-archive
                                      upload-multipart-part)
                                    :xml-namespace
-                                   (:uri
-                                    "http://glacier.amazonaws.com/doc/2012-06-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://glacier.amazonaws.com/doc/2012-06-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Glacier")
                                       ("arnNamespace" . "glacier")

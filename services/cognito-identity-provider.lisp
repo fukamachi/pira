@@ -378,9 +378,9 @@
                                      verify-software-token
                                      verify-user-attribute)
                                    :xml-namespace
-                                   (:uri
-                                    "http://cognito-idp.amazonaws.com/doc/2016-04-18/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://cognito-idp.amazonaws.com/doc/2016-04-18/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Cognito Identity Provider")

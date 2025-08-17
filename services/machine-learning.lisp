@@ -79,9 +79,9 @@
                                      update-batch-prediction update-data-source
                                      update-evaluation update-mlmodel)
                                    :xml-namespace
-                                   (:uri
-                                    "http://machinelearning.amazonaws.com/doc/2014-12-12/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://machinelearning.amazonaws.com/doc/2014-12-12/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Machine Learning")

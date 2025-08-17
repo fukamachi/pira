@@ -131,8 +131,8 @@
                                      update-document update-document-version
                                      update-folder update-user)
                                    :xml-namespace
-                                   (:uri "https://aws.amazon.com/api/v1/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri "https://aws.amazon.com/api/v1/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "WorkDocs")
                                       ("arnNamespace" . "workdocs")

@@ -44,9 +44,9 @@
                                      subscribe-to-dataset
                                      unsubscribe-from-dataset update-records)
                                    :xml-namespace
-                                   (:uri
-                                    "http://cognito-sync.amazonaws.com/doc/2014-06-30/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://cognito-sync.amazonaws.com/doc/2014-06-30/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Cognito Sync")

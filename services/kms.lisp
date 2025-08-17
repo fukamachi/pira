@@ -120,9 +120,9 @@
                                      update-key-description
                                      update-primary-region verify verify-mac)
                                    :xml-namespace
-                                   (:uri
-                                    "https://trent.amazonaws.com/doc/2014-11-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "https://trent.amazonaws.com/doc/2014-11-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "KMS")
                                       ("arnNamespace" . "kms")

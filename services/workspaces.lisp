@@ -368,9 +368,9 @@
                                      update-workspace-image-permission
                                      update-workspaces-pool)
                                    :xml-namespace
-                                   (:uri
-                                    "http://workspaces.amazonaws.com/api/v1"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://workspaces.amazonaws.com/api/v1"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "WorkSpaces")

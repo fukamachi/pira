@@ -448,9 +448,9 @@
                                      stop-configuration-recorder tag-resource
                                      untag-resource)
                                    :xml-namespace
-                                   (:uri
-                                    "http://config.amazonaws.com/doc/2014-11-12/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://config.amazonaws.com/doc/2014-11-12/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Config Service")

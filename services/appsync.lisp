@@ -174,8 +174,8 @@
                                      update-resolver
                                      update-source-api-association update-type)
                                    :xml-namespace
-                                   (:uri "http://appsync.amazonaws.com" :prefix
-                                    common-lisp:nil)
+                                   '(:uri "http://appsync.amazonaws.com"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "AppSync")
                                       ("arnNamespace" . "appsync")

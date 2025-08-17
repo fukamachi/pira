@@ -299,9 +299,9 @@
                                      update-table-replica-auto-scaling
                                      update-time-to-live)
                                    :xml-namespace
-                                   (:uri
-                                    "http://dynamodb.amazonaws.com/doc/2012-08-10/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://dynamodb.amazonaws.com/doc/2012-08-10/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#clientEndpointDiscovery"
                                       ("operation"

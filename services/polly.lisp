@@ -33,8 +33,8 @@
                                      start-speech-synthesis-task
                                      synthesize-speech)
                                    :xml-namespace
-                                   (:uri "http://polly.amazonaws.com/doc/v1"
-                                    :prefix common-lisp:nil)
+                                   '(:uri "http://polly.amazonaws.com/doc/v1"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Polly")
                                       ("arnNamespace" . "polly")

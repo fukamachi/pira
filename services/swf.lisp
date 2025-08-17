@@ -196,9 +196,9 @@
                                      undeprecate-domain
                                      undeprecate-workflow-type untag-resource)
                                    :xml-namespace
-                                   (:uri
-                                    "http://swf.amazonaws.com/doc/2012-01-25"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://swf.amazonaws.com/doc/2012-01-25"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SWF")
                                       ("arnNamespace" . "swf")

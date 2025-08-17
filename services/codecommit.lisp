@@ -234,9 +234,9 @@
                                      update-repository-encryption-key
                                      update-repository-name)
                                    :xml-namespace
-                                   (:uri
-                                    "http://codecommit.amazonaws.com/doc/2015-04-13"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://codecommit.amazonaws.com/doc/2015-04-13"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodeCommit")

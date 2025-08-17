@@ -233,9 +233,9 @@
                                      untag-resource update-application
                                      update-application-maintenance-configuration)
                                    :xml-namespace
-                                   (:uri
-                                    "http://analytics.kinesis.amazonaws.com/doc/2018-05-23"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://analytics.kinesis.amazonaws.com/doc/2018-05-23"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Kinesis Analytics V2")

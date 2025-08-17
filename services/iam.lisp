@@ -401,9 +401,9 @@
                                      upload-signing-certificate
                                      upload-sshpublic-key)
                                    :xml-namespace
-                                   (:uri
-                                    "https://iam.amazonaws.com/doc/2010-05-08/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "https://iam.amazonaws.com/doc/2010-05-08/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "IAM")
                                       ("arnNamespace" . "iam")

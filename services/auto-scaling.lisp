@@ -392,9 +392,9 @@
                                      terminate-instance-in-auto-scaling-group
                                      update-auto-scaling-group)
                                    :xml-namespace
-                                   (:uri
-                                    "http://autoscaling.amazonaws.com/doc/2011-01-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://autoscaling.amazonaws.com/doc/2011-01-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Auto Scaling")

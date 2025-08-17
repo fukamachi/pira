@@ -31,9 +31,9 @@
                                    '(describe-stream get-records
                                      get-shard-iterator list-streams)
                                    :xml-namespace
-                                   (:uri
-                                    "http://dynamodb.amazonaws.com/doc/2012-08-10/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://dynamodb.amazonaws.com/doc/2012-08-10/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "DynamoDB Streams")

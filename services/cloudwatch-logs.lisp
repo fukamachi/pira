@@ -295,9 +295,9 @@
                                      update-delivery-configuration
                                      update-log-anomaly-detector)
                                    :xml-namespace
-                                   (:uri
-                                    "http://monitoring.amazonaws.com/doc/2014-03-28/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://monitoring.amazonaws.com/doc/2014-03-28/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudWatch Logs")

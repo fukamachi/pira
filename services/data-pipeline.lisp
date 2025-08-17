@@ -45,9 +45,9 @@
                                      set-task-status
                                      validate-pipeline-definition)
                                    :xml-namespace
-                                   (:uri
-                                    "http://datapipeline.amazonaws.com/doc/2012-10-29/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://datapipeline.amazonaws.com/doc/2012-10-29/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Data Pipeline")

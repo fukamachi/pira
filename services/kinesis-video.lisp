@@ -99,9 +99,9 @@
                                      update-notification-configuration
                                      update-signaling-channel update-stream)
                                    :xml-namespace
-                                   (:uri
-                                    "https://kinesisvideo.amazonaws.com/doc/2017-09-30/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "https://kinesisvideo.amazonaws.com/doc/2017-09-30/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Kinesis Video")

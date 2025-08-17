@@ -182,9 +182,9 @@
                                      update-sql-injection-match-set
                                      update-web-acl update-xss-match-set)
                                    :xml-namespace
-                                   (:uri
-                                    "http://waf.amazonaws.com/doc/2015-08-24/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://waf.amazonaws.com/doc/2015-08-24/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "WAF")
                                       ("arnNamespace" . "waf")

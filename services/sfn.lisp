@@ -151,9 +151,9 @@
                                      update-state-machine-alias
                                      validate-state-machine-definition)
                                    :xml-namespace
-                                   (:uri
-                                    "http://swf.amazonaws.com/doc/2015-07-20/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://swf.amazonaws.com/doc/2015-07-20/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SFN")
                                       ("arnNamespace" . "states")

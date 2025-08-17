@@ -79,9 +79,9 @@
                                      update-scaling-parameters
                                      update-service-access-policies)
                                    :xml-namespace
-                                   (:uri
-                                    "http://cloudsearch.amazonaws.com/doc/2013-01-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://cloudsearch.amazonaws.com/doc/2013-01-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudSearch")

@@ -70,9 +70,9 @@
                                      unlink-identity untag-resource
                                      update-identity-pool)
                                    :xml-namespace
-                                   (:uri
-                                    "http://cognito-identity.amazonaws.com/doc/2014-06-30/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://cognito-identity.amazonaws.com/doc/2014-06-30/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Cognito Identity")

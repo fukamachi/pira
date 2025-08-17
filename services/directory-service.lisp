@@ -227,9 +227,9 @@
                                      update-radius update-settings update-trust
                                      verify-trust)
                                    :xml-namespace
-                                   (:uri
-                                    "http://directoryservice.amazonaws.com/doc/2015-04-16/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://directoryservice.amazonaws.com/doc/2015-04-16/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Directory Service")

@@ -113,9 +113,9 @@
                                      update-protection-group
                                      update-subscription)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ddp.amazonaws.com/doc/2016-06-02/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ddp.amazonaws.com/doc/2016-06-02/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Shield")
                                       ("arnNamespace" . "shield")

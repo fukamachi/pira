@@ -139,9 +139,9 @@
                                      update-license-specifications-for-resource
                                      update-service-settings)
                                    :xml-namespace
-                                   (:uri
-                                    "https://license-manager.amazonaws.com/doc/2018_08_01"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "https://license-manager.amazonaws.com/doc/2018_08_01"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "License Manager")

@@ -52,9 +52,9 @@
                                      update-cluster update-parameter-group
                                      update-subnet-group)
                                    :xml-namespace
-                                   (:uri
-                                    "http://dax.amazonaws.com/doc/2017-04-19/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://dax.amazonaws.com/doc/2017-04-19/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "DAX")
                                       ("arnNamespace" . "dax")

@@ -420,9 +420,9 @@
                                      upload-part upload-part-copy
                                      write-get-object-response)
                                    :xml-namespace
-                                   (:uri
-                                    "http://s3.amazonaws.com/doc/2006-03-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://s3.amazonaws.com/doc/2006-03-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "S3")
                                       ("arnNamespace" . "s3")

@@ -248,9 +248,9 @@
                                      update-snapshot-schedule
                                      update-vtldevice-type)
                                    :xml-namespace
-                                   (:uri
-                                    "http://storagegateway.amazonaws.com/doc/2013-06-30"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://storagegateway.amazonaws.com/doc/2013-06-30"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Storage Gateway")

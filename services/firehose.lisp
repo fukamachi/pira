@@ -223,9 +223,9 @@
                                      tag-delivery-stream untag-delivery-stream
                                      update-destination)
                                    :xml-namespace
-                                   (:uri
-                                    "http://firehose.amazonaws.com/doc/2015-08-04"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://firehose.amazonaws.com/doc/2015-08-04"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Firehose")
                                       ("arnNamespace" . "firehose")

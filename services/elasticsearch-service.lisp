@@ -226,9 +226,9 @@
                                      update-package update-vpc-endpoint
                                      upgrade-elasticsearch-domain)
                                    :xml-namespace
-                                   (:uri
-                                    "http://es.amazonaws.com/doc/2015-01-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://es.amazonaws.com/doc/2015-01-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elasticsearch Service")

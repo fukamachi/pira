@@ -1881,9 +1881,9 @@
                                      update-user-profile update-workforce
                                      update-workteam)
                                    :xml-namespace
-                                   (:uri
-                                    "http://sagemaker.amazonaws.com/doc/2017-05-13/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://sagemaker.amazonaws.com/doc/2017-05-13/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SageMaker")
                                       ("arnNamespace" . "sagemaker")

@@ -205,9 +205,9 @@
                                      update-rule-metadata update-rule-version
                                      update-variable)
                                    :xml-namespace
-                                   (:uri
-                                    "http://hawksnest.amazonaws.com/doc/2019-11-15"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://hawksnest.amazonaws.com/doc/2019-11-15"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "FraudDetector")

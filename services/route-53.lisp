@@ -214,9 +214,9 @@
                                      update-traffic-policy-comment
                                      update-traffic-policy-instance)
                                    :xml-namespace
-                                   (:uri
-                                    "https://route53.amazonaws.com/doc/2013-04-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "https://route53.amazonaws.com/doc/2013-04-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Route 53")
                                       ("arnNamespace" . "route53")

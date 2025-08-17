@@ -224,9 +224,9 @@
                                      update-tags-for-resource
                                      validate-configuration-settings)
                                    :xml-namespace
-                                   (:uri
-                                    "http://elasticbeanstalk.amazonaws.com/docs/2010-12-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://elasticbeanstalk.amazonaws.com/docs/2010-12-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elastic Beanstalk")

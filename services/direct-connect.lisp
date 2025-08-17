@@ -192,9 +192,9 @@
                                      update-lag
                                      update-virtual-interface-attributes)
                                    :xml-namespace
-                                   (:uri
-                                    "http://directconnect.amazonaws.com/doc/2012-10-25/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://directconnect.amazonaws.com/doc/2012-10-25/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Direct Connect")

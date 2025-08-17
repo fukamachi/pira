@@ -161,9 +161,9 @@
                                      stop-metric-streams tag-resource
                                      untag-resource)
                                    :xml-namespace
-                                   (:uri
-                                    "http://monitoring.amazonaws.com/doc/2010-08-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://monitoring.amazonaws.com/doc/2010-08-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudWatch")

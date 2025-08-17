@@ -54,9 +54,9 @@
                                      stop-pipeline tag-resource untag-resource
                                      update-pipeline validate-pipeline)
                                    :xml-namespace
-                                   (:uri
-                                    "http://osis.amazonaws.com/doc/2022-01-01"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://osis.amazonaws.com/doc/2022-01-01"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "OSIS")
                                       ("arnNamespace" . "osis")

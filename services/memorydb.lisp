@@ -105,9 +105,9 @@
                                      update-parameter-group update-subnet-group
                                      update-user)
                                    :xml-namespace
-                                   (:uri
-                                    "http://memorydb.amazonaws.com/doc/2021-01-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://memorydb.amazonaws.com/doc/2021-01-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "MemoryDB")
                                       ("arnNamespace" . "memorydb")

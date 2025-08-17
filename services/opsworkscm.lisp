@@ -47,9 +47,9 @@
                                      untag-resource update-server
                                      update-server-engine-attributes)
                                    :xml-namespace
-                                   (:uri
-                                    "http://opsworks-cm.amazonaws.com/doc/2016-11-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://opsworks-cm.amazonaws.com/doc/2016-11-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "OpsWorksCM")

@@ -149,9 +149,9 @@
                                      update-dashboard update-event-data-store
                                      update-trail)
                                    :xml-namespace
-                                   (:uri
-                                    "http://cloudtrail.amazonaws.com/doc/2013-11-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://cloudtrail.amazonaws.com/doc/2013-11-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudTrail")

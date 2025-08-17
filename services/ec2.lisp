@@ -2951,9 +2951,9 @@
                                      update-security-group-rule-descriptions-ingress
                                      withdraw-byoip-cidr)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ec2.amazonaws.com/doc/2016-11-15"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ec2.amazonaws.com/doc/2016-11-15"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "EC2")
                                       ("arnNamespace" . "ec2")

@@ -101,9 +101,9 @@
                                      update-notification-settings
                                      update-qualification-type)
                                    :xml-namespace
-                                   (:uri
-                                    "http://requester.mturk.com/2017-01-17/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://requester.mturk.com/2017-01-17/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "MTurk")
                                       ("arnNamespace" . "mturk-requester")

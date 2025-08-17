@@ -244,9 +244,9 @@
                                      untag-resource update-action-type
                                      update-pipeline)
                                    :xml-namespace
-                                   (:uri
-                                    "http://codepipeline.amazonaws.com/doc/2015-07-09/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://codepipeline.amazonaws.com/doc/2015-07-09/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CodePipeline")

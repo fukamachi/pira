@@ -76,9 +76,9 @@
                                      set-repository-policy tag-resource
                                      untag-resource upload-layer-part)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ecr-public.amazonaws.com/doc/2020-12-02/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ecr-public.amazonaws.com/doc/2020-12-02/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ECR PUBLIC")

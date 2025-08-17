@@ -266,9 +266,9 @@
                                      update-service-primary-task-set
                                      update-task-protection update-task-set)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ecs.amazonaws.com/doc/2014-11-13/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ecs.amazonaws.com/doc/2014-11-13/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "ECS")
                                       ("arnNamespace" . "ecs")

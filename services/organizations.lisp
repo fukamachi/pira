@@ -129,9 +129,9 @@
                                      tag-resource untag-resource
                                      update-organizational-unit update-policy)
                                    :xml-namespace
-                                   (:uri
-                                    "http://organizations.amazonaws.com/doc/2016-11-28/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://organizations.amazonaws.com/doc/2016-11-28/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Organizations")

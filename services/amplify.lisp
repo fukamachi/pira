@@ -98,8 +98,8 @@
                                      update-branch update-domain-association
                                      update-webhook)
                                    :xml-namespace
-                                   (:uri "http://amplify.amazonaws.com" :prefix
-                                    common-lisp:nil)
+                                   '(:uri "http://amplify.amazonaws.com"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Amplify")
                                       ("arnNamespace" . "amplify")

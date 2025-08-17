@@ -136,9 +136,9 @@
                                      update-service
                                      update-vpc-ingress-connection)
                                    :xml-namespace
-                                   (:uri
-                                    "http://apprunner.amazonaws.com/doc/2020-05-15/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://apprunner.amazonaws.com/doc/2020-05-15/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "AppRunner")
                                       ("arnNamespace" . "apprunner")

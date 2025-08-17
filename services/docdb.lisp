@@ -149,9 +149,9 @@
                                      start-dbcluster stop-dbcluster
                                      switchover-global-cluster)
                                    :xml-namespace
-                                   (:uri
-                                    "http://rds.amazonaws.com/doc/2014-10-31/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://rds.amazonaws.com/doc/2014-10-31/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "DocDB")
                                       ("arnNamespace" . "rds")

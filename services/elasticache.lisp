@@ -265,9 +265,9 @@
                                      start-migration test-failover
                                      test-migration)
                                    :xml-namespace
-                                   (:uri
-                                    "http://elasticache.amazonaws.com/doc/2015-02-02/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://elasticache.amazonaws.com/doc/2015-02-02/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "ElastiCache")

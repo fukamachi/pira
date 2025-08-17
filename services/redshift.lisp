@@ -426,9 +426,9 @@
                                      rotate-encryption-key
                                      update-partner-status)
                                    :xml-namespace
-                                   (:uri
-                                    "http://redshift.amazonaws.com/doc/2012-12-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://redshift.amazonaws.com/doc/2012-12-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Redshift")
                                       ("arnNamespace" . "redshift")

@@ -227,9 +227,9 @@
                                      set-ip-address-type set-rule-priorities
                                      set-security-groups set-subnets)
                                    :xml-namespace
-                                   (:uri
-                                    "http://elasticloadbalancing.amazonaws.com/doc/2015-12-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://elasticloadbalancing.amazonaws.com/doc/2015-12-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elastic Load Balancing v2")

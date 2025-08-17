@@ -76,9 +76,9 @@
                                      refresh-trusted-advisor-check
                                      resolve-case)
                                    :xml-namespace
-                                   (:uri
-                                    "http://support.amazonaws.com/doc/2013-04-15/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://support.amazonaws.com/doc/2013-04-15/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "Support")
                                       ("arnNamespace" . "support")

@@ -398,8 +398,8 @@
                                      update-runtime-configuration update-script
                                      validate-matchmaking-rule-set)
                                    :xml-namespace
-                                   (:uri "http://gamelift.amazonaws.com/doc/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri "http://gamelift.amazonaws.com/doc/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "GameLift")
                                       ("arnNamespace" . "gamelift")

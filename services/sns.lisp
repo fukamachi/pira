@@ -107,9 +107,9 @@
                                      tag-resource unsubscribe untag-resource
                                      verify-smssandbox-phone-number)
                                    :xml-namespace
-                                   (:uri
-                                    "http://sns.amazonaws.com/doc/2010-03-31/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://sns.amazonaws.com/doc/2010-03-31/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SNS")
                                       ("arnNamespace" . "sns")

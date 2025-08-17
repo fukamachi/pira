@@ -137,9 +137,9 @@
                                      update-rds-db-instance update-stack
                                      update-user-profile update-volume)
                                    :xml-namespace
-                                   (:uri
-                                    "http://opsworks.amazonaws.com/doc/2013-02-18/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://opsworks.amazonaws.com/doc/2013-02-18/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "OpsWorks")
                                       ("arnNamespace" . "opsworks")

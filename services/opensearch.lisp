@@ -321,9 +321,9 @@
                                      update-scheduled-action
                                      update-vpc-endpoint upgrade-domain)
                                    :xml-namespace
-                                   (:uri
-                                    "http://es.amazonaws.com/doc/2021-01-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://es.amazonaws.com/doc/2021-01-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "OpenSearch")

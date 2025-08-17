@@ -171,9 +171,9 @@
                                      update-test-grid-project update-upload
                                      update-vpceconfiguration)
                                    :xml-namespace
-                                   (:uri
-                                    "http://devicefarm.amazonaws.com/doc/2015-06-23/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://devicefarm.amazonaws.com/doc/2015-06-23/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Device Farm")

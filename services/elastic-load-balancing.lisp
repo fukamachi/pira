@@ -114,9 +114,9 @@
                                      set-load-balancer-policies-for-backend-server
                                      set-load-balancer-policies-of-listener)
                                    :xml-namespace
-                                   (:uri
-                                    "http://elasticloadbalancing.amazonaws.com/doc/2012-06-01/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://elasticloadbalancing.amazonaws.com/doc/2012-06-01/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Elastic Load Balancing")

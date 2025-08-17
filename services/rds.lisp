@@ -478,9 +478,9 @@
                                      switchover-global-cluster
                                      switchover-read-replica)
                                    :xml-namespace
-                                   (:uri
-                                    "http://rds.amazonaws.com/doc/2014-10-31/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://rds.amazonaws.com/doc/2014-10-31/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "RDS")
                                       ("arnNamespace" . "rds")

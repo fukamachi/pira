@@ -42,9 +42,9 @@
                                      start-access-logging stop-access-logging
                                      tag-resource untag-resource)
                                    :xml-namespace
-                                   (:uri
-                                    "https://mediastore.amazonaws.com/doc/2017-09-01"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "https://mediastore.amazonaws.com/doc/2017-09-01"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "MediaStore")

@@ -366,9 +366,9 @@
                                      update-termination-protection
                                      validate-template)
                                    :xml-namespace
-                                   (:uri
-                                    "http://cloudformation.amazonaws.com/doc/2010-05-15/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://cloudformation.amazonaws.com/doc/2010-05-15/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "CloudFormation")

@@ -125,9 +125,9 @@
                                      stop-app-replication terminate-app
                                      update-app update-replication-job)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ec2.amazon.com/servermigration/2016-10-24/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ec2.amazon.com/servermigration/2016-10-24/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "SMS")
                                       ("arnNamespace" . "sms")

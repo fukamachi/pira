@@ -97,9 +97,9 @@
                                      update-domain-nameservers
                                      update-tags-for-domain view-billing)
                                    :xml-namespace
-                                   (:uri
-                                    "https://route53domains.amazonaws.com/doc/2014-05-15/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "https://route53domains.amazonaws.com/doc/2014-05-15/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service"
                                       ("sdkId" . "Route 53 Domains")

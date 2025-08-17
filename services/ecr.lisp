@@ -204,9 +204,9 @@
                                      upload-layer-part
                                      validate-pull-through-cache-rule)
                                    :xml-namespace
-                                   (:uri
-                                    "http://ecr.amazonaws.com/doc/2015-09-21/"
-                                    :prefix common-lisp:nil)
+                                   '(:uri
+                                     "http://ecr.amazonaws.com/doc/2015-09-21/"
+                                     :prefix common-lisp:nil)
                                    :traits
                                    '(("aws.api#service" ("sdkId" . "ECR")
                                       ("arnNamespace" . "ecr")
