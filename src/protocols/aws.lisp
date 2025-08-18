@@ -20,5 +20,6 @@
     (setf (http:request-service-name req)
           (service:aws-service-arn-namespace service))
     (setf (http:request-streaming-p req)
-          (shape:interface-streaming-p (find-class (operation:operation-output operation))))
+          (and (operation:operation-output operation)
+               (shape:interface-streaming-p (find-class (operation:operation-output operation)))))
     req))
