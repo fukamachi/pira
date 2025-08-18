@@ -48,7 +48,7 @@
                               (service:service-shape-name service)
                               (operation:operation-shape-name operation)))))
 
-(defmethod protocols:make-request ((protocol aws-json) service operation input)
+(defmethod protocols:make-request-with-protocol ((protocol aws-json) service operation input)
   (let ((req (call-next-method)))
     (setf (http:request-method req)
           "POST")

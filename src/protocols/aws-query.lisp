@@ -20,7 +20,7 @@
   (:metaclass protocols:protocol-metaclass)
   (:protocol-id :aws-query))
 
-(defmethod protocols:make-request ((query aws-query) service operation input)
+(defmethod protocols:make-request-with-protocol ((query aws-query) service operation input)
   (let ((req (call-next-method)))
     (setf (http:request-method req) "POST")
     req))
