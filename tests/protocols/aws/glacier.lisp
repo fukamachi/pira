@@ -80,36 +80,41 @@
 (smithy/sdk/shapes:define-type stream smithy/sdk/smithy-types:blob :streaming
                                common-lisp:t)
 
-(smithy/sdk/shapes:define-structure upload-archive-input common-lisp:nil
-                                    ((vault-name :target-type string :required
-                                      common-lisp:t :member-name "vaultName")
-                                     (account-id :target-type string :required
-                                      common-lisp:t :member-name "accountId")
-                                     (archive-description :target-type string
-                                      :member-name "archiveDescription"
-                                      :http-header "x-amz-archive-description")
-                                     (checksum :target-type string :member-name
-                                      "checksum" :http-header
-                                      "x-amz-sha256-tree-hash")
-                                     (body :target-type stream :member-name
-                                      "body" :http-payload common-lisp:t))
-                                    (:shape-name "UploadArchiveInput"))
+(smithy/sdk/shapes:define-input upload-archive-input common-lisp:nil
+                                ((vault-name :target-type string :required
+                                  common-lisp:t :member-name "vaultName"
+                                  :http-label common-lisp:t)
+                                 (account-id :target-type string :required
+                                  common-lisp:t :member-name "accountId"
+                                  :http-label common-lisp:t)
+                                 (archive-description :target-type string
+                                  :member-name "archiveDescription"
+                                  :http-header "x-amz-archive-description")
+                                 (checksum :target-type string :member-name
+                                  "checksum" :http-header
+                                  "x-amz-sha256-tree-hash")
+                                 (body :target-type stream :member-name "body"
+                                  :http-payload common-lisp:t))
+                                (:shape-name "UploadArchiveInput"))
 
-(smithy/sdk/shapes:define-structure upload-multipart-part-input common-lisp:nil
-                                    ((account-id :target-type string :required
-                                      common-lisp:t :member-name "accountId")
-                                     (vault-name :target-type string :required
-                                      common-lisp:t :member-name "vaultName")
-                                     (upload-id :target-type string :required
-                                      common-lisp:t :member-name "uploadId")
-                                     (checksum :target-type string :member-name
-                                      "checksum" :http-header
-                                      "x-amz-sha256-tree-hash")
-                                     (range :target-type string :member-name
-                                      "range" :http-header "Content-Range")
-                                     (body :target-type stream :member-name
-                                      "body" :http-payload common-lisp:t))
-                                    (:shape-name "UploadMultipartPartInput"))
+(smithy/sdk/shapes:define-input upload-multipart-part-input common-lisp:nil
+                                ((account-id :target-type string :required
+                                  common-lisp:t :member-name "accountId"
+                                  :http-label common-lisp:t)
+                                 (vault-name :target-type string :required
+                                  common-lisp:t :member-name "vaultName"
+                                  :http-label common-lisp:t)
+                                 (upload-id :target-type string :required
+                                  common-lisp:t :member-name "uploadId"
+                                  :http-label common-lisp:t)
+                                 (checksum :target-type string :member-name
+                                  "checksum" :http-header
+                                  "x-amz-sha256-tree-hash")
+                                 (range :target-type string :member-name
+                                  "range" :http-header "Content-Range")
+                                 (body :target-type stream :member-name "body"
+                                  :http-payload common-lisp:t))
+                                (:shape-name "UploadMultipartPartInput"))
 
 (smithy/sdk/shapes:define-structure upload-multipart-part-output
                                     common-lisp:nil

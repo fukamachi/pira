@@ -1,0 +1,55 @@
+{
+    "smithy": "2.0",
+    "shapes": {
+        "smithy.framework#ValidationException": {
+            "type": "structure",
+            "members": {
+                "message": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#documentation": "A summary of the validation failure.",
+                        "smithy.api#required": {}
+                    }
+                },
+                "fieldList": {
+                    "target": "smithy.framework#ValidationExceptionFieldList",
+                    "traits": {
+                        "smithy.api#documentation": "A list of specific failures encountered while validating the input.\nA member can appear in this list more than once if it failed to satisfy multiple constraints."
+                    }
+                }
+            },
+            "traits": {
+                "smithy.api#documentation": "A standard error for input validation failures.\nThis should be thrown by services when a member of the input structure\nfalls outside of the modeled or documented constraints.",
+                "smithy.api#error": "client"
+            }
+        },
+        "smithy.framework#ValidationExceptionField": {
+            "type": "structure",
+            "members": {
+                "path": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#documentation": "A JSONPointer expression to the structure member whose value failed to satisfy the modeled constraints.",
+                        "smithy.api#required": {}
+                    }
+                },
+                "message": {
+                    "target": "smithy.api#String",
+                    "traits": {
+                        "smithy.api#documentation": "A detailed description of the validation failure.",
+                        "smithy.api#required": {}
+                    }
+                }
+            },
+            "traits": {
+                "smithy.api#documentation": "Describes one specific validation failure for an input member."
+            }
+        },
+        "smithy.framework#ValidationExceptionFieldList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.framework#ValidationExceptionField"
+            }
+        }
+    }
+}

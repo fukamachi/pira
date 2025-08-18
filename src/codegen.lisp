@@ -68,6 +68,5 @@
                                    :package-name (format nil "pira/~A" package-name)
                                    :test (lambda (shape-name)
                                            (equal namespace (nth-value 1 (smithy/utils:parse-shape-id shape-name))))
-                                   :output (make-pathname :defaults (pathname package-name)
-                                                          :type "lisp")))))
+                                   :output (pathname (format nil "~A.lisp" package-name))))))
   (values))

@@ -91,10 +91,11 @@
                                     (:shape-name "GetBucketLocationOutput")
                                     (:xml-name "LocationConstraint"))
 
-(smithy/sdk/shapes:define-structure get-bucket-location-request common-lisp:nil
-                                    ((bucket :target-type bucket-name :required
-                                      common-lisp:t :member-name "Bucket"))
-                                    (:shape-name "GetBucketLocationRequest"))
+(smithy/sdk/shapes:define-input get-bucket-location-request common-lisp:nil
+                                ((bucket :target-type bucket-name :required
+                                  common-lisp:t :member-name "Bucket"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetBucketLocationRequest"))
 
 (smithy/sdk/shapes:define-output get-object-output common-lisp:nil
                                  common-lisp:nil
@@ -148,37 +149,35 @@
                                       :member-name "StartAfter"))
                                     (:shape-name "ListObjectsV2Output"))
 
-(smithy/sdk/shapes:define-structure list-objects-v2request common-lisp:nil
-                                    ((bucket :target-type bucket-name :required
-                                      common-lisp:t :member-name "Bucket")
-                                     (delimiter :target-type delimiter
-                                      :member-name "Delimiter" :http-query
-                                      "delimiter")
-                                     (encoding-type :target-type encoding-type
-                                      :member-name "EncodingType" :http-query
-                                      "encoding-type")
-                                     (max-keys :target-type max-keys
-                                      :member-name "MaxKeys" :http-query
-                                      "max-keys")
-                                     (prefix :target-type prefix :member-name
-                                      "Prefix" :http-query "prefix")
-                                     (continuation-token :target-type token
-                                      :member-name "ContinuationToken"
-                                      :http-query "continuation-token")
-                                     (fetch-owner :target-type fetch-owner
-                                      :member-name "FetchOwner" :http-query
-                                      "fetch-owner")
-                                     (start-after :target-type start-after
-                                      :member-name "StartAfter" :http-query
-                                      "start-after")
-                                     (request-payer :target-type request-payer
-                                      :member-name "RequestPayer" :http-header
-                                      "x-amz-request-payer")
-                                     (expected-bucket-owner :target-type
-                                      account-id :member-name
-                                      "ExpectedBucketOwner" :http-header
-                                      "x-amz-expected-bucket-owner"))
-                                    (:shape-name "ListObjectsV2Request"))
+(smithy/sdk/shapes:define-input list-objects-v2request common-lisp:nil
+                                ((bucket :target-type bucket-name :required
+                                  common-lisp:t :member-name "Bucket"
+                                  :http-label common-lisp:t)
+                                 (delimiter :target-type delimiter :member-name
+                                  "Delimiter" :http-query "delimiter")
+                                 (encoding-type :target-type encoding-type
+                                  :member-name "EncodingType" :http-query
+                                  "encoding-type")
+                                 (max-keys :target-type max-keys :member-name
+                                  "MaxKeys" :http-query "max-keys")
+                                 (prefix :target-type prefix :member-name
+                                  "Prefix" :http-query "prefix")
+                                 (continuation-token :target-type token
+                                  :member-name "ContinuationToken" :http-query
+                                  "continuation-token")
+                                 (fetch-owner :target-type fetch-owner
+                                  :member-name "FetchOwner" :http-query
+                                  "fetch-owner")
+                                 (start-after :target-type start-after
+                                  :member-name "StartAfter" :http-query
+                                  "start-after")
+                                 (request-payer :target-type request-payer
+                                  :member-name "RequestPayer" :http-header
+                                  "x-amz-request-payer")
+                                 (expected-bucket-owner :target-type account-id
+                                  :member-name "ExpectedBucketOwner"
+                                  :http-header "x-amz-expected-bucket-owner"))
+                                (:shape-name "ListObjectsV2Request"))
 
 (smithy/sdk/shapes:define-type max-keys smithy/sdk/smithy-types:integer)
 

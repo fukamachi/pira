@@ -50,13 +50,12 @@
   (:edge "EDGE")
   (:private "PRIVATE"))
 
-(smithy/sdk/shapes:define-structure get-rest-apis-request common-lisp:nil
-                                    ((position :target-type string :member-name
-                                      "position" :http-query "position")
-                                     (limit :target-type nullable-integer
-                                      :member-name "limit" :http-query
-                                      "limit"))
-                                    (:shape-name "GetRestApisRequest"))
+(smithy/sdk/shapes:define-input get-rest-apis-request common-lisp:nil
+                                ((position :target-type string :member-name
+                                  "position" :http-query "position")
+                                 (limit :target-type nullable-integer
+                                  :member-name "limit" :http-query "limit"))
+                                (:shape-name "GetRestApisRequest"))
 
 (smithy/sdk/shapes:define-list list-of-endpoint-type :member endpoint-type)
 

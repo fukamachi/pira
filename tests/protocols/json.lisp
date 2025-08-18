@@ -132,11 +132,12 @@
                                       :member-name "greeting"))
                                     (:shape-name "GreetingWithErrorsOutput"))
 
-(smithy/sdk/shapes:define-structure host-label-input common-lisp:nil
-                                    ((label :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "label"))
-                                    (:shape-name "HostLabelInput"))
+(smithy/sdk/shapes:define-input host-label-input common-lisp:nil
+                                ((label :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "label"
+                                  :host-label common-lisp:t))
+                                (:shape-name "HostLabelInput"))
 
 (smithy/sdk/shapes:define-error invalid-greeting common-lisp:nil
                                 ((message :target-type

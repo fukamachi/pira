@@ -1,0 +1,443 @@
+{
+    "smithy": "2.0",
+    "metadata": {
+        "suppressions": [
+            {
+                "id": "DeprecatedTrait",
+                "namespace": "*",
+                "reason": "Some of the AWS protocols make use of deprecated traits, and some are\nthemselves deprecated traits. As this package is intended to test those\nprotocols, the warnings should be suppressed."
+            }
+        ],
+        "validators": [
+            {
+                "configuration": {
+                    "selector": "operation :not(< service)"
+                },
+                "id": "UnboundTestOperation",
+                "message": "This operation in the AWS protocol tests is not bound to a service.",
+                "name": "EmitEachSelector",
+                "namespaces": [
+                    "aws.protocoltests.json10",
+                    "aws.protocoltests.json",
+                    "aws.protocoltests.query",
+                    "aws.protocoltests.ec2",
+                    "aws.protocoltests.restjson.validation",
+                    "aws.protocoltests.restjson",
+                    "aws.protocoltests.restxml",
+                    "aws.protocoltests.restxml.xmlns",
+                    "com.amazonaws.apigateway",
+                    "com.amazonaws.glacier",
+                    "com.amazonaws.machinelearning",
+                    "com.amazonaws.s3"
+                ],
+                "severity": "WARNING"
+            }
+        ]
+    },
+    "shapes": {
+        "aws.protocoltests.shared#BlobList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Blob"
+            }
+        },
+        "aws.protocoltests.shared#BlobSet": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Blob"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#BooleanList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Boolean"
+            }
+        },
+        "aws.protocoltests.shared#BooleanSet": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Boolean"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#ByteList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Byte"
+            }
+        },
+        "aws.protocoltests.shared#ByteSet": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Byte"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#DateTime": {
+            "type": "timestamp",
+            "traits": {
+                "smithy.api#timestampFormat": "date-time"
+            }
+        },
+        "aws.protocoltests.shared#DateTimeList": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#DateTime"
+            }
+        },
+        "aws.protocoltests.shared#DateTimeSet": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#DateTime"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#DoubleList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Double"
+            }
+        },
+        "aws.protocoltests.shared#EpochSeconds": {
+            "type": "timestamp",
+            "traits": {
+                "smithy.api#timestampFormat": "epoch-seconds"
+            }
+        },
+        "aws.protocoltests.shared#FloatList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Float"
+            }
+        },
+        "aws.protocoltests.shared#FooEnum": {
+            "type": "enum",
+            "members": {
+                "FOO": {
+                    "target": "smithy.api#Unit",
+                    "traits": {
+                        "smithy.api#enumValue": "Foo"
+                    }
+                },
+                "BAZ": {
+                    "target": "smithy.api#Unit",
+                    "traits": {
+                        "smithy.api#enumValue": "Baz"
+                    }
+                },
+                "BAR": {
+                    "target": "smithy.api#Unit",
+                    "traits": {
+                        "smithy.api#enumValue": "Bar"
+                    }
+                },
+                "ONE": {
+                    "target": "smithy.api#Unit",
+                    "traits": {
+                        "smithy.api#enumValue": "1"
+                    }
+                },
+                "ZERO": {
+                    "target": "smithy.api#Unit",
+                    "traits": {
+                        "smithy.api#enumValue": "0"
+                    }
+                }
+            }
+        },
+        "aws.protocoltests.shared#FooEnumList": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#FooEnum"
+            }
+        },
+        "aws.protocoltests.shared#FooEnumMap": {
+            "type": "map",
+            "key": {
+                "target": "smithy.api#String"
+            },
+            "value": {
+                "target": "aws.protocoltests.shared#FooEnum"
+            }
+        },
+        "aws.protocoltests.shared#FooEnumSet": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#FooEnum"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#FooUnion": {
+            "type": "union",
+            "members": {
+                "string": {
+                    "target": "smithy.api#String"
+                },
+                "integer": {
+                    "target": "smithy.api#Integer"
+                }
+            }
+        },
+        "aws.protocoltests.shared#GreetingList": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#GreetingStruct"
+            }
+        },
+        "aws.protocoltests.shared#GreetingStruct": {
+            "type": "structure",
+            "members": {
+                "hi": {
+                    "target": "smithy.api#String"
+                }
+            }
+        },
+        "aws.protocoltests.shared#HttpDate": {
+            "type": "timestamp",
+            "traits": {
+                "smithy.api#timestampFormat": "http-date"
+            }
+        },
+        "aws.protocoltests.shared#HttpDateSet": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#HttpDate"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#IntegerEnum": {
+            "type": "intEnum",
+            "members": {
+                "A": {
+                    "target": "smithy.api#Unit",
+                    "traits": {
+                        "smithy.api#enumValue": 1
+                    }
+                },
+                "B": {
+                    "target": "smithy.api#Unit",
+                    "traits": {
+                        "smithy.api#enumValue": 2
+                    }
+                },
+                "C": {
+                    "target": "smithy.api#Unit",
+                    "traits": {
+                        "smithy.api#enumValue": 3
+                    }
+                }
+            }
+        },
+        "aws.protocoltests.shared#IntegerEnumList": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#IntegerEnum"
+            }
+        },
+        "aws.protocoltests.shared#IntegerEnumMap": {
+            "type": "map",
+            "key": {
+                "target": "smithy.api#String"
+            },
+            "value": {
+                "target": "aws.protocoltests.shared#IntegerEnum"
+            }
+        },
+        "aws.protocoltests.shared#IntegerEnumSet": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#IntegerEnum"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#IntegerList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Integer"
+            }
+        },
+        "aws.protocoltests.shared#IntegerSet": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Integer"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#JpegBlob": {
+            "type": "blob",
+            "traits": {
+                "smithy.api#mediaType": "image/jpeg"
+            }
+        },
+        "aws.protocoltests.shared#ListSet": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#StringList"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#LongList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Long"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#LongSet": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Long"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#NestedStringList": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#StringList"
+            },
+            "traits": {
+                "smithy.api#documentation": "A list of lists of strings."
+            }
+        },
+        "aws.protocoltests.shared#ShortList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Short"
+            }
+        },
+        "aws.protocoltests.shared#ShortSet": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Short"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#SparseShortList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Short"
+            },
+            "traits": {
+                "smithy.api#sparse": {}
+            }
+        },
+        "aws.protocoltests.shared#SparseStringList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#String"
+            },
+            "traits": {
+                "smithy.api#sparse": {}
+            }
+        },
+        "aws.protocoltests.shared#SparseStringMap": {
+            "type": "map",
+            "key": {
+                "target": "smithy.api#String"
+            },
+            "value": {
+                "target": "smithy.api#String"
+            },
+            "traits": {
+                "smithy.api#sparse": {}
+            }
+        },
+        "aws.protocoltests.shared#StringList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#String"
+            }
+        },
+        "aws.protocoltests.shared#StringListMap": {
+            "type": "map",
+            "key": {
+                "target": "smithy.api#String"
+            },
+            "value": {
+                "target": "aws.protocoltests.shared#StringList"
+            }
+        },
+        "aws.protocoltests.shared#StringMap": {
+            "type": "map",
+            "key": {
+                "target": "smithy.api#String"
+            },
+            "value": {
+                "target": "smithy.api#String"
+            }
+        },
+        "aws.protocoltests.shared#StringSet": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#String"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#StructureSet": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#GreetingStruct"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#TextPlainBlob": {
+            "type": "blob",
+            "traits": {
+                "smithy.api#mediaType": "text/plain"
+            }
+        },
+        "aws.protocoltests.shared#TimestampList": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Timestamp"
+            }
+        },
+        "aws.protocoltests.shared#TimestampSet": {
+            "type": "list",
+            "member": {
+                "target": "smithy.api#Timestamp"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        },
+        "aws.protocoltests.shared#UnionSet": {
+            "type": "list",
+            "member": {
+                "target": "aws.protocoltests.shared#FooUnion"
+            },
+            "traits": {
+                "smithy.api#uniqueItems": {}
+            }
+        }
+    }
+}
