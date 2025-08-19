@@ -41,7 +41,8 @@
      (:file "aws-json")
      (:file "rest-xml")
      (:file "aws-query")))
-   (:file "main")))
+   (:file "main"))
+  :in-order-to ((test-op (test-op "pira-tests"))))
 
 (defsystem "pira-core/codegen"
   :depends-on ("smithy")

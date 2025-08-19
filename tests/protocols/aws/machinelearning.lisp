@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/aws/machinelearning (:use)
+(uiop/package:define-package #:pira/tests/protocols/aws/machinelearning
+                             (:use #:pira/tests/shared-types)
                              (:export #:amazon-ml-20141212 #:details-attributes
                               #:details-map #:details-value #:entity-id
                               #:error-code #:error-message #:label #:predict
@@ -155,3 +156,6 @@
 customer is then expected to use for the Predict operation. Having
 to alter the endpoint for a specific operation would be cumbersome,
 so an AWS client should be able to do it for them.")))
+
+(rove:deftest aws/machinelearning
+  (pira/tests/runner:run-service-tests))

@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/restjson.validation (:use)
+(uiop/package:define-package #:pira/tests/protocols/restjson.validation
+                             (:use #:pira/tests/shared-types)
                              (:export #:enum-list #:enum-map #:enum-string
                               #:enum-trait-string #:enum-union #:evil-string
                               #:length-blob #:length-list #:length-map
@@ -489,3 +490,6 @@
                                        common-lisp:null :errors
                                        (validation-exception) :method "POST"
                                        :uri "/SensitiveValidation")
+
+(rove:deftest restjson.validation
+  (pira/tests/runner:run-service-tests))

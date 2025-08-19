@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/restxml (:use)
+(uiop/package:define-package #:pira/tests/protocols/restxml
+                             (:use #:pira/tests/shared-types)
                              (:export #:all-query-string-types
                               #:all-query-string-types-input
                               #:body-with-xml-name
@@ -318,7 +319,7 @@
                                 (:shape-name
                                  "EndpointWithHostLabelOperationRequest"))
 
-(smithy/sdk/shapes:define-structure enum-payload-input common-lisp:nil
+(smithy/sdk/shapes:define-interface enum-payload-input common-lisp:nil
                                     ((payload :target-type string-enum
                                       :member-name "payload" :http-payload
                                       common-lisp:t))
@@ -386,7 +387,7 @@
                                       :member-name "datetime"))
                                     (:shape-name "FractionalSecondsOutput"))
 
-(smithy/sdk/shapes:define-structure greeting-with-errors-output common-lisp:nil
+(smithy/sdk/shapes:define-interface greeting-with-errors-output common-lisp:nil
                                     ((greeting :target-type
                                       smithy/sdk/smithy-types:string
                                       :member-name "greeting" :http-header
@@ -420,7 +421,7 @@
                                    "specificHeader" :http-header "hello"))
                                  (:shape-name "HttpEmptyPrefixHeadersOutput"))
 
-(smithy/sdk/shapes:define-structure http-payload-traits-input-output
+(smithy/sdk/shapes:define-interface http-payload-traits-input-output
                                     common-lisp:nil
                                     ((foo :target-type
                                       smithy/sdk/smithy-types:string
@@ -431,7 +432,7 @@
                                     (:shape-name
                                      "HttpPayloadTraitsInputOutput"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-interface
  http-payload-traits-with-media-type-input-output common-lisp:nil
  ((foo :target-type smithy/sdk/smithy-types:string :member-name "foo"
    :http-header "X-Foo")
@@ -439,13 +440,13 @@
    common-lisp:t))
  (:shape-name "HttpPayloadTraitsWithMediaTypeInputOutput"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-interface
  http-payload-with-member-xml-name-input-output common-lisp:nil
  ((nested :target-type payload-with-xml-name :member-name "nested"
    :http-payload common-lisp:t :xml-name "Hola"))
  (:shape-name "HttpPayloadWithMemberXmlNameInputOutput"))
 
-(smithy/sdk/shapes:define-structure http-payload-with-structure-input-output
+(smithy/sdk/shapes:define-interface http-payload-with-structure-input-output
                                     common-lisp:nil
                                     ((nested :target-type nested-payload
                                       :member-name "nested" :http-payload
@@ -453,7 +454,7 @@
                                     (:shape-name
                                      "HttpPayloadWithStructureInputOutput"))
 
-(smithy/sdk/shapes:define-structure http-payload-with-union-input-output
+(smithy/sdk/shapes:define-interface http-payload-with-union-input-output
                                     common-lisp:nil
                                     ((nested :target-type union-payload
                                       :member-name "nested" :http-payload
@@ -461,7 +462,7 @@
                                     (:shape-name
                                      "HttpPayloadWithUnionInputOutput"))
 
-(smithy/sdk/shapes:define-structure http-payload-with-xml-name-input-output
+(smithy/sdk/shapes:define-interface http-payload-with-xml-name-input-output
                                     common-lisp:nil
                                     ((nested :target-type payload-with-xml-name
                                       :member-name "nested" :http-payload
@@ -469,19 +470,19 @@
                                     (:shape-name
                                      "HttpPayloadWithXmlNameInputOutput"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-interface
  http-payload-with-xml-namespace-and-prefix-input-output common-lisp:nil
  ((nested :target-type payload-with-xml-namespace-and-prefix :member-name
    "nested" :http-payload common-lisp:t))
  (:shape-name "HttpPayloadWithXmlNamespaceAndPrefixInputOutput"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-interface
  http-payload-with-xml-namespace-input-output common-lisp:nil
  ((nested :target-type payload-with-xml-namespace :member-name "nested"
    :http-payload common-lisp:t))
  (:shape-name "HttpPayloadWithXmlNamespaceInputOutput"))
 
-(smithy/sdk/shapes:define-structure http-prefix-headers-input-output
+(smithy/sdk/shapes:define-interface http-prefix-headers-input-output
                                     common-lisp:nil
                                     ((foo :target-type
                                       smithy/sdk/smithy-types:string
@@ -587,7 +588,7 @@
                                 (:shape-name
                                  "IgnoreQueryParamsInResponseOutput"))
 
-(smithy/sdk/shapes:define-structure input-and-output-with-headers-io
+(smithy/sdk/shapes:define-interface input-and-output-with-headers-io
                                     common-lisp:nil
                                     ((header-string :target-type
                                       smithy/sdk/smithy-types:string
@@ -734,7 +735,7 @@
                                     common-lisp:nil
                                     (:shape-name "NoInputAndOutputOutput"))
 
-(smithy/sdk/shapes:define-structure null-and-empty-headers-io common-lisp:nil
+(smithy/sdk/shapes:define-interface null-and-empty-headers-io common-lisp:nil
                                     ((a :target-type
                                       smithy/sdk/smithy-types:string
                                       :member-name "a" :http-header "X-A")
@@ -854,7 +855,7 @@
                                (smithy/sdk/smithy-types:string :xml-name
                                 "item"))
 
-(smithy/sdk/shapes:define-structure simple-scalar-properties-input-output
+(smithy/sdk/shapes:define-interface simple-scalar-properties-input-output
                                     common-lisp:nil
                                     ((foo :target-type
                                       smithy/sdk/smithy-types:string
@@ -904,7 +905,7 @@
     common-lisp:nil
   (:v "enumvalue"))
 
-(smithy/sdk/shapes:define-structure string-payload-input common-lisp:nil
+(smithy/sdk/shapes:define-interface string-payload-input common-lisp:nil
                                     ((payload :target-type
                                       smithy/sdk/smithy-types:string
                                       :member-name "payload" :http-payload
@@ -923,7 +924,7 @@
                                       :member-name "b" :xml-name "other"))
                                     (:shape-name "StructureListMember"))
 
-(smithy/sdk/shapes:define-structure timestamp-format-headers-io common-lisp:nil
+(smithy/sdk/shapes:define-interface timestamp-format-headers-io common-lisp:nil
                                     ((member-epoch-seconds :target-type
                                       smithy/sdk/smithy-types:timestamp
                                       :member-name "memberEpochSeconds"
@@ -5069,3 +5070,6 @@ Servers may produce different output, this test is designed different unescapes 
                                             ("booleanValue" . common-lisp:t))))
                                          :documentation
                                          "Serializes union member")))
+
+(rove:deftest restxml
+  (pira/tests/runner:run-service-tests))

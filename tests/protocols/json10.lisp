@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/json10 (:use)
+(uiop/package:define-package #:pira/tests/protocols/json10
+                             (:use #:pira/tests/shared-types)
                              (:export #:client-optional-defaults
                               #:complex-nested-error-data
                               #:content-type-parameters #:defaults
@@ -2262,3 +2263,6 @@ traits are ignored in the awsJson1_0 protocol.
                                           ("doubleValue" . "-Infinity"))
                                          :documentation
                                          "Supports handling -Infinity float values.")))
+
+(rove:deftest json10
+  (pira/tests/runner:run-service-tests))

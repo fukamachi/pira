@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/aws/apigateway (:use)
+(uiop/package:define-package #:pira/tests/protocols/aws/apigateway
+                             (:use #:pira/tests/shared-types)
                              (:export #:api-key-source-type
                               #:backplane-control-service #:boolean
                               #:endpoint-configuration #:endpoint-type
@@ -140,3 +141,6 @@
                                          (("Accept" . "application/json"))
                                          :body "" :documentation
                                          "API Gateway requires that this Accept header is set on all requests.")))
+
+(rove:deftest aws/apigateway
+  (pira/tests/runner:run-service-tests))

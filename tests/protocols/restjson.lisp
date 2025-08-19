@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/restjson (:use #:pira/tests/shared-types)
+(uiop/package:define-package #:pira/tests/protocols/restjson
+                             (:use #:pira/tests/shared-types)
                              (:export #:all-query-string-types
                               #:all-query-string-types-input
                               #:client-optional-defaults
@@ -529,7 +530,7 @@
                                     (:shape-name
                                      "DocumentTypeAsMapValueInputOutput"))
 
-(smithy/sdk/shapes:define-structure document-type-as-payload-input-output
+(smithy/sdk/shapes:define-interface document-type-as-payload-input-output
                                     common-lisp:nil
                                     ((document-value :target-type document
                                       :member-name "documentValue"
@@ -556,7 +557,7 @@
                                  common-lisp:nil common-lisp:nil
                                  (:shape-name "EmptyInputAndEmptyOutputOutput"))
 
-(smithy/sdk/shapes:define-structure enum-payload-input common-lisp:nil
+(smithy/sdk/shapes:define-interface enum-payload-input common-lisp:nil
                                     ((payload :target-type string-enum
                                       :member-name "payload" :http-payload
                                       common-lisp:t))
@@ -580,7 +581,7 @@
                                       :member-name "datetime"))
                                     (:shape-name "FractionalSecondsOutput"))
 
-(smithy/sdk/shapes:define-structure greeting-with-errors-output common-lisp:nil
+(smithy/sdk/shapes:define-interface greeting-with-errors-output common-lisp:nil
                                     ((greeting :target-type
                                       smithy/sdk/smithy-types:string
                                       :member-name "greeting" :http-header
@@ -621,7 +622,7 @@
                                    "specificHeader" :http-header "hello"))
                                  (:shape-name "HttpEmptyPrefixHeadersOutput"))
 
-(smithy/sdk/shapes:define-structure http-payload-traits-input-output
+(smithy/sdk/shapes:define-interface http-payload-traits-input-output
                                     common-lisp:nil
                                     ((foo :target-type
                                       smithy/sdk/smithy-types:string
@@ -632,7 +633,7 @@
                                     (:shape-name
                                      "HttpPayloadTraitsInputOutput"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-interface
  http-payload-traits-with-media-type-input-output common-lisp:nil
  ((foo :target-type smithy/sdk/smithy-types:string :member-name "foo"
    :http-header "X-Foo")
@@ -640,7 +641,7 @@
    common-lisp:t))
  (:shape-name "HttpPayloadTraitsWithMediaTypeInputOutput"))
 
-(smithy/sdk/shapes:define-structure http-payload-with-structure-input-output
+(smithy/sdk/shapes:define-interface http-payload-with-structure-input-output
                                     common-lisp:nil
                                     ((nested :target-type nested-payload
                                       :member-name "nested" :http-payload
@@ -648,7 +649,7 @@
                                     (:shape-name
                                      "HttpPayloadWithStructureInputOutput"))
 
-(smithy/sdk/shapes:define-structure http-payload-with-union-input-output
+(smithy/sdk/shapes:define-interface http-payload-with-union-input-output
                                     common-lisp:nil
                                     ((nested :target-type union-payload
                                       :member-name "nested" :http-payload
@@ -789,7 +790,7 @@
                                 (:shape-name
                                  "IgnoreQueryParamsInResponseOutput"))
 
-(smithy/sdk/shapes:define-structure input-and-output-with-headers-io
+(smithy/sdk/shapes:define-interface input-and-output-with-headers-io
                                     common-lisp:nil
                                     ((header-string :target-type
                                       smithy/sdk/smithy-types:string
@@ -985,7 +986,7 @@
 (smithy/sdk/shapes:define-type json-value smithy/sdk/smithy-types:string
                                :media-type "application/json")
 
-(smithy/sdk/shapes:define-structure malformed-accept-with-generic-string-output
+(smithy/sdk/shapes:define-interface malformed-accept-with-generic-string-output
                                     common-lisp:nil
                                     ((payload :target-type
                                       smithy/sdk/smithy-types:string
@@ -994,7 +995,7 @@
                                     (:shape-name
                                      "MalformedAcceptWithGenericStringOutput"))
 
-(smithy/sdk/shapes:define-structure malformed-accept-with-payload-output
+(smithy/sdk/shapes:define-interface malformed-accept-with-payload-output
                                     common-lisp:nil
                                     ((payload :target-type jpeg-blob
                                       :member-name "payload" :http-payload
@@ -1042,13 +1043,13 @@
                                   "byteInHeader" :http-header "byteInHeader"))
                                 (:shape-name "MalformedByteInput"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-interface
  malformed-content-type-with-generic-string-input common-lisp:nil
  ((payload :target-type smithy/sdk/smithy-types:string :member-name "payload"
    :http-payload common-lisp:t))
  (:shape-name "MalformedContentTypeWithGenericStringInput"))
 
-(smithy/sdk/shapes:define-structure malformed-content-type-with-payload-input
+(smithy/sdk/shapes:define-interface malformed-content-type-with-payload-input
                                     common-lisp:nil
                                     ((payload :target-type jpeg-blob
                                       :member-name "payload" :http-payload
@@ -1056,7 +1057,7 @@
                                     (:shape-name
                                      "MalformedContentTypeWithPayloadInput"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-interface
  malformed-content-type-without-body-empty-input-input common-lisp:nil
  ((header :target-type smithy/sdk/smithy-types:string :member-name "header"
    :http-header "header"))
@@ -1167,7 +1168,7 @@
                                   "shortInHeader"))
                                 (:shape-name "MalformedShortInput"))
 
-(smithy/sdk/shapes:define-structure malformed-string-input common-lisp:nil
+(smithy/sdk/shapes:define-interface malformed-string-input common-lisp:nil
                                     ((blob :target-type json-header-string
                                       :member-name "blob" :http-header
                                       "amz-media-typed-header"))
@@ -1202,7 +1203,7 @@
                                     (:shape-name
                                      "MalformedTimestampBodyHttpDateInput"))
 
-(smithy/sdk/shapes:define-structure malformed-timestamp-header-date-time-input
+(smithy/sdk/shapes:define-interface malformed-timestamp-header-date-time-input
                                     common-lisp:nil
                                     ((timestamp :target-type
                                       smithy/sdk/smithy-types:timestamp
@@ -1212,7 +1213,7 @@
                                     (:shape-name
                                      "MalformedTimestampHeaderDateTimeInput"))
 
-(smithy/sdk/shapes:define-structure malformed-timestamp-header-default-input
+(smithy/sdk/shapes:define-interface malformed-timestamp-header-default-input
                                     common-lisp:nil
                                     ((timestamp :target-type
                                       smithy/sdk/smithy-types:timestamp
@@ -1221,7 +1222,7 @@
                                     (:shape-name
                                      "MalformedTimestampHeaderDefaultInput"))
 
-(smithy/sdk/shapes:define-structure malformed-timestamp-header-epoch-input
+(smithy/sdk/shapes:define-interface malformed-timestamp-header-epoch-input
                                     common-lisp:nil
                                     ((timestamp :target-type
                                       smithy/sdk/smithy-types:timestamp
@@ -1294,12 +1295,12 @@
                                       :member-name "union"))
                                     (:shape-name "MalformedUnionInput"))
 
-(smithy/sdk/shapes:define-structure media-type-header-input common-lisp:nil
+(smithy/sdk/shapes:define-interface media-type-header-input common-lisp:nil
                                     ((json :target-type json-value :member-name
                                       "json" :http-header "X-Json"))
                                     (:shape-name "MediaTypeHeaderInput"))
 
-(smithy/sdk/shapes:define-structure media-type-header-output common-lisp:nil
+(smithy/sdk/shapes:define-interface media-type-header-output common-lisp:nil
                                     ((json :target-type json-value :member-name
                                       "json" :http-header "X-Json"))
                                     (:shape-name "MediaTypeHeaderOutput"))
@@ -1355,7 +1356,7 @@
                                  common-lisp:nil
                                  (:shape-name "NoInputAndOutputOutput"))
 
-(smithy/sdk/shapes:define-structure null-and-empty-headers-io common-lisp:nil
+(smithy/sdk/shapes:define-interface null-and-empty-headers-io common-lisp:nil
                                     ((a :target-type
                                       smithy/sdk/smithy-types:string
                                       :member-name "a" :http-header "X-A")
@@ -1548,7 +1549,7 @@
 (smithy/sdk/shapes:define-map simple-map :key smithy/sdk/smithy-types:string
                               :value smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure simple-scalar-properties-input-output
+(smithy/sdk/shapes:define-interface simple-scalar-properties-input-output
                                     common-lisp:nil
                                     ((foo :target-type
                                       smithy/sdk/smithy-types:string
@@ -1644,7 +1645,7 @@
                                smithy/sdk/smithy-types:blob :streaming
                                common-lisp:t :media-type "text/plain")
 
-(smithy/sdk/shapes:define-structure streaming-traits-input-output
+(smithy/sdk/shapes:define-interface streaming-traits-input-output
                                     common-lisp:nil
                                     ((foo :target-type
                                       smithy/sdk/smithy-types:string
@@ -1665,7 +1666,7 @@
                                 (:shape-name
                                  "StreamingTraitsRequireLengthInput"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-interface
  streaming-traits-with-media-type-input-output common-lisp:nil
  ((foo :target-type smithy/sdk/smithy-types:string :member-name "foo"
    :http-header "X-Foo")
@@ -1677,7 +1678,7 @@
     common-lisp:nil
   (:v "enumvalue"))
 
-(smithy/sdk/shapes:define-structure string-payload-input common-lisp:nil
+(smithy/sdk/shapes:define-interface string-payload-input common-lisp:nil
                                     ((payload :target-type
                                       smithy/sdk/smithy-types:string
                                       :member-name "payload" :http-payload
@@ -1695,7 +1696,7 @@
                                       :member-name "b" :json-name "other"))
                                     (:shape-name "StructureListMember"))
 
-(smithy/sdk/shapes:define-structure test-body-structure-input-output
+(smithy/sdk/shapes:define-interface test-body-structure-input-output
                                     common-lisp:nil
                                     ((test-id :target-type
                                       smithy/sdk/smithy-types:string
@@ -1723,7 +1724,7 @@
   (:one 1)
   (:two 2))
 
-(smithy/sdk/shapes:define-structure test-no-payload-input-output
+(smithy/sdk/shapes:define-interface test-no-payload-input-output
                                     common-lisp:nil
                                     ((test-id :target-type
                                       smithy/sdk/smithy-types:string
@@ -1731,7 +1732,7 @@
                                       "X-Amz-Test-Id"))
                                     (:shape-name "TestNoPayloadInputOutput"))
 
-(smithy/sdk/shapes:define-structure test-payload-blob-input-output
+(smithy/sdk/shapes:define-interface test-payload-blob-input-output
                                     common-lisp:nil
                                     ((content-type :target-type
                                       smithy/sdk/smithy-types:string
@@ -1742,7 +1743,7 @@
                                       "data" :http-payload common-lisp:t))
                                     (:shape-name "TestPayloadBlobInputOutput"))
 
-(smithy/sdk/shapes:define-structure test-payload-structure-input-output
+(smithy/sdk/shapes:define-interface test-payload-structure-input-output
                                     common-lisp:nil
                                     ((test-id :target-type
                                       smithy/sdk/smithy-types:string
@@ -1762,7 +1763,7 @@
                               smithy/sdk/smithy-types:string :value
                               smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure timestamp-format-headers-io common-lisp:nil
+(smithy/sdk/shapes:define-interface timestamp-format-headers-io common-lisp:nil
                                     ((member-epoch-seconds :target-type
                                       smithy/sdk/smithy-types:timestamp
                                       :member-name "memberEpochSeconds"
@@ -7135,3 +7136,6 @@ default content-type."
                                          "When an operation defines Unit output, the service will respond
 with an empty payload, and may optionally include the content-type
 header.")))
+
+(rove:deftest restjson
+  (pira/tests/runner:run-service-tests))

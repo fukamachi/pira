@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/rpcv2cbor (:use)
+(uiop/package:define-package #:pira/tests/protocols/rpcv2cbor
+                             (:use #:pira/tests/shared-types)
                              (:export #:non-query-compatible-operation
                               #:non-query-compatible-rpc-v2protocol
                               #:query-compatible-operation
@@ -84,3 +85,6 @@
                                          #("Content-Type" "X-Amz-Target") :body
                                          "" :documentation
                                          "Clients for query-compatible services MUST send the x-amzn-query-mode header.")))
+
+(rove:deftest rpcv2cbor
+  (pira/tests/runner:run-service-tests))

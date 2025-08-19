@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/query (:use)
+(uiop/package:define-package #:pira/tests/protocols/query
+                             (:use #:pira/tests/shared-types)
                              (:export #:aws-query #:complex-map
                               #:complex-nested-error-data #:datetime-offsets
                               #:datetime-offsets-output
@@ -2287,3 +2288,6 @@ traits are ignored in the awsQuery protocol.
                                          (("httpDateOnTarget" . 1398796238))
                                          :documentation
                                          "Ensures that the timestampFormat of http-date on the target shape works")))
+
+(rove:deftest query
+  (pira/tests/runner:run-service-tests))

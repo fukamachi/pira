@@ -1,0 +1,84 @@
+(defpackage #:pira/tests/runner
+  (:use #:cl
+        #:rove)
+  (:import-from #:alexandria
+                #:mappend
+                #:compose)
+  (:local-nicknames
+   (#:operation #:smithy/sdk/operation)
+   (#:service #:smithy/sdk/service)
+   (#:protocol #:smithy/sdk/protocols)
+   (#:http #:smithy/sdk/http))
+  (:export #:run-service-tests))
+(in-package #:pira/tests/runner)
+
+(defun check-headers (headers expected-headers)
+  (loop for (name . value) in expected-headers
+        for actual = (find (string-downcase name) headers
+                           :key (compose #'string-downcase #'car)
+                           :test #'string=)
+        do (ok (and actual (equal value (cdr actual)))
+               (format nil "Header '~A' is '~A'."
+                       name value))))
+
+(defun run-request-test (operation test)
+  (unless (getf test :params) ;; TODO
+    (when (operation:operation-input operation)
+      (let ((req (protocol:make-request operation
+                                        (make-instance (operation:operation-input operation)))))
+        (when (getf test :method)
+          (ok (equal (http:request-method req) (getf test :method))
+              (format nil "Method is '~A'." (getf test :method))))
+        (when (getf test :uri)
+          (ok (equal (http:request-path-info req) (getf test :uri))
+              (format nil "Path is '~A'." (getf test :uri))))
+        (when (getf test :headers)
+          (check-headers (http:request-headers req) (getf test :headers)))
+        (when (getf test :forbid-headers)
+          (loop for header across (getf test :forbid-headers)
+                do (ng (find header (http:request-headers req) :key #'car :test 'equal)
+                       (format nil "Headers not include '~A'." header))))
+        (when (getf test :require-headers)
+          (loop for header across (getf test :require-headers)
+                do (ok (find header (http:request-headers req) :key #'car :test 'equal)
+                       (format nil "Headers include '~A'." header))))
+        (when (getf test :body)
+          (ok (equal (or (http:request-payload req) "") (getf test :body))
+              (format nil "Body is '~A'." (getf test :body))))))))
+
+(defun run-response-test (operation test)
+  (declare (ignorable operation test)))
+
+(defun run-operation-tests (operation)
+  (let ((request-tests (remove-if
+                        (lambda (test)
+                          (equal (getf test :applies-to) "server"))
+                        (operation:operation-request-tests operation)))
+        (response-tests (remove-if
+                         (lambda (test)
+                           (equal (getf test :applies-to) "server"))
+                         (operation:operation-response-tests operation))))
+    (when (or request-tests
+              response-tests)
+      (testing (operation:operation-name operation)
+        (dolist (request-test request-tests)
+          (testing (getf request-test :id)
+            (diag (getf request-test :documentation))
+            (run-request-test operation request-test)))
+        (dolist (response-test response-tests)
+          (testing (getf response-test :id)
+            (diag (getf response-test :documentation))
+            (run-response-test operation response-test)))))))
+
+(defun run-service-tests (&optional (package *package*))
+  (let* ((package (etypecase package
+                    (package package)
+                    ((or symbol string) (find-package package))))
+         (services
+           (service:package-services package))
+         (operations
+           (mapcar #'operation:find-operation
+                   (mappend #'service:service-operations
+                            services))))
+    (mapc #'run-operation-tests operations)
+    (values)))

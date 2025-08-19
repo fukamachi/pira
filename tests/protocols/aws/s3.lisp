@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/aws/s3 (:use)
+(uiop/package:define-package #:pira/tests/protocols/aws/s3
+                             (:use #:pira/tests/shared-types)
                              (:export #:account-id #:amazon-s3
                               #:bucket-location-constraint #:bucket-name
                               #:common-prefix #:common-prefix-list
@@ -497,3 +498,6 @@ addressing style with Dualstack and S3 Accelerate.")
                                          :documentation
                                          "S3 clients should resolve to the addressing style of the
 operation if defined on both the client and operation.")))
+
+(rove:deftest aws/s3
+  (pira/tests/runner:run-service-tests))

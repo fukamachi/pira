@@ -56,17 +56,24 @@
                               operations)
                       :test 'equal)))
     (dolist (namespace namespaces)
-      (let ((package-name
-              (format nil "tests/protocols/~A"
-                      (cond
-                        ((starts-with-subseq "aws.protocoltests." namespace)
-                         (subseq namespace (length "aws.protocoltests.")))
-                        ((starts-with-subseq "com.amazonaws." namespace)
-                         (format nil "aws/~A" (subseq namespace (length "com.amazonaws."))))
-                        (t namespace)))))
-        (smithy::codegen-from-json model.json
-                                   :package-name (format nil "pira/~A" package-name)
-                                   :test (lambda (shape-name)
-                                           (equal namespace (nth-value 1 (smithy/utils:parse-shape-id shape-name))))
-                                   :output (pathname (format nil "~A.lisp" package-name))))))
+      (let* ((protocol-name (cond
+                              ((starts-with-subseq "aws.protocoltests." namespace)
+                               (subseq namespace (length "aws.protocoltests.")))
+                              ((starts-with-subseq "com.amazonaws." namespace)
+                               (format nil "aws/~A" (subseq namespace (length "com.amazonaws."))))
+                              (t namespace)))
+             (package-name
+               (format nil "tests/protocols/~A" protocol-name)))
+        (with-open-file (out (format nil "~A.lisp" package-name)
+                             :direction :output
+                             :if-exists :supersede
+                             :if-does-not-exist :create)
+          (smithy::codegen-from-json model.json
+                                     :package-name (format nil "pira/~A" package-name)
+                                     :use '(#:pira/tests/shared-types)
+                                     :test (lambda (shape-name)
+                                             (equal namespace (nth-value 1 (smithy/utils:parse-shape-id shape-name))))
+                                     :output out)
+          (format out "~2&(rove:deftest ~(~A~)~%  (pira/tests/runner:run-service-tests))~%"
+                  protocol-name)))))
   (values))

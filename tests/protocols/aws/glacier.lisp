@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/aws/glacier (:use)
+(uiop/package:define-package #:pira/tests/protocols/aws/glacier
+                             (:use #:pira/tests/shared-types)
                              (:export #:archive-creation-output #:glacier
                               #:stream #:upload-archive #:upload-archive-input
                               #:upload-multipart-part
@@ -24,7 +25,7 @@
                                      ("aws.auth#sigv4" ("name" . "glacier"))
                                      ("aws.protocols#restJson1")))
 
-(smithy/sdk/shapes:define-structure archive-creation-output common-lisp:nil
+(smithy/sdk/shapes:define-interface archive-creation-output common-lisp:nil
                                     ((location :target-type string :member-name
                                       "location" :http-header "Location")
                                      (checksum :target-type string :member-name
@@ -116,7 +117,7 @@
                                   :http-payload common-lisp:t))
                                 (:shape-name "UploadMultipartPartInput"))
 
-(smithy/sdk/shapes:define-structure upload-multipart-part-output
+(smithy/sdk/shapes:define-interface upload-multipart-part-output
                                     common-lisp:nil
                                     ((checksum :target-type string :member-name
                                       "checksum" :http-header
@@ -211,3 +212,6 @@ behavior if the customer provides a null or empty string."
                                          :documentation
                                          "Glacier requires checksum headers that are cumbersome to provide."
                                          :applies-to "client")))
+
+(rove:deftest aws/glacier
+  (pira/tests/runner:run-service-tests))

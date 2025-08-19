@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/json (:use)
+(uiop/package:define-package #:pira/tests/protocols/json
+                             (:use #:pira/tests/shared-types)
                              (:export #:complex-nested-error-data
                               #:content-type-parameters #:datetime-offsets
                               #:datetime-offsets-output #:document
@@ -2457,3 +2458,6 @@ traits are ignored in the awsJson1_1 protocol.
                                            . #(common-lisp:nil)))
                                          :documentation
                                          "Deserializes null values in lists")))
+
+(rove:deftest json
+  (pira/tests/runner:run-service-tests))

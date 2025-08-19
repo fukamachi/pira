@@ -1,4 +1,5 @@
-(uiop/package:define-package #:pira/tests/protocols/restxml.xmlns (:use)
+(uiop/package:define-package #:pira/tests/protocols/restxml.xmlns
+                             (:use #:pira/tests/shared-types)
                              (:export #:nested-with-namespace
                               #:rest-xml-with-namespace
                               #:simple-scalar-properties
@@ -29,7 +30,7 @@
                                       common-lisp:t))
                                     (:shape-name "NestedWithNamespace"))
 
-(smithy/sdk/shapes:define-structure simple-scalar-properties-input-output
+(smithy/sdk/shapes:define-interface simple-scalar-properties-input-output
                                     common-lisp:nil
                                     ((foo :target-type
                                       smithy/sdk/smithy-types:string
@@ -158,3 +159,6 @@
                                            ("attrField" . "nestedAttrValue")))
                                          :documentation
                                          "Serializes simple scalar properties")))
+
+(rove:deftest restxml.xmlns
+  (pira/tests/runner:run-service-tests))
