@@ -7137,5 +7137,4 @@ default content-type."
 with an empty payload, and may optionally include the content-type
 header.")))
 
-(rove:deftest restjson
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

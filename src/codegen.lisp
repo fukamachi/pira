@@ -74,6 +74,5 @@
                                      :test (lambda (shape-name)
                                              (equal namespace (nth-value 1 (smithy/utils:parse-shape-id shape-name))))
                                      :output out)
-          (format out "~2&(rove:deftest ~(~A~)~%  (pira/tests/runner:run-service-tests))~%"
-                  protocol-name)))))
+          (format out "~2&(pira/tests/runner:define-service-tests)~%")))))
   (values))

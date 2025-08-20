@@ -5071,5 +5071,4 @@ Servers may produce different output, this test is designed different unescapes 
                                          :documentation
                                          "Serializes union member")))
 
-(rove:deftest restxml
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

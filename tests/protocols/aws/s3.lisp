@@ -499,5 +499,4 @@ addressing style with Dualstack and S3 Accelerate.")
                                          "S3 clients should resolve to the addressing style of the
 operation if defined on both the client and operation.")))
 
-(rove:deftest aws/s3
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

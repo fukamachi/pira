@@ -213,5 +213,4 @@ behavior if the customer provides a null or empty string."
                                          "Glacier requires checksum headers that are cumbersome to provide."
                                          :applies-to "client")))
 
-(rove:deftest aws/glacier
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

@@ -1,5 +1,6 @@
 (defsystem "pira-tests"
   :depends-on ("rove"
+               "pira"
                "smithy/sdk"
                "alexandria")
   :pathname "tests"

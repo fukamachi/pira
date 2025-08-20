@@ -2459,5 +2459,4 @@ traits are ignored in the awsJson1_1 protocol.
                                          :documentation
                                          "Deserializes null values in lists")))
 
-(rove:deftest json
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

@@ -1870,5 +1870,4 @@ traits are ignored in the ec2Query protocol.
                                          :documentation
                                          "Ensures that the timestampFormat of http-date on the target shape works")))
 
-(rove:deftest ec2
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

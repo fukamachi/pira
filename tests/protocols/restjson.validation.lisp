@@ -491,5 +491,4 @@
                                        (validation-exception) :method "POST"
                                        :uri "/SensitiveValidation")
 
-(rove:deftest restjson.validation
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

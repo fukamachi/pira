@@ -86,5 +86,4 @@
                                          "" :documentation
                                          "Clients for query-compatible services MUST send the x-amzn-query-mode header.")))
 
-(rove:deftest rpcv2cbor
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

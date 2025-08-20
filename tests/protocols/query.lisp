@@ -2289,5 +2289,4 @@ traits are ignored in the awsQuery protocol.
                                          :documentation
                                          "Ensures that the timestampFormat of http-date on the target shape works")))
 
-(rove:deftest query
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

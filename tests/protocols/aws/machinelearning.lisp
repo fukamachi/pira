@@ -157,5 +157,4 @@ customer is then expected to use for the Predict operation. Having
 to alter the endpoint for a specific operation would be cumbersome,
 so an AWS client should be able to do it for them.")))
 
-(rove:deftest aws/machinelearning
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

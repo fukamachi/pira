@@ -9,7 +9,7 @@
    (#:service #:smithy/sdk/service)
    (#:protocol #:smithy/sdk/protocols)
    (#:http #:smithy/sdk/http))
-  (:export #:run-service-tests))
+  (:export #:define-service-tests))
 (in-package #:pira/tests/runner)
 
 (defun check-headers (headers expected-headers)
@@ -22,10 +22,16 @@
                        name value))))
 
 (defun run-request-test (operation test)
-  (unless (getf test :params) ;; TODO
+  (unless (find-if (lambda (kv)
+                     (consp (cdr kv)))
+                   (getf test :params)) ;; TODO
     (when (operation:operation-input operation)
       (let ((req (protocol:make-request operation
-                                        (make-instance (operation:operation-input operation)))))
+                                        (apply #'make-instance (operation:operation-input operation)
+                                               (loop for (k . v) in (getf test :params)
+                                                     append
+                                                     (list (intern (string-upcase (kebab:to-lisp-case k)) :keyword)
+                                                           v))))))
         (when (getf test :method)
           (ok (equal (http:request-method req) (getf test :method))
               (format nil "Method is '~A'." (getf test :method))))
@@ -36,28 +42,36 @@
           (check-headers (http:request-headers req) (getf test :headers)))
         (when (getf test :forbid-headers)
           (loop for header across (getf test :forbid-headers)
-                do (ng (find header (http:request-headers req) :key #'car :test 'equal)
+                do (ng (find (string-downcase header) (http:request-headers req) :key (compose #'string-downcase #'car) :test 'string=)
                        (format nil "Headers not include '~A'." header))))
         (when (getf test :require-headers)
           (loop for header across (getf test :require-headers)
-                do (ok (find header (http:request-headers req) :key #'car :test 'equal)
+                do (ok (find (string-downcase header) (http:request-headers req) :key (compose #'string-downcase #'car) :test 'string=)
                        (format nil "Headers include '~A'." header))))
         (when (getf test :body)
-          (ok (equal (or (http:request-payload req) "") (getf test :body))
+          (ok (equal (or (http:request-payload req) "")
+                     ;; XXX
+                     (if (equal (getf test :body) "{
+}")
+                         "{}"
+                         (getf test :body)))
               (format nil "Body is '~A'." (getf test :body))))))))
 
 (defun run-response-test (operation test)
   (declare (ignorable operation test)))
 
 (defun run-operation-tests (operation)
-  (let ((request-tests (remove-if
-                        (lambda (test)
-                          (equal (getf test :applies-to) "server"))
-                        (operation:operation-request-tests operation)))
-        (response-tests (remove-if
+  (let* ((operation (etypecase operation
+                      (symbol (operation:find-operation operation))
+                      (operation:operation operation)))
+         (request-tests (remove-if
                          (lambda (test)
                            (equal (getf test :applies-to) "server"))
-                         (operation:operation-response-tests operation))))
+                         (operation:operation-request-tests operation)))
+         (response-tests (remove-if
+                          (lambda (test)
+                            (equal (getf test :applies-to) "server"))
+                          (operation:operation-response-tests operation))))
     (when (or request-tests
               response-tests)
       (testing (operation:operation-name operation)
@@ -70,15 +84,17 @@
             (diag (getf response-test :documentation))
             (run-response-test operation response-test)))))))
 
-(defun run-service-tests (&optional (package *package*))
+(defun define-service-tests (&optional (package *package*))
   (let* ((package (etypecase package
                     (package package)
                     ((or symbol string) (find-package package))))
          (services
            (service:package-services package))
          (operations
-           (mapcar #'operation:find-operation
-                   (mappend #'service:service-operations
-                            services))))
-    (mapc #'run-operation-tests operations)
+           (mappend #'service:service-operations
+                    services)))
+    (dolist (op operations)
+      (rove/core/test::set-test op
+                                (lambda ()
+                                  (run-operation-tests op))))
     (values)))

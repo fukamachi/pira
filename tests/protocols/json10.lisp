@@ -2264,5 +2264,4 @@ traits are ignored in the awsJson1_0 protocol.
                                          :documentation
                                          "Supports handling -Infinity float values.")))
 
-(rove:deftest json10
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

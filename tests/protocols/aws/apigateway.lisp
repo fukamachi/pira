@@ -142,5 +142,4 @@
                                          :body "" :documentation
                                          "API Gateway requires that this Accept header is set on all requests.")))
 
-(rove:deftest aws/apigateway
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)

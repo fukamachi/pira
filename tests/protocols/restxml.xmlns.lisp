@@ -160,5 +160,4 @@
                                          :documentation
                                          "Serializes simple scalar properties")))
 
-(rove:deftest restxml.xmlns
-  (pira/tests/runner:run-service-tests))
+(pira/tests/runner:define-service-tests)
