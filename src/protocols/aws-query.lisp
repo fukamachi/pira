@@ -37,7 +37,8 @@
      (xml:xml-tag-body input))))
 
 ;; payload is xml-tag
-(defmethod protocols:encode-payload ((query aws-query) payload)
+(defmethod protocols:encode-payload ((query aws-query) content-type payload)
+  (declare (ignore content-type))
   (labels ((to-query (elem)
              (etypecase elem
                (null nil)

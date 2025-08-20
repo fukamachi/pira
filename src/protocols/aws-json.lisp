@@ -27,9 +27,9 @@
   (:metaclass protocols:protocol-metaclass)
   (:protocol-id :aws-json1-1))
 
-(defmethod protocols:encode-payload ((json aws-json) payload)
+(defmethod protocols:encode-payload ((json aws-json) content-type payload)
+  (declare (ignore content-type))
   (typecase payload
-    (null "{}")
     ((or string
          (vector (unsigned-byte 8)))
      payload)

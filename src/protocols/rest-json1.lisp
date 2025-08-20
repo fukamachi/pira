@@ -19,9 +19,8 @@
   (:metaclass protocols:protocol-metaclass)
   (:protocol-id :rest-json1))
 
-(defmethod protocols:encode-payload ((json rest-json1) payload)
+(defmethod protocols:encode-payload ((json rest-json1) content-type payload)
   (typecase payload
-    (null nil)
     ((or string
          (vector (unsigned-byte 8)))
      payload)
@@ -41,11 +40,10 @@
                 (let ((slot slots))
                   (or (get (shape:member-target-type slot) :media-type)
                       (case (ensure-car (shape:member-smithy-type slot))
-                        ((type:string type:enum) "text/plain")
+                        ((type:string type:enum shape:smithy-union) "text/plain")
                         (type:blob "application/octet-stream")
                         (type:document "application/json")
                         (shape:smithy-structure "application/json")
-                        (shape:smithy-union "application/json")
                         (otherwise "application/json")))))))))))
 
 (defun sanitize-error-code (value)
