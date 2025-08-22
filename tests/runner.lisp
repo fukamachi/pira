@@ -74,7 +74,7 @@
                           (operation:operation-response-tests operation))))
     (when (or request-tests
               response-tests)
-      (testing (operation:operation-name operation)
+      (testing (string-downcase (operation:operation-name operation))
         (dolist (request-test request-tests)
           (testing (getf request-test :id)
             (diag (getf request-test :documentation))
