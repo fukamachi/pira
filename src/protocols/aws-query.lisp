@@ -27,14 +27,15 @@
 
 (defmethod protocols:serialize-input ((query aws-query) service operation input)
   (let ((input (call-next-method)))
-    (check-type input xml::xml-structure)
+    (check-type input (or xml::xml-structure null))
     (list*
      (xml::make-xml-tag "Action"
                         (operation:operation-shape-name operation))
      (xml::make-xml-tag "Version"
                         (service:service-version service))
 
-     (xml:xml-tag-body input))))
+     (and input
+          (xml:xml-tag-body input)))))
 
 ;; payload is xml-tag
 (defmethod protocols:encode-payload ((query aws-query) content-type payload)
@@ -93,11 +94,8 @@
     (quri:url-encode-params (mappend #'to-query payload))))
 
 (defmethod protocols:additional-headers ((query aws-query) service operation input)
-  (let ((slots (shape:http-payload-slots input)))
-    (when slots
-      (list
-       (cons :content-type
-             "application/x-www-form-urlencoded")))))
+  (declare (ignore service operation input))
+  '((:content-type . "application/x-www-form-urlencoded")))
 
 (defmethod protocols:deserialize-output-payload ((query aws-query) output-class payload)
   (when (equal (shape:structure-shape-name output-class) (xml:xml-tag-name payload))
