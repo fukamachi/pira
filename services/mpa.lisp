@@ -615,7 +615,8 @@ common-lisp:nil
                                 (:shape-name "InvalidParameterException")
                                 (:error-code 400))
 
-(smithy/sdk/shapes:define-type iso-timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type iso-timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input list-approval-teams-request common-lisp:nil
                                 ((max-results :target-type max-results

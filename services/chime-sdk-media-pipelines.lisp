@@ -1039,7 +1039,8 @@
   (:bottom "Bottom"))
 
 (smithy/sdk/shapes:define-type iso8601timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure issue-detection-configuration
                                     common-lisp:nil

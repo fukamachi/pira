@@ -559,12 +559,12 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list archive-rules-list :member archive-rule-summary)
 
-(smithy/sdk/shapes:define-structure cancel-policy-generation-request
-                                    common-lisp:nil
-                                    ((job-id :target-type job-id :required
-                                      common-lisp:t :member-name "jobId"))
-                                    (:shape-name
-                                     "CancelPolicyGenerationRequest"))
+(smithy/sdk/shapes:define-input cancel-policy-generation-request
+                                common-lisp:nil
+                                ((job-id :target-type job-id :required
+                                  common-lisp:t :member-name "jobId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "CancelPolicyGenerationRequest"))
 
 (smithy/sdk/shapes:define-structure cancel-policy-generation-response
                                     common-lisp:nil common-lisp:nil
@@ -787,19 +787,19 @@ common-lisp:nil
                                       :member-name "arn"))
                                     (:shape-name "CreateAnalyzerResponse"))
 
-(smithy/sdk/shapes:define-structure create-archive-rule-request common-lisp:nil
-                                    ((analyzer-name :target-type name :required
-                                      common-lisp:t :member-name
-                                      "analyzerName")
-                                     (rule-name :target-type name :required
-                                      common-lisp:t :member-name "ruleName")
-                                     (filter :target-type filter-criteria-map
-                                      :required common-lisp:t :member-name
-                                      "filter")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken"))
-                                    (:shape-name "CreateArchiveRuleRequest"))
+(smithy/sdk/shapes:define-input create-archive-rule-request common-lisp:nil
+                                ((analyzer-name :target-type name :required
+                                  common-lisp:t :member-name "analyzerName"
+                                  :http-label common-lisp:t)
+                                 (rule-name :target-type name :required
+                                  common-lisp:t :member-name "ruleName")
+                                 (filter :target-type filter-criteria-map
+                                  :required common-lisp:t :member-name
+                                  "filter")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken"))
+                                (:shape-name "CreateArchiveRuleRequest"))
 
 (smithy/sdk/shapes:define-structure criterion common-lisp:nil
                                     ((eq :target-type value-list :member-name
@@ -813,27 +813,26 @@ common-lisp:nil
                                       :member-name "exists"))
                                     (:shape-name "Criterion"))
 
-(smithy/sdk/shapes:define-structure delete-analyzer-request common-lisp:nil
-                                    ((analyzer-name :target-type name :required
-                                      common-lisp:t :member-name
-                                      "analyzerName")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken" :http-query
-                                      "clientToken"))
-                                    (:shape-name "DeleteAnalyzerRequest"))
+(smithy/sdk/shapes:define-input delete-analyzer-request common-lisp:nil
+                                ((analyzer-name :target-type name :required
+                                  common-lisp:t :member-name "analyzerName"
+                                  :http-label common-lisp:t)
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken" :http-query "clientToken"))
+                                (:shape-name "DeleteAnalyzerRequest"))
 
-(smithy/sdk/shapes:define-structure delete-archive-rule-request common-lisp:nil
-                                    ((analyzer-name :target-type name :required
-                                      common-lisp:t :member-name
-                                      "analyzerName")
-                                     (rule-name :target-type name :required
-                                      common-lisp:t :member-name "ruleName")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken" :http-query
-                                      "clientToken"))
-                                    (:shape-name "DeleteArchiveRuleRequest"))
+(smithy/sdk/shapes:define-input delete-archive-rule-request common-lisp:nil
+                                ((analyzer-name :target-type name :required
+                                  common-lisp:t :member-name "analyzerName"
+                                  :http-label common-lisp:t)
+                                 (rule-name :target-type name :required
+                                  common-lisp:t :member-name "ruleName"
+                                  :http-label common-lisp:t)
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken" :http-query "clientToken"))
+                                (:shape-name "DeleteArchiveRuleRequest"))
 
 (smithy/sdk/shapes:define-structure dynamodb-stream-configuration
                                     common-lisp:nil
@@ -1206,14 +1205,15 @@ common-lisp:nil
                                       "generatedPolicies"))
                                     (:shape-name "GeneratedPolicyResult"))
 
-(smithy/sdk/shapes:define-structure get-access-preview-request common-lisp:nil
-                                    ((access-preview-id :target-type
-                                      access-preview-id :required common-lisp:t
-                                      :member-name "accessPreviewId")
-                                     (analyzer-arn :target-type analyzer-arn
-                                      :required common-lisp:t :member-name
-                                      "analyzerArn" :http-query "analyzerArn"))
-                                    (:shape-name "GetAccessPreviewRequest"))
+(smithy/sdk/shapes:define-input get-access-preview-request common-lisp:nil
+                                ((access-preview-id :target-type
+                                  access-preview-id :required common-lisp:t
+                                  :member-name "accessPreviewId" :http-label
+                                  common-lisp:t)
+                                 (analyzer-arn :target-type analyzer-arn
+                                  :required common-lisp:t :member-name
+                                  "analyzerArn" :http-query "analyzerArn"))
+                                (:shape-name "GetAccessPreviewRequest"))
 
 (smithy/sdk/shapes:define-structure get-access-preview-response common-lisp:nil
                                     ((access-preview :target-type
@@ -1221,15 +1221,14 @@ common-lisp:nil
                                       :member-name "accessPreview"))
                                     (:shape-name "GetAccessPreviewResponse"))
 
-(smithy/sdk/shapes:define-structure get-analyzed-resource-request
-                                    common-lisp:nil
-                                    ((analyzer-arn :target-type analyzer-arn
-                                      :required common-lisp:t :member-name
-                                      "analyzerArn" :http-query "analyzerArn")
-                                     (resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn" :http-query "resourceArn"))
-                                    (:shape-name "GetAnalyzedResourceRequest"))
+(smithy/sdk/shapes:define-input get-analyzed-resource-request common-lisp:nil
+                                ((analyzer-arn :target-type analyzer-arn
+                                  :required common-lisp:t :member-name
+                                  "analyzerArn" :http-query "analyzerArn")
+                                 (resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-query "resourceArn"))
+                                (:shape-name "GetAnalyzedResourceRequest"))
 
 (smithy/sdk/shapes:define-structure get-analyzed-resource-response
                                     common-lisp:nil
@@ -1237,11 +1236,11 @@ common-lisp:nil
                                       :member-name "resource"))
                                     (:shape-name "GetAnalyzedResourceResponse"))
 
-(smithy/sdk/shapes:define-structure get-analyzer-request common-lisp:nil
-                                    ((analyzer-name :target-type name :required
-                                      common-lisp:t :member-name
-                                      "analyzerName"))
-                                    (:shape-name "GetAnalyzerRequest"))
+(smithy/sdk/shapes:define-input get-analyzer-request common-lisp:nil
+                                ((analyzer-name :target-type name :required
+                                  common-lisp:t :member-name "analyzerName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetAnalyzerRequest"))
 
 (smithy/sdk/shapes:define-structure get-analyzer-response common-lisp:nil
                                     ((analyzer :target-type analyzer-summary
@@ -1249,13 +1248,14 @@ common-lisp:nil
                                       "analyzer"))
                                     (:shape-name "GetAnalyzerResponse"))
 
-(smithy/sdk/shapes:define-structure get-archive-rule-request common-lisp:nil
-                                    ((analyzer-name :target-type name :required
-                                      common-lisp:t :member-name
-                                      "analyzerName")
-                                     (rule-name :target-type name :required
-                                      common-lisp:t :member-name "ruleName"))
-                                    (:shape-name "GetArchiveRuleRequest"))
+(smithy/sdk/shapes:define-input get-archive-rule-request common-lisp:nil
+                                ((analyzer-name :target-type name :required
+                                  common-lisp:t :member-name "analyzerName"
+                                  :http-label common-lisp:t)
+                                 (rule-name :target-type name :required
+                                  common-lisp:t :member-name "ruleName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetArchiveRuleRequest"))
 
 (smithy/sdk/shapes:define-structure get-archive-rule-response common-lisp:nil
                                     ((archive-rule :target-type
@@ -1304,13 +1304,14 @@ common-lisp:nil
                                  (:shape-name
                                   "GetFindingRecommendationResponse"))
 
-(smithy/sdk/shapes:define-structure get-finding-request common-lisp:nil
-                                    ((analyzer-arn :target-type analyzer-arn
-                                      :required common-lisp:t :member-name
-                                      "analyzerArn" :http-query "analyzerArn")
-                                     (id :target-type finding-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "GetFindingRequest"))
+(smithy/sdk/shapes:define-input get-finding-request common-lisp:nil
+                                ((analyzer-arn :target-type analyzer-arn
+                                  :required common-lisp:t :member-name
+                                  "analyzerArn" :http-query "analyzerArn")
+                                 (id :target-type finding-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetFindingRequest"))
 
 (smithy/sdk/shapes:define-structure get-finding-response common-lisp:nil
                                     ((finding :target-type finding :member-name
@@ -1379,23 +1380,19 @@ common-lisp:nil
                                    :member-name "lastUpdatedAt"))
                                  (:shape-name "GetFindingsStatisticsResponse"))
 
-(smithy/sdk/shapes:define-structure get-generated-policy-request
-                                    common-lisp:nil
-                                    ((job-id :target-type job-id :required
-                                      common-lisp:t :member-name "jobId")
-                                     (include-resource-placeholders
-                                      :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name
-                                      "includeResourcePlaceholders" :http-query
-                                      "includeResourcePlaceholders")
-                                     (include-service-level-template
-                                      :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name
-                                      "includeServiceLevelTemplate" :http-query
-                                      "includeServiceLevelTemplate"))
-                                    (:shape-name "GetGeneratedPolicyRequest"))
+(smithy/sdk/shapes:define-input get-generated-policy-request common-lisp:nil
+                                ((job-id :target-type job-id :required
+                                  common-lisp:t :member-name "jobId"
+                                  :http-label common-lisp:t)
+                                 (include-resource-placeholders :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "includeResourcePlaceholders" :http-query
+                                  "includeResourcePlaceholders")
+                                 (include-service-level-template :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "includeServiceLevelTemplate" :http-query
+                                  "includeServiceLevelTemplate"))
+                                (:shape-name "GetGeneratedPolicyRequest"))
 
 (smithy/sdk/shapes:define-structure get-generated-policy-response
                                     common-lisp:nil
@@ -1643,23 +1640,24 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type learn-more-link smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure list-access-preview-findings-request
-                                    common-lisp:nil
-                                    ((access-preview-id :target-type
-                                      access-preview-id :required common-lisp:t
-                                      :member-name "accessPreviewId")
-                                     (analyzer-arn :target-type analyzer-arn
-                                      :required common-lisp:t :member-name
-                                      "analyzerArn")
-                                     (filter :target-type filter-criteria-map
-                                      :member-name "filter")
-                                     (next-token :target-type token
-                                      :member-name "nextToken")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults"))
-                                    (:shape-name
-                                     "ListAccessPreviewFindingsRequest"))
+(smithy/sdk/shapes:define-input list-access-preview-findings-request
+                                common-lisp:nil
+                                ((access-preview-id :target-type
+                                  access-preview-id :required common-lisp:t
+                                  :member-name "accessPreviewId" :http-label
+                                  common-lisp:t)
+                                 (analyzer-arn :target-type analyzer-arn
+                                  :required common-lisp:t :member-name
+                                  "analyzerArn")
+                                 (filter :target-type filter-criteria-map
+                                  :member-name "filter")
+                                 (next-token :target-type token :member-name
+                                  "nextToken")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults"))
+                                (:shape-name
+                                 "ListAccessPreviewFindingsRequest"))
 
 (smithy/sdk/shapes:define-structure list-access-preview-findings-response
                                     common-lisp:nil
@@ -1671,19 +1669,16 @@ common-lisp:nil
                                     (:shape-name
                                      "ListAccessPreviewFindingsResponse"))
 
-(smithy/sdk/shapes:define-structure list-access-previews-request
-                                    common-lisp:nil
-                                    ((analyzer-arn :target-type analyzer-arn
-                                      :required common-lisp:t :member-name
-                                      "analyzerArn" :http-query "analyzerArn")
-                                     (next-token :target-type token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListAccessPreviewsRequest"))
+(smithy/sdk/shapes:define-input list-access-previews-request common-lisp:nil
+                                ((analyzer-arn :target-type analyzer-arn
+                                  :required common-lisp:t :member-name
+                                  "analyzerArn" :http-query "analyzerArn")
+                                 (next-token :target-type token :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults" :http-query "maxResults"))
+                                (:shape-name "ListAccessPreviewsRequest"))
 
 (smithy/sdk/shapes:define-structure list-access-previews-response
                                     common-lisp:nil
@@ -1721,17 +1716,15 @@ common-lisp:nil
                                     (:shape-name
                                      "ListAnalyzedResourcesResponse"))
 
-(smithy/sdk/shapes:define-structure list-analyzers-request common-lisp:nil
-                                    ((next-token :target-type token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (type :target-type type :member-name
-                                      "type" :http-query "type"))
-                                    (:shape-name "ListAnalyzersRequest"))
+(smithy/sdk/shapes:define-input list-analyzers-request common-lisp:nil
+                                ((next-token :target-type token :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (type :target-type type :member-name "type"
+                                  :http-query "type"))
+                                (:shape-name "ListAnalyzersRequest"))
 
 (smithy/sdk/shapes:define-structure list-analyzers-response common-lisp:nil
                                     ((analyzers :target-type analyzers-list
@@ -1741,18 +1734,16 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListAnalyzersResponse"))
 
-(smithy/sdk/shapes:define-structure list-archive-rules-request common-lisp:nil
-                                    ((analyzer-name :target-type name :required
-                                      common-lisp:t :member-name
-                                      "analyzerName")
-                                     (next-token :target-type token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListArchiveRulesRequest"))
+(smithy/sdk/shapes:define-input list-archive-rules-request common-lisp:nil
+                                ((analyzer-name :target-type name :required
+                                  common-lisp:t :member-name "analyzerName"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type token :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults" :http-query "maxResults"))
+                                (:shape-name "ListArchiveRulesRequest"))
 
 (smithy/sdk/shapes:define-structure list-archive-rules-response common-lisp:nil
                                     ((archive-rules :target-type
@@ -1809,20 +1800,16 @@ common-lisp:nil
                                    "nextToken"))
                                  (:shape-name "ListFindingsV2Response"))
 
-(smithy/sdk/shapes:define-structure list-policy-generations-request
-                                    common-lisp:nil
-                                    ((principal-arn :target-type principal-arn
-                                      :member-name "principalArn" :http-query
-                                      "principalArn")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name
-                                     "ListPolicyGenerationsRequest"))
+(smithy/sdk/shapes:define-input list-policy-generations-request common-lisp:nil
+                                ((principal-arn :target-type principal-arn
+                                  :member-name "principalArn" :http-query
+                                  "principalArn")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (next-token :target-type token :member-name
+                                  "nextToken" :http-query "nextToken"))
+                                (:shape-name "ListPolicyGenerationsRequest"))
 
 (smithy/sdk/shapes:define-structure list-policy-generations-response
                                     common-lisp:nil
@@ -1835,13 +1822,12 @@ common-lisp:nil
                                     (:shape-name
                                      "ListPolicyGenerationsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -2306,13 +2292,14 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list tag-keys :member smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tags-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tags-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -2334,7 +2321,8 @@ common-lisp:nil
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 
@@ -2373,14 +2361,15 @@ common-lisp:nil
                                 (:shape-name "UnprocessableEntityException")
                                 (:error-code 422))
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-keys :required
-                                      common-lisp:t :member-name "tagKeys"
-                                      :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-keys :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -2504,19 +2493,20 @@ common-lisp:nil
                                    "configuration"))
                                  (:shape-name "UpdateAnalyzerResponse"))
 
-(smithy/sdk/shapes:define-structure update-archive-rule-request common-lisp:nil
-                                    ((analyzer-name :target-type name :required
-                                      common-lisp:t :member-name
-                                      "analyzerName")
-                                     (rule-name :target-type name :required
-                                      common-lisp:t :member-name "ruleName")
-                                     (filter :target-type filter-criteria-map
-                                      :required common-lisp:t :member-name
-                                      "filter")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken"))
-                                    (:shape-name "UpdateArchiveRuleRequest"))
+(smithy/sdk/shapes:define-input update-archive-rule-request common-lisp:nil
+                                ((analyzer-name :target-type name :required
+                                  common-lisp:t :member-name "analyzerName"
+                                  :http-label common-lisp:t)
+                                 (rule-name :target-type name :required
+                                  common-lisp:t :member-name "ruleName"
+                                  :http-label common-lisp:t)
+                                 (filter :target-type filter-criteria-map
+                                  :required common-lisp:t :member-name
+                                  "filter")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken"))
+                                (:shape-name "UpdateArchiveRuleRequest"))
 
 (smithy/sdk/shapes:define-structure update-findings-request common-lisp:nil
                                     ((analyzer-arn :target-type analyzer-arn
@@ -2559,28 +2549,24 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type validate-policy-finding-type
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure validate-policy-request common-lisp:nil
-                                    ((locale :target-type locale :member-name
-                                      "locale")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (policy-document :target-type
-                                      policy-document :required common-lisp:t
-                                      :member-name "policyDocument")
-                                     (policy-type :target-type policy-type
-                                      :required common-lisp:t :member-name
-                                      "policyType")
-                                     (validate-policy-resource-type
-                                      :target-type
-                                      validate-policy-resource-type
-                                      :member-name
-                                      "validatePolicyResourceType"))
-                                    (:shape-name "ValidatePolicyRequest"))
+(smithy/sdk/shapes:define-input validate-policy-request common-lisp:nil
+                                ((locale :target-type locale :member-name
+                                  "locale")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (next-token :target-type token :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (policy-document :target-type policy-document
+                                  :required common-lisp:t :member-name
+                                  "policyDocument")
+                                 (policy-type :target-type policy-type
+                                  :required common-lisp:t :member-name
+                                  "policyType")
+                                 (validate-policy-resource-type :target-type
+                                  validate-policy-resource-type :member-name
+                                  "validatePolicyResourceType"))
+                                (:shape-name "ValidatePolicyRequest"))
 
 (smithy/sdk/shapes:define-type validate-policy-resource-type
                                smithy/sdk/smithy-types:string)

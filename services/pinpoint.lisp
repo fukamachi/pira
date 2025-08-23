@@ -6307,7 +6307,8 @@
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type timestamp-iso8601
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/operation:define-operation create-app :shape-name "CreateApp"
                                        :input create-app-request :output

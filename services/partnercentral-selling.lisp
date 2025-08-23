@@ -1224,7 +1224,8 @@
 
 (smithy/sdk/shapes:define-type date smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-resource-snapshot-job-request
                                 common-lisp:nil

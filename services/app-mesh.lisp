@@ -370,30 +370,30 @@
                                 (:shape-name "ConflictException")
                                 (:error-code 409))
 
-(smithy/sdk/shapes:define-structure create-gateway-route-input common-lisp:nil
-                                    ((gateway-route-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "gatewayRouteName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (virtual-gateway-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualGatewayName")
-                                     (spec :target-type gateway-route-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (tags :target-type tag-list :member-name
-                                      "tags")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "CreateGatewayRouteInput"))
+(smithy/sdk/shapes:define-input create-gateway-route-input common-lisp:nil
+                                ((gateway-route-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "gatewayRouteName")
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (virtual-gateway-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualGatewayName" :http-label
+                                  common-lisp:t)
+                                 (spec :target-type gateway-route-spec
+                                  :required common-lisp:t :member-name "spec")
+                                 (tags :target-type tag-list :member-name
+                                  "tags")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "CreateGatewayRouteInput"))
 
-(smithy/sdk/shapes:define-structure create-gateway-route-output common-lisp:nil
+(smithy/sdk/shapes:define-interface create-gateway-route-output common-lisp:nil
                                     ((gateway-route :target-type
                                       gateway-route-data :required
                                       common-lisp:t :member-name "gatewayRoute"
@@ -413,62 +413,61 @@
                                       :member-name "clientToken"))
                                     (:shape-name "CreateMeshInput"))
 
-(smithy/sdk/shapes:define-structure create-mesh-output common-lisp:nil
+(smithy/sdk/shapes:define-interface create-mesh-output common-lisp:nil
                                     ((mesh :target-type mesh-data :required
                                       common-lisp:t :member-name "mesh"
                                       :http-payload common-lisp:t))
                                     (:shape-name "CreateMeshOutput"))
 
-(smithy/sdk/shapes:define-structure create-route-input common-lisp:nil
-                                    ((route-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "routeName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (virtual-router-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualRouterName")
-                                     (spec :target-type route-spec :required
-                                      common-lisp:t :member-name "spec")
-                                     (tags :target-type tag-list :member-name
-                                      "tags")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "CreateRouteInput"))
+(smithy/sdk/shapes:define-input create-route-input common-lisp:nil
+                                ((route-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "routeName")
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (virtual-router-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualRouterName" :http-label
+                                  common-lisp:t)
+                                 (spec :target-type route-spec :required
+                                  common-lisp:t :member-name "spec")
+                                 (tags :target-type tag-list :member-name
+                                  "tags")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "CreateRouteInput"))
 
-(smithy/sdk/shapes:define-structure create-route-output common-lisp:nil
+(smithy/sdk/shapes:define-interface create-route-output common-lisp:nil
                                     ((route :target-type route-data :required
                                       common-lisp:t :member-name "route"
                                       :http-payload common-lisp:t))
                                     (:shape-name "CreateRouteOutput"))
 
-(smithy/sdk/shapes:define-structure create-virtual-gateway-input
-                                    common-lisp:nil
-                                    ((virtual-gateway-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualGatewayName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (spec :target-type virtual-gateway-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (tags :target-type tag-list :member-name
-                                      "tags")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "CreateVirtualGatewayInput"))
+(smithy/sdk/shapes:define-input create-virtual-gateway-input common-lisp:nil
+                                ((virtual-gateway-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualGatewayName")
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (spec :target-type virtual-gateway-spec
+                                  :required common-lisp:t :member-name "spec")
+                                 (tags :target-type tag-list :member-name
+                                  "tags")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "CreateVirtualGatewayInput"))
 
-(smithy/sdk/shapes:define-structure create-virtual-gateway-output
+(smithy/sdk/shapes:define-interface create-virtual-gateway-output
                                     common-lisp:nil
                                     ((virtual-gateway :target-type
                                       virtual-gateway-data :required
@@ -477,54 +476,52 @@
                                       common-lisp:t))
                                     (:shape-name "CreateVirtualGatewayOutput"))
 
-(smithy/sdk/shapes:define-structure create-virtual-node-input common-lisp:nil
-                                    ((virtual-node-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualNodeName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (spec :target-type virtual-node-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (tags :target-type tag-list :member-name
-                                      "tags")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "CreateVirtualNodeInput"))
+(smithy/sdk/shapes:define-input create-virtual-node-input common-lisp:nil
+                                ((virtual-node-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "virtualNodeName")
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (spec :target-type virtual-node-spec :required
+                                  common-lisp:t :member-name "spec")
+                                 (tags :target-type tag-list :member-name
+                                  "tags")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "CreateVirtualNodeInput"))
 
-(smithy/sdk/shapes:define-structure create-virtual-node-output common-lisp:nil
+(smithy/sdk/shapes:define-interface create-virtual-node-output common-lisp:nil
                                     ((virtual-node :target-type
                                       virtual-node-data :required common-lisp:t
                                       :member-name "virtualNode" :http-payload
                                       common-lisp:t))
                                     (:shape-name "CreateVirtualNodeOutput"))
 
-(smithy/sdk/shapes:define-structure create-virtual-router-input common-lisp:nil
-                                    ((virtual-router-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualRouterName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (spec :target-type virtual-router-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (tags :target-type tag-list :member-name
-                                      "tags")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "CreateVirtualRouterInput"))
+(smithy/sdk/shapes:define-input create-virtual-router-input common-lisp:nil
+                                ((virtual-router-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualRouterName")
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (spec :target-type virtual-router-spec
+                                  :required common-lisp:t :member-name "spec")
+                                 (tags :target-type tag-list :member-name
+                                  "tags")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "CreateVirtualRouterInput"))
 
-(smithy/sdk/shapes:define-structure create-virtual-router-output
+(smithy/sdk/shapes:define-interface create-virtual-router-output
                                     common-lisp:nil
                                     ((virtual-router :target-type
                                       virtual-router-data :required
@@ -533,28 +530,26 @@
                                       common-lisp:t))
                                     (:shape-name "CreateVirtualRouterOutput"))
 
-(smithy/sdk/shapes:define-structure create-virtual-service-input
-                                    common-lisp:nil
-                                    ((virtual-service-name :target-type
-                                      service-name :required common-lisp:t
-                                      :member-name "virtualServiceName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (spec :target-type virtual-service-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (tags :target-type tag-list :member-name
-                                      "tags")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "CreateVirtualServiceInput"))
+(smithy/sdk/shapes:define-input create-virtual-service-input common-lisp:nil
+                                ((virtual-service-name :target-type
+                                  service-name :required common-lisp:t
+                                  :member-name "virtualServiceName")
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (spec :target-type virtual-service-spec
+                                  :required common-lisp:t :member-name "spec")
+                                 (tags :target-type tag-list :member-name
+                                  "tags")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "CreateVirtualServiceInput"))
 
-(smithy/sdk/shapes:define-structure create-virtual-service-output
+(smithy/sdk/shapes:define-interface create-virtual-service-output
                                     common-lisp:nil
                                     ((virtual-service :target-type
                                       virtual-service-data :required
@@ -566,75 +561,77 @@
 (smithy/sdk/shapes:define-type default-gateway-route-rewrite
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure delete-gateway-route-input common-lisp:nil
-                                    ((gateway-route-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "gatewayRouteName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (virtual-gateway-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualGatewayName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DeleteGatewayRouteInput"))
+(smithy/sdk/shapes:define-input delete-gateway-route-input common-lisp:nil
+                                ((gateway-route-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "gatewayRouteName" :http-label common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (virtual-gateway-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualGatewayName" :http-label
+                                  common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DeleteGatewayRouteInput"))
 
-(smithy/sdk/shapes:define-structure delete-gateway-route-output common-lisp:nil
+(smithy/sdk/shapes:define-interface delete-gateway-route-output common-lisp:nil
                                     ((gateway-route :target-type
                                       gateway-route-data :required
                                       common-lisp:t :member-name "gatewayRoute"
                                       :http-payload common-lisp:t))
                                     (:shape-name "DeleteGatewayRouteOutput"))
 
-(smithy/sdk/shapes:define-structure delete-mesh-input common-lisp:nil
-                                    ((mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName"))
-                                    (:shape-name "DeleteMeshInput"))
+(smithy/sdk/shapes:define-input delete-mesh-input common-lisp:nil
+                                ((mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t))
+                                (:shape-name "DeleteMeshInput"))
 
-(smithy/sdk/shapes:define-structure delete-mesh-output common-lisp:nil
+(smithy/sdk/shapes:define-interface delete-mesh-output common-lisp:nil
                                     ((mesh :target-type mesh-data :required
                                       common-lisp:t :member-name "mesh"
                                       :http-payload common-lisp:t))
                                     (:shape-name "DeleteMeshOutput"))
 
-(smithy/sdk/shapes:define-structure delete-route-input common-lisp:nil
-                                    ((route-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "routeName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (virtual-router-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualRouterName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DeleteRouteInput"))
+(smithy/sdk/shapes:define-input delete-route-input common-lisp:nil
+                                ((route-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "routeName" :http-label common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (virtual-router-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualRouterName" :http-label
+                                  common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DeleteRouteInput"))
 
-(smithy/sdk/shapes:define-structure delete-route-output common-lisp:nil
+(smithy/sdk/shapes:define-interface delete-route-output common-lisp:nil
                                     ((route :target-type route-data :required
                                       common-lisp:t :member-name "route"
                                       :http-payload common-lisp:t))
                                     (:shape-name "DeleteRouteOutput"))
 
-(smithy/sdk/shapes:define-structure delete-virtual-gateway-input
-                                    common-lisp:nil
-                                    ((virtual-gateway-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualGatewayName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DeleteVirtualGatewayInput"))
+(smithy/sdk/shapes:define-input delete-virtual-gateway-input common-lisp:nil
+                                ((virtual-gateway-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualGatewayName" :http-label
+                                  common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DeleteVirtualGatewayInput"))
 
-(smithy/sdk/shapes:define-structure delete-virtual-gateway-output
+(smithy/sdk/shapes:define-interface delete-virtual-gateway-output
                                     common-lisp:nil
                                     ((virtual-gateway :target-type
                                       virtual-gateway-data :required
@@ -643,38 +640,39 @@
                                       common-lisp:t))
                                     (:shape-name "DeleteVirtualGatewayOutput"))
 
-(smithy/sdk/shapes:define-structure delete-virtual-node-input common-lisp:nil
-                                    ((virtual-node-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualNodeName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DeleteVirtualNodeInput"))
+(smithy/sdk/shapes:define-input delete-virtual-node-input common-lisp:nil
+                                ((virtual-node-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "virtualNodeName" :http-label common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DeleteVirtualNodeInput"))
 
-(smithy/sdk/shapes:define-structure delete-virtual-node-output common-lisp:nil
+(smithy/sdk/shapes:define-interface delete-virtual-node-output common-lisp:nil
                                     ((virtual-node :target-type
                                       virtual-node-data :required common-lisp:t
                                       :member-name "virtualNode" :http-payload
                                       common-lisp:t))
                                     (:shape-name "DeleteVirtualNodeOutput"))
 
-(smithy/sdk/shapes:define-structure delete-virtual-router-input common-lisp:nil
-                                    ((virtual-router-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualRouterName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DeleteVirtualRouterInput"))
+(smithy/sdk/shapes:define-input delete-virtual-router-input common-lisp:nil
+                                ((virtual-router-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualRouterName" :http-label
+                                  common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DeleteVirtualRouterInput"))
 
-(smithy/sdk/shapes:define-structure delete-virtual-router-output
+(smithy/sdk/shapes:define-interface delete-virtual-router-output
                                     common-lisp:nil
                                     ((virtual-router :target-type
                                       virtual-router-data :required
@@ -683,20 +681,20 @@
                                       common-lisp:t))
                                     (:shape-name "DeleteVirtualRouterOutput"))
 
-(smithy/sdk/shapes:define-structure delete-virtual-service-input
-                                    common-lisp:nil
-                                    ((virtual-service-name :target-type
-                                      service-name :required common-lisp:t
-                                      :member-name "virtualServiceName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DeleteVirtualServiceInput"))
+(smithy/sdk/shapes:define-input delete-virtual-service-input common-lisp:nil
+                                ((virtual-service-name :target-type
+                                  service-name :required common-lisp:t
+                                  :member-name "virtualServiceName" :http-label
+                                  common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DeleteVirtualServiceInput"))
 
-(smithy/sdk/shapes:define-structure delete-virtual-service-output
+(smithy/sdk/shapes:define-interface delete-virtual-service-output
                                     common-lisp:nil
                                     ((virtual-service :target-type
                                       virtual-service-data :required
@@ -705,23 +703,23 @@
                                       common-lisp:t))
                                     (:shape-name "DeleteVirtualServiceOutput"))
 
-(smithy/sdk/shapes:define-structure describe-gateway-route-input
-                                    common-lisp:nil
-                                    ((gateway-route-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "gatewayRouteName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (virtual-gateway-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualGatewayName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DescribeGatewayRouteInput"))
+(smithy/sdk/shapes:define-input describe-gateway-route-input common-lisp:nil
+                                ((gateway-route-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "gatewayRouteName" :http-label common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (virtual-gateway-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualGatewayName" :http-label
+                                  common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DescribeGatewayRouteInput"))
 
-(smithy/sdk/shapes:define-structure describe-gateway-route-output
+(smithy/sdk/shapes:define-interface describe-gateway-route-output
                                     common-lisp:nil
                                     ((gateway-route :target-type
                                       gateway-route-data :required
@@ -729,56 +727,57 @@
                                       :http-payload common-lisp:t))
                                     (:shape-name "DescribeGatewayRouteOutput"))
 
-(smithy/sdk/shapes:define-structure describe-mesh-input common-lisp:nil
-                                    ((mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DescribeMeshInput"))
+(smithy/sdk/shapes:define-input describe-mesh-input common-lisp:nil
+                                ((mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DescribeMeshInput"))
 
-(smithy/sdk/shapes:define-structure describe-mesh-output common-lisp:nil
+(smithy/sdk/shapes:define-interface describe-mesh-output common-lisp:nil
                                     ((mesh :target-type mesh-data :required
                                       common-lisp:t :member-name "mesh"
                                       :http-payload common-lisp:t))
                                     (:shape-name "DescribeMeshOutput"))
 
-(smithy/sdk/shapes:define-structure describe-route-input common-lisp:nil
-                                    ((route-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "routeName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner")
-                                     (virtual-router-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualRouterName"))
-                                    (:shape-name "DescribeRouteInput"))
+(smithy/sdk/shapes:define-input describe-route-input common-lisp:nil
+                                ((route-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "routeName" :http-label common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner")
+                                 (virtual-router-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualRouterName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DescribeRouteInput"))
 
-(smithy/sdk/shapes:define-structure describe-route-output common-lisp:nil
+(smithy/sdk/shapes:define-interface describe-route-output common-lisp:nil
                                     ((route :target-type route-data :required
                                       common-lisp:t :member-name "route"
                                       :http-payload common-lisp:t))
                                     (:shape-name "DescribeRouteOutput"))
 
-(smithy/sdk/shapes:define-structure describe-virtual-gateway-input
-                                    common-lisp:nil
-                                    ((virtual-gateway-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualGatewayName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DescribeVirtualGatewayInput"))
+(smithy/sdk/shapes:define-input describe-virtual-gateway-input common-lisp:nil
+                                ((virtual-gateway-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualGatewayName" :http-label
+                                  common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DescribeVirtualGatewayInput"))
 
-(smithy/sdk/shapes:define-structure describe-virtual-gateway-output
+(smithy/sdk/shapes:define-interface describe-virtual-gateway-output
                                     common-lisp:nil
                                     ((virtual-gateway :target-type
                                       virtual-gateway-data :required
@@ -788,19 +787,19 @@
                                     (:shape-name
                                      "DescribeVirtualGatewayOutput"))
 
-(smithy/sdk/shapes:define-structure describe-virtual-node-input common-lisp:nil
-                                    ((virtual-node-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualNodeName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DescribeVirtualNodeInput"))
+(smithy/sdk/shapes:define-input describe-virtual-node-input common-lisp:nil
+                                ((virtual-node-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "virtualNodeName" :http-label common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DescribeVirtualNodeInput"))
 
-(smithy/sdk/shapes:define-structure describe-virtual-node-output
+(smithy/sdk/shapes:define-interface describe-virtual-node-output
                                     common-lisp:nil
                                     ((virtual-node :target-type
                                       virtual-node-data :required common-lisp:t
@@ -808,20 +807,20 @@
                                       common-lisp:t))
                                     (:shape-name "DescribeVirtualNodeOutput"))
 
-(smithy/sdk/shapes:define-structure describe-virtual-router-input
-                                    common-lisp:nil
-                                    ((virtual-router-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualRouterName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DescribeVirtualRouterInput"))
+(smithy/sdk/shapes:define-input describe-virtual-router-input common-lisp:nil
+                                ((virtual-router-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualRouterName" :http-label
+                                  common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DescribeVirtualRouterInput"))
 
-(smithy/sdk/shapes:define-structure describe-virtual-router-output
+(smithy/sdk/shapes:define-interface describe-virtual-router-output
                                     common-lisp:nil
                                     ((virtual-router :target-type
                                       virtual-router-data :required
@@ -830,20 +829,20 @@
                                       common-lisp:t))
                                     (:shape-name "DescribeVirtualRouterOutput"))
 
-(smithy/sdk/shapes:define-structure describe-virtual-service-input
-                                    common-lisp:nil
-                                    ((virtual-service-name :target-type
-                                      service-name :required common-lisp:t
-                                      :member-name "virtualServiceName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "DescribeVirtualServiceInput"))
+(smithy/sdk/shapes:define-input describe-virtual-service-input common-lisp:nil
+                                ((virtual-service-name :target-type
+                                  service-name :required common-lisp:t
+                                  :member-name "virtualServiceName" :http-label
+                                  common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "DescribeVirtualServiceInput"))
 
-(smithy/sdk/shapes:define-structure describe-virtual-service-output
+(smithy/sdk/shapes:define-interface describe-virtual-service-output
                                     common-lisp:nil
                                     ((virtual-service :target-type
                                       virtual-service-data :required
@@ -1445,24 +1444,23 @@ common-lisp:nil
                                 (:shape-name "LimitExceededException")
                                 (:error-code 400))
 
-(smithy/sdk/shapes:define-structure list-gateway-routes-input common-lisp:nil
-                                    ((mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (virtual-gateway-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualGatewayName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (limit :target-type
-                                      list-gateway-routes-limit :member-name
-                                      "limit" :http-query "limit")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "ListGatewayRoutesInput"))
+(smithy/sdk/shapes:define-input list-gateway-routes-input common-lisp:nil
+                                ((mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (virtual-gateway-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualGatewayName" :http-label
+                                  common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (limit :target-type list-gateway-routes-limit
+                                  :member-name "limit" :http-query "limit")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "ListGatewayRoutesInput"))
 
 (smithy/sdk/shapes:define-type list-gateway-routes-limit
                                smithy/sdk/smithy-types:integer)
@@ -1477,15 +1475,13 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListGatewayRoutesOutput"))
 
-(smithy/sdk/shapes:define-structure list-meshes-input common-lisp:nil
-                                    ((next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (limit :target-type list-meshes-limit
-                                      :member-name "limit" :http-query
-                                      "limit"))
-                                    (:shape-name "ListMeshesInput"))
+(smithy/sdk/shapes:define-input list-meshes-input common-lisp:nil
+                                ((next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (limit :target-type list-meshes-limit
+                                  :member-name "limit" :http-query "limit"))
+                                (:shape-name "ListMeshesInput"))
 
 (smithy/sdk/shapes:define-type list-meshes-limit
                                smithy/sdk/smithy-types:integer)
@@ -1498,23 +1494,23 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListMeshesOutput"))
 
-(smithy/sdk/shapes:define-structure list-routes-input common-lisp:nil
-                                    ((mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (virtual-router-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualRouterName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (limit :target-type list-routes-limit
-                                      :member-name "limit" :http-query "limit")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "ListRoutesInput"))
+(smithy/sdk/shapes:define-input list-routes-input common-lisp:nil
+                                ((mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (virtual-router-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualRouterName" :http-label
+                                  common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (limit :target-type list-routes-limit
+                                  :member-name "limit" :http-query "limit")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "ListRoutesInput"))
 
 (smithy/sdk/shapes:define-type list-routes-limit
                                smithy/sdk/smithy-types:integer)
@@ -1527,19 +1523,16 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListRoutesOutput"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-input
-                                    common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn"
-                                      :http-query "resourceArn")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (limit :target-type tags-limit
-                                      :member-name "limit" :http-query
-                                      "limit"))
-                                    (:shape-name "ListTagsForResourceInput"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-input common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-query "resourceArn")
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (limit :target-type tags-limit :member-name
+                                  "limit" :http-query "limit"))
+                                (:shape-name "ListTagsForResourceInput"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-output
                                     common-lisp:nil
@@ -1550,21 +1543,20 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListTagsForResourceOutput"))
 
-(smithy/sdk/shapes:define-structure list-virtual-gateways-input common-lisp:nil
-                                    ((mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (limit :target-type
-                                      list-virtual-gateways-limit :member-name
-                                      "limit" :http-query "limit")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "ListVirtualGatewaysInput"))
+(smithy/sdk/shapes:define-input list-virtual-gateways-input common-lisp:nil
+                                ((mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (limit :target-type
+                                  list-virtual-gateways-limit :member-name
+                                  "limit" :http-query "limit")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "ListVirtualGatewaysInput"))
 
 (smithy/sdk/shapes:define-type list-virtual-gateways-limit
                                smithy/sdk/smithy-types:integer)
@@ -1580,21 +1572,19 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListVirtualGatewaysOutput"))
 
-(smithy/sdk/shapes:define-structure list-virtual-nodes-input common-lisp:nil
-                                    ((mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (limit :target-type
-                                      list-virtual-nodes-limit :member-name
-                                      "limit" :http-query "limit")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "ListVirtualNodesInput"))
+(smithy/sdk/shapes:define-input list-virtual-nodes-input common-lisp:nil
+                                ((mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (limit :target-type list-virtual-nodes-limit
+                                  :member-name "limit" :http-query "limit")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "ListVirtualNodesInput"))
 
 (smithy/sdk/shapes:define-type list-virtual-nodes-limit
                                smithy/sdk/smithy-types:integer)
@@ -1608,21 +1598,19 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListVirtualNodesOutput"))
 
-(smithy/sdk/shapes:define-structure list-virtual-routers-input common-lisp:nil
-                                    ((mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (limit :target-type
-                                      list-virtual-routers-limit :member-name
-                                      "limit" :http-query "limit")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "ListVirtualRoutersInput"))
+(smithy/sdk/shapes:define-input list-virtual-routers-input common-lisp:nil
+                                ((mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (limit :target-type list-virtual-routers-limit
+                                  :member-name "limit" :http-query "limit")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "ListVirtualRoutersInput"))
 
 (smithy/sdk/shapes:define-type list-virtual-routers-limit
                                smithy/sdk/smithy-types:integer)
@@ -1637,21 +1625,20 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListVirtualRoutersOutput"))
 
-(smithy/sdk/shapes:define-structure list-virtual-services-input common-lisp:nil
-                                    ((mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (limit :target-type
-                                      list-virtual-services-limit :member-name
-                                      "limit" :http-query "limit")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "ListVirtualServicesInput"))
+(smithy/sdk/shapes:define-input list-virtual-services-input common-lisp:nil
+                                ((mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (limit :target-type
+                                  list-virtual-services-limit :member-name
+                                  "limit" :http-query "limit")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "ListVirtualServicesInput"))
 
 (smithy/sdk/shapes:define-type list-virtual-services-limit
                                smithy/sdk/smithy-types:integer)
@@ -2087,13 +2074,13 @@ common-lisp:nil
                                       common-lisp:t :member-name "value"))
                                     (:shape-name "TagRef"))
 
-(smithy/sdk/shapes:define-structure tag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn"
-                                      :http-query "resourceArn")
-                                     (tags :target-type tag-list :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceInput"))
+(smithy/sdk/shapes:define-input tag-resource-input common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-query "resourceArn")
+                                 (tags :target-type tag-list :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceInput"))
 
 (smithy/sdk/shapes:define-structure tag-resource-output common-lisp:nil
                                     common-lisp:nil
@@ -2197,110 +2184,109 @@ common-lisp:nil
                                 (:shape-name "TooManyTagsException")
                                 (:error-code 400))
 
-(smithy/sdk/shapes:define-structure untag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn"
-                                      :http-query "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys"))
-                                    (:shape-name "UntagResourceInput"))
+(smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-query "resourceArn")
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"))
+                                (:shape-name "UntagResourceInput"))
 
 (smithy/sdk/shapes:define-structure untag-resource-output common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceOutput"))
 
-(smithy/sdk/shapes:define-structure update-gateway-route-input common-lisp:nil
-                                    ((gateway-route-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "gatewayRouteName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (virtual-gateway-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualGatewayName")
-                                     (spec :target-type gateway-route-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "UpdateGatewayRouteInput"))
+(smithy/sdk/shapes:define-input update-gateway-route-input common-lisp:nil
+                                ((gateway-route-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "gatewayRouteName" :http-label common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (virtual-gateway-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualGatewayName" :http-label
+                                  common-lisp:t)
+                                 (spec :target-type gateway-route-spec
+                                  :required common-lisp:t :member-name "spec")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "UpdateGatewayRouteInput"))
 
-(smithy/sdk/shapes:define-structure update-gateway-route-output common-lisp:nil
+(smithy/sdk/shapes:define-interface update-gateway-route-output common-lisp:nil
                                     ((gateway-route :target-type
                                       gateway-route-data :required
                                       common-lisp:t :member-name "gatewayRoute"
                                       :http-payload common-lisp:t))
                                     (:shape-name "UpdateGatewayRouteOutput"))
 
-(smithy/sdk/shapes:define-structure update-mesh-input common-lisp:nil
-                                    ((mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (spec :target-type mesh-spec :member-name
-                                      "spec")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken"))
-                                    (:shape-name "UpdateMeshInput"))
+(smithy/sdk/shapes:define-input update-mesh-input common-lisp:nil
+                                ((mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (spec :target-type mesh-spec :member-name
+                                  "spec")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken"))
+                                (:shape-name "UpdateMeshInput"))
 
-(smithy/sdk/shapes:define-structure update-mesh-output common-lisp:nil
+(smithy/sdk/shapes:define-interface update-mesh-output common-lisp:nil
                                     ((mesh :target-type mesh-data :required
                                       common-lisp:t :member-name "mesh"
                                       :http-payload common-lisp:t))
                                     (:shape-name "UpdateMeshOutput"))
 
-(smithy/sdk/shapes:define-structure update-route-input common-lisp:nil
-                                    ((route-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "routeName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (virtual-router-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualRouterName")
-                                     (spec :target-type route-spec :required
-                                      common-lisp:t :member-name "spec")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "UpdateRouteInput"))
+(smithy/sdk/shapes:define-input update-route-input common-lisp:nil
+                                ((route-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "routeName" :http-label common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (virtual-router-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualRouterName" :http-label
+                                  common-lisp:t)
+                                 (spec :target-type route-spec :required
+                                  common-lisp:t :member-name "spec")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "UpdateRouteInput"))
 
-(smithy/sdk/shapes:define-structure update-route-output common-lisp:nil
+(smithy/sdk/shapes:define-interface update-route-output common-lisp:nil
                                     ((route :target-type route-data :required
                                       common-lisp:t :member-name "route"
                                       :http-payload common-lisp:t))
                                     (:shape-name "UpdateRouteOutput"))
 
-(smithy/sdk/shapes:define-structure update-virtual-gateway-input
-                                    common-lisp:nil
-                                    ((virtual-gateway-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualGatewayName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (spec :target-type virtual-gateway-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "UpdateVirtualGatewayInput"))
+(smithy/sdk/shapes:define-input update-virtual-gateway-input common-lisp:nil
+                                ((virtual-gateway-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualGatewayName" :http-label
+                                  common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (spec :target-type virtual-gateway-spec
+                                  :required common-lisp:t :member-name "spec")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "UpdateVirtualGatewayInput"))
 
-(smithy/sdk/shapes:define-structure update-virtual-gateway-output
+(smithy/sdk/shapes:define-interface update-virtual-gateway-output
                                     common-lisp:nil
                                     ((virtual-gateway :target-type
                                       virtual-gateway-data :required
@@ -2309,50 +2295,49 @@ common-lisp:nil
                                       common-lisp:t))
                                     (:shape-name "UpdateVirtualGatewayOutput"))
 
-(smithy/sdk/shapes:define-structure update-virtual-node-input common-lisp:nil
-                                    ((virtual-node-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualNodeName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (spec :target-type virtual-node-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "UpdateVirtualNodeInput"))
+(smithy/sdk/shapes:define-input update-virtual-node-input common-lisp:nil
+                                ((virtual-node-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "virtualNodeName" :http-label common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (spec :target-type virtual-node-spec :required
+                                  common-lisp:t :member-name "spec")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "UpdateVirtualNodeInput"))
 
-(smithy/sdk/shapes:define-structure update-virtual-node-output common-lisp:nil
+(smithy/sdk/shapes:define-interface update-virtual-node-output common-lisp:nil
                                     ((virtual-node :target-type
                                       virtual-node-data :required common-lisp:t
                                       :member-name "virtualNode" :http-payload
                                       common-lisp:t))
                                     (:shape-name "UpdateVirtualNodeOutput"))
 
-(smithy/sdk/shapes:define-structure update-virtual-router-input common-lisp:nil
-                                    ((virtual-router-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "virtualRouterName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (spec :target-type virtual-router-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "UpdateVirtualRouterInput"))
+(smithy/sdk/shapes:define-input update-virtual-router-input common-lisp:nil
+                                ((virtual-router-name :target-type
+                                  resource-name :required common-lisp:t
+                                  :member-name "virtualRouterName" :http-label
+                                  common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (spec :target-type virtual-router-spec
+                                  :required common-lisp:t :member-name "spec")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "UpdateVirtualRouterInput"))
 
-(smithy/sdk/shapes:define-structure update-virtual-router-output
+(smithy/sdk/shapes:define-interface update-virtual-router-output
                                     common-lisp:nil
                                     ((virtual-router :target-type
                                       virtual-router-data :required
@@ -2361,26 +2346,25 @@ common-lisp:nil
                                       common-lisp:t))
                                     (:shape-name "UpdateVirtualRouterOutput"))
 
-(smithy/sdk/shapes:define-structure update-virtual-service-input
-                                    common-lisp:nil
-                                    ((virtual-service-name :target-type
-                                      service-name :required common-lisp:t
-                                      :member-name "virtualServiceName")
-                                     (mesh-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "meshName")
-                                     (spec :target-type virtual-service-spec
-                                      :required common-lisp:t :member-name
-                                      "spec")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (mesh-owner :target-type account-id
-                                      :member-name "meshOwner" :http-query
-                                      "meshOwner"))
-                                    (:shape-name "UpdateVirtualServiceInput"))
+(smithy/sdk/shapes:define-input update-virtual-service-input common-lisp:nil
+                                ((virtual-service-name :target-type
+                                  service-name :required common-lisp:t
+                                  :member-name "virtualServiceName" :http-label
+                                  common-lisp:t)
+                                 (mesh-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "meshName" :http-label common-lisp:t)
+                                 (spec :target-type virtual-service-spec
+                                  :required common-lisp:t :member-name "spec")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (mesh-owner :target-type account-id
+                                  :member-name "meshOwner" :http-query
+                                  "meshOwner"))
+                                (:shape-name "UpdateVirtualServiceInput"))
 
-(smithy/sdk/shapes:define-structure update-virtual-service-output
+(smithy/sdk/shapes:define-interface update-virtual-service-output
                                     common-lisp:nil
                                     ((virtual-service :target-type
                                       virtual-service-data :required

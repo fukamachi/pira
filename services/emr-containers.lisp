@@ -350,7 +350,8 @@
                                   "token"))
                                 (:shape-name "Credentials"))
 
-(smithy/sdk/shapes:define-type date smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-job-template-request common-lisp:nil
                                 ((id :target-type resource-id-string :required

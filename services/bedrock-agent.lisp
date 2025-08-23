@@ -1876,7 +1876,8 @@ common-lisp:nil
   (:custom "CUSTOM")
   (:redshift-metadata "REDSHIFT_METADATA"))
 
-(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-agent-action-group-request
                                 common-lisp:nil

@@ -105,10 +105,11 @@
 (smithy/sdk/shapes:define-type braket-resource-arn
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure cancel-job-request common-lisp:nil
-                                    ((job-arn :target-type job-arn :required
-                                      common-lisp:t :member-name "jobArn"))
-                                    (:shape-name "CancelJobRequest"))
+(smithy/sdk/shapes:define-input cancel-job-request common-lisp:nil
+                                ((job-arn :target-type job-arn :required
+                                  common-lisp:t :member-name "jobArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "CancelJobRequest"))
 
 (smithy/sdk/shapes:define-structure cancel-job-response common-lisp:nil
                                     ((job-arn :target-type job-arn :required
@@ -119,14 +120,14 @@
                                       "cancellationStatus"))
                                     (:shape-name "CancelJobResponse"))
 
-(smithy/sdk/shapes:define-structure cancel-quantum-task-request common-lisp:nil
-                                    ((quantum-task-arn :target-type
-                                      quantum-task-arn :required common-lisp:t
-                                      :member-name "quantumTaskArn")
-                                     (client-token :target-type string64
-                                      :required common-lisp:t :member-name
-                                      "clientToken"))
-                                    (:shape-name "CancelQuantumTaskRequest"))
+(smithy/sdk/shapes:define-input cancel-quantum-task-request common-lisp:nil
+                                ((quantum-task-arn :target-type
+                                  quantum-task-arn :required common-lisp:t
+                                  :member-name "quantumTaskArn" :http-label
+                                  common-lisp:t)
+                                 (client-token :target-type string64 :required
+                                  common-lisp:t :member-name "clientToken"))
+                                (:shape-name "CancelQuantumTaskRequest"))
 
 (smithy/sdk/shapes:define-structure cancel-quantum-task-response
                                     common-lisp:nil
@@ -306,11 +307,11 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type device-type smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure get-device-request common-lisp:nil
-                                    ((device-arn :target-type device-arn
-                                      :required common-lisp:t :member-name
-                                      "deviceArn"))
-                                    (:shape-name "GetDeviceRequest"))
+(smithy/sdk/shapes:define-input get-device-request common-lisp:nil
+                                ((device-arn :target-type device-arn :required
+                                  common-lisp:t :member-name "deviceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetDeviceRequest"))
 
 (smithy/sdk/shapes:define-structure get-device-response common-lisp:nil
                                     ((device-arn :target-type device-arn
@@ -337,14 +338,15 @@ common-lisp:nil
                                       "deviceQueueInfo"))
                                     (:shape-name "GetDeviceResponse"))
 
-(smithy/sdk/shapes:define-structure get-job-request common-lisp:nil
-                                    ((job-arn :target-type job-arn :required
-                                      common-lisp:t :member-name "jobArn")
-                                     (additional-attribute-names :target-type
-                                      hybrid-job-additional-attribute-names-list
-                                      :member-name "additionalAttributeNames"
-                                      :http-query "additionalAttributeNames"))
-                                    (:shape-name "GetJobRequest"))
+(smithy/sdk/shapes:define-input get-job-request common-lisp:nil
+                                ((job-arn :target-type job-arn :required
+                                  common-lisp:t :member-name "jobArn"
+                                  :http-label common-lisp:t)
+                                 (additional-attribute-names :target-type
+                                  hybrid-job-additional-attribute-names-list
+                                  :member-name "additionalAttributeNames"
+                                  :http-query "additionalAttributeNames"))
+                                (:shape-name "GetJobRequest"))
 
 (smithy/sdk/shapes:define-structure get-job-response common-lisp:nil
                                     ((status :target-type job-primary-status
@@ -411,15 +413,16 @@ common-lisp:nil
                                       :member-name "associations"))
                                     (:shape-name "GetJobResponse"))
 
-(smithy/sdk/shapes:define-structure get-quantum-task-request common-lisp:nil
-                                    ((quantum-task-arn :target-type
-                                      quantum-task-arn :required common-lisp:t
-                                      :member-name "quantumTaskArn")
-                                     (additional-attribute-names :target-type
-                                      quantum-task-additional-attribute-names-list
-                                      :member-name "additionalAttributeNames"
-                                      :http-query "additionalAttributeNames"))
-                                    (:shape-name "GetQuantumTaskRequest"))
+(smithy/sdk/shapes:define-input get-quantum-task-request common-lisp:nil
+                                ((quantum-task-arn :target-type
+                                  quantum-task-arn :required common-lisp:t
+                                  :member-name "quantumTaskArn" :http-label
+                                  common-lisp:t)
+                                 (additional-attribute-names :target-type
+                                  quantum-task-additional-attribute-names-list
+                                  :member-name "additionalAttributeNames"
+                                  :http-query "additionalAttributeNames"))
+                                (:shape-name "GetQuantumTaskRequest"))
 
 (smithy/sdk/shapes:define-structure get-quantum-task-response common-lisp:nil
                                     ((quantum-task-arn :target-type
@@ -601,13 +604,12 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type json-value smithy/sdk/smithy-types:string
                                :media-type "application/json")
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -846,13 +848,14 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list tag-keys :member smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tags-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tags-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -868,14 +871,15 @@ common-lisp:nil
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-keys :required
-                                      common-lisp:t :member-name "tagKeys"
-                                      :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-keys :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil

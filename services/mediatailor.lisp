@@ -522,28 +522,27 @@ common-lisp:nil
    "ManifestServiceInteractionLog"))
  (:shape-name "ConfigureLogsForPlaybackConfigurationResponse"))
 
-(smithy/sdk/shapes:define-structure create-channel-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName")
-                                     (filler-slate :target-type slate-source
-                                      :member-name "FillerSlate")
-                                     (outputs :target-type request-outputs
-                                      :required common-lisp:t :member-name
-                                      "Outputs")
-                                     (playback-mode :target-type playback-mode
-                                      :required common-lisp:t :member-name
-                                      "PlaybackMode")
-                                     (tags :target-type map-of-string
-                                      :member-name "Tags" :json-name "tags")
-                                     (tier :target-type tier :member-name
-                                      "Tier")
-                                     (time-shift-configuration :target-type
-                                      time-shift-configuration :member-name
-                                      "TimeShiftConfiguration")
-                                     (audiences :target-type audiences
-                                      :member-name "Audiences"))
-                                    (:shape-name "CreateChannelRequest"))
+(smithy/sdk/shapes:define-input create-channel-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t)
+                                 (filler-slate :target-type slate-source
+                                  :member-name "FillerSlate")
+                                 (outputs :target-type request-outputs
+                                  :required common-lisp:t :member-name
+                                  "Outputs")
+                                 (playback-mode :target-type playback-mode
+                                  :required common-lisp:t :member-name
+                                  "PlaybackMode")
+                                 (tags :target-type map-of-string :member-name
+                                  "Tags" :json-name "tags")
+                                 (tier :target-type tier :member-name "Tier")
+                                 (time-shift-configuration :target-type
+                                  time-shift-configuration :member-name
+                                  "TimeShiftConfiguration")
+                                 (audiences :target-type audiences :member-name
+                                  "Audiences"))
+                                (:shape-name "CreateChannelRequest"))
 
 (smithy/sdk/shapes:define-structure create-channel-response common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -574,20 +573,21 @@ common-lisp:nil
                                       :member-name "Audiences"))
                                     (:shape-name "CreateChannelResponse"))
 
-(smithy/sdk/shapes:define-structure create-live-source-request common-lisp:nil
-                                    ((http-package-configurations :target-type
-                                      http-package-configurations :required
-                                      common-lisp:t :member-name
-                                      "HttpPackageConfigurations")
-                                     (live-source-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "LiveSourceName")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName")
-                                     (tags :target-type map-of-string
-                                      :member-name "Tags" :json-name "tags"))
-                                    (:shape-name "CreateLiveSourceRequest"))
+(smithy/sdk/shapes:define-input create-live-source-request common-lisp:nil
+                                ((http-package-configurations :target-type
+                                  http-package-configurations :required
+                                  common-lisp:t :member-name
+                                  "HttpPackageConfigurations")
+                                 (live-source-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "LiveSourceName" :http-label common-lisp:t)
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t)
+                                 (tags :target-type map-of-string :member-name
+                                  "Tags" :json-name "tags"))
+                                (:shape-name "CreateLiveSourceRequest"))
 
 (smithy/sdk/shapes:define-structure create-live-source-response common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -608,30 +608,28 @@ common-lisp:nil
                                       :member-name "Tags" :json-name "tags"))
                                     (:shape-name "CreateLiveSourceResponse"))
 
-(smithy/sdk/shapes:define-structure create-prefetch-schedule-request
-                                    common-lisp:nil
-                                    ((consumption :target-type
-                                      prefetch-consumption :member-name
-                                      "Consumption")
-                                     (name :target-type string :required
-                                      common-lisp:t :member-name "Name")
-                                     (playback-configuration-name :target-type
-                                      string :required common-lisp:t
-                                      :member-name "PlaybackConfigurationName")
-                                     (retrieval :target-type prefetch-retrieval
-                                      :member-name "Retrieval")
-                                     (recurring-prefetch-configuration
-                                      :target-type
-                                      recurring-prefetch-configuration
-                                      :member-name
-                                      "RecurringPrefetchConfiguration")
-                                     (schedule-type :target-type
-                                      prefetch-schedule-type :member-name
-                                      "ScheduleType")
-                                     (stream-id :target-type string
-                                      :member-name "StreamId"))
-                                    (:shape-name
-                                     "CreatePrefetchScheduleRequest"))
+(smithy/sdk/shapes:define-input create-prefetch-schedule-request
+                                common-lisp:nil
+                                ((consumption :target-type prefetch-consumption
+                                  :member-name "Consumption")
+                                 (name :target-type string :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (playback-configuration-name :target-type
+                                  string :required common-lisp:t :member-name
+                                  "PlaybackConfigurationName" :http-label
+                                  common-lisp:t)
+                                 (retrieval :target-type prefetch-retrieval
+                                  :member-name "Retrieval")
+                                 (recurring-prefetch-configuration :target-type
+                                  recurring-prefetch-configuration :member-name
+                                  "RecurringPrefetchConfiguration")
+                                 (schedule-type :target-type
+                                  prefetch-schedule-type :member-name
+                                  "ScheduleType")
+                                 (stream-id :target-type string :member-name
+                                  "StreamId"))
+                                (:shape-name "CreatePrefetchScheduleRequest"))
 
 (smithy/sdk/shapes:define-structure create-prefetch-schedule-response
                                     common-lisp:nil
@@ -660,30 +658,30 @@ common-lisp:nil
                                     (:shape-name
                                      "CreatePrefetchScheduleResponse"))
 
-(smithy/sdk/shapes:define-structure create-program-request common-lisp:nil
-                                    ((ad-breaks :target-type list-of-ad-break
-                                      :member-name "AdBreaks")
-                                     (channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName")
-                                     (live-source-name :target-type string
-                                      :member-name "LiveSourceName")
-                                     (program-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ProgramName")
-                                     (schedule-configuration :target-type
-                                      schedule-configuration :required
-                                      common-lisp:t :member-name
-                                      "ScheduleConfiguration")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName")
-                                     (vod-source-name :target-type string
-                                      :member-name "VodSourceName")
-                                     (audience-media :target-type
-                                      list-of-audience-media :member-name
-                                      "AudienceMedia"))
-                                    (:shape-name "CreateProgramRequest"))
+(smithy/sdk/shapes:define-input create-program-request common-lisp:nil
+                                ((ad-breaks :target-type list-of-ad-break
+                                  :member-name "AdBreaks")
+                                 (channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t)
+                                 (live-source-name :target-type string
+                                  :member-name "LiveSourceName")
+                                 (program-name :target-type string :required
+                                  common-lisp:t :member-name "ProgramName"
+                                  :http-label common-lisp:t)
+                                 (schedule-configuration :target-type
+                                  schedule-configuration :required
+                                  common-lisp:t :member-name
+                                  "ScheduleConfiguration")
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName")
+                                 (vod-source-name :target-type string
+                                  :member-name "VodSourceName")
+                                 (audience-media :target-type
+                                  list-of-audience-media :member-name
+                                  "AudienceMedia"))
+                                (:shape-name "CreateProgramRequest"))
 
 (smithy/sdk/shapes:define-structure create-program-response common-lisp:nil
                                     ((ad-breaks :target-type list-of-ad-break
@@ -714,31 +712,28 @@ common-lisp:nil
                                       "AudienceMedia"))
                                     (:shape-name "CreateProgramResponse"))
 
-(smithy/sdk/shapes:define-structure create-source-location-request
-                                    common-lisp:nil
-                                    ((access-configuration :target-type
-                                      access-configuration :member-name
-                                      "AccessConfiguration")
-                                     (default-segment-delivery-configuration
-                                      :target-type
-                                      default-segment-delivery-configuration
-                                      :member-name
-                                      "DefaultSegmentDeliveryConfiguration")
-                                     (http-configuration :target-type
-                                      http-configuration :required
-                                      common-lisp:t :member-name
-                                      "HttpConfiguration")
-                                     (segment-delivery-configurations
-                                      :target-type
-                                      list-of-segment-delivery-configuration
-                                      :member-name
-                                      "SegmentDeliveryConfigurations")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName")
-                                     (tags :target-type map-of-string
-                                      :member-name "Tags" :json-name "tags"))
-                                    (:shape-name "CreateSourceLocationRequest"))
+(smithy/sdk/shapes:define-input create-source-location-request common-lisp:nil
+                                ((access-configuration :target-type
+                                  access-configuration :member-name
+                                  "AccessConfiguration")
+                                 (default-segment-delivery-configuration
+                                  :target-type
+                                  default-segment-delivery-configuration
+                                  :member-name
+                                  "DefaultSegmentDeliveryConfiguration")
+                                 (http-configuration :target-type
+                                  http-configuration :required common-lisp:t
+                                  :member-name "HttpConfiguration")
+                                 (segment-delivery-configurations :target-type
+                                  list-of-segment-delivery-configuration
+                                  :member-name "SegmentDeliveryConfigurations")
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t)
+                                 (tags :target-type map-of-string :member-name
+                                  "Tags" :json-name "tags"))
+                                (:shape-name "CreateSourceLocationRequest"))
 
 (smithy/sdk/shapes:define-structure create-source-location-response
                                     common-lisp:nil
@@ -772,20 +767,21 @@ common-lisp:nil
                                     (:shape-name
                                      "CreateSourceLocationResponse"))
 
-(smithy/sdk/shapes:define-structure create-vod-source-request common-lisp:nil
-                                    ((http-package-configurations :target-type
-                                      http-package-configurations :required
-                                      common-lisp:t :member-name
-                                      "HttpPackageConfigurations")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName")
-                                     (tags :target-type map-of-string
-                                      :member-name "Tags" :json-name "tags")
-                                     (vod-source-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "VodSourceName"))
-                                    (:shape-name "CreateVodSourceRequest"))
+(smithy/sdk/shapes:define-input create-vod-source-request common-lisp:nil
+                                ((http-package-configurations :target-type
+                                  http-package-configurations :required
+                                  common-lisp:t :member-name
+                                  "HttpPackageConfigurations")
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t)
+                                 (tags :target-type map-of-string :member-name
+                                  "Tags" :json-name "tags")
+                                 (vod-source-name :target-type string :required
+                                  common-lisp:t :member-name "VodSourceName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "CreateVodSourceRequest"))
 
 (smithy/sdk/shapes:define-structure create-vod-source-response common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -847,111 +843,113 @@ common-lisp:nil
                                     (:shape-name
                                      "DefaultSegmentDeliveryConfiguration"))
 
-(smithy/sdk/shapes:define-structure delete-channel-policy-request
-                                    common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName"))
-                                    (:shape-name "DeleteChannelPolicyRequest"))
+(smithy/sdk/shapes:define-input delete-channel-policy-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteChannelPolicyRequest"))
 
 (smithy/sdk/shapes:define-structure delete-channel-policy-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name "DeleteChannelPolicyResponse"))
 
-(smithy/sdk/shapes:define-structure delete-channel-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName"))
-                                    (:shape-name "DeleteChannelRequest"))
+(smithy/sdk/shapes:define-input delete-channel-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteChannelRequest"))
 
 (smithy/sdk/shapes:define-structure delete-channel-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteChannelResponse"))
 
-(smithy/sdk/shapes:define-structure delete-live-source-request common-lisp:nil
-                                    ((live-source-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "LiveSourceName")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName"))
-                                    (:shape-name "DeleteLiveSourceRequest"))
+(smithy/sdk/shapes:define-input delete-live-source-request common-lisp:nil
+                                ((live-source-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "LiveSourceName" :http-label common-lisp:t)
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteLiveSourceRequest"))
 
 (smithy/sdk/shapes:define-structure delete-live-source-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteLiveSourceResponse"))
 
-(smithy/sdk/shapes:define-structure delete-playback-configuration-request
-                                    common-lisp:nil
-                                    ((name :target-type string :required
-                                      common-lisp:t :member-name "Name"))
-                                    (:shape-name
-                                     "DeletePlaybackConfigurationRequest"))
+(smithy/sdk/shapes:define-input delete-playback-configuration-request
+                                common-lisp:nil
+                                ((name :target-type string :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "DeletePlaybackConfigurationRequest"))
 
 (smithy/sdk/shapes:define-structure delete-playback-configuration-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeletePlaybackConfigurationResponse"))
 
-(smithy/sdk/shapes:define-structure delete-prefetch-schedule-request
-                                    common-lisp:nil
-                                    ((name :target-type string :required
-                                      common-lisp:t :member-name "Name")
-                                     (playback-configuration-name :target-type
-                                      string :required common-lisp:t
-                                      :member-name
-                                      "PlaybackConfigurationName"))
-                                    (:shape-name
-                                     "DeletePrefetchScheduleRequest"))
+(smithy/sdk/shapes:define-input delete-prefetch-schedule-request
+                                common-lisp:nil
+                                ((name :target-type string :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (playback-configuration-name :target-type
+                                  string :required common-lisp:t :member-name
+                                  "PlaybackConfigurationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeletePrefetchScheduleRequest"))
 
 (smithy/sdk/shapes:define-structure delete-prefetch-schedule-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeletePrefetchScheduleResponse"))
 
-(smithy/sdk/shapes:define-structure delete-program-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName")
-                                     (program-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ProgramName"))
-                                    (:shape-name "DeleteProgramRequest"))
+(smithy/sdk/shapes:define-input delete-program-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t)
+                                 (program-name :target-type string :required
+                                  common-lisp:t :member-name "ProgramName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteProgramRequest"))
 
 (smithy/sdk/shapes:define-structure delete-program-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteProgramResponse"))
 
-(smithy/sdk/shapes:define-structure delete-source-location-request
-                                    common-lisp:nil
-                                    ((source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName"))
-                                    (:shape-name "DeleteSourceLocationRequest"))
+(smithy/sdk/shapes:define-input delete-source-location-request common-lisp:nil
+                                ((source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteSourceLocationRequest"))
 
 (smithy/sdk/shapes:define-structure delete-source-location-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeleteSourceLocationResponse"))
 
-(smithy/sdk/shapes:define-structure delete-vod-source-request common-lisp:nil
-                                    ((source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName")
-                                     (vod-source-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "VodSourceName"))
-                                    (:shape-name "DeleteVodSourceRequest"))
+(smithy/sdk/shapes:define-input delete-vod-source-request common-lisp:nil
+                                ((source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t)
+                                 (vod-source-name :target-type string :required
+                                  common-lisp:t :member-name "VodSourceName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteVodSourceRequest"))
 
 (smithy/sdk/shapes:define-structure delete-vod-source-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteVodSourceResponse"))
 
-(smithy/sdk/shapes:define-structure describe-channel-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName"))
-                                    (:shape-name "DescribeChannelRequest"))
+(smithy/sdk/shapes:define-input describe-channel-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeChannelRequest"))
 
 (smithy/sdk/shapes:define-structure describe-channel-response common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -986,15 +984,15 @@ common-lisp:nil
                                       :member-name "Audiences"))
                                     (:shape-name "DescribeChannelResponse"))
 
-(smithy/sdk/shapes:define-structure describe-live-source-request
-                                    common-lisp:nil
-                                    ((live-source-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "LiveSourceName")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName"))
-                                    (:shape-name "DescribeLiveSourceRequest"))
+(smithy/sdk/shapes:define-input describe-live-source-request common-lisp:nil
+                                ((live-source-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "LiveSourceName" :http-label common-lisp:t)
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DescribeLiveSourceRequest"))
 
 (smithy/sdk/shapes:define-structure describe-live-source-response
                                     common-lisp:nil
@@ -1016,14 +1014,14 @@ common-lisp:nil
                                       :member-name "Tags" :json-name "tags"))
                                     (:shape-name "DescribeLiveSourceResponse"))
 
-(smithy/sdk/shapes:define-structure describe-program-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName")
-                                     (program-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ProgramName"))
-                                    (:shape-name "DescribeProgramRequest"))
+(smithy/sdk/shapes:define-input describe-program-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t)
+                                 (program-name :target-type string :required
+                                  common-lisp:t :member-name "ProgramName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeProgramRequest"))
 
 (smithy/sdk/shapes:define-structure describe-program-response common-lisp:nil
                                     ((ad-breaks :target-type list-of-ad-break
@@ -1055,13 +1053,13 @@ common-lisp:nil
                                       "AudienceMedia"))
                                     (:shape-name "DescribeProgramResponse"))
 
-(smithy/sdk/shapes:define-structure describe-source-location-request
-                                    common-lisp:nil
-                                    ((source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName"))
-                                    (:shape-name
-                                     "DescribeSourceLocationRequest"))
+(smithy/sdk/shapes:define-input describe-source-location-request
+                                common-lisp:nil
+                                ((source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DescribeSourceLocationRequest"))
 
 (smithy/sdk/shapes:define-structure describe-source-location-response
                                     common-lisp:nil
@@ -1095,14 +1093,15 @@ common-lisp:nil
                                     (:shape-name
                                      "DescribeSourceLocationResponse"))
 
-(smithy/sdk/shapes:define-structure describe-vod-source-request common-lisp:nil
-                                    ((source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName")
-                                     (vod-source-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "VodSourceName"))
-                                    (:shape-name "DescribeVodSourceRequest"))
+(smithy/sdk/shapes:define-input describe-vod-source-request common-lisp:nil
+                                ((source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t)
+                                 (vod-source-name :target-type string :required
+                                  common-lisp:t :member-name "VodSourceName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeVodSourceRequest"))
 
 (smithy/sdk/shapes:define-structure describe-vod-source-response
                                     common-lisp:nil
@@ -1132,34 +1131,32 @@ common-lisp:nil
   (:full-avail-only "FULL_AVAIL_ONLY")
   (:partial-avail "PARTIAL_AVAIL"))
 
-(smithy/sdk/shapes:define-structure get-channel-policy-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName"))
-                                    (:shape-name "GetChannelPolicyRequest"))
+(smithy/sdk/shapes:define-input get-channel-policy-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetChannelPolicyRequest"))
 
 (smithy/sdk/shapes:define-structure get-channel-policy-response common-lisp:nil
                                     ((policy :target-type string :member-name
                                       "Policy"))
                                     (:shape-name "GetChannelPolicyResponse"))
 
-(smithy/sdk/shapes:define-structure get-channel-schedule-request
-                                    common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName")
-                                     (duration-minutes :target-type string
-                                      :member-name "DurationMinutes"
-                                      :http-query "durationMinutes")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (audience :target-type string :member-name
-                                      "Audience" :http-query "audience"))
-                                    (:shape-name "GetChannelScheduleRequest"))
+(smithy/sdk/shapes:define-input get-channel-schedule-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t)
+                                 (duration-minutes :target-type string
+                                  :member-name "DurationMinutes" :http-query
+                                  "durationMinutes")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken")
+                                 (audience :target-type string :member-name
+                                  "Audience" :http-query "audience"))
+                                (:shape-name "GetChannelScheduleRequest"))
 
 (smithy/sdk/shapes:define-structure get-channel-schedule-response
                                     common-lisp:nil
@@ -1169,12 +1166,12 @@ common-lisp:nil
                                       :member-name "NextToken"))
                                     (:shape-name "GetChannelScheduleResponse"))
 
-(smithy/sdk/shapes:define-structure get-playback-configuration-request
-                                    common-lisp:nil
-                                    ((name :target-type string :required
-                                      common-lisp:t :member-name "Name"))
-                                    (:shape-name
-                                     "GetPlaybackConfigurationRequest"))
+(smithy/sdk/shapes:define-input get-playback-configuration-request
+                                common-lisp:nil
+                                ((name :target-type string :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetPlaybackConfigurationRequest"))
 
 (smithy/sdk/shapes:define-structure get-playback-configuration-response
                                     common-lisp:nil
@@ -1242,15 +1239,15 @@ common-lisp:nil
                                     (:shape-name
                                      "GetPlaybackConfigurationResponse"))
 
-(smithy/sdk/shapes:define-structure get-prefetch-schedule-request
-                                    common-lisp:nil
-                                    ((name :target-type string :required
-                                      common-lisp:t :member-name "Name")
-                                     (playback-configuration-name :target-type
-                                      string :required common-lisp:t
-                                      :member-name
-                                      "PlaybackConfigurationName"))
-                                    (:shape-name "GetPrefetchScheduleRequest"))
+(smithy/sdk/shapes:define-input get-prefetch-schedule-request common-lisp:nil
+                                ((name :target-type string :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (playback-configuration-name :target-type
+                                  string :required common-lisp:t :member-name
+                                  "PlaybackConfigurationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetPrefetchScheduleRequest"))
 
 (smithy/sdk/shapes:define-structure get-prefetch-schedule-response
                                     common-lisp:nil
@@ -1325,17 +1322,16 @@ common-lisp:nil
                                       common-lisp:t :member-name "Value"))
                                     (:shape-name "KeyValuePair"))
 
-(smithy/sdk/shapes:define-structure list-alerts-request common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn" :http-query "resourceArn"))
-                                    (:shape-name "ListAlertsRequest"))
+(smithy/sdk/shapes:define-input list-alerts-request common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken")
+                                 (resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-query "resourceArn"))
+                                (:shape-name "ListAlertsRequest"))
 
 (smithy/sdk/shapes:define-structure list-alerts-response common-lisp:nil
                                     ((items :target-type list-of-alert
@@ -1344,14 +1340,13 @@ common-lisp:nil
                                       :member-name "NextToken"))
                                     (:shape-name "ListAlertsResponse"))
 
-(smithy/sdk/shapes:define-structure list-channels-request common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListChannelsRequest"))
+(smithy/sdk/shapes:define-input list-channels-request common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken"))
+                                (:shape-name "ListChannelsRequest"))
 
 (smithy/sdk/shapes:define-structure list-channels-response common-lisp:nil
                                     ((items :target-type list-of-channel
@@ -1360,17 +1355,17 @@ common-lisp:nil
                                       :member-name "NextToken"))
                                     (:shape-name "ListChannelsResponse"))
 
-(smithy/sdk/shapes:define-structure list-live-sources-request common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName"))
-                                    (:shape-name "ListLiveSourcesRequest"))
+(smithy/sdk/shapes:define-input list-live-sources-request common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken")
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "ListLiveSourcesRequest"))
 
 (smithy/sdk/shapes:define-structure list-live-sources-response common-lisp:nil
                                     ((items :target-type list-of-live-source
@@ -1379,16 +1374,15 @@ common-lisp:nil
                                       :member-name "NextToken"))
                                     (:shape-name "ListLiveSourcesResponse"))
 
-(smithy/sdk/shapes:define-structure list-playback-configurations-request
-                                    common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "MaxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "NextToken"))
-                                    (:shape-name
-                                     "ListPlaybackConfigurationsRequest"))
+(smithy/sdk/shapes:define-input list-playback-configurations-request
+                                common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "MaxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "NextToken"))
+                                (:shape-name
+                                 "ListPlaybackConfigurationsRequest"))
 
 (smithy/sdk/shapes:define-structure list-playback-configurations-response
                                     common-lisp:nil
@@ -1406,23 +1400,21 @@ common-lisp:nil
   (:recurring "RECURRING")
   (:all "ALL"))
 
-(smithy/sdk/shapes:define-structure list-prefetch-schedules-request
-                                    common-lisp:nil
-                                    ((max-results :target-type
-                                      integer-min1max100 :member-name
-                                      "MaxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken")
-                                     (playback-configuration-name :target-type
-                                      string :required common-lisp:t
-                                      :member-name "PlaybackConfigurationName")
-                                     (schedule-type :target-type
-                                      list-prefetch-schedule-type :member-name
-                                      "ScheduleType")
-                                     (stream-id :target-type string
-                                      :member-name "StreamId"))
-                                    (:shape-name
-                                     "ListPrefetchSchedulesRequest"))
+(smithy/sdk/shapes:define-input list-prefetch-schedules-request common-lisp:nil
+                                ((max-results :target-type integer-min1max100
+                                  :member-name "MaxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken")
+                                 (playback-configuration-name :target-type
+                                  string :required common-lisp:t :member-name
+                                  "PlaybackConfigurationName" :http-label
+                                  common-lisp:t)
+                                 (schedule-type :target-type
+                                  list-prefetch-schedule-type :member-name
+                                  "ScheduleType")
+                                 (stream-id :target-type string :member-name
+                                  "StreamId"))
+                                (:shape-name "ListPrefetchSchedulesRequest"))
 
 (smithy/sdk/shapes:define-structure list-prefetch-schedules-response
                                     common-lisp:nil
@@ -1434,15 +1426,13 @@ common-lisp:nil
                                     (:shape-name
                                      "ListPrefetchSchedulesResponse"))
 
-(smithy/sdk/shapes:define-structure list-source-locations-request
-                                    common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListSourceLocationsRequest"))
+(smithy/sdk/shapes:define-input list-source-locations-request common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken"))
+                                (:shape-name "ListSourceLocationsRequest"))
 
 (smithy/sdk/shapes:define-structure list-source-locations-response
                                     common-lisp:nil
@@ -1453,12 +1443,11 @@ common-lisp:nil
                                       :member-name "NextToken"))
                                     (:shape-name "ListSourceLocationsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1466,17 +1455,17 @@ common-lisp:nil
                                       :member-name "Tags" :json-name "tags"))
                                     (:shape-name "ListTagsForResourceResponse"))
 
-(smithy/sdk/shapes:define-structure list-vod-sources-request common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName"))
-                                    (:shape-name "ListVodSourcesRequest"))
+(smithy/sdk/shapes:define-input list-vod-sources-request common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken")
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "ListVodSourcesRequest"))
 
 (smithy/sdk/shapes:define-structure list-vod-sources-response common-lisp:nil
                                     ((items :target-type list-of-vod-source
@@ -1761,13 +1750,13 @@ common-lisp:nil
 
 common-lisp:nil
 
-(smithy/sdk/shapes:define-structure put-channel-policy-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName")
-                                     (policy :target-type string :required
-                                      common-lisp:t :member-name "Policy"))
-                                    (:shape-name "PutChannelPolicyRequest"))
+(smithy/sdk/shapes:define-input put-channel-policy-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t)
+                                 (policy :target-type string :required
+                                  common-lisp:t :member-name "Policy"))
+                                (:shape-name "PutChannelPolicyRequest"))
 
 (smithy/sdk/shapes:define-structure put-channel-policy-response common-lisp:nil
                                     common-lisp:nil
@@ -2137,21 +2126,21 @@ common-lisp:nil
                                       :member-name "UniqueProgramId"))
                                     (:shape-name "SpliceInsertMessage"))
 
-(smithy/sdk/shapes:define-structure start-channel-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName"))
-                                    (:shape-name "StartChannelRequest"))
+(smithy/sdk/shapes:define-input start-channel-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "StartChannelRequest"))
 
 (smithy/sdk/shapes:define-structure start-channel-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "StartChannelResponse"))
 
-(smithy/sdk/shapes:define-structure stop-channel-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName"))
-                                    (:shape-name "StopChannelRequest"))
+(smithy/sdk/shapes:define-input stop-channel-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "StopChannelRequest"))
 
 (smithy/sdk/shapes:define-structure stop-channel-response common-lisp:nil
                                     common-lisp:nil
@@ -2162,14 +2151,14 @@ common-lisp:nil
   (:transcode "TRANSCODE")
   (:none "NONE"))
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tags :target-type map-of-string :required
-                                      common-lisp:t :member-name "Tags"
-                                      :json-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type map-of-string :required
+                                  common-lisp:t :member-name "Tags" :json-name
+                                  "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-enum tier
     common-lisp:nil
@@ -2220,30 +2209,30 @@ common-lisp:nil
   (:dash "DASH")
   (:hls "HLS"))
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tag-keys :target-type list-of-string
-                                      :required common-lisp:t :member-name
-                                      "TagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type list-of-string
+                                  :required common-lisp:t :member-name
+                                  "TagKeys" :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
-(smithy/sdk/shapes:define-structure update-channel-request common-lisp:nil
-                                    ((channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName")
-                                     (filler-slate :target-type slate-source
-                                      :member-name "FillerSlate")
-                                     (outputs :target-type request-outputs
-                                      :required common-lisp:t :member-name
-                                      "Outputs")
-                                     (time-shift-configuration :target-type
-                                      time-shift-configuration :member-name
-                                      "TimeShiftConfiguration")
-                                     (audiences :target-type audiences
-                                      :member-name "Audiences"))
-                                    (:shape-name "UpdateChannelRequest"))
+(smithy/sdk/shapes:define-input update-channel-request common-lisp:nil
+                                ((channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t)
+                                 (filler-slate :target-type slate-source
+                                  :member-name "FillerSlate")
+                                 (outputs :target-type request-outputs
+                                  :required common-lisp:t :member-name
+                                  "Outputs")
+                                 (time-shift-configuration :target-type
+                                  time-shift-configuration :member-name
+                                  "TimeShiftConfiguration")
+                                 (audiences :target-type audiences :member-name
+                                  "Audiences"))
+                                (:shape-name "UpdateChannelRequest"))
 
 (smithy/sdk/shapes:define-structure update-channel-response common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -2274,18 +2263,19 @@ common-lisp:nil
                                       :member-name "Audiences"))
                                     (:shape-name "UpdateChannelResponse"))
 
-(smithy/sdk/shapes:define-structure update-live-source-request common-lisp:nil
-                                    ((http-package-configurations :target-type
-                                      http-package-configurations :required
-                                      common-lisp:t :member-name
-                                      "HttpPackageConfigurations")
-                                     (live-source-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "LiveSourceName")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName"))
-                                    (:shape-name "UpdateLiveSourceRequest"))
+(smithy/sdk/shapes:define-input update-live-source-request common-lisp:nil
+                                ((http-package-configurations :target-type
+                                  http-package-configurations :required
+                                  common-lisp:t :member-name
+                                  "HttpPackageConfigurations")
+                                 (live-source-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "LiveSourceName" :http-label common-lisp:t)
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "UpdateLiveSourceRequest"))
 
 (smithy/sdk/shapes:define-structure update-live-source-response common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -2306,23 +2296,23 @@ common-lisp:nil
                                       :member-name "Tags" :json-name "tags"))
                                     (:shape-name "UpdateLiveSourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-program-request common-lisp:nil
-                                    ((ad-breaks :target-type list-of-ad-break
-                                      :member-name "AdBreaks")
-                                     (channel-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ChannelName")
-                                     (program-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ProgramName")
-                                     (schedule-configuration :target-type
-                                      update-program-schedule-configuration
-                                      :required common-lisp:t :member-name
-                                      "ScheduleConfiguration")
-                                     (audience-media :target-type
-                                      list-of-audience-media :member-name
-                                      "AudienceMedia"))
-                                    (:shape-name "UpdateProgramRequest"))
+(smithy/sdk/shapes:define-input update-program-request common-lisp:nil
+                                ((ad-breaks :target-type list-of-ad-break
+                                  :member-name "AdBreaks")
+                                 (channel-name :target-type string :required
+                                  common-lisp:t :member-name "ChannelName"
+                                  :http-label common-lisp:t)
+                                 (program-name :target-type string :required
+                                  common-lisp:t :member-name "ProgramName"
+                                  :http-label common-lisp:t)
+                                 (schedule-configuration :target-type
+                                  update-program-schedule-configuration
+                                  :required common-lisp:t :member-name
+                                  "ScheduleConfiguration")
+                                 (audience-media :target-type
+                                  list-of-audience-media :member-name
+                                  "AudienceMedia"))
+                                (:shape-name "UpdateProgramRequest"))
 
 (smithy/sdk/shapes:define-structure update-program-response common-lisp:nil
                                     ((ad-breaks :target-type list-of-ad-break
@@ -2371,29 +2361,26 @@ common-lisp:nil
                                       :member-name "DurationMillis"))
                                     (:shape-name "UpdateProgramTransition"))
 
-(smithy/sdk/shapes:define-structure update-source-location-request
-                                    common-lisp:nil
-                                    ((access-configuration :target-type
-                                      access-configuration :member-name
-                                      "AccessConfiguration")
-                                     (default-segment-delivery-configuration
-                                      :target-type
-                                      default-segment-delivery-configuration
-                                      :member-name
-                                      "DefaultSegmentDeliveryConfiguration")
-                                     (http-configuration :target-type
-                                      http-configuration :required
-                                      common-lisp:t :member-name
-                                      "HttpConfiguration")
-                                     (segment-delivery-configurations
-                                      :target-type
-                                      list-of-segment-delivery-configuration
-                                      :member-name
-                                      "SegmentDeliveryConfigurations")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName"))
-                                    (:shape-name "UpdateSourceLocationRequest"))
+(smithy/sdk/shapes:define-input update-source-location-request common-lisp:nil
+                                ((access-configuration :target-type
+                                  access-configuration :member-name
+                                  "AccessConfiguration")
+                                 (default-segment-delivery-configuration
+                                  :target-type
+                                  default-segment-delivery-configuration
+                                  :member-name
+                                  "DefaultSegmentDeliveryConfiguration")
+                                 (http-configuration :target-type
+                                  http-configuration :required common-lisp:t
+                                  :member-name "HttpConfiguration")
+                                 (segment-delivery-configurations :target-type
+                                  list-of-segment-delivery-configuration
+                                  :member-name "SegmentDeliveryConfigurations")
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "UpdateSourceLocationRequest"))
 
 (smithy/sdk/shapes:define-structure update-source-location-response
                                     common-lisp:nil
@@ -2427,18 +2414,19 @@ common-lisp:nil
                                     (:shape-name
                                      "UpdateSourceLocationResponse"))
 
-(smithy/sdk/shapes:define-structure update-vod-source-request common-lisp:nil
-                                    ((http-package-configurations :target-type
-                                      http-package-configurations :required
-                                      common-lisp:t :member-name
-                                      "HttpPackageConfigurations")
-                                     (source-location-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "SourceLocationName")
-                                     (vod-source-name :target-type string
-                                      :required common-lisp:t :member-name
-                                      "VodSourceName"))
-                                    (:shape-name "UpdateVodSourceRequest"))
+(smithy/sdk/shapes:define-input update-vod-source-request common-lisp:nil
+                                ((http-package-configurations :target-type
+                                  http-package-configurations :required
+                                  common-lisp:t :member-name
+                                  "HttpPackageConfigurations")
+                                 (source-location-name :target-type string
+                                  :required common-lisp:t :member-name
+                                  "SourceLocationName" :http-label
+                                  common-lisp:t)
+                                 (vod-source-name :target-type string :required
+                                  common-lisp:t :member-name "VodSourceName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "UpdateVodSourceRequest"))
 
 (smithy/sdk/shapes:define-structure update-vod-source-response common-lisp:nil
                                     ((arn :target-type string :member-name
@@ -2546,7 +2534,8 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type string smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-type timestamp-unix smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp-unix smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "epoch-seconds")
 
 (smithy/sdk/shapes:define-list ad-markup-types :member ad-markup-type)
 

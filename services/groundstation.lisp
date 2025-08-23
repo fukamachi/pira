@@ -274,10 +274,11 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type bucket-arn smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure cancel-contact-request common-lisp:nil
-                                    ((contact-id :target-type uuid :required
-                                      common-lisp:t :member-name "contactId"))
-                                    (:shape-name "CancelContactRequest"))
+(smithy/sdk/shapes:define-input cancel-contact-request common-lisp:nil
+                                ((contact-id :target-type uuid :required
+                                  common-lisp:t :member-name "contactId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "CancelContactRequest"))
 
 (smithy/sdk/shapes:define-type capability-arn smithy/sdk/smithy-types:string)
 
@@ -664,34 +665,37 @@ common-lisp:nil
                                       "unvalidatedJSON"))
                                     (:shape-name "DecodeConfig"))
 
-(smithy/sdk/shapes:define-structure delete-config-request common-lisp:nil
-                                    ((config-id :target-type uuid :required
-                                      common-lisp:t :member-name "configId")
-                                     (config-type :target-type
-                                      config-capability-type :required
-                                      common-lisp:t :member-name "configType"))
-                                    (:shape-name "DeleteConfigRequest"))
+(smithy/sdk/shapes:define-input delete-config-request common-lisp:nil
+                                ((config-id :target-type uuid :required
+                                  common-lisp:t :member-name "configId"
+                                  :http-label common-lisp:t)
+                                 (config-type :target-type
+                                  config-capability-type :required
+                                  common-lisp:t :member-name "configType"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteConfigRequest"))
 
-(smithy/sdk/shapes:define-structure delete-dataflow-endpoint-group-request
-                                    common-lisp:nil
-                                    ((dataflow-endpoint-group-id :target-type
-                                      uuid :required common-lisp:t :member-name
-                                      "dataflowEndpointGroupId"))
-                                    (:shape-name
-                                     "DeleteDataflowEndpointGroupRequest"))
+(smithy/sdk/shapes:define-input delete-dataflow-endpoint-group-request
+                                common-lisp:nil
+                                ((dataflow-endpoint-group-id :target-type uuid
+                                  :required common-lisp:t :member-name
+                                  "dataflowEndpointGroupId" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "DeleteDataflowEndpointGroupRequest"))
 
-(smithy/sdk/shapes:define-structure delete-ephemeris-request common-lisp:nil
-                                    ((ephemeris-id :target-type uuid :required
-                                      common-lisp:t :member-name
-                                      "ephemerisId"))
-                                    (:shape-name "DeleteEphemerisRequest"))
+(smithy/sdk/shapes:define-input delete-ephemeris-request common-lisp:nil
+                                ((ephemeris-id :target-type uuid :required
+                                  common-lisp:t :member-name "ephemerisId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteEphemerisRequest"))
 
-(smithy/sdk/shapes:define-structure delete-mission-profile-request
-                                    common-lisp:nil
-                                    ((mission-profile-id :target-type uuid
-                                      :required common-lisp:t :member-name
-                                      "missionProfileId"))
-                                    (:shape-name "DeleteMissionProfileRequest"))
+(smithy/sdk/shapes:define-input delete-mission-profile-request common-lisp:nil
+                                ((mission-profile-id :target-type uuid
+                                  :required common-lisp:t :member-name
+                                  "missionProfileId" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteMissionProfileRequest"))
 
 (smithy/sdk/shapes:define-structure demodulation-config common-lisp:nil
                                     ((unvalidated-json :target-type json-string
@@ -709,10 +713,11 @@ common-lisp:nil
                                 (:shape-name "DependencyException")
                                 (:error-code 531))
 
-(smithy/sdk/shapes:define-structure describe-contact-request common-lisp:nil
-                                    ((contact-id :target-type uuid :required
-                                      common-lisp:t :member-name "contactId"))
-                                    (:shape-name "DescribeContactRequest"))
+(smithy/sdk/shapes:define-input describe-contact-request common-lisp:nil
+                                ((contact-id :target-type uuid :required
+                                  common-lisp:t :member-name "contactId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeContactRequest"))
 
 (smithy/sdk/shapes:define-structure describe-contact-response common-lisp:nil
                                     ((contact-id :target-type uuid :member-name
@@ -760,11 +765,11 @@ common-lisp:nil
                                       :member-name "visibilityEndTime"))
                                     (:shape-name "DescribeContactResponse"))
 
-(smithy/sdk/shapes:define-structure describe-ephemeris-request common-lisp:nil
-                                    ((ephemeris-id :target-type uuid :required
-                                      common-lisp:t :member-name
-                                      "ephemerisId"))
-                                    (:shape-name "DescribeEphemerisRequest"))
+(smithy/sdk/shapes:define-input describe-ephemeris-request common-lisp:nil
+                                ((ephemeris-id :target-type uuid :required
+                                  common-lisp:t :member-name "ephemerisId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeEphemerisRequest"))
 
 (smithy/sdk/shapes:define-structure describe-ephemeris-response common-lisp:nil
                                     ((ephemeris-id :target-type uuid
@@ -987,12 +992,11 @@ common-lisp:nil
   (:mhz "MHz")
   (:khz "kHz"))
 
-(smithy/sdk/shapes:define-structure get-agent-configuration-request
-                                    common-lisp:nil
-                                    ((agent-id :target-type uuid :required
-                                      common-lisp:t :member-name "agentId"))
-                                    (:shape-name
-                                     "GetAgentConfigurationRequest"))
+(smithy/sdk/shapes:define-input get-agent-configuration-request common-lisp:nil
+                                ((agent-id :target-type uuid :required
+                                  common-lisp:t :member-name "agentId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetAgentConfigurationRequest"))
 
 (smithy/sdk/shapes:define-structure get-agent-configuration-response
                                     common-lisp:nil
@@ -1004,13 +1008,15 @@ common-lisp:nil
                                     (:shape-name
                                      "GetAgentConfigurationResponse"))
 
-(smithy/sdk/shapes:define-structure get-config-request common-lisp:nil
-                                    ((config-id :target-type uuid :required
-                                      common-lisp:t :member-name "configId")
-                                     (config-type :target-type
-                                      config-capability-type :required
-                                      common-lisp:t :member-name "configType"))
-                                    (:shape-name "GetConfigRequest"))
+(smithy/sdk/shapes:define-input get-config-request common-lisp:nil
+                                ((config-id :target-type uuid :required
+                                  common-lisp:t :member-name "configId"
+                                  :http-label common-lisp:t)
+                                 (config-type :target-type
+                                  config-capability-type :required
+                                  common-lisp:t :member-name "configType"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetConfigRequest"))
 
 (smithy/sdk/shapes:define-structure get-config-response common-lisp:nil
                                     ((config-id :target-type
@@ -1032,13 +1038,13 @@ common-lisp:nil
                                       "tags"))
                                     (:shape-name "GetConfigResponse"))
 
-(smithy/sdk/shapes:define-structure get-dataflow-endpoint-group-request
-                                    common-lisp:nil
-                                    ((dataflow-endpoint-group-id :target-type
-                                      uuid :required common-lisp:t :member-name
-                                      "dataflowEndpointGroupId"))
-                                    (:shape-name
-                                     "GetDataflowEndpointGroupRequest"))
+(smithy/sdk/shapes:define-input get-dataflow-endpoint-group-request
+                                common-lisp:nil
+                                ((dataflow-endpoint-group-id :target-type uuid
+                                  :required common-lisp:t :member-name
+                                  "dataflowEndpointGroupId" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetDataflowEndpointGroupRequest"))
 
 (smithy/sdk/shapes:define-structure get-dataflow-endpoint-group-response
                                     common-lisp:nil
@@ -1094,11 +1100,12 @@ common-lisp:nil
                                       "estimatedMinutesRemaining"))
                                     (:shape-name "GetMinuteUsageResponse"))
 
-(smithy/sdk/shapes:define-structure get-mission-profile-request common-lisp:nil
-                                    ((mission-profile-id :target-type uuid
-                                      :required common-lisp:t :member-name
-                                      "missionProfileId"))
-                                    (:shape-name "GetMissionProfileRequest"))
+(smithy/sdk/shapes:define-input get-mission-profile-request common-lisp:nil
+                                ((mission-profile-id :target-type uuid
+                                  :required common-lisp:t :member-name
+                                  "missionProfileId" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetMissionProfileRequest"))
 
 (smithy/sdk/shapes:define-structure get-mission-profile-response
                                     common-lisp:nil
@@ -1137,11 +1144,11 @@ common-lisp:nil
                                       :member-name "streamsKmsRole"))
                                     (:shape-name "GetMissionProfileResponse"))
 
-(smithy/sdk/shapes:define-structure get-satellite-request common-lisp:nil
-                                    ((satellite-id :target-type uuid :required
-                                      common-lisp:t :member-name
-                                      "satelliteId"))
-                                    (:shape-name "GetSatelliteRequest"))
+(smithy/sdk/shapes:define-input get-satellite-request common-lisp:nil
+                                ((satellite-id :target-type uuid :required
+                                  common-lisp:t :member-name "satelliteId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetSatelliteRequest"))
 
 (smithy/sdk/shapes:define-structure get-satellite-response common-lisp:nil
                                     ((satellite-id :target-type uuid
@@ -1224,14 +1231,14 @@ common-lisp:nil
                                   :member-name "kmsAliasName"))
                                 (:shape-name "KmsKey"))
 
-(smithy/sdk/shapes:define-structure list-configs-request common-lisp:nil
-                                    ((max-results :target-type
-                                      pagination-max-results :member-name
-                                      "maxResults" :http-query "maxResults")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListConfigsRequest"))
+(smithy/sdk/shapes:define-input list-configs-request common-lisp:nil
+                                ((max-results :target-type
+                                  pagination-max-results :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListConfigsRequest"))
 
 (smithy/sdk/shapes:define-structure list-configs-response common-lisp:nil
                                     ((next-token :target-type pagination-token
@@ -1274,16 +1281,16 @@ common-lisp:nil
                                       :member-name "contactList"))
                                     (:shape-name "ListContactsResponse"))
 
-(smithy/sdk/shapes:define-structure list-dataflow-endpoint-groups-request
-                                    common-lisp:nil
-                                    ((max-results :target-type
-                                      pagination-max-results :member-name
-                                      "maxResults" :http-query "maxResults")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name
-                                     "ListDataflowEndpointGroupsRequest"))
+(smithy/sdk/shapes:define-input list-dataflow-endpoint-groups-request
+                                common-lisp:nil
+                                ((max-results :target-type
+                                  pagination-max-results :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name
+                                 "ListDataflowEndpointGroupsRequest"))
 
 (smithy/sdk/shapes:define-structure list-dataflow-endpoint-groups-response
                                     common-lisp:nil
@@ -1295,27 +1302,25 @@ common-lisp:nil
                                     (:shape-name
                                      "ListDataflowEndpointGroupsResponse"))
 
-(smithy/sdk/shapes:define-structure list-ephemerides-request common-lisp:nil
-                                    ((satellite-id :target-type uuid :required
-                                      common-lisp:t :member-name "satelliteId")
-                                     (start-time :target-type
-                                      smithy/sdk/smithy-types:timestamp
-                                      :required common-lisp:t :member-name
-                                      "startTime")
-                                     (end-time :target-type
-                                      smithy/sdk/smithy-types:timestamp
-                                      :required common-lisp:t :member-name
-                                      "endTime")
-                                     (status-list :target-type
-                                      ephemeris-status-list :member-name
-                                      "statusList")
-                                     (max-results :target-type
-                                      pagination-max-results :member-name
-                                      "maxResults" :http-query "maxResults")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListEphemeridesRequest"))
+(smithy/sdk/shapes:define-input list-ephemerides-request common-lisp:nil
+                                ((satellite-id :target-type uuid :required
+                                  common-lisp:t :member-name "satelliteId")
+                                 (start-time :target-type
+                                  smithy/sdk/smithy-types:timestamp :required
+                                  common-lisp:t :member-name "startTime")
+                                 (end-time :target-type
+                                  smithy/sdk/smithy-types:timestamp :required
+                                  common-lisp:t :member-name "endTime")
+                                 (status-list :target-type
+                                  ephemeris-status-list :member-name
+                                  "statusList")
+                                 (max-results :target-type
+                                  pagination-max-results :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListEphemeridesRequest"))
 
 (smithy/sdk/shapes:define-structure list-ephemerides-response common-lisp:nil
                                     ((next-token :target-type pagination-token
@@ -1324,18 +1329,16 @@ common-lisp:nil
                                       :member-name "ephemerides"))
                                     (:shape-name "ListEphemeridesResponse"))
 
-(smithy/sdk/shapes:define-structure list-ground-stations-request
-                                    common-lisp:nil
-                                    ((satellite-id :target-type uuid
-                                      :member-name "satelliteId" :http-query
-                                      "satelliteId")
-                                     (max-results :target-type
-                                      pagination-max-results :member-name
-                                      "maxResults" :http-query "maxResults")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListGroundStationsRequest"))
+(smithy/sdk/shapes:define-input list-ground-stations-request common-lisp:nil
+                                ((satellite-id :target-type uuid :member-name
+                                  "satelliteId" :http-query "satelliteId")
+                                 (max-results :target-type
+                                  pagination-max-results :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListGroundStationsRequest"))
 
 (smithy/sdk/shapes:define-structure list-ground-stations-response
                                     common-lisp:nil
@@ -1346,15 +1349,14 @@ common-lisp:nil
                                       "groundStationList"))
                                     (:shape-name "ListGroundStationsResponse"))
 
-(smithy/sdk/shapes:define-structure list-mission-profiles-request
-                                    common-lisp:nil
-                                    ((max-results :target-type
-                                      pagination-max-results :member-name
-                                      "maxResults" :http-query "maxResults")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListMissionProfilesRequest"))
+(smithy/sdk/shapes:define-input list-mission-profiles-request common-lisp:nil
+                                ((max-results :target-type
+                                  pagination-max-results :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListMissionProfilesRequest"))
 
 (smithy/sdk/shapes:define-structure list-mission-profiles-response
                                     common-lisp:nil
@@ -1365,14 +1367,14 @@ common-lisp:nil
                                       "missionProfileList"))
                                     (:shape-name "ListMissionProfilesResponse"))
 
-(smithy/sdk/shapes:define-structure list-satellites-request common-lisp:nil
-                                    ((max-results :target-type
-                                      pagination-max-results :member-name
-                                      "maxResults" :http-query "maxResults")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListSatellitesRequest"))
+(smithy/sdk/shapes:define-input list-satellites-request common-lisp:nil
+                                ((max-results :target-type
+                                  pagination-max-results :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListSatellitesRequest"))
 
 (smithy/sdk/shapes:define-structure list-satellites-response common-lisp:nil
                                     ((next-token :target-type pagination-token
@@ -1381,12 +1383,11 @@ common-lisp:nil
                                       :member-name "satellites"))
                                     (:shape-name "ListSatellitesResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type any-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type any-arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1658,13 +1659,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list tag-keys :member unbounded-string)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type any-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn")
-                                     (tags :target-type tags-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type any-arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tags-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -1696,32 +1697,32 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type unbounded-string smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type any-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn")
-                                     (tag-keys :target-type tag-keys :required
-                                      common-lisp:t :member-name "tagKeys"
-                                      :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type any-arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-keys :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-agent-status-request common-lisp:nil
-                                    ((agent-id :target-type uuid :required
-                                      common-lisp:t :member-name "agentId")
-                                     (task-id :target-type uuid :required
-                                      common-lisp:t :member-name "taskId")
-                                     (aggregate-status :target-type
-                                      aggregate-status :required common-lisp:t
-                                      :member-name "aggregateStatus")
-                                     (component-statuses :target-type
-                                      component-status-list :required
-                                      common-lisp:t :member-name
-                                      "componentStatuses"))
-                                    (:shape-name "UpdateAgentStatusRequest"))
+(smithy/sdk/shapes:define-input update-agent-status-request common-lisp:nil
+                                ((agent-id :target-type uuid :required
+                                  common-lisp:t :member-name "agentId"
+                                  :http-label common-lisp:t)
+                                 (task-id :target-type uuid :required
+                                  common-lisp:t :member-name "taskId")
+                                 (aggregate-status :target-type
+                                  aggregate-status :required common-lisp:t
+                                  :member-name "aggregateStatus")
+                                 (component-statuses :target-type
+                                  component-status-list :required common-lisp:t
+                                  :member-name "componentStatuses"))
+                                (:shape-name "UpdateAgentStatusRequest"))
 
 (smithy/sdk/shapes:define-structure update-agent-status-response
                                     common-lisp:nil
@@ -1729,61 +1730,60 @@ common-lisp:nil
                                       common-lisp:t :member-name "agentId"))
                                     (:shape-name "UpdateAgentStatusResponse"))
 
-(smithy/sdk/shapes:define-structure update-config-request common-lisp:nil
-                                    ((config-id :target-type uuid :required
-                                      common-lisp:t :member-name "configId")
-                                     (name :target-type safe-name :required
-                                      common-lisp:t :member-name "name")
-                                     (config-type :target-type
-                                      config-capability-type :required
-                                      common-lisp:t :member-name "configType")
-                                     (config-data :target-type config-type-data
-                                      :required common-lisp:t :member-name
-                                      "configData"))
-                                    (:shape-name "UpdateConfigRequest"))
+(smithy/sdk/shapes:define-input update-config-request common-lisp:nil
+                                ((config-id :target-type uuid :required
+                                  common-lisp:t :member-name "configId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type safe-name :required
+                                  common-lisp:t :member-name "name")
+                                 (config-type :target-type
+                                  config-capability-type :required
+                                  common-lisp:t :member-name "configType"
+                                  :http-label common-lisp:t)
+                                 (config-data :target-type config-type-data
+                                  :required common-lisp:t :member-name
+                                  "configData"))
+                                (:shape-name "UpdateConfigRequest"))
 
-(smithy/sdk/shapes:define-structure update-ephemeris-request common-lisp:nil
-                                    ((ephemeris-id :target-type uuid :required
-                                      common-lisp:t :member-name "ephemerisId")
-                                     (enabled :target-type
-                                      smithy/sdk/smithy-types:boolean :required
-                                      common-lisp:t :member-name "enabled")
-                                     (name :target-type safe-name :member-name
-                                      "name")
-                                     (priority :target-type ephemeris-priority
-                                      :member-name "priority"))
-                                    (:shape-name "UpdateEphemerisRequest"))
+(smithy/sdk/shapes:define-input update-ephemeris-request common-lisp:nil
+                                ((ephemeris-id :target-type uuid :required
+                                  common-lisp:t :member-name "ephemerisId"
+                                  :http-label common-lisp:t)
+                                 (enabled :target-type
+                                  smithy/sdk/smithy-types:boolean :required
+                                  common-lisp:t :member-name "enabled")
+                                 (name :target-type safe-name :member-name
+                                  "name")
+                                 (priority :target-type ephemeris-priority
+                                  :member-name "priority"))
+                                (:shape-name "UpdateEphemerisRequest"))
 
-(smithy/sdk/shapes:define-structure update-mission-profile-request
-                                    common-lisp:nil
-                                    ((mission-profile-id :target-type uuid
-                                      :required common-lisp:t :member-name
-                                      "missionProfileId")
-                                     (name :target-type safe-name :member-name
-                                      "name")
-                                     (contact-pre-pass-duration-seconds
-                                      :target-type duration-in-seconds
-                                      :member-name
-                                      "contactPrePassDurationSeconds")
-                                     (contact-post-pass-duration-seconds
-                                      :target-type duration-in-seconds
-                                      :member-name
-                                      "contactPostPassDurationSeconds")
-                                     (minimum-viable-contact-duration-seconds
-                                      :target-type positive-duration-in-seconds
-                                      :member-name
-                                      "minimumViableContactDurationSeconds")
-                                     (dataflow-edges :target-type
-                                      dataflow-edge-list :member-name
-                                      "dataflowEdges")
-                                     (tracking-config-arn :target-type
-                                      config-arn :member-name
-                                      "trackingConfigArn")
-                                     (streams-kms-key :target-type kms-key
-                                      :member-name "streamsKmsKey")
-                                     (streams-kms-role :target-type role-arn
-                                      :member-name "streamsKmsRole"))
-                                    (:shape-name "UpdateMissionProfileRequest"))
+(smithy/sdk/shapes:define-input update-mission-profile-request common-lisp:nil
+                                ((mission-profile-id :target-type uuid
+                                  :required common-lisp:t :member-name
+                                  "missionProfileId" :http-label common-lisp:t)
+                                 (name :target-type safe-name :member-name
+                                  "name")
+                                 (contact-pre-pass-duration-seconds
+                                  :target-type duration-in-seconds :member-name
+                                  "contactPrePassDurationSeconds")
+                                 (contact-post-pass-duration-seconds
+                                  :target-type duration-in-seconds :member-name
+                                  "contactPostPassDurationSeconds")
+                                 (minimum-viable-contact-duration-seconds
+                                  :target-type positive-duration-in-seconds
+                                  :member-name
+                                  "minimumViableContactDurationSeconds")
+                                 (dataflow-edges :target-type
+                                  dataflow-edge-list :member-name
+                                  "dataflowEdges")
+                                 (tracking-config-arn :target-type config-arn
+                                  :member-name "trackingConfigArn")
+                                 (streams-kms-key :target-type kms-key
+                                  :member-name "streamsKmsKey")
+                                 (streams-kms-role :target-type role-arn
+                                  :member-name "streamsKmsRole"))
+                                (:shape-name "UpdateMissionProfileRequest"))
 
 (smithy/sdk/shapes:define-structure uplink-echo-config common-lisp:nil
                                     ((enabled :target-type

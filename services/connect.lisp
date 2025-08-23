@@ -10140,7 +10140,8 @@
                                 (:shape-name "RealTimeContactAnalysisTimeData"))
 
 (smithy/sdk/shapes:define-type real-time-contact-analysis-time-instant
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type real-time-contact-analysis-transcript-content
                                smithy/sdk/smithy-types:string)

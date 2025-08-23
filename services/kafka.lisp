@@ -2911,7 +2911,8 @@
 (smithy/sdk/shapes:define-type string-min5max32 smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type timestamp-iso8601
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/operation:define-operation batch-associate-scram-secret :shape-name
                                        "BatchAssociateScramSecret" :input

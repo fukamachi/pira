@@ -379,7 +379,8 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type custom-request-value-type
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-event-input common-lisp:nil
                                 ((memory-id :target-type memory-id :required

@@ -441,7 +441,8 @@ common-lisp:nil
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-type timestamp-attribute
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-enum upload-state
     common-lisp:nil

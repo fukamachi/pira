@@ -790,26 +790,25 @@ common-lisp:nil
                                       :member-name "schemaVersion"))
                                     (:shape-name "CreateComponentData"))
 
-(smithy/sdk/shapes:define-structure create-component-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken" :http-query
-                                      "clientToken")
-                                     (component-to-create :target-type
-                                      create-component-data :required
-                                      common-lisp:t :member-name
-                                      "componentToCreate" :http-payload
-                                      common-lisp:t))
-                                    (:shape-name "CreateComponentRequest"))
+(smithy/sdk/shapes:define-input create-component-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken" :http-query "clientToken")
+                                 (component-to-create :target-type
+                                  create-component-data :required common-lisp:t
+                                  :member-name "componentToCreate"
+                                  :http-payload common-lisp:t))
+                                (:shape-name "CreateComponentRequest"))
 
-(smithy/sdk/shapes:define-structure create-component-response common-lisp:nil
+(smithy/sdk/shapes:define-interface create-component-response common-lisp:nil
                                     ((entity :target-type component
                                       :member-name "entity" :http-payload
                                       common-lisp:t))
@@ -845,25 +844,24 @@ common-lisp:nil
                                       "labelDecorator"))
                                     (:shape-name "CreateFormData"))
 
-(smithy/sdk/shapes:define-structure create-form-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken" :http-query
-                                      "clientToken")
-                                     (form-to-create :target-type
-                                      create-form-data :required common-lisp:t
-                                      :member-name "formToCreate" :http-payload
-                                      common-lisp:t))
-                                    (:shape-name "CreateFormRequest"))
+(smithy/sdk/shapes:define-input create-form-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken" :http-query "clientToken")
+                                 (form-to-create :target-type create-form-data
+                                  :required common-lisp:t :member-name
+                                  "formToCreate" :http-payload common-lisp:t))
+                                (:shape-name "CreateFormRequest"))
 
-(smithy/sdk/shapes:define-structure create-form-response common-lisp:nil
+(smithy/sdk/shapes:define-interface create-form-response common-lisp:nil
                                     ((entity :target-type form :member-name
                                       "entity" :http-payload common-lisp:t))
                                     (:shape-name "CreateFormResponse"))
@@ -880,25 +878,25 @@ common-lisp:nil
                                       "tags"))
                                     (:shape-name "CreateThemeData"))
 
-(smithy/sdk/shapes:define-structure create-theme-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken" :http-query
-                                      "clientToken")
-                                     (theme-to-create :target-type
-                                      create-theme-data :required common-lisp:t
-                                      :member-name "themeToCreate"
-                                      :http-payload common-lisp:t))
-                                    (:shape-name "CreateThemeRequest"))
+(smithy/sdk/shapes:define-input create-theme-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken" :http-query "clientToken")
+                                 (theme-to-create :target-type
+                                  create-theme-data :required common-lisp:t
+                                  :member-name "themeToCreate" :http-payload
+                                  common-lisp:t))
+                                (:shape-name "CreateThemeRequest"))
 
-(smithy/sdk/shapes:define-structure create-theme-response common-lisp:nil
+(smithy/sdk/shapes:define-interface create-theme-response common-lisp:nil
                                     ((entity :target-type theme :member-name
                                       "entity" :http-payload common-lisp:t))
                                     (:shape-name "CreateThemeResponse"))
@@ -907,52 +905,54 @@ common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DataStoreRenderConfig"))
 
-(smithy/sdk/shapes:define-structure delete-component-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (id :target-type uuid :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "DeleteComponentRequest"))
+(smithy/sdk/shapes:define-input delete-component-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (id :target-type uuid :required common-lisp:t
+                                  :member-name "id" :http-label common-lisp:t))
+                                (:shape-name "DeleteComponentRequest"))
 
-(smithy/sdk/shapes:define-structure delete-form-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (id :target-type uuid :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "DeleteFormRequest"))
+(smithy/sdk/shapes:define-input delete-form-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (id :target-type uuid :required common-lisp:t
+                                  :member-name "id" :http-label common-lisp:t))
+                                (:shape-name "DeleteFormRequest"))
 
-(smithy/sdk/shapes:define-structure delete-theme-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (id :target-type uuid :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "DeleteThemeRequest"))
+(smithy/sdk/shapes:define-input delete-theme-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (id :target-type uuid :required common-lisp:t
+                                  :member-name "id" :http-label common-lisp:t))
+                                (:shape-name "DeleteThemeRequest"))
 
-(smithy/sdk/shapes:define-structure exchange-code-for-token-request
-                                    common-lisp:nil
-                                    ((provider :target-type token-providers
-                                      :required common-lisp:t :member-name
-                                      "provider")
-                                     (request :target-type
-                                      exchange-code-for-token-request-body
-                                      :required common-lisp:t :member-name
-                                      "request" :http-payload common-lisp:t))
-                                    (:shape-name "ExchangeCodeForTokenRequest"))
+(smithy/sdk/shapes:define-input exchange-code-for-token-request common-lisp:nil
+                                ((provider :target-type token-providers
+                                  :required common-lisp:t :member-name
+                                  "provider" :http-label common-lisp:t)
+                                 (request :target-type
+                                  exchange-code-for-token-request-body
+                                  :required common-lisp:t :member-name
+                                  "request" :http-payload common-lisp:t))
+                                (:shape-name "ExchangeCodeForTokenRequest"))
 
 (smithy/sdk/shapes:define-structure exchange-code-for-token-request-body
                                     common-lisp:nil
@@ -981,19 +981,19 @@ common-lisp:nil
                                     (:shape-name
                                      "ExchangeCodeForTokenResponse"))
 
-(smithy/sdk/shapes:define-structure export-components-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ExportComponentsRequest"))
+(smithy/sdk/shapes:define-input export-components-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken"))
+                                (:shape-name "ExportComponentsRequest"))
 
 (smithy/sdk/shapes:define-structure export-components-response common-lisp:nil
                                     ((entities :target-type component-list
@@ -1004,19 +1004,19 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ExportComponentsResponse"))
 
-(smithy/sdk/shapes:define-structure export-forms-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ExportFormsRequest"))
+(smithy/sdk/shapes:define-input export-forms-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken"))
+                                (:shape-name "ExportFormsRequest"))
 
 (smithy/sdk/shapes:define-structure export-forms-response common-lisp:nil
                                     ((entities :target-type form-list :required
@@ -1026,19 +1026,19 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ExportFormsResponse"))
 
-(smithy/sdk/shapes:define-structure export-themes-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ExportThemesRequest"))
+(smithy/sdk/shapes:define-input export-themes-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken"))
+                                (:shape-name "ExportThemesRequest"))
 
 (smithy/sdk/shapes:define-structure export-themes-response common-lisp:nil
                                     ((entities :target-type theme-list
@@ -1386,50 +1386,53 @@ common-lisp:nil
                                    "job" :http-payload common-lisp:t))
                                  (:shape-name "GetCodegenJobResponse"))
 
-(smithy/sdk/shapes:define-structure get-component-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (id :target-type uuid :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "GetComponentRequest"))
+(smithy/sdk/shapes:define-input get-component-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (id :target-type uuid :required common-lisp:t
+                                  :member-name "id" :http-label common-lisp:t))
+                                (:shape-name "GetComponentRequest"))
 
-(smithy/sdk/shapes:define-structure get-component-response common-lisp:nil
+(smithy/sdk/shapes:define-interface get-component-response common-lisp:nil
                                     ((component :target-type component
                                       :member-name "component" :http-payload
                                       common-lisp:t))
                                     (:shape-name "GetComponentResponse"))
 
-(smithy/sdk/shapes:define-structure get-form-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (id :target-type uuid :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "GetFormRequest"))
+(smithy/sdk/shapes:define-input get-form-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (id :target-type uuid :required common-lisp:t
+                                  :member-name "id" :http-label common-lisp:t))
+                                (:shape-name "GetFormRequest"))
 
-(smithy/sdk/shapes:define-structure get-form-response common-lisp:nil
+(smithy/sdk/shapes:define-interface get-form-response common-lisp:nil
                                     ((form :target-type form :member-name
                                       "form" :http-payload common-lisp:t))
                                     (:shape-name "GetFormResponse"))
 
-(smithy/sdk/shapes:define-structure get-metadata-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName"))
-                                    (:shape-name "GetMetadataRequest"))
+(smithy/sdk/shapes:define-input get-metadata-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetMetadataRequest"))
 
 (smithy/sdk/shapes:define-structure get-metadata-response common-lisp:nil
                                     ((features :target-type features-map
@@ -1437,19 +1440,20 @@ common-lisp:nil
                                       "features"))
                                     (:shape-name "GetMetadataResponse"))
 
-(smithy/sdk/shapes:define-structure get-theme-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (id :target-type uuid :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "GetThemeRequest"))
+(smithy/sdk/shapes:define-input get-theme-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (id :target-type uuid :required common-lisp:t
+                                  :member-name "id" :http-label common-lisp:t))
+                                (:shape-name "GetThemeRequest"))
 
-(smithy/sdk/shapes:define-structure get-theme-response common-lisp:nil
+(smithy/sdk/shapes:define-interface get-theme-response common-lisp:nil
                                     ((theme :target-type theme :member-name
                                       "theme" :http-payload common-lisp:t))
                                     (:shape-name "GetThemeResponse"))
@@ -1540,22 +1544,22 @@ common-lisp:nil
                                    "nextToken"))
                                  (:shape-name "ListCodegenJobsResponse"))
 
-(smithy/sdk/shapes:define-structure list-components-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type
-                                      list-entity-limit :member-name
-                                      "maxResults" :http-query "maxResults"))
-                                    (:shape-name "ListComponentsRequest"))
+(smithy/sdk/shapes:define-input list-components-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (max-results :target-type list-entity-limit
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListComponentsRequest"))
 
 (smithy/sdk/shapes:define-structure list-components-response common-lisp:nil
                                     ((entities :target-type
@@ -1569,22 +1573,22 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type list-entity-limit
                                smithy/sdk/smithy-types:integer)
 
-(smithy/sdk/shapes:define-structure list-forms-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type
-                                      list-entity-limit :member-name
-                                      "maxResults" :http-query "maxResults"))
-                                    (:shape-name "ListFormsRequest"))
+(smithy/sdk/shapes:define-input list-forms-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (max-results :target-type list-entity-limit
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListFormsRequest"))
 
 (smithy/sdk/shapes:define-structure list-forms-response common-lisp:nil
                                     ((entities :target-type form-summary-list
@@ -1608,22 +1612,22 @@ common-lisp:nil
                                    common-lisp:t :member-name "tags"))
                                  (:shape-name "ListTagsForResourceResponse"))
 
-(smithy/sdk/shapes:define-structure list-themes-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type
-                                      list-entity-limit :member-name
-                                      "maxResults" :http-query "maxResults"))
-                                    (:shape-name "ListThemesRequest"))
+(smithy/sdk/shapes:define-input list-themes-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (max-results :target-type list-entity-limit
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListThemesRequest"))
 
 (smithy/sdk/shapes:define-structure list-themes-response common-lisp:nil
                                     ((entities :target-type theme-summary-list
@@ -1684,21 +1688,23 @@ common-lisp:nil
                                       common-lisp:t :member-name "newValue"))
                                     (:shape-name "PutMetadataFlagBody"))
 
-(smithy/sdk/shapes:define-structure put-metadata-flag-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (feature-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "featureName")
-                                     (body :target-type put-metadata-flag-body
-                                      :required common-lisp:t :member-name
-                                      "body" :http-payload common-lisp:t))
-                                    (:shape-name "PutMetadataFlagRequest"))
+(smithy/sdk/shapes:define-input put-metadata-flag-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (feature-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "featureName"
+                                  :http-label common-lisp:t)
+                                 (body :target-type put-metadata-flag-body
+                                  :required common-lisp:t :member-name "body"
+                                  :http-payload common-lisp:t))
+                                (:shape-name "PutMetadataFlagRequest"))
 
 (smithy/sdk/shapes:define-map react-codegen-dependencies :key
                               smithy/sdk/smithy-types:string :value
@@ -1726,16 +1732,15 @@ common-lisp:nil
                                       "dependencies"))
                                     (:shape-name "ReactStartCodegenJobData"))
 
-(smithy/sdk/shapes:define-structure refresh-token-request common-lisp:nil
-                                    ((provider :target-type token-providers
-                                      :required common-lisp:t :member-name
-                                      "provider")
-                                     (refresh-token-body :target-type
-                                      refresh-token-request-body :required
-                                      common-lisp:t :member-name
-                                      "refreshTokenBody" :http-payload
-                                      common-lisp:t))
-                                    (:shape-name "RefreshTokenRequest"))
+(smithy/sdk/shapes:define-input refresh-token-request common-lisp:nil
+                                ((provider :target-type token-providers
+                                  :required common-lisp:t :member-name
+                                  "provider" :http-label common-lisp:t)
+                                 (refresh-token-body :target-type
+                                  refresh-token-request-body :required
+                                  common-lisp:t :member-name "refreshTokenBody"
+                                  :http-payload common-lisp:t))
+                                (:shape-name "RefreshTokenRequest"))
 
 (smithy/sdk/shapes:define-structure refresh-token-request-body common-lisp:nil
                                     ((token :target-type sensitive-string
@@ -2026,28 +2031,27 @@ common-lisp:nil
                                       :member-name "schemaVersion"))
                                     (:shape-name "UpdateComponentData"))
 
-(smithy/sdk/shapes:define-structure update-component-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (id :target-type uuid :required
-                                      common-lisp:t :member-name "id")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken" :http-query
-                                      "clientToken")
-                                     (updated-component :target-type
-                                      update-component-data :required
-                                      common-lisp:t :member-name
-                                      "updatedComponent" :http-payload
-                                      common-lisp:t))
-                                    (:shape-name "UpdateComponentRequest"))
+(smithy/sdk/shapes:define-input update-component-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (id :target-type uuid :required common-lisp:t
+                                  :member-name "id" :http-label common-lisp:t)
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken" :http-query "clientToken")
+                                 (updated-component :target-type
+                                  update-component-data :required common-lisp:t
+                                  :member-name "updatedComponent" :http-payload
+                                  common-lisp:t))
+                                (:shape-name "UpdateComponentRequest"))
 
-(smithy/sdk/shapes:define-structure update-component-response common-lisp:nil
+(smithy/sdk/shapes:define-interface update-component-response common-lisp:nil
                                     ((entity :target-type component
                                       :member-name "entity" :http-payload
                                       common-lisp:t))
@@ -2079,27 +2083,26 @@ common-lisp:nil
                                       "labelDecorator"))
                                     (:shape-name "UpdateFormData"))
 
-(smithy/sdk/shapes:define-structure update-form-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (id :target-type uuid :required
-                                      common-lisp:t :member-name "id")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken" :http-query
-                                      "clientToken")
-                                     (updated-form :target-type
-                                      update-form-data :required common-lisp:t
-                                      :member-name "updatedForm" :http-payload
-                                      common-lisp:t))
-                                    (:shape-name "UpdateFormRequest"))
+(smithy/sdk/shapes:define-input update-form-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (id :target-type uuid :required common-lisp:t
+                                  :member-name "id" :http-label common-lisp:t)
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken" :http-query "clientToken")
+                                 (updated-form :target-type update-form-data
+                                  :required common-lisp:t :member-name
+                                  "updatedForm" :http-payload common-lisp:t))
+                                (:shape-name "UpdateFormRequest"))
 
-(smithy/sdk/shapes:define-structure update-form-response common-lisp:nil
+(smithy/sdk/shapes:define-interface update-form-response common-lisp:nil
                                     ((entity :target-type form :member-name
                                       "entity" :http-payload common-lisp:t))
                                     (:shape-name "UpdateFormResponse"))
@@ -2115,27 +2118,26 @@ common-lisp:nil
                                       :member-name "overrides"))
                                     (:shape-name "UpdateThemeData"))
 
-(smithy/sdk/shapes:define-structure update-theme-request common-lisp:nil
-                                    ((app-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "appId")
-                                     (environment-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "environmentName")
-                                     (id :target-type uuid :required
-                                      common-lisp:t :member-name "id")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken" :http-query
-                                      "clientToken")
-                                     (updated-theme :target-type
-                                      update-theme-data :required common-lisp:t
-                                      :member-name "updatedTheme" :http-payload
-                                      common-lisp:t))
-                                    (:shape-name "UpdateThemeRequest"))
+(smithy/sdk/shapes:define-input update-theme-request common-lisp:nil
+                                ((app-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "appId"
+                                  :http-label common-lisp:t)
+                                 (environment-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "environmentName"
+                                  :http-label common-lisp:t)
+                                 (id :target-type uuid :required common-lisp:t
+                                  :member-name "id" :http-label common-lisp:t)
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken" :http-query "clientToken")
+                                 (updated-theme :target-type update-theme-data
+                                  :required common-lisp:t :member-name
+                                  "updatedTheme" :http-payload common-lisp:t))
+                                (:shape-name "UpdateThemeRequest"))
 
-(smithy/sdk/shapes:define-structure update-theme-response common-lisp:nil
+(smithy/sdk/shapes:define-interface update-theme-response common-lisp:nil
                                     ((entity :target-type theme :member-name
                                       "entity" :http-payload common-lisp:t))
                                     (:shape-name "UpdateThemeResponse"))

@@ -1521,7 +1521,8 @@ common-lisp:nil
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input update-dev-environment-request common-lisp:nil
                                 ((space-name :target-type name-string :required

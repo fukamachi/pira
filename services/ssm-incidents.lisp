@@ -403,12 +403,10 @@
                                       "regionName"))
                                     (:shape-name "DeleteRegionAction"))
 
-(smithy/sdk/shapes:define-structure delete-replication-set-input
-                                    common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn"
-                                      :http-query "arn"))
-                                    (:shape-name "DeleteReplicationSetInput"))
+(smithy/sdk/shapes:define-input delete-replication-set-input common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-query "arn"))
+                                (:shape-name "DeleteReplicationSetInput"))
 
 (smithy/sdk/shapes:define-structure delete-replication-set-output
                                     common-lisp:nil common-lisp:nil
@@ -554,11 +552,10 @@
 
 (smithy/sdk/shapes:define-type generated-id smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure get-incident-record-input common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn"
-                                      :http-query "arn"))
-                                    (:shape-name "GetIncidentRecordInput"))
+(smithy/sdk/shapes:define-input get-incident-record-input common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-query "arn"))
+                                (:shape-name "GetIncidentRecordInput"))
 
 (smithy/sdk/shapes:define-structure get-incident-record-output common-lisp:nil
                                     ((incident-record :target-type
@@ -566,11 +563,10 @@
                                       :member-name "incidentRecord"))
                                     (:shape-name "GetIncidentRecordOutput"))
 
-(smithy/sdk/shapes:define-structure get-replication-set-input common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn"
-                                      :http-query "arn"))
-                                    (:shape-name "GetReplicationSetInput"))
+(smithy/sdk/shapes:define-input get-replication-set-input common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-query "arn"))
+                                (:shape-name "GetReplicationSetInput"))
 
 (smithy/sdk/shapes:define-structure get-replication-set-output common-lisp:nil
                                     ((replication-set :target-type
@@ -578,15 +574,15 @@
                                       :member-name "replicationSet"))
                                     (:shape-name "GetReplicationSetOutput"))
 
-(smithy/sdk/shapes:define-structure get-resource-policies-input common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn"
-                                      :http-query "resourceArn")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken"))
-                                    (:shape-name "GetResourcePoliciesInput"))
+(smithy/sdk/shapes:define-input get-resource-policies-input common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-query "resourceArn")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken"))
+                                (:shape-name "GetResourcePoliciesInput"))
 
 (smithy/sdk/shapes:define-structure get-resource-policies-output
                                     common-lisp:nil
@@ -598,11 +594,10 @@
                                       :member-name "nextToken"))
                                     (:shape-name "GetResourcePoliciesOutput"))
 
-(smithy/sdk/shapes:define-structure get-response-plan-input common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn"
-                                      :http-query "arn"))
-                                    (:shape-name "GetResponsePlanInput"))
+(smithy/sdk/shapes:define-input get-response-plan-input common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-query "arn"))
+                                (:shape-name "GetResponsePlanInput"))
 
 (smithy/sdk/shapes:define-structure get-response-plan-output common-lisp:nil
                                     ((arn :target-type arn :required
@@ -626,15 +621,15 @@
                                       :member-name "integrations"))
                                     (:shape-name "GetResponsePlanOutput"))
 
-(smithy/sdk/shapes:define-structure get-timeline-event-input common-lisp:nil
-                                    ((incident-record-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "incidentRecordArn" :http-query
-                                      "incidentRecordArn")
-                                     (event-id :target-type uuid :required
-                                      common-lisp:t :member-name "eventId"
-                                      :http-query "eventId"))
-                                    (:shape-name "GetTimelineEventInput"))
+(smithy/sdk/shapes:define-input get-timeline-event-input common-lisp:nil
+                                ((incident-record-arn :target-type arn
+                                  :required common-lisp:t :member-name
+                                  "incidentRecordArn" :http-query
+                                  "incidentRecordArn")
+                                 (event-id :target-type uuid :required
+                                  common-lisp:t :member-name "eventId"
+                                  :http-query "eventId"))
+                                (:shape-name "GetTimelineEventInput"))
 
 (smithy/sdk/shapes:define-structure get-timeline-event-output common-lisp:nil
                                     ((event :target-type timeline-event
@@ -880,13 +875,12 @@
                                       :member-name "nextToken"))
                                     (:shape-name "ListResponsePlansOutput"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1215,13 +1209,14 @@
 
 (smithy/sdk/shapes:define-map tag-map-update :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -1289,14 +1284,15 @@
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil

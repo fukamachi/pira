@@ -1374,7 +1374,8 @@ common-lisp:nil
                                    common-lisp:t :member-name "workerId"))
                                  (:shape-name "CreateWorkerResponse"))
 
-(smithy/sdk/shapes:define-type created-at smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type created-at smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type created-by smithy/sdk/smithy-types:string)
 
@@ -1786,9 +1787,11 @@ common-lisp:nil
   (:on-demand "on-demand")
   (:spot "spot"))
 
-(smithy/sdk/shapes:define-type ended-at smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type ended-at smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
-(smithy/sdk/shapes:define-type ends-at smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type ends-at smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure environment-details-entity common-lisp:nil
                                     ((job-id :target-type job-id :required
@@ -4956,9 +4959,11 @@ common-lisp:nil
                                  (:shape-name
                                   "StartSessionsStatisticsAggregationResponse"))
 
-(smithy/sdk/shapes:define-type started-at smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type started-at smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
-(smithy/sdk/shapes:define-type starts-at smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type starts-at smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure statistics common-lisp:nil
                                     ((queue-id :target-type queue-id
@@ -5501,7 +5506,8 @@ common-lisp:nil
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type timezone smithy/sdk/smithy-types:string)
 
@@ -5980,7 +5986,8 @@ common-lisp:nil
                                    "updateIntervalSeconds"))
                                  (:shape-name "UpdateWorkerScheduleResponse"))
 
-(smithy/sdk/shapes:define-type updated-at smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type updated-at smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type updated-by smithy/sdk/smithy-types:string)
 

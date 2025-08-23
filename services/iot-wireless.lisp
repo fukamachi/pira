@@ -1108,7 +1108,8 @@
 
 (smithy/sdk/shapes:define-type creation-date smithy/sdk/smithy-types:timestamp)
 
-(smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type dak-certificate-id
                                smithy/sdk/smithy-types:string)
@@ -2579,7 +2580,8 @@
 (smithy/sdk/shapes:define-type lac smithy/sdk/smithy-types:integer)
 
 (smithy/sdk/shapes:define-type last-update-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input list-destinations-request common-lisp:nil
                                 ((max-results :target-type max-results
@@ -4054,7 +4056,8 @@
                                     (:shape-name "SessionKeysAbpV1_1"))
 
 (smithy/sdk/shapes:define-type session-start-time-timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type session-timeout smithy/sdk/smithy-types:integer)
 
@@ -4309,7 +4312,8 @@
   (arn :target-type import-task-arn :member-name "Arn"))
  (:shape-name "StartSingleWirelessDeviceImportTaskResponse"))
 
-(smithy/sdk/shapes:define-type start-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type start-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input start-wireless-device-import-task-request
                                 common-lisp:nil

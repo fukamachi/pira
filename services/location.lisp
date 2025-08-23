@@ -283,16 +283,14 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list arn-list :member arn)
 
-(smithy/sdk/shapes:define-structure associate-tracker-consumer-request
-                                    common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName")
-                                     (consumer-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "ConsumerArn"))
-                                    (:shape-name
-                                     "AssociateTrackerConsumerRequest"))
+(smithy/sdk/shapes:define-input associate-tracker-consumer-request
+                                common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (consumer-arn :target-type arn :required
+                                  common-lisp:t :member-name "ConsumerArn"))
+                                (:shape-name "AssociateTrackerConsumerRequest"))
 
 (smithy/sdk/shapes:define-structure associate-tracker-consumer-response
                                     common-lisp:nil common-lisp:nil
@@ -316,13 +314,16 @@ common-lisp:nil
                                :member
                                batch-delete-device-position-history-error)
 
-(smithy/sdk/shapes:define-structure
- batch-delete-device-position-history-request common-lisp:nil
- ((tracker-name :target-type resource-name :required common-lisp:t :member-name
-   "TrackerName")
-  (device-ids :target-type device-ids-list :required common-lisp:t :member-name
-   "DeviceIds"))
- (:shape-name "BatchDeleteDevicePositionHistoryRequest"))
+(smithy/sdk/shapes:define-input batch-delete-device-position-history-request
+                                common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (device-ids :target-type device-ids-list
+                                  :required common-lisp:t :member-name
+                                  "DeviceIds"))
+                                (:shape-name
+                                 "BatchDeleteDevicePositionHistoryRequest"))
 
 (smithy/sdk/shapes:define-structure
  batch-delete-device-position-history-response common-lisp:nil
@@ -341,15 +342,13 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list batch-delete-geofence-error-list :member
                                batch-delete-geofence-error)
 
-(smithy/sdk/shapes:define-structure batch-delete-geofence-request
-                                    common-lisp:nil
-                                    ((collection-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CollectionName")
-                                     (geofence-ids :target-type id-list
-                                      :required common-lisp:t :member-name
-                                      "GeofenceIds"))
-                                    (:shape-name "BatchDeleteGeofenceRequest"))
+(smithy/sdk/shapes:define-input batch-delete-geofence-request common-lisp:nil
+                                ((collection-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CollectionName" :http-label common-lisp:t)
+                                 (geofence-ids :target-type id-list :required
+                                  common-lisp:t :member-name "GeofenceIds"))
+                                (:shape-name "BatchDeleteGeofenceRequest"))
 
 (smithy/sdk/shapes:define-structure batch-delete-geofence-response
                                     common-lisp:nil
@@ -374,17 +373,16 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list batch-evaluate-geofences-error-list :member
                                batch-evaluate-geofences-error)
 
-(smithy/sdk/shapes:define-structure batch-evaluate-geofences-request
-                                    common-lisp:nil
-                                    ((collection-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CollectionName")
-                                     (device-position-updates :target-type
-                                      device-position-update-list :required
-                                      common-lisp:t :member-name
-                                      "DevicePositionUpdates"))
-                                    (:shape-name
-                                     "BatchEvaluateGeofencesRequest"))
+(smithy/sdk/shapes:define-input batch-evaluate-geofences-request
+                                common-lisp:nil
+                                ((collection-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CollectionName" :http-label common-lisp:t)
+                                 (device-position-updates :target-type
+                                  device-position-update-list :required
+                                  common-lisp:t :member-name
+                                  "DevicePositionUpdates"))
+                                (:shape-name "BatchEvaluateGeofencesRequest"))
 
 (smithy/sdk/shapes:define-structure batch-evaluate-geofences-response
                                     common-lisp:nil
@@ -407,15 +405,14 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list batch-get-device-position-error-list :member
                                batch-get-device-position-error)
 
-(smithy/sdk/shapes:define-structure batch-get-device-position-request
-                                    common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName")
-                                     (device-ids :target-type id-list :required
-                                      common-lisp:t :member-name "DeviceIds"))
-                                    (:shape-name
-                                     "BatchGetDevicePositionRequest"))
+(smithy/sdk/shapes:define-input batch-get-device-position-request
+                                common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (device-ids :target-type id-list :required
+                                  common-lisp:t :member-name "DeviceIds"))
+                                (:shape-name "BatchGetDevicePositionRequest"))
 
 (smithy/sdk/shapes:define-structure batch-get-device-position-response
                                     common-lisp:nil
@@ -452,15 +449,15 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list batch-put-geofence-error-list :member
                                batch-put-geofence-error)
 
-(smithy/sdk/shapes:define-structure batch-put-geofence-request common-lisp:nil
-                                    ((collection-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CollectionName")
-                                     (entries :target-type
-                                      batch-put-geofence-request-entry-list
-                                      :required common-lisp:t :member-name
-                                      "Entries"))
-                                    (:shape-name "BatchPutGeofenceRequest"))
+(smithy/sdk/shapes:define-input batch-put-geofence-request common-lisp:nil
+                                ((collection-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CollectionName" :http-label common-lisp:t)
+                                 (entries :target-type
+                                  batch-put-geofence-request-entry-list
+                                  :required common-lisp:t :member-name
+                                  "Entries"))
+                                (:shape-name "BatchPutGeofenceRequest"))
 
 (smithy/sdk/shapes:define-structure batch-put-geofence-request-entry
                                     common-lisp:nil
@@ -517,16 +514,16 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list batch-update-device-position-error-list :member
                                batch-update-device-position-error)
 
-(smithy/sdk/shapes:define-structure batch-update-device-position-request
-                                    common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName")
-                                     (updates :target-type
-                                      device-position-update-list :required
-                                      common-lisp:t :member-name "Updates"))
-                                    (:shape-name
-                                     "BatchUpdateDevicePositionRequest"))
+(smithy/sdk/shapes:define-input batch-update-device-position-request
+                                common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (updates :target-type
+                                  device-position-update-list :required
+                                  common-lisp:t :member-name "Updates"))
+                                (:shape-name
+                                 "BatchUpdateDevicePositionRequest"))
 
 (smithy/sdk/shapes:define-structure batch-update-device-position-response
                                     common-lisp:nil
@@ -551,35 +548,34 @@ common-lisp:nil
                                     (:shape-name
                                      "CalculateRouteCarModeOptions"))
 
-(smithy/sdk/shapes:define-structure calculate-route-matrix-request
-                                    common-lisp:nil
-                                    ((calculator-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CalculatorName")
-                                     (departure-positions :target-type
-                                      position-list :required common-lisp:t
-                                      :member-name "DeparturePositions")
-                                     (destination-positions :target-type
-                                      position-list :required common-lisp:t
-                                      :member-name "DestinationPositions")
-                                     (travel-mode :target-type travel-mode
-                                      :member-name "TravelMode")
-                                     (departure-time :target-type timestamp
-                                      :member-name "DepartureTime")
-                                     (depart-now :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "DepartNow")
-                                     (distance-unit :target-type distance-unit
-                                      :member-name "DistanceUnit")
-                                     (car-mode-options :target-type
-                                      calculate-route-car-mode-options
-                                      :member-name "CarModeOptions")
-                                     (truck-mode-options :target-type
-                                      calculate-route-truck-mode-options
-                                      :member-name "TruckModeOptions")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name "CalculateRouteMatrixRequest"))
+(smithy/sdk/shapes:define-input calculate-route-matrix-request common-lisp:nil
+                                ((calculator-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CalculatorName" :http-label common-lisp:t)
+                                 (departure-positions :target-type
+                                  position-list :required common-lisp:t
+                                  :member-name "DeparturePositions")
+                                 (destination-positions :target-type
+                                  position-list :required common-lisp:t
+                                  :member-name "DestinationPositions")
+                                 (travel-mode :target-type travel-mode
+                                  :member-name "TravelMode")
+                                 (departure-time :target-type timestamp
+                                  :member-name "DepartureTime")
+                                 (depart-now :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "DepartNow")
+                                 (distance-unit :target-type distance-unit
+                                  :member-name "DistanceUnit")
+                                 (car-mode-options :target-type
+                                  calculate-route-car-mode-options :member-name
+                                  "CarModeOptions")
+                                 (truck-mode-options :target-type
+                                  calculate-route-truck-mode-options
+                                  :member-name "TruckModeOptions")
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name "CalculateRouteMatrixRequest"))
 
 (smithy/sdk/shapes:define-structure calculate-route-matrix-response
                                     common-lisp:nil
@@ -614,45 +610,44 @@ common-lisp:nil
                                       "DistanceUnit"))
                                     (:shape-name "CalculateRouteMatrixSummary"))
 
-(smithy/sdk/shapes:define-structure calculate-route-request common-lisp:nil
-                                    ((calculator-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CalculatorName")
-                                     (departure-position :target-type position
-                                      :required common-lisp:t :member-name
-                                      "DeparturePosition")
-                                     (destination-position :target-type
-                                      position :required common-lisp:t
-                                      :member-name "DestinationPosition")
-                                     (waypoint-positions :target-type
-                                      waypoint-position-list :member-name
-                                      "WaypointPositions")
-                                     (travel-mode :target-type travel-mode
-                                      :member-name "TravelMode")
-                                     (departure-time :target-type timestamp
-                                      :member-name "DepartureTime")
-                                     (depart-now :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "DepartNow")
-                                     (distance-unit :target-type distance-unit
-                                      :member-name "DistanceUnit")
-                                     (include-leg-geometry :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "IncludeLegGeometry")
-                                     (car-mode-options :target-type
-                                      calculate-route-car-mode-options
-                                      :member-name "CarModeOptions")
-                                     (truck-mode-options :target-type
-                                      calculate-route-truck-mode-options
-                                      :member-name "TruckModeOptions")
-                                     (arrival-time :target-type timestamp
-                                      :member-name "ArrivalTime")
-                                     (optimize-for :target-type
-                                      optimization-mode :member-name
-                                      "OptimizeFor")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name "CalculateRouteRequest"))
+(smithy/sdk/shapes:define-input calculate-route-request common-lisp:nil
+                                ((calculator-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CalculatorName" :http-label common-lisp:t)
+                                 (departure-position :target-type position
+                                  :required common-lisp:t :member-name
+                                  "DeparturePosition")
+                                 (destination-position :target-type position
+                                  :required common-lisp:t :member-name
+                                  "DestinationPosition")
+                                 (waypoint-positions :target-type
+                                  waypoint-position-list :member-name
+                                  "WaypointPositions")
+                                 (travel-mode :target-type travel-mode
+                                  :member-name "TravelMode")
+                                 (departure-time :target-type timestamp
+                                  :member-name "DepartureTime")
+                                 (depart-now :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "DepartNow")
+                                 (distance-unit :target-type distance-unit
+                                  :member-name "DistanceUnit")
+                                 (include-leg-geometry :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "IncludeLegGeometry")
+                                 (car-mode-options :target-type
+                                  calculate-route-car-mode-options :member-name
+                                  "CarModeOptions")
+                                 (truck-mode-options :target-type
+                                  calculate-route-truck-mode-options
+                                  :member-name "TruckModeOptions")
+                                 (arrival-time :target-type timestamp
+                                  :member-name "ArrivalTime")
+                                 (optimize-for :target-type optimization-mode
+                                  :member-name "OptimizeFor")
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name "CalculateRouteRequest"))
 
 (smithy/sdk/shapes:define-structure calculate-route-response common-lisp:nil
                                     ((legs :target-type leg-list :required
@@ -931,83 +926,79 @@ common-lisp:nil
                                       :member-name "IntendedUse"))
                                     (:shape-name "DataSourceConfiguration"))
 
-(smithy/sdk/shapes:define-structure delete-geofence-collection-request
-                                    common-lisp:nil
-                                    ((collection-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CollectionName"))
-                                    (:shape-name
-                                     "DeleteGeofenceCollectionRequest"))
+(smithy/sdk/shapes:define-input delete-geofence-collection-request
+                                common-lisp:nil
+                                ((collection-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CollectionName" :http-label common-lisp:t))
+                                (:shape-name "DeleteGeofenceCollectionRequest"))
 
 (smithy/sdk/shapes:define-structure delete-geofence-collection-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeleteGeofenceCollectionResponse"))
 
-(smithy/sdk/shapes:define-structure delete-key-request common-lisp:nil
-                                    ((key-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "KeyName")
-                                     (force-delete :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "ForceDelete" :http-query
-                                      "forceDelete"))
-                                    (:shape-name "DeleteKeyRequest"))
+(smithy/sdk/shapes:define-input delete-key-request common-lisp:nil
+                                ((key-name :target-type resource-name :required
+                                  common-lisp:t :member-name "KeyName"
+                                  :http-label common-lisp:t)
+                                 (force-delete :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "ForceDelete" :http-query "forceDelete"))
+                                (:shape-name "DeleteKeyRequest"))
 
 (smithy/sdk/shapes:define-structure delete-key-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteKeyResponse"))
 
-(smithy/sdk/shapes:define-structure delete-map-request common-lisp:nil
-                                    ((map-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "MapName"))
-                                    (:shape-name "DeleteMapRequest"))
+(smithy/sdk/shapes:define-input delete-map-request common-lisp:nil
+                                ((map-name :target-type resource-name :required
+                                  common-lisp:t :member-name "MapName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteMapRequest"))
 
 (smithy/sdk/shapes:define-structure delete-map-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteMapResponse"))
 
-(smithy/sdk/shapes:define-structure delete-place-index-request common-lisp:nil
-                                    ((index-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "IndexName"))
-                                    (:shape-name "DeletePlaceIndexRequest"))
+(smithy/sdk/shapes:define-input delete-place-index-request common-lisp:nil
+                                ((index-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "IndexName" :http-label common-lisp:t))
+                                (:shape-name "DeletePlaceIndexRequest"))
 
 (smithy/sdk/shapes:define-structure delete-place-index-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeletePlaceIndexResponse"))
 
-(smithy/sdk/shapes:define-structure delete-route-calculator-request
-                                    common-lisp:nil
-                                    ((calculator-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CalculatorName"))
-                                    (:shape-name
-                                     "DeleteRouteCalculatorRequest"))
+(smithy/sdk/shapes:define-input delete-route-calculator-request common-lisp:nil
+                                ((calculator-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CalculatorName" :http-label common-lisp:t))
+                                (:shape-name "DeleteRouteCalculatorRequest"))
 
 (smithy/sdk/shapes:define-structure delete-route-calculator-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeleteRouteCalculatorResponse"))
 
-(smithy/sdk/shapes:define-structure delete-tracker-request common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName"))
-                                    (:shape-name "DeleteTrackerRequest"))
+(smithy/sdk/shapes:define-input delete-tracker-request common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t))
+                                (:shape-name "DeleteTrackerRequest"))
 
 (smithy/sdk/shapes:define-structure delete-tracker-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteTrackerResponse"))
 
-(smithy/sdk/shapes:define-structure describe-geofence-collection-request
-                                    common-lisp:nil
-                                    ((collection-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CollectionName"))
-                                    (:shape-name
-                                     "DescribeGeofenceCollectionRequest"))
+(smithy/sdk/shapes:define-input describe-geofence-collection-request
+                                common-lisp:nil
+                                ((collection-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CollectionName" :http-label common-lisp:t))
+                                (:shape-name
+                                 "DescribeGeofenceCollectionRequest"))
 
 (smithy/sdk/shapes:define-structure describe-geofence-collection-response
                                     common-lisp:nil
@@ -1041,11 +1032,11 @@ common-lisp:nil
                                     (:shape-name
                                      "DescribeGeofenceCollectionResponse"))
 
-(smithy/sdk/shapes:define-structure describe-key-request common-lisp:nil
-                                    ((key-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "KeyName"))
-                                    (:shape-name "DescribeKeyRequest"))
+(smithy/sdk/shapes:define-input describe-key-request common-lisp:nil
+                                ((key-name :target-type resource-name :required
+                                  common-lisp:t :member-name "KeyName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeKeyRequest"))
 
 (smithy/sdk/shapes:define-structure describe-key-response common-lisp:nil
                                     ((key :target-type api-key :required
@@ -1075,11 +1066,11 @@ common-lisp:nil
                                       "Tags"))
                                     (:shape-name "DescribeKeyResponse"))
 
-(smithy/sdk/shapes:define-structure describe-map-request common-lisp:nil
-                                    ((map-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "MapName"))
-                                    (:shape-name "DescribeMapRequest"))
+(smithy/sdk/shapes:define-input describe-map-request common-lisp:nil
+                                ((map-name :target-type resource-name :required
+                                  common-lisp:t :member-name "MapName"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeMapRequest"))
 
 (smithy/sdk/shapes:define-structure describe-map-response common-lisp:nil
                                     ((map-name :target-type resource-name
@@ -1108,12 +1099,11 @@ common-lisp:nil
                                       "UpdateTime"))
                                     (:shape-name "DescribeMapResponse"))
 
-(smithy/sdk/shapes:define-structure describe-place-index-request
-                                    common-lisp:nil
-                                    ((index-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "IndexName"))
-                                    (:shape-name "DescribePlaceIndexRequest"))
+(smithy/sdk/shapes:define-input describe-place-index-request common-lisp:nil
+                                ((index-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "IndexName" :http-label common-lisp:t))
+                                (:shape-name "DescribePlaceIndexRequest"))
 
 (smithy/sdk/shapes:define-structure describe-place-index-response
                                     common-lisp:nil
@@ -1144,13 +1134,12 @@ common-lisp:nil
                                       "Tags"))
                                     (:shape-name "DescribePlaceIndexResponse"))
 
-(smithy/sdk/shapes:define-structure describe-route-calculator-request
-                                    common-lisp:nil
-                                    ((calculator-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CalculatorName"))
-                                    (:shape-name
-                                     "DescribeRouteCalculatorRequest"))
+(smithy/sdk/shapes:define-input describe-route-calculator-request
+                                common-lisp:nil
+                                ((calculator-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CalculatorName" :http-label common-lisp:t))
+                                (:shape-name "DescribeRouteCalculatorRequest"))
 
 (smithy/sdk/shapes:define-structure describe-route-calculator-response
                                     common-lisp:nil
@@ -1179,11 +1168,11 @@ common-lisp:nil
                                     (:shape-name
                                      "DescribeRouteCalculatorResponse"))
 
-(smithy/sdk/shapes:define-structure describe-tracker-request common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName"))
-                                    (:shape-name "DescribeTrackerRequest"))
+(smithy/sdk/shapes:define-input describe-tracker-request common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t))
+                                (:shape-name "DescribeTrackerRequest"))
 
 (smithy/sdk/shapes:define-structure describe-tracker-response common-lisp:nil
                                     ((tracker-name :target-type resource-name
@@ -1284,16 +1273,16 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type dimension-unit smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure disassociate-tracker-consumer-request
-                                    common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName")
-                                     (consumer-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "ConsumerArn"))
-                                    (:shape-name
-                                     "DisassociateTrackerConsumerRequest"))
+(smithy/sdk/shapes:define-input disassociate-tracker-consumer-request
+                                common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (consumer-arn :target-type arn :required
+                                  common-lisp:t :member-name "ConsumerArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "DisassociateTrackerConsumerRequest"))
 
 (smithy/sdk/shapes:define-structure disassociate-tracker-consumer-response
                                     common-lisp:nil common-lisp:nil
@@ -1407,25 +1396,24 @@ common-lisp:nil
                                       "MultiPolygon"))
                                     (:shape-name "GeofenceGeometry"))
 
-(smithy/sdk/shapes:define-structure get-device-position-history-request
-                                    common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName")
-                                     (device-id :target-type id :required
-                                      common-lisp:t :member-name "DeviceId")
-                                     (next-token :target-type token
-                                      :member-name "NextToken")
-                                     (start-time-inclusive :target-type
-                                      timestamp :member-name
-                                      "StartTimeInclusive")
-                                     (end-time-exclusive :target-type timestamp
-                                      :member-name "EndTimeExclusive")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "MaxResults"))
-                                    (:shape-name
-                                     "GetDevicePositionHistoryRequest"))
+(smithy/sdk/shapes:define-input get-device-position-history-request
+                                common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (device-id :target-type id :required
+                                  common-lisp:t :member-name "DeviceId"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type token :member-name
+                                  "NextToken")
+                                 (start-time-inclusive :target-type timestamp
+                                  :member-name "StartTimeInclusive")
+                                 (end-time-exclusive :target-type timestamp
+                                  :member-name "EndTimeExclusive")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "MaxResults"))
+                                (:shape-name "GetDevicePositionHistoryRequest"))
 
 (smithy/sdk/shapes:define-structure get-device-position-history-response
                                     common-lisp:nil
@@ -1438,13 +1426,14 @@ common-lisp:nil
                                     (:shape-name
                                      "GetDevicePositionHistoryResponse"))
 
-(smithy/sdk/shapes:define-structure get-device-position-request common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName")
-                                     (device-id :target-type id :required
-                                      common-lisp:t :member-name "DeviceId"))
-                                    (:shape-name "GetDevicePositionRequest"))
+(smithy/sdk/shapes:define-input get-device-position-request common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (device-id :target-type id :required
+                                  common-lisp:t :member-name "DeviceId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetDevicePositionRequest"))
 
 (smithy/sdk/shapes:define-structure get-device-position-response
                                     common-lisp:nil
@@ -1465,13 +1454,14 @@ common-lisp:nil
                                       "PositionProperties"))
                                     (:shape-name "GetDevicePositionResponse"))
 
-(smithy/sdk/shapes:define-structure get-geofence-request common-lisp:nil
-                                    ((collection-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CollectionName")
-                                     (geofence-id :target-type id :required
-                                      common-lisp:t :member-name "GeofenceId"))
-                                    (:shape-name "GetGeofenceRequest"))
+(smithy/sdk/shapes:define-input get-geofence-request common-lisp:nil
+                                ((collection-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CollectionName" :http-label common-lisp:t)
+                                 (geofence-id :target-type id :required
+                                  common-lisp:t :member-name "GeofenceId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetGeofenceRequest"))
 
 (smithy/sdk/shapes:define-structure get-geofence-response common-lisp:nil
                                     ((geofence-id :target-type id :required
@@ -1493,22 +1483,23 @@ common-lisp:nil
                                       "GeofenceProperties"))
                                     (:shape-name "GetGeofenceResponse"))
 
-(smithy/sdk/shapes:define-structure get-map-glyphs-request common-lisp:nil
-                                    ((map-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "MapName")
-                                     (font-stack :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "FontStack")
-                                     (font-unicode-range :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "FontUnicodeRange")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name "GetMapGlyphsRequest"))
+(smithy/sdk/shapes:define-input get-map-glyphs-request common-lisp:nil
+                                ((map-name :target-type resource-name :required
+                                  common-lisp:t :member-name "MapName"
+                                  :http-label common-lisp:t)
+                                 (font-stack :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "FontStack"
+                                  :http-label common-lisp:t)
+                                 (font-unicode-range :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "FontUnicodeRange"
+                                  :http-label common-lisp:t)
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name "GetMapGlyphsRequest"))
 
-(smithy/sdk/shapes:define-structure get-map-glyphs-response common-lisp:nil
+(smithy/sdk/shapes:define-interface get-map-glyphs-response common-lisp:nil
                                     ((blob :target-type
                                       smithy/sdk/smithy-types:blob :member-name
                                       "Blob" :http-payload common-lisp:t)
@@ -1522,18 +1513,19 @@ common-lisp:nil
                                       "Cache-Control"))
                                     (:shape-name "GetMapGlyphsResponse"))
 
-(smithy/sdk/shapes:define-structure get-map-sprites-request common-lisp:nil
-                                    ((map-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "MapName")
-                                     (file-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "FileName")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name "GetMapSpritesRequest"))
+(smithy/sdk/shapes:define-input get-map-sprites-request common-lisp:nil
+                                ((map-name :target-type resource-name :required
+                                  common-lisp:t :member-name "MapName"
+                                  :http-label common-lisp:t)
+                                 (file-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "FileName"
+                                  :http-label common-lisp:t)
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name "GetMapSpritesRequest"))
 
-(smithy/sdk/shapes:define-structure get-map-sprites-response common-lisp:nil
+(smithy/sdk/shapes:define-interface get-map-sprites-response common-lisp:nil
                                     ((blob :target-type
                                       smithy/sdk/smithy-types:blob :member-name
                                       "Blob" :http-payload common-lisp:t)
@@ -1547,17 +1539,16 @@ common-lisp:nil
                                       "Cache-Control"))
                                     (:shape-name "GetMapSpritesResponse"))
 
-(smithy/sdk/shapes:define-structure get-map-style-descriptor-request
-                                    common-lisp:nil
-                                    ((map-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "MapName")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name
-                                     "GetMapStyleDescriptorRequest"))
+(smithy/sdk/shapes:define-input get-map-style-descriptor-request
+                                common-lisp:nil
+                                ((map-name :target-type resource-name :required
+                                  common-lisp:t :member-name "MapName"
+                                  :http-label common-lisp:t)
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name "GetMapStyleDescriptorRequest"))
 
-(smithy/sdk/shapes:define-structure get-map-style-descriptor-response
+(smithy/sdk/shapes:define-interface get-map-style-descriptor-response
                                     common-lisp:nil
                                     ((blob :target-type
                                       smithy/sdk/smithy-types:blob :member-name
@@ -1573,24 +1564,24 @@ common-lisp:nil
                                     (:shape-name
                                      "GetMapStyleDescriptorResponse"))
 
-(smithy/sdk/shapes:define-structure get-map-tile-request common-lisp:nil
-                                    ((map-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "MapName")
-                                     (z :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "Z")
-                                     (x :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "X")
-                                     (y :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "Y")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name "GetMapTileRequest"))
+(smithy/sdk/shapes:define-input get-map-tile-request common-lisp:nil
+                                ((map-name :target-type resource-name :required
+                                  common-lisp:t :member-name "MapName"
+                                  :http-label common-lisp:t)
+                                 (z :target-type smithy/sdk/smithy-types:string
+                                  :required common-lisp:t :member-name "Z"
+                                  :http-label common-lisp:t)
+                                 (x :target-type smithy/sdk/smithy-types:string
+                                  :required common-lisp:t :member-name "X"
+                                  :http-label common-lisp:t)
+                                 (y :target-type smithy/sdk/smithy-types:string
+                                  :required common-lisp:t :member-name "Y"
+                                  :http-label common-lisp:t)
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name "GetMapTileRequest"))
 
-(smithy/sdk/shapes:define-structure get-map-tile-response common-lisp:nil
+(smithy/sdk/shapes:define-interface get-map-tile-response common-lisp:nil
                                     ((blob :target-type
                                       smithy/sdk/smithy-types:blob :member-name
                                       "Blob" :http-payload common-lisp:t)
@@ -1604,18 +1595,19 @@ common-lisp:nil
                                       "Cache-Control"))
                                     (:shape-name "GetMapTileResponse"))
 
-(smithy/sdk/shapes:define-structure get-place-request common-lisp:nil
-                                    ((index-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "IndexName")
-                                     (place-id :target-type place-id :required
-                                      common-lisp:t :member-name "PlaceId")
-                                     (language :target-type language-tag
-                                      :member-name "Language" :http-query
-                                      "language")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name "GetPlaceRequest"))
+(smithy/sdk/shapes:define-input get-place-request common-lisp:nil
+                                ((index-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "IndexName" :http-label common-lisp:t)
+                                 (place-id :target-type place-id :required
+                                  common-lisp:t :member-name "PlaceId"
+                                  :http-label common-lisp:t)
+                                 (language :target-type language-tag
+                                  :member-name "Language" :http-query
+                                  "language")
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name "GetPlaceRequest"))
 
 (smithy/sdk/shapes:define-structure get-place-response common-lisp:nil
                                     ((place :target-type place :required
@@ -1689,20 +1681,19 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list linear-rings :member linear-ring)
 
-(smithy/sdk/shapes:define-structure list-device-positions-request
-                                    common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "MaxResults")
-                                     (next-token :target-type token
-                                      :member-name "NextToken")
-                                     (filter-geometry :target-type
-                                      tracking-filter-geometry :member-name
-                                      "FilterGeometry"))
-                                    (:shape-name "ListDevicePositionsRequest"))
+(smithy/sdk/shapes:define-input list-device-positions-request common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "MaxResults")
+                                 (next-token :target-type token :member-name
+                                  "NextToken")
+                                 (filter-geometry :target-type
+                                  tracking-filter-geometry :member-name
+                                  "FilterGeometry"))
+                                (:shape-name "ListDevicePositionsRequest"))
 
 (smithy/sdk/shapes:define-structure list-device-positions-response
                                     common-lisp:nil
@@ -1804,16 +1795,16 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list list-geofence-response-entry-list :member
                                list-geofence-response-entry)
 
-(smithy/sdk/shapes:define-structure list-geofences-request common-lisp:nil
-                                    ((collection-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CollectionName")
-                                     (next-token :target-type large-token
-                                      :member-name "NextToken")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "MaxResults"))
-                                    (:shape-name "ListGeofencesRequest"))
+(smithy/sdk/shapes:define-input list-geofences-request common-lisp:nil
+                                ((collection-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CollectionName" :http-label common-lisp:t)
+                                 (next-token :target-type large-token
+                                  :member-name "NextToken")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "MaxResults"))
+                                (:shape-name "ListGeofencesRequest"))
 
 (smithy/sdk/shapes:define-structure list-geofences-response common-lisp:nil
                                     ((entries :target-type
@@ -1993,12 +1984,11 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list list-route-calculators-response-entry-list
                                :member list-route-calculators-response-entry)
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -2006,17 +1996,16 @@ common-lisp:nil
                                       "Tags"))
                                     (:shape-name "ListTagsForResourceResponse"))
 
-(smithy/sdk/shapes:define-structure list-tracker-consumers-request
-                                    common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "MaxResults")
-                                     (next-token :target-type token
-                                      :member-name "NextToken"))
-                                    (:shape-name "ListTrackerConsumersRequest"))
+(smithy/sdk/shapes:define-input list-tracker-consumers-request common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "MaxResults")
+                                 (next-token :target-type token :member-name
+                                  "NextToken"))
+                                (:shape-name "ListTrackerConsumersRequest"))
 
 (smithy/sdk/shapes:define-structure list-tracker-consumers-response
                                     common-lisp:nil
@@ -2253,19 +2242,19 @@ common-lisp:nil
 (smithy/sdk/shapes:define-map property-map :key smithy/sdk/smithy-types:string
                               :value smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure put-geofence-request common-lisp:nil
-                                    ((collection-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CollectionName")
-                                     (geofence-id :target-type id :required
-                                      common-lisp:t :member-name "GeofenceId")
-                                     (geometry :target-type geofence-geometry
-                                      :required common-lisp:t :member-name
-                                      "Geometry")
-                                     (geofence-properties :target-type
-                                      property-map :member-name
-                                      "GeofenceProperties"))
-                                    (:shape-name "PutGeofenceRequest"))
+(smithy/sdk/shapes:define-input put-geofence-request common-lisp:nil
+                                ((collection-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CollectionName" :http-label common-lisp:t)
+                                 (geofence-id :target-type id :required
+                                  common-lisp:t :member-name "GeofenceId"
+                                  :http-label common-lisp:t)
+                                 (geometry :target-type geofence-geometry
+                                  :required common-lisp:t :member-name
+                                  "Geometry")
+                                 (geofence-properties :target-type property-map
+                                  :member-name "GeofenceProperties"))
+                                (:shape-name "PutGeofenceRequest"))
 
 (smithy/sdk/shapes:define-structure put-geofence-response common-lisp:nil
                                     ((geofence-id :target-type id :required
@@ -2376,22 +2365,22 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list search-for-text-result-list :member
                                search-for-text-result)
 
-(smithy/sdk/shapes:define-structure search-place-index-for-position-request
-                                    common-lisp:nil
-                                    ((index-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "IndexName")
-                                     (position :target-type position :required
-                                      common-lisp:t :member-name "Position")
-                                     (max-results :target-type
-                                      place-index-search-result-limit
-                                      :member-name "MaxResults")
-                                     (language :target-type language-tag
-                                      :member-name "Language")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name
-                                     "SearchPlaceIndexForPositionRequest"))
+(smithy/sdk/shapes:define-input search-place-index-for-position-request
+                                common-lisp:nil
+                                ((index-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "IndexName" :http-label common-lisp:t)
+                                 (position :target-type position :required
+                                  common-lisp:t :member-name "Position")
+                                 (max-results :target-type
+                                  place-index-search-result-limit :member-name
+                                  "MaxResults")
+                                 (language :target-type language-tag
+                                  :member-name "Language")
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name
+                                 "SearchPlaceIndexForPositionRequest"))
 
 (smithy/sdk/shapes:define-structure search-place-index-for-position-response
                                     common-lisp:nil
@@ -2420,33 +2409,32 @@ common-lisp:nil
                                     (:shape-name
                                      "SearchPlaceIndexForPositionSummary"))
 
-(smithy/sdk/shapes:define-structure search-place-index-for-suggestions-request
-                                    common-lisp:nil
-                                    ((index-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "IndexName")
-                                     (text :target-type sensitive-string
-                                      :required common-lisp:t :member-name
-                                      "Text")
-                                     (bias-position :target-type position
-                                      :member-name "BiasPosition")
-                                     (filter-bbox :target-type bounding-box
-                                      :member-name "FilterBBox")
-                                     (filter-countries :target-type
-                                      country-code-list :member-name
-                                      "FilterCountries")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "MaxResults")
-                                     (language :target-type language-tag
-                                      :member-name "Language")
-                                     (filter-categories :target-type
-                                      filter-place-category-list :member-name
-                                      "FilterCategories")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name
-                                     "SearchPlaceIndexForSuggestionsRequest"))
+(smithy/sdk/shapes:define-input search-place-index-for-suggestions-request
+                                common-lisp:nil
+                                ((index-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "IndexName" :http-label common-lisp:t)
+                                 (text :target-type sensitive-string :required
+                                  common-lisp:t :member-name "Text")
+                                 (bias-position :target-type position
+                                  :member-name "BiasPosition")
+                                 (filter-bbox :target-type bounding-box
+                                  :member-name "FilterBBox")
+                                 (filter-countries :target-type
+                                  country-code-list :member-name
+                                  "FilterCountries")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "MaxResults")
+                                 (language :target-type language-tag
+                                  :member-name "Language")
+                                 (filter-categories :target-type
+                                  filter-place-category-list :member-name
+                                  "FilterCategories")
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name
+                                 "SearchPlaceIndexForSuggestionsRequest"))
 
 (smithy/sdk/shapes:define-structure search-place-index-for-suggestions-response
                                     common-lisp:nil
@@ -2487,33 +2475,31 @@ common-lisp:nil
                                     (:shape-name
                                      "SearchPlaceIndexForSuggestionsSummary"))
 
-(smithy/sdk/shapes:define-structure search-place-index-for-text-request
-                                    common-lisp:nil
-                                    ((index-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "IndexName")
-                                     (text :target-type sensitive-string
-                                      :required common-lisp:t :member-name
-                                      "Text")
-                                     (bias-position :target-type position
-                                      :member-name "BiasPosition")
-                                     (filter-bbox :target-type bounding-box
-                                      :member-name "FilterBBox")
-                                     (filter-countries :target-type
-                                      country-code-list :member-name
-                                      "FilterCountries")
-                                     (max-results :target-type
-                                      place-index-search-result-limit
-                                      :member-name "MaxResults")
-                                     (language :target-type language-tag
-                                      :member-name "Language")
-                                     (filter-categories :target-type
-                                      filter-place-category-list :member-name
-                                      "FilterCategories")
-                                     (key :target-type api-key :member-name
-                                      "Key" :http-query "key"))
-                                    (:shape-name
-                                     "SearchPlaceIndexForTextRequest"))
+(smithy/sdk/shapes:define-input search-place-index-for-text-request
+                                common-lisp:nil
+                                ((index-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "IndexName" :http-label common-lisp:t)
+                                 (text :target-type sensitive-string :required
+                                  common-lisp:t :member-name "Text")
+                                 (bias-position :target-type position
+                                  :member-name "BiasPosition")
+                                 (filter-bbox :target-type bounding-box
+                                  :member-name "FilterBBox")
+                                 (filter-countries :target-type
+                                  country-code-list :member-name
+                                  "FilterCountries")
+                                 (max-results :target-type
+                                  place-index-search-result-limit :member-name
+                                  "MaxResults")
+                                 (language :target-type language-tag
+                                  :member-name "Language")
+                                 (filter-categories :target-type
+                                  filter-place-category-list :member-name
+                                  "FilterCategories")
+                                 (key :target-type api-key :member-name "Key"
+                                  :http-query "key"))
+                                (:shape-name "SearchPlaceIndexForTextRequest"))
 
 (smithy/sdk/shapes:define-structure search-place-index-for-text-response
                                     common-lisp:nil
@@ -2599,12 +2585,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "ResourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -2629,7 +2616,8 @@ common-lisp:nil
                                       :member-name "Offset"))
                                     (:shape-name "TimeZone"))
 
-(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 
@@ -2664,33 +2652,32 @@ common-lisp:nil
                                       :member-name "Unit"))
                                     (:shape-name "TruckWeight"))
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "ResourceArn")
-                                     (tag-keys :target-type tag-keys :required
-                                      common-lisp:t :member-name "TagKeys"
-                                      :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-keys :required
+                                  common-lisp:t :member-name "TagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-geofence-collection-request
-                                    common-lisp:nil
-                                    ((collection-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CollectionName")
-                                     (pricing-plan :target-type pricing-plan
-                                      :member-name "PricingPlan")
-                                     (pricing-plan-data-source :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "PricingPlanDataSource")
-                                     (description :target-type
-                                      resource-description :member-name
-                                      "Description"))
-                                    (:shape-name
-                                     "UpdateGeofenceCollectionRequest"))
+(smithy/sdk/shapes:define-input update-geofence-collection-request
+                                common-lisp:nil
+                                ((collection-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CollectionName" :http-label common-lisp:t)
+                                 (pricing-plan :target-type pricing-plan
+                                  :member-name "PricingPlan")
+                                 (pricing-plan-data-source :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "PricingPlanDataSource")
+                                 (description :target-type resource-description
+                                  :member-name "Description"))
+                                (:shape-name "UpdateGeofenceCollectionRequest"))
 
 (smithy/sdk/shapes:define-structure update-geofence-collection-response
                                     common-lisp:nil
@@ -2706,25 +2693,24 @@ common-lisp:nil
                                     (:shape-name
                                      "UpdateGeofenceCollectionResponse"))
 
-(smithy/sdk/shapes:define-structure update-key-request common-lisp:nil
-                                    ((key-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "KeyName")
-                                     (description :target-type
-                                      resource-description :member-name
-                                      "Description")
-                                     (expire-time :target-type timestamp
-                                      :member-name "ExpireTime")
-                                     (no-expiry :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "NoExpiry")
-                                     (force-update :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "ForceUpdate")
-                                     (restrictions :target-type
-                                      api-key-restrictions :member-name
-                                      "Restrictions"))
-                                    (:shape-name "UpdateKeyRequest"))
+(smithy/sdk/shapes:define-input update-key-request common-lisp:nil
+                                ((key-name :target-type resource-name :required
+                                  common-lisp:t :member-name "KeyName"
+                                  :http-label common-lisp:t)
+                                 (description :target-type resource-description
+                                  :member-name "Description")
+                                 (expire-time :target-type timestamp
+                                  :member-name "ExpireTime")
+                                 (no-expiry :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "NoExpiry")
+                                 (force-update :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "ForceUpdate")
+                                 (restrictions :target-type
+                                  api-key-restrictions :member-name
+                                  "Restrictions"))
+                                (:shape-name "UpdateKeyRequest"))
 
 (smithy/sdk/shapes:define-structure update-key-response common-lisp:nil
                                     ((key-arn :target-type arn :required
@@ -2737,19 +2723,18 @@ common-lisp:nil
                                       "UpdateTime"))
                                     (:shape-name "UpdateKeyResponse"))
 
-(smithy/sdk/shapes:define-structure update-map-request common-lisp:nil
-                                    ((map-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "MapName")
-                                     (pricing-plan :target-type pricing-plan
-                                      :member-name "PricingPlan")
-                                     (description :target-type
-                                      resource-description :member-name
-                                      "Description")
-                                     (configuration-update :target-type
-                                      map-configuration-update :member-name
-                                      "ConfigurationUpdate"))
-                                    (:shape-name "UpdateMapRequest"))
+(smithy/sdk/shapes:define-input update-map-request common-lisp:nil
+                                ((map-name :target-type resource-name :required
+                                  common-lisp:t :member-name "MapName"
+                                  :http-label common-lisp:t)
+                                 (pricing-plan :target-type pricing-plan
+                                  :member-name "PricingPlan")
+                                 (description :target-type resource-description
+                                  :member-name "Description")
+                                 (configuration-update :target-type
+                                  map-configuration-update :member-name
+                                  "ConfigurationUpdate"))
+                                (:shape-name "UpdateMapRequest"))
 
 (smithy/sdk/shapes:define-structure update-map-response common-lisp:nil
                                     ((map-name :target-type resource-name
@@ -2762,19 +2747,18 @@ common-lisp:nil
                                       "UpdateTime"))
                                     (:shape-name "UpdateMapResponse"))
 
-(smithy/sdk/shapes:define-structure update-place-index-request common-lisp:nil
-                                    ((index-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "IndexName")
-                                     (pricing-plan :target-type pricing-plan
-                                      :member-name "PricingPlan")
-                                     (description :target-type
-                                      resource-description :member-name
-                                      "Description")
-                                     (data-source-configuration :target-type
-                                      data-source-configuration :member-name
-                                      "DataSourceConfiguration"))
-                                    (:shape-name "UpdatePlaceIndexRequest"))
+(smithy/sdk/shapes:define-input update-place-index-request common-lisp:nil
+                                ((index-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "IndexName" :http-label common-lisp:t)
+                                 (pricing-plan :target-type pricing-plan
+                                  :member-name "PricingPlan")
+                                 (description :target-type resource-description
+                                  :member-name "Description")
+                                 (data-source-configuration :target-type
+                                  data-source-configuration :member-name
+                                  "DataSourceConfiguration"))
+                                (:shape-name "UpdatePlaceIndexRequest"))
 
 (smithy/sdk/shapes:define-structure update-place-index-response common-lisp:nil
                                     ((index-name :target-type resource-name
@@ -2787,18 +2771,15 @@ common-lisp:nil
                                       "UpdateTime"))
                                     (:shape-name "UpdatePlaceIndexResponse"))
 
-(smithy/sdk/shapes:define-structure update-route-calculator-request
-                                    common-lisp:nil
-                                    ((calculator-name :target-type
-                                      resource-name :required common-lisp:t
-                                      :member-name "CalculatorName")
-                                     (pricing-plan :target-type pricing-plan
-                                      :member-name "PricingPlan")
-                                     (description :target-type
-                                      resource-description :member-name
-                                      "Description"))
-                                    (:shape-name
-                                     "UpdateRouteCalculatorRequest"))
+(smithy/sdk/shapes:define-input update-route-calculator-request common-lisp:nil
+                                ((calculator-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "CalculatorName" :http-label common-lisp:t)
+                                 (pricing-plan :target-type pricing-plan
+                                  :member-name "PricingPlan")
+                                 (description :target-type resource-description
+                                  :member-name "Description"))
+                                (:shape-name "UpdateRouteCalculatorRequest"))
 
 (smithy/sdk/shapes:define-structure update-route-calculator-response
                                     common-lisp:nil
@@ -2814,30 +2795,28 @@ common-lisp:nil
                                     (:shape-name
                                      "UpdateRouteCalculatorResponse"))
 
-(smithy/sdk/shapes:define-structure update-tracker-request common-lisp:nil
-                                    ((tracker-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "TrackerName")
-                                     (pricing-plan :target-type pricing-plan
-                                      :member-name "PricingPlan")
-                                     (pricing-plan-data-source :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "PricingPlanDataSource")
-                                     (description :target-type
-                                      resource-description :member-name
-                                      "Description")
-                                     (position-filtering :target-type
-                                      position-filtering :member-name
-                                      "PositionFiltering")
-                                     (event-bridge-enabled :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "EventBridgeEnabled")
-                                     (kms-key-enable-geospatial-queries
-                                      :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name
-                                      "KmsKeyEnableGeospatialQueries"))
-                                    (:shape-name "UpdateTrackerRequest"))
+(smithy/sdk/shapes:define-input update-tracker-request common-lisp:nil
+                                ((tracker-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "TrackerName" :http-label common-lisp:t)
+                                 (pricing-plan :target-type pricing-plan
+                                  :member-name "PricingPlan")
+                                 (pricing-plan-data-source :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "PricingPlanDataSource")
+                                 (description :target-type resource-description
+                                  :member-name "Description")
+                                 (position-filtering :target-type
+                                  position-filtering :member-name
+                                  "PositionFiltering")
+                                 (event-bridge-enabled :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "EventBridgeEnabled")
+                                 (kms-key-enable-geospatial-queries
+                                  :target-type smithy/sdk/smithy-types:boolean
+                                  :member-name
+                                  "KmsKeyEnableGeospatialQueries"))
+                                (:shape-name "UpdateTrackerRequest"))
 
 (smithy/sdk/shapes:define-structure update-tracker-response common-lisp:nil
                                     ((tracker-name :target-type resource-name

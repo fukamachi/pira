@@ -159,7 +159,8 @@
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type association-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure audit-event common-lisp:nil
                                     ((event-id :target-type audit-event-id
@@ -184,7 +185,8 @@
                                     (:shape-name "AuditEvent"))
 
 (smithy/sdk/shapes:define-type audit-event-date-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure audit-event-field common-lisp:nil
                                     ((event-field-id :target-type
@@ -273,14 +275,14 @@
 
 (smithy/sdk/shapes:define-list batch-get-field-list :member get-field-response)
 
-(smithy/sdk/shapes:define-structure batch-get-field-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (fields :target-type
-                                      batch-get-field-identifier-list :required
-                                      common-lisp:t :member-name "fields"))
-                                    (:shape-name "BatchGetFieldRequest"))
+(smithy/sdk/shapes:define-input batch-get-field-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (fields :target-type
+                                  batch-get-field-identifier-list :required
+                                  common-lisp:t :member-name "fields"))
+                                (:shape-name "BatchGetFieldRequest"))
 
 (smithy/sdk/shapes:define-structure batch-get-field-response common-lisp:nil
                                     ((fields :target-type batch-get-field-list
@@ -291,17 +293,17 @@
                                       common-lisp:t :member-name "errors"))
                                     (:shape-name "BatchGetFieldResponse"))
 
-(smithy/sdk/shapes:define-structure batch-put-field-options-request
-                                    common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (field-id :target-type field-id :required
-                                      common-lisp:t :member-name "fieldId")
-                                     (options :target-type field-options-list
-                                      :required common-lisp:t :member-name
-                                      "options"))
-                                    (:shape-name "BatchPutFieldOptionsRequest"))
+(smithy/sdk/shapes:define-input batch-put-field-options-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (field-id :target-type field-id :required
+                                  common-lisp:t :member-name "fieldId"
+                                  :http-label common-lisp:t)
+                                 (options :target-type field-options-list
+                                  :required common-lisp:t :member-name
+                                  "options"))
+                                (:shape-name "BatchPutFieldOptionsRequest"))
 
 (smithy/sdk/shapes:define-structure batch-put-field-options-response
                                     common-lisp:nil
@@ -452,7 +454,8 @@ common-lisp:nil
                                 (:error-code 409))
 
 (smithy/sdk/shapes:define-type connected-to-system-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure contact common-lisp:nil
                                     ((contact-arn :target-type contact-arn
@@ -481,22 +484,22 @@ common-lisp:nil
                                       :member-name "contactArn"))
                                     (:shape-name "ContactFilter"))
 
-(smithy/sdk/shapes:define-structure create-case-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (template-id :target-type template-id
-                                      :required common-lisp:t :member-name
-                                      "templateId")
-                                     (fields :target-type field-value-list
-                                      :required common-lisp:t :member-name
-                                      "fields")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (performed-by :target-type user-union
-                                      :member-name "performedBy"))
-                                    (:shape-name "CreateCaseRequest"))
+(smithy/sdk/shapes:define-input create-case-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (template-id :target-type template-id
+                                  :required common-lisp:t :member-name
+                                  "templateId")
+                                 (fields :target-type field-value-list
+                                  :required common-lisp:t :member-name
+                                  "fields")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (performed-by :target-type user-union
+                                  :member-name "performedBy"))
+                                (:shape-name "CreateCaseRequest"))
 
 (smithy/sdk/shapes:define-structure create-case-response common-lisp:nil
                                     ((case-id :target-type case-id :required
@@ -544,18 +547,17 @@ common-lisp:nil
                                       "domainStatus"))
                                     (:shape-name "CreateDomainResponse"))
 
-(smithy/sdk/shapes:define-structure create-field-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (name :target-type field-name :required
-                                      common-lisp:t :member-name "name")
-                                     (type :target-type field-type :required
-                                      common-lisp:t :member-name "type")
-                                     (description :target-type
-                                      field-description :member-name
-                                      "description"))
-                                    (:shape-name "CreateFieldRequest"))
+(smithy/sdk/shapes:define-input create-field-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type field-name :required
+                                  common-lisp:t :member-name "name")
+                                 (type :target-type field-type :required
+                                  common-lisp:t :member-name "type")
+                                 (description :target-type field-description
+                                  :member-name "description"))
+                                (:shape-name "CreateFieldRequest"))
 
 (smithy/sdk/shapes:define-structure create-field-response common-lisp:nil
                                     ((field-id :target-type field-id :required
@@ -565,16 +567,15 @@ common-lisp:nil
                                       "fieldArn"))
                                     (:shape-name "CreateFieldResponse"))
 
-(smithy/sdk/shapes:define-structure create-layout-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (name :target-type layout-name :required
-                                      common-lisp:t :member-name "name")
-                                     (content :target-type layout-content
-                                      :required common-lisp:t :member-name
-                                      "content"))
-                                    (:shape-name "CreateLayoutRequest"))
+(smithy/sdk/shapes:define-input create-layout-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type layout-name :required
+                                  common-lisp:t :member-name "name")
+                                 (content :target-type layout-content :required
+                                  common-lisp:t :member-name "content"))
+                                (:shape-name "CreateLayoutRequest"))
 
 (smithy/sdk/shapes:define-structure create-layout-response common-lisp:nil
                                     ((layout-id :target-type layout-id
@@ -585,21 +586,21 @@ common-lisp:nil
                                       "layoutArn"))
                                     (:shape-name "CreateLayoutResponse"))
 
-(smithy/sdk/shapes:define-structure create-related-item-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (case-id :target-type case-id :required
-                                      common-lisp:t :member-name "caseId")
-                                     (type :target-type related-item-type
-                                      :required common-lisp:t :member-name
-                                      "type")
-                                     (content :target-type
-                                      related-item-input-content :required
-                                      common-lisp:t :member-name "content")
-                                     (performed-by :target-type user-union
-                                      :member-name "performedBy"))
-                                    (:shape-name "CreateRelatedItemRequest"))
+(smithy/sdk/shapes:define-input create-related-item-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (case-id :target-type case-id :required
+                                  common-lisp:t :member-name "caseId"
+                                  :http-label common-lisp:t)
+                                 (type :target-type related-item-type :required
+                                  common-lisp:t :member-name "type")
+                                 (content :target-type
+                                  related-item-input-content :required
+                                  common-lisp:t :member-name "content")
+                                 (performed-by :target-type user-union
+                                  :member-name "performedBy"))
+                                (:shape-name "CreateRelatedItemRequest"))
 
 (smithy/sdk/shapes:define-structure create-related-item-response
                                     common-lisp:nil
@@ -611,27 +612,25 @@ common-lisp:nil
                                       :member-name "relatedItemArn"))
                                     (:shape-name "CreateRelatedItemResponse"))
 
-(smithy/sdk/shapes:define-structure create-template-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (name :target-type template-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type
-                                      template-description :member-name
-                                      "description")
-                                     (layout-configuration :target-type
-                                      layout-configuration :member-name
-                                      "layoutConfiguration")
-                                     (required-fields :target-type
-                                      required-field-list :member-name
-                                      "requiredFields")
-                                     (status :target-type template-status
-                                      :member-name "status")
-                                     (rules :target-type
-                                      template-case-rule-list :member-name
-                                      "rules"))
-                                    (:shape-name "CreateTemplateRequest"))
+(smithy/sdk/shapes:define-input create-template-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type template-name :required
+                                  common-lisp:t :member-name "name")
+                                 (description :target-type template-description
+                                  :member-name "description")
+                                 (layout-configuration :target-type
+                                  layout-configuration :member-name
+                                  "layoutConfiguration")
+                                 (required-fields :target-type
+                                  required-field-list :member-name
+                                  "requiredFields")
+                                 (status :target-type template-status
+                                  :member-name "status")
+                                 (rules :target-type template-case-rule-list
+                                  :member-name "rules"))
+                                (:shape-name "CreateTemplateRequest"))
 
 (smithy/sdk/shapes:define-structure create-template-response common-lisp:nil
                                     ((template-id :target-type template-id
@@ -642,7 +641,8 @@ common-lisp:nil
                                       "templateArn"))
                                     (:shape-name "CreateTemplateResponse"))
 
-(smithy/sdk/shapes:define-type created-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type created-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type custom-entity smithy/sdk/smithy-types:string)
 
@@ -672,11 +672,11 @@ common-lisp:nil
                                  common-lisp:nil
                                  (:shape-name "DeleteCaseRuleResponse"))
 
-(smithy/sdk/shapes:define-structure delete-domain-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId"))
-                                    (:shape-name "DeleteDomainRequest"))
+(smithy/sdk/shapes:define-input delete-domain-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteDomainRequest"))
 
 (smithy/sdk/shapes:define-structure delete-domain-response common-lisp:nil
                                     common-lisp:nil
@@ -964,13 +964,13 @@ common-lisp:nil
                                    "auditEvents"))
                                  (:shape-name "GetCaseAuditEventsResponse"))
 
-(smithy/sdk/shapes:define-structure get-case-event-configuration-request
-                                    common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId"))
-                                    (:shape-name
-                                     "GetCaseEventConfigurationRequest"))
+(smithy/sdk/shapes:define-input get-case-event-configuration-request
+                                common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "GetCaseEventConfigurationRequest"))
 
 (smithy/sdk/shapes:define-structure get-case-event-configuration-response
                                     common-lisp:nil
@@ -981,18 +981,19 @@ common-lisp:nil
                                     (:shape-name
                                      "GetCaseEventConfigurationResponse"))
 
-(smithy/sdk/shapes:define-structure get-case-request common-lisp:nil
-                                    ((case-id :target-type case-id :required
-                                      common-lisp:t :member-name "caseId")
-                                     (domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (fields :target-type field-identifier-list
-                                      :required common-lisp:t :member-name
-                                      "fields")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken"))
-                                    (:shape-name "GetCaseRequest"))
+(smithy/sdk/shapes:define-input get-case-request common-lisp:nil
+                                ((case-id :target-type case-id :required
+                                  common-lisp:t :member-name "caseId"
+                                  :http-label common-lisp:t)
+                                 (domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (fields :target-type field-identifier-list
+                                  :required common-lisp:t :member-name
+                                  "fields")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken"))
+                                (:shape-name "GetCaseRequest"))
 
 (smithy/sdk/shapes:define-structure get-case-response common-lisp:nil
                                     ((fields :target-type field-value-list
@@ -1034,11 +1035,11 @@ common-lisp:nil
                                       "tags"))
                                     (:shape-name "GetCaseRuleResponse"))
 
-(smithy/sdk/shapes:define-structure get-domain-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId"))
-                                    (:shape-name "GetDomainRequest"))
+(smithy/sdk/shapes:define-input get-domain-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetDomainRequest"))
 
 (smithy/sdk/shapes:define-structure get-domain-response common-lisp:nil
                                     ((domain-id :target-type domain-id
@@ -1086,14 +1087,14 @@ common-lisp:nil
                                       "lastModifiedTime"))
                                     (:shape-name "GetFieldResponse"))
 
-(smithy/sdk/shapes:define-structure get-layout-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (layout-id :target-type layout-id
-                                      :required common-lisp:t :member-name
-                                      "layoutId"))
-                                    (:shape-name "GetLayoutRequest"))
+(smithy/sdk/shapes:define-input get-layout-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (layout-id :target-type layout-id :required
+                                  common-lisp:t :member-name "layoutId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetLayoutRequest"))
 
 (smithy/sdk/shapes:define-structure get-layout-response common-lisp:nil
                                     ((layout-id :target-type layout-id
@@ -1118,14 +1119,14 @@ common-lisp:nil
                                       "lastModifiedTime"))
                                     (:shape-name "GetLayoutResponse"))
 
-(smithy/sdk/shapes:define-structure get-template-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (template-id :target-type template-id
-                                      :required common-lisp:t :member-name
-                                      "templateId"))
-                                    (:shape-name "GetTemplateRequest"))
+(smithy/sdk/shapes:define-input get-template-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (template-id :target-type template-id
+                                  :required common-lisp:t :member-name
+                                  "templateId" :http-label common-lisp:t))
+                                (:shape-name "GetTemplateRequest"))
 
 (smithy/sdk/shapes:define-structure get-template-response common-lisp:nil
                                     ((template-id :target-type template-id
@@ -1176,7 +1177,8 @@ common-lisp:nil
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-type last-modified-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 common-lisp:nil
 
@@ -1234,20 +1236,19 @@ common-lisp:nil
                                    :member-name "nextToken"))
                                  (:shape-name "ListCaseRulesResponse"))
 
-(smithy/sdk/shapes:define-structure list-cases-for-contact-request
-                                    common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (contact-arn :target-type contact-arn
-                                      :required common-lisp:t :member-name
-                                      "contactArn")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken"))
-                                    (:shape-name "ListCasesForContactRequest"))
+(smithy/sdk/shapes:define-input list-cases-for-contact-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (contact-arn :target-type contact-arn
+                                  :required common-lisp:t :member-name
+                                  "contactArn")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken"))
+                                (:shape-name "ListCasesForContactRequest"))
 
 (smithy/sdk/shapes:define-structure list-cases-for-contact-response
                                     common-lisp:nil
@@ -1258,14 +1259,14 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListCasesForContactResponse"))
 
-(smithy/sdk/shapes:define-structure list-domains-request common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListDomainsRequest"))
+(smithy/sdk/shapes:define-input list-domains-request common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListDomainsRequest"))
 
 (smithy/sdk/shapes:define-structure list-domains-response common-lisp:nil
                                     ((domains :target-type domain-summary-list
@@ -1275,22 +1276,22 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListDomainsResponse"))
 
-(smithy/sdk/shapes:define-structure list-field-options-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (field-id :target-type field-id :required
-                                      common-lisp:t :member-name "fieldId")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (values :target-type values-list
-                                      :member-name "values" :http-query
-                                      "values"))
-                                    (:shape-name "ListFieldOptionsRequest"))
+(smithy/sdk/shapes:define-input list-field-options-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (field-id :target-type field-id :required
+                                  common-lisp:t :member-name "fieldId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (values :target-type values-list :member-name
+                                  "values" :http-query "values"))
+                                (:shape-name "ListFieldOptionsRequest"))
 
 (smithy/sdk/shapes:define-structure list-field-options-response common-lisp:nil
                                     ((options :target-type field-options-list
@@ -1300,17 +1301,17 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListFieldOptionsResponse"))
 
-(smithy/sdk/shapes:define-structure list-fields-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListFieldsRequest"))
+(smithy/sdk/shapes:define-input list-fields-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListFieldsRequest"))
 
 (smithy/sdk/shapes:define-structure list-fields-response common-lisp:nil
                                     ((fields :target-type field-summary-list
@@ -1320,17 +1321,17 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListFieldsResponse"))
 
-(smithy/sdk/shapes:define-structure list-layouts-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListLayoutsRequest"))
+(smithy/sdk/shapes:define-input list-layouts-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListLayoutsRequest"))
 
 (smithy/sdk/shapes:define-structure list-layouts-response common-lisp:nil
                                     ((layouts :target-type layout-summary-list
@@ -1340,11 +1341,11 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListLayoutsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-label
+                                  common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1352,20 +1353,19 @@ common-lisp:nil
                                       "tags"))
                                     (:shape-name "ListTagsForResourceResponse"))
 
-(smithy/sdk/shapes:define-structure list-templates-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (status :target-type
-                                      template-status-filters :member-name
-                                      "status" :http-query "status"))
-                                    (:shape-name "ListTemplatesRequest"))
+(smithy/sdk/shapes:define-input list-templates-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (status :target-type template-status-filters
+                                  :member-name "status" :http-query "status"))
+                                (:shape-name "ListTemplatesRequest"))
 
 (smithy/sdk/shapes:define-structure list-templates-response common-lisp:nil
                                     ((templates :target-type
@@ -1400,17 +1400,16 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type order smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure put-case-event-configuration-request
-                                    common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (event-bridge :target-type
-                                      event-bridge-configuration :required
-                                      common-lisp:t :member-name
-                                      "eventBridge"))
-                                    (:shape-name
-                                     "PutCaseEventConfigurationRequest"))
+(smithy/sdk/shapes:define-input put-case-event-configuration-request
+                                common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (event-bridge :target-type
+                                  event-bridge-configuration :required
+                                  common-lisp:t :member-name "eventBridge"))
+                                (:shape-name
+                                 "PutCaseEventConfigurationRequest"))
 
 (smithy/sdk/shapes:define-structure put-case-event-configuration-response
                                     common-lisp:nil common-lisp:nil
@@ -1502,25 +1501,25 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type rule-type smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure search-cases-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken")
-                                     (search-term :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "searchTerm")
-                                     (filter :target-type case-filter
-                                      :member-name "filter")
-                                     (sorts :target-type sort-list :member-name
-                                      "sorts")
-                                     (fields :target-type field-identifier-list
-                                      :member-name "fields"))
-                                    (:shape-name "SearchCasesRequest"))
+(smithy/sdk/shapes:define-input search-cases-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken")
+                                 (search-term :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "searchTerm")
+                                 (filter :target-type case-filter :member-name
+                                  "filter")
+                                 (sorts :target-type sort-list :member-name
+                                  "sorts")
+                                 (fields :target-type field-identifier-list
+                                  :member-name "fields"))
+                                (:shape-name "SearchCasesRequest"))
 
 (smithy/sdk/shapes:define-structure search-cases-response common-lisp:nil
                                     ((next-token :target-type next-token
@@ -1546,22 +1545,21 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list search-cases-response-item-list :member
                                search-cases-response-item)
 
-(smithy/sdk/shapes:define-structure search-related-items-request
-                                    common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (case-id :target-type case-id :required
-                                      common-lisp:t :member-name "caseId")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken")
-                                     (filters :target-type
-                                      related-item-filter-list :member-name
-                                      "filters"))
-                                    (:shape-name "SearchRelatedItemsRequest"))
+(smithy/sdk/shapes:define-input search-related-items-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (case-id :target-type case-id :required
+                                  common-lisp:t :member-name "caseId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken")
+                                 (filters :target-type related-item-filter-list
+                                  :member-name "filters"))
+                                (:shape-name "SearchRelatedItemsRequest"))
 
 (smithy/sdk/shapes:define-structure search-related-items-response
                                     common-lisp:nil
@@ -1613,7 +1611,8 @@ common-lisp:nil
                                 (:error-code 402))
 
 (smithy/sdk/shapes:define-type sla-completion-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure sla-configuration common-lisp:nil
                                     ((name :target-type sla-name :required
@@ -1678,7 +1677,8 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type sla-status smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type sla-target-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type sla-type smithy/sdk/smithy-types:string)
 
@@ -1695,12 +1695,12 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list tag-key-list :member tag-key)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn")
-                                     (tags :target-type tags :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-label common-lisp:t)
+                                 (tags :target-type tags :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-map tags :key smithy/sdk/smithy-types:string :value
                               smithy/sdk/smithy-types:string)
@@ -1755,26 +1755,27 @@ common-lisp:nil
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
-(smithy/sdk/shapes:define-structure update-case-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (case-id :target-type case-id :required
-                                      common-lisp:t :member-name "caseId")
-                                     (fields :target-type field-value-list
-                                      :required common-lisp:t :member-name
-                                      "fields")
-                                     (performed-by :target-type user-union
-                                      :member-name "performedBy"))
-                                    (:shape-name "UpdateCaseRequest"))
+(smithy/sdk/shapes:define-input update-case-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (case-id :target-type case-id :required
+                                  common-lisp:t :member-name "caseId"
+                                  :http-label common-lisp:t)
+                                 (fields :target-type field-value-list
+                                  :required common-lisp:t :member-name
+                                  "fields")
+                                 (performed-by :target-type user-union
+                                  :member-name "performedBy"))
+                                (:shape-name "UpdateCaseRequest"))
 
 (smithy/sdk/shapes:define-structure update-case-response common-lisp:nil
                                     common-lisp:nil
@@ -1800,64 +1801,62 @@ common-lisp:nil
                                  common-lisp:nil
                                  (:shape-name "UpdateCaseRuleResponse"))
 
-(smithy/sdk/shapes:define-structure update-field-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (field-id :target-type field-id :required
-                                      common-lisp:t :member-name "fieldId")
-                                     (name :target-type field-name :member-name
-                                      "name")
-                                     (description :target-type
-                                      field-description :member-name
-                                      "description"))
-                                    (:shape-name "UpdateFieldRequest"))
+(smithy/sdk/shapes:define-input update-field-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (field-id :target-type field-id :required
+                                  common-lisp:t :member-name "fieldId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type field-name :member-name
+                                  "name")
+                                 (description :target-type field-description
+                                  :member-name "description"))
+                                (:shape-name "UpdateFieldRequest"))
 
 (smithy/sdk/shapes:define-structure update-field-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UpdateFieldResponse"))
 
-(smithy/sdk/shapes:define-structure update-layout-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (layout-id :target-type layout-id
-                                      :required common-lisp:t :member-name
-                                      "layoutId")
-                                     (name :target-type layout-name
-                                      :member-name "name")
-                                     (content :target-type layout-content
-                                      :member-name "content"))
-                                    (:shape-name "UpdateLayoutRequest"))
+(smithy/sdk/shapes:define-input update-layout-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (layout-id :target-type layout-id :required
+                                  common-lisp:t :member-name "layoutId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type layout-name :member-name
+                                  "name")
+                                 (content :target-type layout-content
+                                  :member-name "content"))
+                                (:shape-name "UpdateLayoutRequest"))
 
 (smithy/sdk/shapes:define-structure update-layout-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UpdateLayoutResponse"))
 
-(smithy/sdk/shapes:define-structure update-template-request common-lisp:nil
-                                    ((domain-id :target-type domain-id
-                                      :required common-lisp:t :member-name
-                                      "domainId")
-                                     (template-id :target-type template-id
-                                      :required common-lisp:t :member-name
-                                      "templateId")
-                                     (name :target-type template-name
-                                      :member-name "name")
-                                     (description :target-type
-                                      template-description :member-name
-                                      "description")
-                                     (layout-configuration :target-type
-                                      layout-configuration :member-name
-                                      "layoutConfiguration")
-                                     (required-fields :target-type
-                                      required-field-list :member-name
-                                      "requiredFields")
-                                     (status :target-type template-status
-                                      :member-name "status")
-                                     (rules :target-type
-                                      template-case-rule-list :member-name
-                                      "rules"))
-                                    (:shape-name "UpdateTemplateRequest"))
+(smithy/sdk/shapes:define-input update-template-request common-lisp:nil
+                                ((domain-id :target-type domain-id :required
+                                  common-lisp:t :member-name "domainId"
+                                  :http-label common-lisp:t)
+                                 (template-id :target-type template-id
+                                  :required common-lisp:t :member-name
+                                  "templateId" :http-label common-lisp:t)
+                                 (name :target-type template-name :member-name
+                                  "name")
+                                 (description :target-type template-description
+                                  :member-name "description")
+                                 (layout-configuration :target-type
+                                  layout-configuration :member-name
+                                  "layoutConfiguration")
+                                 (required-fields :target-type
+                                  required-field-list :member-name
+                                  "requiredFields")
+                                 (status :target-type template-status
+                                  :member-name "status")
+                                 (rules :target-type template-case-rule-list
+                                  :member-name "rules"))
+                                (:shape-name "UpdateTemplateRequest"))
 
 (smithy/sdk/shapes:define-structure update-template-response common-lisp:nil
                                     common-lisp:nil

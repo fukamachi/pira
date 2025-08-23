@@ -344,13 +344,12 @@
 
 (smithy/sdk/shapes:define-type data-type smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure delete-migration-workflow-request
-                                    common-lisp:nil
-                                    ((id :target-type migration-workflow-id
-                                      :required common-lisp:t :member-name
-                                      "id"))
-                                    (:shape-name
-                                     "DeleteMigrationWorkflowRequest"))
+(smithy/sdk/shapes:define-input delete-migration-workflow-request
+                                common-lisp:nil
+                                ((id :target-type migration-workflow-id
+                                  :required common-lisp:t :member-name "id"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteMigrationWorkflowRequest"))
 
 (smithy/sdk/shapes:define-structure delete-migration-workflow-response
                                     common-lisp:nil
@@ -375,45 +374,44 @@
                                  common-lisp:nil
                                  (:shape-name "DeleteTemplateResponse"))
 
-(smithy/sdk/shapes:define-structure delete-workflow-step-group-request
-                                    common-lisp:nil
-                                    ((workflow-id :target-type
-                                      migration-workflow-id :required
-                                      common-lisp:t :member-name "workflowId"
-                                      :http-query "workflowId")
-                                     (id :target-type step-group-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name
-                                     "DeleteWorkflowStepGroupRequest"))
+(smithy/sdk/shapes:define-input delete-workflow-step-group-request
+                                common-lisp:nil
+                                ((workflow-id :target-type
+                                  migration-workflow-id :required common-lisp:t
+                                  :member-name "workflowId" :http-query
+                                  "workflowId")
+                                 (id :target-type step-group-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteWorkflowStepGroupRequest"))
 
 (smithy/sdk/shapes:define-structure delete-workflow-step-group-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeleteWorkflowStepGroupResponse"))
 
-(smithy/sdk/shapes:define-structure delete-workflow-step-request
-                                    common-lisp:nil
-                                    ((id :target-type step-id :required
-                                      common-lisp:t :member-name "id")
-                                     (step-group-id :target-type step-group-id
-                                      :required common-lisp:t :member-name
-                                      "stepGroupId" :http-query "stepGroupId")
-                                     (workflow-id :target-type
-                                      migration-workflow-id :required
-                                      common-lisp:t :member-name "workflowId"
-                                      :http-query "workflowId"))
-                                    (:shape-name "DeleteWorkflowStepRequest"))
+(smithy/sdk/shapes:define-input delete-workflow-step-request common-lisp:nil
+                                ((id :target-type step-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t)
+                                 (step-group-id :target-type step-group-id
+                                  :required common-lisp:t :member-name
+                                  "stepGroupId" :http-query "stepGroupId")
+                                 (workflow-id :target-type
+                                  migration-workflow-id :required common-lisp:t
+                                  :member-name "workflowId" :http-query
+                                  "workflowId"))
+                                (:shape-name "DeleteWorkflowStepRequest"))
 
 (smithy/sdk/shapes:define-structure delete-workflow-step-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name "DeleteWorkflowStepResponse"))
 
-(smithy/sdk/shapes:define-structure get-migration-workflow-request
-                                    common-lisp:nil
-                                    ((id :target-type migration-workflow-id
-                                      :required common-lisp:t :member-name
-                                      "id"))
-                                    (:shape-name "GetMigrationWorkflowRequest"))
+(smithy/sdk/shapes:define-input get-migration-workflow-request common-lisp:nil
+                                ((id :target-type migration-workflow-id
+                                  :required common-lisp:t :member-name "id"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetMigrationWorkflowRequest"))
 
 (smithy/sdk/shapes:define-structure get-migration-workflow-response
                                     common-lisp:nil
@@ -479,12 +477,13 @@
                                     (:shape-name
                                      "GetMigrationWorkflowResponse"))
 
-(smithy/sdk/shapes:define-structure get-migration-workflow-template-request
-                                    common-lisp:nil
-                                    ((id :target-type template-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name
-                                     "GetMigrationWorkflowTemplateRequest"))
+(smithy/sdk/shapes:define-input get-migration-workflow-template-request
+                                common-lisp:nil
+                                ((id :target-type template-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "GetMigrationWorkflowTemplateRequest"))
 
 (smithy/sdk/shapes:define-structure get-migration-workflow-template-response
                                     common-lisp:nil
@@ -523,14 +522,14 @@
                                     (:shape-name
                                      "GetMigrationWorkflowTemplateResponse"))
 
-(smithy/sdk/shapes:define-structure get-template-step-group-request
-                                    common-lisp:nil
-                                    ((template-id :target-type template-id
-                                      :required common-lisp:t :member-name
-                                      "templateId")
-                                     (id :target-type step-group-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "GetTemplateStepGroupRequest"))
+(smithy/sdk/shapes:define-input get-template-step-group-request common-lisp:nil
+                                ((template-id :target-type template-id
+                                  :required common-lisp:t :member-name
+                                  "templateId" :http-label common-lisp:t)
+                                 (id :target-type step-group-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetTemplateStepGroupRequest"))
 
 (smithy/sdk/shapes:define-structure get-template-step-group-response
                                     common-lisp:nil
@@ -563,16 +562,17 @@
                                     (:shape-name
                                      "GetTemplateStepGroupResponse"))
 
-(smithy/sdk/shapes:define-structure get-template-step-request common-lisp:nil
-                                    ((id :target-type step-id :required
-                                      common-lisp:t :member-name "id")
-                                     (template-id :target-type template-id
-                                      :required common-lisp:t :member-name
-                                      "templateId" :http-query "templateId")
-                                     (step-group-id :target-type step-group-id
-                                      :required common-lisp:t :member-name
-                                      "stepGroupId" :http-query "stepGroupId"))
-                                    (:shape-name "GetTemplateStepRequest"))
+(smithy/sdk/shapes:define-input get-template-step-request common-lisp:nil
+                                ((id :target-type step-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t)
+                                 (template-id :target-type template-id
+                                  :required common-lisp:t :member-name
+                                  "templateId" :http-query "templateId")
+                                 (step-group-id :target-type step-group-id
+                                  :required common-lisp:t :member-name
+                                  "stepGroupId" :http-query "stepGroupId"))
+                                (:shape-name "GetTemplateStepRequest"))
 
 (smithy/sdk/shapes:define-structure get-template-step-response common-lisp:nil
                                     ((id :target-type step-id :member-name
@@ -606,15 +606,15 @@
                                       "stepAutomationConfiguration"))
                                     (:shape-name "GetTemplateStepResponse"))
 
-(smithy/sdk/shapes:define-structure get-workflow-step-group-request
-                                    common-lisp:nil
-                                    ((id :target-type step-group-id :required
-                                      common-lisp:t :member-name "id")
-                                     (workflow-id :target-type
-                                      migration-workflow-id :required
-                                      common-lisp:t :member-name "workflowId"
-                                      :http-query "workflowId"))
-                                    (:shape-name "GetWorkflowStepGroupRequest"))
+(smithy/sdk/shapes:define-input get-workflow-step-group-request common-lisp:nil
+                                ((id :target-type step-group-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t)
+                                 (workflow-id :target-type
+                                  migration-workflow-id :required common-lisp:t
+                                  :member-name "workflowId" :http-query
+                                  "workflowId"))
+                                (:shape-name "GetWorkflowStepGroupRequest"))
 
 (smithy/sdk/shapes:define-structure get-workflow-step-group-response
                                     common-lisp:nil
@@ -651,17 +651,18 @@
                                     (:shape-name
                                      "GetWorkflowStepGroupResponse"))
 
-(smithy/sdk/shapes:define-structure get-workflow-step-request common-lisp:nil
-                                    ((workflow-id :target-type
-                                      migration-workflow-id :required
-                                      common-lisp:t :member-name "workflowId"
-                                      :http-query "workflowId")
-                                     (step-group-id :target-type step-group-id
-                                      :required common-lisp:t :member-name
-                                      "stepGroupId" :http-query "stepGroupId")
-                                     (id :target-type step-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "GetWorkflowStepRequest"))
+(smithy/sdk/shapes:define-input get-workflow-step-request common-lisp:nil
+                                ((workflow-id :target-type
+                                  migration-workflow-id :required common-lisp:t
+                                  :member-name "workflowId" :http-query
+                                  "workflowId")
+                                 (step-group-id :target-type step-group-id
+                                  :required common-lisp:t :member-name
+                                  "stepGroupId" :http-query "stepGroupId")
+                                 (id :target-type step-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetWorkflowStepRequest"))
 
 (smithy/sdk/shapes:define-structure get-workflow-step-response common-lisp:nil
                                     ((name :target-type
@@ -735,18 +736,18 @@
                                 (:shape-name "InternalServerException")
                                 (:error-code 500))
 
-(smithy/sdk/shapes:define-structure list-migration-workflow-templates-request
-                                    common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (name :target-type template-name
-                                      :member-name "name" :http-query "name"))
-                                    (:shape-name
-                                     "ListMigrationWorkflowTemplatesRequest"))
+(smithy/sdk/shapes:define-input list-migration-workflow-templates-request
+                                common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (name :target-type template-name :member-name
+                                  "name" :http-query "name"))
+                                (:shape-name
+                                 "ListMigrationWorkflowTemplatesRequest"))
 
 (smithy/sdk/shapes:define-structure list-migration-workflow-templates-response
                                     common-lisp:nil
@@ -759,33 +760,29 @@
                                     (:shape-name
                                      "ListMigrationWorkflowTemplatesResponse"))
 
-(smithy/sdk/shapes:define-structure list-migration-workflows-request
-                                    common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (template-id :target-type template-id
-                                      :member-name "templateId" :http-query
-                                      "templateId")
-                                     (ads-application-configuration-name
-                                      :target-type
-                                      application-configuration-name
-                                      :member-name
-                                      "adsApplicationConfigurationName"
-                                      :http-query
-                                      "adsApplicationConfigurationName")
-                                     (status :target-type
-                                      migration-workflow-status-enum
-                                      :member-name "status" :http-query
-                                      "status")
-                                     (name :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "name" :http-query "name"))
-                                    (:shape-name
-                                     "ListMigrationWorkflowsRequest"))
+(smithy/sdk/shapes:define-input list-migration-workflows-request
+                                common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (template-id :target-type template-id
+                                  :member-name "templateId" :http-query
+                                  "templateId")
+                                 (ads-application-configuration-name
+                                  :target-type application-configuration-name
+                                  :member-name
+                                  "adsApplicationConfigurationName" :http-query
+                                  "adsApplicationConfigurationName")
+                                 (status :target-type
+                                  migration-workflow-status-enum :member-name
+                                  "status" :http-query "status")
+                                 (name :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "name" :http-query "name"))
+                                (:shape-name "ListMigrationWorkflowsRequest"))
 
 (smithy/sdk/shapes:define-structure list-migration-workflows-response
                                     common-lisp:nil
@@ -798,14 +795,14 @@
                                     (:shape-name
                                      "ListMigrationWorkflowsResponse"))
 
-(smithy/sdk/shapes:define-structure list-plugins-request common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListPluginsRequest"))
+(smithy/sdk/shapes:define-input list-plugins-request common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListPluginsRequest"))
 
 (smithy/sdk/shapes:define-structure list-plugins-response common-lisp:nil
                                     ((next-token :target-type next-token
@@ -814,12 +811,11 @@
                                       :member-name "plugins"))
                                     (:shape-name "ListPluginsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -827,19 +823,18 @@
                                       "tags"))
                                     (:shape-name "ListTagsForResourceResponse"))
 
-(smithy/sdk/shapes:define-structure list-template-step-groups-request
-                                    common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (template-id :target-type template-id
-                                      :required common-lisp:t :member-name
-                                      "templateId"))
-                                    (:shape-name
-                                     "ListTemplateStepGroupsRequest"))
+(smithy/sdk/shapes:define-input list-template-step-groups-request
+                                common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (template-id :target-type template-id
+                                  :required common-lisp:t :member-name
+                                  "templateId" :http-label common-lisp:t))
+                                (:shape-name "ListTemplateStepGroupsRequest"))
 
 (smithy/sdk/shapes:define-structure list-template-step-groups-response
                                     common-lisp:nil
@@ -852,20 +847,20 @@
                                     (:shape-name
                                      "ListTemplateStepGroupsResponse"))
 
-(smithy/sdk/shapes:define-structure list-template-steps-request common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (template-id :target-type template-id
-                                      :required common-lisp:t :member-name
-                                      "templateId" :http-query "templateId")
-                                     (step-group-id :target-type step-group-id
-                                      :required common-lisp:t :member-name
-                                      "stepGroupId" :http-query "stepGroupId"))
-                                    (:shape-name "ListTemplateStepsRequest"))
+(smithy/sdk/shapes:define-input list-template-steps-request common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (template-id :target-type template-id
+                                  :required common-lisp:t :member-name
+                                  "templateId" :http-query "templateId")
+                                 (step-group-id :target-type step-group-id
+                                  :required common-lisp:t :member-name
+                                  "stepGroupId" :http-query "stepGroupId"))
+                                (:shape-name "ListTemplateStepsRequest"))
 
 (smithy/sdk/shapes:define-structure list-template-steps-response
                                     common-lisp:nil
@@ -876,20 +871,19 @@
                                       "templateStepSummaryList"))
                                     (:shape-name "ListTemplateStepsResponse"))
 
-(smithy/sdk/shapes:define-structure list-workflow-step-groups-request
-                                    common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (workflow-id :target-type
-                                      migration-workflow-id :required
-                                      common-lisp:t :member-name "workflowId"
-                                      :http-query "workflowId"))
-                                    (:shape-name
-                                     "ListWorkflowStepGroupsRequest"))
+(smithy/sdk/shapes:define-input list-workflow-step-groups-request
+                                common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (workflow-id :target-type
+                                  migration-workflow-id :required common-lisp:t
+                                  :member-name "workflowId" :http-query
+                                  "workflowId"))
+                                (:shape-name "ListWorkflowStepGroupsRequest"))
 
 (smithy/sdk/shapes:define-structure list-workflow-step-groups-response
                                     common-lisp:nil
@@ -902,20 +896,21 @@
                                     (:shape-name
                                      "ListWorkflowStepGroupsResponse"))
 
-(smithy/sdk/shapes:define-structure list-workflow-steps-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (workflow-id :target-type
-                                      migration-workflow-id :required
-                                      common-lisp:t :member-name "workflowId")
-                                     (step-group-id :target-type step-group-id
-                                      :required common-lisp:t :member-name
-                                      "stepGroupId"))
-                                    (:shape-name "ListWorkflowStepsRequest"))
+(smithy/sdk/shapes:define-input list-workflow-steps-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (workflow-id :target-type
+                                  migration-workflow-id :required common-lisp:t
+                                  :member-name "workflowId" :http-label
+                                  common-lisp:t)
+                                 (step-group-id :target-type step-group-id
+                                  :required common-lisp:t :member-name
+                                  "stepGroupId" :http-label common-lisp:t))
+                                (:shape-name "ListWorkflowStepsRequest"))
 
 (smithy/sdk/shapes:define-structure list-workflow-steps-response
                                     common-lisp:nil
@@ -1042,17 +1037,18 @@ common-lisp:nil
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-code 404))
 
-(smithy/sdk/shapes:define-structure retry-workflow-step-request common-lisp:nil
-                                    ((workflow-id :target-type
-                                      migration-workflow-id :required
-                                      common-lisp:t :member-name "workflowId"
-                                      :http-query "workflowId")
-                                     (step-group-id :target-type step-group-id
-                                      :required common-lisp:t :member-name
-                                      "stepGroupId" :http-query "stepGroupId")
-                                     (id :target-type step-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "RetryWorkflowStepRequest"))
+(smithy/sdk/shapes:define-input retry-workflow-step-request common-lisp:nil
+                                ((workflow-id :target-type
+                                  migration-workflow-id :required common-lisp:t
+                                  :member-name "workflowId" :http-query
+                                  "workflowId")
+                                 (step-group-id :target-type step-group-id
+                                  :required common-lisp:t :member-name
+                                  "stepGroupId" :http-query "stepGroupId")
+                                 (id :target-type step-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "RetryWorkflowStepRequest"))
 
 (smithy/sdk/shapes:define-structure retry-workflow-step-response
                                     common-lisp:nil
@@ -1075,13 +1071,12 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type s3key smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure start-migration-workflow-request
-                                    common-lisp:nil
-                                    ((id :target-type migration-workflow-id
-                                      :required common-lisp:t :member-name
-                                      "id"))
-                                    (:shape-name
-                                     "StartMigrationWorkflowRequest"))
+(smithy/sdk/shapes:define-input start-migration-workflow-request
+                                common-lisp:nil
+                                ((id :target-type migration-workflow-id
+                                  :required common-lisp:t :member-name "id"
+                                  :http-label common-lisp:t))
+                                (:shape-name "StartMigrationWorkflowRequest"))
 
 (smithy/sdk/shapes:define-structure start-migration-workflow-response
                                     common-lisp:nil
@@ -1170,13 +1165,11 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type step-status smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure stop-migration-workflow-request
-                                    common-lisp:nil
-                                    ((id :target-type migration-workflow-id
-                                      :required common-lisp:t :member-name
-                                      "id"))
-                                    (:shape-name
-                                     "StopMigrationWorkflowRequest"))
+(smithy/sdk/shapes:define-input stop-migration-workflow-request common-lisp:nil
+                                ((id :target-type migration-workflow-id
+                                  :required common-lisp:t :member-name "id"
+                                  :http-label common-lisp:t))
+                                (:shape-name "StopMigrationWorkflowRequest"))
 
 (smithy/sdk/shapes:define-structure stop-migration-workflow-response
                                     common-lisp:nil
@@ -1217,13 +1210,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -1347,37 +1340,36 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list tools-list :member tool)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-migration-workflow-request
-                                    common-lisp:nil
-                                    ((id :target-type migration-workflow-id
-                                      :required common-lisp:t :member-name
-                                      "id")
-                                     (name :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "name")
-                                     (description :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "description")
-                                     (input-parameters :target-type
-                                      step-input-parameters :member-name
-                                      "inputParameters")
-                                     (step-targets :target-type string-list
-                                      :member-name "stepTargets"))
-                                    (:shape-name
-                                     "UpdateMigrationWorkflowRequest"))
+(smithy/sdk/shapes:define-input update-migration-workflow-request
+                                common-lisp:nil
+                                ((id :target-type migration-workflow-id
+                                  :required common-lisp:t :member-name "id"
+                                  :http-label common-lisp:t)
+                                 (name :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "name")
+                                 (description :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "description")
+                                 (input-parameters :target-type
+                                  step-input-parameters :member-name
+                                  "inputParameters")
+                                 (step-targets :target-type string-list
+                                  :member-name "stepTargets"))
+                                (:shape-name "UpdateMigrationWorkflowRequest"))
 
 (smithy/sdk/shapes:define-structure update-migration-workflow-response
                                     common-lisp:nil
@@ -1444,25 +1436,25 @@ common-lisp:nil
                                    "tags"))
                                  (:shape-name "UpdateTemplateResponse"))
 
-(smithy/sdk/shapes:define-structure update-workflow-step-group-request
-                                    common-lisp:nil
-                                    ((workflow-id :target-type
-                                      migration-workflow-id :required
-                                      common-lisp:t :member-name "workflowId"
-                                      :http-query "workflowId")
-                                     (id :target-type step-group-id :required
-                                      common-lisp:t :member-name "id")
-                                     (name :target-type step-group-name
-                                      :member-name "name")
-                                     (description :target-type
-                                      step-group-description :member-name
-                                      "description")
-                                     (next :target-type string-list
-                                      :member-name "next")
-                                     (previous :target-type string-list
-                                      :member-name "previous"))
-                                    (:shape-name
-                                     "UpdateWorkflowStepGroupRequest"))
+(smithy/sdk/shapes:define-input update-workflow-step-group-request
+                                common-lisp:nil
+                                ((workflow-id :target-type
+                                  migration-workflow-id :required common-lisp:t
+                                  :member-name "workflowId" :http-query
+                                  "workflowId")
+                                 (id :target-type step-group-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t)
+                                 (name :target-type step-group-name
+                                  :member-name "name")
+                                 (description :target-type
+                                  step-group-description :member-name
+                                  "description")
+                                 (next :target-type string-list :member-name
+                                  "next")
+                                 (previous :target-type string-list
+                                  :member-name "previous"))
+                                (:shape-name "UpdateWorkflowStepGroupRequest"))
 
 (smithy/sdk/shapes:define-structure update-workflow-step-group-response
                                     common-lisp:nil
@@ -1490,40 +1482,40 @@ common-lisp:nil
                                     (:shape-name
                                      "UpdateWorkflowStepGroupResponse"))
 
-(smithy/sdk/shapes:define-structure update-workflow-step-request
-                                    common-lisp:nil
-                                    ((id :target-type step-id :required
-                                      common-lisp:t :member-name "id")
-                                     (step-group-id :target-type step-group-id
-                                      :required common-lisp:t :member-name
-                                      "stepGroupId")
-                                     (workflow-id :target-type
-                                      migration-workflow-id :required
-                                      common-lisp:t :member-name "workflowId")
-                                     (name :target-type step-name :member-name
-                                      "name")
-                                     (description :target-type step-description
-                                      :member-name "description")
-                                     (step-action-type :target-type
-                                      step-action-type :member-name
-                                      "stepActionType")
-                                     (workflow-step-automation-configuration
-                                      :target-type
-                                      workflow-step-automation-configuration
-                                      :member-name
-                                      "workflowStepAutomationConfiguration")
-                                     (step-target :target-type string-list
-                                      :member-name "stepTarget")
-                                     (outputs :target-type
-                                      workflow-step-output-list :member-name
-                                      "outputs")
-                                     (previous :target-type string-list
-                                      :member-name "previous")
-                                     (next :target-type string-list
-                                      :member-name "next")
-                                     (status :target-type step-status
-                                      :member-name "status"))
-                                    (:shape-name "UpdateWorkflowStepRequest"))
+(smithy/sdk/shapes:define-input update-workflow-step-request common-lisp:nil
+                                ((id :target-type step-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t)
+                                 (step-group-id :target-type step-group-id
+                                  :required common-lisp:t :member-name
+                                  "stepGroupId")
+                                 (workflow-id :target-type
+                                  migration-workflow-id :required common-lisp:t
+                                  :member-name "workflowId")
+                                 (name :target-type step-name :member-name
+                                  "name")
+                                 (description :target-type step-description
+                                  :member-name "description")
+                                 (step-action-type :target-type
+                                  step-action-type :member-name
+                                  "stepActionType")
+                                 (workflow-step-automation-configuration
+                                  :target-type
+                                  workflow-step-automation-configuration
+                                  :member-name
+                                  "workflowStepAutomationConfiguration")
+                                 (step-target :target-type string-list
+                                  :member-name "stepTarget")
+                                 (outputs :target-type
+                                  workflow-step-output-list :member-name
+                                  "outputs")
+                                 (previous :target-type string-list
+                                  :member-name "previous")
+                                 (next :target-type string-list :member-name
+                                  "next")
+                                 (status :target-type step-status :member-name
+                                  "status"))
+                                (:shape-name "UpdateWorkflowStepRequest"))
 
 (smithy/sdk/shapes:define-structure update-workflow-step-response
                                     common-lisp:nil

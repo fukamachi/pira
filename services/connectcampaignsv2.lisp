@@ -1371,7 +1371,8 @@
 
 (smithy/sdk/shapes:define-list time-range-list :member time-range)
 
-(smithy/sdk/shapes:define-type time-stamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type time-stamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure time-window common-lisp:nil
                                     ((open-hours :target-type open-hours

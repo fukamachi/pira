@@ -10298,7 +10298,8 @@
 
 (smithy/sdk/shapes:define-type string-pattern-ws smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-type timestamp-unix smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp-unix smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "epoch-seconds")
 
 (smithy/sdk/operation:define-operation associate-certificate :shape-name
                                        "AssociateCertificate" :input

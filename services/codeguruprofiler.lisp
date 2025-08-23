@@ -115,16 +115,15 @@
 
 (smithy/sdk/shapes:define-type action-group smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure add-notification-channels-request
-                                    common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (channels :target-type channels :required
-                                      common-lisp:t :member-name "channels"))
-                                    (:shape-name
-                                     "AddNotificationChannelsRequest"))
+(smithy/sdk/shapes:define-input add-notification-channels-request
+                                common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (channels :target-type channels :required
+                                  common-lisp:t :member-name "channels"))
+                                (:shape-name "AddNotificationChannelsRequest"))
 
 (smithy/sdk/shapes:define-structure add-notification-channels-response
                                     common-lisp:nil
@@ -206,28 +205,26 @@
 
 (smithy/sdk/shapes:define-list anomaly-instances :member anomaly-instance)
 
-(smithy/sdk/shapes:define-structure batch-get-frame-metric-data-request
-                                    common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (start-time :target-type timestamp
-                                      :member-name "startTime" :http-query
-                                      "startTime")
-                                     (end-time :target-type timestamp
-                                      :member-name "endTime" :http-query
-                                      "endTime")
-                                     (period :target-type period :member-name
-                                      "period" :http-query "period")
-                                     (target-resolution :target-type
-                                      aggregation-period :member-name
-                                      "targetResolution" :http-query
-                                      "targetResolution")
-                                     (frame-metrics :target-type frame-metrics
-                                      :member-name "frameMetrics"))
-                                    (:shape-name
-                                     "BatchGetFrameMetricDataRequest"))
+(smithy/sdk/shapes:define-input batch-get-frame-metric-data-request
+                                common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (start-time :target-type timestamp
+                                  :member-name "startTime" :http-query
+                                  "startTime")
+                                 (end-time :target-type timestamp :member-name
+                                  "endTime" :http-query "endTime")
+                                 (period :target-type period :member-name
+                                  "period" :http-query "period")
+                                 (target-resolution :target-type
+                                  aggregation-period :member-name
+                                  "targetResolution" :http-query
+                                  "targetResolution")
+                                 (frame-metrics :target-type frame-metrics
+                                  :member-name "frameMetrics"))
+                                (:shape-name "BatchGetFrameMetricDataRequest"))
 
 (smithy/sdk/shapes:define-structure batch-get-frame-metric-data-response
                                     common-lisp:nil
@@ -272,19 +269,19 @@
 
 (smithy/sdk/shapes:define-type compute-platform smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure configure-agent-request common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (fleet-instance-id :target-type
-                                      fleet-instance-id :member-name
-                                      "fleetInstanceId")
-                                     (metadata :target-type metadata
-                                      :member-name "metadata"))
-                                    (:shape-name "ConfigureAgentRequest"))
+(smithy/sdk/shapes:define-input configure-agent-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (fleet-instance-id :target-type
+                                  fleet-instance-id :member-name
+                                  "fleetInstanceId")
+                                 (metadata :target-type metadata :member-name
+                                  "metadata"))
+                                (:shape-name "ConfigureAgentRequest"))
 
-(smithy/sdk/shapes:define-structure configure-agent-response common-lisp:nil
+(smithy/sdk/shapes:define-interface configure-agent-response common-lisp:nil
                                     ((configuration :target-type
                                       agent-configuration :required
                                       common-lisp:t :member-name
@@ -299,26 +296,24 @@
                                 (:shape-name "ConflictException")
                                 (:error-code 409))
 
-(smithy/sdk/shapes:define-structure create-profiling-group-request
-                                    common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (compute-platform :target-type
-                                      compute-platform :member-name
-                                      "computePlatform")
-                                     (client-token :target-type client-token
-                                      :required common-lisp:t :member-name
-                                      "clientToken" :http-query "clientToken")
-                                     (agent-orchestration-config :target-type
-                                      agent-orchestration-config :member-name
-                                      "agentOrchestrationConfig")
-                                     (tags :target-type tags-map :member-name
-                                      "tags"))
-                                    (:shape-name "CreateProfilingGroupRequest"))
+(smithy/sdk/shapes:define-input create-profiling-group-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName")
+                                 (compute-platform :target-type
+                                  compute-platform :member-name
+                                  "computePlatform")
+                                 (client-token :target-type client-token
+                                  :required common-lisp:t :member-name
+                                  "clientToken" :http-query "clientToken")
+                                 (agent-orchestration-config :target-type
+                                  agent-orchestration-config :member-name
+                                  "agentOrchestrationConfig")
+                                 (tags :target-type tags-map :member-name
+                                  "tags"))
+                                (:shape-name "CreateProfilingGroupRequest"))
 
-(smithy/sdk/shapes:define-structure create-profiling-group-response
+(smithy/sdk/shapes:define-interface create-profiling-group-response
                                     common-lisp:nil
                                     ((profiling-group :target-type
                                       profiling-group-description :required
@@ -328,29 +323,27 @@
                                     (:shape-name
                                      "CreateProfilingGroupResponse"))
 
-(smithy/sdk/shapes:define-structure delete-profiling-group-request
-                                    common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName"))
-                                    (:shape-name "DeleteProfilingGroupRequest"))
+(smithy/sdk/shapes:define-input delete-profiling-group-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteProfilingGroupRequest"))
 
 (smithy/sdk/shapes:define-structure delete-profiling-group-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeleteProfilingGroupResponse"))
 
-(smithy/sdk/shapes:define-structure describe-profiling-group-request
-                                    common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName"))
-                                    (:shape-name
-                                     "DescribeProfilingGroupRequest"))
+(smithy/sdk/shapes:define-input describe-profiling-group-request
+                                common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DescribeProfilingGroupRequest"))
 
-(smithy/sdk/shapes:define-structure describe-profiling-group-response
+(smithy/sdk/shapes:define-interface describe-profiling-group-response
                                     common-lisp:nil
                                     ((profiling-group :target-type
                                       profiling-group-description :required
@@ -418,20 +411,20 @@
 
 (smithy/sdk/shapes:define-list frame-metrics :member frame-metric)
 
-(smithy/sdk/shapes:define-structure get-findings-report-account-summary-request
-                                    common-lisp:nil
-                                    ((next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (daily-reports-only :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "dailyReportsOnly"
-                                      :http-query "dailyReportsOnly"))
-                                    (:shape-name
-                                     "GetFindingsReportAccountSummaryRequest"))
+(smithy/sdk/shapes:define-input get-findings-report-account-summary-request
+                                common-lisp:nil
+                                ((next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (daily-reports-only :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "dailyReportsOnly" :http-query
+                                  "dailyReportsOnly"))
+                                (:shape-name
+                                 "GetFindingsReportAccountSummaryRequest"))
 
 (smithy/sdk/shapes:define-structure
  get-findings-report-account-summary-response common-lisp:nil
@@ -440,14 +433,14 @@
   (next-token :target-type pagination-token :member-name "nextToken"))
  (:shape-name "GetFindingsReportAccountSummaryResponse"))
 
-(smithy/sdk/shapes:define-structure get-notification-configuration-request
-                                    common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName"))
-                                    (:shape-name
-                                     "GetNotificationConfigurationRequest"))
+(smithy/sdk/shapes:define-input get-notification-configuration-request
+                                common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "GetNotificationConfigurationRequest"))
 
 (smithy/sdk/shapes:define-structure get-notification-configuration-response
                                     common-lisp:nil
@@ -458,12 +451,12 @@
                                     (:shape-name
                                      "GetNotificationConfigurationResponse"))
 
-(smithy/sdk/shapes:define-structure get-policy-request common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName"))
-                                    (:shape-name "GetPolicyRequest"))
+(smithy/sdk/shapes:define-input get-policy-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetPolicyRequest"))
 
 (smithy/sdk/shapes:define-structure get-policy-response common-lisp:nil
                                     ((policy :target-type
@@ -474,29 +467,26 @@
                                       "revisionId"))
                                     (:shape-name "GetPolicyResponse"))
 
-(smithy/sdk/shapes:define-structure get-profile-request common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (start-time :target-type timestamp
-                                      :member-name "startTime" :http-query
-                                      "startTime")
-                                     (period :target-type period :member-name
-                                      "period" :http-query "period")
-                                     (end-time :target-type timestamp
-                                      :member-name "endTime" :http-query
-                                      "endTime")
-                                     (max-depth :target-type max-depth
-                                      :member-name "maxDepth" :http-query
-                                      "maxDepth")
-                                     (accept :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "accept" :http-header
-                                      "Accept"))
-                                    (:shape-name "GetProfileRequest"))
+(smithy/sdk/shapes:define-input get-profile-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (start-time :target-type timestamp
+                                  :member-name "startTime" :http-query
+                                  "startTime")
+                                 (period :target-type period :member-name
+                                  "period" :http-query "period")
+                                 (end-time :target-type timestamp :member-name
+                                  "endTime" :http-query "endTime")
+                                 (max-depth :target-type max-depth :member-name
+                                  "maxDepth" :http-query "maxDepth")
+                                 (accept :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "accept" :http-header "Accept"))
+                                (:shape-name "GetProfileRequest"))
 
-(smithy/sdk/shapes:define-structure get-profile-response common-lisp:nil
+(smithy/sdk/shapes:define-interface get-profile-response common-lisp:nil
                                     ((profile :target-type aggregated-profile
                                       :required common-lisp:t :member-name
                                       "profile" :http-payload common-lisp:t)
@@ -510,20 +500,20 @@
                                       :http-header "Content-Encoding"))
                                     (:shape-name "GetProfileResponse"))
 
-(smithy/sdk/shapes:define-structure get-recommendations-request common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (start-time :target-type timestamp
-                                      :required common-lisp:t :member-name
-                                      "startTime" :http-query "startTime")
-                                     (end-time :target-type timestamp :required
-                                      common-lisp:t :member-name "endTime"
-                                      :http-query "endTime")
-                                     (locale :target-type locale :member-name
-                                      "locale" :http-query "locale"))
-                                    (:shape-name "GetRecommendationsRequest"))
+(smithy/sdk/shapes:define-input get-recommendations-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (start-time :target-type timestamp :required
+                                  common-lisp:t :member-name "startTime"
+                                  :http-query "startTime")
+                                 (end-time :target-type timestamp :required
+                                  common-lisp:t :member-name "endTime"
+                                  :http-query "endTime")
+                                 (locale :target-type locale :member-name
+                                  "locale" :http-query "locale"))
+                                (:shape-name "GetRecommendationsRequest"))
 
 (smithy/sdk/shapes:define-structure get-recommendations-response
                                     common-lisp:nil
@@ -552,29 +542,28 @@
                                 (:shape-name "InternalServerException")
                                 (:error-code 500))
 
-(smithy/sdk/shapes:define-structure list-findings-reports-request
-                                    common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (start-time :target-type timestamp
-                                      :required common-lisp:t :member-name
-                                      "startTime" :http-query "startTime")
-                                     (end-time :target-type timestamp :required
-                                      common-lisp:t :member-name "endTime"
-                                      :http-query "endTime")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (daily-reports-only :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "dailyReportsOnly"
-                                      :http-query "dailyReportsOnly"))
-                                    (:shape-name "ListFindingsReportsRequest"))
+(smithy/sdk/shapes:define-input list-findings-reports-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (start-time :target-type timestamp :required
+                                  common-lisp:t :member-name "startTime"
+                                  :http-query "startTime")
+                                 (end-time :target-type timestamp :required
+                                  common-lisp:t :member-name "endTime"
+                                  :http-query "endTime")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (daily-reports-only :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "dailyReportsOnly" :http-query
+                                  "dailyReportsOnly"))
+                                (:shape-name "ListFindingsReportsRequest"))
 
 (smithy/sdk/shapes:define-structure list-findings-reports-response
                                     common-lisp:nil
@@ -588,30 +577,29 @@
 
 (smithy/sdk/shapes:define-list list-of-timestamps :member timestamp-structure)
 
-(smithy/sdk/shapes:define-structure list-profile-times-request common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (start-time :target-type timestamp
-                                      :required common-lisp:t :member-name
-                                      "startTime" :http-query "startTime")
-                                     (end-time :target-type timestamp :required
-                                      common-lisp:t :member-name "endTime"
-                                      :http-query "endTime")
-                                     (period :target-type aggregation-period
-                                      :required common-lisp:t :member-name
-                                      "period" :http-query "period")
-                                     (order-by :target-type order-by
-                                      :member-name "orderBy" :http-query
-                                      "orderBy")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListProfileTimesRequest"))
+(smithy/sdk/shapes:define-input list-profile-times-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (start-time :target-type timestamp :required
+                                  common-lisp:t :member-name "startTime"
+                                  :http-query "startTime")
+                                 (end-time :target-type timestamp :required
+                                  common-lisp:t :member-name "endTime"
+                                  :http-query "endTime")
+                                 (period :target-type aggregation-period
+                                  :required common-lisp:t :member-name "period"
+                                  :http-query "period")
+                                 (order-by :target-type order-by :member-name
+                                  "orderBy" :http-query "orderBy")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListProfileTimesRequest"))
 
 (smithy/sdk/shapes:define-structure list-profile-times-response common-lisp:nil
                                     ((profile-times :target-type profile-times
@@ -621,19 +609,18 @@
                                       :member-name "nextToken"))
                                     (:shape-name "ListProfileTimesResponse"))
 
-(smithy/sdk/shapes:define-structure list-profiling-groups-request
-                                    common-lisp:nil
-                                    ((next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (include-description :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "includeDescription"
-                                      :http-query "includeDescription"))
-                                    (:shape-name "ListProfilingGroupsRequest"))
+(smithy/sdk/shapes:define-input list-profiling-groups-request common-lisp:nil
+                                ((next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (include-description :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "includeDescription" :http-query
+                                  "includeDescription"))
+                                (:shape-name "ListProfilingGroupsRequest"))
 
 (smithy/sdk/shapes:define-structure list-profiling-groups-response
                                     common-lisp:nil
@@ -648,13 +635,11 @@
                                       :member-name "nextToken"))
                                     (:shape-name "ListProfilingGroupsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type
-                                      profiling-group-arn :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type profiling-group-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -735,23 +720,22 @@
 
 (smithy/sdk/shapes:define-type period smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure post-agent-profile-request common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (agent-profile :target-type agent-profile
-                                      :required common-lisp:t :member-name
-                                      "agentProfile" :http-payload
-                                      common-lisp:t)
-                                     (profile-token :target-type client-token
-                                      :member-name "profileToken" :http-query
-                                      "profileToken")
-                                     (content-type :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "contentType"
-                                      :http-header "Content-Type"))
-                                    (:shape-name "PostAgentProfileRequest"))
+(smithy/sdk/shapes:define-input post-agent-profile-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (agent-profile :target-type agent-profile
+                                  :required common-lisp:t :member-name
+                                  "agentProfile" :http-payload common-lisp:t)
+                                 (profile-token :target-type client-token
+                                  :member-name "profileToken" :http-query
+                                  "profileToken")
+                                 (content-type :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "contentType"
+                                  :http-header "Content-Type"))
+                                (:shape-name "PostAgentProfileRequest"))
 
 (smithy/sdk/shapes:define-structure post-agent-profile-response common-lisp:nil
                                     common-lisp:nil
@@ -816,20 +800,19 @@ common-lisp:nil
                                       "latestAgentOrchestratedAt"))
                                     (:shape-name "ProfilingStatus"))
 
-(smithy/sdk/shapes:define-structure put-permission-request common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (action-group :target-type action-group
-                                      :required common-lisp:t :member-name
-                                      "actionGroup")
-                                     (principals :target-type principals
-                                      :required common-lisp:t :member-name
-                                      "principals")
-                                     (revision-id :target-type revision-id
-                                      :member-name "revisionId"))
-                                    (:shape-name "PutPermissionRequest"))
+(smithy/sdk/shapes:define-input put-permission-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (action-group :target-type action-group
+                                  :required common-lisp:t :member-name
+                                  "actionGroup" :http-label common-lisp:t)
+                                 (principals :target-type principals :required
+                                  common-lisp:t :member-name "principals")
+                                 (revision-id :target-type revision-id
+                                  :member-name "revisionId"))
+                                (:shape-name "PutPermissionRequest"))
 
 (smithy/sdk/shapes:define-structure put-permission-response common-lisp:nil
                                     ((policy :target-type
@@ -863,17 +846,17 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list recommendations :member recommendation)
 
-(smithy/sdk/shapes:define-structure remove-notification-channel-request
-                                    common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (channel-id :target-type channel-id
-                                      :required common-lisp:t :member-name
-                                      "channelId"))
-                                    (:shape-name
-                                     "RemoveNotificationChannelRequest"))
+(smithy/sdk/shapes:define-input remove-notification-channel-request
+                                common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (channel-id :target-type channel-id :required
+                                  common-lisp:t :member-name "channelId"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "RemoveNotificationChannelRequest"))
 
 (smithy/sdk/shapes:define-structure remove-notification-channel-response
                                     common-lisp:nil
@@ -883,18 +866,18 @@ common-lisp:nil
                                     (:shape-name
                                      "RemoveNotificationChannelResponse"))
 
-(smithy/sdk/shapes:define-structure remove-permission-request common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (action-group :target-type action-group
-                                      :required common-lisp:t :member-name
-                                      "actionGroup")
-                                     (revision-id :target-type revision-id
-                                      :required common-lisp:t :member-name
-                                      "revisionId" :http-query "revisionId"))
-                                    (:shape-name "RemovePermissionRequest"))
+(smithy/sdk/shapes:define-input remove-permission-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (action-group :target-type action-group
+                                  :required common-lisp:t :member-name
+                                  "actionGroup" :http-label common-lisp:t)
+                                 (revision-id :target-type revision-id
+                                  :required common-lisp:t :member-name
+                                  "revisionId" :http-query "revisionId"))
+                                (:shape-name "RemovePermissionRequest"))
 
 (smithy/sdk/shapes:define-structure remove-permission-response common-lisp:nil
                                     ((policy :target-type
@@ -924,21 +907,21 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list strings :member smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure submit-feedback-request common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (anomaly-instance-id :target-type
-                                      anomaly-instance-id :required
-                                      common-lisp:t :member-name
-                                      "anomalyInstanceId")
-                                     (type :target-type feedback-type :required
-                                      common-lisp:t :member-name "type")
-                                     (comment :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "comment"))
-                                    (:shape-name "SubmitFeedbackRequest"))
+(smithy/sdk/shapes:define-input submit-feedback-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (anomaly-instance-id :target-type
+                                  anomaly-instance-id :required common-lisp:t
+                                  :member-name "anomalyInstanceId" :http-label
+                                  common-lisp:t)
+                                 (type :target-type feedback-type :required
+                                  common-lisp:t :member-name "type")
+                                 (comment :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "comment"))
+                                (:shape-name "SubmitFeedbackRequest"))
 
 (smithy/sdk/shapes:define-structure submit-feedback-response common-lisp:nil
                                     common-lisp:nil
@@ -946,13 +929,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list tag-keys :member smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      profiling-group-arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tags-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type profiling-group-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-label common-lisp:t)
+                                 (tags :target-type tags-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -976,7 +959,8 @@ common-lisp:nil
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure timestamp-structure common-lisp:nil
                                     ((value :target-type timestamp :required
@@ -987,32 +971,31 @@ common-lisp:nil
                               smithy/sdk/smithy-types:string :value
                               list-of-timestamps)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      profiling-group-arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-keys :required
-                                      common-lisp:t :member-name "tagKeys"
-                                      :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type profiling-group-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-keys :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-profiling-group-request
-                                    common-lisp:nil
-                                    ((profiling-group-name :target-type
-                                      profiling-group-name :required
-                                      common-lisp:t :member-name
-                                      "profilingGroupName")
-                                     (agent-orchestration-config :target-type
-                                      agent-orchestration-config :required
-                                      common-lisp:t :member-name
-                                      "agentOrchestrationConfig"))
-                                    (:shape-name "UpdateProfilingGroupRequest"))
+(smithy/sdk/shapes:define-input update-profiling-group-request common-lisp:nil
+                                ((profiling-group-name :target-type
+                                  profiling-group-name :required common-lisp:t
+                                  :member-name "profilingGroupName" :http-label
+                                  common-lisp:t)
+                                 (agent-orchestration-config :target-type
+                                  agent-orchestration-config :required
+                                  common-lisp:t :member-name
+                                  "agentOrchestrationConfig"))
+                                (:shape-name "UpdateProfilingGroupRequest"))
 
-(smithy/sdk/shapes:define-structure update-profiling-group-response
+(smithy/sdk/shapes:define-interface update-profiling-group-response
                                     common-lisp:nil
                                     ((profiling-group :target-type
                                       profiling-group-description :required

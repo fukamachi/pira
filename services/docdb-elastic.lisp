@@ -349,24 +349,24 @@
                                       "snapshot"))
                                     (:shape-name "CreateClusterSnapshotOutput"))
 
-(smithy/sdk/shapes:define-structure delete-cluster-input common-lisp:nil
-                                    ((cluster-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "clusterArn"))
-                                    (:shape-name "DeleteClusterInput"))
+(smithy/sdk/shapes:define-input delete-cluster-input common-lisp:nil
+                                ((cluster-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "clusterArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteClusterInput"))
 
 (smithy/sdk/shapes:define-structure delete-cluster-output common-lisp:nil
                                     ((cluster :target-type cluster :required
                                       common-lisp:t :member-name "cluster"))
                                     (:shape-name "DeleteClusterOutput"))
 
-(smithy/sdk/shapes:define-structure delete-cluster-snapshot-input
-                                    common-lisp:nil
-                                    ((snapshot-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "snapshotArn"))
-                                    (:shape-name "DeleteClusterSnapshotInput"))
+(smithy/sdk/shapes:define-input delete-cluster-snapshot-input common-lisp:nil
+                                ((snapshot-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "snapshotArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteClusterSnapshotInput"))
 
 (smithy/sdk/shapes:define-structure delete-cluster-snapshot-output
                                     common-lisp:nil
@@ -375,23 +375,24 @@
                                       "snapshot"))
                                     (:shape-name "DeleteClusterSnapshotOutput"))
 
-(smithy/sdk/shapes:define-structure get-cluster-input common-lisp:nil
-                                    ((cluster-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "clusterArn"))
-                                    (:shape-name "GetClusterInput"))
+(smithy/sdk/shapes:define-input get-cluster-input common-lisp:nil
+                                ((cluster-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "clusterArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetClusterInput"))
 
 (smithy/sdk/shapes:define-structure get-cluster-output common-lisp:nil
                                     ((cluster :target-type cluster :required
                                       common-lisp:t :member-name "cluster"))
                                     (:shape-name "GetClusterOutput"))
 
-(smithy/sdk/shapes:define-structure get-cluster-snapshot-input common-lisp:nil
-                                    ((snapshot-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "snapshotArn"))
-                                    (:shape-name "GetClusterSnapshotInput"))
+(smithy/sdk/shapes:define-input get-cluster-snapshot-input common-lisp:nil
+                                ((snapshot-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "snapshotArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetClusterSnapshotInput"))
 
 (smithy/sdk/shapes:define-structure get-cluster-snapshot-output common-lisp:nil
                                     ((snapshot :target-type cluster-snapshot
@@ -426,24 +427,20 @@
                                 (:shape-name "InternalServerException")
                                 (:error-code 500))
 
-(smithy/sdk/shapes:define-structure list-cluster-snapshots-input
-                                    common-lisp:nil
-                                    ((cluster-arn :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clusterArn" :http-query
-                                      "clusterArn")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (snapshot-type :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "snapshotType" :http-query
-                                      "snapshotType"))
-                                    (:shape-name "ListClusterSnapshotsInput"))
+(smithy/sdk/shapes:define-input list-cluster-snapshots-input common-lisp:nil
+                                ((cluster-arn :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clusterArn" :http-query "clusterArn")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (snapshot-type :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "snapshotType" :http-query "snapshotType"))
+                                (:shape-name "ListClusterSnapshotsInput"))
 
 (smithy/sdk/shapes:define-structure list-cluster-snapshots-output
                                     common-lisp:nil
@@ -454,15 +451,14 @@
                                       :member-name "nextToken"))
                                     (:shape-name "ListClusterSnapshotsOutput"))
 
-(smithy/sdk/shapes:define-structure list-clusters-input common-lisp:nil
-                                    ((next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListClustersInput"))
+(smithy/sdk/shapes:define-input list-clusters-input common-lisp:nil
+                                ((next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "maxResults" :http-query "maxResults"))
+                                (:shape-name "ListClustersInput"))
 
 (smithy/sdk/shapes:define-structure list-clusters-output common-lisp:nil
                                     ((clusters :target-type cluster-list
@@ -494,12 +490,11 @@
                                  (:shape-name
                                   "ListPendingMaintenanceActionsOutput"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -568,32 +563,32 @@
 (smithy/sdk/shapes:define-list resource-pending-maintenance-action-list :member
                                resource-pending-maintenance-action)
 
-(smithy/sdk/shapes:define-structure restore-cluster-from-snapshot-input
-                                    common-lisp:nil
-                                    ((cluster-name :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "clusterName")
-                                     (snapshot-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "snapshotArn")
-                                     (vpc-security-group-ids :target-type
-                                      string-list :member-name
-                                      "vpcSecurityGroupIds")
-                                     (subnet-ids :target-type string-list
-                                      :member-name "subnetIds")
-                                     (kms-key-id :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "kmsKeyId")
-                                     (tags :target-type tag-map :member-name
-                                      "tags")
-                                     (shard-capacity :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "shardCapacity")
-                                     (shard-instance-count :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "shardInstanceCount"))
-                                    (:shape-name
-                                     "RestoreClusterFromSnapshotInput"))
+(smithy/sdk/shapes:define-input restore-cluster-from-snapshot-input
+                                common-lisp:nil
+                                ((cluster-name :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "clusterName")
+                                 (snapshot-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "snapshotArn"
+                                  :http-label common-lisp:t)
+                                 (vpc-security-group-ids :target-type
+                                  string-list :member-name
+                                  "vpcSecurityGroupIds")
+                                 (subnet-ids :target-type string-list
+                                  :member-name "subnetIds")
+                                 (kms-key-id :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "kmsKeyId")
+                                 (tags :target-type tag-map :member-name
+                                  "tags")
+                                 (shard-capacity :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "shardCapacity")
+                                 (shard-instance-count :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "shardInstanceCount"))
+                                (:shape-name "RestoreClusterFromSnapshotInput"))
 
 (smithy/sdk/shapes:define-structure restore-cluster-from-snapshot-output
                                     common-lisp:nil
@@ -660,12 +655,13 @@
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -684,54 +680,55 @@
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-cluster-input common-lisp:nil
-                                    ((cluster-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "clusterArn")
-                                     (auth-type :target-type auth :member-name
-                                      "authType")
-                                     (shard-capacity :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "shardCapacity")
-                                     (shard-count :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "shardCount")
-                                     (vpc-security-group-ids :target-type
-                                      string-list :member-name
-                                      "vpcSecurityGroupIds")
-                                     (subnet-ids :target-type string-list
-                                      :member-name "subnetIds")
-                                     (admin-user-password :target-type password
-                                      :member-name "adminUserPassword")
-                                     (client-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "clientToken")
-                                     (preferred-maintenance-window :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name
-                                      "preferredMaintenanceWindow")
-                                     (backup-retention-period :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "backupRetentionPeriod")
-                                     (preferred-backup-window :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "preferredBackupWindow")
-                                     (shard-instance-count :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "shardInstanceCount"))
-                                    (:shape-name "UpdateClusterInput"))
+(smithy/sdk/shapes:define-input update-cluster-input common-lisp:nil
+                                ((cluster-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "clusterArn"
+                                  :http-label common-lisp:t)
+                                 (auth-type :target-type auth :member-name
+                                  "authType")
+                                 (shard-capacity :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "shardCapacity")
+                                 (shard-count :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "shardCount")
+                                 (vpc-security-group-ids :target-type
+                                  string-list :member-name
+                                  "vpcSecurityGroupIds")
+                                 (subnet-ids :target-type string-list
+                                  :member-name "subnetIds")
+                                 (admin-user-password :target-type password
+                                  :member-name "adminUserPassword")
+                                 (client-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "clientToken")
+                                 (preferred-maintenance-window :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "preferredMaintenanceWindow")
+                                 (backup-retention-period :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "backupRetentionPeriod")
+                                 (preferred-backup-window :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "preferredBackupWindow")
+                                 (shard-instance-count :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "shardInstanceCount"))
+                                (:shape-name "UpdateClusterInput"))
 
 (smithy/sdk/shapes:define-structure update-cluster-output common-lisp:nil
                                     ((cluster :target-type cluster :required

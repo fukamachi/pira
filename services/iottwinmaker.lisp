@@ -238,14 +238,14 @@
                                       common-lisp:t :member-name "errors"))
                                     (:shape-name "BatchPutPropertyErrorEntry"))
 
-(smithy/sdk/shapes:define-structure batch-put-property-values-request
-                                    common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (entries :target-type entries :required
-                                      common-lisp:t :member-name "entries"))
-                                    (:shape-name
-                                     "BatchPutPropertyValuesRequest"))
+(smithy/sdk/shapes:define-input batch-put-property-values-request
+                                common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (entries :target-type entries :required
+                                  common-lisp:t :member-name "entries"))
+                                (:shape-name "BatchPutPropertyValuesRequest"))
 
 (smithy/sdk/shapes:define-structure batch-put-property-values-response
                                     common-lisp:nil
@@ -550,36 +550,37 @@
                                 (:shape-name "ConnectorTimeoutException")
                                 (:error-code 424))
 
-(smithy/sdk/shapes:define-structure create-component-type-request
-                                    common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (is-singleton :target-type boolean
-                                      :member-name "isSingleton")
-                                     (component-type-id :target-type
-                                      component-type-id :required common-lisp:t
-                                      :member-name "componentTypeId")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (property-definitions :target-type
-                                      property-definitions-request :member-name
-                                      "propertyDefinitions")
-                                     (extends-from :target-type extends-from
-                                      :member-name "extendsFrom")
-                                     (functions :target-type functions-request
-                                      :member-name "functions")
-                                     (tags :target-type tag-map :member-name
-                                      "tags")
-                                     (property-groups :target-type
-                                      property-groups-request :member-name
-                                      "propertyGroups")
-                                     (component-type-name :target-type
-                                      component-type-name :member-name
-                                      "componentTypeName")
-                                     (composite-component-types :target-type
-                                      composite-component-types-request
-                                      :member-name "compositeComponentTypes"))
-                                    (:shape-name "CreateComponentTypeRequest"))
+(smithy/sdk/shapes:define-input create-component-type-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (is-singleton :target-type boolean
+                                  :member-name "isSingleton")
+                                 (component-type-id :target-type
+                                  component-type-id :required common-lisp:t
+                                  :member-name "componentTypeId" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (property-definitions :target-type
+                                  property-definitions-request :member-name
+                                  "propertyDefinitions")
+                                 (extends-from :target-type extends-from
+                                  :member-name "extendsFrom")
+                                 (functions :target-type functions-request
+                                  :member-name "functions")
+                                 (tags :target-type tag-map :member-name
+                                  "tags")
+                                 (property-groups :target-type
+                                  property-groups-request :member-name
+                                  "propertyGroups")
+                                 (component-type-name :target-type
+                                  component-type-name :member-name
+                                  "componentTypeName")
+                                 (composite-component-types :target-type
+                                  composite-component-types-request
+                                  :member-name "compositeComponentTypes"))
+                                (:shape-name "CreateComponentTypeRequest"))
 
 (smithy/sdk/shapes:define-structure create-component-type-response
                                     common-lisp:nil
@@ -592,28 +593,29 @@
                                       common-lisp:t :member-name "state"))
                                     (:shape-name "CreateComponentTypeResponse"))
 
-(smithy/sdk/shapes:define-structure create-entity-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (entity-id :target-type entity-id
-                                      :member-name "entityId")
-                                     (entity-name :target-type entity-name
-                                      :required common-lisp:t :member-name
-                                      "entityName")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (components :target-type
-                                      components-map-request :member-name
-                                      "components")
-                                     (composite-components :target-type
-                                      composite-components-map-request
-                                      :member-name "compositeComponents")
-                                     (parent-entity-id :target-type
-                                      parent-entity-id :member-name
-                                      "parentEntityId")
-                                     (tags :target-type tag-map :member-name
-                                      "tags"))
-                                    (:shape-name "CreateEntityRequest"))
+(smithy/sdk/shapes:define-input create-entity-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (entity-id :target-type entity-id :member-name
+                                  "entityId")
+                                 (entity-name :target-type entity-name
+                                  :required common-lisp:t :member-name
+                                  "entityName")
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (components :target-type
+                                  components-map-request :member-name
+                                  "components")
+                                 (composite-components :target-type
+                                  composite-components-map-request :member-name
+                                  "compositeComponents")
+                                 (parent-entity-id :target-type
+                                  parent-entity-id :member-name
+                                  "parentEntityId")
+                                 (tags :target-type tag-map :member-name
+                                  "tags"))
+                                (:shape-name "CreateEntityRequest"))
 
 (smithy/sdk/shapes:define-structure create-entity-response common-lisp:nil
                                     ((entity-id :target-type entity-id
@@ -659,25 +661,24 @@
                                  (:shape-name
                                   "CreateMetadataTransferJobResponse"))
 
-(smithy/sdk/shapes:define-structure create-scene-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (scene-id :target-type id :required
-                                      common-lisp:t :member-name "sceneId")
-                                     (content-location :target-type s3url
-                                      :required common-lisp:t :member-name
-                                      "contentLocation")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (capabilities :target-type
-                                      scene-capabilities :member-name
-                                      "capabilities")
-                                     (tags :target-type tag-map :member-name
-                                      "tags")
-                                     (scene-metadata :target-type
-                                      scene-metadata-map :member-name
-                                      "sceneMetadata"))
-                                    (:shape-name "CreateSceneRequest"))
+(smithy/sdk/shapes:define-input create-scene-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (scene-id :target-type id :required
+                                  common-lisp:t :member-name "sceneId")
+                                 (content-location :target-type s3url :required
+                                  common-lisp:t :member-name "contentLocation")
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (capabilities :target-type scene-capabilities
+                                  :member-name "capabilities")
+                                 (tags :target-type tag-map :member-name
+                                  "tags")
+                                 (scene-metadata :target-type
+                                  scene-metadata-map :member-name
+                                  "sceneMetadata"))
+                                (:shape-name "CreateSceneRequest"))
 
 (smithy/sdk/shapes:define-structure create-scene-response common-lisp:nil
                                     ((arn :target-type twin-maker-arn :required
@@ -687,17 +688,18 @@
                                       "creationDateTime"))
                                     (:shape-name "CreateSceneResponse"))
 
-(smithy/sdk/shapes:define-structure create-sync-job-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (sync-source :target-type sync-source
-                                      :required common-lisp:t :member-name
-                                      "syncSource")
-                                     (sync-role :target-type role-arn :required
-                                      common-lisp:t :member-name "syncRole")
-                                     (tags :target-type tag-map :member-name
-                                      "tags"))
-                                    (:shape-name "CreateSyncJobRequest"))
+(smithy/sdk/shapes:define-input create-sync-job-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (sync-source :target-type sync-source
+                                  :required common-lisp:t :member-name
+                                  "syncSource" :http-label common-lisp:t)
+                                 (sync-role :target-type role-arn :required
+                                  common-lisp:t :member-name "syncRole")
+                                 (tags :target-type tag-map :member-name
+                                  "tags"))
+                                (:shape-name "CreateSyncJobRequest"))
 
 (smithy/sdk/shapes:define-structure create-sync-job-response common-lisp:nil
                                     ((arn :target-type twin-maker-arn :required
@@ -710,18 +712,19 @@
                                       "state"))
                                     (:shape-name "CreateSyncJobResponse"))
 
-(smithy/sdk/shapes:define-structure create-workspace-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (s3location :target-type s3location
-                                      :member-name "s3Location")
-                                     (role :target-type role-arn :member-name
-                                      "role")
-                                     (tags :target-type tag-map :member-name
-                                      "tags"))
-                                    (:shape-name "CreateWorkspaceRequest"))
+(smithy/sdk/shapes:define-input create-workspace-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (s3location :target-type s3location
+                                  :member-name "s3Location")
+                                 (role :target-type role-arn :member-name
+                                  "role")
+                                 (tags :target-type tag-map :member-name
+                                  "tags"))
+                                (:shape-name "CreateWorkspaceRequest"))
 
 (smithy/sdk/shapes:define-structure create-workspace-response common-lisp:nil
                                     ((arn :target-type twin-maker-arn :required
@@ -778,14 +781,15 @@
 
 (smithy/sdk/shapes:define-map data-value-map :key string :value data-value)
 
-(smithy/sdk/shapes:define-structure delete-component-type-request
-                                    common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (component-type-id :target-type
-                                      component-type-id :required common-lisp:t
-                                      :member-name "componentTypeId"))
-                                    (:shape-name "DeleteComponentTypeRequest"))
+(smithy/sdk/shapes:define-input delete-component-type-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (component-type-id :target-type
+                                  component-type-id :required common-lisp:t
+                                  :member-name "componentTypeId" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteComponentTypeRequest"))
 
 (smithy/sdk/shapes:define-structure delete-component-type-response
                                     common-lisp:nil
@@ -793,40 +797,44 @@
                                       common-lisp:t :member-name "state"))
                                     (:shape-name "DeleteComponentTypeResponse"))
 
-(smithy/sdk/shapes:define-structure delete-entity-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (entity-id :target-type entity-id
-                                      :required common-lisp:t :member-name
-                                      "entityId")
-                                     (is-recursive :target-type boolean
-                                      :member-name "isRecursive" :http-query
-                                      "isRecursive"))
-                                    (:shape-name "DeleteEntityRequest"))
+(smithy/sdk/shapes:define-input delete-entity-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (entity-id :target-type entity-id :required
+                                  common-lisp:t :member-name "entityId"
+                                  :http-label common-lisp:t)
+                                 (is-recursive :target-type boolean
+                                  :member-name "isRecursive" :http-query
+                                  "isRecursive"))
+                                (:shape-name "DeleteEntityRequest"))
 
 (smithy/sdk/shapes:define-structure delete-entity-response common-lisp:nil
                                     ((state :target-type state :required
                                       common-lisp:t :member-name "state"))
                                     (:shape-name "DeleteEntityResponse"))
 
-(smithy/sdk/shapes:define-structure delete-scene-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (scene-id :target-type id :required
-                                      common-lisp:t :member-name "sceneId"))
-                                    (:shape-name "DeleteSceneRequest"))
+(smithy/sdk/shapes:define-input delete-scene-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (scene-id :target-type id :required
+                                  common-lisp:t :member-name "sceneId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteSceneRequest"))
 
 (smithy/sdk/shapes:define-structure delete-scene-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteSceneResponse"))
 
-(smithy/sdk/shapes:define-structure delete-sync-job-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (sync-source :target-type sync-source
-                                      :required common-lisp:t :member-name
-                                      "syncSource"))
-                                    (:shape-name "DeleteSyncJobRequest"))
+(smithy/sdk/shapes:define-input delete-sync-job-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (sync-source :target-type sync-source
+                                  :required common-lisp:t :member-name
+                                  "syncSource" :http-label common-lisp:t))
+                                (:shape-name "DeleteSyncJobRequest"))
 
 (smithy/sdk/shapes:define-structure delete-sync-job-response common-lisp:nil
                                     ((state :target-type sync-job-state
@@ -834,11 +842,11 @@
                                       "state"))
                                     (:shape-name "DeleteSyncJobResponse"))
 
-(smithy/sdk/shapes:define-structure delete-workspace-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name
-                                      "workspaceId"))
-                                    (:shape-name "DeleteWorkspaceRequest"))
+(smithy/sdk/shapes:define-input delete-workspace-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteWorkspaceRequest"))
 
 (smithy/sdk/shapes:define-structure delete-workspace-response common-lisp:nil
                                     ((message :target-type
@@ -1031,13 +1039,15 @@
 (smithy/sdk/shapes:define-map generated-scene-metadata-map :key name :value
                               scene-metadata-value)
 
-(smithy/sdk/shapes:define-structure get-component-type-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (component-type-id :target-type
-                                      component-type-id :required common-lisp:t
-                                      :member-name "componentTypeId"))
-                                    (:shape-name "GetComponentTypeRequest"))
+(smithy/sdk/shapes:define-input get-component-type-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (component-type-id :target-type
+                                  component-type-id :required common-lisp:t
+                                  :member-name "componentTypeId" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetComponentTypeRequest"))
 
 (smithy/sdk/shapes:define-structure get-component-type-response common-lisp:nil
                                     ((workspace-id :target-type id :required
@@ -1084,13 +1094,14 @@
                                       :member-name "compositeComponentTypes"))
                                     (:shape-name "GetComponentTypeResponse"))
 
-(smithy/sdk/shapes:define-structure get-entity-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (entity-id :target-type entity-id
-                                      :required common-lisp:t :member-name
-                                      "entityId"))
-                                    (:shape-name "GetEntityRequest"))
+(smithy/sdk/shapes:define-input get-entity-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (entity-id :target-type entity-id :required
+                                  common-lisp:t :member-name "entityId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetEntityRequest"))
 
 (smithy/sdk/shapes:define-structure get-entity-response common-lisp:nil
                                     ((entity-id :target-type entity-id
@@ -1183,46 +1194,45 @@
                                       "pendingPricingPlan"))
                                     (:shape-name "GetPricingPlanResponse"))
 
-(smithy/sdk/shapes:define-structure get-property-value-history-request
-                                    common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (entity-id :target-type entity-id
-                                      :member-name "entityId")
-                                     (component-name :target-type name
-                                      :member-name "componentName")
-                                     (component-path :target-type
-                                      component-path :member-name
-                                      "componentPath")
-                                     (component-type-id :target-type
-                                      component-type-id :member-name
-                                      "componentTypeId")
-                                     (selected-properties :target-type
-                                      selected-property-list :required
-                                      common-lisp:t :member-name
-                                      "selectedProperties")
-                                     (property-filters :target-type
-                                      property-filters :member-name
-                                      "propertyFilters")
-                                     (start-date-time :target-type timestamp
-                                      :member-name "startDateTime")
-                                     (end-date-time :target-type timestamp
-                                      :member-name "endDateTime")
-                                     (interpolation :target-type
-                                      interpolation-parameters :member-name
-                                      "interpolation")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults")
-                                     (order-by-time :target-type order-by-time
-                                      :member-name "orderByTime")
-                                     (start-time :target-type time :member-name
-                                      "startTime")
-                                     (end-time :target-type time :member-name
-                                      "endTime"))
-                                    (:shape-name
-                                     "GetPropertyValueHistoryRequest"))
+(smithy/sdk/shapes:define-input get-property-value-history-request
+                                common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (entity-id :target-type entity-id :member-name
+                                  "entityId")
+                                 (component-name :target-type name :member-name
+                                  "componentName")
+                                 (component-path :target-type component-path
+                                  :member-name "componentPath")
+                                 (component-type-id :target-type
+                                  component-type-id :member-name
+                                  "componentTypeId")
+                                 (selected-properties :target-type
+                                  selected-property-list :required
+                                  common-lisp:t :member-name
+                                  "selectedProperties")
+                                 (property-filters :target-type
+                                  property-filters :member-name
+                                  "propertyFilters")
+                                 (start-date-time :target-type timestamp
+                                  :member-name "startDateTime")
+                                 (end-date-time :target-type timestamp
+                                  :member-name "endDateTime")
+                                 (interpolation :target-type
+                                  interpolation-parameters :member-name
+                                  "interpolation")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults")
+                                 (order-by-time :target-type order-by-time
+                                  :member-name "orderByTime")
+                                 (start-time :target-type time :member-name
+                                  "startTime")
+                                 (end-time :target-type time :member-name
+                                  "endTime"))
+                                (:shape-name "GetPropertyValueHistoryRequest"))
 
 (smithy/sdk/shapes:define-structure get-property-value-history-response
                                     common-lisp:nil
@@ -1235,33 +1245,33 @@
                                     (:shape-name
                                      "GetPropertyValueHistoryResponse"))
 
-(smithy/sdk/shapes:define-structure get-property-value-request common-lisp:nil
-                                    ((component-name :target-type name
-                                      :member-name "componentName")
-                                     (component-path :target-type
-                                      component-path :member-name
-                                      "componentPath")
-                                     (component-type-id :target-type
-                                      component-type-id :member-name
-                                      "componentTypeId")
-                                     (entity-id :target-type entity-id
-                                      :member-name "entityId")
-                                     (selected-properties :target-type
-                                      selected-property-list :required
-                                      common-lisp:t :member-name
-                                      "selectedProperties")
-                                     (workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken")
-                                     (property-group-name :target-type name
-                                      :member-name "propertyGroupName")
-                                     (tabular-conditions :target-type
-                                      tabular-conditions :member-name
-                                      "tabularConditions"))
-                                    (:shape-name "GetPropertyValueRequest"))
+(smithy/sdk/shapes:define-input get-property-value-request common-lisp:nil
+                                ((component-name :target-type name :member-name
+                                  "componentName")
+                                 (component-path :target-type component-path
+                                  :member-name "componentPath")
+                                 (component-type-id :target-type
+                                  component-type-id :member-name
+                                  "componentTypeId")
+                                 (entity-id :target-type entity-id :member-name
+                                  "entityId")
+                                 (selected-properties :target-type
+                                  selected-property-list :required
+                                  common-lisp:t :member-name
+                                  "selectedProperties")
+                                 (workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken")
+                                 (property-group-name :target-type name
+                                  :member-name "propertyGroupName")
+                                 (tabular-conditions :target-type
+                                  tabular-conditions :member-name
+                                  "tabularConditions"))
+                                (:shape-name "GetPropertyValueRequest"))
 
 (smithy/sdk/shapes:define-structure get-property-value-response common-lisp:nil
                                     ((property-values :target-type
@@ -1274,12 +1284,14 @@
                                       "tabularPropertyValues"))
                                     (:shape-name "GetPropertyValueResponse"))
 
-(smithy/sdk/shapes:define-structure get-scene-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (scene-id :target-type id :required
-                                      common-lisp:t :member-name "sceneId"))
-                                    (:shape-name "GetSceneRequest"))
+(smithy/sdk/shapes:define-input get-scene-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (scene-id :target-type id :required
+                                  common-lisp:t :member-name "sceneId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetSceneRequest"))
 
 (smithy/sdk/shapes:define-structure get-scene-response common-lisp:nil
                                     ((workspace-id :target-type id :required
@@ -1312,13 +1324,13 @@
                                       :member-name "error"))
                                     (:shape-name "GetSceneResponse"))
 
-(smithy/sdk/shapes:define-structure get-sync-job-request common-lisp:nil
-                                    ((sync-source :target-type sync-source
-                                      :required common-lisp:t :member-name
-                                      "syncSource")
-                                     (workspace-id :target-type id :member-name
-                                      "workspaceId" :http-query "workspace"))
-                                    (:shape-name "GetSyncJobRequest"))
+(smithy/sdk/shapes:define-input get-sync-job-request common-lisp:nil
+                                ((sync-source :target-type sync-source
+                                  :required common-lisp:t :member-name
+                                  "syncSource" :http-label common-lisp:t)
+                                 (workspace-id :target-type id :member-name
+                                  "workspaceId" :http-query "workspace"))
+                                (:shape-name "GetSyncJobRequest"))
 
 (smithy/sdk/shapes:define-structure get-sync-job-response common-lisp:nil
                                     ((arn :target-type twin-maker-arn :required
@@ -1341,11 +1353,11 @@
                                       "updateDateTime"))
                                     (:shape-name "GetSyncJobResponse"))
 
-(smithy/sdk/shapes:define-structure get-workspace-request common-lisp:nil
-                                    ((workspace-id :target-type id-or-arn
-                                      :required common-lisp:t :member-name
-                                      "workspaceId"))
-                                    (:shape-name "GetWorkspaceRequest"))
+(smithy/sdk/shapes:define-input get-workspace-request common-lisp:nil
+                                ((workspace-id :target-type id-or-arn :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetWorkspaceRequest"))
 
 (smithy/sdk/shapes:define-structure get-workspace-response common-lisp:nil
                                     ((workspace-id :target-type id :required
@@ -1476,18 +1488,18 @@
 (smithy/sdk/shapes:define-list list-component-types-filters :member
                                list-component-types-filter)
 
-(smithy/sdk/shapes:define-structure list-component-types-request
-                                    common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (filters :target-type
-                                      list-component-types-filters :member-name
-                                      "filters")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults"))
-                                    (:shape-name "ListComponentTypesRequest"))
+(smithy/sdk/shapes:define-input list-component-types-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (filters :target-type
+                                  list-component-types-filters :member-name
+                                  "filters")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults"))
+                                (:shape-name "ListComponentTypesRequest"))
 
 (smithy/sdk/shapes:define-structure list-component-types-response
                                     common-lisp:nil
@@ -1540,17 +1552,17 @@
 (smithy/sdk/shapes:define-list list-entities-filters :member
                                list-entities-filter)
 
-(smithy/sdk/shapes:define-structure list-entities-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (filters :target-type
-                                      list-entities-filters :member-name
-                                      "filters")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken"))
-                                    (:shape-name "ListEntitiesRequest"))
+(smithy/sdk/shapes:define-input list-entities-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (filters :target-type list-entities-filters
+                                  :member-name "filters")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken"))
+                                (:shape-name "ListEntitiesRequest"))
 
 (smithy/sdk/shapes:define-structure list-entities-response common-lisp:nil
                                     ((entity-summaries :target-type
@@ -1624,14 +1636,15 @@
                                    :member-name "nextToken"))
                                  (:shape-name "ListPropertiesResponse"))
 
-(smithy/sdk/shapes:define-structure list-scenes-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken"))
-                                    (:shape-name "ListScenesRequest"))
+(smithy/sdk/shapes:define-input list-scenes-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken"))
+                                (:shape-name "ListScenesRequest"))
 
 (smithy/sdk/shapes:define-structure list-scenes-response common-lisp:nil
                                     ((scene-summaries :target-type
@@ -1641,14 +1654,15 @@
                                       :member-name "nextToken"))
                                     (:shape-name "ListScenesResponse"))
 
-(smithy/sdk/shapes:define-structure list-sync-jobs-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken"))
-                                    (:shape-name "ListSyncJobsRequest"))
+(smithy/sdk/shapes:define-input list-sync-jobs-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken"))
+                                (:shape-name "ListSyncJobsRequest"))
 
 (smithy/sdk/shapes:define-structure list-sync-jobs-response common-lisp:nil
                                     ((sync-job-summaries :target-type
@@ -1658,20 +1672,20 @@
                                       :member-name "nextToken"))
                                     (:shape-name "ListSyncJobsResponse"))
 
-(smithy/sdk/shapes:define-structure list-sync-resources-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (sync-source :target-type sync-source
-                                      :required common-lisp:t :member-name
-                                      "syncSource")
-                                     (filters :target-type
-                                      sync-resource-filters :member-name
-                                      "filters")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken"))
-                                    (:shape-name "ListSyncResourcesRequest"))
+(smithy/sdk/shapes:define-input list-sync-resources-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (sync-source :target-type sync-source
+                                  :required common-lisp:t :member-name
+                                  "syncSource" :http-label common-lisp:t)
+                                 (filters :target-type sync-resource-filters
+                                  :member-name "filters")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken"))
+                                (:shape-name "ListSyncResourcesRequest"))
 
 (smithy/sdk/shapes:define-structure list-sync-resources-response
                                     common-lisp:nil
@@ -2308,47 +2322,48 @@
 
 (smithy/sdk/shapes:define-type type smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type twin-maker-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceARN" :http-query "resourceARN")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type twin-maker-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceARN" :http-query "resourceARN")
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-component-type-request
-                                    common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (is-singleton :target-type boolean
-                                      :member-name "isSingleton")
-                                     (component-type-id :target-type
-                                      component-type-id :required common-lisp:t
-                                      :member-name "componentTypeId")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (property-definitions :target-type
-                                      property-definitions-request :member-name
-                                      "propertyDefinitions")
-                                     (extends-from :target-type extends-from
-                                      :member-name "extendsFrom")
-                                     (functions :target-type functions-request
-                                      :member-name "functions")
-                                     (property-groups :target-type
-                                      property-groups-request :member-name
-                                      "propertyGroups")
-                                     (component-type-name :target-type
-                                      component-type-name :member-name
-                                      "componentTypeName")
-                                     (composite-component-types :target-type
-                                      composite-component-types-request
-                                      :member-name "compositeComponentTypes"))
-                                    (:shape-name "UpdateComponentTypeRequest"))
+(smithy/sdk/shapes:define-input update-component-type-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (is-singleton :target-type boolean
+                                  :member-name "isSingleton")
+                                 (component-type-id :target-type
+                                  component-type-id :required common-lisp:t
+                                  :member-name "componentTypeId" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (property-definitions :target-type
+                                  property-definitions-request :member-name
+                                  "propertyDefinitions")
+                                 (extends-from :target-type extends-from
+                                  :member-name "extendsFrom")
+                                 (functions :target-type functions-request
+                                  :member-name "functions")
+                                 (property-groups :target-type
+                                  property-groups-request :member-name
+                                  "propertyGroups")
+                                 (component-type-name :target-type
+                                  component-type-name :member-name
+                                  "componentTypeName")
+                                 (composite-component-types :target-type
+                                  composite-component-types-request
+                                  :member-name "compositeComponentTypes"))
+                                (:shape-name "UpdateComponentTypeRequest"))
 
 (smithy/sdk/shapes:define-structure update-component-type-response
                                     common-lisp:nil
@@ -2363,26 +2378,27 @@
                                       common-lisp:t :member-name "state"))
                                     (:shape-name "UpdateComponentTypeResponse"))
 
-(smithy/sdk/shapes:define-structure update-entity-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (entity-id :target-type entity-id
-                                      :required common-lisp:t :member-name
-                                      "entityId")
-                                     (entity-name :target-type entity-name
-                                      :member-name "entityName")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (component-updates :target-type
-                                      component-updates-map-request
-                                      :member-name "componentUpdates")
-                                     (composite-component-updates :target-type
-                                      composite-component-updates-map-request
-                                      :member-name "compositeComponentUpdates")
-                                     (parent-entity-update :target-type
-                                      parent-entity-update-request :member-name
-                                      "parentEntityUpdate"))
-                                    (:shape-name "UpdateEntityRequest"))
+(smithy/sdk/shapes:define-input update-entity-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (entity-id :target-type entity-id :required
+                                  common-lisp:t :member-name "entityId"
+                                  :http-label common-lisp:t)
+                                 (entity-name :target-type entity-name
+                                  :member-name "entityName")
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (component-updates :target-type
+                                  component-updates-map-request :member-name
+                                  "componentUpdates")
+                                 (composite-component-updates :target-type
+                                  composite-component-updates-map-request
+                                  :member-name "compositeComponentUpdates")
+                                 (parent-entity-update :target-type
+                                  parent-entity-update-request :member-name
+                                  "parentEntityUpdate"))
+                                (:shape-name "UpdateEntityRequest"))
 
 (smithy/sdk/shapes:define-structure update-entity-response common-lisp:nil
                                     ((update-date-time :target-type timestamp
@@ -2412,22 +2428,23 @@
 
 (smithy/sdk/shapes:define-type update-reason smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure update-scene-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (scene-id :target-type id :required
-                                      common-lisp:t :member-name "sceneId")
-                                     (content-location :target-type s3url
-                                      :member-name "contentLocation")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (capabilities :target-type
-                                      scene-capabilities :member-name
-                                      "capabilities")
-                                     (scene-metadata :target-type
-                                      scene-metadata-map :member-name
-                                      "sceneMetadata"))
-                                    (:shape-name "UpdateSceneRequest"))
+(smithy/sdk/shapes:define-input update-scene-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (scene-id :target-type id :required
+                                  common-lisp:t :member-name "sceneId"
+                                  :http-label common-lisp:t)
+                                 (content-location :target-type s3url
+                                  :member-name "contentLocation")
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (capabilities :target-type scene-capabilities
+                                  :member-name "capabilities")
+                                 (scene-metadata :target-type
+                                  scene-metadata-map :member-name
+                                  "sceneMetadata"))
+                                (:shape-name "UpdateSceneRequest"))
 
 (smithy/sdk/shapes:define-structure update-scene-response common-lisp:nil
                                     ((update-date-time :target-type timestamp
@@ -2435,16 +2452,17 @@
                                       "updateDateTime"))
                                     (:shape-name "UpdateSceneResponse"))
 
-(smithy/sdk/shapes:define-structure update-workspace-request common-lisp:nil
-                                    ((workspace-id :target-type id :required
-                                      common-lisp:t :member-name "workspaceId")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (role :target-type role-arn :member-name
-                                      "role")
-                                     (s3location :target-type s3location
-                                      :member-name "s3Location"))
-                                    (:shape-name "UpdateWorkspaceRequest"))
+(smithy/sdk/shapes:define-input update-workspace-request common-lisp:nil
+                                ((workspace-id :target-type id :required
+                                  common-lisp:t :member-name "workspaceId"
+                                  :http-label common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (role :target-type role-arn :member-name
+                                  "role")
+                                 (s3location :target-type s3location
+                                  :member-name "s3Location"))
+                                (:shape-name "UpdateWorkspaceRequest"))
 
 (smithy/sdk/shapes:define-structure update-workspace-response common-lisp:nil
                                     ((update-date-time :target-type timestamp

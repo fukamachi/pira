@@ -633,14 +633,15 @@
                                 (:shape-name "DependencyException")
                                 (:error-code 500))
 
-(smithy/sdk/shapes:define-structure get-application-component-details-request
-                                    common-lisp:nil
-                                    ((application-component-id :target-type
-                                      application-component-id :required
-                                      common-lisp:t :member-name
-                                      "applicationComponentId"))
-                                    (:shape-name
-                                     "GetApplicationComponentDetailsRequest"))
+(smithy/sdk/shapes:define-input get-application-component-details-request
+                                common-lisp:nil
+                                ((application-component-id :target-type
+                                  application-component-id :required
+                                  common-lisp:t :member-name
+                                  "applicationComponentId" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "GetApplicationComponentDetailsRequest"))
 
 (smithy/sdk/shapes:define-structure get-application-component-details-response
                                     common-lisp:nil
@@ -659,11 +660,15 @@
                                     (:shape-name
                                      "GetApplicationComponentDetailsResponse"))
 
-(smithy/sdk/shapes:define-structure
- get-application-component-strategies-request common-lisp:nil
- ((application-component-id :target-type application-component-id :required
-   common-lisp:t :member-name "applicationComponentId"))
- (:shape-name "GetApplicationComponentStrategiesRequest"))
+(smithy/sdk/shapes:define-input get-application-component-strategies-request
+                                common-lisp:nil
+                                ((application-component-id :target-type
+                                  application-component-id :required
+                                  common-lisp:t :member-name
+                                  "applicationComponentId" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "GetApplicationComponentStrategiesRequest"))
 
 (smithy/sdk/shapes:define-structure
  get-application-component-strategies-response common-lisp:nil
@@ -672,10 +677,11 @@
    "applicationComponentStrategies"))
  (:shape-name "GetApplicationComponentStrategiesResponse"))
 
-(smithy/sdk/shapes:define-structure get-assessment-request common-lisp:nil
-                                    ((id :target-type async-task-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "GetAssessmentRequest"))
+(smithy/sdk/shapes:define-input get-assessment-request common-lisp:nil
+                                ((id :target-type async-task-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetAssessmentRequest"))
 
 (smithy/sdk/shapes:define-structure get-assessment-response common-lisp:nil
                                     ((id :target-type async-task-id
@@ -688,11 +694,11 @@
                                       "assessmentTargets"))
                                     (:shape-name "GetAssessmentResponse"))
 
-(smithy/sdk/shapes:define-structure get-import-file-task-request
-                                    common-lisp:nil
-                                    ((id :target-type string :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "GetImportFileTaskRequest"))
+(smithy/sdk/shapes:define-input get-import-file-task-request common-lisp:nil
+                                ((id :target-type string :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetImportFileTaskRequest"))
 
 (smithy/sdk/shapes:define-structure get-import-file-task-response
                                     common-lisp:nil
@@ -770,13 +776,13 @@
                                       "assessmentSummary"))
                                     (:shape-name "GetPortfolioSummaryResponse"))
 
-(smithy/sdk/shapes:define-structure get-recommendation-report-details-request
-                                    common-lisp:nil
-                                    ((id :target-type recommendation-task-id
-                                      :required common-lisp:t :member-name
-                                      "id"))
-                                    (:shape-name
-                                     "GetRecommendationReportDetailsRequest"))
+(smithy/sdk/shapes:define-input get-recommendation-report-details-request
+                                common-lisp:nil
+                                ((id :target-type recommendation-task-id
+                                  :required common-lisp:t :member-name "id"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "GetRecommendationReportDetailsRequest"))
 
 (smithy/sdk/shapes:define-structure get-recommendation-report-details-response
                                     common-lisp:nil
@@ -790,17 +796,17 @@
                                     (:shape-name
                                      "GetRecommendationReportDetailsResponse"))
 
-(smithy/sdk/shapes:define-structure get-server-details-request common-lisp:nil
-                                    ((server-id :target-type server-id
-                                      :required common-lisp:t :member-name
-                                      "serverId")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-result
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "GetServerDetailsRequest"))
+(smithy/sdk/shapes:define-input get-server-details-request common-lisp:nil
+                                ((server-id :target-type server-id :required
+                                  common-lisp:t :member-name "serverId"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-result
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "GetServerDetailsRequest"))
 
 (smithy/sdk/shapes:define-structure get-server-details-response common-lisp:nil
                                     ((next-token :target-type string
@@ -812,12 +818,11 @@
                                       "associatedApplications"))
                                     (:shape-name "GetServerDetailsResponse"))
 
-(smithy/sdk/shapes:define-structure get-server-strategies-request
-                                    common-lisp:nil
-                                    ((server-id :target-type server-id
-                                      :required common-lisp:t :member-name
-                                      "serverId"))
-                                    (:shape-name "GetServerStrategiesRequest"))
+(smithy/sdk/shapes:define-input get-server-strategies-request common-lisp:nil
+                                ((server-id :target-type server-id :required
+                                  common-lisp:t :member-name "serverId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetServerStrategiesRequest"))
 
 (smithy/sdk/shapes:define-structure get-server-strategies-response
                                     common-lisp:nil
@@ -980,14 +985,14 @@
                                     (:shape-name
                                      "ListApplicationComponentsResponse"))
 
-(smithy/sdk/shapes:define-structure list-collectors-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-result
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListCollectorsRequest"))
+(smithy/sdk/shapes:define-input list-collectors-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-result
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListCollectorsRequest"))
 
 (smithy/sdk/shapes:define-structure list-collectors-response common-lisp:nil
                                     ((collectors :target-type collectors
@@ -999,15 +1004,12 @@
 (smithy/sdk/shapes:define-list list-import-file-task-information :member
                                import-file-task-information)
 
-(smithy/sdk/shapes:define-structure list-import-file-task-request
-                                    common-lisp:nil
-                                    ((next-token :target-type string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type integer
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListImportFileTaskRequest"))
+(smithy/sdk/shapes:define-input list-import-file-task-request common-lisp:nil
+                                ((next-token :target-type string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (max-results :target-type integer :member-name
+                                  "maxResults" :http-query "maxResults"))
+                                (:shape-name "ListImportFileTaskRequest"))
 
 (smithy/sdk/shapes:define-structure list-import-file-task-response
                                     common-lisp:nil

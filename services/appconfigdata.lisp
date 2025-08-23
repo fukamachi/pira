@@ -50,16 +50,15 @@
 
 common-lisp:nil
 
-(smithy/sdk/shapes:define-structure get-latest-configuration-request
-                                    common-lisp:nil
-                                    ((configuration-token :target-type token
-                                      :required common-lisp:t :member-name
-                                      "ConfigurationToken" :http-query
-                                      "configuration_token"))
-                                    (:shape-name
-                                     "GetLatestConfigurationRequest"))
+(smithy/sdk/shapes:define-input get-latest-configuration-request
+                                common-lisp:nil
+                                ((configuration-token :target-type token
+                                  :required common-lisp:t :member-name
+                                  "ConfigurationToken" :http-query
+                                  "configuration_token"))
+                                (:shape-name "GetLatestConfigurationRequest"))
 
-(smithy/sdk/shapes:define-structure get-latest-configuration-response
+(smithy/sdk/shapes:define-interface get-latest-configuration-response
                                     common-lisp:nil
                                     ((next-poll-configuration-token
                                       :target-type token :member-name

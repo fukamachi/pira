@@ -1510,24 +1510,22 @@ common-lisp:nil
                                    :member-name "versionNumber"))
                                  (:shape-name "CreateAIPromptVersionResponse"))
 
-(smithy/sdk/shapes:define-structure create-assistant-association-request
-                                    common-lisp:nil
-                                    ((assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId")
-                                     (association-type :target-type
-                                      association-type :required common-lisp:t
-                                      :member-name "associationType")
-                                     (association :target-type
-                                      assistant-association-input-data
-                                      :required common-lisp:t :member-name
-                                      "association")
-                                     (client-token :target-type client-token
-                                      :member-name "clientToken")
-                                     (tags :target-type tags :member-name
-                                      "tags"))
-                                    (:shape-name
-                                     "CreateAssistantAssociationRequest"))
+(smithy/sdk/shapes:define-input create-assistant-association-request
+                                common-lisp:nil
+                                ((assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t)
+                                 (association-type :target-type
+                                  association-type :required common-lisp:t
+                                  :member-name "associationType")
+                                 (association :target-type
+                                  assistant-association-input-data :required
+                                  common-lisp:t :member-name "association")
+                                 (client-token :target-type client-token
+                                  :member-name "clientToken")
+                                 (tags :target-type tags :member-name "tags"))
+                                (:shape-name
+                                 "CreateAssistantAssociationRequest"))
 
 (smithy/sdk/shapes:define-structure create-assistant-association-response
                                     common-lisp:nil
@@ -1588,27 +1586,24 @@ common-lisp:nil
                                  (:shape-name
                                   "CreateContentAssociationResponse"))
 
-(smithy/sdk/shapes:define-structure create-content-request common-lisp:nil
-                                    ((knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId")
-                                     (name :target-type name :required
-                                      common-lisp:t :member-name "name")
-                                     (title :target-type content-title
-                                      :member-name "title")
-                                     (override-link-out-uri :target-type uri
-                                      :member-name "overrideLinkOutUri")
-                                     (metadata :target-type content-metadata
-                                      :member-name "metadata")
-                                     (upload-id :target-type upload-id
-                                      :required common-lisp:t :member-name
-                                      "uploadId")
-                                     (client-token :target-type
-                                      non-empty-string :member-name
-                                      "clientToken")
-                                     (tags :target-type tags :member-name
-                                      "tags"))
-                                    (:shape-name "CreateContentRequest"))
+(smithy/sdk/shapes:define-input create-content-request common-lisp:nil
+                                ((knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t)
+                                 (name :target-type name :required
+                                  common-lisp:t :member-name "name")
+                                 (title :target-type content-title :member-name
+                                  "title")
+                                 (override-link-out-uri :target-type uri
+                                  :member-name "overrideLinkOutUri")
+                                 (metadata :target-type content-metadata
+                                  :member-name "metadata")
+                                 (upload-id :target-type upload-id :required
+                                  common-lisp:t :member-name "uploadId")
+                                 (client-token :target-type non-empty-string
+                                  :member-name "clientToken")
+                                 (tags :target-type tags :member-name "tags"))
+                                (:shape-name "CreateContentRequest"))
 
 (smithy/sdk/shapes:define-structure create-content-response common-lisp:nil
                                     ((content :target-type content-data
@@ -1780,24 +1775,23 @@ common-lisp:nil
                                    "quickResponse"))
                                  (:shape-name "CreateQuickResponseResponse"))
 
-(smithy/sdk/shapes:define-structure create-session-request common-lisp:nil
-                                    ((client-token :target-type client-token
-                                      :member-name "clientToken")
-                                     (assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId")
-                                     (name :target-type name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (tags :target-type tags :member-name
-                                      "tags")
-                                     (tag-filter :target-type tag-filter
-                                      :member-name "tagFilter")
-                                     (ai-agent-configuration :target-type
-                                      aiagent-configuration-map :member-name
-                                      "aiAgentConfiguration"))
-                                    (:shape-name "CreateSessionRequest"))
+(smithy/sdk/shapes:define-input create-session-request common-lisp:nil
+                                ((client-token :target-type client-token
+                                  :member-name "clientToken")
+                                 (assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t)
+                                 (name :target-type name :required
+                                  common-lisp:t :member-name "name")
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (tags :target-type tags :member-name "tags")
+                                 (tag-filter :target-type tag-filter
+                                  :member-name "tagFilter")
+                                 (ai-agent-configuration :target-type
+                                  aiagent-configuration-map :member-name
+                                  "aiAgentConfiguration"))
+                                (:shape-name "CreateSessionRequest"))
 
 (smithy/sdk/shapes:define-structure create-session-response common-lisp:nil
                                     ((session :target-type session-data
@@ -2146,27 +2140,28 @@ common-lisp:nil
                                  common-lisp:nil common-lisp:nil
                                  (:shape-name "DeleteAIPromptVersionResponse"))
 
-(smithy/sdk/shapes:define-structure delete-assistant-association-request
-                                    common-lisp:nil
-                                    ((assistant-association-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "assistantAssociationId")
-                                     (assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId"))
-                                    (:shape-name
-                                     "DeleteAssistantAssociationRequest"))
+(smithy/sdk/shapes:define-input delete-assistant-association-request
+                                common-lisp:nil
+                                ((assistant-association-id :target-type
+                                  uuid-or-arn :required common-lisp:t
+                                  :member-name "assistantAssociationId"
+                                  :http-label common-lisp:t)
+                                 (assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t))
+                                (:shape-name
+                                 "DeleteAssistantAssociationRequest"))
 
 (smithy/sdk/shapes:define-structure delete-assistant-association-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeleteAssistantAssociationResponse"))
 
-(smithy/sdk/shapes:define-structure delete-assistant-request common-lisp:nil
-                                    ((assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId"))
-                                    (:shape-name "DeleteAssistantRequest"))
+(smithy/sdk/shapes:define-input delete-assistant-request common-lisp:nil
+                                ((assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t))
+                                (:shape-name "DeleteAssistantRequest"))
 
 (smithy/sdk/shapes:define-structure delete-assistant-response common-lisp:nil
                                     common-lisp:nil
@@ -2191,14 +2186,14 @@ common-lisp:nil
                                  (:shape-name
                                   "DeleteContentAssociationResponse"))
 
-(smithy/sdk/shapes:define-structure delete-content-request common-lisp:nil
-                                    ((knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId")
-                                     (content-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "contentId"))
-                                    (:shape-name "DeleteContentRequest"))
+(smithy/sdk/shapes:define-input delete-content-request common-lisp:nil
+                                ((knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t)
+                                 (content-id :target-type uuid-or-arn :required
+                                  common-lisp:t :member-name "contentId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteContentRequest"))
 
 (smithy/sdk/shapes:define-structure delete-content-response common-lisp:nil
                                     common-lisp:nil
@@ -2217,12 +2212,11 @@ common-lisp:nil
                                  common-lisp:nil
                                  (:shape-name "DeleteImportJobResponse"))
 
-(smithy/sdk/shapes:define-structure delete-knowledge-base-request
-                                    common-lisp:nil
-                                    ((knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId"))
-                                    (:shape-name "DeleteKnowledgeBaseRequest"))
+(smithy/sdk/shapes:define-input delete-knowledge-base-request common-lisp:nil
+                                ((knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t))
+                                (:shape-name "DeleteKnowledgeBaseRequest"))
 
 (smithy/sdk/shapes:define-structure delete-knowledge-base-response
                                     common-lisp:nil common-lisp:nil
@@ -2533,16 +2527,16 @@ common-lisp:nil
                                    :member-name "versionNumber"))
                                  (:shape-name "GetAIPromptResponse"))
 
-(smithy/sdk/shapes:define-structure get-assistant-association-request
-                                    common-lisp:nil
-                                    ((assistant-association-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "assistantAssociationId")
-                                     (assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId"))
-                                    (:shape-name
-                                     "GetAssistantAssociationRequest"))
+(smithy/sdk/shapes:define-input get-assistant-association-request
+                                common-lisp:nil
+                                ((assistant-association-id :target-type
+                                  uuid-or-arn :required common-lisp:t
+                                  :member-name "assistantAssociationId"
+                                  :http-label common-lisp:t)
+                                 (assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t))
+                                (:shape-name "GetAssistantAssociationRequest"))
 
 (smithy/sdk/shapes:define-structure get-assistant-association-response
                                     common-lisp:nil
@@ -2552,11 +2546,11 @@ common-lisp:nil
                                     (:shape-name
                                      "GetAssistantAssociationResponse"))
 
-(smithy/sdk/shapes:define-structure get-assistant-request common-lisp:nil
-                                    ((assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId"))
-                                    (:shape-name "GetAssistantRequest"))
+(smithy/sdk/shapes:define-input get-assistant-request common-lisp:nil
+                                ((assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t))
+                                (:shape-name "GetAssistantRequest"))
 
 (smithy/sdk/shapes:define-structure get-assistant-response common-lisp:nil
                                     ((assistant :target-type assistant-data
@@ -2583,28 +2577,28 @@ common-lisp:nil
                                    "contentAssociation"))
                                  (:shape-name "GetContentAssociationResponse"))
 
-(smithy/sdk/shapes:define-structure get-content-request common-lisp:nil
-                                    ((content-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "contentId")
-                                     (knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId"))
-                                    (:shape-name "GetContentRequest"))
+(smithy/sdk/shapes:define-input get-content-request common-lisp:nil
+                                ((content-id :target-type uuid-or-arn :required
+                                  common-lisp:t :member-name "contentId"
+                                  :http-label common-lisp:t)
+                                 (knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t))
+                                (:shape-name "GetContentRequest"))
 
 (smithy/sdk/shapes:define-structure get-content-response common-lisp:nil
                                     ((content :target-type content-data
                                       :member-name "content"))
                                     (:shape-name "GetContentResponse"))
 
-(smithy/sdk/shapes:define-structure get-content-summary-request common-lisp:nil
-                                    ((content-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "contentId")
-                                     (knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId"))
-                                    (:shape-name "GetContentSummaryRequest"))
+(smithy/sdk/shapes:define-input get-content-summary-request common-lisp:nil
+                                ((content-id :target-type uuid-or-arn :required
+                                  common-lisp:t :member-name "contentId"
+                                  :http-label common-lisp:t)
+                                 (knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t))
+                                (:shape-name "GetContentSummaryRequest"))
 
 (smithy/sdk/shapes:define-structure get-content-summary-response
                                     common-lisp:nil
@@ -2627,11 +2621,11 @@ common-lisp:nil
                                    :member-name "importJob"))
                                  (:shape-name "GetImportJobResponse"))
 
-(smithy/sdk/shapes:define-structure get-knowledge-base-request common-lisp:nil
-                                    ((knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId"))
-                                    (:shape-name "GetKnowledgeBaseRequest"))
+(smithy/sdk/shapes:define-input get-knowledge-base-request common-lisp:nil
+                                ((knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t))
+                                (:shape-name "GetKnowledgeBaseRequest"))
 
 (smithy/sdk/shapes:define-structure get-knowledge-base-response common-lisp:nil
                                     ((knowledge-base :target-type
@@ -2703,24 +2697,24 @@ common-lisp:nil
                                    "quickResponse"))
                                  (:shape-name "GetQuickResponseResponse"))
 
-(smithy/sdk/shapes:define-structure get-recommendations-request common-lisp:nil
-                                    ((assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId")
-                                     (session-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "sessionId")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (wait-time-seconds :target-type
-                                      wait-time-seconds :member-name
-                                      "waitTimeSeconds" :http-query
-                                      "waitTimeSeconds")
-                                     (next-chunk-token :target-type next-token
-                                      :member-name "nextChunkToken" :http-query
-                                      "nextChunkToken"))
-                                    (:shape-name "GetRecommendationsRequest"))
+(smithy/sdk/shapes:define-input get-recommendations-request common-lisp:nil
+                                ((assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t)
+                                 (session-id :target-type uuid-or-arn :required
+                                  common-lisp:t :member-name "sessionId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (wait-time-seconds :target-type
+                                  wait-time-seconds :member-name
+                                  "waitTimeSeconds" :http-query
+                                  "waitTimeSeconds")
+                                 (next-chunk-token :target-type next-token
+                                  :member-name "nextChunkToken" :http-query
+                                  "nextChunkToken"))
+                                (:shape-name "GetRecommendationsRequest"))
 
 (smithy/sdk/shapes:define-structure get-recommendations-response
                                     common-lisp:nil
@@ -2733,14 +2727,14 @@ common-lisp:nil
                                       "triggers"))
                                     (:shape-name "GetRecommendationsResponse"))
 
-(smithy/sdk/shapes:define-structure get-session-request common-lisp:nil
-                                    ((assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId")
-                                     (session-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "sessionId"))
-                                    (:shape-name "GetSessionRequest"))
+(smithy/sdk/shapes:define-input get-session-request common-lisp:nil
+                                ((assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t)
+                                 (session-id :target-type uuid-or-arn :required
+                                  common-lisp:t :member-name "sessionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetSessionRequest"))
 
 (smithy/sdk/shapes:define-structure get-session-response common-lisp:nil
                                     ((session :target-type session-data
@@ -3321,19 +3315,19 @@ common-lisp:nil
                                    :member-name "nextToken"))
                                  (:shape-name "ListAIPromptsResponse"))
 
-(smithy/sdk/shapes:define-structure list-assistant-associations-request
-                                    common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId"))
-                                    (:shape-name
-                                     "ListAssistantAssociationsRequest"))
+(smithy/sdk/shapes:define-input list-assistant-associations-request
+                                common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t))
+                                (:shape-name
+                                 "ListAssistantAssociationsRequest"))
 
 (smithy/sdk/shapes:define-structure list-assistant-associations-response
                                     common-lisp:nil
@@ -3347,14 +3341,14 @@ common-lisp:nil
                                     (:shape-name
                                      "ListAssistantAssociationsResponse"))
 
-(smithy/sdk/shapes:define-structure list-assistants-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListAssistantsRequest"))
+(smithy/sdk/shapes:define-input list-assistants-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListAssistantsRequest"))
 
 (smithy/sdk/shapes:define-structure list-assistants-response common-lisp:nil
                                     ((assistant-summaries :target-type
@@ -3391,17 +3385,17 @@ common-lisp:nil
                                  (:shape-name
                                   "ListContentAssociationsResponse"))
 
-(smithy/sdk/shapes:define-structure list-contents-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId"))
-                                    (:shape-name "ListContentsRequest"))
+(smithy/sdk/shapes:define-input list-contents-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t))
+                                (:shape-name "ListContentsRequest"))
 
 (smithy/sdk/shapes:define-structure list-contents-response common-lisp:nil
                                     ((content-summaries :target-type
@@ -3432,15 +3426,14 @@ common-lisp:nil
                                    :member-name "nextToken"))
                                  (:shape-name "ListImportJobsResponse"))
 
-(smithy/sdk/shapes:define-structure list-knowledge-bases-request
-                                    common-lisp:nil
-                                    ((next-token :target-type non-empty-string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListKnowledgeBasesRequest"))
+(smithy/sdk/shapes:define-input list-knowledge-bases-request common-lisp:nil
+                                ((next-token :target-type non-empty-string
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListKnowledgeBasesRequest"))
 
 (smithy/sdk/shapes:define-structure list-knowledge-bases-response
                                     common-lisp:nil
@@ -3548,12 +3541,11 @@ common-lisp:nil
                                    :member-name "nextToken"))
                                  (:shape-name "ListQuickResponsesResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -4002,20 +3994,20 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type notify-recommendations-received-error-message
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure notify-recommendations-received-request
-                                    common-lisp:nil
-                                    ((assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId")
-                                     (session-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "sessionId")
-                                     (recommendation-ids :target-type
-                                      recommendation-id-list :required
-                                      common-lisp:t :member-name
-                                      "recommendationIds"))
-                                    (:shape-name
-                                     "NotifyRecommendationsReceivedRequest"))
+(smithy/sdk/shapes:define-input notify-recommendations-received-request
+                                common-lisp:nil
+                                ((assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t)
+                                 (session-id :target-type uuid-or-arn :required
+                                  common-lisp:t :member-name "sessionId"
+                                  :http-label common-lisp:t)
+                                 (recommendation-ids :target-type
+                                  recommendation-id-list :required
+                                  common-lisp:t :member-name
+                                  "recommendationIds"))
+                                (:shape-name
+                                 "NotifyRecommendationsReceivedRequest"))
 
 (smithy/sdk/shapes:define-structure notify-recommendations-received-response
                                     common-lisp:nil
@@ -4108,29 +4100,29 @@ common-lisp:nil
                                    "contentFeedback"))
                                  (:shape-name "PutFeedbackResponse"))
 
-(smithy/sdk/shapes:define-structure query-assistant-request common-lisp:nil
-                                    ((assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId")
-                                     (query-text :target-type query-text
-                                      :member-name "queryText")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults")
-                                     (session-id :target-type uuid-or-arn
-                                      :member-name "sessionId")
-                                     (query-condition :target-type
-                                      query-condition-expression :member-name
-                                      "queryCondition")
-                                     (query-input-data :target-type
-                                      query-input-data :member-name
-                                      "queryInputData")
-                                     (override-knowledge-base-search-type
-                                      :target-type knowledge-base-search-type
-                                      :member-name
-                                      "overrideKnowledgeBaseSearchType"))
-                                    (:shape-name "QueryAssistantRequest"))
+(smithy/sdk/shapes:define-input query-assistant-request common-lisp:nil
+                                ((assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t)
+                                 (query-text :target-type query-text
+                                  :member-name "queryText")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults")
+                                 (session-id :target-type uuid-or-arn
+                                  :member-name "sessionId")
+                                 (query-condition :target-type
+                                  query-condition-expression :member-name
+                                  "queryCondition")
+                                 (query-input-data :target-type
+                                  query-input-data :member-name
+                                  "queryInputData")
+                                 (override-knowledge-base-search-type
+                                  :target-type knowledge-base-search-type
+                                  :member-name
+                                  "overrideKnowledgeBaseSearchType"))
+                                (:shape-name "QueryAssistantRequest"))
 
 (smithy/sdk/shapes:define-structure query-assistant-response common-lisp:nil
                                     ((results :target-type query-results-list
@@ -4571,13 +4563,13 @@ common-lisp:nil
                                  common-lisp:nil common-lisp:nil
                                  (:shape-name "RemoveAssistantAIAgentResponse"))
 
-(smithy/sdk/shapes:define-structure remove-knowledge-base-template-uri-request
-                                    common-lisp:nil
-                                    ((knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId"))
-                                    (:shape-name
-                                     "RemoveKnowledgeBaseTemplateUriRequest"))
+(smithy/sdk/shapes:define-input remove-knowledge-base-template-uri-request
+                                common-lisp:nil
+                                ((knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t))
+                                (:shape-name
+                                 "RemoveKnowledgeBaseTemplateUriRequest"))
 
 (smithy/sdk/shapes:define-structure remove-knowledge-base-template-uri-response
                                     common-lisp:nil common-lisp:nil
@@ -4679,20 +4671,20 @@ common-lisp:nil
                                     (:shape-name
                                      "SMSMessageTemplateContentBody"))
 
-(smithy/sdk/shapes:define-structure search-content-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId")
-                                     (search-expression :target-type
-                                      search-expression :required common-lisp:t
-                                      :member-name "searchExpression"))
-                                    (:shape-name "SearchContentRequest"))
+(smithy/sdk/shapes:define-input search-content-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t)
+                                 (search-expression :target-type
+                                  search-expression :required common-lisp:t
+                                  :member-name "searchExpression"))
+                                (:shape-name "SearchContentRequest"))
 
 (smithy/sdk/shapes:define-structure search-content-response common-lisp:nil
                                     ((content-summaries :target-type
@@ -4763,20 +4755,20 @@ common-lisp:nil
                                    :member-name "nextToken"))
                                  (:shape-name "SearchQuickResponsesResponse"))
 
-(smithy/sdk/shapes:define-structure search-sessions-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (assistant-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "assistantId")
-                                     (search-expression :target-type
-                                      search-expression :required common-lisp:t
-                                      :member-name "searchExpression"))
-                                    (:shape-name "SearchSessionsRequest"))
+(smithy/sdk/shapes:define-input search-sessions-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (assistant-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "assistantId" :http-label common-lisp:t)
+                                 (search-expression :target-type
+                                  search-expression :required common-lisp:t
+                                  :member-name "searchExpression"))
+                                (:shape-name "SearchSessionsRequest"))
 
 (smithy/sdk/shapes:define-structure search-sessions-response common-lisp:nil
                                     ((session-summaries :target-type
@@ -4976,18 +4968,17 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type source-content-type
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure start-content-upload-request
-                                    common-lisp:nil
-                                    ((knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId")
-                                     (content-type :target-type content-type
-                                      :required common-lisp:t :member-name
-                                      "contentType")
-                                     (presigned-url-time-to-live :target-type
-                                      time-to-live :member-name
-                                      "presignedUrlTimeToLive"))
-                                    (:shape-name "StartContentUploadRequest"))
+(smithy/sdk/shapes:define-input start-content-upload-request common-lisp:nil
+                                ((knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t)
+                                 (content-type :target-type content-type
+                                  :required common-lisp:t :member-name
+                                  "contentType")
+                                 (presigned-url-time-to-live :target-type
+                                  time-to-live :member-name
+                                  "presignedUrlTimeToLive"))
+                                (:shape-name "StartContentUploadRequest"))
 
 (smithy/sdk/shapes:define-structure start-content-upload-response
                                     common-lisp:nil
@@ -5071,12 +5062,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list tag-key-list :member tag-key)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tags :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tags :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -5134,13 +5126,14 @@ common-lisp:nil
                                 (:shape-name "UnauthorizedException")
                                 (:error-code 401))
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -5265,43 +5258,42 @@ common-lisp:nil
                                    :member-name "assistant"))
                                  (:shape-name "UpdateAssistantAIAgentResponse"))
 
-(smithy/sdk/shapes:define-structure update-content-request common-lisp:nil
-                                    ((knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId")
-                                     (content-id :target-type uuid-or-arn
-                                      :required common-lisp:t :member-name
-                                      "contentId")
-                                     (revision-id :target-type non-empty-string
-                                      :member-name "revisionId")
-                                     (title :target-type content-title
-                                      :member-name "title")
-                                     (override-link-out-uri :target-type uri
-                                      :member-name "overrideLinkOutUri")
-                                     (remove-override-link-out-uri :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "removeOverrideLinkOutUri")
-                                     (metadata :target-type content-metadata
-                                      :member-name "metadata")
-                                     (upload-id :target-type upload-id
-                                      :member-name "uploadId"))
-                                    (:shape-name "UpdateContentRequest"))
+(smithy/sdk/shapes:define-input update-content-request common-lisp:nil
+                                ((knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t)
+                                 (content-id :target-type uuid-or-arn :required
+                                  common-lisp:t :member-name "contentId"
+                                  :http-label common-lisp:t)
+                                 (revision-id :target-type non-empty-string
+                                  :member-name "revisionId")
+                                 (title :target-type content-title :member-name
+                                  "title")
+                                 (override-link-out-uri :target-type uri
+                                  :member-name "overrideLinkOutUri")
+                                 (remove-override-link-out-uri :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "removeOverrideLinkOutUri")
+                                 (metadata :target-type content-metadata
+                                  :member-name "metadata")
+                                 (upload-id :target-type upload-id :member-name
+                                  "uploadId"))
+                                (:shape-name "UpdateContentRequest"))
 
 (smithy/sdk/shapes:define-structure update-content-response common-lisp:nil
                                     ((content :target-type content-data
                                       :member-name "content"))
                                     (:shape-name "UpdateContentResponse"))
 
-(smithy/sdk/shapes:define-structure update-knowledge-base-template-uri-request
-                                    common-lisp:nil
-                                    ((knowledge-base-id :target-type
-                                      uuid-or-arn :required common-lisp:t
-                                      :member-name "knowledgeBaseId")
-                                     (template-uri :target-type uri :required
-                                      common-lisp:t :member-name
-                                      "templateUri"))
-                                    (:shape-name
-                                     "UpdateKnowledgeBaseTemplateUriRequest"))
+(smithy/sdk/shapes:define-input update-knowledge-base-template-uri-request
+                                common-lisp:nil
+                                ((knowledge-base-id :target-type uuid-or-arn
+                                  :required common-lisp:t :member-name
+                                  "knowledgeBaseId" :http-label common-lisp:t)
+                                 (template-uri :target-type uri :required
+                                  common-lisp:t :member-name "templateUri"))
+                                (:shape-name
+                                 "UpdateKnowledgeBaseTemplateUriRequest"))
 
 (smithy/sdk/shapes:define-structure update-knowledge-base-template-uri-response
                                     common-lisp:nil

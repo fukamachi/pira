@@ -121,7 +121,7 @@
                                   "Tags"))
                                 (:shape-name "AddTagsToVaultInput"))
 
-(smithy/sdk/shapes:define-structure archive-creation-output common-lisp:nil
+(smithy/sdk/shapes:define-interface archive-creation-output common-lisp:nil
                                     ((location :target-type string :member-name
                                       "location" :http-header "Location")
                                      (checksum :target-type string :member-name

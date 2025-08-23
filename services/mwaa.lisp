@@ -94,11 +94,11 @@
 
 (smithy/sdk/shapes:define-type config-value smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure create-cli-token-request common-lisp:nil
-                                    ((name :target-type environment-name
-                                      :required common-lisp:t :member-name
-                                      "Name"))
-                                    (:shape-name "CreateCliTokenRequest"))
+(smithy/sdk/shapes:define-input create-cli-token-request common-lisp:nil
+                                ((name :target-type environment-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "CreateCliTokenRequest"))
 
 (smithy/sdk/shapes:define-structure create-cli-token-response common-lisp:nil
                                     ((cli-token :target-type token :member-name
@@ -107,96 +107,85 @@
                                       :member-name "WebServerHostname"))
                                     (:shape-name "CreateCliTokenResponse"))
 
-(smithy/sdk/shapes:define-structure create-environment-input common-lisp:nil
-                                    ((name :target-type environment-name
-                                      :required common-lisp:t :member-name
-                                      "Name")
-                                     (execution-role-arn :target-type
-                                      iam-role-arn :required common-lisp:t
-                                      :member-name "ExecutionRoleArn")
-                                     (source-bucket-arn :target-type
-                                      s3bucket-arn :required common-lisp:t
-                                      :member-name "SourceBucketArn")
-                                     (dag-s3path :target-type relative-path
-                                      :required common-lisp:t :member-name
-                                      "DagS3Path")
-                                     (network-configuration :target-type
-                                      network-configuration :required
-                                      common-lisp:t :member-name
-                                      "NetworkConfiguration")
-                                     (plugins-s3path :target-type relative-path
-                                      :member-name "PluginsS3Path")
-                                     (plugins-s3object-version :target-type
-                                      s3object-version :member-name
-                                      "PluginsS3ObjectVersion")
-                                     (requirements-s3path :target-type
-                                      relative-path :member-name
-                                      "RequirementsS3Path")
-                                     (requirements-s3object-version
-                                      :target-type s3object-version
-                                      :member-name
-                                      "RequirementsS3ObjectVersion")
-                                     (startup-script-s3path :target-type
-                                      relative-path :member-name
-                                      "StartupScriptS3Path")
-                                     (startup-script-s3object-version
-                                      :target-type s3object-version
-                                      :member-name
-                                      "StartupScriptS3ObjectVersion")
-                                     (airflow-configuration-options
-                                      :target-type
-                                      airflow-configuration-options
-                                      :member-name
-                                      "AirflowConfigurationOptions")
-                                     (environment-class :target-type
-                                      environment-class :member-name
-                                      "EnvironmentClass")
-                                     (max-workers :target-type max-workers
-                                      :member-name "MaxWorkers")
-                                     (kms-key :target-type kms-key :member-name
-                                      "KmsKey")
-                                     (airflow-version :target-type
-                                      airflow-version :member-name
-                                      "AirflowVersion")
-                                     (logging-configuration :target-type
-                                      logging-configuration-input :member-name
-                                      "LoggingConfiguration")
-                                     (weekly-maintenance-window-start
-                                      :target-type
-                                      weekly-maintenance-window-start
-                                      :member-name
-                                      "WeeklyMaintenanceWindowStart")
-                                     (tags :target-type tag-map :member-name
-                                      "Tags")
-                                     (webserver-access-mode :target-type
-                                      webserver-access-mode :member-name
-                                      "WebserverAccessMode")
-                                     (min-workers :target-type min-workers
-                                      :member-name "MinWorkers")
-                                     (schedulers :target-type schedulers
-                                      :member-name "Schedulers")
-                                     (endpoint-management :target-type
-                                      endpoint-management :member-name
-                                      "EndpointManagement")
-                                     (min-webservers :target-type
-                                      min-webservers :member-name
-                                      "MinWebservers")
-                                     (max-webservers :target-type
-                                      max-webservers :member-name
-                                      "MaxWebservers"))
-                                    (:shape-name "CreateEnvironmentInput"))
+(smithy/sdk/shapes:define-input create-environment-input common-lisp:nil
+                                ((name :target-type environment-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (execution-role-arn :target-type iam-role-arn
+                                  :required common-lisp:t :member-name
+                                  "ExecutionRoleArn")
+                                 (source-bucket-arn :target-type s3bucket-arn
+                                  :required common-lisp:t :member-name
+                                  "SourceBucketArn")
+                                 (dag-s3path :target-type relative-path
+                                  :required common-lisp:t :member-name
+                                  "DagS3Path")
+                                 (network-configuration :target-type
+                                  network-configuration :required common-lisp:t
+                                  :member-name "NetworkConfiguration")
+                                 (plugins-s3path :target-type relative-path
+                                  :member-name "PluginsS3Path")
+                                 (plugins-s3object-version :target-type
+                                  s3object-version :member-name
+                                  "PluginsS3ObjectVersion")
+                                 (requirements-s3path :target-type
+                                  relative-path :member-name
+                                  "RequirementsS3Path")
+                                 (requirements-s3object-version :target-type
+                                  s3object-version :member-name
+                                  "RequirementsS3ObjectVersion")
+                                 (startup-script-s3path :target-type
+                                  relative-path :member-name
+                                  "StartupScriptS3Path")
+                                 (startup-script-s3object-version :target-type
+                                  s3object-version :member-name
+                                  "StartupScriptS3ObjectVersion")
+                                 (airflow-configuration-options :target-type
+                                  airflow-configuration-options :member-name
+                                  "AirflowConfigurationOptions")
+                                 (environment-class :target-type
+                                  environment-class :member-name
+                                  "EnvironmentClass")
+                                 (max-workers :target-type max-workers
+                                  :member-name "MaxWorkers")
+                                 (kms-key :target-type kms-key :member-name
+                                  "KmsKey")
+                                 (airflow-version :target-type airflow-version
+                                  :member-name "AirflowVersion")
+                                 (logging-configuration :target-type
+                                  logging-configuration-input :member-name
+                                  "LoggingConfiguration")
+                                 (weekly-maintenance-window-start :target-type
+                                  weekly-maintenance-window-start :member-name
+                                  "WeeklyMaintenanceWindowStart")
+                                 (tags :target-type tag-map :member-name
+                                  "Tags")
+                                 (webserver-access-mode :target-type
+                                  webserver-access-mode :member-name
+                                  "WebserverAccessMode")
+                                 (min-workers :target-type min-workers
+                                  :member-name "MinWorkers")
+                                 (schedulers :target-type schedulers
+                                  :member-name "Schedulers")
+                                 (endpoint-management :target-type
+                                  endpoint-management :member-name
+                                  "EndpointManagement")
+                                 (min-webservers :target-type min-webservers
+                                  :member-name "MinWebservers")
+                                 (max-webservers :target-type max-webservers
+                                  :member-name "MaxWebservers"))
+                                (:shape-name "CreateEnvironmentInput"))
 
 (smithy/sdk/shapes:define-structure create-environment-output common-lisp:nil
                                     ((arn :target-type environment-arn
                                       :member-name "Arn"))
                                     (:shape-name "CreateEnvironmentOutput"))
 
-(smithy/sdk/shapes:define-structure create-web-login-token-request
-                                    common-lisp:nil
-                                    ((name :target-type environment-name
-                                      :required common-lisp:t :member-name
-                                      "Name"))
-                                    (:shape-name "CreateWebLoginTokenRequest"))
+(smithy/sdk/shapes:define-input create-web-login-token-request common-lisp:nil
+                                ((name :target-type environment-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "CreateWebLoginTokenRequest"))
 
 (smithy/sdk/shapes:define-structure create-web-login-token-response
                                     common-lisp:nil
@@ -213,11 +202,11 @@
 
 (smithy/sdk/shapes:define-type created-at smithy/sdk/smithy-types:timestamp)
 
-(smithy/sdk/shapes:define-structure delete-environment-input common-lisp:nil
-                                    ((name :target-type environment-name
-                                      :required common-lisp:t :member-name
-                                      "Name"))
-                                    (:shape-name "DeleteEnvironmentInput"))
+(smithy/sdk/shapes:define-input delete-environment-input common-lisp:nil
+                                ((name :target-type environment-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteEnvironmentInput"))
 
 (smithy/sdk/shapes:define-structure delete-environment-output common-lisp:nil
                                     common-lisp:nil
@@ -353,11 +342,11 @@
 
 (smithy/sdk/shapes:define-type error-message smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure get-environment-input common-lisp:nil
-                                    ((name :target-type environment-name
-                                      :required common-lisp:t :member-name
-                                      "Name"))
-                                    (:shape-name "GetEnvironmentInput"))
+(smithy/sdk/shapes:define-input get-environment-input common-lisp:nil
+                                ((name :target-type environment-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetEnvironmentInput"))
 
 (smithy/sdk/shapes:define-structure get-environment-output common-lisp:nil
                                     ((environment :target-type environment
@@ -417,15 +406,14 @@
                                       "WorkerReplacementStrategy"))
                                     (:shape-name "LastUpdate"))
 
-(smithy/sdk/shapes:define-structure list-environments-input common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "NextToken")
-                                     (max-results :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "MaxResults" :http-query
-                                      "MaxResults"))
-                                    (:shape-name "ListEnvironmentsInput"))
+(smithy/sdk/shapes:define-input list-environments-input common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "NextToken")
+                                 (max-results :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "MaxResults" :http-query "MaxResults"))
+                                (:shape-name "ListEnvironmentsInput"))
 
 (smithy/sdk/shapes:define-structure list-environments-output common-lisp:nil
                                     ((environments :target-type
@@ -435,12 +423,11 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListEnvironmentsOutput"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-input
-                                    common-lisp:nil
-                                    ((resource-arn :target-type environment-arn
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceInput"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-input common-lisp:nil
+                                ((resource-arn :target-type environment-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceInput"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-output
                                     common-lisp:nil
@@ -550,14 +537,15 @@
 
 (smithy/sdk/shapes:define-type next-token smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure publish-metrics-input common-lisp:nil
-                                    ((environment-name :target-type
-                                      environment-name :required common-lisp:t
-                                      :member-name "EnvironmentName")
-                                     (metric-data :target-type metric-data
-                                      :required common-lisp:t :member-name
-                                      "MetricData"))
-                                    (:shape-name "PublishMetricsInput"))
+(smithy/sdk/shapes:define-input publish-metrics-input common-lisp:nil
+                                ((environment-name :target-type
+                                  environment-name :required common-lisp:t
+                                  :member-name "EnvironmentName" :http-label
+                                  common-lisp:t)
+                                 (metric-data :target-type metric-data
+                                  :required common-lisp:t :member-name
+                                  "MetricData"))
+                                (:shape-name "PublishMetricsInput"))
 
 (smithy/sdk/shapes:define-structure publish-metrics-output common-lisp:nil
                                     common-lisp:nil
@@ -637,13 +625,13 @@
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type environment-arn
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceInput"))
+(smithy/sdk/shapes:define-input tag-resource-input common-lisp:nil
+                                ((resource-arn :target-type environment-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceInput"))
 
 (smithy/sdk/shapes:define-structure tag-resource-output common-lisp:nil
                                     common-lisp:nil
@@ -655,14 +643,14 @@
 
 (smithy/sdk/shapes:define-type unit smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type environment-arn
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceInput"))
+(smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
+                                ((resource-arn :target-type environment-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceInput"))
 
 (smithy/sdk/shapes:define-structure untag-resource-output common-lisp:nil
                                     common-lisp:nil
@@ -671,78 +659,67 @@
 (smithy/sdk/shapes:define-type update-created-at
                                smithy/sdk/smithy-types:timestamp)
 
-(smithy/sdk/shapes:define-structure update-environment-input common-lisp:nil
-                                    ((name :target-type environment-name
-                                      :required common-lisp:t :member-name
-                                      "Name")
-                                     (execution-role-arn :target-type
-                                      iam-role-arn :member-name
-                                      "ExecutionRoleArn")
-                                     (airflow-configuration-options
-                                      :target-type
-                                      airflow-configuration-options
-                                      :member-name
-                                      "AirflowConfigurationOptions")
-                                     (airflow-version :target-type
-                                      airflow-version :member-name
-                                      "AirflowVersion")
-                                     (dag-s3path :target-type relative-path
-                                      :member-name "DagS3Path")
-                                     (environment-class :target-type
-                                      environment-class :member-name
-                                      "EnvironmentClass")
-                                     (logging-configuration :target-type
-                                      logging-configuration-input :member-name
-                                      "LoggingConfiguration")
-                                     (max-workers :target-type max-workers
-                                      :member-name "MaxWorkers")
-                                     (min-workers :target-type min-workers
-                                      :member-name "MinWorkers")
-                                     (max-webservers :target-type
-                                      max-webservers :member-name
-                                      "MaxWebservers")
-                                     (min-webservers :target-type
-                                      min-webservers :member-name
-                                      "MinWebservers")
-                                     (worker-replacement-strategy :target-type
-                                      worker-replacement-strategy :member-name
-                                      "WorkerReplacementStrategy")
-                                     (network-configuration :target-type
-                                      update-network-configuration-input
-                                      :member-name "NetworkConfiguration")
-                                     (plugins-s3path :target-type relative-path
-                                      :member-name "PluginsS3Path")
-                                     (plugins-s3object-version :target-type
-                                      s3object-version :member-name
-                                      "PluginsS3ObjectVersion")
-                                     (requirements-s3path :target-type
-                                      relative-path :member-name
-                                      "RequirementsS3Path")
-                                     (requirements-s3object-version
-                                      :target-type s3object-version
-                                      :member-name
-                                      "RequirementsS3ObjectVersion")
-                                     (schedulers :target-type schedulers
-                                      :member-name "Schedulers")
-                                     (source-bucket-arn :target-type
-                                      s3bucket-arn :member-name
-                                      "SourceBucketArn")
-                                     (startup-script-s3path :target-type
-                                      relative-path :member-name
-                                      "StartupScriptS3Path")
-                                     (startup-script-s3object-version
-                                      :target-type s3object-version
-                                      :member-name
-                                      "StartupScriptS3ObjectVersion")
-                                     (webserver-access-mode :target-type
-                                      webserver-access-mode :member-name
-                                      "WebserverAccessMode")
-                                     (weekly-maintenance-window-start
-                                      :target-type
-                                      weekly-maintenance-window-start
-                                      :member-name
-                                      "WeeklyMaintenanceWindowStart"))
-                                    (:shape-name "UpdateEnvironmentInput"))
+(smithy/sdk/shapes:define-input update-environment-input common-lisp:nil
+                                ((name :target-type environment-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (execution-role-arn :target-type iam-role-arn
+                                  :member-name "ExecutionRoleArn")
+                                 (airflow-configuration-options :target-type
+                                  airflow-configuration-options :member-name
+                                  "AirflowConfigurationOptions")
+                                 (airflow-version :target-type airflow-version
+                                  :member-name "AirflowVersion")
+                                 (dag-s3path :target-type relative-path
+                                  :member-name "DagS3Path")
+                                 (environment-class :target-type
+                                  environment-class :member-name
+                                  "EnvironmentClass")
+                                 (logging-configuration :target-type
+                                  logging-configuration-input :member-name
+                                  "LoggingConfiguration")
+                                 (max-workers :target-type max-workers
+                                  :member-name "MaxWorkers")
+                                 (min-workers :target-type min-workers
+                                  :member-name "MinWorkers")
+                                 (max-webservers :target-type max-webservers
+                                  :member-name "MaxWebservers")
+                                 (min-webservers :target-type min-webservers
+                                  :member-name "MinWebservers")
+                                 (worker-replacement-strategy :target-type
+                                  worker-replacement-strategy :member-name
+                                  "WorkerReplacementStrategy")
+                                 (network-configuration :target-type
+                                  update-network-configuration-input
+                                  :member-name "NetworkConfiguration")
+                                 (plugins-s3path :target-type relative-path
+                                  :member-name "PluginsS3Path")
+                                 (plugins-s3object-version :target-type
+                                  s3object-version :member-name
+                                  "PluginsS3ObjectVersion")
+                                 (requirements-s3path :target-type
+                                  relative-path :member-name
+                                  "RequirementsS3Path")
+                                 (requirements-s3object-version :target-type
+                                  s3object-version :member-name
+                                  "RequirementsS3ObjectVersion")
+                                 (schedulers :target-type schedulers
+                                  :member-name "Schedulers")
+                                 (source-bucket-arn :target-type s3bucket-arn
+                                  :member-name "SourceBucketArn")
+                                 (startup-script-s3path :target-type
+                                  relative-path :member-name
+                                  "StartupScriptS3Path")
+                                 (startup-script-s3object-version :target-type
+                                  s3object-version :member-name
+                                  "StartupScriptS3ObjectVersion")
+                                 (webserver-access-mode :target-type
+                                  webserver-access-mode :member-name
+                                  "WebserverAccessMode")
+                                 (weekly-maintenance-window-start :target-type
+                                  weekly-maintenance-window-start :member-name
+                                  "WeeklyMaintenanceWindowStart"))
+                                (:shape-name "UpdateEnvironmentInput"))
 
 (smithy/sdk/shapes:define-structure update-environment-output common-lisp:nil
                                     ((arn :target-type environment-arn

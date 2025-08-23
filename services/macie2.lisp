@@ -3897,7 +3897,8 @@
   (:month-to-date "MONTH_TO_DATE")
   (:past-30-days "PAST_30_DAYS"))
 
-(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-enum type
     common-lisp:nil
@@ -4487,7 +4488,8 @@
  smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type timestamp-iso8601
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/operation:define-operation accept-invitation :shape-name
                                        "AcceptInvitation" :input

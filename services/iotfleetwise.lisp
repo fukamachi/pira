@@ -319,15 +319,13 @@
 (smithy/sdk/shapes:define-type amazon-resource-name
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure associate-vehicle-fleet-request
-                                    common-lisp:nil
-                                    ((vehicle-name :target-type vehicle-name
-                                      :required common-lisp:t :member-name
-                                      "vehicleName")
-                                     (fleet-id :target-type fleet-id :required
-                                      common-lisp:t :member-name "fleetId"))
-                                    (:shape-name
-                                     "AssociateVehicleFleetRequest"))
+(smithy/sdk/shapes:define-input associate-vehicle-fleet-request common-lisp:nil
+                                ((vehicle-name :target-type vehicle-name
+                                  :required common-lisp:t :member-name
+                                  "vehicleName" :http-label common-lisp:t)
+                                 (fleet-id :target-type fleet-id :required
+                                  common-lisp:t :member-name "fleetId"))
+                                (:shape-name "AssociateVehicleFleetRequest"))
 
 (smithy/sdk/shapes:define-structure associate-vehicle-fleet-response
                                     common-lisp:nil common-lisp:nil
@@ -560,53 +558,53 @@ common-lisp:nil
                                 (:shape-name "ConflictException")
                                 (:error-code 409))
 
-(smithy/sdk/shapes:define-structure create-campaign-request common-lisp:nil
-                                    ((name :target-type campaign-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (signal-catalog-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "signalCatalogArn")
-                                     (target-arn :target-type arn :required
-                                      common-lisp:t :member-name "targetArn")
-                                     (start-time :target-type timestamp
-                                      :member-name "startTime")
-                                     (expiry-time :target-type timestamp
-                                      :member-name "expiryTime")
-                                     (post-trigger-collection-duration
-                                      :target-type uint32 :member-name
-                                      "postTriggerCollectionDuration")
-                                     (diagnostics-mode :target-type
-                                      diagnostics-mode :member-name
-                                      "diagnosticsMode")
-                                     (spooling-mode :target-type spooling-mode
-                                      :member-name "spoolingMode")
-                                     (compression :target-type compression
-                                      :member-name "compression")
-                                     (priority :target-type priority
-                                      :member-name "priority")
-                                     (signals-to-collect :target-type
-                                      signal-information-list :member-name
-                                      "signalsToCollect")
-                                     (collection-scheme :target-type
-                                      collection-scheme :required common-lisp:t
-                                      :member-name "collectionScheme")
-                                     (data-extra-dimensions :target-type
-                                      data-extra-dimension-node-path-list
-                                      :member-name "dataExtraDimensions")
-                                     (tags :target-type tag-list :member-name
-                                      "tags")
-                                     (data-destination-configs :target-type
-                                      data-destination-configs :member-name
-                                      "dataDestinationConfigs")
-                                     (data-partitions :target-type
-                                      data-partitions :member-name
-                                      "dataPartitions")
-                                     (signals-to-fetch :target-type
-                                      signal-fetch-information-list
-                                      :member-name "signalsToFetch"))
-                                    (:shape-name "CreateCampaignRequest"))
+(smithy/sdk/shapes:define-input create-campaign-request common-lisp:nil
+                                ((name :target-type campaign-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (signal-catalog-arn :target-type arn :required
+                                  common-lisp:t :member-name
+                                  "signalCatalogArn")
+                                 (target-arn :target-type arn :required
+                                  common-lisp:t :member-name "targetArn")
+                                 (start-time :target-type timestamp
+                                  :member-name "startTime")
+                                 (expiry-time :target-type timestamp
+                                  :member-name "expiryTime")
+                                 (post-trigger-collection-duration :target-type
+                                  uint32 :member-name
+                                  "postTriggerCollectionDuration")
+                                 (diagnostics-mode :target-type
+                                  diagnostics-mode :member-name
+                                  "diagnosticsMode")
+                                 (spooling-mode :target-type spooling-mode
+                                  :member-name "spoolingMode")
+                                 (compression :target-type compression
+                                  :member-name "compression")
+                                 (priority :target-type priority :member-name
+                                  "priority")
+                                 (signals-to-collect :target-type
+                                  signal-information-list :member-name
+                                  "signalsToCollect")
+                                 (collection-scheme :target-type
+                                  collection-scheme :required common-lisp:t
+                                  :member-name "collectionScheme")
+                                 (data-extra-dimensions :target-type
+                                  data-extra-dimension-node-path-list
+                                  :member-name "dataExtraDimensions")
+                                 (tags :target-type tag-list :member-name
+                                  "tags")
+                                 (data-destination-configs :target-type
+                                  data-destination-configs :member-name
+                                  "dataDestinationConfigs")
+                                 (data-partitions :target-type data-partitions
+                                  :member-name "dataPartitions")
+                                 (signals-to-fetch :target-type
+                                  signal-fetch-information-list :member-name
+                                  "signalsToFetch"))
+                                (:shape-name "CreateCampaignRequest"))
 
 (smithy/sdk/shapes:define-structure create-campaign-response common-lisp:nil
                                     ((name :target-type campaign-name
@@ -615,28 +613,26 @@ common-lisp:nil
                                       :member-name "arn"))
                                     (:shape-name "CreateCampaignResponse"))
 
-(smithy/sdk/shapes:define-structure create-decoder-manifest-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (model-manifest-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "modelManifestArn")
-                                     (signal-decoders :target-type
-                                      signal-decoders :member-name
-                                      "signalDecoders")
-                                     (network-interfaces :target-type
-                                      network-interfaces :member-name
-                                      "networkInterfaces")
-                                     (default-for-unmapped-signals :target-type
-                                      default-for-unmapped-signals-type
-                                      :member-name "defaultForUnmappedSignals")
-                                     (tags :target-type tag-list :member-name
-                                      "tags"))
-                                    (:shape-name
-                                     "CreateDecoderManifestRequest"))
+(smithy/sdk/shapes:define-input create-decoder-manifest-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (model-manifest-arn :target-type arn :required
+                                  common-lisp:t :member-name
+                                  "modelManifestArn")
+                                 (signal-decoders :target-type signal-decoders
+                                  :member-name "signalDecoders")
+                                 (network-interfaces :target-type
+                                  network-interfaces :member-name
+                                  "networkInterfaces")
+                                 (default-for-unmapped-signals :target-type
+                                  default-for-unmapped-signals-type
+                                  :member-name "defaultForUnmappedSignals")
+                                 (tags :target-type tag-list :member-name
+                                  "tags"))
+                                (:shape-name "CreateDecoderManifestRequest"))
 
 (smithy/sdk/shapes:define-structure create-decoder-manifest-response
                                     common-lisp:nil
@@ -647,17 +643,18 @@ common-lisp:nil
                                     (:shape-name
                                      "CreateDecoderManifestResponse"))
 
-(smithy/sdk/shapes:define-structure create-fleet-request common-lisp:nil
-                                    ((fleet-id :target-type fleet-id :required
-                                      common-lisp:t :member-name "fleetId")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (signal-catalog-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "signalCatalogArn")
-                                     (tags :target-type tag-list :member-name
-                                      "tags"))
-                                    (:shape-name "CreateFleetRequest"))
+(smithy/sdk/shapes:define-input create-fleet-request common-lisp:nil
+                                ((fleet-id :target-type fleet-id :required
+                                  common-lisp:t :member-name "fleetId"
+                                  :http-label common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (signal-catalog-arn :target-type arn :required
+                                  common-lisp:t :member-name
+                                  "signalCatalogArn")
+                                 (tags :target-type tag-list :member-name
+                                  "tags"))
+                                (:shape-name "CreateFleetRequest"))
 
 (smithy/sdk/shapes:define-structure create-fleet-response common-lisp:nil
                                     ((id :target-type fleet-id :required
@@ -666,21 +663,20 @@ common-lisp:nil
                                       common-lisp:t :member-name "arn"))
                                     (:shape-name "CreateFleetResponse"))
 
-(smithy/sdk/shapes:define-structure create-model-manifest-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (nodes :target-type list-of-strings
-                                      :required common-lisp:t :member-name
-                                      "nodes")
-                                     (signal-catalog-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "signalCatalogArn")
-                                     (tags :target-type tag-list :member-name
-                                      "tags"))
-                                    (:shape-name "CreateModelManifestRequest"))
+(smithy/sdk/shapes:define-input create-model-manifest-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (nodes :target-type list-of-strings :required
+                                  common-lisp:t :member-name "nodes")
+                                 (signal-catalog-arn :target-type arn :required
+                                  common-lisp:t :member-name
+                                  "signalCatalogArn")
+                                 (tags :target-type tag-list :member-name
+                                  "tags"))
+                                (:shape-name "CreateModelManifestRequest"))
 
 (smithy/sdk/shapes:define-structure create-model-manifest-response
                                     common-lisp:nil
@@ -690,17 +686,17 @@ common-lisp:nil
                                       common-lisp:t :member-name "arn"))
                                     (:shape-name "CreateModelManifestResponse"))
 
-(smithy/sdk/shapes:define-structure create-signal-catalog-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (nodes :target-type nodes :member-name
-                                      "nodes")
-                                     (tags :target-type tag-list :member-name
-                                      "tags"))
-                                    (:shape-name "CreateSignalCatalogRequest"))
+(smithy/sdk/shapes:define-input create-signal-catalog-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (nodes :target-type nodes :member-name
+                                  "nodes")
+                                 (tags :target-type tag-list :member-name
+                                  "tags"))
+                                (:shape-name "CreateSignalCatalogRequest"))
 
 (smithy/sdk/shapes:define-structure create-signal-catalog-response
                                     common-lisp:nil
@@ -750,27 +746,27 @@ common-lisp:nil
                                       "message"))
                                     (:shape-name "CreateVehicleError"))
 
-(smithy/sdk/shapes:define-structure create-vehicle-request common-lisp:nil
-                                    ((vehicle-name :target-type vehicle-name
-                                      :required common-lisp:t :member-name
-                                      "vehicleName")
-                                     (model-manifest-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "modelManifestArn")
-                                     (decoder-manifest-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "decoderManifestArn")
-                                     (attributes :target-type attributes-map
-                                      :member-name "attributes")
-                                     (association-behavior :target-type
-                                      vehicle-association-behavior :member-name
-                                      "associationBehavior")
-                                     (tags :target-type tag-list :member-name
-                                      "tags")
-                                     (state-templates :target-type
-                                      state-template-associations :member-name
-                                      "stateTemplates"))
-                                    (:shape-name "CreateVehicleRequest"))
+(smithy/sdk/shapes:define-input create-vehicle-request common-lisp:nil
+                                ((vehicle-name :target-type vehicle-name
+                                  :required common-lisp:t :member-name
+                                  "vehicleName" :http-label common-lisp:t)
+                                 (model-manifest-arn :target-type arn :required
+                                  common-lisp:t :member-name
+                                  "modelManifestArn")
+                                 (decoder-manifest-arn :target-type arn
+                                  :required common-lisp:t :member-name
+                                  "decoderManifestArn")
+                                 (attributes :target-type attributes-map
+                                  :member-name "attributes")
+                                 (association-behavior :target-type
+                                  vehicle-association-behavior :member-name
+                                  "associationBehavior")
+                                 (tags :target-type tag-list :member-name
+                                  "tags")
+                                 (state-templates :target-type
+                                  state-template-associations :member-name
+                                  "stateTemplates"))
+                                (:shape-name "CreateVehicleRequest"))
 
 (smithy/sdk/shapes:define-structure create-vehicle-request-item common-lisp:nil
                                     ((vehicle-name :target-type vehicle-name
@@ -966,10 +962,11 @@ common-lisp:nil
     common-lisp:nil
   (:custom-decoding "CUSTOM_DECODING"))
 
-(smithy/sdk/shapes:define-structure delete-campaign-request common-lisp:nil
-                                    ((name :target-type campaign-name :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name "DeleteCampaignRequest"))
+(smithy/sdk/shapes:define-input delete-campaign-request common-lisp:nil
+                                ((name :target-type campaign-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteCampaignRequest"))
 
 (smithy/sdk/shapes:define-structure delete-campaign-response common-lisp:nil
                                     ((name :target-type campaign-name
@@ -978,12 +975,11 @@ common-lisp:nil
                                       :member-name "arn"))
                                     (:shape-name "DeleteCampaignResponse"))
 
-(smithy/sdk/shapes:define-structure delete-decoder-manifest-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name
-                                     "DeleteDecoderManifestRequest"))
+(smithy/sdk/shapes:define-input delete-decoder-manifest-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteDecoderManifestRequest"))
 
 (smithy/sdk/shapes:define-structure delete-decoder-manifest-response
                                     common-lisp:nil
@@ -994,10 +990,11 @@ common-lisp:nil
                                     (:shape-name
                                      "DeleteDecoderManifestResponse"))
 
-(smithy/sdk/shapes:define-structure delete-fleet-request common-lisp:nil
-                                    ((fleet-id :target-type fleet-id :required
-                                      common-lisp:t :member-name "fleetId"))
-                                    (:shape-name "DeleteFleetRequest"))
+(smithy/sdk/shapes:define-input delete-fleet-request common-lisp:nil
+                                ((fleet-id :target-type fleet-id :required
+                                  common-lisp:t :member-name "fleetId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteFleetRequest"))
 
 (smithy/sdk/shapes:define-structure delete-fleet-response common-lisp:nil
                                     ((id :target-type fleet-id :member-name
@@ -1005,11 +1002,11 @@ common-lisp:nil
                                      (arn :target-type arn :member-name "arn"))
                                     (:shape-name "DeleteFleetResponse"))
 
-(smithy/sdk/shapes:define-structure delete-model-manifest-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name "DeleteModelManifestRequest"))
+(smithy/sdk/shapes:define-input delete-model-manifest-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteModelManifestRequest"))
 
 (smithy/sdk/shapes:define-structure delete-model-manifest-response
                                     common-lisp:nil
@@ -1019,11 +1016,11 @@ common-lisp:nil
                                       common-lisp:t :member-name "arn"))
                                     (:shape-name "DeleteModelManifestResponse"))
 
-(smithy/sdk/shapes:define-structure delete-signal-catalog-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name "DeleteSignalCatalogRequest"))
+(smithy/sdk/shapes:define-input delete-signal-catalog-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteSignalCatalogRequest"))
 
 (smithy/sdk/shapes:define-structure delete-signal-catalog-response
                                     common-lisp:nil
@@ -1047,11 +1044,11 @@ common-lisp:nil
                                    :member-name "id"))
                                  (:shape-name "DeleteStateTemplateResponse"))
 
-(smithy/sdk/shapes:define-structure delete-vehicle-request common-lisp:nil
-                                    ((vehicle-name :target-type vehicle-name
-                                      :required common-lisp:t :member-name
-                                      "vehicleName"))
-                                    (:shape-name "DeleteVehicleRequest"))
+(smithy/sdk/shapes:define-input delete-vehicle-request common-lisp:nil
+                                ((vehicle-name :target-type vehicle-name
+                                  :required common-lisp:t :member-name
+                                  "vehicleName" :http-label common-lisp:t))
+                                (:shape-name "DeleteVehicleRequest"))
 
 (smithy/sdk/shapes:define-structure delete-vehicle-response common-lisp:nil
                                     ((vehicle-name :target-type vehicle-name
@@ -1066,15 +1063,14 @@ common-lisp:nil
   (:off "OFF")
   (:send-active-dtcs "SEND_ACTIVE_DTCS"))
 
-(smithy/sdk/shapes:define-structure disassociate-vehicle-fleet-request
-                                    common-lisp:nil
-                                    ((vehicle-name :target-type vehicle-name
-                                      :required common-lisp:t :member-name
-                                      "vehicleName")
-                                     (fleet-id :target-type fleet-id :required
-                                      common-lisp:t :member-name "fleetId"))
-                                    (:shape-name
-                                     "DisassociateVehicleFleetRequest"))
+(smithy/sdk/shapes:define-input disassociate-vehicle-fleet-request
+                                common-lisp:nil
+                                ((vehicle-name :target-type vehicle-name
+                                  :required common-lisp:t :member-name
+                                  "vehicleName" :http-label common-lisp:t)
+                                 (fleet-id :target-type fleet-id :required
+                                  common-lisp:t :member-name "fleetId"))
+                                (:shape-name "DisassociateVehicleFleetRequest"))
 
 (smithy/sdk/shapes:define-structure disassociate-vehicle-fleet-response
                                     common-lisp:nil common-lisp:nil
@@ -1128,10 +1124,11 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type fully-qualified-name
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure get-campaign-request common-lisp:nil
-                                    ((name :target-type campaign-name :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name "GetCampaignRequest"))
+(smithy/sdk/shapes:define-input get-campaign-request common-lisp:nil
+                                ((name :target-type campaign-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetCampaignRequest"))
 
 (smithy/sdk/shapes:define-structure get-campaign-response common-lisp:nil
                                     ((name :target-type campaign-name
@@ -1187,11 +1184,11 @@ common-lisp:nil
                                       :member-name "signalsToFetch"))
                                     (:shape-name "GetCampaignResponse"))
 
-(smithy/sdk/shapes:define-structure get-decoder-manifest-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name "GetDecoderManifestRequest"))
+(smithy/sdk/shapes:define-input get-decoder-manifest-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetDecoderManifestRequest"))
 
 (smithy/sdk/shapes:define-structure get-decoder-manifest-response
                                     common-lisp:nil
@@ -1241,10 +1238,11 @@ common-lisp:nil
                                  (:shape-name
                                   "GetEncryptionConfigurationResponse"))
 
-(smithy/sdk/shapes:define-structure get-fleet-request common-lisp:nil
-                                    ((fleet-id :target-type fleet-id :required
-                                      common-lisp:t :member-name "fleetId"))
-                                    (:shape-name "GetFleetRequest"))
+(smithy/sdk/shapes:define-input get-fleet-request common-lisp:nil
+                                ((fleet-id :target-type fleet-id :required
+                                  common-lisp:t :member-name "fleetId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetFleetRequest"))
 
 (smithy/sdk/shapes:define-structure get-fleet-response common-lisp:nil
                                     ((id :target-type fleet-id :required
@@ -1276,10 +1274,11 @@ common-lisp:nil
                                       "cloudWatchLogDelivery"))
                                     (:shape-name "GetLoggingOptionsResponse"))
 
-(smithy/sdk/shapes:define-structure get-model-manifest-request common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name "GetModelManifestRequest"))
+(smithy/sdk/shapes:define-input get-model-manifest-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetModelManifestRequest"))
 
 (smithy/sdk/shapes:define-structure get-model-manifest-response common-lisp:nil
                                     ((name :target-type resource-name :required
@@ -1333,10 +1332,11 @@ common-lisp:nil
                                     (:shape-name
                                      "GetRegisterAccountStatusResponse"))
 
-(smithy/sdk/shapes:define-structure get-signal-catalog-request common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name "GetSignalCatalogRequest"))
+(smithy/sdk/shapes:define-input get-signal-catalog-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetSignalCatalogRequest"))
 
 (smithy/sdk/shapes:define-structure get-signal-catalog-response common-lisp:nil
                                     ((name :target-type resource-name :required
@@ -1387,11 +1387,11 @@ common-lisp:nil
                                    :member-name "id"))
                                  (:shape-name "GetStateTemplateResponse"))
 
-(smithy/sdk/shapes:define-structure get-vehicle-request common-lisp:nil
-                                    ((vehicle-name :target-type vehicle-name
-                                      :required common-lisp:t :member-name
-                                      "vehicleName"))
-                                    (:shape-name "GetVehicleRequest"))
+(smithy/sdk/shapes:define-input get-vehicle-request common-lisp:nil
+                                ((vehicle-name :target-type vehicle-name
+                                  :required common-lisp:t :member-name
+                                  "vehicleName" :http-label common-lisp:t))
+                                (:shape-name "GetVehicleRequest"))
 
 (smithy/sdk/shapes:define-structure get-vehicle-response common-lisp:nil
                                     ((vehicle-name :target-type vehicle-name
@@ -1413,17 +1413,17 @@ common-lisp:nil
                                       "lastModificationTime"))
                                     (:shape-name "GetVehicleResponse"))
 
-(smithy/sdk/shapes:define-structure get-vehicle-status-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (vehicle-name :target-type vehicle-name
-                                      :required common-lisp:t :member-name
-                                      "vehicleName"))
-                                    (:shape-name "GetVehicleStatusRequest"))
+(smithy/sdk/shapes:define-input get-vehicle-status-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (vehicle-name :target-type vehicle-name
+                                  :required common-lisp:t :member-name
+                                  "vehicleName" :http-label common-lisp:t))
+                                (:shape-name "GetVehicleStatusRequest"))
 
 (smithy/sdk/shapes:define-structure get-vehicle-status-response common-lisp:nil
                                     ((campaigns :target-type
@@ -1452,16 +1452,15 @@ common-lisp:nil
                                       "roleArn"))
                                     (:shape-name "IamResources"))
 
-(smithy/sdk/shapes:define-structure import-decoder-manifest-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (network-file-definitions :target-type
-                                      network-file-definitions :required
-                                      common-lisp:t :member-name
-                                      "networkFileDefinitions"))
-                                    (:shape-name
-                                     "ImportDecoderManifestRequest"))
+(smithy/sdk/shapes:define-input import-decoder-manifest-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (network-file-definitions :target-type
+                                  network-file-definitions :required
+                                  common-lisp:t :member-name
+                                  "networkFileDefinitions"))
+                                (:shape-name "ImportDecoderManifestRequest"))
 
 (smithy/sdk/shapes:define-structure import-decoder-manifest-response
                                     common-lisp:nil
@@ -1472,17 +1471,17 @@ common-lisp:nil
                                     (:shape-name
                                      "ImportDecoderManifestResponse"))
 
-(smithy/sdk/shapes:define-structure import-signal-catalog-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (vss :target-type formatted-vss
-                                      :member-name "vss")
-                                     (tags :target-type tag-list :member-name
-                                      "tags"))
-                                    (:shape-name "ImportSignalCatalogRequest"))
+(smithy/sdk/shapes:define-input import-signal-catalog-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (vss :target-type formatted-vss :member-name
+                                  "vss")
+                                 (tags :target-type tag-list :member-name
+                                  "tags"))
+                                (:shape-name "ImportSignalCatalogRequest"))
 
 (smithy/sdk/shapes:define-structure import-signal-catalog-response
                                     common-lisp:nil
@@ -1567,21 +1566,20 @@ common-lisp:nil
                                 (:shape-name "LimitExceededException")
                                 (:error-code 400))
 
-(smithy/sdk/shapes:define-structure list-campaigns-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (status :target-type status-str
-                                      :member-name "status" :http-query
-                                      "status")
-                                     (list-response-scope :target-type
-                                      list-response-scope :member-name
-                                      "listResponseScope" :http-query
-                                      "listResponseScope"))
-                                    (:shape-name "ListCampaignsRequest"))
+(smithy/sdk/shapes:define-input list-campaigns-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (status :target-type status-str :member-name
+                                  "status" :http-query "status")
+                                 (list-response-scope :target-type
+                                  list-response-scope :member-name
+                                  "listResponseScope" :http-query
+                                  "listResponseScope"))
+                                (:shape-name "ListCampaignsRequest"))
 
 (smithy/sdk/shapes:define-structure list-campaigns-response common-lisp:nil
                                     ((campaign-summaries :target-type
@@ -1591,9 +1589,10 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListCampaignsResponse"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-input
  list-decoder-manifest-network-interfaces-request common-lisp:nil
- ((name :target-type resource-name :required common-lisp:t :member-name "name")
+ ((name :target-type resource-name :required common-lisp:t :member-name "name"
+   :http-label common-lisp:t)
   (next-token :target-type next-token :member-name "nextToken" :http-query
    "nextToken")
   (max-results :target-type max-results :member-name "maxResults" :http-query
@@ -1607,18 +1606,19 @@ common-lisp:nil
   (next-token :target-type next-token :member-name "nextToken"))
  (:shape-name "ListDecoderManifestNetworkInterfacesResponse"))
 
-(smithy/sdk/shapes:define-structure list-decoder-manifest-signals-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name
-                                     "ListDecoderManifestSignalsRequest"))
+(smithy/sdk/shapes:define-input list-decoder-manifest-signals-request
+                                common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name
+                                 "ListDecoderManifestSignalsRequest"))
 
 (smithy/sdk/shapes:define-structure list-decoder-manifest-signals-response
                                     common-lisp:nil
@@ -1630,22 +1630,21 @@ common-lisp:nil
                                     (:shape-name
                                      "ListDecoderManifestSignalsResponse"))
 
-(smithy/sdk/shapes:define-structure list-decoder-manifests-request
-                                    common-lisp:nil
-                                    ((model-manifest-arn :target-type arn
-                                      :member-name "modelManifestArn"
-                                      :http-query "modelManifestArn")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (list-response-scope :target-type
-                                      list-response-scope :member-name
-                                      "listResponseScope" :http-query
-                                      "listResponseScope"))
-                                    (:shape-name "ListDecoderManifestsRequest"))
+(smithy/sdk/shapes:define-input list-decoder-manifests-request common-lisp:nil
+                                ((model-manifest-arn :target-type arn
+                                  :member-name "modelManifestArn" :http-query
+                                  "modelManifestArn")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (list-response-scope :target-type
+                                  list-response-scope :member-name
+                                  "listResponseScope" :http-query
+                                  "listResponseScope"))
+                                (:shape-name "ListDecoderManifestsRequest"))
 
 (smithy/sdk/shapes:define-structure list-decoder-manifests-response
                                     common-lisp:nil
@@ -1657,18 +1656,17 @@ common-lisp:nil
                                     (:shape-name
                                      "ListDecoderManifestsResponse"))
 
-(smithy/sdk/shapes:define-structure list-fleets-for-vehicle-request
-                                    common-lisp:nil
-                                    ((vehicle-name :target-type vehicle-name
-                                      :required common-lisp:t :member-name
-                                      "vehicleName")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListFleetsForVehicleRequest"))
+(smithy/sdk/shapes:define-input list-fleets-for-vehicle-request common-lisp:nil
+                                ((vehicle-name :target-type vehicle-name
+                                  :required common-lisp:t :member-name
+                                  "vehicleName" :http-label common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListFleetsForVehicleRequest"))
 
 (smithy/sdk/shapes:define-structure list-fleets-for-vehicle-response
                                     common-lisp:nil
@@ -1679,18 +1677,18 @@ common-lisp:nil
                                     (:shape-name
                                      "ListFleetsForVehicleResponse"))
 
-(smithy/sdk/shapes:define-structure list-fleets-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (list-response-scope :target-type
-                                      list-response-scope :member-name
-                                      "listResponseScope" :http-query
-                                      "listResponseScope"))
-                                    (:shape-name "ListFleetsRequest"))
+(smithy/sdk/shapes:define-input list-fleets-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (list-response-scope :target-type
+                                  list-response-scope :member-name
+                                  "listResponseScope" :http-query
+                                  "listResponseScope"))
+                                (:shape-name "ListFleetsRequest"))
 
 (smithy/sdk/shapes:define-structure list-fleets-response common-lisp:nil
                                     ((fleet-summaries :target-type
@@ -1700,18 +1698,18 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListFleetsResponse"))
 
-(smithy/sdk/shapes:define-structure list-model-manifest-nodes-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name
-                                     "ListModelManifestNodesRequest"))
+(smithy/sdk/shapes:define-input list-model-manifest-nodes-request
+                                common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListModelManifestNodesRequest"))
 
 (smithy/sdk/shapes:define-structure list-model-manifest-nodes-response
                                     common-lisp:nil
@@ -1722,22 +1720,21 @@ common-lisp:nil
                                     (:shape-name
                                      "ListModelManifestNodesResponse"))
 
-(smithy/sdk/shapes:define-structure list-model-manifests-request
-                                    common-lisp:nil
-                                    ((signal-catalog-arn :target-type arn
-                                      :member-name "signalCatalogArn"
-                                      :http-query "signalCatalogArn")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (list-response-scope :target-type
-                                      list-response-scope :member-name
-                                      "listResponseScope" :http-query
-                                      "listResponseScope"))
-                                    (:shape-name "ListModelManifestsRequest"))
+(smithy/sdk/shapes:define-input list-model-manifests-request common-lisp:nil
+                                ((signal-catalog-arn :target-type arn
+                                  :member-name "signalCatalogArn" :http-query
+                                  "signalCatalogArn")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (list-response-scope :target-type
+                                  list-response-scope :member-name
+                                  "listResponseScope" :http-query
+                                  "listResponseScope"))
+                                (:shape-name "ListModelManifestsRequest"))
 
 (smithy/sdk/shapes:define-structure list-model-manifests-response
                                     common-lisp:nil
@@ -1752,22 +1749,22 @@ common-lisp:nil
     common-lisp:nil
   (:metadata-only "METADATA_ONLY"))
 
-(smithy/sdk/shapes:define-structure list-signal-catalog-nodes-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (signal-node-type :target-type
-                                      signal-node-type :member-name
-                                      "signalNodeType" :http-query
-                                      "signalNodeType"))
-                                    (:shape-name
-                                     "ListSignalCatalogNodesRequest"))
+(smithy/sdk/shapes:define-input list-signal-catalog-nodes-request
+                                common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (signal-node-type :target-type
+                                  signal-node-type :member-name
+                                  "signalNodeType" :http-query
+                                  "signalNodeType"))
+                                (:shape-name "ListSignalCatalogNodesRequest"))
 
 (smithy/sdk/shapes:define-structure list-signal-catalog-nodes-response
                                     common-lisp:nil
@@ -1778,15 +1775,14 @@ common-lisp:nil
                                     (:shape-name
                                      "ListSignalCatalogNodesResponse"))
 
-(smithy/sdk/shapes:define-structure list-signal-catalogs-request
-                                    common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListSignalCatalogsRequest"))
+(smithy/sdk/shapes:define-input list-signal-catalogs-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListSignalCatalogsRequest"))
 
 (smithy/sdk/shapes:define-structure list-signal-catalogs-response
                                     common-lisp:nil
@@ -1818,13 +1814,12 @@ common-lisp:nil
                                    :member-name "nextToken"))
                                  (:shape-name "ListStateTemplatesResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type
-                                      amazon-resource-name :required
-                                      common-lisp:t :member-name "ResourceARN"
-                                      :http-query "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  amazon-resource-name :required common-lisp:t
+                                  :member-name "ResourceARN" :http-query
+                                  "resourceArn"))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1832,17 +1827,17 @@ common-lisp:nil
                                       "Tags"))
                                     (:shape-name "ListTagsForResourceResponse"))
 
-(smithy/sdk/shapes:define-structure list-vehicles-in-fleet-request
-                                    common-lisp:nil
-                                    ((fleet-id :target-type fleet-id :required
-                                      common-lisp:t :member-name "fleetId")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListVehiclesInFleetRequest"))
+(smithy/sdk/shapes:define-input list-vehicles-in-fleet-request common-lisp:nil
+                                ((fleet-id :target-type fleet-id :required
+                                  common-lisp:t :member-name "fleetId"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListVehiclesInFleetRequest"))
 
 (smithy/sdk/shapes:define-structure list-vehicles-in-fleet-response
                                     common-lisp:nil
@@ -1852,29 +1847,29 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListVehiclesInFleetResponse"))
 
-(smithy/sdk/shapes:define-structure list-vehicles-request common-lisp:nil
-                                    ((model-manifest-arn :target-type arn
-                                      :member-name "modelManifestArn"
-                                      :http-query "modelManifestArn")
-                                     (attribute-names :target-type
-                                      attribute-names-list :member-name
-                                      "attributeNames" :http-query
-                                      "attributeNames")
-                                     (attribute-values :target-type
-                                      attribute-values-list :member-name
-                                      "attributeValues" :http-query
-                                      "attributeValues")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type
-                                      list-vehicles-max-results :member-name
-                                      "maxResults" :http-query "maxResults")
-                                     (list-response-scope :target-type
-                                      list-response-scope :member-name
-                                      "listResponseScope" :http-query
-                                      "listResponseScope"))
-                                    (:shape-name "ListVehiclesRequest"))
+(smithy/sdk/shapes:define-input list-vehicles-request common-lisp:nil
+                                ((model-manifest-arn :target-type arn
+                                  :member-name "modelManifestArn" :http-query
+                                  "modelManifestArn")
+                                 (attribute-names :target-type
+                                  attribute-names-list :member-name
+                                  "attributeNames" :http-query
+                                  "attributeNames")
+                                 (attribute-values :target-type
+                                  attribute-values-list :member-name
+                                  "attributeValues" :http-query
+                                  "attributeValues")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type
+                                  list-vehicles-max-results :member-name
+                                  "maxResults" :http-query "maxResults")
+                                 (list-response-scope :target-type
+                                  list-response-scope :member-name
+                                  "listResponseScope" :http-query
+                                  "listResponseScope"))
+                                (:shape-name "ListVehiclesRequest"))
 
 (smithy/sdk/shapes:define-structure list-vehicles-response common-lisp:nil
                                     ((vehicle-summaries :target-type
@@ -2625,14 +2620,14 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list tag-list :member tag)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      amazon-resource-name :required
-                                      common-lisp:t :member-name "ResourceARN"
-                                      :http-query "resourceArn")
-                                     (tags :target-type tag-list :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  amazon-resource-name :required common-lisp:t
+                                  :member-name "ResourceARN" :http-query
+                                  "resourceArn")
+                                 (tags :target-type tag-list :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -2743,15 +2738,15 @@ common-lisp:nil
   (:always "ALWAYS")
   (:rising-edge "RISING_EDGE"))
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type
-                                      amazon-resource-name :required
-                                      common-lisp:t :member-name "ResourceARN"
-                                      :http-query "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "TagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  amazon-resource-name :required common-lisp:t
+                                  :member-name "ResourceARN" :http-query
+                                  "resourceArn")
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "TagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -2764,18 +2759,19 @@ common-lisp:nil
   (:resume "RESUME")
   (:update "UPDATE"))
 
-(smithy/sdk/shapes:define-structure update-campaign-request common-lisp:nil
-                                    ((name :target-type campaign-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (data-extra-dimensions :target-type
-                                      data-extra-dimension-node-path-list
-                                      :member-name "dataExtraDimensions")
-                                     (action :target-type
-                                      update-campaign-action :required
-                                      common-lisp:t :member-name "action"))
-                                    (:shape-name "UpdateCampaignRequest"))
+(smithy/sdk/shapes:define-input update-campaign-request common-lisp:nil
+                                ((name :target-type campaign-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (data-extra-dimensions :target-type
+                                  data-extra-dimension-node-path-list
+                                  :member-name "dataExtraDimensions")
+                                 (action :target-type update-campaign-action
+                                  :required common-lisp:t :member-name
+                                  "action"))
+                                (:shape-name "UpdateCampaignRequest"))
 
 (smithy/sdk/shapes:define-structure update-campaign-response common-lisp:nil
                                     ((arn :target-type campaign-arn
@@ -2786,38 +2782,35 @@ common-lisp:nil
                                       :member-name "status"))
                                     (:shape-name "UpdateCampaignResponse"))
 
-(smithy/sdk/shapes:define-structure update-decoder-manifest-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (signal-decoders-to-add :target-type
-                                      signal-decoders :member-name
-                                      "signalDecodersToAdd")
-                                     (signal-decoders-to-update :target-type
-                                      signal-decoders :member-name
-                                      "signalDecodersToUpdate")
-                                     (signal-decoders-to-remove :target-type
-                                      fqns :member-name
-                                      "signalDecodersToRemove")
-                                     (network-interfaces-to-add :target-type
-                                      network-interfaces :member-name
-                                      "networkInterfacesToAdd")
-                                     (network-interfaces-to-update :target-type
-                                      network-interfaces :member-name
-                                      "networkInterfacesToUpdate")
-                                     (network-interfaces-to-remove :target-type
-                                      interface-ids :member-name
-                                      "networkInterfacesToRemove")
-                                     (status :target-type manifest-status
-                                      :member-name "status")
-                                     (default-for-unmapped-signals :target-type
-                                      default-for-unmapped-signals-type
-                                      :member-name
-                                      "defaultForUnmappedSignals"))
-                                    (:shape-name
-                                     "UpdateDecoderManifestRequest"))
+(smithy/sdk/shapes:define-input update-decoder-manifest-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (signal-decoders-to-add :target-type
+                                  signal-decoders :member-name
+                                  "signalDecodersToAdd")
+                                 (signal-decoders-to-update :target-type
+                                  signal-decoders :member-name
+                                  "signalDecodersToUpdate")
+                                 (signal-decoders-to-remove :target-type fqns
+                                  :member-name "signalDecodersToRemove")
+                                 (network-interfaces-to-add :target-type
+                                  network-interfaces :member-name
+                                  "networkInterfacesToAdd")
+                                 (network-interfaces-to-update :target-type
+                                  network-interfaces :member-name
+                                  "networkInterfacesToUpdate")
+                                 (network-interfaces-to-remove :target-type
+                                  interface-ids :member-name
+                                  "networkInterfacesToRemove")
+                                 (status :target-type manifest-status
+                                  :member-name "status")
+                                 (default-for-unmapped-signals :target-type
+                                  default-for-unmapped-signals-type
+                                  :member-name "defaultForUnmappedSignals"))
+                                (:shape-name "UpdateDecoderManifestRequest"))
 
 (smithy/sdk/shapes:define-structure update-decoder-manifest-response
                                     common-lisp:nil
@@ -2828,12 +2821,13 @@ common-lisp:nil
                                     (:shape-name
                                      "UpdateDecoderManifestResponse"))
 
-(smithy/sdk/shapes:define-structure update-fleet-request common-lisp:nil
-                                    ((fleet-id :target-type fleet-id :required
-                                      common-lisp:t :member-name "fleetId")
-                                     (description :target-type description
-                                      :member-name "description"))
-                                    (:shape-name "UpdateFleetRequest"))
+(smithy/sdk/shapes:define-input update-fleet-request common-lisp:nil
+                                ((fleet-id :target-type fleet-id :required
+                                  common-lisp:t :member-name "fleetId"
+                                  :http-label common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description"))
+                                (:shape-name "UpdateFleetRequest"))
 
 (smithy/sdk/shapes:define-structure update-fleet-response common-lisp:nil
                                     ((id :target-type fleet-id :member-name
@@ -2846,19 +2840,19 @@ common-lisp:nil
   (:overwrite "Overwrite")
   (:merge "Merge"))
 
-(smithy/sdk/shapes:define-structure update-model-manifest-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (nodes-to-add :target-type node-paths
-                                      :member-name "nodesToAdd")
-                                     (nodes-to-remove :target-type node-paths
-                                      :member-name "nodesToRemove")
-                                     (status :target-type manifest-status
-                                      :member-name "status"))
-                                    (:shape-name "UpdateModelManifestRequest"))
+(smithy/sdk/shapes:define-input update-model-manifest-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (nodes-to-add :target-type node-paths
+                                  :member-name "nodesToAdd")
+                                 (nodes-to-remove :target-type node-paths
+                                  :member-name "nodesToRemove")
+                                 (status :target-type manifest-status
+                                  :member-name "status"))
+                                (:shape-name "UpdateModelManifestRequest"))
 
 (smithy/sdk/shapes:define-structure update-model-manifest-response
                                     common-lisp:nil
@@ -2868,19 +2862,19 @@ common-lisp:nil
                                       common-lisp:t :member-name "arn"))
                                     (:shape-name "UpdateModelManifestResponse"))
 
-(smithy/sdk/shapes:define-structure update-signal-catalog-request
-                                    common-lisp:nil
-                                    ((name :target-type resource-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (nodes-to-add :target-type nodes
-                                      :member-name "nodesToAdd")
-                                     (nodes-to-update :target-type nodes
-                                      :member-name "nodesToUpdate")
-                                     (nodes-to-remove :target-type node-paths
-                                      :member-name "nodesToRemove"))
-                                    (:shape-name "UpdateSignalCatalogRequest"))
+(smithy/sdk/shapes:define-input update-signal-catalog-request common-lisp:nil
+                                ((name :target-type resource-name :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (nodes-to-add :target-type nodes :member-name
+                                  "nodesToAdd")
+                                 (nodes-to-update :target-type nodes
+                                  :member-name "nodesToUpdate")
+                                 (nodes-to-remove :target-type node-paths
+                                  :member-name "nodesToRemove"))
+                                (:shape-name "UpdateSignalCatalogRequest"))
 
 (smithy/sdk/shapes:define-structure update-signal-catalog-response
                                     common-lisp:nil
@@ -2928,29 +2922,29 @@ common-lisp:nil
                                       "message"))
                                     (:shape-name "UpdateVehicleError"))
 
-(smithy/sdk/shapes:define-structure update-vehicle-request common-lisp:nil
-                                    ((vehicle-name :target-type vehicle-name
-                                      :required common-lisp:t :member-name
-                                      "vehicleName")
-                                     (model-manifest-arn :target-type arn
-                                      :member-name "modelManifestArn")
-                                     (decoder-manifest-arn :target-type arn
-                                      :member-name "decoderManifestArn")
-                                     (attributes :target-type attributes-map
-                                      :member-name "attributes")
-                                     (attribute-update-mode :target-type
-                                      update-mode :member-name
-                                      "attributeUpdateMode")
-                                     (state-templates-to-add :target-type
-                                      state-template-associations :member-name
-                                      "stateTemplatesToAdd")
-                                     (state-templates-to-remove :target-type
-                                      state-template-association-identifiers
-                                      :member-name "stateTemplatesToRemove")
-                                     (state-templates-to-update :target-type
-                                      state-template-associations :member-name
-                                      "stateTemplatesToUpdate"))
-                                    (:shape-name "UpdateVehicleRequest"))
+(smithy/sdk/shapes:define-input update-vehicle-request common-lisp:nil
+                                ((vehicle-name :target-type vehicle-name
+                                  :required common-lisp:t :member-name
+                                  "vehicleName" :http-label common-lisp:t)
+                                 (model-manifest-arn :target-type arn
+                                  :member-name "modelManifestArn")
+                                 (decoder-manifest-arn :target-type arn
+                                  :member-name "decoderManifestArn")
+                                 (attributes :target-type attributes-map
+                                  :member-name "attributes")
+                                 (attribute-update-mode :target-type
+                                  update-mode :member-name
+                                  "attributeUpdateMode")
+                                 (state-templates-to-add :target-type
+                                  state-template-associations :member-name
+                                  "stateTemplatesToAdd")
+                                 (state-templates-to-remove :target-type
+                                  state-template-association-identifiers
+                                  :member-name "stateTemplatesToRemove")
+                                 (state-templates-to-update :target-type
+                                  state-template-associations :member-name
+                                  "stateTemplatesToUpdate"))
+                                (:shape-name "UpdateVehicleRequest"))
 
 (smithy/sdk/shapes:define-structure update-vehicle-request-item common-lisp:nil
                                     ((vehicle-name :target-type vehicle-name

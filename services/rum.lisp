@@ -222,23 +222,23 @@ common-lisp:nil
                                :member
                                batch-create-rum-metric-definitions-error)
 
-(smithy/sdk/shapes:define-structure batch-create-rum-metric-definitions-request
-                                    common-lisp:nil
-                                    ((app-monitor-name :target-type
-                                      app-monitor-name :required common-lisp:t
-                                      :member-name "AppMonitorName")
-                                     (destination :target-type
-                                      metric-destination :required
-                                      common-lisp:t :member-name "Destination")
-                                     (destination-arn :target-type
-                                      destination-arn :member-name
-                                      "DestinationArn")
-                                     (metric-definitions :target-type
-                                      metric-definitions-request :required
-                                      common-lisp:t :member-name
-                                      "MetricDefinitions"))
-                                    (:shape-name
-                                     "BatchCreateRumMetricDefinitionsRequest"))
+(smithy/sdk/shapes:define-input batch-create-rum-metric-definitions-request
+                                common-lisp:nil
+                                ((app-monitor-name :target-type
+                                  app-monitor-name :required common-lisp:t
+                                  :member-name "AppMonitorName" :http-label
+                                  common-lisp:t)
+                                 (destination :target-type metric-destination
+                                  :required common-lisp:t :member-name
+                                  "Destination")
+                                 (destination-arn :target-type destination-arn
+                                  :member-name "DestinationArn")
+                                 (metric-definitions :target-type
+                                  metric-definitions-request :required
+                                  common-lisp:t :member-name
+                                  "MetricDefinitions"))
+                                (:shape-name
+                                 "BatchCreateRumMetricDefinitionsRequest"))
 
 (smithy/sdk/shapes:define-structure
  batch-create-rum-metric-definitions-response common-lisp:nil
@@ -268,26 +268,24 @@ common-lisp:nil
                                :member
                                batch-delete-rum-metric-definitions-error)
 
-(smithy/sdk/shapes:define-structure batch-delete-rum-metric-definitions-request
-                                    common-lisp:nil
-                                    ((app-monitor-name :target-type
-                                      app-monitor-name :required common-lisp:t
-                                      :member-name "AppMonitorName")
-                                     (destination :target-type
-                                      metric-destination :required
-                                      common-lisp:t :member-name "Destination"
-                                      :http-query "destination")
-                                     (destination-arn :target-type
-                                      destination-arn :member-name
-                                      "DestinationArn" :http-query
-                                      "destinationArn")
-                                     (metric-definition-ids :target-type
-                                      metric-definition-ids :required
-                                      common-lisp:t :member-name
-                                      "MetricDefinitionIds" :http-query
-                                      "metricDefinitionIds"))
-                                    (:shape-name
-                                     "BatchDeleteRumMetricDefinitionsRequest"))
+(smithy/sdk/shapes:define-input batch-delete-rum-metric-definitions-request
+                                common-lisp:nil
+                                ((app-monitor-name :target-type
+                                  app-monitor-name :required common-lisp:t
+                                  :member-name "AppMonitorName" :http-label
+                                  common-lisp:t)
+                                 (destination :target-type metric-destination
+                                  :required common-lisp:t :member-name
+                                  "Destination" :http-query "destination")
+                                 (destination-arn :target-type destination-arn
+                                  :member-name "DestinationArn" :http-query
+                                  "destinationArn")
+                                 (metric-definition-ids :target-type
+                                  metric-definition-ids :required common-lisp:t
+                                  :member-name "MetricDefinitionIds"
+                                  :http-query "metricDefinitionIds"))
+                                (:shape-name
+                                 "BatchDeleteRumMetricDefinitionsRequest"))
 
 (smithy/sdk/shapes:define-structure
  batch-delete-rum-metric-definitions-response common-lisp:nil
@@ -297,28 +295,26 @@ common-lisp:nil
    "MetricDefinitionIds"))
  (:shape-name "BatchDeleteRumMetricDefinitionsResponse"))
 
-(smithy/sdk/shapes:define-structure batch-get-rum-metric-definitions-request
-                                    common-lisp:nil
-                                    ((app-monitor-name :target-type
-                                      app-monitor-name :required common-lisp:t
-                                      :member-name "AppMonitorName")
-                                     (destination :target-type
-                                      metric-destination :required
-                                      common-lisp:t :member-name "Destination"
-                                      :http-query "destination")
-                                     (destination-arn :target-type
-                                      destination-arn :member-name
-                                      "DestinationArn" :http-query
-                                      "destinationArn")
-                                     (max-results :target-type
-                                      max-results-integer :member-name
-                                      "MaxResults" :http-query "maxResults")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name
-                                     "BatchGetRumMetricDefinitionsRequest"))
+(smithy/sdk/shapes:define-input batch-get-rum-metric-definitions-request
+                                common-lisp:nil
+                                ((app-monitor-name :target-type
+                                  app-monitor-name :required common-lisp:t
+                                  :member-name "AppMonitorName" :http-label
+                                  common-lisp:t)
+                                 (destination :target-type metric-destination
+                                  :required common-lisp:t :member-name
+                                  "Destination" :http-query "destination")
+                                 (destination-arn :target-type destination-arn
+                                  :member-name "DestinationArn" :http-query
+                                  "destinationArn")
+                                 (max-results :target-type max-results-integer
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "NextToken" :http-query "nextToken"))
+                                (:shape-name
+                                 "BatchGetRumMetricDefinitionsRequest"))
 
 (smithy/sdk/shapes:define-structure batch-get-rum-metric-definitions-response
                                     common-lisp:nil
@@ -395,11 +391,11 @@ common-lisp:nil
                                       "CwLog"))
                                     (:shape-name "DataStorage"))
 
-(smithy/sdk/shapes:define-structure delete-app-monitor-request common-lisp:nil
-                                    ((name :target-type app-monitor-name
-                                      :required common-lisp:t :member-name
-                                      "Name"))
-                                    (:shape-name "DeleteAppMonitorRequest"))
+(smithy/sdk/shapes:define-input delete-app-monitor-request common-lisp:nil
+                                ((name :target-type app-monitor-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteAppMonitorRequest"))
 
 (smithy/sdk/shapes:define-structure delete-app-monitor-response common-lisp:nil
                                     common-lisp:nil
@@ -422,21 +418,20 @@ common-lisp:nil
                                    "PolicyRevisionId"))
                                  (:shape-name "DeleteResourcePolicyResponse"))
 
-(smithy/sdk/shapes:define-structure delete-rum-metrics-destination-request
-                                    common-lisp:nil
-                                    ((app-monitor-name :target-type
-                                      app-monitor-name :required common-lisp:t
-                                      :member-name "AppMonitorName")
-                                     (destination :target-type
-                                      metric-destination :required
-                                      common-lisp:t :member-name "Destination"
-                                      :http-query "destination")
-                                     (destination-arn :target-type
-                                      destination-arn :member-name
-                                      "DestinationArn" :http-query
-                                      "destinationArn"))
-                                    (:shape-name
-                                     "DeleteRumMetricsDestinationRequest"))
+(smithy/sdk/shapes:define-input delete-rum-metrics-destination-request
+                                common-lisp:nil
+                                ((app-monitor-name :target-type
+                                  app-monitor-name :required common-lisp:t
+                                  :member-name "AppMonitorName" :http-label
+                                  common-lisp:t)
+                                 (destination :target-type metric-destination
+                                  :required common-lisp:t :member-name
+                                  "Destination" :http-query "destination")
+                                 (destination-arn :target-type destination-arn
+                                  :member-name "DestinationArn" :http-query
+                                  "destinationArn"))
+                                (:shape-name
+                                 "DeleteRumMetricsDestinationRequest"))
 
 (smithy/sdk/shapes:define-structure delete-rum-metrics-destination-response
                                     common-lisp:nil common-lisp:nil
@@ -473,22 +468,19 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list favorite-pages :member
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure get-app-monitor-data-request
-                                    common-lisp:nil
-                                    ((name :target-type app-monitor-name
-                                      :required common-lisp:t :member-name
-                                      "Name")
-                                     (time-range :target-type time-range
-                                      :required common-lisp:t :member-name
-                                      "TimeRange")
-                                     (filters :target-type query-filters
-                                      :member-name "Filters")
-                                     (max-results :target-type
-                                      max-query-results :member-name
-                                      "MaxResults")
-                                     (next-token :target-type token
-                                      :member-name "NextToken"))
-                                    (:shape-name "GetAppMonitorDataRequest"))
+(smithy/sdk/shapes:define-input get-app-monitor-data-request common-lisp:nil
+                                ((name :target-type app-monitor-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (time-range :target-type time-range :required
+                                  common-lisp:t :member-name "TimeRange")
+                                 (filters :target-type query-filters
+                                  :member-name "Filters")
+                                 (max-results :target-type max-query-results
+                                  :member-name "MaxResults")
+                                 (next-token :target-type token :member-name
+                                  "NextToken"))
+                                (:shape-name "GetAppMonitorDataRequest"))
 
 (smithy/sdk/shapes:define-structure get-app-monitor-data-response
                                     common-lisp:nil
@@ -498,11 +490,11 @@ common-lisp:nil
                                       :member-name "NextToken"))
                                     (:shape-name "GetAppMonitorDataResponse"))
 
-(smithy/sdk/shapes:define-structure get-app-monitor-request common-lisp:nil
-                                    ((name :target-type app-monitor-name
-                                      :required common-lisp:t :member-name
-                                      "Name"))
-                                    (:shape-name "GetAppMonitorRequest"))
+(smithy/sdk/shapes:define-input get-app-monitor-request common-lisp:nil
+                                ((name :target-type app-monitor-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetAppMonitorRequest"))
 
 (smithy/sdk/shapes:define-structure get-app-monitor-response common-lisp:nil
                                     ((app-monitor :target-type app-monitor
@@ -562,15 +554,14 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type json-value smithy/sdk/smithy-types:string
                                :media-type "application/json")
 
-(smithy/sdk/shapes:define-structure list-app-monitors-request common-lisp:nil
-                                    ((max-results :target-type
-                                      max-results-integer :member-name
-                                      "MaxResults" :http-query "maxResults")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListAppMonitorsRequest"))
+(smithy/sdk/shapes:define-input list-app-monitors-request common-lisp:nil
+                                ((max-results :target-type max-results-integer
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "NextToken" :http-query "nextToken"))
+                                (:shape-name "ListAppMonitorsRequest"))
 
 (smithy/sdk/shapes:define-structure list-app-monitors-response common-lisp:nil
                                     ((next-token :target-type
@@ -581,20 +572,20 @@ common-lisp:nil
                                       "AppMonitorSummaries"))
                                     (:shape-name "ListAppMonitorsResponse"))
 
-(smithy/sdk/shapes:define-structure list-rum-metrics-destinations-request
-                                    common-lisp:nil
-                                    ((app-monitor-name :target-type
-                                      app-monitor-name :required common-lisp:t
-                                      :member-name "AppMonitorName")
-                                     (max-results :target-type
-                                      max-results-integer :member-name
-                                      "MaxResults" :http-query "maxResults")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name
-                                     "ListRumMetricsDestinationsRequest"))
+(smithy/sdk/shapes:define-input list-rum-metrics-destinations-request
+                                common-lisp:nil
+                                ((app-monitor-name :target-type
+                                  app-monitor-name :required common-lisp:t
+                                  :member-name "AppMonitorName" :http-label
+                                  common-lisp:t)
+                                 (max-results :target-type max-results-integer
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "NextToken" :http-query "nextToken"))
+                                (:shape-name
+                                 "ListRumMetricsDestinationsRequest"))
 
 (smithy/sdk/shapes:define-structure list-rum-metrics-destinations-response
                                     common-lisp:nil
@@ -607,12 +598,11 @@ common-lisp:nil
                                     (:shape-name
                                      "ListRumMetricsDestinationsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -747,45 +737,44 @@ common-lisp:nil
                                    "PolicyRevisionId"))
                                  (:shape-name "PutResourcePolicyResponse"))
 
-(smithy/sdk/shapes:define-structure put-rum-events-request common-lisp:nil
-                                    ((id :target-type app-monitor-id :required
-                                      common-lisp:t :member-name "Id")
-                                     (batch-id :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "BatchId")
-                                     (app-monitor-details :target-type
-                                      app-monitor-details :required
-                                      common-lisp:t :member-name
-                                      "AppMonitorDetails")
-                                     (user-details :target-type user-details
-                                      :required common-lisp:t :member-name
-                                      "UserDetails")
-                                     (rum-events :target-type rum-event-list
-                                      :required common-lisp:t :member-name
-                                      "RumEvents")
-                                     (alias :target-type alias :member-name
-                                      "Alias"))
-                                    (:shape-name "PutRumEventsRequest"))
+(smithy/sdk/shapes:define-input put-rum-events-request common-lisp:nil
+                                ((id :target-type app-monitor-id :required
+                                  common-lisp:t :member-name "Id" :http-label
+                                  common-lisp:t)
+                                 (batch-id :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "BatchId")
+                                 (app-monitor-details :target-type
+                                  app-monitor-details :required common-lisp:t
+                                  :member-name "AppMonitorDetails")
+                                 (user-details :target-type user-details
+                                  :required common-lisp:t :member-name
+                                  "UserDetails")
+                                 (rum-events :target-type rum-event-list
+                                  :required common-lisp:t :member-name
+                                  "RumEvents")
+                                 (alias :target-type alias :member-name
+                                  "Alias"))
+                                (:shape-name "PutRumEventsRequest"))
 
 (smithy/sdk/shapes:define-structure put-rum-events-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "PutRumEventsResponse"))
 
-(smithy/sdk/shapes:define-structure put-rum-metrics-destination-request
-                                    common-lisp:nil
-                                    ((app-monitor-name :target-type
-                                      app-monitor-name :required common-lisp:t
-                                      :member-name "AppMonitorName")
-                                     (destination :target-type
-                                      metric-destination :required
-                                      common-lisp:t :member-name "Destination")
-                                     (destination-arn :target-type
-                                      destination-arn :member-name
-                                      "DestinationArn")
-                                     (iam-role-arn :target-type iam-role-arn
-                                      :member-name "IamRoleArn"))
-                                    (:shape-name
-                                     "PutRumMetricsDestinationRequest"))
+(smithy/sdk/shapes:define-input put-rum-metrics-destination-request
+                                common-lisp:nil
+                                ((app-monitor-name :target-type
+                                  app-monitor-name :required common-lisp:t
+                                  :member-name "AppMonitorName" :http-label
+                                  common-lisp:t)
+                                 (destination :target-type metric-destination
+                                  :required common-lisp:t :member-name
+                                  "Destination")
+                                 (destination-arn :target-type destination-arn
+                                  :member-name "DestinationArn")
+                                 (iam-role-arn :target-type iam-role-arn
+                                  :member-name "IamRoleArn"))
+                                (:shape-name "PutRumMetricsDestinationRequest"))
 
 (smithy/sdk/shapes:define-structure put-rum-metrics-destination-response
                                     common-lisp:nil common-lisp:nil
@@ -863,12 +852,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "ResourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -909,65 +899,65 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type unit-label smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "ResourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "TagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "TagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-app-monitor-request common-lisp:nil
-                                    ((name :target-type app-monitor-name
-                                      :required common-lisp:t :member-name
-                                      "Name")
-                                     (domain :target-type app-monitor-domain
-                                      :member-name "Domain")
-                                     (domain-list :target-type
-                                      app-monitor-domain-list :member-name
-                                      "DomainList")
-                                     (app-monitor-configuration :target-type
-                                      app-monitor-configuration :member-name
-                                      "AppMonitorConfiguration")
-                                     (cw-log-enabled :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "CwLogEnabled")
-                                     (custom-events :target-type custom-events
-                                      :member-name "CustomEvents")
-                                     (deobfuscation-configuration :target-type
-                                      deobfuscation-configuration :member-name
-                                      "DeobfuscationConfiguration"))
-                                    (:shape-name "UpdateAppMonitorRequest"))
+(smithy/sdk/shapes:define-input update-app-monitor-request common-lisp:nil
+                                ((name :target-type app-monitor-name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (domain :target-type app-monitor-domain
+                                  :member-name "Domain")
+                                 (domain-list :target-type
+                                  app-monitor-domain-list :member-name
+                                  "DomainList")
+                                 (app-monitor-configuration :target-type
+                                  app-monitor-configuration :member-name
+                                  "AppMonitorConfiguration")
+                                 (cw-log-enabled :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "CwLogEnabled")
+                                 (custom-events :target-type custom-events
+                                  :member-name "CustomEvents")
+                                 (deobfuscation-configuration :target-type
+                                  deobfuscation-configuration :member-name
+                                  "DeobfuscationConfiguration"))
+                                (:shape-name "UpdateAppMonitorRequest"))
 
 (smithy/sdk/shapes:define-structure update-app-monitor-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UpdateAppMonitorResponse"))
 
-(smithy/sdk/shapes:define-structure update-rum-metric-definition-request
-                                    common-lisp:nil
-                                    ((app-monitor-name :target-type
-                                      app-monitor-name :required common-lisp:t
-                                      :member-name "AppMonitorName")
-                                     (destination :target-type
-                                      metric-destination :required
-                                      common-lisp:t :member-name "Destination")
-                                     (destination-arn :target-type
-                                      destination-arn :member-name
-                                      "DestinationArn")
-                                     (metric-definition :target-type
-                                      metric-definition-request :required
-                                      common-lisp:t :member-name
-                                      "MetricDefinition")
-                                     (metric-definition-id :target-type
-                                      metric-definition-id :required
-                                      common-lisp:t :member-name
-                                      "MetricDefinitionId"))
-                                    (:shape-name
-                                     "UpdateRumMetricDefinitionRequest"))
+(smithy/sdk/shapes:define-input update-rum-metric-definition-request
+                                common-lisp:nil
+                                ((app-monitor-name :target-type
+                                  app-monitor-name :required common-lisp:t
+                                  :member-name "AppMonitorName" :http-label
+                                  common-lisp:t)
+                                 (destination :target-type metric-destination
+                                  :required common-lisp:t :member-name
+                                  "Destination")
+                                 (destination-arn :target-type destination-arn
+                                  :member-name "DestinationArn")
+                                 (metric-definition :target-type
+                                  metric-definition-request :required
+                                  common-lisp:t :member-name
+                                  "MetricDefinition")
+                                 (metric-definition-id :target-type
+                                  metric-definition-id :required common-lisp:t
+                                  :member-name "MetricDefinitionId"))
+                                (:shape-name
+                                 "UpdateRumMetricDefinitionRequest"))
 
 (smithy/sdk/shapes:define-structure update-rum-metric-definition-response
                                     common-lisp:nil common-lisp:nil

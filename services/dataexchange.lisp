@@ -357,10 +357,11 @@
 
 (smithy/sdk/shapes:define-type aws-account-id smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure cancel-job-request common-lisp:nil
-                                    ((job-id :target-type id :required
-                                      common-lisp:t :member-name "JobId"))
-                                    (:shape-name "CancelJobRequest"))
+(smithy/sdk/shapes:define-input cancel-job-request common-lisp:nil
+                                ((job-id :target-type id :required
+                                  common-lisp:t :member-name "JobId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "CancelJobRequest"))
 
 (smithy/sdk/shapes:define-type client-token smithy/sdk/smithy-types:string)
 
@@ -524,14 +525,15 @@
                                       :member-name "UpdatedAt"))
                                     (:shape-name "CreateJobResponse"))
 
-(smithy/sdk/shapes:define-structure create-revision-request common-lisp:nil
-                                    ((comment :target-type string-min0max16384
-                                      :member-name "Comment")
-                                     (data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (tags :target-type map-of-string
-                                      :member-name "Tags"))
-                                    (:shape-name "CreateRevisionRequest"))
+(smithy/sdk/shapes:define-input create-revision-request common-lisp:nil
+                                ((comment :target-type string-min0max16384
+                                  :member-name "Comment")
+                                 (data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type map-of-string :member-name
+                                  "Tags"))
+                                (:shape-name "CreateRevisionRequest"))
 
 (smithy/sdk/shapes:define-structure create-revision-response common-lisp:nil
                                     ((arn :target-type arn :member-name "Arn")
@@ -681,14 +683,17 @@
 (smithy/sdk/shapes:define-type database-lftag-policy-permission
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure delete-asset-request common-lisp:nil
-                                    ((asset-id :target-type id :required
-                                      common-lisp:t :member-name "AssetId")
-                                     (data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (revision-id :target-type id :required
-                                      common-lisp:t :member-name "RevisionId"))
-                                    (:shape-name "DeleteAssetRequest"))
+(smithy/sdk/shapes:define-input delete-asset-request common-lisp:nil
+                                ((asset-id :target-type id :required
+                                  common-lisp:t :member-name "AssetId"
+                                  :http-label common-lisp:t)
+                                 (data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (revision-id :target-type id :required
+                                  common-lisp:t :member-name "RevisionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteAssetRequest"))
 
 (smithy/sdk/shapes:define-input delete-data-grant-request common-lisp:nil
                                 ((data-grant-id :target-type data-grant-id
@@ -696,23 +701,26 @@
                                   "DataGrantId" :http-label common-lisp:t))
                                 (:shape-name "DeleteDataGrantRequest"))
 
-(smithy/sdk/shapes:define-structure delete-data-set-request common-lisp:nil
-                                    ((data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId"))
-                                    (:shape-name "DeleteDataSetRequest"))
+(smithy/sdk/shapes:define-input delete-data-set-request common-lisp:nil
+                                ((data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteDataSetRequest"))
 
-(smithy/sdk/shapes:define-structure delete-event-action-request common-lisp:nil
-                                    ((event-action-id :target-type string
-                                      :required common-lisp:t :member-name
-                                      "EventActionId"))
-                                    (:shape-name "DeleteEventActionRequest"))
+(smithy/sdk/shapes:define-input delete-event-action-request common-lisp:nil
+                                ((event-action-id :target-type string :required
+                                  common-lisp:t :member-name "EventActionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteEventActionRequest"))
 
-(smithy/sdk/shapes:define-structure delete-revision-request common-lisp:nil
-                                    ((data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (revision-id :target-type id :required
-                                      common-lisp:t :member-name "RevisionId"))
-                                    (:shape-name "DeleteRevisionRequest"))
+(smithy/sdk/shapes:define-input delete-revision-request common-lisp:nil
+                                ((data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (revision-id :target-type id :required
+                                  common-lisp:t :member-name "RevisionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteRevisionRequest"))
 
 (smithy/sdk/shapes:define-structure deprecation-request-details common-lisp:nil
                                     ((deprecation-at :target-type timestamp
@@ -857,14 +865,17 @@
                                       common-lisp:t :member-name "Type"))
                                     (:shape-name "ExportServerSideEncryption"))
 
-(smithy/sdk/shapes:define-structure get-asset-request common-lisp:nil
-                                    ((asset-id :target-type id :required
-                                      common-lisp:t :member-name "AssetId")
-                                     (data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (revision-id :target-type id :required
-                                      common-lisp:t :member-name "RevisionId"))
-                                    (:shape-name "GetAssetRequest"))
+(smithy/sdk/shapes:define-input get-asset-request common-lisp:nil
+                                ((asset-id :target-type id :required
+                                  common-lisp:t :member-name "AssetId"
+                                  :http-label common-lisp:t)
+                                 (data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (revision-id :target-type id :required
+                                  common-lisp:t :member-name "RevisionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetAssetRequest"))
 
 (smithy/sdk/shapes:define-structure get-asset-response common-lisp:nil
                                     ((arn :target-type arn :member-name "Arn")
@@ -934,10 +945,11 @@
                                    "Tags"))
                                  (:shape-name "GetDataGrantResponse"))
 
-(smithy/sdk/shapes:define-structure get-data-set-request common-lisp:nil
-                                    ((data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId"))
-                                    (:shape-name "GetDataSetRequest"))
+(smithy/sdk/shapes:define-input get-data-set-request common-lisp:nil
+                                ((data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetDataSetRequest"))
 
 (smithy/sdk/shapes:define-structure get-data-set-response common-lisp:nil
                                     ((arn :target-type arn :member-name "Arn")
@@ -963,11 +975,11 @@
                                       :member-name "UpdatedAt"))
                                     (:shape-name "GetDataSetResponse"))
 
-(smithy/sdk/shapes:define-structure get-event-action-request common-lisp:nil
-                                    ((event-action-id :target-type string
-                                      :required common-lisp:t :member-name
-                                      "EventActionId"))
-                                    (:shape-name "GetEventActionRequest"))
+(smithy/sdk/shapes:define-input get-event-action-request common-lisp:nil
+                                ((event-action-id :target-type string :required
+                                  common-lisp:t :member-name "EventActionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetEventActionRequest"))
 
 (smithy/sdk/shapes:define-structure get-event-action-response common-lisp:nil
                                     ((action :target-type action :member-name
@@ -984,10 +996,11 @@
                                       :member-name "UpdatedAt"))
                                     (:shape-name "GetEventActionResponse"))
 
-(smithy/sdk/shapes:define-structure get-job-request common-lisp:nil
-                                    ((job-id :target-type id :required
-                                      common-lisp:t :member-name "JobId"))
-                                    (:shape-name "GetJobRequest"))
+(smithy/sdk/shapes:define-input get-job-request common-lisp:nil
+                                ((job-id :target-type id :required
+                                  common-lisp:t :member-name "JobId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetJobRequest"))
 
 (smithy/sdk/shapes:define-structure get-job-response common-lisp:nil
                                     ((arn :target-type arn :member-name "Arn")
@@ -1049,12 +1062,14 @@
                                    common-lisp:t :member-name "UpdatedAt"))
                                  (:shape-name "GetReceivedDataGrantResponse"))
 
-(smithy/sdk/shapes:define-structure get-revision-request common-lisp:nil
-                                    ((data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (revision-id :target-type id :required
-                                      common-lisp:t :member-name "RevisionId"))
-                                    (:shape-name "GetRevisionRequest"))
+(smithy/sdk/shapes:define-input get-revision-request common-lisp:nil
+                                ((data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (revision-id :target-type id :required
+                                  common-lisp:t :member-name "RevisionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetRevisionRequest"))
 
 (smithy/sdk/shapes:define-structure get-revision-response common-lisp:nil
                                     ((arn :target-type arn :member-name "Arn")
@@ -1389,17 +1404,16 @@
                                    :member-name "NextToken"))
                                  (:shape-name "ListDataGrantsResponse"))
 
-(smithy/sdk/shapes:define-structure list-data-set-revisions-request
-                                    common-lisp:nil
-                                    ((data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListDataSetRevisionsRequest"))
+(smithy/sdk/shapes:define-input list-data-set-revisions-request common-lisp:nil
+                                ((data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken"))
+                                (:shape-name "ListDataSetRevisionsRequest"))
 
 (smithy/sdk/shapes:define-structure list-data-set-revisions-response
                                     common-lisp:nil
@@ -1411,16 +1425,15 @@
                                     (:shape-name
                                      "ListDataSetRevisionsResponse"))
 
-(smithy/sdk/shapes:define-structure list-data-sets-request common-lisp:nil
-                                    ((max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (origin :target-type string :member-name
-                                      "Origin" :http-query "origin"))
-                                    (:shape-name "ListDataSetsRequest"))
+(smithy/sdk/shapes:define-input list-data-sets-request common-lisp:nil
+                                ((max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken")
+                                 (origin :target-type string :member-name
+                                  "Origin" :http-query "origin"))
+                                (:shape-name "ListDataSetsRequest"))
 
 (smithy/sdk/shapes:define-structure list-data-sets-response common-lisp:nil
                                     ((data-sets :target-type
@@ -1430,17 +1443,16 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListDataSetsResponse"))
 
-(smithy/sdk/shapes:define-structure list-event-actions-request common-lisp:nil
-                                    ((event-source-id :target-type string
-                                      :member-name "EventSourceId" :http-query
-                                      "eventSourceId")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListEventActionsRequest"))
+(smithy/sdk/shapes:define-input list-event-actions-request common-lisp:nil
+                                ((event-source-id :target-type string
+                                  :member-name "EventSourceId" :http-query
+                                  "eventSourceId")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken"))
+                                (:shape-name "ListEventActionsRequest"))
 
 (smithy/sdk/shapes:define-structure list-event-actions-response common-lisp:nil
                                     ((event-actions :target-type
@@ -1450,20 +1462,17 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListEventActionsResponse"))
 
-(smithy/sdk/shapes:define-structure list-jobs-request common-lisp:nil
-                                    ((data-set-id :target-type string
-                                      :member-name "DataSetId" :http-query
-                                      "dataSetId")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (revision-id :target-type string
-                                      :member-name "RevisionId" :http-query
-                                      "revisionId"))
-                                    (:shape-name "ListJobsRequest"))
+(smithy/sdk/shapes:define-input list-jobs-request common-lisp:nil
+                                ((data-set-id :target-type string :member-name
+                                  "DataSetId" :http-query "dataSetId")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken")
+                                 (revision-id :target-type string :member-name
+                                  "RevisionId" :http-query "revisionId"))
+                                (:shape-name "ListJobsRequest"))
 
 (smithy/sdk/shapes:define-structure list-jobs-response common-lisp:nil
                                     ((jobs :target-type list-of-job-entry
@@ -1555,19 +1564,19 @@
                                    :member-name "NextToken"))
                                  (:shape-name "ListReceivedDataGrantsResponse"))
 
-(smithy/sdk/shapes:define-structure list-revision-assets-request
-                                    common-lisp:nil
-                                    ((data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (revision-id :target-type id :required
-                                      common-lisp:t :member-name "RevisionId"))
-                                    (:shape-name "ListRevisionAssetsRequest"))
+(smithy/sdk/shapes:define-input list-revision-assets-request common-lisp:nil
+                                ((data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type string :member-name
+                                  "NextToken" :http-query "nextToken")
+                                 (revision-id :target-type id :required
+                                  common-lisp:t :member-name "RevisionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListRevisionAssetsRequest"))
 
 (smithy/sdk/shapes:define-structure list-revision-assets-response
                                     common-lisp:nil
@@ -1577,12 +1586,11 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListRevisionAssetsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1819,16 +1827,17 @@
                                       common-lisp:t :member-name "DataSetId"))
                                     (:shape-name "RevisionPublished"))
 
-(smithy/sdk/shapes:define-structure revoke-revision-request common-lisp:nil
-                                    ((data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (revision-id :target-type id :required
-                                      common-lisp:t :member-name "RevisionId")
-                                     (revocation-comment :target-type
-                                      string-min10max512 :required
-                                      common-lisp:t :member-name
-                                      "RevocationComment"))
-                                    (:shape-name "RevokeRevisionRequest"))
+(smithy/sdk/shapes:define-input revoke-revision-request common-lisp:nil
+                                ((data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (revision-id :target-type id :required
+                                  common-lisp:t :member-name "RevisionId"
+                                  :http-label common-lisp:t)
+                                 (revocation-comment :target-type
+                                  string-min10max512 :required common-lisp:t
+                                  :member-name "RevocationComment"))
+                                (:shape-name "RevokeRevisionRequest"))
 
 (smithy/sdk/shapes:define-structure revoke-revision-response common-lisp:nil
                                     ((arn :target-type arn :member-name "Arn")
@@ -1933,38 +1942,36 @@
                                       "S3DataAccesses"))
                                     (:shape-name "ScopeDetails"))
 
-(smithy/sdk/shapes:define-structure send-api-asset-request common-lisp:nil
-                                    ((body :target-type string :member-name
-                                      "Body" :http-payload common-lisp:t)
-                                     (query-string-parameters :target-type
-                                      map-of-string :member-name
-                                      "QueryStringParameters"
-                                      :http-query-params common-lisp:t)
-                                     (asset-id :target-type string :required
-                                      common-lisp:t :member-name "AssetId"
-                                      :http-header
-                                      "x-amzn-dataexchange-asset-id")
-                                     (data-set-id :target-type string :required
-                                      common-lisp:t :member-name "DataSetId"
-                                      :http-header
-                                      "x-amzn-dataexchange-data-set-id")
-                                     (request-headers :target-type
-                                      map-of-string :member-name
-                                      "RequestHeaders" :http-prefix-headers
-                                      "x-amzn-dataexchange-header-")
-                                     (method :target-type string :member-name
-                                      "Method" :http-header
-                                      "x-amzn-dataexchange-http-method")
-                                     (path :target-type string :member-name
-                                      "Path" :http-header
-                                      "x-amzn-dataexchange-path")
-                                     (revision-id :target-type string :required
-                                      common-lisp:t :member-name "RevisionId"
-                                      :http-header
-                                      "x-amzn-dataexchange-revision-id"))
-                                    (:shape-name "SendApiAssetRequest"))
+(smithy/sdk/shapes:define-input send-api-asset-request common-lisp:nil
+                                ((body :target-type string :member-name "Body"
+                                  :http-payload common-lisp:t)
+                                 (query-string-parameters :target-type
+                                  map-of-string :member-name
+                                  "QueryStringParameters" :http-query-params
+                                  common-lisp:t)
+                                 (asset-id :target-type string :required
+                                  common-lisp:t :member-name "AssetId"
+                                  :http-header "x-amzn-dataexchange-asset-id")
+                                 (data-set-id :target-type string :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-header
+                                  "x-amzn-dataexchange-data-set-id")
+                                 (request-headers :target-type map-of-string
+                                  :member-name "RequestHeaders"
+                                  :http-prefix-headers
+                                  "x-amzn-dataexchange-header-")
+                                 (method :target-type string :member-name
+                                  "Method" :http-header
+                                  "x-amzn-dataexchange-http-method")
+                                 (path :target-type string :member-name "Path"
+                                  :http-header "x-amzn-dataexchange-path")
+                                 (revision-id :target-type string :required
+                                  common-lisp:t :member-name "RevisionId"
+                                  :http-header
+                                  "x-amzn-dataexchange-revision-id"))
+                                (:shape-name "SendApiAssetRequest"))
 
-(smithy/sdk/shapes:define-structure send-api-asset-response common-lisp:nil
+(smithy/sdk/shapes:define-interface send-api-asset-response common-lisp:nil
                                     ((body :target-type string :member-name
                                       "Body" :http-payload common-lisp:t)
                                      (response-headers :target-type
@@ -2011,10 +2018,11 @@
                                 (:shape-name "ServiceLimitExceededException")
                                 (:error-code 402))
 
-(smithy/sdk/shapes:define-structure start-job-request common-lisp:nil
-                                    ((job-id :target-type id :required
-                                      common-lisp:t :member-name "JobId"))
-                                    (:shape-name "StartJobRequest"))
+(smithy/sdk/shapes:define-input start-job-request common-lisp:nil
+                                ((job-id :target-type id :required
+                                  common-lisp:t :member-name "JobId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "StartJobRequest"))
 
 (smithy/sdk/shapes:define-structure start-job-response common-lisp:nil
                                     common-lisp:nil
@@ -2043,14 +2051,14 @@
 (smithy/sdk/shapes:define-type table-tag-policy-lfpermission
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tags :target-type map-of-string :required
-                                      common-lisp:t :member-name "Tags"
-                                      :json-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type map-of-string :required
+                                  common-lisp:t :member-name "Tags" :json-name
+                                  "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-error throttling-exception common-lisp:nil
                                 ((message :target-type string :required
@@ -2058,29 +2066,33 @@
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type type smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tag-keys :target-type list-of-string
-                                      :required common-lisp:t :member-name
-                                      "TagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type list-of-string
+                                  :required common-lisp:t :member-name
+                                  "TagKeys" :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
-(smithy/sdk/shapes:define-structure update-asset-request common-lisp:nil
-                                    ((asset-id :target-type id :required
-                                      common-lisp:t :member-name "AssetId")
-                                     (data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (name :target-type asset-name :required
-                                      common-lisp:t :member-name "Name")
-                                     (revision-id :target-type id :required
-                                      common-lisp:t :member-name "RevisionId"))
-                                    (:shape-name "UpdateAssetRequest"))
+(smithy/sdk/shapes:define-input update-asset-request common-lisp:nil
+                                ((asset-id :target-type id :required
+                                  common-lisp:t :member-name "AssetId"
+                                  :http-label common-lisp:t)
+                                 (data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type asset-name :required
+                                  common-lisp:t :member-name "Name")
+                                 (revision-id :target-type id :required
+                                  common-lisp:t :member-name "RevisionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "UpdateAssetRequest"))
 
 (smithy/sdk/shapes:define-structure update-asset-response common-lisp:nil
                                     ((arn :target-type arn :member-name "Arn")
@@ -2103,14 +2115,14 @@
                                       :member-name "UpdatedAt"))
                                     (:shape-name "UpdateAssetResponse"))
 
-(smithy/sdk/shapes:define-structure update-data-set-request common-lisp:nil
-                                    ((data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (description :target-type description
-                                      :member-name "Description")
-                                     (name :target-type name :member-name
-                                      "Name"))
-                                    (:shape-name "UpdateDataSetRequest"))
+(smithy/sdk/shapes:define-input update-data-set-request common-lisp:nil
+                                ((data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "Description")
+                                 (name :target-type name :member-name "Name"))
+                                (:shape-name "UpdateDataSetRequest"))
 
 (smithy/sdk/shapes:define-structure update-data-set-response common-lisp:nil
                                     ((arn :target-type arn :member-name "Arn")
@@ -2134,13 +2146,13 @@
                                       :member-name "UpdatedAt"))
                                     (:shape-name "UpdateDataSetResponse"))
 
-(smithy/sdk/shapes:define-structure update-event-action-request common-lisp:nil
-                                    ((action :target-type action :member-name
-                                      "Action")
-                                     (event-action-id :target-type string
-                                      :required common-lisp:t :member-name
-                                      "EventActionId"))
-                                    (:shape-name "UpdateEventActionRequest"))
+(smithy/sdk/shapes:define-input update-event-action-request common-lisp:nil
+                                ((action :target-type action :member-name
+                                  "Action")
+                                 (event-action-id :target-type string :required
+                                  common-lisp:t :member-name "EventActionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "UpdateEventActionRequest"))
 
 (smithy/sdk/shapes:define-structure update-event-action-response
                                     common-lisp:nil
@@ -2156,16 +2168,18 @@
                                       :member-name "UpdatedAt"))
                                     (:shape-name "UpdateEventActionResponse"))
 
-(smithy/sdk/shapes:define-structure update-revision-request common-lisp:nil
-                                    ((comment :target-type string-min0max16384
-                                      :member-name "Comment")
-                                     (data-set-id :target-type id :required
-                                      common-lisp:t :member-name "DataSetId")
-                                     (finalized :target-type boolean
-                                      :member-name "Finalized")
-                                     (revision-id :target-type id :required
-                                      common-lisp:t :member-name "RevisionId"))
-                                    (:shape-name "UpdateRevisionRequest"))
+(smithy/sdk/shapes:define-input update-revision-request common-lisp:nil
+                                ((comment :target-type string-min0max16384
+                                  :member-name "Comment")
+                                 (data-set-id :target-type id :required
+                                  common-lisp:t :member-name "DataSetId"
+                                  :http-label common-lisp:t)
+                                 (finalized :target-type boolean :member-name
+                                  "Finalized")
+                                 (revision-id :target-type id :required
+                                  common-lisp:t :member-name "RevisionId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "UpdateRevisionRequest"))
 
 (smithy/sdk/shapes:define-structure update-revision-response common-lisp:nil
                                     ((arn :target-type arn :member-name "Arn")

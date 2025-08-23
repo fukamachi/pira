@@ -625,7 +625,8 @@ common-lisp:nil
                                      "CompleteReadSetUploadPartListItem"))
 
 (smithy/sdk/shapes:define-type completion-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type
@@ -1116,7 +1117,8 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type creation-job-id smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type creation-type smithy/sdk/smithy-types:string)
 
@@ -3655,7 +3657,8 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type run-cache-status smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type run-cache-timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type run-export smithy/sdk/smithy-types:string)
 
@@ -3705,7 +3708,8 @@ common-lisp:nil
 common-lisp:nil
 
 (smithy/sdk/shapes:define-type run-group-timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type run-id smithy/sdk/smithy-types:string)
 
@@ -3789,7 +3793,8 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type run-status-message
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-type run-timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type run-timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type run-uuid smithy/sdk/smithy-types:string)
 
@@ -4427,7 +4432,8 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type task-status-message
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-type task-timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type task-timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-error throttling-exception common-lisp:nil
                                 ((message :target-type
@@ -4647,7 +4653,8 @@ common-lisp:nil
                                    "eTagAlgorithmFamily"))
                                  (:shape-name "UpdateSequenceStoreResponse"))
 
-(smithy/sdk/shapes:define-type update-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type update-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input update-variant-store-request common-lisp:nil
                                 ((name :target-type
@@ -4976,7 +4983,8 @@ common-lisp:nil
                                smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type workflow-timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type workflow-type smithy/sdk/smithy-types:string)
 

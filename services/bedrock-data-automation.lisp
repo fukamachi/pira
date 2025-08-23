@@ -467,7 +467,8 @@ common-lisp:nil
                                     (:shape-name
                                      "DataAutomationProjectSummary"))
 
-(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-blueprint-request common-lisp:nil
                                 ((blueprint-arn :target-type blueprint-arn

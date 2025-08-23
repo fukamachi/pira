@@ -1603,7 +1603,8 @@
   (:single-availability-zone "SingleAvailabilityZone")
   (:single-local-zone "SingleLocalZone"))
 
-(smithy/sdk/shapes:define-type date smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type days smithy/sdk/smithy-types:integer)
 
@@ -3341,10 +3342,12 @@
 (smithy/sdk/shapes:define-type if-match smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type if-match-initiated-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "http-date")
 
 (smithy/sdk/shapes:define-type if-match-last-modified-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "http-date")
 
 (smithy/sdk/shapes:define-type if-match-size smithy/sdk/smithy-types:long)
 
@@ -3707,7 +3710,8 @@
 (smithy/sdk/shapes:define-type last-modified smithy/sdk/smithy-types:timestamp)
 
 (smithy/sdk/shapes:define-type last-modified-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "http-date")
 
 (smithy/sdk/shapes:define-structure lifecycle-expiration common-lisp:nil
                                     ((date :target-type date :member-name
@@ -4697,7 +4701,8 @@
   (:compliance "COMPLIANCE"))
 
 (smithy/sdk/shapes:define-type object-lock-retain-until-date
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure object-lock-retention common-lisp:nil
                                     ((mode :target-type
@@ -5947,13 +5952,15 @@
                                smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type rename-source-if-modified-since
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "http-date")
 
 (smithy/sdk/shapes:define-type rename-source-if-none-match
                                smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type rename-source-if-unmodified-since
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "http-date")
 
 (smithy/sdk/shapes:define-type replace-key-prefix-with
                                smithy/sdk/smithy-types:string)
@@ -6101,7 +6108,8 @@
                                smithy/sdk/smithy-types:string)
 
 (smithy/sdk/shapes:define-type response-expires
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "http-date")
 
 (smithy/sdk/shapes:define-type restore smithy/sdk/smithy-types:string)
 

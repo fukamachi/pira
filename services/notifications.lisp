@@ -328,7 +328,8 @@ common-lisp:nil
                                  (:shape-name
                                   "CreateNotificationConfigurationResponse"))
 
-(smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-event-rule-request common-lisp:nil
                                 ((arn :target-type event-rule-arn :required
@@ -699,7 +700,8 @@ common-lisp:nil
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-type last-activation-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input list-channels-request common-lisp:nil
                                 ((notification-configuration-arn :target-type

@@ -31,7 +31,8 @@
 
 (smithy/sdk/shapes:define-list byte-set :member smithy/sdk/smithy-types:byte)
 
-(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-list date-time-list :member date-time)
 
@@ -40,7 +41,8 @@
 (smithy/sdk/shapes:define-list double-list :member
                                smithy/sdk/smithy-types:double)
 
-(smithy/sdk/shapes:define-type epoch-seconds smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type epoch-seconds smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "epoch-seconds")
 
 (smithy/sdk/shapes:define-list float-list :member smithy/sdk/smithy-types:float)
 
@@ -76,7 +78,8 @@
                                       :member-name "hi"))
                                     (:shape-name "GreetingStruct"))
 
-(smithy/sdk/shapes:define-type http-date smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type http-date smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "http-date")
 
 (smithy/sdk/shapes:define-list http-date-set :member http-date)
 

@@ -242,31 +242,35 @@
                                       "tags"))
                                     (:shape-name "CreateCampaignResponse"))
 
-(smithy/sdk/shapes:define-structure delete-campaign-request common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "DeleteCampaignRequest"))
+(smithy/sdk/shapes:define-input delete-campaign-request common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteCampaignRequest"))
 
-(smithy/sdk/shapes:define-structure delete-connect-instance-config-request
-                                    common-lisp:nil
-                                    ((connect-instance-id :target-type
-                                      instance-id :required common-lisp:t
-                                      :member-name "connectInstanceId"))
-                                    (:shape-name
-                                     "DeleteConnectInstanceConfigRequest"))
+(smithy/sdk/shapes:define-input delete-connect-instance-config-request
+                                common-lisp:nil
+                                ((connect-instance-id :target-type instance-id
+                                  :required common-lisp:t :member-name
+                                  "connectInstanceId" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "DeleteConnectInstanceConfigRequest"))
 
-(smithy/sdk/shapes:define-structure delete-instance-onboarding-job-request
-                                    common-lisp:nil
-                                    ((connect-instance-id :target-type
-                                      instance-id :required common-lisp:t
-                                      :member-name "connectInstanceId"))
-                                    (:shape-name
-                                     "DeleteInstanceOnboardingJobRequest"))
+(smithy/sdk/shapes:define-input delete-instance-onboarding-job-request
+                                common-lisp:nil
+                                ((connect-instance-id :target-type instance-id
+                                  :required common-lisp:t :member-name
+                                  "connectInstanceId" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "DeleteInstanceOnboardingJobRequest"))
 
-(smithy/sdk/shapes:define-structure describe-campaign-request common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "DescribeCampaignRequest"))
+(smithy/sdk/shapes:define-input describe-campaign-request common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DescribeCampaignRequest"))
 
 (smithy/sdk/shapes:define-structure describe-campaign-response common-lisp:nil
                                     ((campaign :target-type campaign
@@ -372,23 +376,24 @@
                                     (:shape-name
                                      "GetCampaignStateBatchResponse"))
 
-(smithy/sdk/shapes:define-structure get-campaign-state-request common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "GetCampaignStateRequest"))
+(smithy/sdk/shapes:define-input get-campaign-state-request common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetCampaignStateRequest"))
 
 (smithy/sdk/shapes:define-structure get-campaign-state-response common-lisp:nil
                                     ((state :target-type campaign-state
                                       :member-name "state"))
                                     (:shape-name "GetCampaignStateResponse"))
 
-(smithy/sdk/shapes:define-structure get-connect-instance-config-request
-                                    common-lisp:nil
-                                    ((connect-instance-id :target-type
-                                      instance-id :required common-lisp:t
-                                      :member-name "connectInstanceId"))
-                                    (:shape-name
-                                     "GetConnectInstanceConfigRequest"))
+(smithy/sdk/shapes:define-input get-connect-instance-config-request
+                                common-lisp:nil
+                                ((connect-instance-id :target-type instance-id
+                                  :required common-lisp:t :member-name
+                                  "connectInstanceId" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetConnectInstanceConfigRequest"))
 
 (smithy/sdk/shapes:define-structure get-connect-instance-config-response
                                     common-lisp:nil
@@ -398,13 +403,14 @@
                                     (:shape-name
                                      "GetConnectInstanceConfigResponse"))
 
-(smithy/sdk/shapes:define-structure get-instance-onboarding-job-status-request
-                                    common-lisp:nil
-                                    ((connect-instance-id :target-type
-                                      instance-id :required common-lisp:t
-                                      :member-name "connectInstanceId"))
-                                    (:shape-name
-                                     "GetInstanceOnboardingJobStatusRequest"))
+(smithy/sdk/shapes:define-input get-instance-onboarding-job-status-request
+                                common-lisp:nil
+                                ((connect-instance-id :target-type instance-id
+                                  :required common-lisp:t :member-name
+                                  "connectInstanceId" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "GetInstanceOnboardingJobStatusRequest"))
 
 (smithy/sdk/shapes:define-structure get-instance-onboarding-job-status-response
                                     common-lisp:nil
@@ -515,11 +521,11 @@
                                       "campaignSummaryList"))
                                     (:shape-name "ListCampaignsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-label
+                                  common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -547,10 +553,11 @@
                                       "answerMachineDetectionConfig"))
                                     (:shape-name "OutboundCallConfig"))
 
-(smithy/sdk/shapes:define-structure pause-campaign-request common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "PauseCampaignRequest"))
+(smithy/sdk/shapes:define-input pause-campaign-request common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "PauseCampaignRequest"))
 
 (smithy/sdk/shapes:define-structure predictive-dialer-config common-lisp:nil
                                     ((bandwidth-allocation :target-type
@@ -572,14 +579,14 @@
                                       "dialingCapacity"))
                                     (:shape-name "ProgressiveDialerConfig"))
 
-(smithy/sdk/shapes:define-structure put-dial-request-batch-request
-                                    common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id")
-                                     (dial-requests :target-type
-                                      dial-request-list :required common-lisp:t
-                                      :member-name "dialRequests"))
-                                    (:shape-name "PutDialRequestBatchRequest"))
+(smithy/sdk/shapes:define-input put-dial-request-batch-request common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t)
+                                 (dial-requests :target-type dial-request-list
+                                  :required common-lisp:t :member-name
+                                  "dialRequests"))
+                                (:shape-name "PutDialRequestBatchRequest"))
 
 (smithy/sdk/shapes:define-structure put-dial-request-batch-response
                                     common-lisp:nil
@@ -604,10 +611,11 @@
                                 (:shape-name "ResourceNotFoundException")
                                 (:error-code 404))
 
-(smithy/sdk/shapes:define-structure resume-campaign-request common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "ResumeCampaignRequest"))
+(smithy/sdk/shapes:define-input resume-campaign-request common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "ResumeCampaignRequest"))
 
 (smithy/sdk/shapes:define-type service-linked-role-arn
                                smithy/sdk/smithy-types:string)
@@ -627,21 +635,23 @@
 (smithy/sdk/shapes:define-type source-phone-number
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure start-campaign-request common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "StartCampaignRequest"))
+(smithy/sdk/shapes:define-input start-campaign-request common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "StartCampaignRequest"))
 
-(smithy/sdk/shapes:define-structure start-instance-onboarding-job-request
-                                    common-lisp:nil
-                                    ((connect-instance-id :target-type
-                                      instance-id :required common-lisp:t
-                                      :member-name "connectInstanceId")
-                                     (encryption-config :target-type
-                                      encryption-config :required common-lisp:t
-                                      :member-name "encryptionConfig"))
-                                    (:shape-name
-                                     "StartInstanceOnboardingJobRequest"))
+(smithy/sdk/shapes:define-input start-instance-onboarding-job-request
+                                common-lisp:nil
+                                ((connect-instance-id :target-type instance-id
+                                  :required common-lisp:t :member-name
+                                  "connectInstanceId" :http-label
+                                  common-lisp:t)
+                                 (encryption-config :target-type
+                                  encryption-config :required common-lisp:t
+                                  :member-name "encryptionConfig"))
+                                (:shape-name
+                                 "StartInstanceOnboardingJobRequest"))
 
 (smithy/sdk/shapes:define-structure start-instance-onboarding-job-response
                                     common-lisp:nil
@@ -653,10 +663,11 @@
                                     (:shape-name
                                      "StartInstanceOnboardingJobResponse"))
 
-(smithy/sdk/shapes:define-structure stop-campaign-request common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id"))
-                                    (:shape-name "StopCampaignRequest"))
+(smithy/sdk/shapes:define-input stop-campaign-request common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t))
+                                (:shape-name "StopCampaignRequest"))
 
 (smithy/sdk/shapes:define-structure successful-campaign-state-response
                                     common-lisp:nil
@@ -686,12 +697,12 @@
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-type tag-value smithy/sdk/smithy-types:string)
 
@@ -706,44 +717,52 @@
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-type time-stamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type time-stamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((arn :target-type arn :required
-                                      common-lisp:t :member-name "arn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((arn :target-type arn :required common-lisp:t
+                                  :member-name "arn" :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
-(smithy/sdk/shapes:define-structure update-campaign-dialer-config-request
-                                    common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id")
-                                     (dialer-config :target-type dialer-config
-                                      :required common-lisp:t :member-name
-                                      "dialerConfig"))
-                                    (:shape-name
-                                     "UpdateCampaignDialerConfigRequest"))
+(smithy/sdk/shapes:define-input update-campaign-dialer-config-request
+                                common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t)
+                                 (dialer-config :target-type dialer-config
+                                  :required common-lisp:t :member-name
+                                  "dialerConfig"))
+                                (:shape-name
+                                 "UpdateCampaignDialerConfigRequest"))
 
-(smithy/sdk/shapes:define-structure update-campaign-name-request
-                                    common-lisp:nil
-                                    ((id :target-type campaign-id :required
-                                      common-lisp:t :member-name "id")
-                                     (name :target-type campaign-name :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name "UpdateCampaignNameRequest"))
+(smithy/sdk/shapes:define-input update-campaign-name-request common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t)
+                                 (name :target-type campaign-name :required
+                                  common-lisp:t :member-name "name"))
+                                (:shape-name "UpdateCampaignNameRequest"))
 
-(smithy/sdk/shapes:define-structure
- update-campaign-outbound-call-config-request common-lisp:nil
- ((id :target-type campaign-id :required common-lisp:t :member-name "id")
-  (connect-contact-flow-id :target-type contact-flow-id :member-name
-   "connectContactFlowId")
-  (connect-source-phone-number :target-type source-phone-number :member-name
-   "connectSourcePhoneNumber")
-  (answer-machine-detection-config :target-type answer-machine-detection-config
-   :member-name "answerMachineDetectionConfig"))
- (:shape-name "UpdateCampaignOutboundCallConfigRequest"))
+(smithy/sdk/shapes:define-input update-campaign-outbound-call-config-request
+                                common-lisp:nil
+                                ((id :target-type campaign-id :required
+                                  common-lisp:t :member-name "id" :http-label
+                                  common-lisp:t)
+                                 (connect-contact-flow-id :target-type
+                                  contact-flow-id :member-name
+                                  "connectContactFlowId")
+                                 (connect-source-phone-number :target-type
+                                  source-phone-number :member-name
+                                  "connectSourcePhoneNumber")
+                                 (answer-machine-detection-config :target-type
+                                  answer-machine-detection-config :member-name
+                                  "answerMachineDetectionConfig"))
+                                (:shape-name
+                                 "UpdateCampaignOutboundCallConfigRequest"))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type

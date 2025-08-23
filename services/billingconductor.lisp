@@ -519,7 +519,7 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type conflict-exception-reason
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure create-billing-group-input common-lisp:nil
+(smithy/sdk/shapes:define-interface create-billing-group-input common-lisp:nil
                                     ((client-token :target-type client-token
                                       :member-name "ClientToken" :http-header
                                       "X-Amzn-Client-Token")
@@ -548,7 +548,7 @@ common-lisp:nil
                                       :member-name "Arn"))
                                     (:shape-name "CreateBillingGroupOutput"))
 
-(smithy/sdk/shapes:define-structure create-custom-line-item-input
+(smithy/sdk/shapes:define-interface create-custom-line-item-input
                                     common-lisp:nil
                                     ((client-token :target-type client-token
                                       :member-name "ClientToken" :http-header
@@ -587,7 +587,7 @@ common-lisp:nil
                                       "Activated"))
                                     (:shape-name "CreateFreeTierConfig"))
 
-(smithy/sdk/shapes:define-structure create-pricing-plan-input common-lisp:nil
+(smithy/sdk/shapes:define-interface create-pricing-plan-input common-lisp:nil
                                     ((client-token :target-type client-token
                                       :member-name "ClientToken" :http-header
                                       "X-Amzn-Client-Token")
@@ -609,7 +609,7 @@ common-lisp:nil
                                       :member-name "Arn"))
                                     (:shape-name "CreatePricingPlanOutput"))
 
-(smithy/sdk/shapes:define-structure create-pricing-rule-input common-lisp:nil
+(smithy/sdk/shapes:define-interface create-pricing-rule-input common-lisp:nil
                                     ((client-token :target-type client-token
                                       :member-name "ClientToken" :http-header
                                       "X-Amzn-Client-Token")
@@ -1364,12 +1364,11 @@ common-lisp:nil
  list-resources-associated-to-custom-line-item-response-list :member
  list-resources-associated-to-custom-line-item-response-element)
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1549,12 +1548,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "ResourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -1583,13 +1583,14 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "ResourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "TagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "TagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil

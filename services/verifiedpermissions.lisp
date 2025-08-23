@@ -1678,7 +1678,8 @@ common-lisp:nil
                                 (:error-code 429))
 
 (smithy/sdk/shapes:define-type timestamp-format
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 

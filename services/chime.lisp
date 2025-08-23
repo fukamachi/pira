@@ -842,7 +842,8 @@
                                  (:shape-name "InviteUsersResponse"))
 
 (smithy/sdk/shapes:define-type iso8601timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type join-token-string smithy/sdk/smithy-types:string)
 

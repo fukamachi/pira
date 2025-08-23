@@ -1193,7 +1193,8 @@
 (smithy/sdk/shapes:define-list qapp-session-data-list :member qapp-session-data)
 
 (smithy/sdk/shapes:define-type qapps-timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure qplugin-card common-lisp:nil
                                     ((id :target-type uuid :required

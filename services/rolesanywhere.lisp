@@ -270,16 +270,14 @@ common-lisp:nil
                                       :member-name "profiles"))
                                     (:shape-name "ListProfilesResponse"))
 
-(smithy/sdk/shapes:define-structure list-request common-lisp:nil
-                                    ((next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (page-size :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "pageSize" :http-query
-                                      "pageSize"))
-                                    (:shape-name "ListRequest"))
+(smithy/sdk/shapes:define-input list-request common-lisp:nil
+                                ((next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "nextToken" :http-query "nextToken")
+                                 (page-size :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "pageSize" :http-query "pageSize"))
+                                (:shape-name "ListRequest"))
 
 (smithy/sdk/shapes:define-structure list-subjects-response common-lisp:nil
                                     ((subjects :target-type subject-summaries
@@ -289,13 +287,12 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListSubjectsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type
-                                      amazon-resource-name :required
-                                      common-lisp:t :member-name "resourceArn"
-                                      :http-query "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type
+                                  amazon-resource-name :required common-lisp:t
+                                  :member-name "resourceArn" :http-query
+                                  "resourceArn"))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -498,26 +495,29 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list role-arn-list :member role-arn)
 
-(smithy/sdk/shapes:define-structure scalar-crl-request common-lisp:nil
-                                    ((crl-id :target-type uuid :required
-                                      common-lisp:t :member-name "crlId"))
-                                    (:shape-name "ScalarCrlRequest"))
+(smithy/sdk/shapes:define-input scalar-crl-request common-lisp:nil
+                                ((crl-id :target-type uuid :required
+                                  common-lisp:t :member-name "crlId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ScalarCrlRequest"))
 
-(smithy/sdk/shapes:define-structure scalar-profile-request common-lisp:nil
-                                    ((profile-id :target-type uuid :required
-                                      common-lisp:t :member-name "profileId"))
-                                    (:shape-name "ScalarProfileRequest"))
+(smithy/sdk/shapes:define-input scalar-profile-request common-lisp:nil
+                                ((profile-id :target-type uuid :required
+                                  common-lisp:t :member-name "profileId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ScalarProfileRequest"))
 
-(smithy/sdk/shapes:define-structure scalar-subject-request common-lisp:nil
-                                    ((subject-id :target-type uuid :required
-                                      common-lisp:t :member-name "subjectId"))
-                                    (:shape-name "ScalarSubjectRequest"))
+(smithy/sdk/shapes:define-input scalar-subject-request common-lisp:nil
+                                ((subject-id :target-type uuid :required
+                                  common-lisp:t :member-name "subjectId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ScalarSubjectRequest"))
 
-(smithy/sdk/shapes:define-structure scalar-trust-anchor-request common-lisp:nil
-                                    ((trust-anchor-id :target-type uuid
-                                      :required common-lisp:t :member-name
-                                      "trustAnchorId"))
-                                    (:shape-name "ScalarTrustAnchorRequest"))
+(smithy/sdk/shapes:define-input scalar-trust-anchor-request common-lisp:nil
+                                ((trust-anchor-id :target-type uuid :required
+                                  common-lisp:t :member-name "trustAnchorId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ScalarTrustAnchorRequest"))
 
 (smithy/sdk/shapes:define-structure source common-lisp:nil
                                     ((source-type :target-type
@@ -695,46 +695,48 @@ common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-crl-request common-lisp:nil
-                                    ((crl-id :target-type uuid :required
-                                      common-lisp:t :member-name "crlId")
-                                     (name :target-type resource-name
-                                      :member-name "name")
-                                     (crl-data :target-type
-                                      smithy/sdk/smithy-types:blob :member-name
-                                      "crlData"))
-                                    (:shape-name "UpdateCrlRequest"))
+(smithy/sdk/shapes:define-input update-crl-request common-lisp:nil
+                                ((crl-id :target-type uuid :required
+                                  common-lisp:t :member-name "crlId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type resource-name :member-name
+                                  "name")
+                                 (crl-data :target-type
+                                  smithy/sdk/smithy-types:blob :member-name
+                                  "crlData"))
+                                (:shape-name "UpdateCrlRequest"))
 
-(smithy/sdk/shapes:define-structure update-profile-request common-lisp:nil
-                                    ((profile-id :target-type uuid :required
-                                      common-lisp:t :member-name "profileId")
-                                     (name :target-type resource-name
-                                      :member-name "name")
-                                     (session-policy :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "sessionPolicy")
-                                     (role-arns :target-type role-arn-list
-                                      :member-name "roleArns")
-                                     (managed-policy-arns :target-type
-                                      managed-policy-list :member-name
-                                      "managedPolicyArns")
-                                     (duration-seconds :target-type
-                                      smithy/sdk/smithy-types:integer
-                                      :member-name "durationSeconds")
-                                     (accept-role-session-name :target-type
-                                      smithy/sdk/smithy-types:boolean
-                                      :member-name "acceptRoleSessionName"))
-                                    (:shape-name "UpdateProfileRequest"))
+(smithy/sdk/shapes:define-input update-profile-request common-lisp:nil
+                                ((profile-id :target-type uuid :required
+                                  common-lisp:t :member-name "profileId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type resource-name :member-name
+                                  "name")
+                                 (session-policy :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "sessionPolicy")
+                                 (role-arns :target-type role-arn-list
+                                  :member-name "roleArns")
+                                 (managed-policy-arns :target-type
+                                  managed-policy-list :member-name
+                                  "managedPolicyArns")
+                                 (duration-seconds :target-type
+                                  smithy/sdk/smithy-types:integer :member-name
+                                  "durationSeconds")
+                                 (accept-role-session-name :target-type
+                                  smithy/sdk/smithy-types:boolean :member-name
+                                  "acceptRoleSessionName"))
+                                (:shape-name "UpdateProfileRequest"))
 
-(smithy/sdk/shapes:define-structure update-trust-anchor-request common-lisp:nil
-                                    ((trust-anchor-id :target-type uuid
-                                      :required common-lisp:t :member-name
-                                      "trustAnchorId")
-                                     (name :target-type resource-name
-                                      :member-name "name")
-                                     (source :target-type source :member-name
-                                      "source"))
-                                    (:shape-name "UpdateTrustAnchorRequest"))
+(smithy/sdk/shapes:define-input update-trust-anchor-request common-lisp:nil
+                                ((trust-anchor-id :target-type uuid :required
+                                  common-lisp:t :member-name "trustAnchorId"
+                                  :http-label common-lisp:t)
+                                 (name :target-type resource-name :member-name
+                                  "name")
+                                 (source :target-type source :member-name
+                                  "source"))
+                                (:shape-name "UpdateTrustAnchorRequest"))
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 

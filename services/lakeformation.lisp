@@ -639,7 +639,8 @@
                                       common-lisp:t :member-name "Name"))
                                     (:shape-name "DatabaseResource"))
 
-(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-data-cells-filter-request
                                 common-lisp:nil

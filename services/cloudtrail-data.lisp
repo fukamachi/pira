@@ -88,17 +88,17 @@
                                 (:shape-name "InvalidChannelARN")
                                 (:error-code 400))
 
-(smithy/sdk/shapes:define-structure put-audit-events-request common-lisp:nil
-                                    ((audit-events :target-type audit-events
-                                      :required common-lisp:t :member-name
-                                      "auditEvents")
-                                     (channel-arn :target-type channel-arn
-                                      :required common-lisp:t :member-name
-                                      "channelArn" :http-query "channelArn")
-                                     (external-id :target-type external-id
-                                      :member-name "externalId" :http-query
-                                      "externalId"))
-                                    (:shape-name "PutAuditEventsRequest"))
+(smithy/sdk/shapes:define-input put-audit-events-request common-lisp:nil
+                                ((audit-events :target-type audit-events
+                                  :required common-lisp:t :member-name
+                                  "auditEvents")
+                                 (channel-arn :target-type channel-arn
+                                  :required common-lisp:t :member-name
+                                  "channelArn" :http-query "channelArn")
+                                 (external-id :target-type external-id
+                                  :member-name "externalId" :http-query
+                                  "externalId"))
+                                (:shape-name "PutAuditEventsRequest"))
 
 (smithy/sdk/shapes:define-structure put-audit-events-response common-lisp:nil
                                     ((successful :target-type

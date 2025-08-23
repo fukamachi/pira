@@ -133,50 +133,50 @@
                                  common-lisp:nil
                                  (:shape-name "CreateSnapshotOutput"))
 
-(smithy/sdk/shapes:define-structure delete-app-input common-lisp:nil
-                                    ((simulation :target-type
-                                      sim-space-weaver-resource-name :required
-                                      common-lisp:t :member-name "Simulation"
-                                      :http-query "simulation")
-                                     (domain :target-type
-                                      sim-space-weaver-resource-name :required
-                                      common-lisp:t :member-name "Domain"
-                                      :http-query "domain")
-                                     (app :target-type
-                                      sim-space-weaver-resource-name :required
-                                      common-lisp:t :member-name "App"
-                                      :http-query "app"))
-                                    (:shape-name "DeleteAppInput"))
+(smithy/sdk/shapes:define-input delete-app-input common-lisp:nil
+                                ((simulation :target-type
+                                  sim-space-weaver-resource-name :required
+                                  common-lisp:t :member-name "Simulation"
+                                  :http-query "simulation")
+                                 (domain :target-type
+                                  sim-space-weaver-resource-name :required
+                                  common-lisp:t :member-name "Domain"
+                                  :http-query "domain")
+                                 (app :target-type
+                                  sim-space-weaver-resource-name :required
+                                  common-lisp:t :member-name "App" :http-query
+                                  "app"))
+                                (:shape-name "DeleteAppInput"))
 
 (smithy/sdk/shapes:define-structure delete-app-output common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteAppOutput"))
 
-(smithy/sdk/shapes:define-structure delete-simulation-input common-lisp:nil
-                                    ((simulation :target-type
-                                      sim-space-weaver-resource-name :required
-                                      common-lisp:t :member-name "Simulation"
-                                      :http-query "simulation"))
-                                    (:shape-name "DeleteSimulationInput"))
+(smithy/sdk/shapes:define-input delete-simulation-input common-lisp:nil
+                                ((simulation :target-type
+                                  sim-space-weaver-resource-name :required
+                                  common-lisp:t :member-name "Simulation"
+                                  :http-query "simulation"))
+                                (:shape-name "DeleteSimulationInput"))
 
 (smithy/sdk/shapes:define-structure delete-simulation-output common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteSimulationOutput"))
 
-(smithy/sdk/shapes:define-structure describe-app-input common-lisp:nil
-                                    ((simulation :target-type
-                                      sim-space-weaver-resource-name :required
-                                      common-lisp:t :member-name "Simulation"
-                                      :http-query "simulation")
-                                     (domain :target-type
-                                      sim-space-weaver-resource-name :required
-                                      common-lisp:t :member-name "Domain"
-                                      :http-query "domain")
-                                     (app :target-type
-                                      sim-space-weaver-long-resource-name
-                                      :required common-lisp:t :member-name
-                                      "App" :http-query "app"))
-                                    (:shape-name "DescribeAppInput"))
+(smithy/sdk/shapes:define-input describe-app-input common-lisp:nil
+                                ((simulation :target-type
+                                  sim-space-weaver-resource-name :required
+                                  common-lisp:t :member-name "Simulation"
+                                  :http-query "simulation")
+                                 (domain :target-type
+                                  sim-space-weaver-resource-name :required
+                                  common-lisp:t :member-name "Domain"
+                                  :http-query "domain")
+                                 (app :target-type
+                                  sim-space-weaver-long-resource-name :required
+                                  common-lisp:t :member-name "App" :http-query
+                                  "app"))
+                                (:shape-name "DescribeAppInput"))
 
 (smithy/sdk/shapes:define-structure describe-app-output common-lisp:nil
                                     ((name :target-type
@@ -203,12 +203,12 @@
                                       "EndpointInfo"))
                                     (:shape-name "DescribeAppOutput"))
 
-(smithy/sdk/shapes:define-structure describe-simulation-input common-lisp:nil
-                                    ((simulation :target-type
-                                      sim-space-weaver-resource-name :required
-                                      common-lisp:t :member-name "Simulation"
-                                      :http-query "simulation"))
-                                    (:shape-name "DescribeSimulationInput"))
+(smithy/sdk/shapes:define-input describe-simulation-input common-lisp:nil
+                                ((simulation :target-type
+                                  sim-space-weaver-resource-name :required
+                                  common-lisp:t :member-name "Simulation"
+                                  :http-query "simulation"))
+                                (:shape-name "DescribeSimulationInput"))
 
 (smithy/sdk/shapes:define-structure describe-simulation-output common-lisp:nil
                                     ((name :target-type
@@ -279,22 +279,21 @@
 (smithy/sdk/shapes:define-type lifecycle-management-strategy
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure list-apps-input common-lisp:nil
-                                    ((simulation :target-type
-                                      sim-space-weaver-resource-name :required
-                                      common-lisp:t :member-name "Simulation"
-                                      :http-query "simulation")
-                                     (domain :target-type
-                                      sim-space-weaver-resource-name
-                                      :member-name "Domain" :http-query
-                                      "domain")
-                                     (max-results :target-type positive-integer
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type optional-string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListAppsInput"))
+(smithy/sdk/shapes:define-input list-apps-input common-lisp:nil
+                                ((simulation :target-type
+                                  sim-space-weaver-resource-name :required
+                                  common-lisp:t :member-name "Simulation"
+                                  :http-query "simulation")
+                                 (domain :target-type
+                                  sim-space-weaver-resource-name :member-name
+                                  "Domain" :http-query "domain")
+                                 (max-results :target-type positive-integer
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type optional-string
+                                  :member-name "NextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListAppsInput"))
 
 (smithy/sdk/shapes:define-structure list-apps-output common-lisp:nil
                                     ((apps :target-type simulation-app-list
@@ -303,14 +302,14 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListAppsOutput"))
 
-(smithy/sdk/shapes:define-structure list-simulations-input common-lisp:nil
-                                    ((max-results :target-type positive-integer
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type optional-string
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListSimulationsInput"))
+(smithy/sdk/shapes:define-input list-simulations-input common-lisp:nil
+                                ((max-results :target-type positive-integer
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type optional-string
+                                  :member-name "NextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListSimulationsInput"))
 
 (smithy/sdk/shapes:define-structure list-simulations-output common-lisp:nil
                                     ((simulations :target-type simulation-list
@@ -319,13 +318,12 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListSimulationsOutput"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-input
-                                    common-lisp:nil
-                                    ((resource-arn :target-type
-                                      sim-space-weaver-arn :required
-                                      common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceInput"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-input common-lisp:nil
+                                ((resource-arn :target-type
+                                  sim-space-weaver-arn :required common-lisp:t
+                                  :member-name "ResourceArn" :http-label
+                                  common-lisp:t))
+                                (:shape-name "ListTagsForResourceInput"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-output
                                     common-lisp:nil
@@ -600,13 +598,14 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type
-                                      sim-space-weaver-arn :required
-                                      common-lisp:t :member-name "ResourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceInput"))
+(smithy/sdk/shapes:define-input tag-resource-input common-lisp:nil
+                                ((resource-arn :target-type
+                                  sim-space-weaver-arn :required common-lisp:t
+                                  :member-name "ResourceArn" :http-label
+                                  common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceInput"))
 
 (smithy/sdk/shapes:define-structure tag-resource-output common-lisp:nil
                                     common-lisp:nil
@@ -627,14 +626,15 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type uuid smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type
-                                      sim-space-weaver-arn :required
-                                      common-lisp:t :member-name "ResourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "TagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceInput"))
+(smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
+                                ((resource-arn :target-type
+                                  sim-space-weaver-arn :required common-lisp:t
+                                  :member-name "ResourceArn" :http-label
+                                  common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "TagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceInput"))
 
 (smithy/sdk/shapes:define-structure untag-resource-output common-lisp:nil
                                     common-lisp:nil

@@ -937,7 +937,8 @@
                                     (:shape-name
                                      "CustomOrchestrationTraceEvent"))
 
-(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-agent-memory-request common-lisp:nil
                                 ((agent-id :target-type agent-id :required

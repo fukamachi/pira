@@ -71,10 +71,11 @@
 
 (smithy/sdk/shapes:define-type attachment-status smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure cancel-task-input common-lisp:nil
-                                    ((task-id :target-type task-id :required
-                                      common-lisp:t :member-name "taskId"))
-                                    (:shape-name "CancelTaskInput"))
+(smithy/sdk/shapes:define-input cancel-task-input common-lisp:nil
+                                ((task-id :target-type task-id :required
+                                  common-lisp:t :member-name "taskId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "CancelTaskInput"))
 
 (smithy/sdk/shapes:define-structure cancel-task-output common-lisp:nil
                                     ((task-id :target-type
@@ -143,14 +144,15 @@
                                       :member-name "taskArn"))
                                     (:shape-name "CreateTaskOutput"))
 
-(smithy/sdk/shapes:define-structure describe-device-ec2input common-lisp:nil
-                                    ((managed-device-id :target-type
-                                      managed-device-id :required common-lisp:t
-                                      :member-name "managedDeviceId")
-                                     (instance-ids :target-type
-                                      instance-ids-list :required common-lisp:t
-                                      :member-name "instanceIds"))
-                                    (:shape-name "DescribeDeviceEc2Input"))
+(smithy/sdk/shapes:define-input describe-device-ec2input common-lisp:nil
+                                ((managed-device-id :target-type
+                                  managed-device-id :required common-lisp:t
+                                  :member-name "managedDeviceId" :http-label
+                                  common-lisp:t)
+                                 (instance-ids :target-type instance-ids-list
+                                  :required common-lisp:t :member-name
+                                  "instanceIds"))
+                                (:shape-name "DescribeDeviceEc2Input"))
 
 (smithy/sdk/shapes:define-structure describe-device-ec2output common-lisp:nil
                                     ((instances :target-type
@@ -158,11 +160,12 @@
                                       "instances"))
                                     (:shape-name "DescribeDeviceEc2Output"))
 
-(smithy/sdk/shapes:define-structure describe-device-input common-lisp:nil
-                                    ((managed-device-id :target-type
-                                      managed-device-id :required common-lisp:t
-                                      :member-name "managedDeviceId"))
-                                    (:shape-name "DescribeDeviceInput"))
+(smithy/sdk/shapes:define-input describe-device-input common-lisp:nil
+                                ((managed-device-id :target-type
+                                  managed-device-id :required common-lisp:t
+                                  :member-name "managedDeviceId" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DescribeDeviceInput"))
 
 (smithy/sdk/shapes:define-structure describe-device-output common-lisp:nil
                                     ((last-reached-out-at :target-type
@@ -198,13 +201,15 @@
                                       "software"))
                                     (:shape-name "DescribeDeviceOutput"))
 
-(smithy/sdk/shapes:define-structure describe-execution-input common-lisp:nil
-                                    ((task-id :target-type task-id :required
-                                      common-lisp:t :member-name "taskId")
-                                     (managed-device-id :target-type
-                                      managed-device-id :required common-lisp:t
-                                      :member-name "managedDeviceId"))
-                                    (:shape-name "DescribeExecutionInput"))
+(smithy/sdk/shapes:define-input describe-execution-input common-lisp:nil
+                                ((task-id :target-type task-id :required
+                                  common-lisp:t :member-name "taskId"
+                                  :http-label common-lisp:t)
+                                 (managed-device-id :target-type
+                                  managed-device-id :required common-lisp:t
+                                  :member-name "managedDeviceId" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DescribeExecutionInput"))
 
 (smithy/sdk/shapes:define-structure describe-execution-output common-lisp:nil
                                     ((task-id :target-type task-id :member-name
@@ -224,10 +229,11 @@
                                       :member-name "lastUpdatedAt"))
                                     (:shape-name "DescribeExecutionOutput"))
 
-(smithy/sdk/shapes:define-structure describe-task-input common-lisp:nil
-                                    ((task-id :target-type task-id :required
-                                      common-lisp:t :member-name "taskId"))
-                                    (:shape-name "DescribeTaskInput"))
+(smithy/sdk/shapes:define-input describe-task-input common-lisp:nil
+                                ((task-id :target-type task-id :required
+                                  common-lisp:t :member-name "taskId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeTaskInput"))
 
 (smithy/sdk/shapes:define-structure describe-task-output common-lisp:nil
                                     ((task-id :target-type
@@ -397,20 +403,21 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type job-id smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure list-device-resources-input common-lisp:nil
-                                    ((managed-device-id :target-type
-                                      managed-device-id :required common-lisp:t
-                                      :member-name "managedDeviceId")
-                                     (type :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "type" :http-query "type")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListDeviceResourcesInput"))
+(smithy/sdk/shapes:define-input list-device-resources-input common-lisp:nil
+                                ((managed-device-id :target-type
+                                  managed-device-id :required common-lisp:t
+                                  :member-name "managedDeviceId" :http-label
+                                  common-lisp:t)
+                                 (type :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "type" :http-query "type")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListDeviceResourcesInput"))
 
 (smithy/sdk/shapes:define-structure list-device-resources-output
                                     common-lisp:nil
@@ -421,16 +428,16 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListDeviceResourcesOutput"))
 
-(smithy/sdk/shapes:define-structure list-devices-input common-lisp:nil
-                                    ((job-id :target-type job-id :member-name
-                                      "jobId" :http-query "jobId")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListDevicesInput"))
+(smithy/sdk/shapes:define-input list-devices-input common-lisp:nil
+                                ((job-id :target-type job-id :member-name
+                                  "jobId" :http-query "jobId")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListDevicesInput"))
 
 (smithy/sdk/shapes:define-structure list-devices-output common-lisp:nil
                                     ((devices :target-type device-summary-list
@@ -439,19 +446,19 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListDevicesOutput"))
 
-(smithy/sdk/shapes:define-structure list-executions-input common-lisp:nil
-                                    ((task-id :target-type task-id :required
-                                      common-lisp:t :member-name "taskId"
-                                      :http-query "taskId")
-                                     (state :target-type execution-state
-                                      :member-name "state" :http-query "state")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListExecutionsInput"))
+(smithy/sdk/shapes:define-input list-executions-input common-lisp:nil
+                                ((task-id :target-type task-id :required
+                                  common-lisp:t :member-name "taskId"
+                                  :http-query "taskId")
+                                 (state :target-type execution-state
+                                  :member-name "state" :http-query "state")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListExecutionsInput"))
 
 (smithy/sdk/shapes:define-structure list-executions-output common-lisp:nil
                                     ((executions :target-type
@@ -461,13 +468,12 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListExecutionsOutput"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-input
-                                    common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceInput"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-input common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceInput"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-output
                                     common-lisp:nil
@@ -475,16 +481,16 @@ common-lisp:nil
                                       "tags"))
                                     (:shape-name "ListTagsForResourceOutput"))
 
-(smithy/sdk/shapes:define-structure list-tasks-input common-lisp:nil
-                                    ((state :target-type task-state
-                                      :member-name "state" :http-query "state")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListTasksInput"))
+(smithy/sdk/shapes:define-input list-tasks-input common-lisp:nil
+                                ((state :target-type task-state :member-name
+                                  "state" :http-query "state")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListTasksInput"))
 
 (smithy/sdk/shapes:define-structure list-tasks-output common-lisp:nil
                                     ((tasks :target-type task-summary-list
@@ -595,13 +601,14 @@ common-lisp:nil
 (smithy/sdk/shapes:define-map tag-map :key smithy/sdk/smithy-types:string
                               :value smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure tag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceInput"))
+(smithy/sdk/shapes:define-input tag-resource-input common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceInput"))
 
 (smithy/sdk/shapes:define-list target-list :member
                                smithy/sdk/smithy-types:string)
@@ -641,14 +648,15 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type unlock-state smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type
-                                      smithy/sdk/smithy-types:string :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-keys :required
-                                      common-lisp:t :member-name "tagKeys"
-                                      :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceInput"))
+(smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
+                                ((resource-arn :target-type
+                                  smithy/sdk/smithy-types:string :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-keys :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceInput"))
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type

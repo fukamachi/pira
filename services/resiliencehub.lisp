@@ -1902,35 +1902,32 @@
                                  (:shape-name
                                   "ListAppAssessmentResourceDriftsResponse"))
 
-(smithy/sdk/shapes:define-structure list-app-assessments-request
-                                    common-lisp:nil
-                                    ((app-arn :target-type arn :member-name
-                                      "appArn" :http-query "appArn")
-                                     (assessment-name :target-type entity-name
-                                      :member-name "assessmentName" :http-query
-                                      "assessmentName")
-                                     (assessment-status :target-type
-                                      assessment-status-list :member-name
-                                      "assessmentStatus" :http-query
-                                      "assessmentStatus")
-                                     (compliance-status :target-type
-                                      compliance-status :member-name
-                                      "complianceStatus" :http-query
-                                      "complianceStatus")
-                                     (invoker :target-type assessment-invoker
-                                      :member-name "invoker" :http-query
-                                      "invoker")
-                                     (reverse-order :target-type
-                                      boolean-optional :member-name
-                                      "reverseOrder" :http-query
-                                      "reverseOrder")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListAppAssessmentsRequest"))
+(smithy/sdk/shapes:define-input list-app-assessments-request common-lisp:nil
+                                ((app-arn :target-type arn :member-name
+                                  "appArn" :http-query "appArn")
+                                 (assessment-name :target-type entity-name
+                                  :member-name "assessmentName" :http-query
+                                  "assessmentName")
+                                 (assessment-status :target-type
+                                  assessment-status-list :member-name
+                                  "assessmentStatus" :http-query
+                                  "assessmentStatus")
+                                 (compliance-status :target-type
+                                  compliance-status :member-name
+                                  "complianceStatus" :http-query
+                                  "complianceStatus")
+                                 (invoker :target-type assessment-invoker
+                                  :member-name "invoker" :http-query "invoker")
+                                 (reverse-order :target-type boolean-optional
+                                  :member-name "reverseOrder" :http-query
+                                  "reverseOrder")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListAppAssessmentsRequest"))
 
 (smithy/sdk/shapes:define-structure list-app-assessments-response
                                     common-lisp:nil
@@ -2116,33 +2113,32 @@
                                       :member-name "nextToken"))
                                     (:shape-name "ListAppVersionsResponse"))
 
-(smithy/sdk/shapes:define-structure list-apps-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (name :target-type entity-name
-                                      :member-name "name" :http-query "name")
-                                     (app-arn :target-type arn :member-name
-                                      "appArn" :http-query "appArn")
-                                     (from-last-assessment-time :target-type
-                                      time-stamp :member-name
-                                      "fromLastAssessmentTime" :http-query
-                                      "fromLastAssessmentTime")
-                                     (to-last-assessment-time :target-type
-                                      time-stamp :member-name
-                                      "toLastAssessmentTime" :http-query
-                                      "toLastAssessmentTime")
-                                     (reverse-order :target-type
-                                      boolean-optional :member-name
-                                      "reverseOrder" :http-query
-                                      "reverseOrder")
-                                     (aws-application-arn :target-type arn
-                                      :member-name "awsApplicationArn"
-                                      :http-query "awsApplicationArn"))
-                                    (:shape-name "ListAppsRequest"))
+(smithy/sdk/shapes:define-input list-apps-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (name :target-type entity-name :member-name
+                                  "name" :http-query "name")
+                                 (app-arn :target-type arn :member-name
+                                  "appArn" :http-query "appArn")
+                                 (from-last-assessment-time :target-type
+                                  time-stamp :member-name
+                                  "fromLastAssessmentTime" :http-query
+                                  "fromLastAssessmentTime")
+                                 (to-last-assessment-time :target-type
+                                  time-stamp :member-name
+                                  "toLastAssessmentTime" :http-query
+                                  "toLastAssessmentTime")
+                                 (reverse-order :target-type boolean-optional
+                                  :member-name "reverseOrder" :http-query
+                                  "reverseOrder")
+                                 (aws-application-arn :target-type arn
+                                  :member-name "awsApplicationArn" :http-query
+                                  "awsApplicationArn"))
+                                (:shape-name "ListAppsRequest"))
 
 (smithy/sdk/shapes:define-structure list-apps-response common-lisp:nil
                                     ((app-summaries :target-type
@@ -2174,33 +2170,29 @@
                                    :member-name "nextToken"))
                                  (:shape-name "ListMetricsResponse"))
 
-(smithy/sdk/shapes:define-structure list-recommendation-templates-request
-                                    common-lisp:nil
-                                    ((assessment-arn :target-type arn
-                                      :member-name "assessmentArn" :http-query
-                                      "assessmentArn")
-                                     (reverse-order :target-type
-                                      boolean-optional :member-name
-                                      "reverseOrder" :http-query
-                                      "reverseOrder")
-                                     (status :target-type
-                                      recommendation-template-status-list
-                                      :member-name "status" :http-query
-                                      "status")
-                                     (recommendation-template-arn :target-type
-                                      arn :member-name
-                                      "recommendationTemplateArn" :http-query
-                                      "recommendationTemplateArn")
-                                     (name :target-type entity-name
-                                      :member-name "name" :http-query "name")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name
-                                     "ListRecommendationTemplatesRequest"))
+(smithy/sdk/shapes:define-input list-recommendation-templates-request
+                                common-lisp:nil
+                                ((assessment-arn :target-type arn :member-name
+                                  "assessmentArn" :http-query "assessmentArn")
+                                 (reverse-order :target-type boolean-optional
+                                  :member-name "reverseOrder" :http-query
+                                  "reverseOrder")
+                                 (status :target-type
+                                  recommendation-template-status-list
+                                  :member-name "status" :http-query "status")
+                                 (recommendation-template-arn :target-type arn
+                                  :member-name "recommendationTemplateArn"
+                                  :http-query "recommendationTemplateArn")
+                                 (name :target-type entity-name :member-name
+                                  "name" :http-query "name")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name
+                                 "ListRecommendationTemplatesRequest"))
 
 (smithy/sdk/shapes:define-structure list-recommendation-templates-response
                                     common-lisp:nil
@@ -2212,19 +2204,18 @@
                                     (:shape-name
                                      "ListRecommendationTemplatesResponse"))
 
-(smithy/sdk/shapes:define-structure list-resiliency-policies-request
-                                    common-lisp:nil
-                                    ((policy-name :target-type entity-name
-                                      :member-name "policyName" :http-query
-                                      "policyName")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name
-                                     "ListResiliencyPoliciesRequest"))
+(smithy/sdk/shapes:define-input list-resiliency-policies-request
+                                common-lisp:nil
+                                ((policy-name :target-type entity-name
+                                  :member-name "policyName" :http-query
+                                  "policyName")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListResiliencyPoliciesRequest"))
 
 (smithy/sdk/shapes:define-structure list-resiliency-policies-response
                                     common-lisp:nil
@@ -2280,16 +2271,16 @@
                                     (:shape-name
                                      "ListSopRecommendationsResponse"))
 
-(smithy/sdk/shapes:define-structure list-suggested-resiliency-policies-request
-                                    common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name
-                                     "ListSuggestedResiliencyPoliciesRequest"))
+(smithy/sdk/shapes:define-input list-suggested-resiliency-policies-request
+                                common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name
+                                 "ListSuggestedResiliencyPoliciesRequest"))
 
 (smithy/sdk/shapes:define-structure list-suggested-resiliency-policies-response
                                     common-lisp:nil
@@ -2302,12 +2293,11 @@
                                     (:shape-name
                                      "ListSuggestedResiliencyPoliciesResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -3036,12 +3026,13 @@
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -3143,13 +3134,14 @@
 (smithy/sdk/shapes:define-list unsupported-resource-list :member
                                unsupported-resource)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil

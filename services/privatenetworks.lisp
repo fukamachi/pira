@@ -344,27 +344,28 @@
                                     (:shape-name
                                      "DeactivateDeviceIdentifierResponse"))
 
-(smithy/sdk/shapes:define-structure delete-network-request common-lisp:nil
-                                    ((network-arn :target-type arn :required
-                                      common-lisp:t :member-name "networkArn")
-                                     (client-token :target-type client-token
-                                      :member-name "clientToken" :http-query
-                                      "clientToken"))
-                                    (:shape-name "DeleteNetworkRequest"))
+(smithy/sdk/shapes:define-input delete-network-request common-lisp:nil
+                                ((network-arn :target-type arn :required
+                                  common-lisp:t :member-name "networkArn"
+                                  :http-label common-lisp:t)
+                                 (client-token :target-type client-token
+                                  :member-name "clientToken" :http-query
+                                  "clientToken"))
+                                (:shape-name "DeleteNetworkRequest"))
 
 (smithy/sdk/shapes:define-structure delete-network-response common-lisp:nil
                                     ((network :target-type network :required
                                       common-lisp:t :member-name "network"))
                                     (:shape-name "DeleteNetworkResponse"))
 
-(smithy/sdk/shapes:define-structure delete-network-site-request common-lisp:nil
-                                    ((network-site-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "networkSiteArn")
-                                     (client-token :target-type client-token
-                                      :member-name "clientToken" :http-query
-                                      "clientToken"))
-                                    (:shape-name "DeleteNetworkSiteRequest"))
+(smithy/sdk/shapes:define-input delete-network-site-request common-lisp:nil
+                                ((network-site-arn :target-type arn :required
+                                  common-lisp:t :member-name "networkSiteArn"
+                                  :http-label common-lisp:t)
+                                 (client-token :target-type client-token
+                                  :member-name "clientToken" :http-query
+                                  "clientToken"))
+                                (:shape-name "DeleteNetworkSiteRequest"))
 
 (smithy/sdk/shapes:define-structure delete-network-site-response
                                     common-lisp:nil
@@ -419,12 +420,12 @@
 
 (smithy/sdk/shapes:define-type elevation-unit smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure get-device-identifier-request
-                                    common-lisp:nil
-                                    ((device-identifier-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "deviceIdentifierArn"))
-                                    (:shape-name "GetDeviceIdentifierRequest"))
+(smithy/sdk/shapes:define-input get-device-identifier-request common-lisp:nil
+                                ((device-identifier-arn :target-type arn
+                                  :required common-lisp:t :member-name
+                                  "deviceIdentifierArn" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetDeviceIdentifierRequest"))
 
 (smithy/sdk/shapes:define-structure get-device-identifier-response
                                     common-lisp:nil
@@ -435,17 +436,18 @@
                                       "tags"))
                                     (:shape-name "GetDeviceIdentifierResponse"))
 
-(smithy/sdk/shapes:define-structure get-network-request common-lisp:nil
-                                    ((network-arn :target-type arn :required
-                                      common-lisp:t :member-name "networkArn"))
-                                    (:shape-name "GetNetworkRequest"))
+(smithy/sdk/shapes:define-input get-network-request common-lisp:nil
+                                ((network-arn :target-type arn :required
+                                  common-lisp:t :member-name "networkArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetNetworkRequest"))
 
-(smithy/sdk/shapes:define-structure get-network-resource-request
-                                    common-lisp:nil
-                                    ((network-resource-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "networkResourceArn"))
-                                    (:shape-name "GetNetworkResourceRequest"))
+(smithy/sdk/shapes:define-input get-network-resource-request common-lisp:nil
+                                ((network-resource-arn :target-type arn
+                                  :required common-lisp:t :member-name
+                                  "networkResourceArn" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetNetworkResourceRequest"))
 
 (smithy/sdk/shapes:define-structure get-network-resource-response
                                     common-lisp:nil
@@ -463,11 +465,11 @@
                                       "tags"))
                                     (:shape-name "GetNetworkResponse"))
 
-(smithy/sdk/shapes:define-structure get-network-site-request common-lisp:nil
-                                    ((network-site-arn :target-type arn
-                                      :required common-lisp:t :member-name
-                                      "networkSiteArn"))
-                                    (:shape-name "GetNetworkSiteRequest"))
+(smithy/sdk/shapes:define-input get-network-site-request common-lisp:nil
+                                ((network-site-arn :target-type arn :required
+                                  common-lisp:t :member-name "networkSiteArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetNetworkSiteRequest"))
 
 (smithy/sdk/shapes:define-structure get-network-site-response common-lisp:nil
                                     ((network-site :target-type network-site
@@ -476,10 +478,11 @@
                                       "tags"))
                                     (:shape-name "GetNetworkSiteResponse"))
 
-(smithy/sdk/shapes:define-structure get-order-request common-lisp:nil
-                                    ((order-arn :target-type arn :required
-                                      common-lisp:t :member-name "orderArn"))
-                                    (:shape-name "GetOrderRequest"))
+(smithy/sdk/shapes:define-input get-order-request common-lisp:nil
+                                ((order-arn :target-type arn :required
+                                  common-lisp:t :member-name "orderArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetOrderRequest"))
 
 (smithy/sdk/shapes:define-structure get-order-response common-lisp:nil
                                     ((order :target-type order :required
@@ -613,12 +616,11 @@
                                       :member-name "nextToken"))
                                     (:shape-name "ListOrdersResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -940,12 +942,13 @@
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -960,7 +963,8 @@
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure tracking-information common-lisp:nil
                                     ((tracking-number :target-type
@@ -971,13 +975,14 @@
 (smithy/sdk/shapes:define-list tracking-information-list :member
                                tracking-information)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil

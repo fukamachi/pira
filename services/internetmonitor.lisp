@@ -212,17 +212,17 @@
 
 (smithy/sdk/shapes:define-list filter-parameters :member filter-parameter)
 
-(smithy/sdk/shapes:define-structure get-health-event-input common-lisp:nil
-                                    ((monitor-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "MonitorName")
-                                     (event-id :target-type health-event-name
-                                      :required common-lisp:t :member-name
-                                      "EventId")
-                                     (linked-account-id :target-type account-id
-                                      :member-name "LinkedAccountId"
-                                      :http-query "LinkedAccountId"))
-                                    (:shape-name "GetHealthEventInput"))
+(smithy/sdk/shapes:define-input get-health-event-input common-lisp:nil
+                                ((monitor-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "MonitorName" :http-label common-lisp:t)
+                                 (event-id :target-type health-event-name
+                                  :required common-lisp:t :member-name
+                                  "EventId" :http-label common-lisp:t)
+                                 (linked-account-id :target-type account-id
+                                  :member-name "LinkedAccountId" :http-query
+                                  "LinkedAccountId"))
+                                (:shape-name "GetHealthEventInput"))
 
 (smithy/sdk/shapes:define-structure get-health-event-output common-lisp:nil
                                     ((event-arn :target-type arn :required
@@ -598,33 +598,31 @@ common-lisp:nil
                                 (:shape-name "LimitExceededException")
                                 (:error-code 403))
 
-(smithy/sdk/shapes:define-structure list-health-events-input common-lisp:nil
-                                    ((monitor-name :target-type resource-name
-                                      :required common-lisp:t :member-name
-                                      "MonitorName")
-                                     (start-time :target-type
-                                      smithy/sdk/smithy-types:timestamp
-                                      :member-name "StartTime" :http-query
-                                      "StartTime" :timestamp-format
-                                      "date-time")
-                                     (end-time :target-type
-                                      smithy/sdk/smithy-types:timestamp
-                                      :member-name "EndTime" :http-query
-                                      "EndTime" :timestamp-format "date-time")
-                                     (next-token :target-type
-                                      smithy/sdk/smithy-types:string
-                                      :member-name "NextToken" :http-query
-                                      "NextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "MaxResults")
-                                     (event-status :target-type
-                                      health-event-status :member-name
-                                      "EventStatus" :http-query "EventStatus")
-                                     (linked-account-id :target-type account-id
-                                      :member-name "LinkedAccountId"
-                                      :http-query "LinkedAccountId"))
-                                    (:shape-name "ListHealthEventsInput"))
+(smithy/sdk/shapes:define-input list-health-events-input common-lisp:nil
+                                ((monitor-name :target-type resource-name
+                                  :required common-lisp:t :member-name
+                                  "MonitorName" :http-label common-lisp:t)
+                                 (start-time :target-type
+                                  smithy/sdk/smithy-types:timestamp
+                                  :member-name "StartTime" :http-query
+                                  "StartTime" :timestamp-format "date-time")
+                                 (end-time :target-type
+                                  smithy/sdk/smithy-types:timestamp
+                                  :member-name "EndTime" :http-query "EndTime"
+                                  :timestamp-format "date-time")
+                                 (next-token :target-type
+                                  smithy/sdk/smithy-types:string :member-name
+                                  "NextToken" :http-query "NextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "MaxResults")
+                                 (event-status :target-type health-event-status
+                                  :member-name "EventStatus" :http-query
+                                  "EventStatus")
+                                 (linked-account-id :target-type account-id
+                                  :member-name "LinkedAccountId" :http-query
+                                  "LinkedAccountId"))
+                                (:shape-name "ListHealthEventsInput"))
 
 (smithy/sdk/shapes:define-structure list-health-events-output common-lisp:nil
                                     ((health-events :target-type
@@ -692,12 +690,11 @@ common-lisp:nil
                                    "NextToken"))
                                  (:shape-name "ListMonitorsOutput"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-input
-                                    common-lisp:nil
-                                    ((resource-arn :target-type monitor-arn
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceInput"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-input common-lisp:nil
+                                ((resource-arn :target-type monitor-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceInput"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-output
                                     common-lisp:nil
@@ -913,13 +910,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type monitor-arn
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceInput"))
+(smithy/sdk/shapes:define-input tag-resource-input common-lisp:nil
+                                ((resource-arn :target-type monitor-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceInput"))
 
 (smithy/sdk/shapes:define-structure tag-resource-output common-lisp:nil
                                     common-lisp:nil
@@ -947,14 +944,14 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type triangulation-event-type
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type monitor-arn
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tag-keys :target-type tag-keys :required
-                                      common-lisp:t :member-name "TagKeys"
-                                      :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceInput"))
+(smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
+                                ((resource-arn :target-type monitor-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-keys :required
+                                  common-lisp:t :member-name "TagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceInput"))
 
 (smithy/sdk/shapes:define-structure untag-resource-output common-lisp:nil
                                     common-lisp:nil

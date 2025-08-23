@@ -1089,7 +1089,8 @@ common-lisp:nil
                                     (:shape-name
                                      "CustomOauth2ProviderConfigOutput"))
 
-(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-error decryption-failure common-lisp:nil
                                 ((message :target-type

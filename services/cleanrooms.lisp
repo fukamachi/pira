@@ -949,13 +949,19 @@ common-lisp:nil
  batch-get-collaboration-analysis-template-error-list :member
  batch-get-collaboration-analysis-template-error)
 
-(smithy/sdk/shapes:define-structure
- batch-get-collaboration-analysis-template-input common-lisp:nil
- ((collaboration-identifier :target-type collaboration-identifier :required
-   common-lisp:t :member-name "collaborationIdentifier")
-  (analysis-template-arns :target-type analysis-template-arn-list :required
-   common-lisp:t :member-name "analysisTemplateArns"))
- (:shape-name "BatchGetCollaborationAnalysisTemplateInput"))
+(smithy/sdk/shapes:define-input batch-get-collaboration-analysis-template-input
+                                common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (analysis-template-arns :target-type
+                                  analysis-template-arn-list :required
+                                  common-lisp:t :member-name
+                                  "analysisTemplateArns"))
+                                (:shape-name
+                                 "BatchGetCollaborationAnalysisTemplateInput"))
 
 (smithy/sdk/shapes:define-structure
  batch-get-collaboration-analysis-template-output common-lisp:nil
@@ -1024,15 +1030,15 @@ common-lisp:nil
 (smithy/sdk/shapes:define-list batch-get-schema-error-list :member
                                batch-get-schema-error)
 
-(smithy/sdk/shapes:define-structure batch-get-schema-input common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier")
-                                     (names :target-type table-alias-list
-                                      :required common-lisp:t :member-name
-                                      "names"))
-                                    (:shape-name "BatchGetSchemaInput"))
+(smithy/sdk/shapes:define-input batch-get-schema-input common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (names :target-type table-alias-list :required
+                                  common-lisp:t :member-name "names"))
+                                (:shape-name "BatchGetSchemaInput"))
 
 (smithy/sdk/shapes:define-structure batch-get-schema-output common-lisp:nil
                                     ((schemas :target-type schema-list
@@ -2036,31 +2042,27 @@ common-lisp:nil
                                   "custom"))
                                 (:shape-name "ConsolidatedPolicyV1"))
 
-(smithy/sdk/shapes:define-structure create-analysis-template-input
-                                    common-lisp:nil
-                                    ((description :target-type
-                                      resource-description :member-name
-                                      "description")
-                                     (membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (name :target-type table-alias :required
-                                      common-lisp:t :member-name "name")
-                                     (format :target-type analysis-format
-                                      :required common-lisp:t :member-name
-                                      "format")
-                                     (source :target-type analysis-source
-                                      :required common-lisp:t :member-name
-                                      "source")
-                                     (tags :target-type tag-map :member-name
-                                      "tags")
-                                     (analysis-parameters :target-type
-                                      analysis-parameter-list :member-name
-                                      "analysisParameters")
-                                     (schema :target-type analysis-schema
-                                      :member-name "schema"))
-                                    (:shape-name "CreateAnalysisTemplateInput"))
+(smithy/sdk/shapes:define-input create-analysis-template-input common-lisp:nil
+                                ((description :target-type resource-description
+                                  :member-name "description")
+                                 (membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (name :target-type table-alias :required
+                                  common-lisp:t :member-name "name")
+                                 (format :target-type analysis-format :required
+                                  common-lisp:t :member-name "format")
+                                 (source :target-type analysis-source :required
+                                  common-lisp:t :member-name "source")
+                                 (tags :target-type tag-map :member-name
+                                  "tags")
+                                 (analysis-parameters :target-type
+                                  analysis-parameter-list :member-name
+                                  "analysisParameters")
+                                 (schema :target-type analysis-schema
+                                  :member-name "schema"))
+                                (:shape-name "CreateAnalysisTemplateInput"))
 
 (smithy/sdk/shapes:define-structure create-analysis-template-output
                                     common-lisp:nil
@@ -2138,22 +2140,23 @@ common-lisp:nil
    "configuredAudienceModelAssociation"))
  (:shape-name "CreateConfiguredAudienceModelAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure create-configured-table-analysis-rule-input
-                                    common-lisp:nil
-                                    ((configured-table-identifier :target-type
-                                      configured-table-identifier :required
-                                      common-lisp:t :member-name
-                                      "configuredTableIdentifier")
-                                     (analysis-rule-type :target-type
-                                      configured-table-analysis-rule-type
-                                      :required common-lisp:t :member-name
-                                      "analysisRuleType")
-                                     (analysis-rule-policy :target-type
-                                      configured-table-analysis-rule-policy
-                                      :required common-lisp:t :member-name
-                                      "analysisRulePolicy"))
-                                    (:shape-name
-                                     "CreateConfiguredTableAnalysisRuleInput"))
+(smithy/sdk/shapes:define-input create-configured-table-analysis-rule-input
+                                common-lisp:nil
+                                ((configured-table-identifier :target-type
+                                  configured-table-identifier :required
+                                  common-lisp:t :member-name
+                                  "configuredTableIdentifier" :http-label
+                                  common-lisp:t)
+                                 (analysis-rule-type :target-type
+                                  configured-table-analysis-rule-type :required
+                                  common-lisp:t :member-name
+                                  "analysisRuleType")
+                                 (analysis-rule-policy :target-type
+                                  configured-table-analysis-rule-policy
+                                  :required common-lisp:t :member-name
+                                  "analysisRulePolicy"))
+                                (:shape-name
+                                 "CreateConfiguredTableAnalysisRuleInput"))
 
 (smithy/sdk/shapes:define-structure
  create-configured-table-analysis-rule-output common-lisp:nil
@@ -2182,27 +2185,26 @@ common-lisp:nil
    :required common-lisp:t :member-name "analysisRule"))
  (:shape-name "CreateConfiguredTableAssociationAnalysisRuleOutput"))
 
-(smithy/sdk/shapes:define-structure create-configured-table-association-input
-                                    common-lisp:nil
-                                    ((name :target-type table-alias :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type
-                                      table-description :member-name
-                                      "description")
-                                     (membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (configured-table-identifier :target-type
-                                      configured-table-identifier :required
-                                      common-lisp:t :member-name
-                                      "configuredTableIdentifier")
-                                     (role-arn :target-type role-arn :required
-                                      common-lisp:t :member-name "roleArn")
-                                     (tags :target-type tag-map :member-name
-                                      "tags"))
-                                    (:shape-name
-                                     "CreateConfiguredTableAssociationInput"))
+(smithy/sdk/shapes:define-input create-configured-table-association-input
+                                common-lisp:nil
+                                ((name :target-type table-alias :required
+                                  common-lisp:t :member-name "name")
+                                 (description :target-type table-description
+                                  :member-name "description")
+                                 (membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (configured-table-identifier :target-type
+                                  configured-table-identifier :required
+                                  common-lisp:t :member-name
+                                  "configuredTableIdentifier")
+                                 (role-arn :target-type role-arn :required
+                                  common-lisp:t :member-name "roleArn")
+                                 (tags :target-type tag-map :member-name
+                                  "tags"))
+                                (:shape-name
+                                 "CreateConfiguredTableAssociationInput"))
 
 (smithy/sdk/shapes:define-structure create-configured-table-association-output
                                     common-lisp:nil
@@ -2393,29 +2395,30 @@ common-lisp:nil
                                       "preserveNulls"))
                                     (:shape-name "DataEncryptionMetadata"))
 
-(smithy/sdk/shapes:define-structure delete-analysis-template-input
-                                    common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (analysis-template-identifier :target-type
-                                      analysis-template-identifier :required
-                                      common-lisp:t :member-name
-                                      "analysisTemplateIdentifier"))
-                                    (:shape-name "DeleteAnalysisTemplateInput"))
+(smithy/sdk/shapes:define-input delete-analysis-template-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (analysis-template-identifier :target-type
+                                  analysis-template-identifier :required
+                                  common-lisp:t :member-name
+                                  "analysisTemplateIdentifier" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteAnalysisTemplateInput"))
 
 (smithy/sdk/shapes:define-structure delete-analysis-template-output
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeleteAnalysisTemplateOutput"))
 
-(smithy/sdk/shapes:define-structure delete-collaboration-input common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier"))
-                                    (:shape-name "DeleteCollaborationInput"))
+(smithy/sdk/shapes:define-input delete-collaboration-input common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteCollaborationInput"))
 
 (smithy/sdk/shapes:define-structure delete-collaboration-output common-lisp:nil
                                     common-lisp:nil
@@ -2436,18 +2439,19 @@ common-lisp:nil
  delete-configured-audience-model-association-output common-lisp:nil
  common-lisp:nil (:shape-name "DeleteConfiguredAudienceModelAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure delete-configured-table-analysis-rule-input
-                                    common-lisp:nil
-                                    ((configured-table-identifier :target-type
-                                      configured-table-identifier :required
-                                      common-lisp:t :member-name
-                                      "configuredTableIdentifier")
-                                     (analysis-rule-type :target-type
-                                      configured-table-analysis-rule-type
-                                      :required common-lisp:t :member-name
-                                      "analysisRuleType"))
-                                    (:shape-name
-                                     "DeleteConfiguredTableAnalysisRuleInput"))
+(smithy/sdk/shapes:define-input delete-configured-table-analysis-rule-input
+                                common-lisp:nil
+                                ((configured-table-identifier :target-type
+                                  configured-table-identifier :required
+                                  common-lisp:t :member-name
+                                  "configuredTableIdentifier" :http-label
+                                  common-lisp:t)
+                                 (analysis-rule-type :target-type
+                                  configured-table-analysis-rule-type :required
+                                  common-lisp:t :member-name "analysisRuleType"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "DeleteConfiguredTableAnalysisRuleInput"))
 
 (smithy/sdk/shapes:define-structure
  delete-configured-table-analysis-rule-output common-lisp:nil common-lisp:nil
@@ -2470,32 +2474,33 @@ common-lisp:nil
  common-lisp:nil
  (:shape-name "DeleteConfiguredTableAssociationAnalysisRuleOutput"))
 
-(smithy/sdk/shapes:define-structure delete-configured-table-association-input
-                                    common-lisp:nil
-                                    ((configured-table-association-identifier
-                                      :target-type
-                                      configured-table-association-identifier
-                                      :required common-lisp:t :member-name
-                                      "configuredTableAssociationIdentifier")
-                                     (membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier"))
-                                    (:shape-name
-                                     "DeleteConfiguredTableAssociationInput"))
+(smithy/sdk/shapes:define-input delete-configured-table-association-input
+                                common-lisp:nil
+                                ((configured-table-association-identifier
+                                  :target-type
+                                  configured-table-association-identifier
+                                  :required common-lisp:t :member-name
+                                  "configuredTableAssociationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "DeleteConfiguredTableAssociationInput"))
 
 (smithy/sdk/shapes:define-structure delete-configured-table-association-output
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeleteConfiguredTableAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure delete-configured-table-input
-                                    common-lisp:nil
-                                    ((configured-table-identifier :target-type
-                                      configured-table-identifier :required
-                                      common-lisp:t :member-name
-                                      "configuredTableIdentifier"))
-                                    (:shape-name "DeleteConfiguredTableInput"))
+(smithy/sdk/shapes:define-input delete-configured-table-input common-lisp:nil
+                                ((configured-table-identifier :target-type
+                                  configured-table-identifier :required
+                                  common-lisp:t :member-name
+                                  "configuredTableIdentifier" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteConfiguredTableInput"))
 
 (smithy/sdk/shapes:define-structure delete-configured-table-output
                                     common-lisp:nil common-lisp:nil
@@ -2536,26 +2541,27 @@ common-lisp:nil
                                  (:shape-name
                                   "DeleteIdNamespaceAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure delete-member-input common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier")
-                                     (account-id :target-type account-id
-                                      :required common-lisp:t :member-name
-                                      "accountId"))
-                                    (:shape-name "DeleteMemberInput"))
+(smithy/sdk/shapes:define-input delete-member-input common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (account-id :target-type account-id :required
+                                  common-lisp:t :member-name "accountId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteMemberInput"))
 
 (smithy/sdk/shapes:define-structure delete-member-output common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteMemberOutput"))
 
-(smithy/sdk/shapes:define-structure delete-membership-input common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier"))
-                                    (:shape-name "DeleteMembershipInput"))
+(smithy/sdk/shapes:define-input delete-membership-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteMembershipInput"))
 
 (smithy/sdk/shapes:define-structure delete-membership-output common-lisp:nil
                                     common-lisp:nil
@@ -2741,16 +2747,17 @@ common-lisp:nil
 (smithy/sdk/shapes:define-type generic-resource-name
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure get-analysis-template-input common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (analysis-template-identifier :target-type
-                                      analysis-template-identifier :required
-                                      common-lisp:t :member-name
-                                      "analysisTemplateIdentifier"))
-                                    (:shape-name "GetAnalysisTemplateInput"))
+(smithy/sdk/shapes:define-input get-analysis-template-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (analysis-template-identifier :target-type
+                                  analysis-template-identifier :required
+                                  common-lisp:t :member-name
+                                  "analysisTemplateIdentifier" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetAnalysisTemplateInput"))
 
 (smithy/sdk/shapes:define-structure get-analysis-template-output
                                     common-lisp:nil
@@ -2759,18 +2766,19 @@ common-lisp:nil
                                       :member-name "analysisTemplate"))
                                     (:shape-name "GetAnalysisTemplateOutput"))
 
-(smithy/sdk/shapes:define-structure get-collaboration-analysis-template-input
-                                    common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier")
-                                     (analysis-template-arn :target-type
-                                      analysis-template-arn :required
-                                      common-lisp:t :member-name
-                                      "analysisTemplateArn"))
-                                    (:shape-name
-                                     "GetCollaborationAnalysisTemplateInput"))
+(smithy/sdk/shapes:define-input get-collaboration-analysis-template-input
+                                common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (analysis-template-arn :target-type
+                                  analysis-template-arn :required common-lisp:t
+                                  :member-name "analysisTemplateArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "GetCollaborationAnalysisTemplateInput"))
 
 (smithy/sdk/shapes:define-structure get-collaboration-analysis-template-output
                                     common-lisp:nil
@@ -2817,12 +2825,13 @@ common-lisp:nil
    "collaborationIdNamespaceAssociation"))
  (:shape-name "GetCollaborationIdNamespaceAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure get-collaboration-input common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier"))
-                                    (:shape-name "GetCollaborationInput"))
+(smithy/sdk/shapes:define-input get-collaboration-input common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetCollaborationInput"))
 
 (smithy/sdk/shapes:define-structure get-collaboration-output common-lisp:nil
                                     ((collaboration :target-type collaboration
@@ -2875,18 +2884,19 @@ common-lisp:nil
    "configuredAudienceModelAssociation"))
  (:shape-name "GetConfiguredAudienceModelAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure get-configured-table-analysis-rule-input
-                                    common-lisp:nil
-                                    ((configured-table-identifier :target-type
-                                      configured-table-identifier :required
-                                      common-lisp:t :member-name
-                                      "configuredTableIdentifier")
-                                     (analysis-rule-type :target-type
-                                      configured-table-analysis-rule-type
-                                      :required common-lisp:t :member-name
-                                      "analysisRuleType"))
-                                    (:shape-name
-                                     "GetConfiguredTableAnalysisRuleInput"))
+(smithy/sdk/shapes:define-input get-configured-table-analysis-rule-input
+                                common-lisp:nil
+                                ((configured-table-identifier :target-type
+                                  configured-table-identifier :required
+                                  common-lisp:t :member-name
+                                  "configuredTableIdentifier" :http-label
+                                  common-lisp:t)
+                                 (analysis-rule-type :target-type
+                                  configured-table-analysis-rule-type :required
+                                  common-lisp:t :member-name "analysisRuleType"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "GetConfiguredTableAnalysisRuleInput"))
 
 (smithy/sdk/shapes:define-structure get-configured-table-analysis-rule-output
                                     common-lisp:nil
@@ -2915,19 +2925,20 @@ common-lisp:nil
    :required common-lisp:t :member-name "analysisRule"))
  (:shape-name "GetConfiguredTableAssociationAnalysisRuleOutput"))
 
-(smithy/sdk/shapes:define-structure get-configured-table-association-input
-                                    common-lisp:nil
-                                    ((configured-table-association-identifier
-                                      :target-type
-                                      configured-table-association-identifier
-                                      :required common-lisp:t :member-name
-                                      "configuredTableAssociationIdentifier")
-                                     (membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier"))
-                                    (:shape-name
-                                     "GetConfiguredTableAssociationInput"))
+(smithy/sdk/shapes:define-input get-configured-table-association-input
+                                common-lisp:nil
+                                ((configured-table-association-identifier
+                                  :target-type
+                                  configured-table-association-identifier
+                                  :required common-lisp:t :member-name
+                                  "configuredTableAssociationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "GetConfiguredTableAssociationInput"))
 
 (smithy/sdk/shapes:define-structure get-configured-table-association-output
                                     common-lisp:nil
@@ -2938,12 +2949,13 @@ common-lisp:nil
                                     (:shape-name
                                      "GetConfiguredTableAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure get-configured-table-input common-lisp:nil
-                                    ((configured-table-identifier :target-type
-                                      configured-table-identifier :required
-                                      common-lisp:t :member-name
-                                      "configuredTableIdentifier"))
-                                    (:shape-name "GetConfiguredTableInput"))
+(smithy/sdk/shapes:define-input get-configured-table-input common-lisp:nil
+                                ((configured-table-identifier :target-type
+                                  configured-table-identifier :required
+                                  common-lisp:t :member-name
+                                  "configuredTableIdentifier" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetConfiguredTableInput"))
 
 (smithy/sdk/shapes:define-structure get-configured-table-output common-lisp:nil
                                     ((configured-table :target-type
@@ -2991,12 +3003,12 @@ common-lisp:nil
                                  (:shape-name
                                   "GetIdNamespaceAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure get-membership-input common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier"))
-                                    (:shape-name "GetMembershipInput"))
+(smithy/sdk/shapes:define-input get-membership-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetMembershipInput"))
 
 (smithy/sdk/shapes:define-structure get-membership-output common-lisp:nil
                                     ((membership :target-type membership
@@ -3044,16 +3056,17 @@ common-lisp:nil
                                    "protectedJob"))
                                  (:shape-name "GetProtectedJobOutput"))
 
-(smithy/sdk/shapes:define-structure get-protected-query-input common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (protected-query-identifier :target-type
-                                      protected-query-identifier :required
-                                      common-lisp:t :member-name
-                                      "protectedQueryIdentifier"))
-                                    (:shape-name "GetProtectedQueryInput"))
+(smithy/sdk/shapes:define-input get-protected-query-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (protected-query-identifier :target-type
+                                  protected-query-identifier :required
+                                  common-lisp:t :member-name
+                                  "protectedQueryIdentifier" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetProtectedQueryInput"))
 
 (smithy/sdk/shapes:define-structure get-protected-query-output common-lisp:nil
                                     ((protected-query :target-type
@@ -3061,18 +3074,19 @@ common-lisp:nil
                                       :member-name "protectedQuery"))
                                     (:shape-name "GetProtectedQueryOutput"))
 
-(smithy/sdk/shapes:define-structure get-schema-analysis-rule-input
-                                    common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier")
-                                     (name :target-type table-alias :required
-                                      common-lisp:t :member-name "name")
-                                     (type :target-type analysis-rule-type
-                                      :required common-lisp:t :member-name
-                                      "type"))
-                                    (:shape-name "GetSchemaAnalysisRuleInput"))
+(smithy/sdk/shapes:define-input get-schema-analysis-rule-input common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (name :target-type table-alias :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t)
+                                 (type :target-type analysis-rule-type
+                                  :required common-lisp:t :member-name "type"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetSchemaAnalysisRuleInput"))
 
 (smithy/sdk/shapes:define-structure get-schema-analysis-rule-output
                                     common-lisp:nil
@@ -3081,14 +3095,16 @@ common-lisp:nil
                                       "analysisRule"))
                                     (:shape-name "GetSchemaAnalysisRuleOutput"))
 
-(smithy/sdk/shapes:define-structure get-schema-input common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier")
-                                     (name :target-type table-alias :required
-                                      common-lisp:t :member-name "name"))
-                                    (:shape-name "GetSchemaInput"))
+(smithy/sdk/shapes:define-input get-schema-input common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (name :target-type table-alias :required
+                                  common-lisp:t :member-name "name" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetSchemaInput"))
 
 (smithy/sdk/shapes:define-structure get-schema-output common-lisp:nil
                                     ((schema :target-type schema :required
@@ -3429,19 +3445,18 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type key-prefix smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure list-analysis-templates-input
-                                    common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListAnalysisTemplatesInput"))
+(smithy/sdk/shapes:define-input list-analysis-templates-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListAnalysisTemplatesInput"))
 
 (smithy/sdk/shapes:define-structure list-analysis-templates-output
                                     common-lisp:nil
@@ -3453,20 +3468,21 @@ common-lisp:nil
                                       "analysisTemplateSummaries"))
                                     (:shape-name "ListAnalysisTemplatesOutput"))
 
-(smithy/sdk/shapes:define-structure list-collaboration-analysis-templates-input
-                                    common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name
-                                     "ListCollaborationAnalysisTemplatesInput"))
+(smithy/sdk/shapes:define-input list-collaboration-analysis-templates-input
+                                common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name
+                                 "ListCollaborationAnalysisTemplatesInput"))
 
 (smithy/sdk/shapes:define-structure
  list-collaboration-analysis-templates-output common-lisp:nil
@@ -3568,18 +3584,17 @@ common-lisp:nil
                                  (:shape-name
                                   "ListCollaborationPrivacyBudgetsOutput"))
 
-(smithy/sdk/shapes:define-structure list-collaborations-input common-lisp:nil
-                                    ((next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (member-status :target-type
-                                      filterable-member-status :member-name
-                                      "memberStatus" :http-query
-                                      "memberStatus"))
-                                    (:shape-name "ListCollaborationsInput"))
+(smithy/sdk/shapes:define-input list-collaborations-input common-lisp:nil
+                                ((next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (member-status :target-type
+                                  filterable-member-status :member-name
+                                  "memberStatus" :http-query "memberStatus"))
+                                (:shape-name "ListCollaborationsInput"))
 
 (smithy/sdk/shapes:define-structure list-collaborations-output common-lisp:nil
                                     ((next-token :target-type pagination-token
@@ -3608,20 +3623,20 @@ common-lisp:nil
   (next-token :target-type pagination-token :member-name "nextToken"))
  (:shape-name "ListConfiguredAudienceModelAssociationsOutput"))
 
-(smithy/sdk/shapes:define-structure list-configured-table-associations-input
-                                    common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name
-                                     "ListConfiguredTableAssociationsInput"))
+(smithy/sdk/shapes:define-input list-configured-table-associations-input
+                                common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name
+                                 "ListConfiguredTableAssociationsInput"))
 
 (smithy/sdk/shapes:define-structure list-configured-table-associations-output
                                     common-lisp:nil
@@ -3635,15 +3650,14 @@ common-lisp:nil
                                     (:shape-name
                                      "ListConfiguredTableAssociationsOutput"))
 
-(smithy/sdk/shapes:define-structure list-configured-tables-input
-                                    common-lisp:nil
-                                    ((next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListConfiguredTablesInput"))
+(smithy/sdk/shapes:define-input list-configured-tables-input common-lisp:nil
+                                ((next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListConfiguredTablesInput"))
 
 (smithy/sdk/shapes:define-structure list-configured-tables-output
                                     common-lisp:nil
@@ -3704,18 +3718,19 @@ common-lisp:nil
                                  (:shape-name
                                   "ListIdNamespaceAssociationsOutput"))
 
-(smithy/sdk/shapes:define-structure list-members-input common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListMembersInput"))
+(smithy/sdk/shapes:define-input list-members-input common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListMembersInput"))
 
 (smithy/sdk/shapes:define-structure list-members-output common-lisp:nil
                                     ((next-token :target-type pagination-token
@@ -3726,17 +3741,16 @@ common-lisp:nil
                                       "memberSummaries"))
                                     (:shape-name "ListMembersOutput"))
 
-(smithy/sdk/shapes:define-structure list-memberships-input common-lisp:nil
-                                    ((next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (status :target-type membership-status
-                                      :member-name "status" :http-query
-                                      "status"))
-                                    (:shape-name "ListMembershipsInput"))
+(smithy/sdk/shapes:define-input list-memberships-input common-lisp:nil
+                                ((next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (status :target-type membership-status
+                                  :member-name "status" :http-query "status"))
+                                (:shape-name "ListMembershipsInput"))
 
 (smithy/sdk/shapes:define-structure list-memberships-output common-lisp:nil
                                     ((next-token :target-type pagination-token
@@ -3822,22 +3836,20 @@ common-lisp:nil
                                    common-lisp:t :member-name "protectedJobs"))
                                  (:shape-name "ListProtectedJobsOutput"))
 
-(smithy/sdk/shapes:define-structure list-protected-queries-input
-                                    common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (status :target-type
-                                      protected-query-status :member-name
-                                      "status" :http-query "status")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListProtectedQueriesInput"))
+(smithy/sdk/shapes:define-input list-protected-queries-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (status :target-type protected-query-status
+                                  :member-name "status" :http-query "status")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListProtectedQueriesInput"))
 
 (smithy/sdk/shapes:define-structure list-protected-queries-output
                                     common-lisp:nil
@@ -3849,21 +3861,22 @@ common-lisp:nil
                                       "protectedQueries"))
                                     (:shape-name "ListProtectedQueriesOutput"))
 
-(smithy/sdk/shapes:define-structure list-schemas-input common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier")
-                                     (schema-type :target-type schema-type
-                                      :member-name "schemaType" :http-query
-                                      "schemaType")
-                                     (next-token :target-type pagination-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "maxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListSchemasInput"))
+(smithy/sdk/shapes:define-input list-schemas-input common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (schema-type :target-type schema-type
+                                  :member-name "schemaType" :http-query
+                                  "schemaType")
+                                 (next-token :target-type pagination-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "maxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListSchemasInput"))
 
 (smithy/sdk/shapes:define-structure list-schemas-output common-lisp:nil
                                     ((schema-summaries :target-type
@@ -5282,25 +5295,23 @@ common-lisp:nil
                                    "protectedJob"))
                                  (:shape-name "StartProtectedJobOutput"))
 
-(smithy/sdk/shapes:define-structure start-protected-query-input common-lisp:nil
-                                    ((type :target-type protected-query-type
-                                      :required common-lisp:t :member-name
-                                      "type")
-                                     (membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (sql-parameters :target-type
-                                      protected-query-sqlparameters :required
-                                      common-lisp:t :member-name
-                                      "sqlParameters")
-                                     (result-configuration :target-type
-                                      protected-query-result-configuration
-                                      :member-name "resultConfiguration")
-                                     (compute-configuration :target-type
-                                      compute-configuration :member-name
-                                      "computeConfiguration"))
-                                    (:shape-name "StartProtectedQueryInput"))
+(smithy/sdk/shapes:define-input start-protected-query-input common-lisp:nil
+                                ((type :target-type protected-query-type
+                                  :required common-lisp:t :member-name "type")
+                                 (membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (sql-parameters :target-type
+                                  protected-query-sqlparameters :required
+                                  common-lisp:t :member-name "sqlParameters")
+                                 (result-configuration :target-type
+                                  protected-query-result-configuration
+                                  :member-name "resultConfiguration")
+                                 (compute-configuration :target-type
+                                  compute-configuration :member-name
+                                  "computeConfiguration"))
+                                (:shape-name "StartProtectedQueryInput"))
 
 (smithy/sdk/shapes:define-structure start-protected-query-output
                                     common-lisp:nil
@@ -5374,20 +5385,19 @@ common-lisp:nil
                                  common-lisp:nil
                                  (:shape-name "UntagResourceOutput"))
 
-(smithy/sdk/shapes:define-structure update-analysis-template-input
-                                    common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (analysis-template-identifier :target-type
-                                      analysis-template-identifier :required
-                                      common-lisp:t :member-name
-                                      "analysisTemplateIdentifier")
-                                     (description :target-type
-                                      resource-description :member-name
-                                      "description"))
-                                    (:shape-name "UpdateAnalysisTemplateInput"))
+(smithy/sdk/shapes:define-input update-analysis-template-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (analysis-template-identifier :target-type
+                                  analysis-template-identifier :required
+                                  common-lisp:t :member-name
+                                  "analysisTemplateIdentifier" :http-label
+                                  common-lisp:t)
+                                 (description :target-type resource-description
+                                  :member-name "description"))
+                                (:shape-name "UpdateAnalysisTemplateInput"))
 
 (smithy/sdk/shapes:define-structure update-analysis-template-output
                                     common-lisp:nil
@@ -5397,20 +5407,21 @@ common-lisp:nil
                                     (:shape-name
                                      "UpdateAnalysisTemplateOutput"))
 
-(smithy/sdk/shapes:define-structure update-collaboration-input common-lisp:nil
-                                    ((collaboration-identifier :target-type
-                                      collaboration-identifier :required
-                                      common-lisp:t :member-name
-                                      "collaborationIdentifier")
-                                     (name :target-type collaboration-name
-                                      :member-name "name")
-                                     (description :target-type
-                                      collaboration-description :member-name
-                                      "description")
-                                     (analytics-engine :target-type
-                                      analytics-engine :member-name
-                                      "analyticsEngine"))
-                                    (:shape-name "UpdateCollaborationInput"))
+(smithy/sdk/shapes:define-input update-collaboration-input common-lisp:nil
+                                ((collaboration-identifier :target-type
+                                  collaboration-identifier :required
+                                  common-lisp:t :member-name
+                                  "collaborationIdentifier" :http-label
+                                  common-lisp:t)
+                                 (name :target-type collaboration-name
+                                  :member-name "name")
+                                 (description :target-type
+                                  collaboration-description :member-name
+                                  "description")
+                                 (analytics-engine :target-type
+                                  analytics-engine :member-name
+                                  "analyticsEngine"))
+                                (:shape-name "UpdateCollaborationInput"))
 
 (smithy/sdk/shapes:define-structure update-collaboration-output common-lisp:nil
                                     ((collaboration :target-type collaboration
@@ -5438,22 +5449,23 @@ common-lisp:nil
    "configuredAudienceModelAssociation"))
  (:shape-name "UpdateConfiguredAudienceModelAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure update-configured-table-analysis-rule-input
-                                    common-lisp:nil
-                                    ((configured-table-identifier :target-type
-                                      configured-table-identifier :required
-                                      common-lisp:t :member-name
-                                      "configuredTableIdentifier")
-                                     (analysis-rule-type :target-type
-                                      configured-table-analysis-rule-type
-                                      :required common-lisp:t :member-name
-                                      "analysisRuleType")
-                                     (analysis-rule-policy :target-type
-                                      configured-table-analysis-rule-policy
-                                      :required common-lisp:t :member-name
-                                      "analysisRulePolicy"))
-                                    (:shape-name
-                                     "UpdateConfiguredTableAnalysisRuleInput"))
+(smithy/sdk/shapes:define-input update-configured-table-analysis-rule-input
+                                common-lisp:nil
+                                ((configured-table-identifier :target-type
+                                  configured-table-identifier :required
+                                  common-lisp:t :member-name
+                                  "configuredTableIdentifier" :http-label
+                                  common-lisp:t)
+                                 (analysis-rule-type :target-type
+                                  configured-table-analysis-rule-type :required
+                                  common-lisp:t :member-name "analysisRuleType"
+                                  :http-label common-lisp:t)
+                                 (analysis-rule-policy :target-type
+                                  configured-table-analysis-rule-policy
+                                  :required common-lisp:t :member-name
+                                  "analysisRulePolicy"))
+                                (:shape-name
+                                 "UpdateConfiguredTableAnalysisRuleInput"))
 
 (smithy/sdk/shapes:define-structure
  update-configured-table-analysis-rule-output common-lisp:nil
@@ -5482,24 +5494,24 @@ common-lisp:nil
    :required common-lisp:t :member-name "analysisRule"))
  (:shape-name "UpdateConfiguredTableAssociationAnalysisRuleOutput"))
 
-(smithy/sdk/shapes:define-structure update-configured-table-association-input
-                                    common-lisp:nil
-                                    ((configured-table-association-identifier
-                                      :target-type
-                                      configured-table-association-identifier
-                                      :required common-lisp:t :member-name
-                                      "configuredTableAssociationIdentifier")
-                                     (membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (description :target-type
-                                      table-description :member-name
-                                      "description")
-                                     (role-arn :target-type role-arn
-                                      :member-name "roleArn"))
-                                    (:shape-name
-                                     "UpdateConfiguredTableAssociationInput"))
+(smithy/sdk/shapes:define-input update-configured-table-association-input
+                                common-lisp:nil
+                                ((configured-table-association-identifier
+                                  :target-type
+                                  configured-table-association-identifier
+                                  :required common-lisp:t :member-name
+                                  "configuredTableAssociationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (description :target-type table-description
+                                  :member-name "description")
+                                 (role-arn :target-type role-arn :member-name
+                                  "roleArn"))
+                                (:shape-name
+                                 "UpdateConfiguredTableAssociationInput"))
 
 (smithy/sdk/shapes:define-structure update-configured-table-association-output
                                     common-lisp:nil
@@ -5510,30 +5522,27 @@ common-lisp:nil
                                     (:shape-name
                                      "UpdateConfiguredTableAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure update-configured-table-input
-                                    common-lisp:nil
-                                    ((configured-table-identifier :target-type
-                                      configured-table-identifier :required
-                                      common-lisp:t :member-name
-                                      "configuredTableIdentifier")
-                                     (name :target-type display-name
-                                      :member-name "name")
-                                     (description :target-type
-                                      table-description :member-name
-                                      "description")
-                                     (table-reference :target-type
-                                      table-reference :member-name
-                                      "tableReference")
-                                     (allowed-columns :target-type
-                                      allowed-column-list :member-name
-                                      "allowedColumns")
-                                     (analysis-method :target-type
-                                      analysis-method :member-name
-                                      "analysisMethod")
-                                     (selected-analysis-methods :target-type
-                                      selected-analysis-methods :member-name
-                                      "selectedAnalysisMethods"))
-                                    (:shape-name "UpdateConfiguredTableInput"))
+(smithy/sdk/shapes:define-input update-configured-table-input common-lisp:nil
+                                ((configured-table-identifier :target-type
+                                  configured-table-identifier :required
+                                  common-lisp:t :member-name
+                                  "configuredTableIdentifier" :http-label
+                                  common-lisp:t)
+                                 (name :target-type display-name :member-name
+                                  "name")
+                                 (description :target-type table-description
+                                  :member-name "description")
+                                 (table-reference :target-type table-reference
+                                  :member-name "tableReference")
+                                 (allowed-columns :target-type
+                                  allowed-column-list :member-name
+                                  "allowedColumns")
+                                 (analysis-method :target-type analysis-method
+                                  :member-name "analysisMethod")
+                                 (selected-analysis-methods :target-type
+                                  selected-analysis-methods :member-name
+                                  "selectedAnalysisMethods"))
+                                (:shape-name "UpdateConfiguredTableInput"))
 
 (smithy/sdk/shapes:define-structure update-configured-table-output
                                     common-lisp:nil
@@ -5594,27 +5603,25 @@ common-lisp:nil
                                  (:shape-name
                                   "UpdateIdNamespaceAssociationOutput"))
 
-(smithy/sdk/shapes:define-structure update-membership-input common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (query-log-status :target-type
-                                      membership-query-log-status :member-name
-                                      "queryLogStatus")
-                                     (job-log-status :target-type
-                                      membership-job-log-status :member-name
-                                      "jobLogStatus")
-                                     (default-result-configuration :target-type
-                                      membership-protected-query-result-configuration
-                                      :member-name
-                                      "defaultResultConfiguration")
-                                     (default-job-result-configuration
-                                      :target-type
-                                      membership-protected-job-result-configuration
-                                      :member-name
-                                      "defaultJobResultConfiguration"))
-                                    (:shape-name "UpdateMembershipInput"))
+(smithy/sdk/shapes:define-input update-membership-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (query-log-status :target-type
+                                  membership-query-log-status :member-name
+                                  "queryLogStatus")
+                                 (job-log-status :target-type
+                                  membership-job-log-status :member-name
+                                  "jobLogStatus")
+                                 (default-result-configuration :target-type
+                                  membership-protected-query-result-configuration
+                                  :member-name "defaultResultConfiguration")
+                                 (default-job-result-configuration :target-type
+                                  membership-protected-job-result-configuration
+                                  :member-name
+                                  "defaultJobResultConfiguration"))
+                                (:shape-name "UpdateMembershipInput"))
 
 (smithy/sdk/shapes:define-structure update-membership-output common-lisp:nil
                                     ((membership :target-type membership
@@ -5673,21 +5680,20 @@ common-lisp:nil
                                    "protectedJob"))
                                  (:shape-name "UpdateProtectedJobOutput"))
 
-(smithy/sdk/shapes:define-structure update-protected-query-input
-                                    common-lisp:nil
-                                    ((membership-identifier :target-type
-                                      membership-identifier :required
-                                      common-lisp:t :member-name
-                                      "membershipIdentifier")
-                                     (protected-query-identifier :target-type
-                                      protected-query-identifier :required
-                                      common-lisp:t :member-name
-                                      "protectedQueryIdentifier")
-                                     (target-status :target-type
-                                      target-protected-query-status :required
-                                      common-lisp:t :member-name
-                                      "targetStatus"))
-                                    (:shape-name "UpdateProtectedQueryInput"))
+(smithy/sdk/shapes:define-input update-protected-query-input common-lisp:nil
+                                ((membership-identifier :target-type
+                                  membership-identifier :required common-lisp:t
+                                  :member-name "membershipIdentifier"
+                                  :http-label common-lisp:t)
+                                 (protected-query-identifier :target-type
+                                  protected-query-identifier :required
+                                  common-lisp:t :member-name
+                                  "protectedQueryIdentifier" :http-label
+                                  common-lisp:t)
+                                 (target-status :target-type
+                                  target-protected-query-status :required
+                                  common-lisp:t :member-name "targetStatus"))
+                                (:shape-name "UpdateProtectedQueryInput"))
 
 (smithy/sdk/shapes:define-structure update-protected-query-output
                                     common-lisp:nil

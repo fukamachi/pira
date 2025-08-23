@@ -175,15 +175,14 @@
 
 (smithy/sdk/shapes:define-type arn smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure batch-evaluate-feature-request
-                                    common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (requests :target-type
-                                      evaluation-requests-list :required
-                                      common-lisp:t :member-name "requests"))
-                                    (:shape-name "BatchEvaluateFeatureRequest"))
+(smithy/sdk/shapes:define-input batch-evaluate-feature-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (requests :target-type
+                                  evaluation-requests-list :required
+                                  common-lisp:t :member-name "requests"))
+                                (:shape-name "BatchEvaluateFeatureRequest"))
 
 (smithy/sdk/shapes:define-structure batch-evaluate-feature-response
                                     common-lisp:nil
@@ -224,34 +223,33 @@
                                 (:shape-name "ConflictException")
                                 (:error-code 409))
 
-(smithy/sdk/shapes:define-structure create-experiment-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (name :target-type experiment-name
-                                      :required common-lisp:t :member-name
-                                      "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (treatments :target-type
-                                      treatment-config-list :required
-                                      common-lisp:t :member-name "treatments")
-                                     (metric-goals :target-type
-                                      metric-goal-config-list :required
-                                      common-lisp:t :member-name "metricGoals")
-                                     (randomization-salt :target-type
-                                      randomization-salt :member-name
-                                      "randomizationSalt")
-                                     (sampling-rate :target-type split-weight
-                                      :member-name "samplingRate")
-                                     (online-ab-config :target-type
-                                      online-ab-config :member-name
-                                      "onlineAbConfig")
-                                     (segment :target-type segment-ref
-                                      :member-name "segment")
-                                     (tags :target-type tag-map :member-name
-                                      "tags"))
-                                    (:shape-name "CreateExperimentRequest"))
+(smithy/sdk/shapes:define-input create-experiment-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (name :target-type experiment-name :required
+                                  common-lisp:t :member-name "name")
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (treatments :target-type treatment-config-list
+                                  :required common-lisp:t :member-name
+                                  "treatments")
+                                 (metric-goals :target-type
+                                  metric-goal-config-list :required
+                                  common-lisp:t :member-name "metricGoals")
+                                 (randomization-salt :target-type
+                                  randomization-salt :member-name
+                                  "randomizationSalt")
+                                 (sampling-rate :target-type split-weight
+                                  :member-name "samplingRate")
+                                 (online-ab-config :target-type
+                                  online-ab-config :member-name
+                                  "onlineAbConfig")
+                                 (segment :target-type segment-ref :member-name
+                                  "segment")
+                                 (tags :target-type tag-map :member-name
+                                  "tags"))
+                                (:shape-name "CreateExperimentRequest"))
 
 (smithy/sdk/shapes:define-structure create-experiment-response common-lisp:nil
                                     ((experiment :target-type experiment
@@ -259,58 +257,57 @@
                                       "experiment"))
                                     (:shape-name "CreateExperimentResponse"))
 
-(smithy/sdk/shapes:define-structure create-feature-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (name :target-type feature-name :required
-                                      common-lisp:t :member-name "name")
-                                     (evaluation-strategy :target-type
-                                      feature-evaluation-strategy :member-name
-                                      "evaluationStrategy")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (variations :target-type
-                                      variation-configs-list :required
-                                      common-lisp:t :member-name "variations")
-                                     (default-variation :target-type
-                                      variation-name :member-name
-                                      "defaultVariation")
-                                     (tags :target-type tag-map :member-name
-                                      "tags")
-                                     (entity-overrides :target-type
-                                      entity-override-map :member-name
-                                      "entityOverrides"))
-                                    (:shape-name "CreateFeatureRequest"))
+(smithy/sdk/shapes:define-input create-feature-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (name :target-type feature-name :required
+                                  common-lisp:t :member-name "name")
+                                 (evaluation-strategy :target-type
+                                  feature-evaluation-strategy :member-name
+                                  "evaluationStrategy")
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (variations :target-type
+                                  variation-configs-list :required
+                                  common-lisp:t :member-name "variations")
+                                 (default-variation :target-type variation-name
+                                  :member-name "defaultVariation")
+                                 (tags :target-type tag-map :member-name
+                                  "tags")
+                                 (entity-overrides :target-type
+                                  entity-override-map :member-name
+                                  "entityOverrides"))
+                                (:shape-name "CreateFeatureRequest"))
 
 (smithy/sdk/shapes:define-structure create-feature-response common-lisp:nil
                                     ((feature :target-type feature :member-name
                                       "feature"))
                                     (:shape-name "CreateFeatureResponse"))
 
-(smithy/sdk/shapes:define-structure create-launch-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (name :target-type launch-name :required
-                                      common-lisp:t :member-name "name")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (scheduled-splits-config :target-type
-                                      scheduled-splits-launch-config
-                                      :member-name "scheduledSplitsConfig")
-                                     (metric-monitors :target-type
-                                      metric-monitor-config-list :member-name
-                                      "metricMonitors")
-                                     (groups :target-type
-                                      launch-group-config-list :required
-                                      common-lisp:t :member-name "groups")
-                                     (randomization-salt :target-type
-                                      randomization-salt :member-name
-                                      "randomizationSalt")
-                                     (tags :target-type tag-map :member-name
-                                      "tags"))
-                                    (:shape-name "CreateLaunchRequest"))
+(smithy/sdk/shapes:define-input create-launch-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (name :target-type launch-name :required
+                                  common-lisp:t :member-name "name")
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (scheduled-splits-config :target-type
+                                  scheduled-splits-launch-config :member-name
+                                  "scheduledSplitsConfig")
+                                 (metric-monitors :target-type
+                                  metric-monitor-config-list :member-name
+                                  "metricMonitors")
+                                 (groups :target-type launch-group-config-list
+                                  :required common-lisp:t :member-name
+                                  "groups")
+                                 (randomization-salt :target-type
+                                  randomization-salt :member-name
+                                  "randomizationSalt")
+                                 (tags :target-type tag-map :member-name
+                                  "tags"))
+                                (:shape-name "CreateLaunchRequest"))
 
 (smithy/sdk/shapes:define-structure create-launch-response common-lisp:nil
                                     ((launch :target-type launch :required
@@ -360,59 +357,60 @@
 (smithy/sdk/shapes:define-type cw-log-group-safe-name
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure delete-experiment-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (experiment :target-type experiment-name
-                                      :required common-lisp:t :member-name
-                                      "experiment"))
-                                    (:shape-name "DeleteExperimentRequest"))
+(smithy/sdk/shapes:define-input delete-experiment-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (experiment :target-type experiment-name
+                                  :required common-lisp:t :member-name
+                                  "experiment" :http-label common-lisp:t))
+                                (:shape-name "DeleteExperimentRequest"))
 
 (smithy/sdk/shapes:define-structure delete-experiment-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteExperimentResponse"))
 
-(smithy/sdk/shapes:define-structure delete-feature-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (feature :target-type feature-name
-                                      :required common-lisp:t :member-name
-                                      "feature"))
-                                    (:shape-name "DeleteFeatureRequest"))
+(smithy/sdk/shapes:define-input delete-feature-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (feature :target-type feature-name :required
+                                  common-lisp:t :member-name "feature"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteFeatureRequest"))
 
 (smithy/sdk/shapes:define-structure delete-feature-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteFeatureResponse"))
 
-(smithy/sdk/shapes:define-structure delete-launch-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (launch :target-type launch-name :required
-                                      common-lisp:t :member-name "launch"))
-                                    (:shape-name "DeleteLaunchRequest"))
+(smithy/sdk/shapes:define-input delete-launch-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (launch :target-type launch-name :required
+                                  common-lisp:t :member-name "launch"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteLaunchRequest"))
 
 (smithy/sdk/shapes:define-structure delete-launch-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteLaunchResponse"))
 
-(smithy/sdk/shapes:define-structure delete-project-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project"))
-                                    (:shape-name "DeleteProjectRequest"))
+(smithy/sdk/shapes:define-input delete-project-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteProjectRequest"))
 
 (smithy/sdk/shapes:define-structure delete-project-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeleteProjectResponse"))
 
-(smithy/sdk/shapes:define-structure delete-segment-request common-lisp:nil
-                                    ((segment :target-type segment-ref
-                                      :required common-lisp:t :member-name
-                                      "segment"))
-                                    (:shape-name "DeleteSegmentRequest"))
+(smithy/sdk/shapes:define-input delete-segment-request common-lisp:nil
+                                ((segment :target-type segment-ref :required
+                                  common-lisp:t :member-name "segment"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteSegmentRequest"))
 
 (smithy/sdk/shapes:define-structure delete-segment-response common-lisp:nil
                                     common-lisp:nil
@@ -432,20 +430,18 @@
 
 (smithy/sdk/shapes:define-type error-message smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure evaluate-feature-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (feature :target-type feature-name
-                                      :required common-lisp:t :member-name
-                                      "feature")
-                                     (entity-id :target-type entity-id
-                                      :required common-lisp:t :member-name
-                                      "entityId")
-                                     (evaluation-context :target-type
-                                      json-value :member-name
-                                      "evaluationContext"))
-                                    (:shape-name "EvaluateFeatureRequest"))
+(smithy/sdk/shapes:define-input evaluate-feature-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (feature :target-type feature-name :required
+                                  common-lisp:t :member-name "feature"
+                                  :http-label common-lisp:t)
+                                 (entity-id :target-type entity-id :required
+                                  common-lisp:t :member-name "entityId")
+                                 (evaluation-context :target-type json-value
+                                  :member-name "evaluationContext"))
+                                (:shape-name "EvaluateFeatureRequest"))
 
 (smithy/sdk/shapes:define-structure evaluate-feature-response common-lisp:nil
                                     ((variation :target-type
@@ -745,53 +741,50 @@ common-lisp:nil
 (smithy/sdk/shapes:define-map feature-to-variation-map :key feature-name :value
                               variation-name)
 
-(smithy/sdk/shapes:define-structure get-experiment-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (experiment :target-type experiment-name
-                                      :required common-lisp:t :member-name
-                                      "experiment"))
-                                    (:shape-name "GetExperimentRequest"))
+(smithy/sdk/shapes:define-input get-experiment-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (experiment :target-type experiment-name
+                                  :required common-lisp:t :member-name
+                                  "experiment" :http-label common-lisp:t))
+                                (:shape-name "GetExperimentRequest"))
 
 (smithy/sdk/shapes:define-structure get-experiment-response common-lisp:nil
                                     ((experiment :target-type experiment
                                       :member-name "experiment"))
                                     (:shape-name "GetExperimentResponse"))
 
-(smithy/sdk/shapes:define-structure get-experiment-results-request
-                                    common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (experiment :target-type experiment-name
-                                      :required common-lisp:t :member-name
-                                      "experiment")
-                                     (start-time :target-type
-                                      smithy/sdk/smithy-types:timestamp
-                                      :member-name "startTime")
-                                     (end-time :target-type
-                                      smithy/sdk/smithy-types:timestamp
-                                      :member-name "endTime")
-                                     (metric-names :target-type
-                                      metric-name-list :required common-lisp:t
-                                      :member-name "metricNames")
-                                     (treatment-names :target-type
-                                      treatment-name-list :required
-                                      common-lisp:t :member-name
-                                      "treatmentNames")
-                                     (base-stat :target-type
-                                      experiment-base-stat :member-name
-                                      "baseStat")
-                                     (result-stats :target-type
-                                      experiment-result-request-type-list
-                                      :member-name "resultStats")
-                                     (report-names :target-type
-                                      experiment-report-name-list :member-name
-                                      "reportNames")
-                                     (period :target-type results-period
-                                      :member-name "period"))
-                                    (:shape-name "GetExperimentResultsRequest"))
+(smithy/sdk/shapes:define-input get-experiment-results-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (experiment :target-type experiment-name
+                                  :required common-lisp:t :member-name
+                                  "experiment" :http-label common-lisp:t)
+                                 (start-time :target-type
+                                  smithy/sdk/smithy-types:timestamp
+                                  :member-name "startTime")
+                                 (end-time :target-type
+                                  smithy/sdk/smithy-types:timestamp
+                                  :member-name "endTime")
+                                 (metric-names :target-type metric-name-list
+                                  :required common-lisp:t :member-name
+                                  "metricNames")
+                                 (treatment-names :target-type
+                                  treatment-name-list :required common-lisp:t
+                                  :member-name "treatmentNames")
+                                 (base-stat :target-type experiment-base-stat
+                                  :member-name "baseStat")
+                                 (result-stats :target-type
+                                  experiment-result-request-type-list
+                                  :member-name "resultStats")
+                                 (report-names :target-type
+                                  experiment-report-name-list :member-name
+                                  "reportNames")
+                                 (period :target-type results-period
+                                  :member-name "period"))
+                                (:shape-name "GetExperimentResultsRequest"))
 
 (smithy/sdk/shapes:define-structure get-experiment-results-response
                                     common-lisp:nil
@@ -809,49 +802,50 @@ common-lisp:nil
                                     (:shape-name
                                      "GetExperimentResultsResponse"))
 
-(smithy/sdk/shapes:define-structure get-feature-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (feature :target-type feature-name
-                                      :required common-lisp:t :member-name
-                                      "feature"))
-                                    (:shape-name "GetFeatureRequest"))
+(smithy/sdk/shapes:define-input get-feature-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (feature :target-type feature-name :required
+                                  common-lisp:t :member-name "feature"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetFeatureRequest"))
 
 (smithy/sdk/shapes:define-structure get-feature-response common-lisp:nil
                                     ((feature :target-type feature :required
                                       common-lisp:t :member-name "feature"))
                                     (:shape-name "GetFeatureResponse"))
 
-(smithy/sdk/shapes:define-structure get-launch-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (launch :target-type launch-name :required
-                                      common-lisp:t :member-name "launch"))
-                                    (:shape-name "GetLaunchRequest"))
+(smithy/sdk/shapes:define-input get-launch-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (launch :target-type launch-name :required
+                                  common-lisp:t :member-name "launch"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetLaunchRequest"))
 
 (smithy/sdk/shapes:define-structure get-launch-response common-lisp:nil
                                     ((launch :target-type launch :member-name
                                       "launch"))
                                     (:shape-name "GetLaunchResponse"))
 
-(smithy/sdk/shapes:define-structure get-project-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project"))
-                                    (:shape-name "GetProjectRequest"))
+(smithy/sdk/shapes:define-input get-project-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetProjectRequest"))
 
 (smithy/sdk/shapes:define-structure get-project-response common-lisp:nil
                                     ((project :target-type project :required
                                       common-lisp:t :member-name "project"))
                                     (:shape-name "GetProjectResponse"))
 
-(smithy/sdk/shapes:define-structure get-segment-request common-lisp:nil
-                                    ((segment :target-type segment-ref
-                                      :required common-lisp:t :member-name
-                                      "segment"))
-                                    (:shape-name "GetSegmentRequest"))
+(smithy/sdk/shapes:define-input get-segment-request common-lisp:nil
+                                ((segment :target-type segment-ref :required
+                                  common-lisp:t :member-name "segment"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetSegmentRequest"))
 
 (smithy/sdk/shapes:define-structure get-segment-response common-lisp:nil
                                     ((segment :target-type segment :required
@@ -969,20 +963,19 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-list launches-list :member launch)
 
-(smithy/sdk/shapes:define-structure list-experiments-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (max-results :target-type max-experiments
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (status :target-type experiment-status
-                                      :member-name "status" :http-query
-                                      "status"))
-                                    (:shape-name "ListExperimentsRequest"))
+(smithy/sdk/shapes:define-input list-experiments-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-experiments
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (status :target-type experiment-status
+                                  :member-name "status" :http-query "status"))
+                                (:shape-name "ListExperimentsRequest"))
 
 (smithy/sdk/shapes:define-structure list-experiments-response common-lisp:nil
                                     ((experiments :target-type experiment-list
@@ -991,17 +984,17 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListExperimentsResponse"))
 
-(smithy/sdk/shapes:define-structure list-features-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (max-results :target-type max-features
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListFeaturesRequest"))
+(smithy/sdk/shapes:define-input list-features-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-features
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListFeaturesRequest"))
 
 (smithy/sdk/shapes:define-structure list-features-response common-lisp:nil
                                     ((features :target-type
@@ -1011,20 +1004,19 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListFeaturesResponse"))
 
-(smithy/sdk/shapes:define-structure list-launches-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (max-results :target-type max-launches
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (status :target-type launch-status
-                                      :member-name "status" :http-query
-                                      "status"))
-                                    (:shape-name "ListLaunchesRequest"))
+(smithy/sdk/shapes:define-input list-launches-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-launches
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (status :target-type launch-status
+                                  :member-name "status" :http-query "status"))
+                                (:shape-name "ListLaunchesRequest"))
 
 (smithy/sdk/shapes:define-structure list-launches-response common-lisp:nil
                                     ((launches :target-type launches-list
@@ -1033,14 +1025,14 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListLaunchesResponse"))
 
-(smithy/sdk/shapes:define-structure list-projects-request common-lisp:nil
-                                    ((max-results :target-type max-projects
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListProjectsRequest"))
+(smithy/sdk/shapes:define-input list-projects-request common-lisp:nil
+                                ((max-results :target-type max-projects
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListProjectsRequest"))
 
 (smithy/sdk/shapes:define-structure list-projects-response common-lisp:nil
                                     ((projects :target-type
@@ -1050,23 +1042,21 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListProjectsResponse"))
 
-(smithy/sdk/shapes:define-structure list-segment-references-request
-                                    common-lisp:nil
-                                    ((segment :target-type segment-ref
-                                      :required common-lisp:t :member-name
-                                      "segment")
-                                     (max-results :target-type max-references
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken")
-                                     (type :target-type
-                                      segment-reference-resource-type :required
-                                      common-lisp:t :member-name "type"
-                                      :http-query "type"))
-                                    (:shape-name
-                                     "ListSegmentReferencesRequest"))
+(smithy/sdk/shapes:define-input list-segment-references-request common-lisp:nil
+                                ((segment :target-type segment-ref :required
+                                  common-lisp:t :member-name "segment"
+                                  :http-label common-lisp:t)
+                                 (max-results :target-type max-references
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken")
+                                 (type :target-type
+                                  segment-reference-resource-type :required
+                                  common-lisp:t :member-name "type" :http-query
+                                  "type"))
+                                (:shape-name "ListSegmentReferencesRequest"))
 
 (smithy/sdk/shapes:define-structure list-segment-references-response
                                     common-lisp:nil
@@ -1078,14 +1068,14 @@ common-lisp:nil
                                     (:shape-name
                                      "ListSegmentReferencesResponse"))
 
-(smithy/sdk/shapes:define-structure list-segments-request common-lisp:nil
-                                    ((max-results :target-type max-segments
-                                      :member-name "maxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "nextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListSegmentsRequest"))
+(smithy/sdk/shapes:define-input list-segments-request common-lisp:nil
+                                ((max-results :target-type max-segments
+                                  :member-name "maxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "nextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListSegmentsRequest"))
 
 (smithy/sdk/shapes:define-structure list-segments-response common-lisp:nil
                                     ((segments :target-type segment-list
@@ -1094,12 +1084,11 @@ common-lisp:nil
                                       :member-name "nextToken"))
                                     (:shape-name "ListSegmentsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1350,13 +1339,13 @@ common-lisp:nil
                                       "tags"))
                                     (:shape-name "ProjectSummary"))
 
-(smithy/sdk/shapes:define-structure put-project-events-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (events :target-type event-list :required
-                                      common-lisp:t :member-name "events"))
-                                    (:shape-name "PutProjectEventsRequest"))
+(smithy/sdk/shapes:define-input put-project-events-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (events :target-type event-list :required
+                                  common-lisp:t :member-name "events"))
+                                (:shape-name "PutProjectEventsRequest"))
 
 (smithy/sdk/shapes:define-structure put-project-events-response common-lisp:nil
                                     ((failed-event-count :target-type
@@ -1582,18 +1571,18 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type split-weight smithy/sdk/smithy-types:long)
 
-(smithy/sdk/shapes:define-structure start-experiment-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (experiment :target-type experiment-name
-                                      :required common-lisp:t :member-name
-                                      "experiment")
-                                     (analysis-complete-time :target-type
-                                      smithy/sdk/smithy-types:timestamp
-                                      :required common-lisp:t :member-name
-                                      "analysisCompleteTime"))
-                                    (:shape-name "StartExperimentRequest"))
+(smithy/sdk/shapes:define-input start-experiment-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (experiment :target-type experiment-name
+                                  :required common-lisp:t :member-name
+                                  "experiment" :http-label common-lisp:t)
+                                 (analysis-complete-time :target-type
+                                  smithy/sdk/smithy-types:timestamp :required
+                                  common-lisp:t :member-name
+                                  "analysisCompleteTime"))
+                                (:shape-name "StartExperimentRequest"))
 
 (smithy/sdk/shapes:define-structure start-experiment-response common-lisp:nil
                                     ((started-time :target-type
@@ -1601,32 +1590,33 @@ common-lisp:nil
                                       :member-name "startedTime"))
                                     (:shape-name "StartExperimentResponse"))
 
-(smithy/sdk/shapes:define-structure start-launch-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (launch :target-type launch-name :required
-                                      common-lisp:t :member-name "launch"))
-                                    (:shape-name "StartLaunchRequest"))
+(smithy/sdk/shapes:define-input start-launch-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (launch :target-type launch-name :required
+                                  common-lisp:t :member-name "launch"
+                                  :http-label common-lisp:t))
+                                (:shape-name "StartLaunchRequest"))
 
 (smithy/sdk/shapes:define-structure start-launch-response common-lisp:nil
                                     ((launch :target-type launch :required
                                       common-lisp:t :member-name "launch"))
                                     (:shape-name "StartLaunchResponse"))
 
-(smithy/sdk/shapes:define-structure stop-experiment-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (experiment :target-type experiment-name
-                                      :required common-lisp:t :member-name
-                                      "experiment")
-                                     (desired-state :target-type
-                                      experiment-stop-desired-state
-                                      :member-name "desiredState")
-                                     (reason :target-type description
-                                      :member-name "reason"))
-                                    (:shape-name "StopExperimentRequest"))
+(smithy/sdk/shapes:define-input stop-experiment-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (experiment :target-type experiment-name
+                                  :required common-lisp:t :member-name
+                                  "experiment" :http-label common-lisp:t)
+                                 (desired-state :target-type
+                                  experiment-stop-desired-state :member-name
+                                  "desiredState")
+                                 (reason :target-type description :member-name
+                                  "reason"))
+                                (:shape-name "StopExperimentRequest"))
 
 (smithy/sdk/shapes:define-structure stop-experiment-response common-lisp:nil
                                     ((ended-time :target-type
@@ -1634,18 +1624,19 @@ common-lisp:nil
                                       :member-name "endedTime"))
                                     (:shape-name "StopExperimentResponse"))
 
-(smithy/sdk/shapes:define-structure stop-launch-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (launch :target-type launch-name :required
-                                      common-lisp:t :member-name "launch")
-                                     (desired-state :target-type
-                                      launch-stop-desired-state :member-name
-                                      "desiredState")
-                                     (reason :target-type description
-                                      :member-name "reason"))
-                                    (:shape-name "StopLaunchRequest"))
+(smithy/sdk/shapes:define-input stop-launch-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (launch :target-type launch-name :required
+                                  common-lisp:t :member-name "launch"
+                                  :http-label common-lisp:t)
+                                 (desired-state :target-type
+                                  launch-stop-desired-state :member-name
+                                  "desiredState")
+                                 (reason :target-type description :member-name
+                                  "reason"))
+                                (:shape-name "StopLaunchRequest"))
 
 (smithy/sdk/shapes:define-structure stop-launch-response common-lisp:nil
                                     ((ended-time :target-type
@@ -1659,12 +1650,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -1740,47 +1732,47 @@ common-lisp:nil
 (smithy/sdk/shapes:define-map treatment-to-weight-map :key treatment-name
                               :value split-weight)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type arn :required
-                                      common-lisp:t :member-name "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type arn :required
+                                  common-lisp:t :member-name "resourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-experiment-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (experiment :target-type experiment-name
-                                      :required common-lisp:t :member-name
-                                      "experiment")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (treatments :target-type
-                                      treatment-config-list :member-name
-                                      "treatments")
-                                     (metric-goals :target-type
-                                      metric-goal-config-list :member-name
-                                      "metricGoals")
-                                     (randomization-salt :target-type
-                                      randomization-salt :member-name
-                                      "randomizationSalt")
-                                     (sampling-rate :target-type split-weight
-                                      :member-name "samplingRate")
-                                     (segment :target-type segment-ref
-                                      :member-name "segment")
-                                     (remove-segment :target-type
-                                      smithy/shapes/primitive-types:primitive-boolean
-                                      :member-name "removeSegment")
-                                     (online-ab-config :target-type
-                                      online-ab-config :member-name
-                                      "onlineAbConfig"))
-                                    (:shape-name "UpdateExperimentRequest"))
+(smithy/sdk/shapes:define-input update-experiment-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (experiment :target-type experiment-name
+                                  :required common-lisp:t :member-name
+                                  "experiment" :http-label common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (treatments :target-type treatment-config-list
+                                  :member-name "treatments")
+                                 (metric-goals :target-type
+                                  metric-goal-config-list :member-name
+                                  "metricGoals")
+                                 (randomization-salt :target-type
+                                  randomization-salt :member-name
+                                  "randomizationSalt")
+                                 (sampling-rate :target-type split-weight
+                                  :member-name "samplingRate")
+                                 (segment :target-type segment-ref :member-name
+                                  "segment")
+                                 (remove-segment :target-type
+                                  smithy/shapes/primitive-types:primitive-boolean
+                                  :member-name "removeSegment")
+                                 (online-ab-config :target-type
+                                  online-ab-config :member-name
+                                  "onlineAbConfig"))
+                                (:shape-name "UpdateExperimentRequest"))
 
 (smithy/sdk/shapes:define-structure update-experiment-response common-lisp:nil
                                     ((experiment :target-type experiment
@@ -1788,77 +1780,76 @@ common-lisp:nil
                                       "experiment"))
                                     (:shape-name "UpdateExperimentResponse"))
 
-(smithy/sdk/shapes:define-structure update-feature-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (feature :target-type feature-name
-                                      :required common-lisp:t :member-name
-                                      "feature")
-                                     (evaluation-strategy :target-type
-                                      feature-evaluation-strategy :member-name
-                                      "evaluationStrategy")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (add-or-update-variations :target-type
-                                      variation-configs-list :member-name
-                                      "addOrUpdateVariations")
-                                     (remove-variations :target-type
-                                      variation-name-list :member-name
-                                      "removeVariations")
-                                     (default-variation :target-type
-                                      variation-name :member-name
-                                      "defaultVariation")
-                                     (entity-overrides :target-type
-                                      entity-override-map :member-name
-                                      "entityOverrides"))
-                                    (:shape-name "UpdateFeatureRequest"))
+(smithy/sdk/shapes:define-input update-feature-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (feature :target-type feature-name :required
+                                  common-lisp:t :member-name "feature"
+                                  :http-label common-lisp:t)
+                                 (evaluation-strategy :target-type
+                                  feature-evaluation-strategy :member-name
+                                  "evaluationStrategy")
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (add-or-update-variations :target-type
+                                  variation-configs-list :member-name
+                                  "addOrUpdateVariations")
+                                 (remove-variations :target-type
+                                  variation-name-list :member-name
+                                  "removeVariations")
+                                 (default-variation :target-type variation-name
+                                  :member-name "defaultVariation")
+                                 (entity-overrides :target-type
+                                  entity-override-map :member-name
+                                  "entityOverrides"))
+                                (:shape-name "UpdateFeatureRequest"))
 
 (smithy/sdk/shapes:define-structure update-feature-response common-lisp:nil
                                     ((feature :target-type feature :required
                                       common-lisp:t :member-name "feature"))
                                     (:shape-name "UpdateFeatureResponse"))
 
-(smithy/sdk/shapes:define-structure update-launch-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (launch :target-type launch-name :required
-                                      common-lisp:t :member-name "launch")
-                                     (description :target-type description
-                                      :member-name "description")
-                                     (groups :target-type
-                                      launch-group-config-list :member-name
-                                      "groups")
-                                     (metric-monitors :target-type
-                                      metric-monitor-config-list :member-name
-                                      "metricMonitors")
-                                     (randomization-salt :target-type
-                                      randomization-salt :member-name
-                                      "randomizationSalt")
-                                     (scheduled-splits-config :target-type
-                                      scheduled-splits-launch-config
-                                      :member-name "scheduledSplitsConfig"))
-                                    (:shape-name "UpdateLaunchRequest"))
+(smithy/sdk/shapes:define-input update-launch-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (launch :target-type launch-name :required
+                                  common-lisp:t :member-name "launch"
+                                  :http-label common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "description")
+                                 (groups :target-type launch-group-config-list
+                                  :member-name "groups")
+                                 (metric-monitors :target-type
+                                  metric-monitor-config-list :member-name
+                                  "metricMonitors")
+                                 (randomization-salt :target-type
+                                  randomization-salt :member-name
+                                  "randomizationSalt")
+                                 (scheduled-splits-config :target-type
+                                  scheduled-splits-launch-config :member-name
+                                  "scheduledSplitsConfig"))
+                                (:shape-name "UpdateLaunchRequest"))
 
 (smithy/sdk/shapes:define-structure update-launch-response common-lisp:nil
                                     ((launch :target-type launch :required
                                       common-lisp:t :member-name "launch"))
                                     (:shape-name "UpdateLaunchResponse"))
 
-(smithy/sdk/shapes:define-structure update-project-data-delivery-request
-                                    common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (s3destination :target-type
-                                      s3destination-config :member-name
-                                      "s3Destination")
-                                     (cloud-watch-logs :target-type
-                                      cloud-watch-logs-destination-config
-                                      :member-name "cloudWatchLogs"))
-                                    (:shape-name
-                                     "UpdateProjectDataDeliveryRequest"))
+(smithy/sdk/shapes:define-input update-project-data-delivery-request
+                                common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (s3destination :target-type
+                                  s3destination-config :member-name
+                                  "s3Destination")
+                                 (cloud-watch-logs :target-type
+                                  cloud-watch-logs-destination-config
+                                  :member-name "cloudWatchLogs"))
+                                (:shape-name
+                                 "UpdateProjectDataDeliveryRequest"))
 
 (smithy/sdk/shapes:define-structure update-project-data-delivery-response
                                     common-lisp:nil
@@ -1867,16 +1858,16 @@ common-lisp:nil
                                     (:shape-name
                                      "UpdateProjectDataDeliveryResponse"))
 
-(smithy/sdk/shapes:define-structure update-project-request common-lisp:nil
-                                    ((project :target-type project-ref
-                                      :required common-lisp:t :member-name
-                                      "project")
-                                     (app-config-resource :target-type
-                                      project-app-config-resource-config
-                                      :member-name "appConfigResource")
-                                     (description :target-type description
-                                      :member-name "description"))
-                                    (:shape-name "UpdateProjectRequest"))
+(smithy/sdk/shapes:define-input update-project-request common-lisp:nil
+                                ((project :target-type project-ref :required
+                                  common-lisp:t :member-name "project"
+                                  :http-label common-lisp:t)
+                                 (app-config-resource :target-type
+                                  project-app-config-resource-config
+                                  :member-name "appConfigResource")
+                                 (description :target-type description
+                                  :member-name "description"))
+                                (:shape-name "UpdateProjectRequest"))
 
 (smithy/sdk/shapes:define-structure update-project-response common-lisp:nil
                                     ((project :target-type project :required

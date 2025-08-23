@@ -427,7 +427,8 @@ common-lisp:nil
                                    "sampleDocuments"))
                                  (:shape-name "CreateTransformerResponse"))
 
-(smithy/sdk/shapes:define-type created-date smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type created-date smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-capability-request common-lisp:nil
                                 ((capability-id :target-type capability-id
@@ -849,7 +850,8 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type max-results smithy/sdk/smithy-types:integer)
 
-(smithy/sdk/shapes:define-type modified-date smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type modified-date smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-union outbound-edi-options common-lisp:nil
                                 ((x12 :target-type x12envelope :member-name

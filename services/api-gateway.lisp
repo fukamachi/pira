@@ -280,14 +280,14 @@
   (:header "HEADER")
   (:authorizer "AUTHORIZER"))
 
-(smithy/sdk/shapes:define-structure api-keys common-lisp:nil
-                                    ((warnings :target-type list-of-string
-                                      :member-name "warnings")
-                                     (items :target-type list-of-api-key
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "ApiKeys"))
+(smithy/sdk/shapes:define-input api-keys common-lisp:nil
+                                ((warnings :target-type list-of-string
+                                  :member-name "warnings")
+                                 (items :target-type list-of-api-key
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "ApiKeys"))
 
 (smithy/sdk/shapes:define-enum api-keys-format
     common-lisp:nil
@@ -335,12 +335,12 @@
   (:request "REQUEST")
   (:cognito-user-pools "COGNITO_USER_POOLS"))
 
-(smithy/sdk/shapes:define-structure authorizers common-lisp:nil
-                                    ((items :target-type list-of-authorizer
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "Authorizers"))
+(smithy/sdk/shapes:define-input authorizers common-lisp:nil
+                                ((items :target-type list-of-authorizer
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "Authorizers"))
 
 (smithy/sdk/shapes:define-error bad-request-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -357,13 +357,12 @@
                                       "stage"))
                                     (:shape-name "BasePathMapping"))
 
-(smithy/sdk/shapes:define-structure base-path-mappings common-lisp:nil
-                                    ((items :target-type
-                                      list-of-base-path-mapping :member-name
-                                      "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "BasePathMappings"))
+(smithy/sdk/shapes:define-input base-path-mappings common-lisp:nil
+                                ((items :target-type list-of-base-path-mapping
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "BasePathMappings"))
 
 (smithy/sdk/shapes:define-type blob smithy/sdk/smithy-types:blob)
 
@@ -416,13 +415,12 @@
                                       :member-name "tags"))
                                     (:shape-name "ClientCertificate"))
 
-(smithy/sdk/shapes:define-structure client-certificates common-lisp:nil
-                                    ((items :target-type
-                                      list-of-client-certificate :member-name
-                                      "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "ClientCertificates"))
+(smithy/sdk/shapes:define-input client-certificates common-lisp:nil
+                                ((items :target-type list-of-client-certificate
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "ClientCertificates"))
 
 (smithy/sdk/shapes:define-error conflict-exception common-lisp:nil
                                 ((message :target-type string :member-name
@@ -976,12 +974,12 @@
                                       :member-name "useStageCache"))
                                     (:shape-name "DeploymentCanarySettings"))
 
-(smithy/sdk/shapes:define-structure deployments common-lisp:nil
-                                    ((items :target-type list-of-deployment
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "Deployments"))
+(smithy/sdk/shapes:define-input deployments common-lisp:nil
+                                ((items :target-type list-of-deployment
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "Deployments"))
 
 (smithy/sdk/shapes:define-structure documentation-part common-lisp:nil
                                     ((id :target-type string :member-name "id")
@@ -1032,13 +1030,12 @@
   (:response-header "RESPONSE_HEADER")
   (:response-body "RESPONSE_BODY"))
 
-(smithy/sdk/shapes:define-structure documentation-parts common-lisp:nil
-                                    ((items :target-type
-                                      list-of-documentation-part :member-name
-                                      "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "DocumentationParts"))
+(smithy/sdk/shapes:define-input documentation-parts common-lisp:nil
+                                ((items :target-type list-of-documentation-part
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "DocumentationParts"))
 
 (smithy/sdk/shapes:define-structure documentation-version common-lisp:nil
                                     ((version :target-type string :member-name
@@ -1049,13 +1046,13 @@
                                       :member-name "description"))
                                     (:shape-name "DocumentationVersion"))
 
-(smithy/sdk/shapes:define-structure documentation-versions common-lisp:nil
-                                    ((items :target-type
-                                      list-of-documentation-version
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "DocumentationVersions"))
+(smithy/sdk/shapes:define-input documentation-versions common-lisp:nil
+                                ((items :target-type
+                                  list-of-documentation-version :member-name
+                                  "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "DocumentationVersions"))
 
 (smithy/sdk/shapes:define-structure domain-name common-lisp:nil
                                     ((domain-name :target-type string
@@ -1135,15 +1132,13 @@
                                       :member-name "tags"))
                                     (:shape-name "DomainNameAccessAssociation"))
 
-(smithy/sdk/shapes:define-structure domain-name-access-associations
-                                    common-lisp:nil
-                                    ((items :target-type
-                                      list-of-domain-name-access-association
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name
-                                     "DomainNameAccessAssociations"))
+(smithy/sdk/shapes:define-input domain-name-access-associations common-lisp:nil
+                                ((items :target-type
+                                  list-of-domain-name-access-association
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "DomainNameAccessAssociations"))
 
 (smithy/sdk/shapes:define-enum domain-name-status
     common-lisp:nil
@@ -1153,12 +1148,12 @@
   (:pending-certificate-reimport "PENDING_CERTIFICATE_REIMPORT")
   (:pending-ownership-verification "PENDING_OWNERSHIP_VERIFICATION"))
 
-(smithy/sdk/shapes:define-structure domain-names common-lisp:nil
-                                    ((items :target-type list-of-domain-name
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "DomainNames"))
+(smithy/sdk/shapes:define-input domain-names common-lisp:nil
+                                ((items :target-type list-of-domain-name
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "DomainNames"))
 
 (smithy/sdk/shapes:define-type double smithy/sdk/smithy-types:double)
 
@@ -1250,13 +1245,12 @@
   (:quota-exceeded "QUOTA_EXCEEDED")
   (:waf-filtered "WAF_FILTERED"))
 
-(smithy/sdk/shapes:define-structure gateway-responses common-lisp:nil
-                                    ((items :target-type
-                                      list-of-gateway-response :member-name
-                                      "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "GatewayResponses"))
+(smithy/sdk/shapes:define-input gateway-responses common-lisp:nil
+                                ((items :target-type list-of-gateway-response
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "GatewayResponses"))
 
 (smithy/sdk/shapes:define-input generate-client-certificate-request
                                 common-lisp:nil
@@ -2066,12 +2060,12 @@
                                       :member-name "contentType"))
                                     (:shape-name "Model"))
 
-(smithy/sdk/shapes:define-structure models common-lisp:nil
-                                    ((items :target-type list-of-model
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "Models"))
+(smithy/sdk/shapes:define-input models common-lisp:nil
+                                ((items :target-type list-of-model :member-name
+                                  "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "Models"))
 
 (smithy/sdk/shapes:define-structure mutual-tls-authentication common-lisp:nil
                                     ((truststore-uri :target-type string
@@ -2332,13 +2326,12 @@
                                       "validateRequestParameters"))
                                     (:shape-name "RequestValidator"))
 
-(smithy/sdk/shapes:define-structure request-validators common-lisp:nil
-                                    ((items :target-type
-                                      list-of-request-validator :member-name
-                                      "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "RequestValidators"))
+(smithy/sdk/shapes:define-input request-validators common-lisp:nil
+                                ((items :target-type list-of-request-validator
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "RequestValidators"))
 
 (smithy/sdk/shapes:define-structure resource common-lisp:nil
                                     ((id :target-type string :member-name "id")
@@ -2358,12 +2351,12 @@
   (:self "SELF")
   (:other-accounts "OTHER_ACCOUNTS"))
 
-(smithy/sdk/shapes:define-structure resources common-lisp:nil
-                                    ((items :target-type list-of-resource
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "Resources"))
+(smithy/sdk/shapes:define-input resources common-lisp:nil
+                                ((items :target-type list-of-resource
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "Resources"))
 
 (smithy/sdk/shapes:define-structure rest-api common-lisp:nil
                                     ((id :target-type string :member-name "id")
@@ -2400,12 +2393,12 @@
                                       :member-name "rootResourceId"))
                                     (:shape-name "RestApi"))
 
-(smithy/sdk/shapes:define-structure rest-apis common-lisp:nil
-                                    ((items :target-type list-of-rest-api
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "RestApis"))
+(smithy/sdk/shapes:define-input rest-apis common-lisp:nil
+                                ((items :target-type list-of-rest-api
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "RestApis"))
 
 (smithy/sdk/shapes:define-enum routing-mode
     common-lisp:nil
@@ -2948,18 +2941,18 @@
                                   "patchOperations"))
                                 (:shape-name "UpdateVpcLinkRequest"))
 
-(smithy/sdk/shapes:define-structure usage common-lisp:nil
-                                    ((usage-plan-id :target-type string
-                                      :member-name "usagePlanId")
-                                     (start-date :target-type string
-                                      :member-name "startDate")
-                                     (end-date :target-type string :member-name
-                                      "endDate")
-                                     (items :target-type map-of-key-usages
-                                      :member-name "items" :json-name "values")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "Usage"))
+(smithy/sdk/shapes:define-input usage common-lisp:nil
+                                ((usage-plan-id :target-type string
+                                  :member-name "usagePlanId")
+                                 (start-date :target-type string :member-name
+                                  "startDate")
+                                 (end-date :target-type string :member-name
+                                  "endDate")
+                                 (items :target-type map-of-key-usages
+                                  :member-name "items" :json-name "values")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "Usage"))
 
 (smithy/sdk/shapes:define-structure usage-plan common-lisp:nil
                                     ((id :target-type string :member-name "id")
@@ -2989,19 +2982,19 @@
                                       "name"))
                                     (:shape-name "UsagePlanKey"))
 
-(smithy/sdk/shapes:define-structure usage-plan-keys common-lisp:nil
-                                    ((items :target-type list-of-usage-plan-key
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "UsagePlanKeys"))
+(smithy/sdk/shapes:define-input usage-plan-keys common-lisp:nil
+                                ((items :target-type list-of-usage-plan-key
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "UsagePlanKeys"))
 
-(smithy/sdk/shapes:define-structure usage-plans common-lisp:nil
-                                    ((items :target-type list-of-usage-plan
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "UsagePlans"))
+(smithy/sdk/shapes:define-input usage-plans common-lisp:nil
+                                ((items :target-type list-of-usage-plan
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "UsagePlans"))
 
 (smithy/sdk/shapes:define-structure vpc-link common-lisp:nil
                                     ((id :target-type string :member-name "id")
@@ -3026,12 +3019,12 @@
   (:deleting "DELETING")
   (:failed "FAILED"))
 
-(smithy/sdk/shapes:define-structure vpc-links common-lisp:nil
-                                    ((items :target-type list-of-vpc-link
-                                      :member-name "items" :json-name "item")
-                                     (position :target-type string :member-name
-                                      "position" :http-query "position"))
-                                    (:shape-name "VpcLinks"))
+(smithy/sdk/shapes:define-input vpc-links common-lisp:nil
+                                ((items :target-type list-of-vpc-link
+                                  :member-name "items" :json-name "item")
+                                 (position :target-type string :member-name
+                                  "position" :http-query "position"))
+                                (:shape-name "VpcLinks"))
 
 (smithy/sdk/operation:define-operation create-api-key :shape-name
                                        "CreateApiKey" :input

@@ -1194,12 +1194,11 @@
                                  (:shape-name
                                   "ListStorageConfigurationsResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1479,7 +1478,8 @@
                                smithy/sdk/smithy-types:integer)
 
 (smithy/sdk/shapes:define-type participant-token-expiration-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type participant-token-id
                                smithy/sdk/smithy-types:string)
@@ -1965,13 +1965,13 @@
 
 (smithy/sdk/shapes:define-list tag-key-list :member tag-key)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn")
-                                     (tags :target-type tags :required
-                                      common-lisp:t :member-name "tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-label common-lisp:t)
+                                 (tags :target-type tags :required
+                                  common-lisp:t :member-name "tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -1997,16 +1997,17 @@
 (smithy/sdk/shapes:define-list thumbnail-storage-type-list :member
                                thumbnail-storage-type)
 
-(smithy/sdk/shapes:define-type time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "resourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "tagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "resourceArn" :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "tagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil

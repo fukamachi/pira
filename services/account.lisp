@@ -70,7 +70,8 @@
                                 (:error-code 403))
 
 (smithy/sdk/shapes:define-type account-created-date
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type account-id smithy/sdk/smithy-types:string)
 

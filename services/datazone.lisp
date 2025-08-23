@@ -3410,7 +3410,8 @@ common-lisp:nil
     common-lisp:nil
   (:domain-unit "DOMAIN_UNIT"))
 
-(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type decision-comment smithy/sdk/smithy-types:string)
 

@@ -241,7 +241,7 @@
     common-lisp:nil
   (:kilobytes "KILOBYTES"))
 
-(smithy/sdk/shapes:define-structure configuration common-lisp:nil
+(smithy/sdk/shapes:define-interface configuration common-lisp:nil
                                     ((content :target-type blob :member-name
                                       "Content" :http-payload common-lisp:t)
                                      (configuration-version :target-type
@@ -939,7 +939,7 @@
   (:linear "LINEAR")
   (:exponential "EXPONENTIAL"))
 
-(smithy/sdk/shapes:define-structure hosted-configuration-version
+(smithy/sdk/shapes:define-interface hosted-configuration-version
                                     common-lisp:nil
                                     ((application-id :target-type id
                                       :member-name "ApplicationId" :http-header
@@ -1028,7 +1028,8 @@
                                invalid-configuration-detail)
 
 (smithy/sdk/shapes:define-type iso8601date-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-type kms-key-identifier
                                smithy/sdk/smithy-types:string)

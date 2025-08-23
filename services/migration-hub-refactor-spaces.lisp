@@ -242,26 +242,25 @@
                                 (:shape-name "ConflictException")
                                 (:error-code 409))
 
-(smithy/sdk/shapes:define-structure create-application-request common-lisp:nil
-                                    ((name :target-type application-name
-                                      :required common-lisp:t :member-name
-                                      "Name")
-                                     (environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (vpc-id :target-type vpc-id :required
-                                      common-lisp:t :member-name "VpcId")
-                                     (proxy-type :target-type proxy-type
-                                      :required common-lisp:t :member-name
-                                      "ProxyType")
-                                     (api-gateway-proxy :target-type
-                                      api-gateway-proxy-input :member-name
-                                      "ApiGatewayProxy")
-                                     (tags :target-type tag-map :member-name
-                                      "Tags")
-                                     (client-token :target-type client-token
-                                      :member-name "ClientToken"))
-                                    (:shape-name "CreateApplicationRequest"))
+(smithy/sdk/shapes:define-input create-application-request common-lisp:nil
+                                ((name :target-type application-name :required
+                                  common-lisp:t :member-name "Name")
+                                 (environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (vpc-id :target-type vpc-id :required
+                                  common-lisp:t :member-name "VpcId")
+                                 (proxy-type :target-type proxy-type :required
+                                  common-lisp:t :member-name "ProxyType")
+                                 (api-gateway-proxy :target-type
+                                  api-gateway-proxy-input :member-name
+                                  "ApiGatewayProxy")
+                                 (tags :target-type tag-map :member-name
+                                  "Tags")
+                                 (client-token :target-type client-token
+                                  :member-name "ClientToken"))
+                                (:shape-name "CreateApplicationRequest"))
 
 (smithy/sdk/shapes:define-structure create-application-response common-lisp:nil
                                     ((name :target-type application-name
@@ -337,30 +336,31 @@
                                       :member-name "CreatedTime"))
                                     (:shape-name "CreateEnvironmentResponse"))
 
-(smithy/sdk/shapes:define-structure create-route-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier")
-                                     (service-identifier :target-type
-                                      service-id :required common-lisp:t
-                                      :member-name "ServiceIdentifier")
-                                     (route-type :target-type route-type
-                                      :required common-lisp:t :member-name
-                                      "RouteType")
-                                     (default-route :target-type
-                                      default-route-input :member-name
-                                      "DefaultRoute")
-                                     (uri-path-route :target-type
-                                      uri-path-route-input :member-name
-                                      "UriPathRoute")
-                                     (tags :target-type tag-map :member-name
-                                      "Tags")
-                                     (client-token :target-type client-token
-                                      :member-name "ClientToken"))
-                                    (:shape-name "CreateRouteRequest"))
+(smithy/sdk/shapes:define-input create-route-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (service-identifier :target-type service-id
+                                  :required common-lisp:t :member-name
+                                  "ServiceIdentifier")
+                                 (route-type :target-type route-type :required
+                                  common-lisp:t :member-name "RouteType")
+                                 (default-route :target-type
+                                  default-route-input :member-name
+                                  "DefaultRoute")
+                                 (uri-path-route :target-type
+                                  uri-path-route-input :member-name
+                                  "UriPathRoute")
+                                 (tags :target-type tag-map :member-name
+                                  "Tags")
+                                 (client-token :target-type client-token
+                                  :member-name "ClientToken"))
+                                (:shape-name "CreateRouteRequest"))
 
 (smithy/sdk/shapes:define-structure create-route-response common-lisp:nil
                                     ((route-id :target-type route-id
@@ -392,34 +392,34 @@
                                       :member-name "CreatedTime"))
                                     (:shape-name "CreateRouteResponse"))
 
-(smithy/sdk/shapes:define-structure create-service-request common-lisp:nil
-                                    ((name :target-type service-name :required
-                                      common-lisp:t :member-name "Name")
-                                     (description :target-type description
-                                      :member-name "Description")
-                                     (environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier")
-                                     (vpc-id :target-type vpc-id :member-name
-                                      "VpcId")
-                                     (endpoint-type :target-type
-                                      service-endpoint-type :required
-                                      common-lisp:t :member-name
-                                      "EndpointType")
-                                     (url-endpoint :target-type
-                                      url-endpoint-input :member-name
-                                      "UrlEndpoint")
-                                     (lambda-endpoint :target-type
-                                      lambda-endpoint-input :member-name
-                                      "LambdaEndpoint")
-                                     (tags :target-type tag-map :member-name
-                                      "Tags")
-                                     (client-token :target-type client-token
-                                      :member-name "ClientToken"))
-                                    (:shape-name "CreateServiceRequest"))
+(smithy/sdk/shapes:define-input create-service-request common-lisp:nil
+                                ((name :target-type service-name :required
+                                  common-lisp:t :member-name "Name")
+                                 (description :target-type description
+                                  :member-name "Description")
+                                 (environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (vpc-id :target-type vpc-id :member-name
+                                  "VpcId")
+                                 (endpoint-type :target-type
+                                  service-endpoint-type :required common-lisp:t
+                                  :member-name "EndpointType")
+                                 (url-endpoint :target-type url-endpoint-input
+                                  :member-name "UrlEndpoint")
+                                 (lambda-endpoint :target-type
+                                  lambda-endpoint-input :member-name
+                                  "LambdaEndpoint")
+                                 (tags :target-type tag-map :member-name
+                                  "Tags")
+                                 (client-token :target-type client-token
+                                  :member-name "ClientToken"))
+                                (:shape-name "CreateServiceRequest"))
 
 (smithy/sdk/shapes:define-structure create-service-response common-lisp:nil
                                     ((service-id :target-type service-id
@@ -468,14 +468,16 @@
                                       "ActivationState"))
                                     (:shape-name "DefaultRouteInput"))
 
-(smithy/sdk/shapes:define-structure delete-application-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier"))
-                                    (:shape-name "DeleteApplicationRequest"))
+(smithy/sdk/shapes:define-input delete-application-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteApplicationRequest"))
 
 (smithy/sdk/shapes:define-structure delete-application-response common-lisp:nil
                                     ((name :target-type application-name
@@ -494,11 +496,12 @@
                                       :member-name "LastUpdatedTime"))
                                     (:shape-name "DeleteApplicationResponse"))
 
-(smithy/sdk/shapes:define-structure delete-environment-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier"))
-                                    (:shape-name "DeleteEnvironmentRequest"))
+(smithy/sdk/shapes:define-input delete-environment-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteEnvironmentRequest"))
 
 (smithy/sdk/shapes:define-structure delete-environment-response common-lisp:nil
                                     ((name :target-type environment-name
@@ -514,29 +517,31 @@
                                       :member-name "LastUpdatedTime"))
                                     (:shape-name "DeleteEnvironmentResponse"))
 
-(smithy/sdk/shapes:define-structure delete-resource-policy-request
-                                    common-lisp:nil
-                                    ((identifier :target-type
-                                      resource-policy-identifier :required
-                                      common-lisp:t :member-name "Identifier"))
-                                    (:shape-name "DeleteResourcePolicyRequest"))
+(smithy/sdk/shapes:define-input delete-resource-policy-request common-lisp:nil
+                                ((identifier :target-type
+                                  resource-policy-identifier :required
+                                  common-lisp:t :member-name "Identifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteResourcePolicyRequest"))
 
 (smithy/sdk/shapes:define-structure delete-resource-policy-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeleteResourcePolicyResponse"))
 
-(smithy/sdk/shapes:define-structure delete-route-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier")
-                                     (route-identifier :target-type route-id
-                                      :required common-lisp:t :member-name
-                                      "RouteIdentifier"))
-                                    (:shape-name "DeleteRouteRequest"))
+(smithy/sdk/shapes:define-input delete-route-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (route-identifier :target-type route-id
+                                  :required common-lisp:t :member-name
+                                  "RouteIdentifier" :http-label common-lisp:t))
+                                (:shape-name "DeleteRouteRequest"))
 
 (smithy/sdk/shapes:define-structure delete-route-response common-lisp:nil
                                     ((route-id :target-type route-id
@@ -554,17 +559,20 @@
                                       :member-name "LastUpdatedTime"))
                                     (:shape-name "DeleteRouteResponse"))
 
-(smithy/sdk/shapes:define-structure delete-service-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier")
-                                     (service-identifier :target-type
-                                      service-id :required common-lisp:t
-                                      :member-name "ServiceIdentifier"))
-                                    (:shape-name "DeleteServiceRequest"))
+(smithy/sdk/shapes:define-input delete-service-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (service-identifier :target-type service-id
+                                  :required common-lisp:t :member-name
+                                  "ServiceIdentifier" :http-label
+                                  common-lisp:t))
+                                (:shape-name "DeleteServiceRequest"))
 
 (smithy/sdk/shapes:define-structure delete-service-response common-lisp:nil
                                     ((service-id :target-type service-id
@@ -673,14 +681,16 @@
                                       "AdditionalDetails"))
                                     (:shape-name "ErrorResponse"))
 
-(smithy/sdk/shapes:define-structure get-application-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier"))
-                                    (:shape-name "GetApplicationRequest"))
+(smithy/sdk/shapes:define-input get-application-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetApplicationRequest"))
 
 (smithy/sdk/shapes:define-structure get-application-response common-lisp:nil
                                     ((name :target-type application-name
@@ -717,11 +727,12 @@
                                       :member-name "CreatedTime"))
                                     (:shape-name "GetApplicationResponse"))
 
-(smithy/sdk/shapes:define-structure get-environment-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier"))
-                                    (:shape-name "GetEnvironmentRequest"))
+(smithy/sdk/shapes:define-input get-environment-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetEnvironmentRequest"))
 
 (smithy/sdk/shapes:define-structure get-environment-response common-lisp:nil
                                     ((name :target-type environment-name
@@ -753,11 +764,12 @@
                                       :member-name "CreatedTime"))
                                     (:shape-name "GetEnvironmentResponse"))
 
-(smithy/sdk/shapes:define-structure get-resource-policy-request common-lisp:nil
-                                    ((identifier :target-type
-                                      resource-policy-identifier :required
-                                      common-lisp:t :member-name "Identifier"))
-                                    (:shape-name "GetResourcePolicyRequest"))
+(smithy/sdk/shapes:define-input get-resource-policy-request common-lisp:nil
+                                ((identifier :target-type
+                                  resource-policy-identifier :required
+                                  common-lisp:t :member-name "Identifier"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetResourcePolicyRequest"))
 
 (smithy/sdk/shapes:define-structure get-resource-policy-response
                                     common-lisp:nil
@@ -765,17 +777,19 @@
                                       :member-name "Policy"))
                                     (:shape-name "GetResourcePolicyResponse"))
 
-(smithy/sdk/shapes:define-structure get-route-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier")
-                                     (route-identifier :target-type route-id
-                                      :required common-lisp:t :member-name
-                                      "RouteIdentifier"))
-                                    (:shape-name "GetRouteRequest"))
+(smithy/sdk/shapes:define-input get-route-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (route-identifier :target-type route-id
+                                  :required common-lisp:t :member-name
+                                  "RouteIdentifier" :http-label common-lisp:t))
+                                (:shape-name "GetRouteRequest"))
 
 (smithy/sdk/shapes:define-structure get-route-response common-lisp:nil
                                     ((route-id :target-type route-id
@@ -820,17 +834,20 @@
                                       :member-name "AppendSourcePath"))
                                     (:shape-name "GetRouteResponse"))
 
-(smithy/sdk/shapes:define-structure get-service-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier")
-                                     (service-identifier :target-type
-                                      service-id :required common-lisp:t
-                                      :member-name "ServiceIdentifier"))
-                                    (:shape-name "GetServiceRequest"))
+(smithy/sdk/shapes:define-input get-service-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (service-identifier :target-type service-id
+                                  :required common-lisp:t :member-name
+                                  "ServiceIdentifier" :http-label
+                                  common-lisp:t))
+                                (:shape-name "GetServiceRequest"))
 
 (smithy/sdk/shapes:define-structure get-service-response common-lisp:nil
                                     ((service-id :target-type service-id
@@ -909,17 +926,18 @@
                                       "Arn"))
                                     (:shape-name "LambdaEndpointSummary"))
 
-(smithy/sdk/shapes:define-structure list-applications-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListApplicationsRequest"))
+(smithy/sdk/shapes:define-input list-applications-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListApplicationsRequest"))
 
 (smithy/sdk/shapes:define-structure list-applications-response common-lisp:nil
                                     ((application-summary-list :target-type
@@ -929,18 +947,18 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListApplicationsResponse"))
 
-(smithy/sdk/shapes:define-structure list-environment-vpcs-request
-                                    common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListEnvironmentVpcsRequest"))
+(smithy/sdk/shapes:define-input list-environment-vpcs-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListEnvironmentVpcsRequest"))
 
 (smithy/sdk/shapes:define-structure list-environment-vpcs-response
                                     common-lisp:nil
@@ -951,14 +969,14 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListEnvironmentVpcsResponse"))
 
-(smithy/sdk/shapes:define-structure list-environments-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListEnvironmentsRequest"))
+(smithy/sdk/shapes:define-input list-environments-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListEnvironmentsRequest"))
 
 (smithy/sdk/shapes:define-structure list-environments-response common-lisp:nil
                                     ((environment-summary-list :target-type
@@ -968,20 +986,22 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListEnvironmentsResponse"))
 
-(smithy/sdk/shapes:define-structure list-routes-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier")
-                                     (next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListRoutesRequest"))
+(smithy/sdk/shapes:define-input list-routes-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListRoutesRequest"))
 
 (smithy/sdk/shapes:define-structure list-routes-response common-lisp:nil
                                     ((route-summary-list :target-type
@@ -991,20 +1011,22 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListRoutesResponse"))
 
-(smithy/sdk/shapes:define-structure list-services-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier")
-                                     (next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListServicesRequest"))
+(smithy/sdk/shapes:define-input list-services-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "nextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListServicesRequest"))
 
 (smithy/sdk/shapes:define-structure list-services-response common-lisp:nil
                                     ((service-summary-list :target-type
@@ -1014,12 +1036,11 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListServicesResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1216,13 +1237,13 @@
 
 (smithy/sdk/shapes:define-map tag-map :key string :value string)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -1247,34 +1268,36 @@
 (smithy/sdk/shapes:define-type transit-gateway-id
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type string
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tag-keys :target-type tag-keys :required
-                                      common-lisp:t :member-name "TagKeys"
-                                      :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type string :required
+                                  common-lisp:t :member-name "ResourceArn"
+                                  :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-keys :required
+                                  common-lisp:t :member-name "TagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-structure update-route-request common-lisp:nil
-                                    ((environment-identifier :target-type
-                                      environment-id :required common-lisp:t
-                                      :member-name "EnvironmentIdentifier")
-                                     (application-identifier :target-type
-                                      application-id :required common-lisp:t
-                                      :member-name "ApplicationIdentifier")
-                                     (route-identifier :target-type route-id
-                                      :required common-lisp:t :member-name
-                                      "RouteIdentifier")
-                                     (activation-state :target-type
-                                      route-activation-state :required
-                                      common-lisp:t :member-name
-                                      "ActivationState"))
-                                    (:shape-name "UpdateRouteRequest"))
+(smithy/sdk/shapes:define-input update-route-request common-lisp:nil
+                                ((environment-identifier :target-type
+                                  environment-id :required common-lisp:t
+                                  :member-name "EnvironmentIdentifier"
+                                  :http-label common-lisp:t)
+                                 (application-identifier :target-type
+                                  application-id :required common-lisp:t
+                                  :member-name "ApplicationIdentifier"
+                                  :http-label common-lisp:t)
+                                 (route-identifier :target-type route-id
+                                  :required common-lisp:t :member-name
+                                  "RouteIdentifier" :http-label common-lisp:t)
+                                 (activation-state :target-type
+                                  route-activation-state :required
+                                  common-lisp:t :member-name
+                                  "ActivationState"))
+                                (:shape-name "UpdateRouteRequest"))
 
 (smithy/sdk/shapes:define-structure update-route-response common-lisp:nil
                                     ((route-id :target-type route-id

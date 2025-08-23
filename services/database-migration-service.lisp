@@ -3054,7 +3054,8 @@
                                     (:shape-name "InventoryData"))
 
 (smithy/sdk/shapes:define-type iso8601date-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-error kmsaccess-denied-fault common-lisp:nil
                                 ((message :target-type exception-message

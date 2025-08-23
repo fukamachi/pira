@@ -8958,7 +8958,8 @@
 (smithy/sdk/shapes:define-type is-version-valid smithy/sdk/smithy-types:boolean)
 
 (smithy/sdk/shapes:define-type iso8601date-time
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-enum jdbcconnection-type
     common-lisp:nil

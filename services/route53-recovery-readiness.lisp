@@ -557,7 +557,8 @@
                                 (:error-code 500))
 
 (smithy/sdk/shapes:define-type last-audit-timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input list-cells-request common-lisp:nil
                                 ((max-results :target-type max-results
@@ -744,7 +745,8 @@
                                     (:shape-name "ReadinessCheckSummary"))
 
 (smithy/sdk/shapes:define-type readiness-check-timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure recommendation common-lisp:nil
                                     ((recommendation-text :target-type string

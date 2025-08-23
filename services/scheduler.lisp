@@ -135,15 +135,15 @@
                                 (:shape-name "ConflictException")
                                 (:error-code 409))
 
-(smithy/sdk/shapes:define-structure create-schedule-group-input common-lisp:nil
-                                    ((name :target-type schedule-group-name
-                                      :required common-lisp:t :member-name
-                                      "Name")
-                                     (tags :target-type tag-list :member-name
-                                      "Tags")
-                                     (client-token :target-type client-token
-                                      :member-name "ClientToken"))
-                                    (:shape-name "CreateScheduleGroupInput"))
+(smithy/sdk/shapes:define-input create-schedule-group-input common-lisp:nil
+                                ((name :target-type schedule-group-name
+                                  :required common-lisp:t :member-name "Name"
+                                  :http-label common-lisp:t)
+                                 (tags :target-type tag-list :member-name
+                                  "Tags")
+                                 (client-token :target-type client-token
+                                  :member-name "ClientToken"))
+                                (:shape-name "CreateScheduleGroupInput"))
 
 (smithy/sdk/shapes:define-structure create-schedule-group-output
                                     common-lisp:nil
@@ -153,41 +153,39 @@
                                       "ScheduleGroupArn"))
                                     (:shape-name "CreateScheduleGroupOutput"))
 
-(smithy/sdk/shapes:define-structure create-schedule-input common-lisp:nil
-                                    ((name :target-type name :required
-                                      common-lisp:t :member-name "Name")
-                                     (group-name :target-type
-                                      schedule-group-name :member-name
-                                      "GroupName")
-                                     (schedule-expression :target-type
-                                      schedule-expression :required
-                                      common-lisp:t :member-name
-                                      "ScheduleExpression")
-                                     (start-date :target-type start-date
-                                      :member-name "StartDate")
-                                     (end-date :target-type end-date
-                                      :member-name "EndDate")
-                                     (description :target-type description
-                                      :member-name "Description")
-                                     (schedule-expression-timezone :target-type
-                                      schedule-expression-timezone :member-name
-                                      "ScheduleExpressionTimezone")
-                                     (state :target-type schedule-state
-                                      :member-name "State")
-                                     (kms-key-arn :target-type kms-key-arn
-                                      :member-name "KmsKeyArn")
-                                     (target :target-type target :required
-                                      common-lisp:t :member-name "Target")
-                                     (flexible-time-window :target-type
-                                      flexible-time-window :required
-                                      common-lisp:t :member-name
-                                      "FlexibleTimeWindow")
-                                     (client-token :target-type client-token
-                                      :member-name "ClientToken")
-                                     (action-after-completion :target-type
-                                      action-after-completion :member-name
-                                      "ActionAfterCompletion"))
-                                    (:shape-name "CreateScheduleInput"))
+(smithy/sdk/shapes:define-input create-schedule-input common-lisp:nil
+                                ((name :target-type name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (group-name :target-type schedule-group-name
+                                  :member-name "GroupName")
+                                 (schedule-expression :target-type
+                                  schedule-expression :required common-lisp:t
+                                  :member-name "ScheduleExpression")
+                                 (start-date :target-type start-date
+                                  :member-name "StartDate")
+                                 (end-date :target-type end-date :member-name
+                                  "EndDate")
+                                 (description :target-type description
+                                  :member-name "Description")
+                                 (schedule-expression-timezone :target-type
+                                  schedule-expression-timezone :member-name
+                                  "ScheduleExpressionTimezone")
+                                 (state :target-type schedule-state
+                                  :member-name "State")
+                                 (kms-key-arn :target-type kms-key-arn
+                                  :member-name "KmsKeyArn")
+                                 (target :target-type target :required
+                                  common-lisp:t :member-name "Target")
+                                 (flexible-time-window :target-type
+                                  flexible-time-window :required common-lisp:t
+                                  :member-name "FlexibleTimeWindow")
+                                 (client-token :target-type client-token
+                                  :member-name "ClientToken")
+                                 (action-after-completion :target-type
+                                  action-after-completion :member-name
+                                  "ActionAfterCompletion"))
+                                (:shape-name "CreateScheduleInput"))
 
 (smithy/sdk/shapes:define-structure create-schedule-output common-lisp:nil
                                     ((schedule-arn :target-type schedule-arn
@@ -202,29 +200,30 @@
                                       :member-name "Arn"))
                                     (:shape-name "DeadLetterConfig"))
 
-(smithy/sdk/shapes:define-structure delete-schedule-group-input common-lisp:nil
-                                    ((name :target-type schedule-group-name
-                                      :required common-lisp:t :member-name
-                                      "Name")
-                                     (client-token :target-type client-token
-                                      :member-name "ClientToken" :http-query
-                                      "clientToken"))
-                                    (:shape-name "DeleteScheduleGroupInput"))
+(smithy/sdk/shapes:define-input delete-schedule-group-input common-lisp:nil
+                                ((name :target-type schedule-group-name
+                                  :required common-lisp:t :member-name "Name"
+                                  :http-label common-lisp:t)
+                                 (client-token :target-type client-token
+                                  :member-name "ClientToken" :http-query
+                                  "clientToken"))
+                                (:shape-name "DeleteScheduleGroupInput"))
 
 (smithy/sdk/shapes:define-structure delete-schedule-group-output
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name "DeleteScheduleGroupOutput"))
 
-(smithy/sdk/shapes:define-structure delete-schedule-input common-lisp:nil
-                                    ((name :target-type name :required
-                                      common-lisp:t :member-name "Name")
-                                     (group-name :target-type
-                                      schedule-group-name :member-name
-                                      "GroupName" :http-query "groupName")
-                                     (client-token :target-type client-token
-                                      :member-name "ClientToken" :http-query
-                                      "clientToken"))
-                                    (:shape-name "DeleteScheduleInput"))
+(smithy/sdk/shapes:define-input delete-schedule-input common-lisp:nil
+                                ((name :target-type name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (group-name :target-type schedule-group-name
+                                  :member-name "GroupName" :http-query
+                                  "groupName")
+                                 (client-token :target-type client-token
+                                  :member-name "ClientToken" :http-query
+                                  "clientToken"))
+                                (:shape-name "DeleteScheduleInput"))
 
 (smithy/sdk/shapes:define-structure delete-schedule-output common-lisp:nil
                                     common-lisp:nil
@@ -303,11 +302,11 @@
 (smithy/sdk/shapes:define-type flexible-time-window-mode
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure get-schedule-group-input common-lisp:nil
-                                    ((name :target-type schedule-group-name
-                                      :required common-lisp:t :member-name
-                                      "Name"))
-                                    (:shape-name "GetScheduleGroupInput"))
+(smithy/sdk/shapes:define-input get-schedule-group-input common-lisp:nil
+                                ((name :target-type schedule-group-name
+                                  :required common-lisp:t :member-name "Name"
+                                  :http-label common-lisp:t))
+                                (:shape-name "GetScheduleGroupInput"))
 
 (smithy/sdk/shapes:define-structure get-schedule-group-output common-lisp:nil
                                     ((arn :target-type schedule-group-arn
@@ -323,13 +322,14 @@
                                       "LastModificationDate"))
                                     (:shape-name "GetScheduleGroupOutput"))
 
-(smithy/sdk/shapes:define-structure get-schedule-input common-lisp:nil
-                                    ((name :target-type name :required
-                                      common-lisp:t :member-name "Name")
-                                     (group-name :target-type
-                                      schedule-group-name :member-name
-                                      "GroupName" :http-query "groupName"))
-                                    (:shape-name "GetScheduleInput"))
+(smithy/sdk/shapes:define-input get-schedule-input common-lisp:nil
+                                ((name :target-type name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (group-name :target-type schedule-group-name
+                                  :member-name "GroupName" :http-query
+                                  "groupName"))
+                                (:shape-name "GetScheduleInput"))
 
 (smithy/sdk/shapes:define-structure get-schedule-output common-lisp:nil
                                     ((arn :target-type schedule-arn
@@ -393,17 +393,17 @@
 
 (smithy/sdk/shapes:define-type launch-type smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure list-schedule-groups-input common-lisp:nil
-                                    ((name-prefix :target-type
-                                      schedule-group-name-prefix :member-name
-                                      "NamePrefix" :http-query "NamePrefix")
-                                     (next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "NextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "MaxResults"))
-                                    (:shape-name "ListScheduleGroupsInput"))
+(smithy/sdk/shapes:define-input list-schedule-groups-input common-lisp:nil
+                                ((name-prefix :target-type
+                                  schedule-group-name-prefix :member-name
+                                  "NamePrefix" :http-query "NamePrefix")
+                                 (next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "NextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "MaxResults"))
+                                (:shape-name "ListScheduleGroupsInput"))
 
 (smithy/sdk/shapes:define-structure list-schedule-groups-output common-lisp:nil
                                     ((next-token :target-type next-token
@@ -414,22 +414,22 @@
                                       "ScheduleGroups"))
                                     (:shape-name "ListScheduleGroupsOutput"))
 
-(smithy/sdk/shapes:define-structure list-schedules-input common-lisp:nil
-                                    ((group-name :target-type
-                                      schedule-group-name :member-name
-                                      "GroupName" :http-query "ScheduleGroup")
-                                     (name-prefix :target-type name-prefix
-                                      :member-name "NamePrefix" :http-query
-                                      "NamePrefix")
-                                     (state :target-type schedule-state
-                                      :member-name "State" :http-query "State")
-                                     (next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "NextToken")
-                                     (max-results :target-type max-results
-                                      :member-name "MaxResults" :http-query
-                                      "MaxResults"))
-                                    (:shape-name "ListSchedulesInput"))
+(smithy/sdk/shapes:define-input list-schedules-input common-lisp:nil
+                                ((group-name :target-type schedule-group-name
+                                  :member-name "GroupName" :http-query
+                                  "ScheduleGroup")
+                                 (name-prefix :target-type name-prefix
+                                  :member-name "NamePrefix" :http-query
+                                  "NamePrefix")
+                                 (state :target-type schedule-state
+                                  :member-name "State" :http-query "State")
+                                 (next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "NextToken")
+                                 (max-results :target-type max-results
+                                  :member-name "MaxResults" :http-query
+                                  "MaxResults"))
+                                (:shape-name "ListSchedulesInput"))
 
 (smithy/sdk/shapes:define-structure list-schedules-output common-lisp:nil
                                     ((next-token :target-type next-token
@@ -439,12 +439,11 @@
                                       "Schedules"))
                                     (:shape-name "ListSchedulesOutput"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-input
-                                    common-lisp:nil
-                                    ((resource-arn :target-type
-                                      tag-resource-arn :required common-lisp:t
-                                      :member-name "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceInput"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-input common-lisp:nil
+                                ((resource-arn :target-type tag-resource-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceInput"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-output
                                     common-lisp:nil
@@ -672,13 +671,13 @@ common-lisp:nil
 
 (smithy/sdk/shapes:define-type tag-resource-arn smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure tag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type
-                                      tag-resource-arn :required common-lisp:t
-                                      :member-name "ResourceArn")
-                                     (tags :target-type tag-list :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceInput"))
+(smithy/sdk/shapes:define-input tag-resource-input common-lisp:nil
+                                ((resource-arn :target-type tag-resource-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t)
+                                 (tags :target-type tag-list :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceInput"))
 
 (smithy/sdk/shapes:define-structure tag-resource-output common-lisp:nil
                                     common-lisp:nil
@@ -743,54 +742,52 @@ common-lisp:nil
                                 (:shape-name "ThrottlingException")
                                 (:error-code 429))
 
-(smithy/sdk/shapes:define-structure untag-resource-input common-lisp:nil
-                                    ((resource-arn :target-type
-                                      tag-resource-arn :required common-lisp:t
-                                      :member-name "ResourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "TagKeys" :http-query "TagKeys"))
-                                    (:shape-name "UntagResourceInput"))
+(smithy/sdk/shapes:define-input untag-resource-input common-lisp:nil
+                                ((resource-arn :target-type tag-resource-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "TagKeys"
+                                  :http-query "TagKeys"))
+                                (:shape-name "UntagResourceInput"))
 
 (smithy/sdk/shapes:define-structure untag-resource-output common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "UntagResourceOutput"))
 
-(smithy/sdk/shapes:define-structure update-schedule-input common-lisp:nil
-                                    ((name :target-type name :required
-                                      common-lisp:t :member-name "Name")
-                                     (group-name :target-type
-                                      schedule-group-name :member-name
-                                      "GroupName")
-                                     (schedule-expression :target-type
-                                      schedule-expression :required
-                                      common-lisp:t :member-name
-                                      "ScheduleExpression")
-                                     (start-date :target-type start-date
-                                      :member-name "StartDate")
-                                     (end-date :target-type end-date
-                                      :member-name "EndDate")
-                                     (description :target-type description
-                                      :member-name "Description")
-                                     (schedule-expression-timezone :target-type
-                                      schedule-expression-timezone :member-name
-                                      "ScheduleExpressionTimezone")
-                                     (state :target-type schedule-state
-                                      :member-name "State")
-                                     (kms-key-arn :target-type kms-key-arn
-                                      :member-name "KmsKeyArn")
-                                     (target :target-type target :required
-                                      common-lisp:t :member-name "Target")
-                                     (flexible-time-window :target-type
-                                      flexible-time-window :required
-                                      common-lisp:t :member-name
-                                      "FlexibleTimeWindow")
-                                     (client-token :target-type client-token
-                                      :member-name "ClientToken")
-                                     (action-after-completion :target-type
-                                      action-after-completion :member-name
-                                      "ActionAfterCompletion"))
-                                    (:shape-name "UpdateScheduleInput"))
+(smithy/sdk/shapes:define-input update-schedule-input common-lisp:nil
+                                ((name :target-type name :required
+                                  common-lisp:t :member-name "Name" :http-label
+                                  common-lisp:t)
+                                 (group-name :target-type schedule-group-name
+                                  :member-name "GroupName")
+                                 (schedule-expression :target-type
+                                  schedule-expression :required common-lisp:t
+                                  :member-name "ScheduleExpression")
+                                 (start-date :target-type start-date
+                                  :member-name "StartDate")
+                                 (end-date :target-type end-date :member-name
+                                  "EndDate")
+                                 (description :target-type description
+                                  :member-name "Description")
+                                 (schedule-expression-timezone :target-type
+                                  schedule-expression-timezone :member-name
+                                  "ScheduleExpressionTimezone")
+                                 (state :target-type schedule-state
+                                  :member-name "State")
+                                 (kms-key-arn :target-type kms-key-arn
+                                  :member-name "KmsKeyArn")
+                                 (target :target-type target :required
+                                  common-lisp:t :member-name "Target")
+                                 (flexible-time-window :target-type
+                                  flexible-time-window :required common-lisp:t
+                                  :member-name "FlexibleTimeWindow")
+                                 (client-token :target-type client-token
+                                  :member-name "ClientToken")
+                                 (action-after-completion :target-type
+                                  action-after-completion :member-name
+                                  "ActionAfterCompletion"))
+                                (:shape-name "UpdateScheduleInput"))
 
 (smithy/sdk/shapes:define-structure update-schedule-output common-lisp:nil
                                     ((schedule-arn :target-type schedule-arn

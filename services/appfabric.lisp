@@ -356,7 +356,8 @@
                                   "apiKeyCredential"))
                                 (:shape-name "Credential"))
 
-(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type date-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-app-authorization-request
                                 common-lisp:nil

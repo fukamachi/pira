@@ -91,7 +91,8 @@
                                    common-lisp:t :member-name "arn"))
                                  (:shape-name "CreateEmailContactResponse"))
 
-(smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type creation-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-input delete-email-contact-request common-lisp:nil
                                 ((arn :target-type email-contact-arn :required
@@ -289,7 +290,8 @@ common-lisp:nil
                                  common-lisp:nil
                                  (:shape-name "UntagResourceResponse"))
 
-(smithy/sdk/shapes:define-type update-time smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type update-time smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-error validation-exception common-lisp:nil
                                 ((message :target-type error-message :required

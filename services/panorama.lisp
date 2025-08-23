@@ -465,64 +465,66 @@
 (smithy/sdk/shapes:define-type default-runtime-context-device
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure delete-device-request common-lisp:nil
-                                    ((device-id :target-type device-id
-                                      :required common-lisp:t :member-name
-                                      "DeviceId"))
-                                    (:shape-name "DeleteDeviceRequest"))
+(smithy/sdk/shapes:define-input delete-device-request common-lisp:nil
+                                ((device-id :target-type device-id :required
+                                  common-lisp:t :member-name "DeviceId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DeleteDeviceRequest"))
 
 (smithy/sdk/shapes:define-structure delete-device-response common-lisp:nil
                                     ((device-id :target-type device-id
                                       :member-name "DeviceId"))
                                     (:shape-name "DeleteDeviceResponse"))
 
-(smithy/sdk/shapes:define-structure delete-package-request common-lisp:nil
-                                    ((package-id :target-type node-package-id
-                                      :required common-lisp:t :member-name
-                                      "PackageId")
-                                     (force-delete :target-type boolean
-                                      :member-name "ForceDelete" :http-query
-                                      "ForceDelete"))
-                                    (:shape-name "DeletePackageRequest"))
+(smithy/sdk/shapes:define-input delete-package-request common-lisp:nil
+                                ((package-id :target-type node-package-id
+                                  :required common-lisp:t :member-name
+                                  "PackageId" :http-label common-lisp:t)
+                                 (force-delete :target-type boolean
+                                  :member-name "ForceDelete" :http-query
+                                  "ForceDelete"))
+                                (:shape-name "DeletePackageRequest"))
 
 (smithy/sdk/shapes:define-structure delete-package-response common-lisp:nil
                                     common-lisp:nil
                                     (:shape-name "DeletePackageResponse"))
 
-(smithy/sdk/shapes:define-structure deregister-package-version-request
-                                    common-lisp:nil
-                                    ((owner-account :target-type
-                                      package-owner-account :member-name
-                                      "OwnerAccount" :http-query
-                                      "OwnerAccount")
-                                     (package-id :target-type node-package-id
-                                      :required common-lisp:t :member-name
-                                      "PackageId")
-                                     (package-version :target-type
-                                      node-package-version :required
-                                      common-lisp:t :member-name
-                                      "PackageVersion")
-                                     (patch-version :target-type
-                                      node-package-patch-version :required
-                                      common-lisp:t :member-name
-                                      "PatchVersion")
-                                     (updated-latest-patch-version :target-type
-                                      node-package-patch-version :member-name
-                                      "UpdatedLatestPatchVersion" :http-query
-                                      "UpdatedLatestPatchVersion"))
-                                    (:shape-name
-                                     "DeregisterPackageVersionRequest"))
+(smithy/sdk/shapes:define-input deregister-package-version-request
+                                common-lisp:nil
+                                ((owner-account :target-type
+                                  package-owner-account :member-name
+                                  "OwnerAccount" :http-query "OwnerAccount")
+                                 (package-id :target-type node-package-id
+                                  :required common-lisp:t :member-name
+                                  "PackageId" :http-label common-lisp:t)
+                                 (package-version :target-type
+                                  node-package-version :required common-lisp:t
+                                  :member-name "PackageVersion" :http-label
+                                  common-lisp:t)
+                                 (patch-version :target-type
+                                  node-package-patch-version :required
+                                  common-lisp:t :member-name "PatchVersion"
+                                  :http-label common-lisp:t)
+                                 (updated-latest-patch-version :target-type
+                                  node-package-patch-version :member-name
+                                  "UpdatedLatestPatchVersion" :http-query
+                                  "UpdatedLatestPatchVersion"))
+                                (:shape-name "DeregisterPackageVersionRequest"))
 
 (smithy/sdk/shapes:define-structure deregister-package-version-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "DeregisterPackageVersionResponse"))
 
-(smithy/sdk/shapes:define-structure
- describe-application-instance-details-request common-lisp:nil
- ((application-instance-id :target-type application-instance-id :required
-   common-lisp:t :member-name "ApplicationInstanceId"))
- (:shape-name "DescribeApplicationInstanceDetailsRequest"))
+(smithy/sdk/shapes:define-input describe-application-instance-details-request
+                                common-lisp:nil
+                                ((application-instance-id :target-type
+                                  application-instance-id :required
+                                  common-lisp:t :member-name
+                                  "ApplicationInstanceId" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "DescribeApplicationInstanceDetailsRequest"))
 
 (smithy/sdk/shapes:define-structure
  describe-application-instance-details-response common-lisp:nil
@@ -541,14 +543,15 @@
    "ApplicationInstanceId"))
  (:shape-name "DescribeApplicationInstanceDetailsResponse"))
 
-(smithy/sdk/shapes:define-structure describe-application-instance-request
-                                    common-lisp:nil
-                                    ((application-instance-id :target-type
-                                      application-instance-id :required
-                                      common-lisp:t :member-name
-                                      "ApplicationInstanceId"))
-                                    (:shape-name
-                                     "DescribeApplicationInstanceRequest"))
+(smithy/sdk/shapes:define-input describe-application-instance-request
+                                common-lisp:nil
+                                ((application-instance-id :target-type
+                                  application-instance-id :required
+                                  common-lisp:t :member-name
+                                  "ApplicationInstanceId" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "DescribeApplicationInstanceRequest"))
 
 (smithy/sdk/shapes:define-structure describe-application-instance-response
                                     common-lisp:nil
@@ -598,10 +601,11 @@
                                     (:shape-name
                                      "DescribeApplicationInstanceResponse"))
 
-(smithy/sdk/shapes:define-structure describe-device-job-request common-lisp:nil
-                                    ((job-id :target-type job-id :required
-                                      common-lisp:t :member-name "JobId"))
-                                    (:shape-name "DescribeDeviceJobRequest"))
+(smithy/sdk/shapes:define-input describe-device-job-request common-lisp:nil
+                                ((job-id :target-type job-id :required
+                                  common-lisp:t :member-name "JobId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeDeviceJobRequest"))
 
 (smithy/sdk/shapes:define-structure describe-device-job-response
                                     common-lisp:nil
@@ -626,11 +630,11 @@
                                       :member-name "JobType"))
                                     (:shape-name "DescribeDeviceJobResponse"))
 
-(smithy/sdk/shapes:define-structure describe-device-request common-lisp:nil
-                                    ((device-id :target-type device-id
-                                      :required common-lisp:t :member-name
-                                      "DeviceId"))
-                                    (:shape-name "DescribeDeviceRequest"))
+(smithy/sdk/shapes:define-input describe-device-request common-lisp:nil
+                                ((device-id :target-type device-id :required
+                                  common-lisp:t :member-name "DeviceId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribeDeviceRequest"))
 
 (smithy/sdk/shapes:define-structure describe-device-response common-lisp:nil
                                     ((device-id :target-type device-id
@@ -687,12 +691,13 @@
                                       "DeviceAggregatedStatus"))
                                     (:shape-name "DescribeDeviceResponse"))
 
-(smithy/sdk/shapes:define-structure describe-node-from-template-job-request
-                                    common-lisp:nil
-                                    ((job-id :target-type job-id :required
-                                      common-lisp:t :member-name "JobId"))
-                                    (:shape-name
-                                     "DescribeNodeFromTemplateJobRequest"))
+(smithy/sdk/shapes:define-input describe-node-from-template-job-request
+                                common-lisp:nil
+                                ((job-id :target-type job-id :required
+                                  common-lisp:t :member-name "JobId"
+                                  :http-label common-lisp:t))
+                                (:shape-name
+                                 "DescribeNodeFromTemplateJobRequest"))
 
 (smithy/sdk/shapes:define-structure describe-node-from-template-job-response
                                     common-lisp:nil
@@ -735,14 +740,14 @@
                                     (:shape-name
                                      "DescribeNodeFromTemplateJobResponse"))
 
-(smithy/sdk/shapes:define-structure describe-node-request common-lisp:nil
-                                    ((node-id :target-type node-id :required
-                                      common-lisp:t :member-name "NodeId")
-                                     (owner-account :target-type
-                                      package-owner-account :member-name
-                                      "OwnerAccount" :http-query
-                                      "OwnerAccount"))
-                                    (:shape-name "DescribeNodeRequest"))
+(smithy/sdk/shapes:define-input describe-node-request common-lisp:nil
+                                ((node-id :target-type node-id :required
+                                  common-lisp:t :member-name "NodeId"
+                                  :http-label common-lisp:t)
+                                 (owner-account :target-type
+                                  package-owner-account :member-name
+                                  "OwnerAccount" :http-query "OwnerAccount"))
+                                (:shape-name "DescribeNodeRequest"))
 
 (smithy/sdk/shapes:define-structure describe-node-response common-lisp:nil
                                     ((node-id :target-type node-id :required
@@ -788,12 +793,12 @@
                                       "LastUpdatedTime"))
                                     (:shape-name "DescribeNodeResponse"))
 
-(smithy/sdk/shapes:define-structure describe-package-import-job-request
-                                    common-lisp:nil
-                                    ((job-id :target-type job-id :required
-                                      common-lisp:t :member-name "JobId"))
-                                    (:shape-name
-                                     "DescribePackageImportJobRequest"))
+(smithy/sdk/shapes:define-input describe-package-import-job-request
+                                common-lisp:nil
+                                ((job-id :target-type job-id :required
+                                  common-lisp:t :member-name "JobId"
+                                  :http-label common-lisp:t))
+                                (:shape-name "DescribePackageImportJobRequest"))
 
 (smithy/sdk/shapes:define-structure describe-package-import-job-response
                                     common-lisp:nil
@@ -832,11 +837,11 @@
                                     (:shape-name
                                      "DescribePackageImportJobResponse"))
 
-(smithy/sdk/shapes:define-structure describe-package-request common-lisp:nil
-                                    ((package-id :target-type node-package-id
-                                      :required common-lisp:t :member-name
-                                      "PackageId"))
-                                    (:shape-name "DescribePackageRequest"))
+(smithy/sdk/shapes:define-input describe-package-request common-lisp:nil
+                                ((package-id :target-type node-package-id
+                                  :required common-lisp:t :member-name
+                                  "PackageId" :http-label common-lisp:t))
+                                (:shape-name "DescribePackageRequest"))
 
 (smithy/sdk/shapes:define-structure describe-package-response common-lisp:nil
                                     ((package-id :target-type node-package-id
@@ -864,25 +869,22 @@
                                       common-lisp:t :member-name "Tags"))
                                     (:shape-name "DescribePackageResponse"))
 
-(smithy/sdk/shapes:define-structure describe-package-version-request
-                                    common-lisp:nil
-                                    ((owner-account :target-type
-                                      package-owner-account :member-name
-                                      "OwnerAccount" :http-query
-                                      "OwnerAccount")
-                                     (package-id :target-type node-package-id
-                                      :required common-lisp:t :member-name
-                                      "PackageId")
-                                     (package-version :target-type
-                                      node-package-version :required
-                                      common-lisp:t :member-name
-                                      "PackageVersion")
-                                     (patch-version :target-type
-                                      node-package-patch-version :member-name
-                                      "PatchVersion" :http-query
-                                      "PatchVersion"))
-                                    (:shape-name
-                                     "DescribePackageVersionRequest"))
+(smithy/sdk/shapes:define-input describe-package-version-request
+                                common-lisp:nil
+                                ((owner-account :target-type
+                                  package-owner-account :member-name
+                                  "OwnerAccount" :http-query "OwnerAccount")
+                                 (package-id :target-type node-package-id
+                                  :required common-lisp:t :member-name
+                                  "PackageId" :http-label common-lisp:t)
+                                 (package-version :target-type
+                                  node-package-version :required common-lisp:t
+                                  :member-name "PackageVersion" :http-label
+                                  common-lisp:t)
+                                 (patch-version :target-type
+                                  node-package-patch-version :member-name
+                                  "PatchVersion" :http-query "PatchVersion"))
+                                (:shape-name "DescribePackageVersionRequest"))
 
 (smithy/sdk/shapes:define-structure describe-package-version-response
                                     common-lisp:nil
@@ -1097,15 +1099,21 @@
 (smithy/sdk/shapes:define-type lease-expiration-time
                                smithy/sdk/smithy-types:timestamp)
 
-(smithy/sdk/shapes:define-structure
- list-application-instance-dependencies-request common-lisp:nil
- ((application-instance-id :target-type application-instance-id :required
-   common-lisp:t :member-name "ApplicationInstanceId")
-  (max-results :target-type max-size25 :member-name "MaxResults" :http-query
-   "maxResults")
-  (next-token :target-type next-token :member-name "NextToken" :http-query
-   "nextToken"))
- (:shape-name "ListApplicationInstanceDependenciesRequest"))
+(smithy/sdk/shapes:define-input list-application-instance-dependencies-request
+                                common-lisp:nil
+                                ((application-instance-id :target-type
+                                  application-instance-id :required
+                                  common-lisp:t :member-name
+                                  "ApplicationInstanceId" :http-label
+                                  common-lisp:t)
+                                 (max-results :target-type max-size25
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name
+                                 "ListApplicationInstanceDependenciesRequest"))
 
 (smithy/sdk/shapes:define-structure
  list-application-instance-dependencies-response common-lisp:nil
@@ -1113,10 +1121,11 @@
   (next-token :target-type next-token :member-name "NextToken"))
  (:shape-name "ListApplicationInstanceDependenciesResponse"))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-input
  list-application-instance-node-instances-request common-lisp:nil
  ((application-instance-id :target-type application-instance-id :required
-   common-lisp:t :member-name "ApplicationInstanceId")
+   common-lisp:t :member-name "ApplicationInstanceId" :http-label
+   common-lisp:t)
   (max-results :target-type max-size25 :member-name "MaxResults" :http-query
    "maxResults")
   (next-token :target-type next-token :member-name "NextToken" :http-query
@@ -1129,22 +1138,20 @@
   (next-token :target-type next-token :member-name "NextToken"))
  (:shape-name "ListApplicationInstanceNodeInstancesResponse"))
 
-(smithy/sdk/shapes:define-structure list-application-instances-request
-                                    common-lisp:nil
-                                    ((device-id :target-type device-id
-                                      :member-name "DeviceId" :http-query
-                                      "deviceId")
-                                     (status-filter :target-type status-filter
-                                      :member-name "StatusFilter" :http-query
-                                      "statusFilter")
-                                     (max-results :target-type max-size25
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name
-                                     "ListApplicationInstancesRequest"))
+(smithy/sdk/shapes:define-input list-application-instances-request
+                                common-lisp:nil
+                                ((device-id :target-type device-id :member-name
+                                  "DeviceId" :http-query "deviceId")
+                                 (status-filter :target-type status-filter
+                                  :member-name "StatusFilter" :http-query
+                                  "statusFilter")
+                                 (max-results :target-type max-size25
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "nextToken"))
+                                (:shape-name "ListApplicationInstancesRequest"))
 
 (smithy/sdk/shapes:define-structure list-application-instances-response
                                     common-lisp:nil
@@ -1156,17 +1163,16 @@
                                     (:shape-name
                                      "ListApplicationInstancesResponse"))
 
-(smithy/sdk/shapes:define-structure list-devices-jobs-request common-lisp:nil
-                                    ((device-id :target-type device-id
-                                      :member-name "DeviceId" :http-query
-                                      "DeviceId")
-                                     (next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "NextToken")
-                                     (max-results :target-type max-size25
-                                      :member-name "MaxResults" :http-query
-                                      "MaxResults"))
-                                    (:shape-name "ListDevicesJobsRequest"))
+(smithy/sdk/shapes:define-input list-devices-jobs-request common-lisp:nil
+                                ((device-id :target-type device-id :member-name
+                                  "DeviceId" :http-query "DeviceId")
+                                 (next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "NextToken")
+                                 (max-results :target-type max-size25
+                                  :member-name "MaxResults" :http-query
+                                  "MaxResults"))
+                                (:shape-name "ListDevicesJobsRequest"))
 
 (smithy/sdk/shapes:define-structure list-devices-jobs-response common-lisp:nil
                                     ((device-jobs :target-type device-job-list
@@ -1175,29 +1181,26 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListDevicesJobsResponse"))
 
-(smithy/sdk/shapes:define-structure list-devices-request common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "NextToken")
-                                     (max-results :target-type max-size25
-                                      :member-name "MaxResults" :http-query
-                                      "MaxResults")
-                                     (sort-by :target-type list-devices-sort-by
-                                      :member-name "SortBy" :http-query
-                                      "SortBy")
-                                     (sort-order :target-type sort-order
-                                      :member-name "SortOrder" :http-query
-                                      "SortOrder")
-                                     (name-filter :target-type name-filter
-                                      :member-name "NameFilter" :http-query
-                                      "NameFilter")
-                                     (device-aggregated-status-filter
-                                      :target-type device-aggregated-status
-                                      :member-name
-                                      "DeviceAggregatedStatusFilter"
-                                      :http-query
-                                      "DeviceAggregatedStatusFilter"))
-                                    (:shape-name "ListDevicesRequest"))
+(smithy/sdk/shapes:define-input list-devices-request common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "NextToken")
+                                 (max-results :target-type max-size25
+                                  :member-name "MaxResults" :http-query
+                                  "MaxResults")
+                                 (sort-by :target-type list-devices-sort-by
+                                  :member-name "SortBy" :http-query "SortBy")
+                                 (sort-order :target-type sort-order
+                                  :member-name "SortOrder" :http-query
+                                  "SortOrder")
+                                 (name-filter :target-type name-filter
+                                  :member-name "NameFilter" :http-query
+                                  "NameFilter")
+                                 (device-aggregated-status-filter :target-type
+                                  device-aggregated-status :member-name
+                                  "DeviceAggregatedStatusFilter" :http-query
+                                  "DeviceAggregatedStatusFilter"))
+                                (:shape-name "ListDevicesRequest"))
 
 (smithy/sdk/shapes:define-structure list-devices-response common-lisp:nil
                                     ((devices :target-type device-list
@@ -1210,16 +1213,15 @@
 (smithy/sdk/shapes:define-type list-devices-sort-by
                                smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure list-node-from-template-jobs-request
-                                    common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "NextToken")
-                                     (max-results :target-type max-size25
-                                      :member-name "MaxResults" :http-query
-                                      "MaxResults"))
-                                    (:shape-name
-                                     "ListNodeFromTemplateJobsRequest"))
+(smithy/sdk/shapes:define-input list-node-from-template-jobs-request
+                                common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "NextToken")
+                                 (max-results :target-type max-size25
+                                  :member-name "MaxResults" :http-query
+                                  "MaxResults"))
+                                (:shape-name "ListNodeFromTemplateJobsRequest"))
 
 (smithy/sdk/shapes:define-structure list-node-from-template-jobs-response
                                     common-lisp:nil
@@ -1232,32 +1234,29 @@
                                     (:shape-name
                                      "ListNodeFromTemplateJobsResponse"))
 
-(smithy/sdk/shapes:define-structure list-nodes-request common-lisp:nil
-                                    ((category :target-type node-category
-                                      :member-name "Category" :http-query
-                                      "category")
-                                     (owner-account :target-type
-                                      package-owner-account :member-name
-                                      "OwnerAccount" :http-query
-                                      "ownerAccount")
-                                     (package-name :target-type
-                                      node-package-name :member-name
-                                      "PackageName" :http-query "packageName")
-                                     (package-version :target-type
-                                      node-package-version :member-name
-                                      "PackageVersion" :http-query
-                                      "packageVersion")
-                                     (patch-version :target-type
-                                      node-package-patch-version :member-name
-                                      "PatchVersion" :http-query
-                                      "patchVersion")
-                                     (next-token :target-type token
-                                      :member-name "NextToken" :http-query
-                                      "nextToken")
-                                     (max-results :target-type max-size25
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults"))
-                                    (:shape-name "ListNodesRequest"))
+(smithy/sdk/shapes:define-input list-nodes-request common-lisp:nil
+                                ((category :target-type node-category
+                                  :member-name "Category" :http-query
+                                  "category")
+                                 (owner-account :target-type
+                                  package-owner-account :member-name
+                                  "OwnerAccount" :http-query "ownerAccount")
+                                 (package-name :target-type node-package-name
+                                  :member-name "PackageName" :http-query
+                                  "packageName")
+                                 (package-version :target-type
+                                  node-package-version :member-name
+                                  "PackageVersion" :http-query
+                                  "packageVersion")
+                                 (patch-version :target-type
+                                  node-package-patch-version :member-name
+                                  "PatchVersion" :http-query "patchVersion")
+                                 (next-token :target-type token :member-name
+                                  "NextToken" :http-query "nextToken")
+                                 (max-results :target-type max-size25
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults"))
+                                (:shape-name "ListNodesRequest"))
 
 (smithy/sdk/shapes:define-structure list-nodes-response common-lisp:nil
                                     ((nodes :target-type nodes-list
@@ -1266,16 +1265,15 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListNodesResponse"))
 
-(smithy/sdk/shapes:define-structure list-package-import-jobs-request
-                                    common-lisp:nil
-                                    ((next-token :target-type next-token
-                                      :member-name "NextToken" :http-query
-                                      "NextToken")
-                                     (max-results :target-type max-size25
-                                      :member-name "MaxResults" :http-query
-                                      "MaxResults"))
-                                    (:shape-name
-                                     "ListPackageImportJobsRequest"))
+(smithy/sdk/shapes:define-input list-package-import-jobs-request
+                                common-lisp:nil
+                                ((next-token :target-type next-token
+                                  :member-name "NextToken" :http-query
+                                  "NextToken")
+                                 (max-results :target-type max-size25
+                                  :member-name "MaxResults" :http-query
+                                  "MaxResults"))
+                                (:shape-name "ListPackageImportJobsRequest"))
 
 (smithy/sdk/shapes:define-structure list-package-import-jobs-response
                                     common-lisp:nil
@@ -1288,14 +1286,13 @@
                                     (:shape-name
                                      "ListPackageImportJobsResponse"))
 
-(smithy/sdk/shapes:define-structure list-packages-request common-lisp:nil
-                                    ((max-results :target-type max-size25
-                                      :member-name "MaxResults" :http-query
-                                      "maxResults")
-                                     (next-token :target-type token
-                                      :member-name "NextToken" :http-query
-                                      "nextToken"))
-                                    (:shape-name "ListPackagesRequest"))
+(smithy/sdk/shapes:define-input list-packages-request common-lisp:nil
+                                ((max-results :target-type max-size25
+                                  :member-name "MaxResults" :http-query
+                                  "maxResults")
+                                 (next-token :target-type token :member-name
+                                  "NextToken" :http-query "nextToken"))
+                                (:shape-name "ListPackagesRequest"))
 
 (smithy/sdk/shapes:define-structure list-packages-response common-lisp:nil
                                     ((packages :target-type package-list
@@ -1304,12 +1301,11 @@
                                       :member-name "NextToken"))
                                     (:shape-name "ListPackagesResponse"))
 
-(smithy/sdk/shapes:define-structure list-tags-for-resource-request
-                                    common-lisp:nil
-                                    ((resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn"))
-                                    (:shape-name "ListTagsForResourceRequest"))
+(smithy/sdk/shapes:define-input list-tags-for-resource-request common-lisp:nil
+                                ((resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t))
+                                (:shape-name "ListTagsForResourceRequest"))
 
 (smithy/sdk/shapes:define-structure list-tags-for-resource-response
                                     common-lisp:nil
@@ -1746,41 +1742,40 @@
 
 (smithy/sdk/shapes:define-type region smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure register-package-version-request
-                                    common-lisp:nil
-                                    ((owner-account :target-type
-                                      package-owner-account :member-name
-                                      "OwnerAccount")
-                                     (package-id :target-type node-package-id
-                                      :required common-lisp:t :member-name
-                                      "PackageId")
-                                     (package-version :target-type
-                                      node-package-version :required
-                                      common-lisp:t :member-name
-                                      "PackageVersion")
-                                     (patch-version :target-type
-                                      node-package-patch-version :required
-                                      common-lisp:t :member-name
-                                      "PatchVersion")
-                                     (mark-latest :target-type
-                                      mark-latest-patch :member-name
-                                      "MarkLatest"))
-                                    (:shape-name
-                                     "RegisterPackageVersionRequest"))
+(smithy/sdk/shapes:define-input register-package-version-request
+                                common-lisp:nil
+                                ((owner-account :target-type
+                                  package-owner-account :member-name
+                                  "OwnerAccount")
+                                 (package-id :target-type node-package-id
+                                  :required common-lisp:t :member-name
+                                  "PackageId" :http-label common-lisp:t)
+                                 (package-version :target-type
+                                  node-package-version :required common-lisp:t
+                                  :member-name "PackageVersion" :http-label
+                                  common-lisp:t)
+                                 (patch-version :target-type
+                                  node-package-patch-version :required
+                                  common-lisp:t :member-name "PatchVersion"
+                                  :http-label common-lisp:t)
+                                 (mark-latest :target-type mark-latest-patch
+                                  :member-name "MarkLatest"))
+                                (:shape-name "RegisterPackageVersionRequest"))
 
 (smithy/sdk/shapes:define-structure register-package-version-response
                                     common-lisp:nil common-lisp:nil
                                     (:shape-name
                                      "RegisterPackageVersionResponse"))
 
-(smithy/sdk/shapes:define-structure remove-application-instance-request
-                                    common-lisp:nil
-                                    ((application-instance-id :target-type
-                                      application-instance-id :required
-                                      common-lisp:t :member-name
-                                      "ApplicationInstanceId"))
-                                    (:shape-name
-                                     "RemoveApplicationInstanceRequest"))
+(smithy/sdk/shapes:define-input remove-application-instance-request
+                                common-lisp:nil
+                                ((application-instance-id :target-type
+                                  application-instance-id :required
+                                  common-lisp:t :member-name
+                                  "ApplicationInstanceId" :http-label
+                                  common-lisp:t))
+                                (:shape-name
+                                 "RemoveApplicationInstanceRequest"))
 
 (smithy/sdk/shapes:define-structure remove-application-instance-response
                                     common-lisp:nil common-lisp:nil
@@ -1854,10 +1849,11 @@
                                 (:shape-name "ServiceQuotaExceededException")
                                 (:error-code 402))
 
-(smithy/sdk/shapes:define-structure
+(smithy/sdk/shapes:define-input
  signal-application-instance-node-instances-request common-lisp:nil
  ((application-instance-id :target-type application-instance-id :required
-   common-lisp:t :member-name "ApplicationInstanceId")
+   common-lisp:t :member-name "ApplicationInstanceId" :http-label
+   common-lisp:t)
   (node-signals :target-type node-signal-list :required common-lisp:t
    :member-name "NodeSignals"))
  (:shape-name "SignalApplicationInstanceNodeInstancesRequest"))
@@ -1910,13 +1906,13 @@
 
 (smithy/sdk/shapes:define-map tag-map :key tag-key :value tag-value)
 
-(smithy/sdk/shapes:define-structure tag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tags :target-type tag-map :required
-                                      common-lisp:t :member-name "Tags"))
-                                    (:shape-name "TagResourceRequest"))
+(smithy/sdk/shapes:define-input tag-resource-request common-lisp:nil
+                                ((resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t)
+                                 (tags :target-type tag-map :required
+                                  common-lisp:t :member-name "Tags"))
+                                (:shape-name "TagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure tag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -1937,14 +1933,14 @@
 
 (smithy/sdk/shapes:define-type token smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-structure untag-resource-request common-lisp:nil
-                                    ((resource-arn :target-type resource-arn
-                                      :required common-lisp:t :member-name
-                                      "ResourceArn")
-                                     (tag-keys :target-type tag-key-list
-                                      :required common-lisp:t :member-name
-                                      "TagKeys" :http-query "tagKeys"))
-                                    (:shape-name "UntagResourceRequest"))
+(smithy/sdk/shapes:define-input untag-resource-request common-lisp:nil
+                                ((resource-arn :target-type resource-arn
+                                  :required common-lisp:t :member-name
+                                  "ResourceArn" :http-label common-lisp:t)
+                                 (tag-keys :target-type tag-key-list :required
+                                  common-lisp:t :member-name "TagKeys"
+                                  :http-query "tagKeys"))
+                                (:shape-name "UntagResourceRequest"))
 
 (smithy/sdk/shapes:define-structure untag-resource-response common-lisp:nil
                                     common-lisp:nil
@@ -1953,14 +1949,13 @@
 (smithy/sdk/shapes:define-type update-created-time
                                smithy/sdk/smithy-types:timestamp)
 
-(smithy/sdk/shapes:define-structure update-device-metadata-request
-                                    common-lisp:nil
-                                    ((device-id :target-type device-id
-                                      :required common-lisp:t :member-name
-                                      "DeviceId")
-                                     (description :target-type description
-                                      :member-name "Description"))
-                                    (:shape-name "UpdateDeviceMetadataRequest"))
+(smithy/sdk/shapes:define-input update-device-metadata-request common-lisp:nil
+                                ((device-id :target-type device-id :required
+                                  common-lisp:t :member-name "DeviceId"
+                                  :http-label common-lisp:t)
+                                 (description :target-type description
+                                  :member-name "Description"))
+                                (:shape-name "UpdateDeviceMetadataRequest"))
 
 (smithy/sdk/shapes:define-structure update-device-metadata-response
                                     common-lisp:nil

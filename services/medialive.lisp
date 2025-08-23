@@ -13217,7 +13217,8 @@
 (smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
 
 (smithy/sdk/shapes:define-type timestamp-iso8601
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/operation:define-operation accept-input-device-transfer :shape-name
                                        "AcceptInputDeviceTransfer" :input

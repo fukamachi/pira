@@ -1276,7 +1276,8 @@
 (smithy/sdk/shapes:define-type integer smithy/sdk/smithy-types:integer)
 
 (smithy/sdk/shapes:define-type iso8601timestamp
-                               smithy/sdk/smithy-types:timestamp)
+                               smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-enum language-code
     common-lisp:nil

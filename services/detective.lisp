@@ -967,7 +967,8 @@
 
 (smithy/sdk/shapes:define-type technique smithy/sdk/smithy-types:string)
 
-(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp)
+(smithy/sdk/shapes:define-type timestamp smithy/sdk/smithy-types:timestamp
+                               :timestamp-format "date-time")
 
 (smithy/sdk/shapes:define-structure timestamp-for-collection common-lisp:nil
                                     ((timestamp :target-type timestamp
