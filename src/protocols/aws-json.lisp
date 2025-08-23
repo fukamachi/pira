@@ -27,15 +27,6 @@
   (:metaclass protocols:protocol-metaclass)
   (:protocol-id :aws-json1-1))
 
-(defmethod protocols:encode-payload ((json aws-json) content-type payload)
-  (declare (ignore content-type))
-  (typecase payload
-    ((or string
-         (vector (unsigned-byte 8)))
-     payload)
-    (otherwise
-     (call-next-method))))
-
 (defmethod protocols:additional-headers ((json aws-json1-0) service operation input)
   `((:content-type . "application/x-amz-json-1.0")
     (:x-amz-target . ,(format nil "~A.~A"

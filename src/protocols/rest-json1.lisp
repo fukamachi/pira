@@ -19,14 +19,6 @@
   (:metaclass protocols:protocol-metaclass)
   (:protocol-id :rest-json1))
 
-(defmethod protocols:encode-payload ((json rest-json1) content-type payload)
-  (typecase payload
-    ((or string
-         (vector (unsigned-byte 8)))
-     payload)
-    (otherwise
-     (call-next-method))))
-
 (defmethod protocols:additional-headers ((json rest-json1) service operation input)
   (declare (ignore service operation))
   (let ((slots (shape:http-payload-slots input)))
