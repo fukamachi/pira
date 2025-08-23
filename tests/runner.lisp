@@ -17,7 +17,9 @@
         for actual = (find (string-downcase name) headers
                            :key (compose #'string-downcase #'car)
                            :test #'string=)
-        do (ok (and actual (equal value (cdr actual)))
+        do (ok actual
+               (format nil "Header '~A' exists." name))
+           (ok (equal value (cdr actual))
                (format nil "Header '~A' is '~A'."
                        name value))))
 
