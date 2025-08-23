@@ -21,6 +21,22 @@
                (format nil "Header '~A' is '~A'."
                        name value))))
 
+(defun json-normalize (value)
+  (when (or (null value)
+            (string= value ""))
+    (return-from json-normalize ""))
+  (let ((data
+          (let ((yason:*parse-json-arrays-as-vectors* t)
+                (yason:*parse-object-as* :alist)
+                (yason:*parse-json-booleans-as-symbols* t))
+            (yason:parse value)))
+        (yason:*list-encoder* #'yason:encode-alist))
+    (yason:with-output-to-string* ()
+      (etypecase data
+        (null "{}")
+        (cons (yason:encode-alist data))
+        (string (yason:encode data))))))
+
 (defun run-request-test (operation test)
   (unless (find-if (lambda (kv)
                      (consp (cdr kv)))
@@ -49,13 +65,12 @@
                 do (ok (find (string-downcase header) (http:request-headers req) :key (compose #'string-downcase #'car) :test 'string=)
                        (format nil "Headers include '~A'." header))))
         (when (getf test :body)
-          (ok (equal (or (http:request-payload req) "")
-                     ;; XXX
-                     (if (equal (getf test :body) "{
-}")
-                         "{}"
-                         (getf test :body)))
-              (format nil "Body is '~A'." (getf test :body))))))))
+          (let ((content-type (cdr (assoc :content-type (http:request-headers req)))))
+            (ok (equal (or (http:request-payload req) "")
+                       (if (equal content-type "application/json")
+                           (json-normalize (getf test :body))
+                           (getf test :body)))
+                (format nil "Body is '~A'." (getf test :body)))))))))
 
 (defun run-response-test (operation test)
   (declare (ignorable operation test)))
