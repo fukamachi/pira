@@ -1,7 +1,8 @@
 (defpackage #:pira/protocols/aws-json
   (:use #:cl)
   (:import-from #:alexandria
-                #:ensure-car)
+                #:ensure-car
+                #:starts-with-subseq)
   (:import-from #:pira/protocols/rest-json1
                 #:find-aws-json-error-type)
   (:local-nicknames
@@ -9,7 +10,8 @@
    (#:protocols #:smithy/sdk/protocols)
    (#:operation #:smithy/sdk/operation)
    (#:http #:smithy/sdk/http)
-   (#:service #:smithy/sdk/service))
+   (#:service #:smithy/sdk/service)
+   (#:json #:smithy/json))
   (:export #:aws-json1-0
            #:aws-json1-1))
 (in-package #:pira/protocols/aws-json)
@@ -44,6 +46,13 @@
     (setf (http:request-method req)
           "POST")
     req))
+
+(defmethod protocols:encode-payload ((protocol aws-json) content-type payload)
+  (cond
+    ((starts-with-subseq "application/x-amz-json-1." content-type)
+     (json:encode payload))
+    (t
+     (call-next-method))))
 
 (defmethod protocols:decode-payload ((protocol aws-json1-0) content-type payload)
   (cond
