@@ -5,7 +5,8 @@
                 #:mappend
                 #:compose
                 #:ensure-car
-                #:ensure-list)
+                #:ensure-list
+                #:starts-with-subseq)
   (:local-nicknames
    (#:operation #:smithy/sdk/operation)
    (#:shape #:smithy/sdk/shapes)
@@ -57,9 +58,17 @@
              (map 'list (lambda (v)
                           (deserialize-value member-type v))
                   values))
+           (deserialize-map (member-key-type member-value-type value)
+             (mapcar (lambda (kv)
+                       (cons
+                        (deserialize-value member-key-type (car kv))
+                        (deserialize-value member-value-type (cdr kv))))
+                     value))
            (deserialize-value (member-type value)
              (cond
-               ((find-class member-type nil)
+               ((and (find-class member-type nil)
+                     (not (string= (package-name (symbol-package member-type))
+                                   "COMMON-LISP")))
                 (make-instance-with-params member-type value))
                ((eq (get member-type :smithy-type) 'type:enum)
                 (or (shape:enum member-type value)
@@ -68,7 +77,10 @@
            (deserialize (slot value)
              (case (ensure-car (shape:member-smithy-type slot))
                (type:list (deserialize-list (second (shape:member-smithy-type slot)) value))
-               (type:map value)
+               (type:map
+                (destructuring-bind (key-type value-type)
+                    (rest (shape:member-smithy-type slot))
+                  (deserialize-map key-type value-type value)))
                (otherwise
                 (deserialize-value (shape:member-target-type slot) value)))))
     (let* ((class (find-class class-name))
@@ -115,7 +127,8 @@
         (let ((content-type (cdr (assoc :content-type (http:request-headers req)))))
           (ok (equal (or (http:request-payload req) "")
                      (cond
-                       ((equal content-type "application/json")
+                       ((or (equal content-type "application/json")
+                            (starts-with-subseq "application/x-amz-json-1." content-type))
                         (json-normalize (getf test :body)))
                        ((member content-type '("application/xml"
                                                "text/xml")

@@ -2987,6 +2987,7 @@ flattened when they're structure members, only the outer map is flat.")))
                                        common-lisp:null :errors common-lisp:nil
                                        :method "POST" :uri
                                        "/requestcompression/putcontentwithencoding"
+                                       :request-compression '#("gzip")
                                        :request-tests
                                        ((:id
                                          "SDKAppliedContentEncoding_restXml"

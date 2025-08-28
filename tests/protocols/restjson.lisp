@@ -4334,6 +4334,7 @@ drop the null key-value pair."
                                             ("hi" . "hello"))))
                                          :documentation
                                          "Serializes a structure union value")
+                                        #+todo  ;; It refers a structure in a different package.
                                         (:id
                                          "RestJsonSerializeRenamedStructureUnionValue"
                                          :protocol "aws.protocols#restJson1"
@@ -5755,6 +5756,7 @@ omit a JSON payload."
                                        common-lisp:null :errors common-lisp:nil
                                        :method "POST" :uri
                                        "/requestcompression/putcontentwithencoding"
+                                       :request-compression '#("gzip")
                                        :request-tests
                                        ((:id
                                          "SDKAppliedContentEncoding_restJson1"

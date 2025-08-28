@@ -1839,6 +1839,7 @@ a service returns no JSON at all.")))
                                        "PutWithContentEncoding" :input
                                        put-with-content-encoding-input :output
                                        common-lisp:null :errors common-lisp:nil
+                                       :request-compression '#("gzip")
                                        :request-tests
                                        ((:id
                                          "SDKAppliedContentEncoding_awsJson1_0"
