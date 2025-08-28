@@ -32,10 +32,10 @@
                 (let ((slot slots))
                   (or (get (shape:member-target-type slot) :media-type)
                       (case (ensure-car (shape:member-smithy-type slot))
-                        ((type:string type:enum shape:smithy-union) "text/plain")
+                        ((type:string type:enum) "text/plain")
                         (type:blob "application/octet-stream")
                         (type:document "application/json")
-                        (shape:smithy-structure "application/json")
+                        ((shape:smithy-structure  shape:smithy-union) "application/json")
                         (otherwise "application/json")))))))))))
 
 (defun sanitize-error-code (value)
